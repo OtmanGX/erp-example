@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "files": [],
+  "exclude": ["test.ts", "**/*.spec.ts", "node_modules/@nebular/**/*.spec.ts"],
+  "include": ["src/*.ts", "src/**/*.ts", "node_modules/@nebular/**/*.ts"],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./tsconfig.editor.json"
+    }
+  ]
+}

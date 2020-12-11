@@ -1,0 +1,365 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "tanglass-erp": {
+      "root": "apps/tanglass-erp",
+      "sourceRoot": "apps/tanglass-erp/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "aot": true,
+            "preserveSymlinks": true,
+            "rebaseRootRelativeCssUrls": true,
+            "outputPath": "dist/apps/tanglass-erp",
+            "index": "apps/tanglass-erp/src/index.html",
+            "main": "apps/tanglass-erp/src/main.ts",
+            "tsConfig": "apps/tanglass-erp/tsconfig.app.json",
+            "polyfills": "apps/tanglass-erp/src/polyfills.ts",
+            "assets": [
+              "apps/tanglass-erp/src/assets",
+              "apps/tanglass-erp/src/favicon.ico",
+              "apps/tanglass-erp/src/favicon.png",
+              {
+                "glob": "**/*",
+                "input": "node_modules/leaflet/dist/images",
+                "output": "/assets/img/markers"
+              }
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/typeface-exo/index.css",
+              "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+              "node_modules/ionicons/scss/ionicons.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "node_modules/socicon/css/socicon.css",
+              "node_modules/nebular-icons/scss/nebular-icons.scss",
+              "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
+              "node_modules/leaflet/dist/leaflet.css",
+              "libs/tanglass-theme/src/styles/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/pace-js/pace.min.js",
+              "node_modules/tinymce/tinymce.min.js",
+              "node_modules/tinymce/themes/modern/theme.min.js",
+              "node_modules/tinymce/plugins/link/plugin.min.js",
+              "node_modules/tinymce/plugins/paste/plugin.min.js",
+              "node_modules/tinymce/plugins/table/plugin.min.js",
+              "node_modules/echarts/dist/echarts.min.js",
+              "node_modules/echarts/dist/extension/bmap.min.js",
+              "node_modules/chart.js/dist/Chart.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "angular2-chartjs",
+              "echarts",
+              "lodash",
+              "zrender/lib/svg/svg",
+              "zrender/lib/vml/vml",
+              "style-loader!leaflet/dist/leaflet.css"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "apps/tanglass-erp/src/environments/environment.ts",
+                  "with": "apps/tanglass-erp/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "tanglass-erp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tanglass-erp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tanglass-erp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/tanglass-erp/src/test.ts",
+            "karmaConfig": "apps/tanglass-erp/karma.conf.js",
+            "polyfills": "apps/tanglass-erp/src/polyfills.ts",
+            "tsConfig": "apps/tanglass-erp/tsconfig.spec.json",
+            "scripts": [
+              "node_modules/pace-js/pace.min.js",
+              "node_modules/tinymce/tinymce.min.js",
+              "node_modules/tinymce/themes/modern/theme.min.js",
+              "node_modules/tinymce/plugins/link/plugin.min.js",
+              "node_modules/tinymce/plugins/paste/plugin.min.js",
+              "node_modules/tinymce/plugins/table/plugin.min.js",
+              "node_modules/echarts/dist/echarts.min.js",
+              "node_modules/echarts/dist/extension/bmap.min.js",
+              "node_modules/chart.js/dist/Chart.min.js"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/typeface-exo/index.css",
+              "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+              "node_modules/ionicons/scss/ionicons.scss",
+              "node_modules/font-awesome/scss/font-awesome.scss",
+              "node_modules/socicon/css/socicon.css",
+              "node_modules/nebular-icons/scss/nebular-icons.scss",
+              "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
+              "libs/tanglass-theme/src/styles/styles.scss"
+            ],
+            "assets": [
+              "apps/tanglass-erp/src/assets",
+              "apps/tanglass-erp/src/favicon.ico",
+              "apps/tanglass-erp/src/favicon.png",
+              {
+                "glob": "**/*",
+                "input": "node_modules/leaflet/dist/images",
+                "output": "/assets/img/markers"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/tanglass-erp/tsconfig.app.json",
+              "apps/tanglass-erp/tsconfig.spec.json"
+            ],
+            "typeCheck": true,
+            "exclude": []
+          }
+        }
+      }
+    },
+    "tanglass-routing": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/tanglass-routing",
+      "sourceRoot": "apps/tanglass-routing/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/tanglass-routing",
+            "index": "apps/tanglass-routing/src/index.html",
+            "main": "apps/tanglass-routing/src/main.ts",
+            "polyfills": "apps/tanglass-routing/src/polyfills.ts",
+            "tsConfig": "apps/tanglass-routing/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/tanglass-routing/src/favicon.ico",
+              "apps/tanglass-routing/src/assets"
+            ],
+            "styles": ["apps/tanglass-routing/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/tanglass-routing/src/environments/environment.ts",
+                  "with": "apps/tanglass-routing/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "tanglass-routing:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tanglass-routing:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tanglass-routing:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/tanglass-routing/tsconfig.app.json",
+              "apps/tanglass-routing/tsconfig.spec.json",
+              "apps/tanglass-routing/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/tanglass-routing/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/tanglass-routing/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "tanglass-routing-e2e": {
+      "root": "apps/tanglass-routing-e2e",
+      "sourceRoot": "apps/tanglass-routing-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/tanglass-routing-e2e/cypress.json",
+            "tsConfig": "apps/tanglass-routing-e2e/tsconfig.e2e.json",
+            "devServerTarget": "tanglass-routing:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tanglass-routing:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/tanglass-routing-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/tanglass-routing-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "tanglass-core": {
+      "projectType": "library",
+      "root": "libs/tanglass-core",
+      "sourceRoot": "libs/tanglass-core/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tanglass-core/tsconfig.lib.json",
+              "libs/tanglass-core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/tanglass-core/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tanglass-core/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "tanglass-theme": {
+      "projectType": "library",
+      "root": "libs/tanglass-theme",
+      "sourceRoot": "libs/tanglass-theme/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tanglass-theme/tsconfig.lib.json",
+              "libs/tanglass-theme/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/tanglass-theme/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tanglass-theme/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    }
+  },
+  "defaultProject": "tanglass-erp",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "ngx",
+      "style": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "ngx"
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "cli": {
+    "analytics": false,
+    "defaultCollection": "@nrwl/angular"
+  }
+}

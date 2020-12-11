@@ -1,0 +1,32 @@
+{
+  "npmScope": "tanglass-erp",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "tanglass-erp": {
+      "tags": []
+    },
+    "tanglass-routing": {
+      "tags": []
+    },
+    "tanglass-routing-e2e": {
+      "tags": [],
+      "implicitDependencies": ["tanglass-routing"]
+    },
+    "tanglass-core": {
+      "tags": []
+    },
+    "tanglass-theme": {
+      "tags": []
+    }
+  }
+}
