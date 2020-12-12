@@ -1,0 +1,166 @@
+<nb-flip-card>
+    <nb-card-front>
+        <nb-card>
+            <nb-card-header>
+                <div class="row justify-content-between label">
+                    <div class="col-4">Créer Commande</div>
+                    <div class="col-2">
+                    <button *ngIf="disabled" [routerLink]="['../print', commande.id]" nbButton shape="rectangle" status="basic" size="tiny" fullWidth>
+                        <nb-icon
+                        class="icon"
+                        nbTooltip="Imprimer"
+                        nbTooltipPlacement="top"
+                        icon="printer"
+                        pack="eva"
+                      ></nb-icon>Imprimer</button>
+                    </div>
+                </div>
+            </nb-card-header>
+            <nb-card-body>
+                <ngx-form-commande [disabled]='disabled'> </ngx-form-commande>
+                <ngx-pick-matierePremiere [disabled]='disabled' (sendIsVerreClient)="setIsVerreClient($event)" (sendMatierePremiere)="setMatierePremiere($event)" (sendSelectedRows)="setSelectedMatierePremiere($event)">
+                </ngx-pick-matierePremiere>
+                <ngx-pick-verre-client [disabled]='disabled' [isVerreClient]="isVerreClient" (sendVerreClient)="setVerreClient($event)" (sendSelectedRows)="setSelectedVerreClient($event)"></ngx-pick-verre-client>
+                <ngx-pick-service [disabled]='disabled' (sendServices)="setServices($event)" [selectedMatierePremiere]="selectedMatierePremiere" [selectedVerreClient]="selectedVerreClient"></ngx-pick-service>
+                <ngx-pick-consommables [disabled]='disabled' (sendConsommables)="setConsommables($event)" [selectedMatierePremiere]="selectedMatierePremiere" [selectedVerreClient]="selectedVerreClient"></ngx-pick-consommables>
+                <div class="row justify-content-end">
+                    <nb-card class="col-4 price">
+                        <nb-card-body>
+                            <div class="row">
+                                <div class="col-6">Total HT:</div>
+                                <div class="col-5">{{ total_HTCredit | async | currency:'':'' }} DH</div>
+                                <div class="col-6">TVA 20%:</div>
+                                <div class="col-5">{{ tvaCredit | async | currency:'':'' }} DH</div>
+                            </div>
+                        </nb-card-body>
+                        <nb-card-footer class="row">
+                            <div class="col-6">Total TTC:</div>
+                            <div class="col-6">{{ total_TTCCredit | async | currency:'':'' }} DH</div>
+                        </nb-card-footer>
+                    </nb-card>
+                </div>
+            </nb-card-body>
+            <nb-card-footer class="row justify-content-center">
+                <button *ngIf="disabled"   nbTooltip="Imprimer Bon d'accessoire"
+                nbTooltipPlacement="top" (click)="orderAccessoires()" class="col-2" shape="rectangle" nbButton hero status="primary" size="tiny" fullWidth>
+                    <nb-icon
+                    class="icon"
+                    icon="printer"
+                    pack="eva"
+                  ></nb-icon>Imp B.A</button>
+
+                <button *ngIf="!disabled&&!updateMode"   nbTooltip="Confirmer"
+                nbTooltipPlacement="top" (click)="onSubmit()" class="col-2" shape="rectangle" nbButton hero status="primary" size="tiny" fullWidth>
+                    <nb-icon
+                    class="icon"
+                    icon="checkmark-circle-2"
+                    pack="eva"
+                  ></nb-icon>Confirmer</button>
+                <button *ngIf="updateMode" (click)="saveUpdate()"    nbTooltip="Enregistrer"
+                nbTooltipPlacement="top" class="col-2" shape="rectangle" nbButton hero status="primary" size="tiny" fullWidth>
+                      <nb-icon
+                      class="icon"
+                      icon="save"
+                      pack="eva"
+                    ></nb-icon>Save</button>
+                <button *ngIf="!disabled"     nbTooltip="Annuler"
+                nbTooltipPlacement="top" class="col-2" nbButton shape="rectangle" status="danger" size="tiny" fullWidth>
+                    <nb-icon
+                    class="icon"
+                    icon="close-circle"
+                    pack="eva"
+                  ></nb-icon>Annuler</button>
+                <button *ngIf="disabled &&!updateMode"        nbTooltip="Lancer Au Fabrication"
+                nbTooltipPlacement="top" (click)="launching()" class="col-2" nbButton shape="rectangle" status="primary" size="tiny" fullWidth>
+                    <nb-icon
+                    class="icon"
+                    icon="cube"
+                    pack="eva"
+                  ></nb-icon>Lancement</button>
+                <button *ngIf="disabled"  nbTooltip="Editer la commande"
+                nbTooltipPlacement="top" (click)="enableCommande()" class="col-2" nbButton shape="rectangle" status="danger" size="tiny" fullWidth>
+                    <nb-icon
+                    class="icon"
+                    icon="edit"
+                    pack="eva"
+                  ></nb-icon>Editer</button>
+            </nb-card-footer>
+        </nb-card>
+    </nb-card-front>
+    <nb-card-back>
+        <nb-card>
+            <nb-card-header>
+                <div class="row justify-content-between label">
+                    <div class="col-4">Créer Commande</div>
+                </div>
+            </nb-card-header>
+            <nb-card-body>
+                <ngx-pick-accessoires [disabled]='disabled' (sendAccessoires)="setAccessoires($event)">
+                </ngx-pick-accessoires>
+                <ngx-pick-system-apparent [disabled]='disabled' (sendSystemApparent)="setSystemApparents($event)">
+                </ngx-pick-system-apparent>
+                <div class="row justify-content-end">
+                    <nb-card class="col-4 price">
+                        <nb-card-body>
+                            <div class="row">
+                                <div class="col-6">Total HT:</div>
+                                <div class="col-5">{{ total_HTProvisional | async | currency:'':'' }} DH</div>
+                                <div class="col-6">TVA 20%:</div>
+                                <div class="col-5">{{ tvaProvisional | async | currency:'':'' }} DH</div>
+                            </div>
+                        </nb-card-body>
+                        <nb-card-footer class="row">
+                            <div class="col-6">Total TTC:</div>
+                            <div class="col-6">{{ total_TTCProvisional | async | currency:'':'' }} DH</div>
+                        </nb-card-footer>
+                    </nb-card>
+                </div>
+            </nb-card-body>
+            <nb-card-footer class="row justify-content-center">
+                <button *ngIf="!disabled&&!updateMode"  nbTooltip="Confirmer"
+                nbTooltipPlacement="top" (click)="onSubmit()" class="col-2" shape="rectangle" nbButton hero status="primary" size="tiny" fullWidth>
+                    <nb-icon
+                    class="icon"
+                    icon="checkmark-circle-2-outline"
+                    pack="eva"
+                  ></nb-icon>Confirmer</button>
+                <button *ngIf="updateMode"     nbTooltip="Enregistrer"
+                nbTooltipPlacement="top" (click)="saveUpdate()" class="col-2" shape="rectangle" nbButton hero status="primary" size="tiny" fullWidth>
+                      <nb-icon
+                      class="icon"
+                      icon="save"
+                      pack="eva"
+                    ></nb-icon>Save</button>
+
+                <button *ngIf="!disabled"   nbTooltip="Annuler"
+                nbTooltipPlacement="top" class="col-2" nbButton shape="rectangle" status="danger" size="tiny" fullWidth>
+                    <nb-icon
+                    class="icon"
+                    icon="close-circle"
+                    pack="eva"
+                  ></nb-icon>Annuler</button>
+                <button *ngIf="disabled &&!updateMode"     nbTooltip="Lancement Au Fabrication"
+                nbTooltipPlacement="top" (click)="launching()" class="col-2" nbButton shape="rectangle" status="primary" size="tiny" fullWidth>
+                    <nb-icon
+                    class="icon"
+                    icon="cube"
+                    pack="eva"
+                  ></nb-icon>Lancement</button>
+                <button *ngIf="disabled"      nbTooltip="Editer la commande"
+                nbTooltipPlacement="top" (click)="enableCommande()" class="col-2" nbButton shape="rectangle" status="danger" size="tiny" fullWidth>
+                    <nb-icon
+                    class="icon"
+                
+                    icon="edit"
+                    pack="eva"
+                  ></nb-icon>Editer</button>
+            </nb-card-footer>
+        </nb-card>
+    </nb-card-back>
+</nb-flip-card>
+<nb-card>
+    <nb-card-body>
+        <ng2-smart-table class=" smart-table" [settings]="settings" [source]="source">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

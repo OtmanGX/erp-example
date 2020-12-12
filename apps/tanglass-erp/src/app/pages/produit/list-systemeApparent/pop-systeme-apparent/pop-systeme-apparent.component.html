@@ -1,0 +1,86 @@
+<nb-card>
+    <nb-card-header>
+        <div class="row justify-content-between label">
+            <div class="col-4">
+                {{ title }}
+            </div>
+            <div>
+                <nb-actions>
+                    <nb-action nbTooltip="Fermer" nbTooltipPlacement="top" icon="close-outline" pack="eva" (click)="closePopup()"></nb-action>
+                </nb-actions>
+            </div>
+        </div>
+    </nb-card-header>
+    <form [formGroup]="systemApparentForm" (ngSubmit)="onSubmit()">
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Code</label>
+                        <nb-form-field class="col-sm-8">
+                            <input type="text" nbInput fullWidth formControlName="code" />
+                        </nb-form-field>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Désignation</label>
+                        <nb-form-field class="col-sm-8">
+                            <input type="text" nbInput fullWidth formControlName="libelle" />
+                        </nb-form-field>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Prix d'Achat</label>
+                        <nb-form-field class="col-sm-8">
+                            <input type="text" nbInput fullWidth formControlName="prix_Achat" />
+                        </nb-form-field>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Tags</label>
+                        <nb-form-field class="col-sm-8">
+                            <input type="text" nbInput fullWidth formControlName="tags" />
+                        </nb-form-field>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"> Paramètre</label>
+                        <nb-form-field class="col-sm-8">
+                            <input type="text" nbInput fullWidth formControlName="paramCalcul" />
+                        </nb-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Prix min</label>
+                        <nb-form-field class="col-sm-8">
+                            <input type="text" nbInput fullWidth formControlName="prix_min" />
+                        </nb-form-field>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Prix max</label>
+                        <nb-form-field class="col-sm-8">
+                            <input type="text" nbInput fullWidth formControlName="prix_max" />
+                        </nb-form-field>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Prix de vente</label>
+                        <nb-form-field class="col-sm-8">
+                            <input type="text" nbInput fullWidth formControlName="prix_default" />
+                        </nb-form-field>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Sociétés</label>
+                        <ng-multiselect-dropdown class="col-sm-8 spec" [data]="listCompanies" [settings]="dropdownSettingsSte" (onSelect)='onSelectCompanie($event)' (onSelectAll)='onSelectAllCompanies($event)'>
+                        </ng-multiselect-dropdown>
+
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer class="row justify-content-center">
+            <button type="submit" class="col-3" nbButton status="primary" size="tiny" fullWidth>
+        Confirmer
+      </button>
+            <button class="col-3" nbButton status="danger" size="tiny" (click)="closePopup()" fullWidth>
+        Annuler
+      </button>
+        </nb-card-footer>
+    </form>
+</nb-card>

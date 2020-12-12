@@ -1,0 +1,33 @@
+<nb-card>
+    <nb-card-header class="row justify-content-end">
+        <button  class="col-1" nbTooltip="Imprimer Bon d'Atelier" nbTooltipPlacement="top" nbButton shape="rectangle" hero status="primary" size="tiny" [useExistingCss]="true" printSectionId="print-section" ngxPrint fullWidth>print</button>
+    </nb-card-header>
+    <nb-card-body  id="print-section">
+        <div class="row no-gutters items-group">
+            <div  class="center">
+             <p><strong>Ordre d'emploi (Job Order)</strong></p>
+             </div>
+            <div   class="row container-fluid">
+                <div class="col ">
+                    <p>N°:B.T 000 {{order.id}}</p>
+                    <div class="address">
+                        <p>{{order.date| date :'short'}}</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <p>N°:B.C 000{{order.attachements_id}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters items-group">
+            <div class="col-12 label">
+                <p>Description/Dimension:</p>
+            </div>
+            <div class ="col-12 addSpace" *ngFor="let line of linesArray"  >
+                    {{line}}
+             
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+

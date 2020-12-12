@@ -1,0 +1,64 @@
+<nb-card>
+    <nb-card-header class="row justify-content-end">
+        <button class="col-1" nbTooltip="Imprimer" nbTooltipPlacement="top" nbButton shape="rectangle" hero status="primary" size="tiny" [useExistingCss]="true" printSectionId="print-section" ngxPrint fullWidth>Imprimer </button>
+
+    </nb-card-header>
+
+
+
+    <nb-card-body id="print-section">
+
+        <div  class="container-fluid">
+
+            <div class="row no-gutters">
+                <div class="col">
+                    <p><strong>{{order.fromWhere}}</strong></p>
+                    <div class="address">
+                    </div>
+                </div>
+
+                <div class="col">
+
+                    <p><strong>{{order.date| date :'short'}}</strong></p>
+                </div>
+            </div>
+
+            <div class="row no-gutters items-group">
+                <div class="col-2 label">
+                    <p>Commande N°:</p>
+                    <p>Bon d'Accessoire N°:</p>
+
+                </div>
+
+                <div class="col-9">
+                    <p>000{{order.attachment_id}}-2021</p>
+                    <p>000{{order.id}}-2021</p>
+
+                </div>
+            </div>
+
+            <div  class="row no-gutters items-group">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Code</th>
+                            <th scope="col">Désignation</th>
+                            <th scope="col">Quantité</th>
+                         
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let element of order.items">
+                            <td>{{ element.item.code }}</td>
+                            <td>{{ element.item.libelle }}</td>
+                            <td>{{ element.quantity }}</td>
+                     
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+        </div>
+    </nb-card-body>
+
+</nb-card>

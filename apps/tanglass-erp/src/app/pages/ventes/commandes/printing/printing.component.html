@@ -1,0 +1,254 @@
+<nb-card>
+    <nb-card-header class="row justify-content-end">
+        <button class="col-1" nbTooltip="Imprimer Toute commande" nbTooltipPlacement="top" nbButton shape="rectangle" hero status="primary" size="tiny" [useExistingCss]="true" printSectionId="print-section" ngxPrint fullWidth>Imprimer </button>
+
+    </nb-card-header>
+
+
+
+    <nb-card-body id="print-section">
+
+        <div *ngIf="commande" class="container-fluid">
+
+            <div class="row no-gutters">
+                <div class="col">
+                    <h2>CLI 000{{commande.formCommande.client.id}}</h2>
+                    <div class="address">
+                        <p>{{commande.formCommande.client.nom}}</p>
+                        <p>{{commande.formCommande.client.addresses[0] }}</p>
+                        <p> {{commande.formCommande.client.phone }}</p>
+                    </div>
+                </div>
+
+                <div class="col">
+
+                    <h2>Contact</h2>
+                    <div class="address">
+                        <p>{{commande.formCommande.contact.nom}}</p>
+                        <p> {{commande.formCommande.contact.phone }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-gutters items-group">
+                <div class="col-2 label">
+                    <p>Commande N°:</p>
+                </div>
+
+                <div class="col-9">
+                    <p>000{{commande.id}}-2021</p>
+                </div>
+            </div>
+
+            <div *ngIf="commande.itemsMatierePremieres.length" class="row no-gutters items-group">
+                <div class="col-1 label">
+                    <p>Section:</p>
+                </div>
+                <div class="col-9">
+                    <p>Verre</p>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Désignation</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">P.U</th>
+                            <th scope="col">Montant HT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let element of commande.itemsMatierePremieres">
+                            <td>{{ element.item.libelle }}</td>
+                            <td>{{ element.quantity }}</td>
+                            <td>{{ element.item.prix_default }}</td>
+                            <td>{{ element.total_purchase }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="dataServices.length" class="row no-gutters items-group">
+                <div class="col-1 label">
+                    <p>Section:</p>
+                </div>
+                <div class="col-9">
+                    <p>Services</p>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Désignation</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">P.U</th>
+                            <th scope="col">Montant HT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let element of dataServices">
+                            <td>{{ element.item.libelle }}</td>
+                            <td>{{ element.quantity }}</td>
+                            <td>{{ element.item.prix_default }}</td>
+                            <td>{{ element.total_purchase }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div *ngIf="dataConsommables.length" class="row no-gutters items-group ">
+                <div class="col-1 label">
+                    <p>Section:</p>
+                </div>
+                <div class="col-9">
+                    <p>Consommables</p>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Désignation</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">P.U</th>
+                            <th scope="col">Montant HT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let element of dataConsommables ">
+                            <td>{{ element.item.libelle }}</td>
+                            <td>{{ element.quantity }}</td>
+                            <td>{{ element.item.prix_default }}</td>
+                            <td>{{ element.total_purchase }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            <div class="row no-gutters items-group price">
+
+
+                <div class="col-3 label">
+                    <p><strong> Total Crédit:</strong> </p>
+                </div>
+
+                <div class="col-3 label">
+                    <p>Total HT:{{commande.creditAmountHT}}</p>
+                </div>
+                <div class="col-3">
+                    <p>Tva:{{commande.creditAmountTVA}}</p>
+                </div>
+                <div class="col-3">
+                    <p>Total TTC:{{commande.creditAmountTTC}}</p>
+                </div>
+            </div>
+            <div *ngIf="commande.itemsAccessoires.length" class="row no-gutters items-group">
+                <div class="col-1 label">
+                    <p>Section:</p>
+                </div>
+                <div class="col-9">
+                    <p>Accessoires</p>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Désignation</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">P.U</th>
+                            <th scope="col">Montant HT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let element of commande.itemsAccessoires">
+                            <td>{{ element.item.libelleClient }}</td>
+                            <td>{{ element.quantity }}</td>
+                            <td>{{ element.item.prix_default }}</td>
+                            <td>{{ element.total_purchase }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div *ngIf="commande.itemsSystemApparent.length" class="row no-gutters items-group">
+                <div class="col-1 label">
+                    <p>Section:</p>
+                </div>
+                <div class="col-9">
+                    <p>Systéme Apparent</p>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Désignation</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">P.U</th>
+                            <th scope="col">Montant HT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let element of commande.itemsSystemApparent">
+                            <td>{{ element.item.libelle }}</td>
+                            <td>{{ element.quantity }}</td>
+                            <td>{{ element.item.prix_default }}</td>
+                            <td>{{ element.total_purchase }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row no-gutters items-group price">
+
+
+                <div class="col-3 label">
+                    <p><strong> Total Acc + Apparents :</strong> </p>
+                </div>
+
+                <div class="col-3 label">
+                    <p>Total HT:{{commande.additionalAmountHT}}</p>
+                </div>
+                <div class="col-3">
+                    <p>Tva:{{commande.additionalAmountTVA}}</p>
+                </div>
+                <div class="col-3">
+                    <p>Total TTC:{{commande.additionalAmountTTC}}</p>
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <div class="row no-gutters items-group">
+                        <div class="col">
+                            <p class="label">Mode de paiement:</p>
+                            <ul class="disclaimer">
+                                <li>50% à la commande</li>
+                                <li>25% à la livraison</li>
+                                <li>25% à la finition</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="row no-gutters items-group">
+                        <div class="col-3 label">
+                            <p>Total HT:</p>
+                            <p>TVA:</p>
+                            <p>Total TTC:</p>
+
+                        </div>
+
+                        <div class="col-3">
+                            <p>{{commande.total_HT| currency:'':''}}</p>
+                            <p>{{commande.tva | currency:'':''}}</p>
+                            <p>{{commande.total_TTC | currency:'':''}}</p>
+                        </div>
+                        <div class="col-3 label">
+                            <p>Remise:</p>
+                            <p>Net à Payer:</p>
+                        </div>
+                        <div class="col-3">
+                            <p>{{commande.remise | currency:'':''}}</p>
+                            <p>{{commande.total_TTC | currency:'':''}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nb-card-body>
+
+</nb-card>

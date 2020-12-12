@@ -1,0 +1,34 @@
+<div class="col-form-label">
+    <div class="row">
+        <div class="title">
+            CONSOMMABLES
+        </div>
+        <div class='row keys ' *ngIf="!disabled">
+            <div class="keyboard" nbTooltip='Baguette' nbTooltipPlacement="top" (click)="addBaguette()">
+                <p>BA</p>
+            </div>
+            <div class="keyboard" nbTooltip='Film' nbTooltipPlacement="top" (click)="addFilm()">
+                <p>FI</p>
+            </div>
+            <div class="keyboard" nbTooltip="Lame d'Aluminium et piéces en unité" nbTooltipPlacement="top" (click)="addPieces()">
+                <p>LA </p>
+            </div>
+            <div class="keyboard" nbTooltip='Tube Inox' nbTooltipPlacement="top" (click)="addTube()">
+                <p>TI</p>
+            </div>
+            <div class="keyboard" nbTooltip='Peinture' nbTooltipPlacement="top" (click)="addPeinture()">
+                <p>P</p>
+            </div>
+            <div class="keyboard" nbTooltip='Uchannel' nbTooltipPlacement="top" (click)="addUchannel()">
+                <p>U</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-baguette (sendItems)="assignItems($event,'baguette')"></ngx-baguette>
+<ngx-film (sendItems)="assignItems($event,'film')"></ngx-film>
+<ngx-piece (sendItems)="assignItems($event,'piece')"></ngx-piece>
+<ngx-tube-inox (sendItems)="assignItems($event,'tubeInox')"></ngx-tube-inox>
+<ngx-peinture (sendItems)="assignItems($event,'peinture')"></ngx-peinture>
+<ngx-uchannel (sendItems)="assignItems($event,'uchannel')"></ngx-uchannel>

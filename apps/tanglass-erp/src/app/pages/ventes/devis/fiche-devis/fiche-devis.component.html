@@ -1,0 +1,95 @@
+<nb-card>
+    <nb-card-header>
+        <div class="row justify-content-between label">
+            <div class="col-4">Créer Devis</div>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <ngx-form-devis [disabled]='disabled' > </ngx-form-devis>
+
+        <ngx-pick-matierePremiere #pickGlass [disabled]='disabled' (sendIsVerreClient)="setIsVerreClient($event)" (sendMatierePremiere)="setMatierePremiere($event)" (sendSelectedRows)="setSelectedMatierePremiere($event)">
+        </ngx-pick-matierePremiere>
+
+        <ngx-pick-verre-client #pickVerreClient [disabled]='disabled' [isVerreClient]="isVerreClient" (sendVerreClient)="setVerreClient($event)" (sendSelectedRows)="setSelectedVerreClient($event)"></ngx-pick-verre-client>
+
+        <ngx-pick-service #pickServices [disabled]='disabled' (sendServices)="setServices($event)" [selectedMatierePremiere]="selectedMatierePremiere" [selectedVerreClient]="selectedVerreClient"></ngx-pick-service>
+        <ngx-pick-consommables #pickConsommables [disabled]='disabled' (sendConsommables)="setConsommables($event)" [selectedMatierePremiere]="selectedMatierePremiere" [selectedVerreClient]="selectedVerreClient"></ngx-pick-consommables>
+
+        <ngx-pick-accessoires #pickAccessoires [disabled]='disabled' (sendAccessoires)="setAccessoires($event)">
+        </ngx-pick-accessoires>
+
+        <ngx-pick-system-apparent #PickSystemApparent [disabled]='disabled' (sendSystemApparent)="setSystemApparents($event)">
+        </ngx-pick-system-apparent>
+
+        <div class="row justify-content-end">
+            <nb-card class="col-4 price">
+                <nb-card-body>
+                    <div class="row">
+                        <div class="col-6">Total HT:</div>
+                        <div class="col-5">{{ total_HT | async | currency:'':'' }} DH</div>
+                        <div class="col-6">TVA 20%:</div>
+                        <div class="col-5">{{ tva | async | currency:'':'' }} DH</div>
+                    </div>
+                </nb-card-body>
+                <nb-card-footer class="row">
+                    <div class="col-6">Total TTC:</div>
+                    <div class="col-6">{{ total_TTC | async | currency:'':'' }} DH</div>
+                </nb-card-footer>
+            </nb-card>
+        </div>
+    </nb-card-body>
+    <nb-card-footer class="row justify-content-center">
+
+
+        <button *ngIf="!disabled&&!updateMode" (click)="onSubmit()" class="col-2" shape="rectangle" nbButton hero status="primary" size="tiny" fullWidth>
+      <nb-icon
+      class="icon"
+      nbTooltip="nouveau"
+      nbTooltipPlacement="top"
+      icon="checkmark-circle-2-outline"
+      pack="eva"
+    ></nb-icon>Confirmer</button>
+    <button *ngIf="updateMode" (click)="saveUpdate()" class="col-2" shape="rectangle" nbButton hero status="primary" size="tiny" fullWidth>
+        <nb-icon
+        class="icon"
+        nbTooltip="nouveau"
+        nbTooltipPlacement="top"
+        icon="checkmark-circle-2-outline"
+        pack="eva"
+      ></nb-icon>Save</button>
+
+        <button *ngIf="!disabled"       
+        class="col-2" nbButton shape="rectangle" status="danger" size="tiny" fullWidth>
+      <nb-icon
+      class="icon"
+      nbTooltip="nouveau"
+      nbTooltipPlacement="top"
+      icon="close-circle-outline"
+      pack="eva"
+    ></nb-icon>Annuler</button>
+
+
+        <button *ngIf="disabled &&!updateMode"       (click)="transfertCommande()"
+        class="col-2" nbButton shape="rectangle" status="primary" size="tiny" fullWidth>
+      <nb-icon
+      class="icon"
+      nbTooltip="Tranferer au commande"
+      nbTooltipPlacement="top"
+      icon="close-circle-outline"
+      pack="eva"
+    ></nb-icon>Transfert Commande</button>
+        <button *ngIf="disabled"     
+       (click)="enableDevis()"
+         class="col-2" nbButton shape="rectangle" status="danger" size="tiny" fullWidth>
+      <nb-icon
+      class="icon"
+      nbTooltip="Editer le devis"
+      nbTooltipPlacement="top"
+      icon="close-circle-outline"
+      pack="eva"
+    ></nb-icon>Editer</button>
+
+  
+    
+    </nb-card-footer>
+</nb-card>

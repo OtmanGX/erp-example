@@ -1,0 +1,26 @@
+<nb-card>
+    <nb-card-header>
+        <div class="row justify-content-between label">
+            <div class="col-4">
+                {{ title }}
+            </div>
+            <div>
+                <nb-actions>
+                    <nb-action nbTooltip="Fermer" nbTooltipPlacement="top" icon="close-outline" pack="eva" (click)="closePopup()"></nb-action>
+                </nb-actions>
+            </div>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="sourceClients" (userRowSelect)="onUserRowSelect($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+    <nb-card-footer class="row justify-content-end">
+        <button type="submit" class="col-2" nbButton status="primary" size="tiny" (click)="OnConfirm()" fullWidth>
+      Confirmer
+    </button>
+        <button class="col-2" nbButton status="danger" size="tiny" (click)="closePopup()" fullWidth>
+      Annuler
+    </button>
+    </nb-card-footer>
+</nb-card>

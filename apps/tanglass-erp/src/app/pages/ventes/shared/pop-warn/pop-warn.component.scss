@@ -1,0 +1,23 @@
+nb-card-header {
+    padding: 0.5rem 1rem !important;
+}
+
+:host/deep/ nb-card-footer {
+    border-top: none !important;
+}
+
+:host /deep/ [nbButton].shape-rectangle {
+    border-radius: 0rem !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    margin-right: 10px;
+}
+
+:host /deep/[nbButton].appearance-filled.status-danger {
+    background-color: rgba(206, 0, 24, 0.6) !important;
+    border-color: rgba(206, 0, 24, 0.6) !important;
+}
+
+nb-icon {
+    color: rgba(206, 0, 24, 0.6) !important;
+}

@@ -19,7 +19,8 @@
     ],
     "paths": {
       "@TanglassCore/*": ["./libs/tanglass-core/src/*"],
-      "@TanglassTheme/*": ["./libs/tanglass-theme/src/*"]
+      "@TanglassTheme/*": ["./libs/tanglass-theme/src/*"],
+      "@TanglassRouting/*": ["./apps/tanglass-routing/src/app/*"]
     },
     "baseUrl": ".",
     "rootDir": "."

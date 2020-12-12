@@ -8,7 +8,7 @@ import { Client } from './client.model';
 import { Contact } from './contact.model';
 import { BehaviorSubject } from 'rxjs';
 import { BaseModel } from '../baseModel.model';
-import { companiesDirection } from '@core/enums/ventes.enum';
+import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
 import { Consommable_items } from './customerPurchases/consommable_purchases.model';
 import { SystemApparent_purchases } from './customerPurchases/systemApparent_purchases.model';
 import { Payment } from '../payment/payment.model';

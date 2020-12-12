@@ -1,0 +1,19 @@
+input {
+    background: rgba(0, 0, 0, 0) !important;
+    width: 70px !important;
+    padding: 0.1rem 0.1rem !important;
+    border: none !important;
+    border-radius: 0px !important;
+}
+
+.invalid {
+    border-bottom: 1px solid #a94442!important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 0.5;
+}
+.dropdown{
+    height: 180px;
+}

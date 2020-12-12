@@ -12,7 +12,20 @@ import {
   NbSelectModule,
   NbIconModule,
   NbThemeModule,
+  NbChatModule,
+  NbToastrModule,
+  NbDialogModule,
+  NbDatepickerModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbInputModule,
+  NbRadioModule,
+  NbTabsetModule,
+  NbFormFieldModule,
+  NbTooltipModule,
+  NbRouteTabsetModule,
 } from '@nebular/theme';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
 
@@ -38,8 +51,21 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NbDateFnsDateModule } from '@nebular/date-fns';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
-const NB_MODULES = [
+export const NB_MODULES: any[] = [
+  NgMultiSelectDropDownModule,
+  Ng2SmartTableModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbInputModule,
+  NbRadioModule,
+  NbTabsetModule,
+  NbFormFieldModule,
+  NbTooltipModule,
+  NbRouteTabsetModule,
   NbLayoutModule,
   NbMenuModule,
   NbUserModule,
@@ -52,6 +78,18 @@ const NB_MODULES = [
   NbSelectModule,
   NbIconModule,
   NbEvaIconsModule,
+  NbSidebarModule.forRoot(),
+  NbMenuModule.forRoot(),
+  NbDateFnsDateModule.forChild({ format: 'dd.MM.yyyy' }),
+  NbDatepickerModule.forRoot(),
+  ReactiveFormsModule,
+  FormsModule,
+  NbDialogModule.forRoot(),
+  NbToastrModule.forRoot(),
+  NbChatModule.forRoot({
+    messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
+  }),
+  NbThemeModule.forRoot({ name: 'default' }),
 ];
 const COMPONENTS = [
   HeaderComponent,
@@ -72,7 +110,7 @@ const PIPES = [
 
 @NgModule({
   imports: [CommonModule, ...NB_MODULES],
-  exports: [CommonModule, ...PIPES, ...COMPONENTS],
+  exports: [CommonModule, ...NB_MODULES, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
 })
 export class ThemeModule {
@@ -84,7 +122,7 @@ export class ThemeModule {
           {
             name: 'default',
           },
-          [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME ],
+          [DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME]
         ).providers,
       ],
     };

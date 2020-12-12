@@ -1,0 +1,66 @@
+<div class="col-form-label">
+    <div class="row">
+        <div class="title">
+            SERVICES
+        </div>
+        <div class='row keys ' *ngIf="!disabled">
+            <div class="keyboard" nbTooltip='Coupe' nbTooltipPlacement="top" (click)="addCoupe()">
+                <p>CO</p>
+            </div>
+            <div class="keyboard" nbTooltip='Bord Polis' nbTooltipPlacement="top" (click)="addBordPolis()">
+                <p>BP</p>
+            </div>
+            <div class="keyboard" nbTooltip='Trous' nbTooltipPlacement="top" (click)="addTrous()">
+                <p>TR</p>
+            </div>
+            <div class="keyboard" nbTooltip='Encoche' nbTooltipPlacement="top" (click)="addEncoche()">
+                <p>ESF</p>
+            </div>
+            <div class="keyboard" nbTooltip='Biseautage' nbTooltipPlacement="top" (click)="addBiseautage()">
+                <p>BI</p>
+            </div>
+            <div class="keyboard" nbTooltip='Trempage' nbTooltipPlacement="top" (click)="addTrempage()">
+                <p>TRM</p>
+            </div>
+            <div class="keyboard" nbTooltip='Bombage' nbTooltipPlacement="top" (click)="addBombage()">
+                <p>BO</p>
+            </div>
+            <div class="keyboard" nbTooltip='Sablage' nbTooltipPlacement="top" (click)="addSablage()">
+                <p>SA</p>
+            </div>
+
+            <div class="keyboard" nbTooltip='Gravage' nbTooltipPlacement="top" (click)="addGravage()">
+                <p>GR</p>
+            </div>
+            <div class="keyboard" nbTooltip='Aluminium' nbTooltipPlacement="top" (click)="addAluminium()">
+                <p>Al</p>
+            </div>
+            <div class="keyboard" nbTooltip='Pose' nbTooltipPlacement="top" (click)="addPose()">
+                <p>P</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-coupe #coupe (sendItems)="assignItems($event,'coupe')">
+</ngx-coupe>
+<ngx-bord-polis #bordPolis (sendItems)="assignItems($event,'bordPolis')">
+</ngx-bord-polis>
+<ngx-trous #trous (sendItems)="assignItems($event,'trous')">
+</ngx-trous>
+<ngx-encoche #encoche (sendItems)="assignItems($event,'encoche')">
+</ngx-encoche>
+<ngx-biseautage #biseautage (sendItems)="assignItems($event,'biseautage')">
+</ngx-biseautage>
+<ngx-trempage #trempage (sendItems)="assignItems($event,'trempage')">
+</ngx-trempage>
+<ngx-bombage #bombage (sendItems)="assignItems($event,'bombage')">
+</ngx-bombage>
+<ngx-sablage #sablage (sendItems)="assignItems($event,'sablage')">
+</ngx-sablage>
+<ngx-gravage #gravage (sendItems)="assignItems($event,'gravage')">
+</ngx-gravage>
+<ngx-aluminium #aluminium (sendItems)="assignItems($event,'aluminium')">
+</ngx-aluminium>
+<ngx-pose #pose (sendItems)="assignItems($event,'pose')">
+</ngx-pose>

@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="row">
+        <div *ngFor="let item of listItems,let index" class="col-3 item" >
+            <nb-user size="medium" shape="semi-round"  name={{item.code}} title={{item.title}} showName=false (click)='showFiche(item.title)'></nb-user>
+        </div>
+    </div>
+</div>

@@ -15,13 +15,6 @@
     "tanglass-erp": {
       "tags": []
     },
-    "tanglass-routing": {
-      "tags": []
-    },
-    "tanglass-routing-e2e": {
-      "tags": [],
-      "implicitDependencies": ["tanglass-routing"]
-    },
     "tanglass-core": {
       "tags": []
     },
