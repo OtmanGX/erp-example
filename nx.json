@@ -27,6 +27,13 @@
     },
     "tanglass-theme": {
       "tags": []
+    },
+    "printer": {
+      "tags": []
+    },
+    "printer-e2e": {
+      "tags": [],
+      "implicitDependencies": ["printer"]
     }
   }
 }
