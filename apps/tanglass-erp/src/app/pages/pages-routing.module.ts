@@ -1,63 +1,75 @@
-import { RouterModule, Routes } from "@angular/router";
-import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
-import { PagesComponent } from "./pages.component";
+import { PagesComponent } from './pages.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: PagesComponent,
     children: [
       {
-        path: "clients",
+        path: 'clients',
         loadChildren: () =>
-          import("./ventes/client/client.module").then((m) => m.ClientModule),
+          import('./ventes/client/client.module').then((m) => m.ClientModule),
       },
 
       {
-        path: "contacts",
+        path: 'contacts',
         loadChildren: () =>
-          import("./ventes/contacts/contacts.module").then((m) => m.ContactsModule),
+          import('./ventes/contacts/contacts.module').then(
+            (m) => m.ContactsModule
+          ),
       },
       {
-        path: "devis",
+        path: 'devis',
         loadChildren: () =>
-          import("./ventes/devis/devis.module").then((m) => m.DevisModule),
+          import('./ventes/devis/devis.module').then((m) => m.DevisModule),
       },
       {
-        path: "commandes",
+        path: 'commandes',
         loadChildren: () =>
-          import("./ventes/commandes/commandes.module").then((m) => m.CommandesModule),
+          import('./ventes/commandes/commandes.module').then(
+            (m) => m.CommandesModule
+          ),
       },
       {
-        path: "factures",
+        path: 'factures',
         loadChildren: () =>
-          import("./ventes/factures/factures.module").then((m) => m.FacturesModule),
+          import('./ventes/factures/factures.module').then(
+            (m) => m.FacturesModule
+          ),
       },
       {
-        path: "livraison",
+        path: 'livraison',
         loadChildren: () =>
-          import("./ventes/livraison/livraison.module").then((m) => m.LivraisonModule),
+          import('./ventes/livraison/livraison.module').then(
+            (m) => m.LivraisonModule
+          ),
       },
       {
-        path: "produit",
+        path: 'produit',
         loadChildren: () =>
-          import("./produit/produit.module").then((m) => m.ProduitModule),
+          import('./produit/produit.module').then((m) => m.ProduitModule),
       },
       {
-        path: "management",
+        path: 'management',
         loadChildren: () =>
-          import("./management/management.module").then((m) => m.ManagementModule),
+          import('@TanglassUi/management/management.module').then(
+            (m) => m.ManagementModule
+          ),
       },
       {
-        path: "production",
+        path: 'production',
         loadChildren: () =>
-          import("./production/production.module").then((m) => m.ProductionModule),
+          import('./production/production.module').then(
+            (m) => m.ProductionModule
+          ),
       },
       {
-        path: "accessoires",
+        path: 'accessoires',
         loadChildren: () =>
-          import("./inventory/inventory.module").then((m) => m.InventoryModule),
+          import('./inventory/inventory.module').then((m) => m.InventoryModule),
       },
     ],
   },

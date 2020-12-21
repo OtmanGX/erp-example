@@ -30,5 +30,15 @@ import { ThemeModule } from '@TanglassTheme/theme.module';
     FormsModule,
     ReactiveFormsModule,
   ],
+  exports: [
+    ManagementComponent,
+    SalePointsComponent,
+    CompaniesComponent,
+    UsersComponent,
+    PopUserComponent,
+    PopSalePointsComponent,
+    PopCompaniesComponent,
+    ManagementRoutingModule,
+  ],
 })
 export class ManagementModule {}

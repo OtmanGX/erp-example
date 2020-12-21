@@ -11,16 +11,19 @@
     "experimentalDecorators": true,
     "target": "es2015",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
+    "lib": ["es2017", "dom", "esnext.asynciterable"],
     "plugins": [
       {
         "name": "tslint-language-service"
       }
     ],
     "paths": {
+      "@TanglassUi/management/*": ["./apps/ui/management/src/app/*"],
       "@TanglassCore/*": ["./libs/tanglass-core/src/*"],
       "@TanglassTheme/*": ["./libs/tanglass-theme/src/*"],
-      "@TanglassRouting/*": ["./apps/tanglass-routing/src/app/*"]
+      "@TanglassRouting/*": ["./apps/tanglass-routing/src/app/*"],
+      "@tanglass-erp/core/graphql": ["libs/core/graphql/src/index.ts"],
+      "@TanglassStore/company": ["libs/store/managment/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

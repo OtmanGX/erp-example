@@ -5,7 +5,7 @@ import { User } from '@TanglassCore/models/management/users';
 import { LocalDataSource } from 'ng2-smart-table';
 import { UserMockService } from '@TanglassCore/mock/management/user.mock.service';
 @Component({
-  selector: 'ngx-users',
+  selector: 'managment-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })

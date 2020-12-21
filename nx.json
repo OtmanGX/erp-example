@@ -20,6 +20,19 @@
     },
     "tanglass-theme": {
       "tags": []
+    },
+    "core-graphql": {
+      "tags": []
+    },
+    "store-managment": {
+      "tags": []
+    },
+    "ui-management": {
+      "tags": []
+    },
+    "ui/management-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-management"]
     }
   }
 }

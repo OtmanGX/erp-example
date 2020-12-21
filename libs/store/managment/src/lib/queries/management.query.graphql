@@ -1,0 +1,17 @@
+query GetAllCompanies {
+  management_Company {
+    CNSS
+    ICE
+    IF
+    RC
+    address
+    createdAt
+    createdBy
+    email
+    name
+    id
+    phone
+    updatedAt
+    updatedBy
+  }
+}
