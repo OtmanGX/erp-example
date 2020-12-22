@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/libs/core/graphql',
     '<rootDir>/libs/store/managment',
     '<rootDir>/apps/ui/management',
+    '<rootDir>/apps/printer',
   ],
 };
