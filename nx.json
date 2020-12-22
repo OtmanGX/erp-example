@@ -33,6 +33,9 @@
     "ui/management-e2e": {
       "tags": [],
       "implicitDependencies": ["ui-management"]
+    },
+    "material": {
+      "tags": []
     }
   }
 }

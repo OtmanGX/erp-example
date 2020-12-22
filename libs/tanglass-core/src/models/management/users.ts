@@ -4,13 +4,13 @@ export interface User {
   id?: number;
   FirstName: string;
   LastName: string;
-  civilité:string;
+  civilité: string;
   address: string;
   phone: string;
-  CIN:string;
-  role:string;
+  CIN: string;
+  role: string;
   email?: string;
-  departement:string;
-  companies:Companie[];
-  salepoints:SalePoint[];
+  departement: string;
+  companies: Companie[];
+  salepoints: SalePoint[];
 }

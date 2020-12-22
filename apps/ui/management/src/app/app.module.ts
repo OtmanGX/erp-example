@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
         path: 'management',
         loadChildren: () =>
           import('@TanglassUi/management/management.module').then(
-            (m) => m.ManagementModule
+            (m) => m.ManagementModule,
           ),
       },
     ]),
