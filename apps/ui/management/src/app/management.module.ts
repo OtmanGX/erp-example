@@ -13,7 +13,6 @@ import { ManagementComponent } from './management.component';
 // import { PopCompaniesComponent } from './companies/pop-companies/pop-companies.component';
 import { EmployeesComponent } from '@TanglassUi/management/employees/employees.component';
 import { MaterialModule } from '@tanglass-erp/material';
-import { NbLayoutModule } from '@nebular/theme';
 import { DialogEmployeeComponent } from '@TanglassUi/management/employees/dialog-employee/dialog-employee.component';
 
 @NgModule({

@@ -5,7 +5,6 @@ import { User } from '@TanglassCore/data/users';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Companie } from '@TanglassCore/models/management/companie';
 import { SalePoint } from '@TanglassCore/models/management/sales-points';
-import { NbDialogRef } from '@nebular/theme';
 import { companieMockService } from '@TanglassCore/mock/management/companie.mock.service';
 import { SalePointMockService } from '@TanglassCore/mock/management/salePoint.mock.service';
 

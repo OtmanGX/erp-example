@@ -34,6 +34,9 @@
       "tags": [],
       "implicitDependencies": ["ui-management"]
     },
+    "printer": {
+      "tags": []
+    },
     "material": {
       "tags": []
     }
