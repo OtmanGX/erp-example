@@ -12,4 +12,7 @@ export class ManagementComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  login(param: {password: string; username: string}) {
+
+  }
 }

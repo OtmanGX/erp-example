@@ -23,7 +23,8 @@
       "@TanglassTheme/*": ["./libs/tanglass-theme/src/*"],
       "@TanglassRouting/*": ["./apps/tanglass-routing/src/app/*"],
       "@tanglass-erp/core/graphql": ["libs/core/graphql/src/index.ts"],
-      "@TanglassStore/company": ["libs/store/managment/src/index.ts"]
+      "@TanglassStore/company": ["libs/store/managment/src/index.ts"],
+      "@tanglass-erp/material": ["libs/material/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

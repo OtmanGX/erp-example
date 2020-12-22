@@ -33,6 +33,12 @@
     "ui/management-e2e": {
       "tags": [],
       "implicitDependencies": ["ui-management"]
+    },
+    "printer": {
+      "tags": []
+    },
+    "material": {
+      "tags": []
     }
   }
 }

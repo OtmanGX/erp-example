@@ -8,5 +8,6 @@ module.exports = {
     '<rootDir>/libs/store/managment',
     '<rootDir>/apps/ui/management',
     '<rootDir>/apps/printer',
+    '<rootDir>/libs/material',
   ],
 };
