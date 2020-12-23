@@ -3,70 +3,26 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
-import { User } from '@TanglassCore/models/management/users';
+import { Companie } from '@TanglassCore/models/management/companie';
 import { SalePoint } from '@TanglassCore/models/management/sales-points';
 
-const EXAMPLE_DATA: User[] = [
-  {
-    CIN: 'L596335',
-    FirstName: 'Otmane',
-    LastName: 'GX',
-    address: 'Gx Street',
-    civilité: '',
-    companies: [],
-    departement: '',
-    email: 'otmangx@gmail.com',
-    id: 1,
-    phone: '+212666666',
-    role: '',
-    salepoints: [],
-  },
-  {
-    CIN: 'L596335',
-    FirstName: 'Otmane',
-    LastName: 'DX',
-    address: 'Dx Street',
-    civilité: '',
-    companies: [],
-    departement: '',
-    email: 'otmandx@gmail.com',
-    id: 2,
-    phone: '+212666666',
-    role: '',
-    salepoints: [],
-  },
-  {
-    CIN: 'L596335',
-    FirstName: 'Otmane',
-    LastName: 'FX',
-    address: 'Fx Street',
-    civilité: '',
-    companies: [],
-    departement: '',
-    email: 'otmanfx@gmail.com',
-    id: 3,
-    phone: '+212666666',
-    role: '',
-    salepoints: [],
-  },
-];
 
 /**
  * Data source for the Employees view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class EmployeesDataSource extends DataSource<User> {
+export class CompaniesDatasource extends DataSource<Companie> {
   paginator: MatPaginator;
   sort: MatSort;
 
-  private _dataStream = new BehaviorSubject<User[]>( [] );
-  public set data(v: User[]) { this._dataStream.next(v); }
-  public get data(): User[] { return this._dataStream.value; }
+  private _dataStream = new BehaviorSubject<Companie[]>( [] );
+  public set data(v: Companie[]) { this._dataStream.next(v); }
+  public get data(): Companie[] { return this._dataStream.value; }
 
   constructor() {
     super();
-    this.data = EXAMPLE_DATA;
+    this.data = [];
   }
 
   /**
@@ -74,7 +30,7 @@ export class EmployeesDataSource extends DataSource<User> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<User[]> {
+  connect(): Observable<Companie[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -98,7 +54,7 @@ export class EmployeesDataSource extends DataSource<User> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: User[]) {
+  private getPagedData(data: Companie[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -107,7 +63,7 @@ export class EmployeesDataSource extends DataSource<User> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: User[]) {
+  private getSortedData(data: Companie[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -115,7 +71,7 @@ export class EmployeesDataSource extends DataSource<User> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'name': return compare(a.FirstName, b.FirstName, isAsc);
+        case 'name': return compare(a.name, b.name, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }

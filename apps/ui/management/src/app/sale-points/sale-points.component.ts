@@ -1,85 +1,100 @@
-import { Component, OnInit } from '@angular/core';
-import { NbDialogService } from '@nebular/theme';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SalePoint } from '@TanglassCore/models/management/sales-points';
 import { LocalDataSource } from 'ng2-smart-table';
-import { PopSalePointsComponent } from './pop-sale-points/pop-sale-points.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
+import { Companie } from '@TanglassCore/models/management/companie';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectionModel } from '@angular/cdk/collections';
+import { SalePointDataSource } from '@TanglassUi/management/sale-points/sale-points-datasource';
+import { PopSalePointsComponent } from '@TanglassUi/management/sale-points/pop-sale-points/pop-sale-points.component';
+
+
+const initialSelection = [];
+const allowMultiSelect = true;
+
 @Component({
   selector: 'ngx-sale-points',
   templateUrl: './sale-points.component.html',
   styleUrls: ['./sale-points.component.scss'],
 })
-export class SalePointsComponent implements OnInit {
+export class SalePointsComponent implements AfterViewInit, OnInit {
   selectedRows = [];
   dataSalesPoints: SalePoint[] = [];
   source: LocalDataSource = new LocalDataSource();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<SalePoint>;
+  dataSource: SalePointDataSource;
 
-  constructor(private dialogService: NbDialogService) {}
+  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  displayedColumns = ['select', 'id', 'name', 'phone', 'companie',
+    'users', 'Fax', 'address', 'email', 'action'];
+  colums;
 
-  ngOnInit(): void {}
+  // Selection Logic
+  columns;
+  selection;
+  hide = false;
 
-  settings = {
-    selectMode: 'multi',
-    hideHeader: false,
-    actions: false,
-    noDataMessage: ' No Data',
-    columns: {
-      id: {
-        title: 'Code',
-        sortDirection: 'desc',
-        type: 'html',
-        valuePrepareFunction: (cell, row: SalePoint) => {
-          return 'USER' + row.id;
-        },
-      },
-      name: {
-        title: 'Nom',
-        type: 'string',
-      },
-      address: {
-        title: 'Address',
-        type: 'string',
-      },
-      phone: {
-        title: 'tél N°',
-        type: 'string',
-      },
-      email: {
-        title: 'Email',
-        type: 'string',
-      },
-      Fax: {
-        title: 'Fax',
-        type: 'string',
-      },
-      companie: {
-        title: 'Société',
-        type: 'string',
-      },
-      users: {
-        title: 'Employées',
-        type: 'string',
-      },
-    },
-  };
+  constructor(public dialog: MatDialog, ) {
+    this.columns = [
+      {key: 'id', title: 'Code', colPipe: null},
+      {key: 'name', title: 'Nom', colPipe: null},
+      {key: 'address', title: 'Address', colPipe: null},
+      {key: 'phone', title: 'Tél N°', colPipe: null},
+      {key: 'Fax', title: 'Fax°', colPipe: null},
+      {key: 'email', title: 'Email', colPipe: null},
+      {key: 'companie', title: 'Société', colPipe: null},
+      {key: 'users', title: 'Employées', colPipe: null},
+    ];
+  }
+
+  ngOnInit(): void {
+    this.selection = new SelectionModel<Companie>(allowMultiSelect, initialSelection);
+    this.dataSource = new SalePointDataSource();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.table.dataSource = this.dataSource;
+  }
+
+  openDialog(data = {}) {
+    const dialogRef = this.dialog.open(PopSalePointsComponent, {
+      width: '1000px',
+      panelClass: 'panel-dialog',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSalesPoints.push(result);
+        this.dataSource.data = this.dataSalesPoints;
+      }
+    });
+  }
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  search(value: string) {
+  }
 
   onUserRowSelect(event) {
     this.selectedRows = event.selected;
-  }
-  openPopUpUser(): void {
-    this.dialogService
-      .open(PopSalePointsComponent, {
-        context: {
-          title: 'Ajouter des points de ventes',
-        },
-        closeOnBackdropClick: false,
-      })
-      .onClose.subscribe({
-        next: (salePoint) => {
-          if (salePoint) {
-            this.dataSalesPoints.push(salePoint);
-            this.source.load(this.dataSalesPoints);
-          }
-        },
-      });
   }
 }
