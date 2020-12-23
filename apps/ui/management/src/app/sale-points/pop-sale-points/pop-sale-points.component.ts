@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,6 +6,8 @@ import { companieMockService } from '@TanglassCore/mock/management/companie.mock
 import { UserMockService } from '@TanglassCore/mock/management/user.mock.service';
 import { Companie } from '@TanglassCore/models/management/companie';
 import { User } from '@TanglassCore/models/management/users';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { SalePoint } from '@TanglassCore/models/management/sales-points';
 
 @Component({
   selector: 'ngx-pop-sale-points',
@@ -17,13 +19,6 @@ export class PopSalePointsComponent implements OnInit {
   SalePointForm: FormGroup;
   user: User;
   submitted: boolean;
-  dropdownSettings: IDropdownSettings = {
-    singleSelection: false,
-    allowSearchFilter: true,
-    idField: 'id',
-    textField: 'name',
-    maxHeight: 100,
-  };
   dataCompanies: Companie[] = [];
   dataUser: User[] = [];
 
@@ -31,7 +26,8 @@ export class PopSalePointsComponent implements OnInit {
   listUsers = ['Tanja Balia', 'Mabrouk', 'Souani', 'Dar Tounssi', 'Sidi Driss'];
 
   constructor(
-    protected ref: NbDialogRef<PopSalePointsComponent>,
+    public dialogRef: MatDialogRef<PopSalePointsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: SalePoint,
     private fb: FormBuilder,
     private companieService: companieMockService,
     private userService: UserMockService
@@ -41,13 +37,13 @@ export class PopSalePointsComponent implements OnInit {
   }
   buildUserForm(): void {
     this.SalePointForm = this.fb.group({
-      name: ['', Validators.required],
-      address: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: [''],
-      Fax: [''],
-      companie: [],
-      users: [[]],
+      name: [this.data.name, Validators.required],
+      address: [this.data.address, Validators.required],
+      phone: [this.data.phone, Validators.required],
+      email: [this.data.email],
+      Fax: [this.data.Fax],
+      companie: [this.data.companie],
+      users: [this.data.users],
     });
   }
 
@@ -62,16 +58,16 @@ export class PopSalePointsComponent implements OnInit {
     });
   }
   onSelectCompanie(event): void {
-    var obj = this.dataCompanies.filter(function (e) {
-      return e.id == event.id;
+    const obj = this.dataCompanies.filter(function (e) {
+      return e.id === event.id;
     });
     if (obj) {
       this.SalePointForm.get('companies').setValue(obj);
     }
   }
   onSelectUsers(event): void {
-    var obj = this.dataUser.filter(function (e) {
-      return e.id == event.id;
+    const obj = this.dataUser.filter(function (e) {
+      return e.id === event.id;
     });
     if (obj) {
       this.SalePointForm.get('users').setValue(obj);
@@ -82,9 +78,17 @@ export class PopSalePointsComponent implements OnInit {
     this.submitted = true;
     this.user = this.SalePointForm.value;
     this.SalePointForm.reset();
-    this.ref.close(this.user);
+    this.submit(this.user);
   }
-  closePopup(): void {
-    this.ref.close();
+  closePopup() {
+    this.onNoClick();
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  submit(value: any) {
+    this.dialogRef.close(value);
   }
 }
