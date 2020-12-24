@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { User } from '@TanglassCore/data/users';
+import { User } from '@TanglassCore/models/management/users';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Companie } from '@TanglassCore/models/management/companie';
 import { SalePoint } from '@TanglassCore/models/management/sales-points';
@@ -38,7 +38,7 @@ export class DialogEmployeeComponent implements OnInit {
   ];
 
   constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
+              @Inject(MAT_DIALOG_DATA) public data: User,
               private fb: FormBuilder,
               private companieService: companieMockService,
               private salePointsService: SalePointMockService) { }
@@ -48,17 +48,17 @@ export class DialogEmployeeComponent implements OnInit {
   }
   buildUserForm(): void {
     this.UserForm = this.fb.group({
-      FirstName: [''],
-      LastName: [''],
-      civilité: [''],
-      addresse: [''],
-      phone: [''],
-      CIN: [''],
-      role: [''],
-      email: [''],
-      departement: [''],
-      companies: [[]],
-      salepoints: [[]],
+      FirstName: [this.data.FirstName],
+      LastName: [this.data.LastName],
+      civilité: [this.data.civilité],
+      address: [this.data.address],
+      phone: [this.data.phone],
+      CIN: [this.data.CIN],
+      role: [this.data.role],
+      email: [this.data.email],
+      departement: [this.data.departement],
+      companies: [this.data.companies],
+      salepoints: [this.data.salepoints],
     });
   }
 
@@ -100,7 +100,7 @@ export class DialogEmployeeComponent implements OnInit {
   }
 
   submit(value: any) {
-    this.dialogRef.close(this.data);
+    this.dialogRef.close(value);
   }
 
 }

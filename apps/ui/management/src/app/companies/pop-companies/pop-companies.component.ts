@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { companieMockService } from '@TanglassCore/mock/management/companie.mock.service';
 import { UserMockService } from '@TanglassCore/mock/management/user.mock.service';
 import { User } from '@TanglassCore/models/management/users';
 import { SalePointMockService } from '@TanglassCore/mock/management/salePoint.mock.service';
 import { salePoints } from '@TanglassCore/data/management/salePoints.data';
 import { SalePoint } from '@TanglassCore/models/management/sales-points';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Companie } from '@TanglassCore/models/management/companie';
 
 @Component({
   selector: 'ngx-pop-companies',
@@ -39,28 +39,32 @@ export class PopCompaniesComponent implements OnInit {
   ];
 
   constructor(
-    protected ref: NbDialogRef<PopCompaniesComponent>,
+    public dialogRef: MatDialogRef<PopCompaniesComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Companie,
     private fb: FormBuilder,
     private salePointMockService: SalePointMockService,
     private userService: UserMockService
-  ) {}
+  ) {
+  }
+
   ngOnInit(): void {
     this.buildUserForm();
   }
+
   buildUserForm(): void {
     this.companieForm = this.fb.group({
-      name: ['', Validators.required],
-      ICE: ['', Validators.required],
-      IF: ['', Validators.required],
-      RC: ['', Validators.required],
-      CNSS: ['', Validators.required],
-      address: ['', Validators.required],
-      phone: ['', Validators.required],
-      Fax: [''],
-      email: [''],
-      webSite: [''],
-      users: [[]],
-      salePoints: [[]],
+      name: [this.data.name, Validators.required],
+      ICE: [this.data.ICE, Validators.required],
+      IF: [this.data.IF, Validators.required],
+      RC: [this.data.RC, Validators.required],
+      CNSS: [this.data.CNSS, Validators.required],
+      address: [this.data.address, Validators.required],
+      phone: [this.data.phone, Validators.required],
+      Fax: [this.data.Fax],
+      email: [this.data.email],
+      webSite: [this.data.webSite],
+      users: [this.data.users],
+      salePoints: [this.data.salePoints],
     });
   }
 
@@ -69,20 +73,23 @@ export class PopCompaniesComponent implements OnInit {
       next: (salepoints) => (this.dataSalePoints = salepoints),
     });
   }
+
   getUsers(): void {
     this.userService.getAll().subscribe({
       next: (users) => (this.dataUser = users),
     });
   }
+
   onSelectSalePoint(event): void {
-    var obj = this.dataSalePoints.filter(function (e) {
-      return e.id == event.id;
+    const obj = this.dataSalePoints.filter(function(e) {
+      return e.id === event.id;
     });
     this.companieForm.get('salePoints').setValue(obj);
   }
+
   onSelectUsers(event): void {
-    var obj = this.dataUser.filter(function (e) {
-      return e.id == event.id;
+    const obj = this.dataUser.filter(function(e) {
+      return e.id === event.id;
     });
     this.companieForm.get('users').setValue(obj);
   }
@@ -91,9 +98,18 @@ export class PopCompaniesComponent implements OnInit {
     this.submitted = true;
     this.user = this.companieForm.value;
     this.companieForm.reset();
-    this.ref.close(this.user);
+    this.submit(this.user);
   }
-  closePopup(): void {
-    this.ref.close();
+
+  closePopup() {
+    this.onNoClick();
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  submit(value: any) {
+    this.dialogRef.close(value);
   }
 }

@@ -7,7 +7,7 @@
       <mat-icon fontSet="far" fontIcon="fa-trash-alt"></mat-icon>
     </button>
     <mat-divider class="mx-3" vertical style="height:auto; display: inline"></mat-divider>
-    <button mat-icon-button matTooltip="Exporter en excel">
+    <button class="excel" mat-icon-button matTooltip="Exporter en excel">
       <mat-icon fontSet="fas" fontIcon="fa-file-excel"></mat-icon>
     </button>
 
@@ -39,57 +39,23 @@
         </mat-checkbox>
       </td>
     </ng-container>
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+
+      <!--Cols-->
+    <ng-container *ngFor="let col of columns" [matColumnDef]="col.key">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col.title}}</th>
+      <td mat-cell *matCellDef="let row">
+        {{col.colPipe==null?row[col.key]:col.colPipe.transform(row)}}
+      </td>
     </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
-      <td mat-cell *matCellDef="let row">{{row.FirstName+ ' '+ row.LastName}}</td>
-    </ng-container>
-  <!-- Phone Column -->
-    <ng-container matColumnDef="phone">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>tél N°</th>
-      <td mat-cell *matCellDef="let row">{{row.phone}}</td>
-    </ng-container>
-  <!-- Role Column -->
-    <ng-container matColumnDef="role">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
-      <td mat-cell *matCellDef="let row">{{row.role}}</td>
-    </ng-container>
-<!-- Departement Column -->
-    <ng-container matColumnDef="departement">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Département(s)</th>
-      <td mat-cell *matCellDef="let row">{{row.departement}}</td>
-    </ng-container>
-<!-- Companies Column -->
-    <ng-container matColumnDef="companies">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Société(s)</th>
-      <td mat-cell *matCellDef="let row">{{row.companies}}</td>
-    </ng-container>
 
-    <!-- Salepoints Column -->
-    <ng-container matColumnDef="salepoints">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Points de ventes</th>
-      <td mat-cell *matCellDef="let row">{{row.salepoints}}</td>
-    </ng-container>
-    <!-- CIN Column -->
-    <ng-container matColumnDef="CIN">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>C.I.N</th>
-      <td mat-cell *matCellDef="let row">{{row.CIN}}</td>
-    </ng-container>
-    <!-- Address Column -->
-    <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
-      <td mat-cell *matCellDef="let row">{{row.address}}</td>
-    </ng-container>
-    <!-- Email Column -->
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-      <td mat-cell *matCellDef="let row">{{row.email}}</td>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+      <td mat-cell *matCellDef="let row">
+        <button (click)="openDialog(row)" mat-icon-button matTooltip="Modifier"  color="accent">
+          <mat-icon fontSet="fas" fontIcon="fa-edit"></mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
