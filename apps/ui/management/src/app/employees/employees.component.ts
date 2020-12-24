@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -13,13 +13,6 @@ const initialSelection = [];
 const allowMultiSelect = true;
 
 
-@Pipe({
-  name: 'fullName'
-})export class FullNamePipe implements PipeTransform {
-  transform(person: any, args?: any): any {
-    return person.FirstName + ' ' + person.LastName;
-  }
-}
 @Component({
   selector: 'tanglass-erp-employees',
   templateUrl: './employees.component.html',
@@ -33,8 +26,7 @@ export class EmployeesComponent implements AfterViewInit, OnInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select', 'id', 'name', 'phone', 'role',
-    'departement', 'companies', 'salepoints', 'CIN', 'address', 'email', 'action'];
-  columns;
+    'departement', 'companies', 'salepoints', 'CIN', 'address', 'email'];
   selectedRows = [];
   dataUsers: User[] = [];
 
@@ -43,25 +35,12 @@ export class EmployeesComponent implements AfterViewInit, OnInit {
   hide = false;
   constructor(private userService: UserMockService,
               public dialog: MatDialog, ) {
-    this.columns = [
-      {key: 'id', title: 'Code', colPipe: null},
-      {key: 'name', title: 'Nom', colPipe: new FullNamePipe()},
-      {key: 'phone', title: 'tél N°', colPipe: null},
-      {key: 'role', title: 'Role', colPipe: null},
-      {key: 'departement', title: 'Département(s)', colPipe: null},
-      {key: 'companies', title: 'Société(s)', colPipe: null},
-      {key: 'salepoints', title: 'Points de ventes', colPipe: null},
-      {key: 'CIN', title: 'C.I.N', colPipe: null},
-      {key: 'address', title: 'Address', colPipe: null},
-      {key: 'email', title: 'Email', colPipe: null},
-    ];
   }
 
   getUsers(): void {
     this.userService.getAll().subscribe({
       next: (users) => {
-        this.dataUsers = users;
-        this.dataSource.data = this.dataUsers;
+        this.dataSource.data = users;
       }
     });
   }
@@ -78,18 +57,11 @@ export class EmployeesComponent implements AfterViewInit, OnInit {
     this.table.dataSource = this.dataSource;
   }
 
-  openDialog(data = {}) {
+  openDialog() {
     const dialogRef = this.dialog.open(DialogEmployeeComponent, {
-      width: '1000px',
+      width: '850px',
       panelClass: 'panel-dialog',
-      data: data
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.dataUsers.push(result);
-        this.dataSource.data = this.dataUsers;
-      }
+      data: {}
     });
   }
 

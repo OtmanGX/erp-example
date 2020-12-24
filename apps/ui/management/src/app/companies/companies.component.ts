@@ -1,105 +1,103 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
 import { Companie } from '@TanglassCore/models/management/companie';
+import { LocalDataSource } from 'ng2-smart-table';
 import { PopCompaniesComponent } from './pop-companies/pop-companies.component';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { User } from '@TanglassCore/models/management/users';
-import { SelectionModel } from '@angular/cdk/collections';
-import { CompaniesDatasource } from '@TanglassUi/management/companies/companies-datasource';
-import { DialogEmployeeComponent } from '@TanglassUi/management/employees/dialog-employee/dialog-employee.component';
-import { FullNamePipe } from '@TanglassUi/management/employees/employees.component';
-
-const initialSelection = [];
-const allowMultiSelect = true;
-
 @Component({
   selector: 'ngx-companies',
   templateUrl: './companies.component.html',
   styleUrls: ['./companies.component.scss'],
 })
-export class CompaniesComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<Companie>;
-  dataSource: CompaniesDatasource;
-
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'name', 'phone', 'ICE',
-    'IF', 'RC', 'CNSS', 'webSite', 'users', 'Fax', 'address', 'email', 'action'];
-  colums;
+export class CompaniesComponent implements OnInit {
   selectedRows = [];
   dataCompanie: Companie[] = [];
+  source: LocalDataSource = new LocalDataSource();
 
-  // Selection Logic
-  columns;
-  selection;
-  hide = false;
+  constructor(private dialogService: NbDialogService) {}
 
-  constructor(public dialog: MatDialog, ) {
-    this.columns = [
-      {key: 'name', title: 'Raison Sociale', colPipe: null},
-      {key: 'ICE', title: 'ICE', colPipe: null},
-      {key: 'IF', title: 'IF', colPipe: null},
-      {key: 'RC', title: 'RC', colPipe: null},
-      {key: 'CNSS', title: 'CNSS', colPipe: null},
-      {key: 'address', title: 'Address', colPipe: null},
-      {key: 'phone', title: 'Tél N°', colPipe: null},
-      {key: 'Fax', title: 'Fax°', colPipe: null},
-      {key: 'email', title: 'Email', colPipe: null},
-      {key: 'salePoints', title: 'Points de ventes', colPipe: null},
-      {key: 'users', title: 'Employées', colPipe: null},
-      {key: 'webSite', title: 'Site Web', colPipe: null},
-    ];
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.selection = new SelectionModel<Companie>(allowMultiSelect, initialSelection);
-    this.dataSource = new CompaniesDatasource();
-  }
+  settings = {
+    selectMode: 'multi',
+    hideHeader: false,
+    actions: false,
+    noDataMessage: ' No Data',
+    columns: {
+      name: {
+        title: 'Raison Sociale',
+        sortDirection: 'desc',
+        type: 'string',
+      },
+      ICE: {
+        title: 'ICE',
+        sortDirection: 'desc',
+        type: 'string',
+      },
+      IF: {
+        title: 'IF',
+        sortDirection: 'desc',
+        type: 'string',
+      },
+      RC: {
+        title: 'RC',
+        sortDirection: 'desc',
+        type: 'string',
+      },
+      CNSS: {
+        title: 'CNSS',
+        sortDirection: 'desc',
+        type: 'string',
+      },
+      address: {
+        title: 'Address',
+        type: 'string',
+      },
+      phone: {
+        title: 'Tél N°',
+        type: 'string',
+      },
+      Fax: {
+        title: 'Fax',
+        type: 'string',
+      },
+      email: {
+        title: 'Email',
+        type: 'string',
+      },
+      salePoints: {
+        title: 'Points de ventes',
+        type: 'string',
+      },
+      users: {
+        title: 'Employées',
+        type: 'string',
+      },
+      webSite: {
+        title: 'Site Web',
+        type: 'string',
+      },
+    },
+  };
 
   onUserRowSelect(event) {
     this.selectedRows = event.selected;
   }
 
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  openPopUpUser(): void {
+    this.dialogService
+      .open(PopCompaniesComponent, {
+        context: {
+          title: 'Ajouter des Sociétés',
+        },
+        closeOnBackdropClick: false,
+      })
+      .onClose.subscribe({
+        next: (companie) => {
+          if (companie) {
+            this.dataCompanie.push(companie);
+            this.source.load(this.dataCompanie);
+          }
+        },
+      });
   }
-
-  openDialog(data = {}) {
-    const dialogRef = this.dialog.open(PopCompaniesComponent, {
-      width: '1000px',
-      panelClass: 'panel-dialog',
-      data: data
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.dataCompanie.push(result);
-        this.dataSource.data = this.dataCompanie;
-      }
-    });
-  }
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  search(value: string) {
-  }
-
 }

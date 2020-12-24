@@ -1,63 +1,65 @@
-<mat-toolbar color="primary" class="m-0 mb-2 text-center">
-  <h1 mat-dialog-title>Ajouter une point de vente</h1>
-</mat-toolbar>
+<nb-card>
+    <nb-card-header>
+        <div class="row justify-content-between label">
+            <div class="col-10">
+                {{ title }}
+            </div>
+            <div>
+                <nb-actions>
+                    <nb-action nbTooltip="Fermer" nbTooltipPlacement="top" icon="close-outline" pack="eva" (click)="closePopup()"></nb-action>
+                </nb-actions>
+            </div>
+        </div>
+    </nb-card-header>
+    <form [formGroup]="SalePointForm" (ngSubmit)="onSave()">
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="../../../../../assets/images/contactPlaceholder.jfif" />
+                </div>
+                <div class="col-sm-9">
+                    <div class="row justify-content-between">
+                        <div class="col-sm-5">
+                            <input type="text" fullWidth fieldSize="small" nbInput placeholder="Raison Sociale" formControlName="name" />
+                        </div>
 
-<form [formGroup]="SalePointForm" (ngSubmit)="onSave()" class="m-3">
-  <div class="row">
-    <div class="col">
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Raison Sociale" formControlName="name">
-      </mat-form-field>
-    </div>
+                    </div>
+                </div>
+            </div>
 
-  </div>
-  <div class="form-group">
-    <label class="label">Informations</label>
-    <div class="row">
-      <div class="col">
-        <mat-form-field class="full-width">
-          <input matInput type="tel" placeholder="Tél" formControlName="phone">
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field class="full-width">
-          <input matInput type="email" placeholder="Email" formControlName="email">
-        </mat-form-field>
-      </div>
-    </div>
+            <div class="form-group">
+                <label for="Infos" class="label">Informations</label>
+                <div class="row justify-content-between">
+                    <div class="col-sm-6">
+                        <input type="text" fieldSize="small" fullWidth nbInput placeholder="Tél" formControlName="phone" />
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" fullWidth fieldSize="small" nbInput placeholder="Email" formControlName="email" />
+                    </div>
+                </div>
 
+                <div class="row justify-content-between">
+                    <div class="col-sm-6">
+                        <input type="text" fullWidth fieldSize="small" nbInput placeholder="Fax" formControlName="Fax" />
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" fullWidth fieldSize="small" nbInput placeholder="address" formControlName="address" />
+                    </div>
+                    <div class="col-sm-6">
+                        <ng-multiselect-dropdown [placeholder]="'Société'" class="col-sm-7" [settings]="dropdownSettings" [data]="listCompanies" (onSelect)="onSelectCompanie($event)">
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+            </div>
 
-    <div class="row">
-      <div class="col">
-        <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="Fax" formControlName="Fax">
-        </mat-form-field>
-      </div>
-
-      <div class="col">
-        <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="Adresse" formControlName="address">
-        </mat-form-field>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="label">Sociétés</label>
-
-    <div class="col">
-      <mat-form-field class="full-width">
-        <mat-select placeholder="Point de vente" formControlName="companie" multiple>
-          <mat-option *ngFor="let company of listCompanies" [value]="company">{{company}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-
-
-
-  <div fxLayout="row" fxLayoutAlign="center center"  mat-dialog-actions>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!SalePointForm.valid">Confirmer</button>
-    <button mat-raised-button color="warn" type="button" (click)="closePopup()">Annuler</button>
-  </div>
-</form>
+        </nb-card-body>
+        <nb-card-footer class="row justify-content-end">
+            <button type="submit" class="col-2" nbButton status="primary" size="tiny" (click)="onSave()" fullWidth [disabled]="!SalePointForm.valid">
+      Confirmer
+    </button>
+            <button class="col-2" nbButton status="danger" size="tiny" (click)="closePopup()" fullWidth>
+      Annuler
+    </button>
+        </nb-card-footer>
+    </form>
+</nb-card>
