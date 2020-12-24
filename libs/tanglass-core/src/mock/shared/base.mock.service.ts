@@ -23,10 +23,16 @@ export abstract class BaseMockService<T extends BaseModel>  {
   /** POST: add a new element to the fake data  */
 
   addNewOne(data: T): Observable<T>{
-    let id=this.listData.length+1
-    data.id=id
-    this.listData.push(data)
-    return observableOf(data)
+    let id=this.listData.length+1;
+    const companie =  {
+      id: id,
+      ...data
+    }
+    this.listData = [
+      ...this.listData,
+      companie
+    ]
+    return observableOf(companie)
   }
   addMany(data:T[]): Observable<T[]>{
     for(let item of data){

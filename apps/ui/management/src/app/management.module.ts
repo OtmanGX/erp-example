@@ -10,6 +10,7 @@ import { CompaniesComponent } from '@TanglassUi/management/companies/companies.c
 import { PopCompaniesComponent } from '@TanglassUi/management/companies/pop-companies/pop-companies.component';
 import { SalePointsComponent } from '@TanglassUi/management/sale-points/sale-points.component';
 import { PopSalePointsComponent } from '@TanglassUi/management/sale-points/pop-sale-points/pop-sale-points.component';
+import { ManagementStateModule } from '@TanglassStore/management/management-state.module'
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PopSalePointsComponent } from '@TanglassUi/management/sale-points/pop-s
     CommonModule,
     ManagementRoutingModule,
     FormsModule,
+    ManagementStateModule,
     ReactiveFormsModule,
     MaterialModule,
   ],

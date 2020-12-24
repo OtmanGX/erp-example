@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
 import { AfterViewInit, Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -5,6 +7,9 @@ import { MatTable } from '@angular/material/table';
 import { EmployeesDataSource } from './employees-datasource';
 import { UserMockService } from '@TanglassCore/mock/management/user.mock.service';
 import { User } from '@TanglassCore/models/management/users';
+import * as UserSelector from '@TanglassStore/management/selectors/user.selectors';
+import * as UserActions from '@TanglassStore/management/actions/user.actions';
+import { AppState} from '@tanglass-erp/store/app';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEmployeeComponent } from '@TanglassUi/management/employees/dialog-employee/dialog-employee.component';
@@ -36,12 +41,13 @@ export class EmployeesComponent implements AfterViewInit, OnInit {
     'departement', 'companies', 'salepoints', 'CIN', 'address', 'email', 'action'];
   columns;
   selectedRows = [];
-  dataUsers: User[] = [];
+  dataUsers$: Observable<UserSelector.UsersViewModel>;
 
   // Selection Logic
   selection;
   hide = false;
   constructor(private userService: UserMockService,
+              private store: Store<AppState>,
               public dialog: MatDialog, ) {
     this.columns = [
       {key: 'id', title: 'Code', colPipe: null},
@@ -57,22 +63,17 @@ export class EmployeesComponent implements AfterViewInit, OnInit {
     ];
   }
 
-  getUsers(): void {
-    this.userService.getAll().subscribe({
-      next: (users) => {
-        this.dataUsers = users;
-        this.dataSource.data = this.dataUsers;
-      }
-    });
-  }
-
   ngOnInit() {
     this.selection = new SelectionModel<User>(allowMultiSelect, initialSelection);
     this.dataSource = new EmployeesDataSource();
+    this.dataUsers$ = this.store.pipe(select(UserSelector.selectUsersViewModel));
+    this.store.dispatch(
+      UserActions.loadUsers()
+    );
+    this.dataUsers$.subscribe( dataUser => this.dataSource.data = dataUser.users);
   }
 
   ngAfterViewInit() {
-    // this.getUsers();
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
@@ -87,8 +88,9 @@ export class EmployeesComponent implements AfterViewInit, OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.dataUsers.push(result);
-        this.dataSource.data = this.dataUsers;
+        this.store.dispatch(
+          UserActions.addUser({user: result})
+        );
       }
     });
   }

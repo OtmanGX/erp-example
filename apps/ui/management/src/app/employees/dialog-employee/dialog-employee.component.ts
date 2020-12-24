@@ -1,12 +1,15 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { User } from '@TanglassCore/models/management/users';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { Companie } from '@TanglassCore/models/management/companie';
-import { SalePoint } from '@TanglassCore/models/management/sales-points';
-import { companieMockService } from '@TanglassCore/mock/management/companie.mock.service';
-import { SalePointMockService } from '@TanglassCore/mock/management/salePoint.mock.service';
+import * as CompanieSelector from '@TanglassStore/management/selectors/companies.selectors';
+import * as SalePointSelector from '@TanglassStore/management/selectors/sale-point.selectors';
+import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
+import * as CompaniesActions from '@TanglassStore/management/actions/companies.actions';
+import { AppState } from '@tanglass-erp/store/app';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-dialog-employee',
@@ -25,8 +28,8 @@ export class DialogEmployeeComponent implements OnInit {
     textField: 'name',
     maxHeight: 100,
   };
-  dataCompanies: Companie[] = [];
-  dataSalePoint: SalePoint[] = [];
+  dataCompanies$: Observable<CompanieSelector.CompaniesViewModel>;
+  dataSalePoint$: Observable<SalePointSelector.SalePointsViewModel>;
 
   listCompanies = ['Tanglass', 'Trimar'];
   listSalesPoints = [
@@ -40,10 +43,11 @@ export class DialogEmployeeComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
               @Inject(MAT_DIALOG_DATA) public data: User,
               private fb: FormBuilder,
-              private companieService: companieMockService,
-              private salePointsService: SalePointMockService) { }
+              private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.dataCompanies$ = this.store.pipe(select(CompanieSelector.selectCompaniesViewModel));
+    this.dataSalePoint$ = this.store.pipe(select(SalePointSelector.selectSalePointsViewModel));
     this.buildUserForm();
   }
   buildUserForm(): void {
@@ -63,26 +67,36 @@ export class DialogEmployeeComponent implements OnInit {
   }
 
   getCompanies(): void {
-    this.companieService.getAll().subscribe({
-      next: (companies) => (this.dataCompanies = companies),
-    });
+    this.store.dispatch(
+      CompaniesActions.loadCompaniesByUser()
+    );
   }
   getSalesPoint(): void {
-    this.salePointsService.getAll().subscribe({
-      next: (salePoints) => (this.dataSalePoint = salePoints),
-    });
+    this.store.dispatch(
+      SalePointActions.loadSalePointsByUser()
+    );
   }
-  onSelectCompanie(event): void {
-    const obj = this.dataCompanies.filter(function (e) {
-      return e.id === event.id;
+
+  onSelectCompanie( event ): void {
+    const subscription = this.dataCompanies$.subscribe( dataCompanies => {
+      var obj = dataCompanies.companies.filter(function (e) {
+        return e.id == event.id;
+      });
+      if (obj) {
+        this.UserForm.get('companies').setValue(obj);
+      }
     });
-    this.UserForm.get('companies').setValue(obj);
+    subscription.unsubscribe();
   }
-  onSelectSalePoint(event): void {
-    const obj = this.dataSalePoint.filter(function (e) {
-      return e.id === event.id;
+
+  onSelectSalePoint( event ): void {
+    const subscription = this.dataSalePoint$.subscribe( dataSalePoint => {
+      var obj = dataSalePoint.salePoints.filter(function (e) {
+        return e.id == event.id;
+      });
+      this.UserForm.get('salepoints').setValue(obj);
     });
-    this.UserForm.get('salepoints').setValue(obj);
+    subscription.unsubscribe();
   }
 
   onSave() {

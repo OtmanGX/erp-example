@@ -452,10 +452,7 @@
             "polyfills": "apps/printer/src/polyfills.ts",
             "tsConfig": "apps/printer/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/printer/favicon.ico",
-              "apps/printer/src/assets"
-            ],
+            "assets": ["apps/printer/favicon.ico", "apps/printer/src/assets"],
             "styles": [
               "apps/printer/src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.css",
@@ -580,6 +577,36 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/material/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "store-app": {
+      "projectType": "library",
+      "root": "libs/store/app",
+      "sourceRoot": "libs/store/app/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/app/tsconfig.lib.json",
+              "libs/store/app/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/app/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/app/jest.config.js",
             "passWithNoTests": true
           }
         }

@@ -39,6 +39,9 @@
     },
     "material": {
       "tags": []
+    },
+    "store-app": {
+      "tags": []
     }
   }
 }

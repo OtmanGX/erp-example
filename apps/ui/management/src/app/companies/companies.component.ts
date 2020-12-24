@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Companie } from '@TanglassCore/models/management/companie';
 import { PopCompaniesComponent } from './pop-companies/pop-companies.component';
@@ -5,11 +6,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { User } from '@TanglassCore/models/management/users';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CompaniesDatasource } from '@TanglassUi/management/companies/companies-datasource';
-import { DialogEmployeeComponent } from '@TanglassUi/management/employees/dialog-employee/dialog-employee.component';
-import { FullNamePipe } from '@TanglassUi/management/employees/employees.component';
+import * as CompanieActions from '@TanglassStore/management/actions/companies.actions';
+import * as CompanieSelector from '@TanglassStore/management/selectors/companies.selectors';
+import { AppState } from '@tanglass-erp/store/app'
+import { select, Store } from '@ngrx/store';
+
 
 const initialSelection = [];
 const allowMultiSelect = true;
@@ -30,14 +33,14 @@ export class CompaniesComponent implements AfterViewInit, OnInit {
     'IF', 'RC', 'CNSS', 'webSite', 'users', 'Fax', 'address', 'email', 'action'];
   colums;
   selectedRows = [];
-  dataCompanie: Companie[] = [];
+  dataCompanie$: Observable<CompanieSelector.CompaniesViewModel>;
 
   // Selection Logic
   columns;
   selection;
   hide = false;
 
-  constructor(public dialog: MatDialog, ) {
+  constructor(public dialog: MatDialog, private store: Store<AppState> ) {
     this.columns = [
       {key: 'name', title: 'Raison Sociale', colPipe: null},
       {key: 'ICE', title: 'ICE', colPipe: null},
@@ -55,8 +58,11 @@ export class CompaniesComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
+    this.dataCompanie$ = this.store.pipe(select(CompanieSelector.selectCompaniesViewModel));
     this.selection = new SelectionModel<Companie>(allowMultiSelect, initialSelection);
+    this.store.dispatch(CompanieActions.loadCompanies());
     this.dataSource = new CompaniesDatasource();
+    this.dataCompanie$.subscribe( data => this.dataSource.data = data.companies);
   }
 
   onUserRowSelect(event) {
@@ -79,8 +85,8 @@ export class CompaniesComponent implements AfterViewInit, OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.dataCompanie.push(result);
-        this.dataSource.data = this.dataCompanie;
+        console.log(result);
+        this.store.dispatch(CompanieActions.addCompanie({companie: result}));
       }
     });
   }

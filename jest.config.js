@@ -9,5 +9,6 @@ module.exports = {
     '<rootDir>/apps/ui/management',
     '<rootDir>/apps/printer',
     '<rootDir>/libs/material',
+    '<rootDir>/libs/store/app',
   ],
 };

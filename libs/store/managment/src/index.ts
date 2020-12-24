@@ -1,1 +1,1 @@
-export * from './lib/store-managment';
+export * from './lib/management-state.module';

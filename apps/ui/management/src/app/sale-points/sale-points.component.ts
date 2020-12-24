@@ -9,6 +9,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
 import { SalePointDataSource } from '@TanglassUi/management/sale-points/sale-points-datasource';
 import { PopSalePointsComponent } from '@TanglassUi/management/sale-points/pop-sale-points/pop-sale-points.component';
+import * as SalePointSelector from '@TanglassStore/management/selectors/sale-point.selectors';
+import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
+import { AppState } from '@tanglass-erp/store/app';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 
 
 const initialSelection = [];
@@ -21,7 +27,7 @@ const allowMultiSelect = true;
 })
 export class SalePointsComponent implements AfterViewInit, OnInit {
   selectedRows = [];
-  dataSalesPoints: SalePoint[] = [];
+  dataSalesPoints$:  Observable<SalePointSelector.SalePointsViewModel>;;
   source: LocalDataSource = new LocalDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -38,7 +44,7 @@ export class SalePointsComponent implements AfterViewInit, OnInit {
   selection;
   hide = false;
 
-  constructor(public dialog: MatDialog, ) {
+  constructor(public dialog: MatDialog, private store: Store<AppState>) {
     this.columns = [
       {key: 'id', title: 'Code', colPipe: null},
       {key: 'name', title: 'Nom', colPipe: null},
@@ -54,6 +60,11 @@ export class SalePointsComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.selection = new SelectionModel<Companie>(allowMultiSelect, initialSelection);
     this.dataSource = new SalePointDataSource();
+    this.dataSalesPoints$ = this.store.pipe(select(SalePointSelector.selectSalePointsViewModel));
+    this.store.dispatch(
+      SalePointActions.loadSalePoints()
+    );
+    this.dataSalesPoints$.subscribe(data => this.dataSource.data = data.salePoints);
   }
 
   ngAfterViewInit() {
@@ -71,8 +82,7 @@ export class SalePointsComponent implements AfterViewInit, OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.dataSalesPoints.push(result);
-        this.dataSource.data = this.dataSalesPoints;
+        this.store.dispatch(SalePointActions.addSalePoint({ salePoint: result }));
       }
     });
   }
