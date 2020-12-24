@@ -42,6 +42,13 @@
     },
     "store-app": {
       "tags": []
+    },
+    "ui-production": {
+      "tags": []
+    },
+    "ui/production-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-production"]
     }
   }
 }

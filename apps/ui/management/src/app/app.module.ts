@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from '@TanglassCore/core.module';
 import { ManagementModule } from './management.module';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from '@tanglass-erp/material';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     BrowserAnimationsModule,
     ManagementModule,
+    MaterialModule,
     RouterModule.forRoot([
       {
         path: 'management',

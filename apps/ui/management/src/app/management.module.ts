@@ -28,7 +28,6 @@ import { ManagementStateModule } from '@TanglassStore/management/management-stat
     FormsModule,
     ManagementStateModule,
     ReactiveFormsModule,
-    MaterialModule,
   ],
   exports: [
     ManagementComponent,
