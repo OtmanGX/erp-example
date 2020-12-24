@@ -2,9 +2,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
+import { Observable, of as observableOf, merge } from 'rxjs';
 import { User } from '@TanglassCore/models/management/users';
-import { SalePoint } from '@TanglassCore/models/management/sales-points';
 
 const EXAMPLE_DATA: User[] = [
   {
@@ -12,7 +11,7 @@ const EXAMPLE_DATA: User[] = [
     FirstName: 'Otmane',
     LastName: 'GX',
     address: 'Gx Street',
-    civilité: '',
+    civilité: 'Marocain',
     companies: [],
     departement: '',
     email: 'otmangx@gmail.com',
@@ -26,7 +25,7 @@ const EXAMPLE_DATA: User[] = [
     FirstName: 'Otmane',
     LastName: 'DX',
     address: 'Dx Street',
-    civilité: '',
+    civilité: 'Marocain',
     companies: [],
     departement: '',
     email: 'otmandx@gmail.com',
@@ -40,7 +39,7 @@ const EXAMPLE_DATA: User[] = [
     FirstName: 'Otmane',
     LastName: 'FX',
     address: 'Fx Street',
-    civilité: '',
+    civilité: 'Marocain',
     companies: [],
     departement: '',
     email: 'otmanfx@gmail.com',
@@ -57,16 +56,13 @@ const EXAMPLE_DATA: User[] = [
  * (including sorting, pagination, and filtering).
  */
 export class EmployeesDataSource extends DataSource<User> {
+  data: User[] = EXAMPLE_DATA;
+  // data: User[] = [];
   paginator: MatPaginator;
   sort: MatSort;
 
-  private _dataStream = new BehaviorSubject<User[]>( [] );
-  public set data(v: User[]) { this._dataStream.next(v); }
-  public get data(): User[] { return this._dataStream.value; }
-
   constructor() {
     super();
-    this.data = EXAMPLE_DATA;
   }
 
   /**
@@ -78,7 +74,7 @@ export class EmployeesDataSource extends DataSource<User> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
-      this._dataStream,
+      observableOf(this.data),
       this.paginator.page,
       this.sort.sortChange
     ];

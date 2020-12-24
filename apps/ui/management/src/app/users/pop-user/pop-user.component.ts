@@ -1,19 +1,25 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { User } from '@TanglassCore/data/users';
+import { Component, OnInit, Input } from '@angular/core';
+import { NbDialogRef } from '@nebular/theme';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { Companie } from '@TanglassCore/models/management/companie';
-import { SalePoint } from '@TanglassCore/models/management/sales-points';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
+import { User } from '@TanglassCore/data/users';
 import { companieMockService } from '@TanglassCore/mock/management/companie.mock.service';
 import { SalePointMockService } from '@TanglassCore/mock/management/salePoint.mock.service';
 
+import { Companie } from '@TanglassCore/models/management/companie';
+import { SalePoint } from '@TanglassCore/models/management/sales-points';
+
 @Component({
-  selector: 'ngx-dialog-employee',
-  templateUrl: './dialog-employee.component.html',
-  styleUrls: ['./dialog-employee.component.scss']
+  selector: 'ngx-pop-user',
+  templateUrl: './pop-user.component.html',
+  styleUrls: ['./pop-user.component.scss'],
 })
-export class DialogEmployeeComponent implements OnInit {
+export class PopUserComponent implements OnInit {
   @Input() title: string;
   UserForm: FormGroup;
   user: User;
@@ -37,12 +43,12 @@ export class DialogEmployeeComponent implements OnInit {
     'Sidi Driss',
   ];
 
-  constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private fb: FormBuilder,
-              private companieService: companieMockService,
-              private salePointsService: SalePointMockService) { }
-
+  constructor(
+    protected ref: NbDialogRef<PopUserComponent>,
+    private fb: FormBuilder,
+    private companieService: companieMockService,
+    private salePointsService: SalePointMockService
+  ) {}
   ngOnInit(): void {
     this.buildUserForm();
   }
@@ -73,14 +79,14 @@ export class DialogEmployeeComponent implements OnInit {
     });
   }
   onSelectCompanie(event): void {
-    const obj = this.dataCompanies.filter(function (e) {
-      return e.id === event.id;
+    var obj = this.dataCompanies.filter(function (e) {
+      return e.id == event.id;
     });
     this.UserForm.get('companies').setValue(obj);
   }
   onSelectSalePoint(event): void {
-    const obj = this.dataSalePoint.filter(function (e) {
-      return e.id === event.id;
+    var obj = this.dataSalePoint.filter(function (e) {
+      return e.id == event.id;
     });
     this.UserForm.get('salepoints').setValue(obj);
   }
@@ -89,18 +95,9 @@ export class DialogEmployeeComponent implements OnInit {
     this.submitted = true;
     this.user = this.UserForm.value;
     this.UserForm.reset();
-    this.submit(this.user);
+    this.ref.close(this.user);
   }
   closePopup() {
-    this.onNoClick();
+    this.ref.close();
   }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  submit(value: any) {
-    this.dialogRef.close(this.data);
-  }
-
 }
