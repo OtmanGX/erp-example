@@ -79,7 +79,7 @@
       "check-type"
     ],
     "directive-selector": [true, "attribute", "ngx", "camelCase"],
-    "component-selector": [true, "element", "ngx", "kebab-case"],
+    "component-selector": [false, "element", "ngx", "kebab-case"],
     "ban": [
       true,
       "eval",

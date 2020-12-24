@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ManagementComponent } from './management.component';
-// import { CompaniesComponent } from './companies/companies.component';
-// import {UsersComponent} from './users/users.component';
-// import { SalePointsComponent } from './sale-points/sale-points.component';
 import { EmployeesComponent } from '@TanglassUi/management/employees/employees.component';
+import { CompaniesComponent } from '@TanglassUi/management/companies/companies.component';
+import { SalePointsComponent } from '@TanglassUi/management/sale-points/sale-points.component';
+
 const routes: Routes = [
   {
     path: '',
     component: ManagementComponent,
     children: [
-    // {
-    //     path: 'companies',
-    //     component: CompaniesComponent,
-    //   },
-    //   {
-    //     path: 'users',
-    //     component: UsersComponent,
-    //   },
-      // {
-      //   path: 'salePoints',
-      //   component: SalePointsComponent,
-      // },
+    {
+        path: 'companies',
+        component: CompaniesComponent,
+      },
+      {
+        path: 'salePoints',
+        component: SalePointsComponent,
+      },
       {
         path: '',
         component: EmployeesComponent,
