@@ -1,15 +1,5 @@
-<nb-card>
-    <nb-card-header>
-        <div class="row">
-            <div class="col-md-9">
-          
-            </div>
-        </div>
-    </nb-card-header>
-    <nb-card-body>
-        <div class='smart-table'>
-            <ng2-smart-table class=" smart-table" [settings]="settings" [source]="source" >
-            </ng2-smart-table>
-        </div>
-    </nb-card-body>
-</nb-card>
+<ngx-main-grid [columnId]="columnId"
+               (triggerEvent)="eventTriggering($event)"
+               [rowData]="orders$"
+               [columnDefs]="columnDefs">
+</ngx-main-grid>

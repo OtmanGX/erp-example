@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'tanglass-erp-root',
-  template: '<router-outlet></router-outlet>',
+  template: '<div class="container"><router-outlet></router-outlet></div>',
   styleUrls: [],
 })
 export class AppComponent {

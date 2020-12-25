@@ -7,6 +7,7 @@ import { CoreModule } from '@TanglassCore/core.module';
 import { MaterialModule } from '@tanglass-erp/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductionModule } from './production.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CoreModule.forRoot(),
     MaterialModule,
     HttpClientModule,
+    ProductionModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([{ path: '', loadChildren: () =>
