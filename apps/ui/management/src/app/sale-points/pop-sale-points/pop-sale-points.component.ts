@@ -1,13 +1,15 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { companieMockService } from '@TanglassCore/mock/management/companie.mock.service';
-import { UserMockService } from '@TanglassCore/mock/management/user.mock.service';
-import { Companie } from '@TanglassCore/models/management/companie';
 import { User } from '@TanglassCore/models/management/users';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SalePoint } from '@TanglassCore/models/management/sales-points';
+import * as CompanieSelector from '@TanglassStore/management/selectors/companies.selectors';
+import * as UserSelector from '@TanglassStore/management/selectors/user.selectors';
+import * as UserActions from '@TanglassStore/management/actions/user.actions';
+import * as CompaniesActions from '@TanglassStore/management/actions/companies.actions';
+import { AppState } from '@tanglass-erp/store/app';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ngx-pop-sale-points',
@@ -19,8 +21,8 @@ export class PopSalePointsComponent implements OnInit {
   SalePointForm: FormGroup;
   user: User;
   submitted: boolean;
-  dataCompanies: Companie[] = [];
-  dataUser: User[] = [];
+  dataCompanies$: Observable<CompanieSelector.CompaniesViewModel>
+  dataUser$: Observable<UserSelector.UsersViewModel>
 
   listCompanies = ['Tanglass', 'Trimar'];
   listUsers = ['Tanja Balia', 'Mabrouk', 'Souani', 'Dar Tounssi', 'Sidi Driss'];
@@ -29,10 +31,11 @@ export class PopSalePointsComponent implements OnInit {
     public dialogRef: MatDialogRef<PopSalePointsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: SalePoint,
     private fb: FormBuilder,
-    private companieService: companieMockService,
-    private userService: UserMockService
+    private store: Store<AppState>
   ) {}
   ngOnInit(): void {
+    this.dataCompanies$ = this.store.pipe(select(CompanieSelector.selectCompaniesViewModel));
+    this.dataUser$ = this.store.pipe(select(UserSelector.selectUsersViewModel));
     this.buildUserForm();
   }
   buildUserForm(): void {
@@ -48,30 +51,37 @@ export class PopSalePointsComponent implements OnInit {
   }
 
   getCompanies(): void {
-    this.companieService.getAll().subscribe({
-      next: (companies) => (this.dataCompanies = companies),
-    });
+    this.store.dispatch(
+      CompaniesActions.loadCompaniesBySalePoint()
+    );
   }
   getUsers(): void {
-    this.userService.getAll().subscribe({
-      next: (users) => (this.dataUser = users),
-    });
+    this.store.dispatch(
+      UserActions.loadUsersBySalePoint()
+    );
   }
-  onSelectCompanie(event): void {
-    const obj = this.dataCompanies.filter(function (e) {
-      return e.id === event.id;
+  onSelectCompanie( event ): void {
+    const subscription = this.dataCompanies$.subscribe( dataCompanies => {
+      var obj = dataCompanies.companies.filter(function (e) {
+        return e.id == event.id;
+      });
+      if (obj) {
+        this.SalePointForm.get('companies').setValue(obj);
+      }
     });
-    if (obj) {
-      this.SalePointForm.get('companies').setValue(obj);
-    }
+    subscription.unsubscribe();
   }
-  onSelectUsers(event): void {
-    const obj = this.dataUser.filter(function (e) {
-      return e.id === event.id;
+
+  onSelectUsers( event ): void {
+    const subscription = this.dataUser$.subscribe( dataUser => {
+      var obj = dataUser.users.filter(function (e) {
+        return e.id == event.id;
+      });
+      if (obj) {
+        this.SalePointForm.get('users').setValue(obj);
+      }
     });
-    if (obj) {
-      this.SalePointForm.get('users').setValue(obj);
-    }
+    subscription.unsubscribe();
   }
 
   onSave(): void {

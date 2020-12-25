@@ -19,7 +19,7 @@ const routes: Routes = [
         component: SalePointsComponent,
       },
       {
-        path: '',
+        path: 'users',
         component: EmployeesComponent,
       },
     ],

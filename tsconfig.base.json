@@ -23,8 +23,9 @@
       "@TanglassTheme/*": ["./libs/tanglass-theme/src/*"],
       "@TanglassRouting/*": ["./apps/tanglass-routing/src/app/*"],
       "@tanglass-erp/core/graphql": ["libs/core/graphql/src/index.ts"],
-      "@TanglassStore/company": ["libs/store/managment/src/index.ts"],
-      "@tanglass-erp/material": ["libs/material/src/index.ts"]
+      "@TanglassStore/management/*": ["libs/store/managment/src/lib/*"],
+      "@tanglass-erp/material": ["libs/material/src/index.ts"],
+      "@tanglass-erp/store/app": ["libs/store/app/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."
