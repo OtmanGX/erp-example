@@ -10,5 +10,8 @@ module.exports = {
     '<rootDir>/apps/printer',
     '<rootDir>/libs/material',
     '<rootDir>/libs/store/app',
+    '<rootDir>/apps/ui/production',
+    '<rootDir>/apps/ui/inventory',
+    '<rootDir>/libs/ag-grid',
   ],
 };

@@ -42,6 +42,23 @@
     },
     "store-app": {
       "tags": []
+    },
+    "ui-production": {
+      "tags": []
+    },
+    "ui/production-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-production"]
+    },
+    "ui-inventory": {
+      "tags": []
+    },
+    "ui/inventory-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-inventory"]
+    },
+    "ag-grid": {
+      "tags": []
     }
   }
 }

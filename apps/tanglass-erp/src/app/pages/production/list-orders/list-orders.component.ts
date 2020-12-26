@@ -38,7 +38,7 @@ export class ListOrdersComponent implements OnInit {
         type: 'custom',
         valuePrepareFunction: (cell, row: ProductionOrder) => {
           let data = {
-            link: 'production/detail/',
+            link: 'detail/',
             linkText: 'B.T 00' + row.id + '/21',
           };
           return data;
