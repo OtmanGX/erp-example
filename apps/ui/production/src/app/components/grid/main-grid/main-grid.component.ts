@@ -3,6 +3,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { DatePipe } from '@angular/common';
 import { MatEditComponent } from '../mat-edit/mat-edit.component';
 import { Observable } from 'rxjs';
+import { GridObjectRenderComponentComponent } from '../grid-object-render-component/grid-object-render-component.component';
 
 
 @Component({
@@ -16,6 +17,8 @@ export class MainGridComponent implements OnInit {
   @Input() columnDefs: any;
   @Input() autoGroupColumnDef: any;
   @Input() columnId = 'id';
+  @Input() withToolbar: boolean = true;
+  @Input() withCrud: boolean = true;
   @Output() triggerEvent = new EventEmitter<{action: string, data?: any}>();
   private gridApi: any;
   private gridColumnApi: any;
@@ -24,7 +27,7 @@ export class MainGridComponent implements OnInit {
   hide = false; // For Search reset  button
 
   // Formatters
-  dateFormatter = (params) => this.datepipe.transform(params.data.date, 'dd/MM/yyyy');
+  dateFormatter = (params) => (!params.data) ? null : this.datepipe.transform(params.data.date, 'dd/MM/yyyy');
 
   // Renderers
   frameworkComponents: {
@@ -41,12 +44,13 @@ export class MainGridComponent implements OnInit {
       // the code is unique, so perfect for the ID
       return data[this.columnId];
     },
-    immutableData: true,
+    // immutableData: true,
   };
   defaultColDef = {
     sortable: true,
     floatingFilter: true,
     filter: true,
+    enableRowGroup: true,
     headerCheckboxSelection: this.checkboxSelectionColumn,
     headerCheckboxSelectionFilteredOnly: this.checkboxSelectionColumn,
     checkboxSelection: this.checkboxSelectionColumn,
@@ -55,6 +59,7 @@ export class MainGridComponent implements OnInit {
   columnTypes = {
     nonEditableColumn: { editable: false },
     editColumn: {cellRendererFramework: MatEditComponent, filter: false},
+    objectColumn: {cellRendererFramework: GridObjectRenderComponentComponent, filter: true},
     dateColumn: {
       filter: 'agDateColumnFilter',
       suppressMenu: true,

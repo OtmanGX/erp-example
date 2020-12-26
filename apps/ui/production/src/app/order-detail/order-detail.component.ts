@@ -60,34 +60,4 @@ export class OrderDetailComponent implements OnInit {
         this.content+=part
 })*/
   }
-  settings = {
-    hideHeader: false,
-    hideSubHeader: true,
-    actions: false,
-    noDataMessage: ' Pas de données',
-    columns: {
-      count: {
-        title: 'N°',
-        type: 'string',
-      },
-      code: {
-        title: 'Code',
-        type: 'html',
-        valuePrepareFunction: (cell, row: AddedValue) => {
-          return row.item.code;
-        },
-      },
-      libelle: {
-        title: 'Libellé',
-        type: 'html',
-        valuePrepareFunction: (cell, row: AddedValue) => {
-          return row.item.libelle;
-        },
-      },
-      quantity: {
-        title: 'Quantité',
-        type: 'number',
-      },
-    },
-  };
 }

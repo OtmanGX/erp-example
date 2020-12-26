@@ -5,7 +5,7 @@ import { ICellRendererParams } from 'ag-grid-community';
 @Component({
   selector: 'ngx-mat-edit',
   template: `
-    <button (click)="click()" mat-icon-button matTooltip="Modifier"  color="accent">
+    <button *ngIf="params.data?true:params.group" (click)="click()" mat-icon-button matTooltip="Modifier" color="accent">
       <mat-icon fontSet="fas" fontIcon="fa-edit"></mat-icon>
     </button>
   `,
@@ -21,7 +21,7 @@ export class MatEditComponent implements ICellRendererAngularComp {
   }
 
   click() {
-    this.params.context.componentParent.triggerAction('Edit');
+    this.params.context.componentParent.triggerAction('Edit', this.params.data);
   }
 
   refresh(params: any): boolean {

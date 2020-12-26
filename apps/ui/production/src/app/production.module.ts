@@ -4,25 +4,31 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductionComponent } from './production.component';
 import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
-import { MainGridComponent } from './components/main-grid/main-grid.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatEditComponent } from './components/mat-edit/mat-edit.component';
+import { MainGridComponent } from './components/grid/main-grid/main-grid.component';
+import { MatEditComponent } from './components/grid/mat-edit/mat-edit.component';
 import { MaterialModule } from '@tanglass-erp/material';
 import { ListOrdersComponent } from './list-orders/list-orders.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { GridObjectRenderComponentComponent } from './components/grid/grid-object-render-component/grid-object-render-component.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { NgxPrintModule } from 'ngx-print';
 
 const routes: Routes = [
    {
     path: '',
     component: ProductionComponent,
     children: [
+      {path: '',
+      redirectTo: 'ListOrders',
+      pathMatch: 'full'},
       {
-        path: '',
+        path: 'ListOrders',
         component: ListOrdersComponent ,
       },
-      // {
-      //   path: 'detail/:id',
-      //   component: OrderDetailComponent ,
-      // },
+      {
+        path: 'detail/:id',
+        component: OrderDetailComponent ,
+      },
     ],
   },
 ];
@@ -31,14 +37,16 @@ const routes: Routes = [
   declarations: [
     ProductionComponent,
     ListOrdersComponent,
+    OrderDetailComponent,
     MainGridComponent,
-    MatEditComponent],
+    MatEditComponent,
+    GridObjectRenderComponentComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
-    AgGridModule.withComponents([MatEditComponent]),
-    BrowserAnimationsModule,
     MaterialModule,
+    RouterModule.forChild(routes),
+    AgGridModule.withComponents([MatEditComponent, GridObjectRenderComponentComponent]),
+    NgxPrintModule
   ], providers: [DatePipe],
 })
 export class ProductionModule { }

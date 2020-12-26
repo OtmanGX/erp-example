@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { OrderProductionMockService } from '@TanglassCore/mock/production/productionOrder.mock.service';
 import { ProductionOrder } from '@TanglassCore/models/production/productionOrder.model';
-import { MainGridComponent } from '../components/main-grid/main-grid.component';
+import { MainGridComponent } from '../components/grid/main-grid/main-grid.component';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 
@@ -40,9 +40,19 @@ export class ListOrdersComponent implements OnInit, AfterViewInit {
 
   setColumnDefs() {
     this.columnDefs = [
-      { field: 'id', headerName: 'N° B.T',  type: 'numberColumn'},
-      { field: 'attachements_id', headerName: 'N° B.C', type: 'numberColumn'},
-      { field: 'date', headerName: 'Date', type: "dateColumn", },
+      { field: 'id', headerName: 'N° B.T', type: "objectColumn",
+        valueGetter: function(params) {
+                  if (!params.data) return null;
+                  const data = {
+                              link: 'detail/',
+                              linkText: 'B.T 00' + params.data.id + '/21',
+                            };
+                  return data;
+                }
+        },
+      { field: 'attachements_id', headerName: 'N° B.C', type: "numberColumn",
+          valueFormatter: (params) => (!params.value) ? null : ' B.C 00' + params.value + '/21'},
+      { field: 'date', headerName: 'Date', type: "dateColumn"},
       { field: 'delay', headerName: 'Délai'},
       { field: 'id', headerName: 'Action', type: "editColumn"},
     ];

@@ -1,4 +1,6 @@
 <ngx-main-grid [columnId]="columnId"
+               [withToolbar]="true"
+               [withCrud]="false"
                (triggerEvent)="eventTriggering($event)"
                [rowData]="orders$"
                [columnDefs]="columnDefs">
