@@ -1,4 +1,4 @@
-<nb-card>
+<mat-card>
     <nb-card-header>
         <button  nbButton [useExistingCss]="true" printStyle="{.print-section : {'margin-top': '50px'}}" printSectionId="print-section" ngxPrint>print</button>
 
@@ -42,7 +42,7 @@
             </nb-accordion-item>
         </nb-accordion>
 
-        
+
 <div   *ngFor="let article of articles" >
     <div class="col-1">
         {{article.glass.item.libelle}}:
@@ -54,4 +54,4 @@
 
 </nb-card-body>
 
-</nb-card>
+</mat-card>

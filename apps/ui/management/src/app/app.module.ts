@@ -13,7 +13,6 @@ import { MaterialModule } from '@tanglass-erp/material';
     BrowserModule,
     BrowserAnimationsModule,
     ManagementModule,
-    MaterialModule,
     RouterModule.forRoot([
       {
         path: 'management',

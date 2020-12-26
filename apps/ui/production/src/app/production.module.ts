@@ -8,7 +8,6 @@ import { MainGridComponent } from './components/grid/main-grid/main-grid.compone
 import { MatEditComponent } from './components/grid/mat-edit/mat-edit.component';
 import { MaterialModule } from '@tanglass-erp/material';
 import { ListOrdersComponent } from './list-orders/list-orders.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { GridObjectRenderComponentComponent } from './components/grid/grid-object-render-component/grid-object-render-component.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { NgxPrintModule } from 'ngx-print';

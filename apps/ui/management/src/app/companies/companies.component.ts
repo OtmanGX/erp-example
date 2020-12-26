@@ -10,7 +10,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { CompaniesDatasource } from '@TanglassUi/management/companies/companies-datasource';
 import * as CompanieActions from '@TanglassStore/management/actions/companies.actions';
 import * as CompanieSelector from '@TanglassStore/management/selectors/companies.selectors';
-import { AppState } from '@tanglass-erp/store/app'
+import { AppState } from '@tanglass-erp/store/app';
 import { select, Store } from '@ngrx/store';
 
 

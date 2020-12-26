@@ -20,12 +20,13 @@
     "paths": {
       "@TanglassUi/management/*": ["./apps/ui/management/src/app/*"],
       "@TanglassCore/*": ["./libs/tanglass-core/src/*"],
-      "@TanglassTheme/*": ["./libs/tanglass-theme/src/*"],
+      "@TanglassTheme/*": ["./libs/theme/tanglass-theme/src/*"],
       "@TanglassRouting/*": ["./apps/tanglass-routing/src/app/*"],
       "@tanglass-erp/core/graphql": ["libs/core/graphql/src/index.ts"],
       "@TanglassStore/management/*": ["libs/store/managment/src/lib/*"],
-      "@tanglass-erp/material": ["libs/material/src/index.ts"],
-      "@tanglass-erp/store/app": ["libs/store/app/src/index.ts"]
+      "@tanglass-erp/material": ["libs/theme/material/src/index.ts"],
+      "@tanglass-erp/store/app": ["libs/store/app/src/index.ts"],
+      "@tanglass-erp/ag-grid": ["libs/ag-grid/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

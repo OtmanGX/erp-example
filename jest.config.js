@@ -9,10 +9,9 @@ module.exports = {
     '<rootDir>/apps/ui/management',
     '<rootDir>/apps/printer',
     '<rootDir>/libs/material',
-<<<<<<< HEAD
     '<rootDir>/libs/store/app',
-=======
     '<rootDir>/apps/ui/production',
->>>>>>> 611f5f9 ([ui-production] been added)
+    '<rootDir>/apps/ui/inventory',
+    '<rootDir>/libs/ag-grid',
   ],
 };
