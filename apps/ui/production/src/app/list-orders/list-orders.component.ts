@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { OrderProductionMockService } from '@TanglassCore/mock/production/productionOrder.mock.service';
 import { ProductionOrder } from '@TanglassCore/models/production/productionOrder.model';
-import { MainGridComponent } from '../components/grid/main-grid/main-grid.component';
+import { MainGridComponent } from '../../../../../../libs/ag-grid/src/lib/components/main-grid/main-grid.component';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 
@@ -46,9 +46,10 @@ export class ListOrdersComponent implements OnInit, AfterViewInit {
                   const data = {
                               link: 'detail/',
                               linkText: 'B.T 00' + params.data.id + '/21',
+                              toString: () => params.data.id.toString(),
                             };
                   return data;
-                }
+                },
         },
       { field: 'attachements_id', headerName: 'N° B.C', type: "numberColumn",
           valueFormatter: (params) => (!params.value) ? null : ' B.C 00' + params.value + '/21'},

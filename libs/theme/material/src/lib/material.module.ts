@@ -19,8 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { BodyDropPivotTarget } from 'ag-grid-community';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 export const MATERIAL_MODULES = [
