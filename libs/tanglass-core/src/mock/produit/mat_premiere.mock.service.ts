@@ -22,26 +22,26 @@ class MatierePremiereMockData extends BaseMockService<MatièrePremière> {
 })
 export class MatierePremiereMockService extends Mixin(MatierePremiereService,MatierePremiereMockData){
 
-  private colorsMatierePremiere:additionalParam_PD[]=colorsMatierePremiere
-  private typesMatierePremiere:additionalParam_PD[]=typesMatierePremiere
+  private colorsMatierePremiere:additionalParam_PD[]=colorsMatierePremiere;
+  private typesMatierePremiere:additionalParam_PD[]=typesMatierePremiere;
 
 
   /** GET All MatièrePremière  Types from fake data  */
   getTypeMatierePremiere(): Observable<additionalParam_PD[]> {
-    return observableOf(this.typesMatierePremiere)
+    return observableOf(this.typesMatierePremiere);
   }
   getColorMatierePremiere(): Observable<additionalParam_PD[]> {
-     return observableOf(this.colorsMatierePremiere)
+     return observableOf(this.colorsMatierePremiere);
     }
 
   addTypeMatierePremiere(type_MP:additionalParam_PD): Observable<additionalParam_PD> {
-    this.typesMatierePremiere.push(type_MP)
-    return observableOf(type_MP)
+    this.typesMatierePremiere.push(type_MP);
+    return observableOf(type_MP);
 
   }
   addColorMatierePremiere(color_MP: additionalParam_PD): Observable<additionalParam_PD> {
-   this.colorsMatierePremiere.push(color_MP)
-   return observableOf(color_MP)
+   this.colorsMatierePremiere.push(color_MP);
+   return observableOf(color_MP);
   }
 
 }

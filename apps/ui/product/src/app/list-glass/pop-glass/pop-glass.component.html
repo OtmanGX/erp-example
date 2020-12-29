@@ -1,0 +1,8 @@
+<mat-toolbar color="primary" class="m-0 mb-2 text-center">
+  <h1 mat-dialog-title>Ajouter une Matière Première</h1>
+</mat-toolbar>
+
+<dynamic-form [fields]="regConfig"
+              (close)="closePopup()"
+              (submit)="onSubmit($event)">
+</dynamic-form>

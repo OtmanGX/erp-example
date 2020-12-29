@@ -4,7 +4,7 @@ import { MainGridComponent } from './components/main-grid/main-grid.component';
 import { MatEditComponent } from './components/mat-edit/mat-edit.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { MaterialModule } from '@tanglass-erp/material';
-
+import 'ag-grid-enterprise';
 
 export const MODULES = [
   MaterialModule,
@@ -13,8 +13,8 @@ export const MODULES = [
 
 @NgModule({
   declarations: [MainGridComponent, MatEditComponent],
-  imports: [CommonModule, ...MODULES, AgGridModule.withComponents([MatEditComponent])],
-  exports: [CommonModule, ...MODULES, AgGridModule, MainGridComponent, MatEditComponent],
+  imports: [...MODULES, AgGridModule.withComponents([MatEditComponent])],
+  exports: [...MODULES, AgGridModule, MainGridComponent, MatEditComponent],
   providers: [DatePipe]
 })
 export class MainAgGridModule {

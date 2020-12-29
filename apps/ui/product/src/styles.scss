@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~ag-grid-enterprise/dist/styles/ag-grid.css';
+@import '~ag-grid-enterprise/dist/styles/ag-theme-alpine.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+
+.panel-dialog .mat-dialog-container {
+  padding-top: 0;
+  padding-right: 0;
+  padding-left: 0;
+  margin: 0;
+}
+
+
+.full-width-table {
+  width: 100%;
+}
+
+.mat-column-select {
+  overflow: initial;
+}
+
+.mat-row:hover {
+  background-color: #f3f2f2;
+}
+
+.mat-icon {
+  font-size: 24px;
+}
+
+.excel {
+  color: green;
+}

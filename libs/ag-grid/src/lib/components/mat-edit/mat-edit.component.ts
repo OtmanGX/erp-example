@@ -21,7 +21,7 @@ export class MatEditComponent implements ICellRendererAngularComp {
   }
 
   click() {
-    this.params.context.componentParent.triggerAction('Edit', this.params.data);
+    this.params.context.componentParent.triggerAction('edit', this.params.data);
   }
 
   refresh(params: any): boolean {

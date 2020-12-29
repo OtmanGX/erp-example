@@ -21,8 +21,8 @@ export class PopSalePointsComponent implements OnInit {
   SalePointForm: FormGroup;
   user: User;
   submitted: boolean;
-  dataCompanies$: Observable<CompanieSelector.CompaniesViewModel>
-  dataUser$: Observable<UserSelector.UsersViewModel>
+  dataCompanies$: Observable<CompanieSelector.CompaniesViewModel>;
+  dataUser$: Observable<UserSelector.UsersViewModel>;
 
   listCompanies = ['Tanglass', 'Trimar'];
   listUsers = ['Tanja Balia', 'Mabrouk', 'Souani', 'Dar Tounssi', 'Sidi Driss'];

@@ -3,7 +3,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { DatePipe } from '@angular/common';
 import { MatEditComponent } from '../mat-edit/mat-edit.component';
 import { Observable } from 'rxjs';
-import { GridObjectRenderComponentComponent } from '../../../../../../apps/ui/production/src/app/components/grid-object-render-component/grid-object-render-component.component';
+import { GridObjectRenderComponentComponent } from '../grid-object-render-component/grid-object-render-component.component';
 
 
 @Component({
@@ -58,6 +58,7 @@ export class MainGridComponent implements OnInit {
 
   columnTypes = {
     nonEditableColumn: { editable: false },
+    textColumn: {filter: 'agTextColumnFilter'},
     editColumn: {cellRendererFramework: MatEditComponent, filter: false},
     objectColumn: {cellRendererFramework: GridObjectRenderComponentComponent, filter: true},
     dateColumn: {

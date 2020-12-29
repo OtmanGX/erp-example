@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductionComponent } from './production.component';
-import 'ag-grid-enterprise';
 import { ListOrdersComponent } from './list-orders/list-orders.component';
-import { GridObjectRenderComponentComponent } from './components/grid-object-render-component/grid-object-render-component.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { NgxPrintModule } from 'ngx-print';
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
@@ -33,8 +31,7 @@ const routes: Routes = [
   declarations: [
     ProductionComponent,
     ListOrdersComponent,
-    OrderDetailComponent,
-    GridObjectRenderComponentComponent],
+    OrderDetailComponent],
   imports: [
     CommonModule,
     MainAgGridModule,
