@@ -2,9 +2,9 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { OrderProductionMockService } from '@TanglassCore/mock/production/productionOrder.mock.service';
 import { ProductionOrder } from '@TanglassCore/models/production/productionOrder.model';
-import { MainGridComponent } from '../components/grid/main-grid/main-grid.component';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
+import { MainGridComponent } from '@tanglass-erp/ag-grid';
 
 @Component({
   selector: 'ngx-list-orders',
@@ -46,9 +46,10 @@ export class ListOrdersComponent implements OnInit, AfterViewInit {
                   const data = {
                               link: 'detail/',
                               linkText: 'B.T 00' + params.data.id + '/21',
+                              toString: () => params.data.id.toString(),
                             };
                   return data;
-                }
+                },
         },
       { field: 'attachements_id', headerName: 'N° B.C', type: "numberColumn",
           valueFormatter: (params) => (!params.value) ? null : ' B.C 00' + params.value + '/21'},
@@ -72,55 +73,4 @@ export class ListOrdersComponent implements OnInit, AfterViewInit {
       // ...
     }
   }
-
-
-
-// settings = {
-  //   selectMode: 'multi',
-  //   hideHeader: false,
-  //   actions: false,
-  //   columns: {
-  //     code: {
-  //       title: 'N° B.T',
-  //       type: 'custom',
-  //       valuePrepareFunction: (cell, row: ProductionOrder) => {
-  //         let data = {
-  //           link: 'production/detail/',
-  //           linkText: 'B.T 00' + row.id + '/21',
-  //         };
-  //         return data;
-  //       },
-  //       renderComponent: ObjectRenderComponent,
-  //       sortDirection: 'desc',
-  //     },
-  //     codeCommande: {
-  //       title: 'N° B.C',
-  //       type: 'html',
-  //       valuePrepareFunction: (cell, row: ProductionOrder) => {
-  //         return ' B.C 00' + row.attachements_id + '/21';
-  //       },
-  //     },
-  //
-  //     orderDate: {
-  //       title: 'Date ',
-  //       type: 'html',
-  //       valuePrepareFunction: (cell, row: ProductionOrder) => {
-  //         let date = this.datepipe.transform(row.date, 'dd/MM/yyyy');
-  //         return date;
-  //       },
-  //     },
-  //     delay: {
-  //       title: 'Délai',
-  //       type: 'html',
-  //       valuePrepareFunction: (cell, row: ProductionOrder) => {
-  //         let date = this.datepipe.transform(row.delay, 'dd/MM/yyyy');
-  //         return date;
-  //       },
-  //     },
-  //     tags: {
-  //       title: 'Tags',
-  //       type: 'string',
-  //     },
-  //   },
-  // };
 }

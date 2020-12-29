@@ -59,6 +59,13 @@
     },
     "ag-grid": {
       "tags": []
+    },
+    "ui-product": {
+      "tags": []
+    },
+    "ui-product-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-product"]
     }
   }
 }

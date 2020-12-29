@@ -944,6 +944,149 @@
           }
         }
       }
+    },
+    "ui-product": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/ui/product",
+      "sourceRoot": "apps/ui/product/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ui/product",
+            "index": "apps/ui/product/src/index.html",
+            "main": "apps/ui/product/src/main.ts",
+            "polyfills": "apps/ui/product/src/polyfills.ts",
+            "tsConfig": "apps/ui/product/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/ui/product/src/favicon.ico",
+              "apps/ui/product/src/assets"
+            ],
+            "scripts": [
+              "node_modules/pace-js/pace.min.js",
+              "node_modules/tinymce/tinymce.min.js",
+              "node_modules/tinymce/themes/modern/theme.min.js",
+              "node_modules/tinymce/plugins/link/plugin.min.js",
+              "node_modules/tinymce/plugins/paste/plugin.min.js",
+              "node_modules/tinymce/plugins/table/plugin.min.js",
+              "node_modules/echarts/dist/echarts.min.js",
+              "node_modules/echarts/dist/extension/bmap.min.js",
+              "node_modules/chart.js/dist/Chart.min.js"
+            ],
+            "styles": [
+              "apps/ui/product/src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/typeface-exo/index.css",
+              "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+              "node_modules/ionicons/scss/ionicons.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "node_modules/socicon/css/socicon.css",
+              "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
+              "node_modules/leaflet/dist/leaflet.css",
+              "libs/theme/tanglass-theme/src/styles/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ui/product/src/environments/environment.ts",
+                  "with": "apps/ui/product/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ui-product:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ui-product:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ui-product:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ui/product/tsconfig.app.json",
+              "apps/ui/product/tsconfig.spec.json",
+              "apps/ui/product/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ui/product/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ui/product/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-product-e2e": {
+      "root": "apps/ui/product-e2e",
+      "sourceRoot": "apps/ui/product-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ui/product-e2e/cypress.json",
+            "tsConfig": "apps/ui/product-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ui-product:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ui-product:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ui/product-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ui/product-e2e/**/*"]
+          }
+        }
+      }
     }
   },
   "defaultProject": "tanglass-erp",
