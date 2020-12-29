@@ -4,6 +4,8 @@ import { DatePipe } from '@angular/common';
 import { MatEditComponent } from '../mat-edit/mat-edit.component';
 import { Observable } from 'rxjs';
 import { GridObjectRenderComponentComponent } from '../grid-object-render-component/grid-object-render-component.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { ExportBottomSheetComponent } from '../export-bottom-sheet/export-bottom-sheet.component';
 
 
 @Component({
@@ -121,7 +123,9 @@ export class MainGridComponent implements OnInit {
     ],
   };
 
-  constructor(public datepipe: DatePipe) {
+  constructor(
+    public datepipe: DatePipe,
+    private _bottomSheet: MatBottomSheet) {
     this.context = {
       componentParent: this
     };
@@ -163,7 +167,21 @@ export class MainGridComponent implements OnInit {
     this.search('');
   }
 
+  openBottomSheet() {
+    const bottomSheetRef = this._bottomSheet.open(ExportBottomSheetComponent);
+    bottomSheetRef.afterDismissed().subscribe(
+      value => {
+        if (value === 'excel') this.exportExcel();
+        else if (value === 'csv') this.exportCsv();
+      }
+    );
+  }
+
   exportCsv() {
     this.gridApi.exportDataAsCsv();
+  }
+
+  exportExcel() {
+    this.gridApi.exportDataAsExcel();
   }
 }
