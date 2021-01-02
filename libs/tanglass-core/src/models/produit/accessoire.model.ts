@@ -1,16 +1,26 @@
+import { Mat, Product } from '@TanglassCore/models/produit/glasse.model';
 
-export class Accessoire {
+export class Accessory {
+  public static columnDefs(prefix = '') {
+    if (prefix.length) prefix += '.';
+    return [
+      {headerName: 'Accssoire', children: [
+          { field: prefix + 'name', headerName: 'Nom', type: "textColumn"},
+          { field: prefix + 'type', headerName: 'Type', type: "textColumn"},
+          { field: prefix + 'quota', headerName: 'Quota', type: "numberColumn"}
+        ]
+      },
+      {headerName: 'Produit',
+        children: Product.columnDefs(prefix + 'product')
+      },
+    ];
+  }
   id?: number;
-  code:string='';
-  type:string='';
-  libelle: string='';
-  libelleClient: string='';
-  prix_Achat: number=0;
-  prix_default: number=0;
-  prix_min: number=0;
-  prix_max: number=0;
-  tags: string='';
-  companie:string[]=[];
+  name:string='';
+  type: string='';
+  quota: number = 0;
+  Mat: Mat;
+  product: Product;
 }
 
 

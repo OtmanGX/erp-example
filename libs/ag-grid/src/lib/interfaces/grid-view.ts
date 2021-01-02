@@ -1,9 +1,9 @@
-import { AfterViewInit } from '@angular/core';
+import { AfterViewInit, OnInit } from '@angular/core';
 import { MainGridComponent } from '../components/main-grid/main-grid.component';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 
-export interface GridView extends AfterViewInit {
+export interface GridView extends AfterViewInit, OnInit {
   mainGrid: MainGridComponent;
   data$: Observable<any>;
   agGrid: AgGridAngular;

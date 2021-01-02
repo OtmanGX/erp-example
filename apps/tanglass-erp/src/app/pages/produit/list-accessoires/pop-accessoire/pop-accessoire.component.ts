@@ -8,7 +8,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { AccessoireMockService } from '@TanglassCore/mock/produit/accessoire.mock.service';
-import { Accessoire } from '@TanglassCore/models/produit/accessoire.model';
+import { Accessory } from '@TanglassCore/models/produit/accessoire.model';
 import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
 import { companies } from '@TanglassCore/data/management/companies.data';
 @Component({
@@ -20,7 +20,7 @@ export class PopAccessoireComponent implements OnInit {
   @Input() title: string;
   AddType = false;
   AccessoireForm: FormGroup;
-  accessoire: Accessoire;
+  accessoire: Accessory;
   A_types: additionalParam_PD[] = [];
   newType: additionalParam_PD = { id: null, name: '' };
   submitted: boolean;

@@ -2,14 +2,14 @@ import { of as observableOf,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {AccessoireService} from '../../services/produit/accessoire.service'
 import { accessoires,types_Accessoire} from '../../data/produit/accessoire.data';
-import {Accessoire} from '../../models/produit/accessoire.model'
+import {Accessory} from '../../models/produit/accessoire.model'
 import {additionalParam_PD} from '../../models/produit/type_produit.model'
 
 import { Mixin } from 'ts-mixer';
 import { BaseMockService } from "../shared/base.mock.service";
 
 
-class AccessoireMockData extends BaseMockService<Accessoire> {
+class AccessoireMockData extends BaseMockService<Accessory> {
   constructor() {
     super();
     this.listData = accessoires;

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { GridObjectRenderComponentComponent } from '../grid-object-render-component/grid-object-render-component.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ExportBottomSheetComponent } from '../export-bottom-sheet/export-bottom-sheet.component';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -52,6 +53,8 @@ export class MainGridComponent implements OnInit {
     sortable: true,
     floatingFilter: true,
     filter: true,
+    flex: 1,
+    minWidth: 160,
     enableRowGroup: true,
     headerCheckboxSelection: this.checkboxSelectionColumn,
     headerCheckboxSelectionFilteredOnly: this.checkboxSelectionColumn,
@@ -125,7 +128,8 @@ export class MainGridComponent implements OnInit {
 
   constructor(
     public datepipe: DatePipe,
-    private _bottomSheet: MatBottomSheet) {
+    private _bottomSheet: MatBottomSheet,
+    private route:ActivatedRoute) {
     this.context = {
       componentParent: this
     };
@@ -140,6 +144,19 @@ export class MainGridComponent implements OnInit {
     this.agGrid.gridOptions.onRowSelected = (event) => {
       this.selectedData = this.getSelectedRows();
     };
+    this.route.queryParams.subscribe(params => {
+      if (params.hasOwnProperty('filterby')) {
+          this.applyFilter(params.filterby, params.value);
+      }
+    });
+  }
+
+  applyFilter(key, value) {
+    let instance = this.gridApi.getFilterInstance(key);
+    instance.setModel({
+      values: [value],
+    });
+    this.gridApi.onFilterChanged();
   }
 
   triggerAction(action: string, data?) {

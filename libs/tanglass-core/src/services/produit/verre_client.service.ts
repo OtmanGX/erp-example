@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ErrorHandlerService } from "../shared/errorHandler.service";
 
-import { VerreClient } from "../../models/produit/matiere_premiere.model";
+import { VerreClient } from "../../models/produit/glasse.model";
 
 import { BaseService} from "../shared/baseService.service";
 

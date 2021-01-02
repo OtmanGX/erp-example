@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Accessoire } from "../../models/produit/accessoire.model";
+import { Accessory } from "../../models/produit/accessoire.model";
 import { additionalParam_PD } from "../../models/produit/type_produit.model";
 import { catchError, map, tap } from "rxjs/operators";
 import { ErrorHandlerService } from "../shared/errorHandler.service";
@@ -11,7 +11,7 @@ import { BaseService} from "../shared/baseService.service";
   @Injectable({
     providedIn: "root",
   })
-  export class AccessoireService extends BaseService<Accessoire> {
+  export class AccessoireService extends BaseService<Accessory> {
     private type_accessoireUrl = "api/types_Accessoire";
 
     constructor(_http: HttpClient,errorHandler:ErrorHandlerService) {
