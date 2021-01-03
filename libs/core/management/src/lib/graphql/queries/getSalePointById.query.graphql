@@ -1,0 +1,25 @@
+query GetSalePointById($_id: uuid!) {
+  management_SalesPoint(where: {id: {_eq: $_id}}) {
+    address
+    email
+    fax
+    id
+    name
+    phone
+    createdBy
+    updatedBy
+    usersProfiles {
+      firstname
+      id
+      lastname
+      phone
+      username
+      user_role {
+        name
+      }
+      active
+    }
+    createdAt
+    updatedAt
+  }
+}

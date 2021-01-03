@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'core-graphql',
+  displayName: 'infrastructure-graphql',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../../coverage/libs/core/graphql',
+  coverageDirectory: '../../../coverage/libs/infrastructure/graphql',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

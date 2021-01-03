@@ -1,0 +1,7 @@
+mutation InsertUser($email: String, $firstname: String!, $joinUs: date, $lastname: String!, $password: String!, $phone: String!, $username: String!, $CIN: String!, $active: Boolean = true, $role: management_user_role_enum = user, ) {
+  insert_management_userProfile(objects: {email: $email, firstname: $firstname, joinUs: $joinUs, lastname: $lastname, password: $password, phone: $phone, username: $username, CIN: $CIN, active: $active, role: $role}) {
+    returning {
+      username
+    }
+  }
+}
