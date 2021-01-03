@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopAccessoireComponent } from './pop-accessoire/pop-accessoire.component';
 import { AccessoireMockService } from '@TanglassCore/mock/produit/accessoire.mock.service';
-import { Accessoire } from '@TanglassCore/models/produit/accessoire.model';
+import { Accessory } from '@TanglassCore/models/produit/accessoire.model';
 
 import { LocalDataSource } from 'ng2-smart-table';
 import { Accessoire_purchases } from '@TanglassCore/models/ventes/customerPurchases/accessoire_purchases.model';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class ListAccessoiresComponent implements OnInit, OnDestroy {
   selectedRows = [];
-  dataAccessoires: Accessoire[] = [];
+  dataAccessoires: Accessory[] = [];
   accessoireSubscription: Subscription;
   source: LocalDataSource = new LocalDataSource();
 

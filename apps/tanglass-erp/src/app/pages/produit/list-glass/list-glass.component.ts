@@ -3,7 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { NbDialogService } from '@nebular/theme';
 import { PopGlassComponent } from './pop-glass/pop-glass.component';
 import { MatierePremiereMockService } from '@TanglassCore/mock/produit/mat_premiere.mock.service';
-import { MatièrePremière } from '@TanglassCore/models/produit/matiere_premiere.model';
+import { MatièrePremière } from '@TanglassCore/models/produit/glasse.model';
 import { SelectDiametreComponent } from '../../ventes/shared/for-select-render-component/select-diametre.component';
 import { MatierePremiere_purchases } from '@TanglassCore/models/ventes/customerPurchases/matiere_premiere_purchases.model';
 

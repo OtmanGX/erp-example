@@ -22,21 +22,23 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 
 // Components
-import { SelectComponent } from '../components/form/select/select.component';
-import { CheckboxComponent } from '../components/form/checkbox/checkbox.component';
-import { RadiobuttonComponent } from '../components/form/radiobutton/radiobutton.component';
-import { DateComponent } from '../components/form/date/date.component';
-import { ButtonComponent } from '../components/form/button/button.component';
-import { InputComponent } from '../components/form/input/input.component';
-import { DynamicFormComponent } from '../components/form/dynamic-form/dynamic-form.component';
-import { DynamicFieldDirective } from '../components/form/dynamic-field/dynamic-field.directive';
+import { SelectComponent } from '../components/form/select.component';
+import { CheckboxComponent } from '../components/form/checkbox.component';
+import { RadiobuttonComponent } from '../components/form/radiobutton.component';
+import { DateComponent } from '../components/form/date.component';
+import { ButtonComponent } from '../components/form/button.component';
+import { InputComponent } from '../components/form/input.component';
+import { DynamicFormComponent } from '../components/form/dynamic-form.component';
+import { DynamicFieldDirective } from '../components/form/dynamic-field.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { InputSelectComponent } from '../components/form/input-select/input-select.component';
+import { InputSelectComponent } from '../components/form/input-select.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NgxMatTagInputModule } from 'ngx-mat-tag-input';
-import { TagInputComponent } from '../components/form/tag-input/tag-input.component';
+import { TagInputComponent } from '../components/form/tag-input.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { DialogBodyComponent } from '../components/dialog-body.component';
 
 
 export const MATERIAL_MODULES = [
@@ -60,7 +62,8 @@ export const MATERIAL_MODULES = [
   MatTooltipModule,
   MatRadioModule,
   MatDialogModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatBottomSheetModule
 ];
 
 export const OTHER_MODULES = [
@@ -79,7 +82,8 @@ export const COMPONENTS = [
   RadiobuttonComponent,
   TagInputComponent,
   CheckboxComponent,
-  DynamicFormComponent];
+  DynamicFormComponent,
+  DialogBodyComponent];
 
 export const OTHER_COMPONENTS = [
   DynamicFieldDirective,
@@ -87,7 +91,7 @@ export const OTHER_COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, ...OTHER_COMPONENTS],
+  declarations: [...COMPONENTS, ...OTHER_COMPONENTS, DialogBodyComponent],
   imports: [...OTHER_MODULES, ...MATERIAL_MODULES, MatAutocompleteModule, MatChipsModule],
   exports: [...OTHER_MODULES, ...MATERIAL_MODULES, ...COMPONENTS, ...OTHER_COMPONENTS],
   entryComponents: COMPONENTS,

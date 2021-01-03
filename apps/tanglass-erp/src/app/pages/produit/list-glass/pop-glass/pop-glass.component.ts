@@ -3,7 +3,7 @@ import { NbDialogRef } from '@nebular/theme';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatierePremiereMockService } from '@TanglassCore/mock/produit/mat_premiere.mock.service';
-import { MatièrePremière } from '@TanglassCore/models/produit/matiere_premiere.model';
+import { MatièrePremière } from '@TanglassCore/models/produit/glasse.model';
 import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
 import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
 

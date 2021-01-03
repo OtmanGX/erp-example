@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import {
-  Consommable,
+  Consumable,
   TubeInox,
 } from '@TanglassCore/models/produit/consommable.model';
 import { TubeInoxMockService } from '@TanglassCore/mock/produit/consommable/tubeInox.mock.service';

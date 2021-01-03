@@ -5,14 +5,14 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { BaseMockService } from '@TanglassCore/mock/shared/base.mock.service';
 import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
 import { Subscription } from 'rxjs';
-import { Consommable } from '@TanglassCore/models/produit/consommable.model';
+import { Consumable } from '@TanglassCore/models/produit/consommable.model';
 import { commandes } from '@TanglassCore/data/ventes/commande.data';
 @Component({
   selector: 'ngx-based-consommable',
   templateUrl: './based-consommable.component.html',
   styleUrls: ['./based-consommable.component.scss'],
 })
-export class BasedConsommableComponent<T extends Consommable>
+export class BasedConsommableComponent<T extends Consumable>
   implements OnInit, OnDestroy {
   title: string = '';
   consommableCollection: T[] = [];
