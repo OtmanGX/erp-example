@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import {  Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { MatièrePremière } from "../../models/produit/matiere_premiere.model";
+import { MatièrePremière } from "../../models/produit/glasse.model";
 import { catchError, map, tap } from "rxjs/operators";
 import { additionalParam_PD } from "../../models/produit/type_produit.model";
 import { ErrorHandlerService } from "../shared/errorHandler.service";
@@ -18,7 +18,7 @@ import { BaseService} from "../shared/baseService.service";
     private color_mat_premiereUrl = "api/colors_mat_premiere";
 
 
-    constructor(_http: HttpClient,errorHandler:ErrorHandlerService) {
+    constructor(public _http: HttpClient,public errorHandler:ErrorHandlerService) {
       super(_http,errorHandler);
       this.apiBaseURL += "matierePrmieres";
       this.resourceName = "Matiere Premiere";

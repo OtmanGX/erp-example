@@ -1,9 +1,12 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FieldConfig } from '@tanglass-erp/material';
 import { Validators } from '@angular/forms';
 
-export abstract class FormDialog {
+@Component({
+  template: ''
+})
+export abstract class FormDialog implements OnInit{
   abstract regConfig: FieldConfig[];
   static REQUIRED = {
     name: "required",
@@ -27,4 +30,7 @@ export abstract class FormDialog {
   submit(value: any) {
     this.dialogRef.close(value);
   }
+
+  abstract ngOnInit(): void ;
+
 }

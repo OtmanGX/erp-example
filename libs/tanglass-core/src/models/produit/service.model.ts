@@ -1,14 +1,74 @@
+import { Glasse, Product } from '@TanglassCore/models/produit/glasse.model';
+import { Consumable } from '@TanglassCore/models/produit/consommable.model';
 
-export abstract class Service {
-  id?: number;
-  code:string='';
-  libelle: string='';
-  libelleUsine:string='';
 
-  prix_default: number=0;
-  prix_min: number=0;
-  prix_max: number=0;
-  companie:string[]=[];
+export class Service {
+  public static columnDefs (prefix = '') {
+    if (prefix.length) prefix += '.';
+    return [
+      { field: prefix + 'name', headerName: 'Nom', type: "textColumn" },
+      { field: prefix + 'defaultPriceUnit', headerName: 'Unité de prix par défault' },
+    ]
+  }
+  id?: string;
+  name:string='';
+  defaultPriceUnit:string='';
+  params: optionalServiceParam[] = [];
+
+  constructor(name?: string, defaultPriceUnit?: string, params?: optionalServiceParam[]) {
+    this.name = name;
+    this.defaultPriceUnit = defaultPriceUnit;
+    this.params = params;
+  }
+}
+
+export class optionalServiceParam {
+  id? : string;
+  serviceID?: string;
+  param: string = '';
+}
+
+export class optionalServiceParamValue {
+  serviceGlasseID?: string;
+  values: any;
+}
+
+export class ServiceGlasse {
+  public static columnDefs () {
+    return [
+      {
+        headerName: 'Service Glasse', children: [
+          { field: 'labelFactory', headerName: 'Etiquette d\'usine', type: "textColumn" },
+        ]
+      },
+      { headerName: 'Service', children: Service.columnDefs('service') },
+      { headerName: 'Verre', children: Glasse.columnDefs('glasse') },
+    ]
+  }
+  id? : string;
+  glasse : Glasse;
+  service: Service;
+  labelFactory: string = '';
+}
+
+
+export class ServiceConsumable {
+  public static columnDefs (prefix = '') {
+    if (prefix.length) prefix += '.';
+    return [
+      {
+      headerName: 'service Consommable',
+        children: [{ field: prefix + 'quota', headerName: 'Nom', type: "numberColumn" }]
+      },
+      {
+        headerName: 'Service', children: Service.columnDefs('service')
+      }
+    ]
+  }
+  id? : string;
+  quota: number = 0;
+  consumable : Consumable;
+  service: Service;
 }
 
 export class Coupe extends Service {

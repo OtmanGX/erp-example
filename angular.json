@@ -27,6 +27,11 @@
                 "glob": "**/*",
                 "input": "node_modules/leaflet/dist/images",
                 "output": "/assets/img/markers"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/ag-grid/src/assets",
+                "output": "/assets/"
               }
             ],
             "styles": [
@@ -269,7 +274,12 @@
             "aot": true,
             "assets": [
               "apps/ui/management/src/favicon.ico",
-              "apps/ui/management/src/assets"
+              "apps/ui/management/src/assets",
+              {
+                "glob": "**/*",
+                "input": "libs/ag-grid/src/assets",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "apps/ui/management/src/styles.scss",
@@ -600,7 +610,12 @@
             "aot": true,
             "assets": [
               "apps/ui/production/src/favicon.ico",
-              "apps/ui/production/src/assets"
+              "apps/ui/production/src/assets",
+              {
+                "glob": "**/*",
+                "input": "libs/ag-grid/src/assets",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "apps/ui/production/src/styles.scss",
@@ -773,7 +788,12 @@
             "aot": true,
             "assets": [
               "apps/ui/inventory/src/favicon.ico",
-              "apps/ui/inventory/src/assets"
+              "apps/ui/inventory/src/assets",
+              {
+                "glob": "**/*",
+                "input": "libs/ag-grid/src/assets",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "apps/ui/inventory/src/styles.scss",
@@ -903,7 +923,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ag-grid/**/*.ts"]
+            "lintFilePatterns": ["libs/ag-grid/**/*.ts"],
           }
         },
         "test": {
@@ -937,7 +957,12 @@
             "aot": true,
             "assets": [
               "apps/ui/product/src/favicon.ico",
-              "apps/ui/product/src/assets"
+              "apps/ui/product/src/assets",
+              {
+                "glob": "**/*",
+                "input": "libs/ag-grid/src/assets",
+                "output": "/assets/"
+              }
             ],
             "scripts": [
               "node_modules/pace-js/pace.min.js",

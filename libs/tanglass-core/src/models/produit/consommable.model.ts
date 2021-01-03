@@ -1,30 +1,30 @@
+import { Mat } from '@TanglassCore/models/produit/glasse.model';
 
-export  class Consommable {
+export  class Consumable {
+  public static COLUMN_DEFS = [
+    { field: 'code', headerName: 'Code', type: "textColumn"},
+    { field: 'label', headerName: 'Libellé', type: "textColumn"},
+    { field: 'type', headerName: 'Type'}
+  ];
   id?: number;
   code:string='';
-  libelle: string='';
-  prix_Achat: number=0;
-  prix_default: number=0;
-  prix_min: number=0;
-  prix_max: number=0;
-  tags: string='';
-  companie:string[]=[];
-  libelleUsine:string='consommable'
+  label: string='';
+  Mat: Mat;
 }
 
-export class Stadip extends Consommable  {
+export class Stadip extends Consumable  {
 
 }
-export class Peinture extends Consommable  {
+export class Peinture extends Consumable  {
   color: string='';
 }
-export class DoubleVitrage extends Consommable  {
+export class DoubleVitrage extends Consumable  {
 }
 
-export class ConsommablePieces extends Consommable  {
+export class ConsommablePieces extends Consumable  {
 }
-export class Uchannel extends Consommable  {
+export class Uchannel extends Consumable  {
 }
-export class TubeInox extends Consommable  {
+export class TubeInox extends Consumable  {
 }
 
