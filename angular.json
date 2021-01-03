@@ -1120,6 +1120,66 @@
           "style": "scss"
         }
       }
+    },
+    "core-product": {
+      "projectType": "library",
+      "root": "libs/core/product",
+      "sourceRoot": "libs/core/product/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/product/tsconfig.lib.json",
+              "libs/core/product/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/product/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/product/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "core-contact": {
+      "projectType": "library",
+      "root": "libs/core/contact",
+      "sourceRoot": "libs/core/contact/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/contact/tsconfig.lib.json",
+              "libs/core/contact/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/contact/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/contact/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "defaultProject": "tanglass-erp",
