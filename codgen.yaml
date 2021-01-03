@@ -5,7 +5,7 @@ schema:
         X-Hasura-Admin-Secret: FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv
 documents: '**/*.graphql'
 generates:
-  libs/core/graphql/src/lib/graphql.ts:
+  libs/infrastructure/graphql/src/lib/graphql.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'

@@ -14,5 +14,8 @@ module.exports = {
     '<rootDir>/apps/ui/inventory',
     '<rootDir>/libs/ag-grid',
     '<rootDir>/apps/ui/product',
+    '<rootDir>/libs/core/management',
+    '<rootDir>/libs/core/product',
+    '<rootDir>/libs/core/contact',
   ],
 };

@@ -49,4 +49,4 @@ export function createApollo(httpLink: HttpLink) {
     },
   ],
 })
-export class CoreGraphqlModule {}
+export class InfrastructureGraphqlModule {}

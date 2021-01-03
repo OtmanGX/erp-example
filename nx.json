@@ -21,9 +21,6 @@
     "tanglass-theme": {
       "tags": []
     },
-    "core-graphql": {
-      "tags": []
-    },
     "store-managment": {
       "tags": []
     },
@@ -66,6 +63,18 @@
     "ui-product-e2e": {
       "tags": [],
       "implicitDependencies": ["ui-product"]
+    },
+    "infrastructure-graphql": {
+      "tags": []
+    },
+    "core-management": {
+      "tags": []
+    },
+    "core-product": {
+      "tags": []
+    },
+    "core-contact": {
+      "tags": []
     }
   }
 }

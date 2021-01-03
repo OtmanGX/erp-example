@@ -1,0 +1,30 @@
+query getUserById($_id: uuid) {
+  management_userProfile(where: {id: {_eq: $_id}}) {
+    CIN
+    active
+    createdAt
+    createdBy
+    email
+    firstname
+    id
+    joinUs
+    lastname
+    leftUs
+    phone
+    password
+    role
+    updatedAt
+    updatedBy
+    username
+    user_role {
+      description
+      name
+    }
+    SalesPoint {
+      name
+      phone
+      address
+    }
+    SalesPointsid
+  }
+}
