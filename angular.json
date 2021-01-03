@@ -528,7 +528,7 @@
     },
     "material": {
       "projectType": "library",
-      "root": "libs/material",
+      "root": "libs/theme/material",
       "sourceRoot": "libs/theme/material/src",
       "prefix": "tanglass-erp",
       "architect": {
