@@ -1,11 +1,7 @@
-import { Component, OnInit, Input, Inject, ViewChild, ContentChild } from '@angular/core';
-import { MatierePremiereMockService } from '@TanglassCore/mock/produit/mat_premiere.mock.service';
-import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
+import { Component, Inject, ContentChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormDialog, DynamicFormComponent, Groupfield, FieldConfig } from '@tanglass-erp/material';
-import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
-import { Accessory } from '../../../../../../../libs/core/product/src/lib/models/accessoire.model';
-import { ServiceGlasse } from '../../../../../../../libs/core/product/src/lib/models/service.model';
+import { FormDialog, DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
+import { ServiceGlasse } from '@tanglass-erp/core/product';
 
 @Component({
   selector: 'ngx-pop-glass',
@@ -15,7 +11,7 @@ import { ServiceGlasse } from '../../../../../../../libs/core/product/src/lib/mo
 export class PopServiceGlasseComponent extends FormDialog {
   @ContentChild(DynamicFormComponent) form: DynamicFormComponent;
   regConfig: FieldConfig[];
-  listCompanies = Object.values(companiesDirection);
+  listCompanies = [];
 
   constructor(
     public dialogRef: MatDialogRef<PopServiceGlasseComponent>,

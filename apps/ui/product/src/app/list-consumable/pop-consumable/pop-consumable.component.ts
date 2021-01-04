@@ -1,8 +1,7 @@
 import { Component, Inject, ContentChild } from '@angular/core';
-import { MatierePremiereMockService } from '@TanglassCore/mock/produit/mat_premiere.mock.service';
 import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormDialog, DynamicFormComponent, Groupfield, FieldConfig } from '@tanglass-erp/material';
+import { FormDialog, DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
 import { forkJoin } from 'rxjs';
 import { Consumable } from '@tanglass-erp/core/product';
 
@@ -19,25 +18,13 @@ export class PopConsumableComponent extends FormDialog {
   constructor(
     public dialogRef: MatDialogRef<PopConsumableComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Consumable,
-    private matierePremiereService: MatierePremiereMockService,
   ) {
     super(dialogRef, data);
   }
 
   ngOnInit(): void {
     console.log("build Form");
-    this.getMP_types().subscribe(
-      value => {
-        this.MP_types = value;
-        // console.log(this.regConfig);
-      }, error => {},
-      () => this.buildMpForm()
-    );
-  }
-
-  getMP_types() {
-    return this.matierePremiereService
-      .getTypeMatierePremiere();
+    this.buildMpForm();
   }
 
   buildMpForm() {
