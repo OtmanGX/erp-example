@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { optionalServiceParam, Service } from '@TanglassCore/models/produit/service.model';
+import { optionalServiceParam, Service } from '@tanglass-erp/core/product';
 
 @Component({
   selector: 'ngx-service',

@@ -1,7 +1,7 @@
 
 import { PeintureMockService } from '../../mock/produit/consommable/peinture.mock.service';
-import { Consumable,Stadip,DoubleVitrage } from "../../models/produit/consommable.model";
-import { Peinture } from '../../models/produit/service.model';
+import { Consumable,Stadip,DoubleVitrage } from "../../../../core/product/src/lib/models/consommable.model";
+import { Peinture } from '../../../../core/product/src/lib/models/service.model';
 import { additionalParam_PD } from "../../models/produit/type_produit.model";
 import { Consommable_purchases } from '../../models/ventes/customerPurchases/consommable_purchases.model';
 

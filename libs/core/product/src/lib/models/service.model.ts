@@ -1,7 +1,9 @@
-import { Glasse, Product } from '@TanglassCore/models/produit/glasse.model';
-import { Consumable } from '@TanglassCore/models/produit/consommable.model';
+import { Glasse } from './glasse.model';
+import { Consumable } from './consommable.model';
+import { DateFields } from '@tanglass-erp/core/shared';
+import { optionalServiceParam } from './service_params';
 
-
+@DateFields
 export class Service {
   public static columnDefs (prefix = '') {
     if (prefix.length) prefix += '.';
@@ -22,16 +24,6 @@ export class Service {
   }
 }
 
-export class optionalServiceParam {
-  id? : string;
-  serviceID?: string;
-  param: string = '';
-}
-
-export class optionalServiceParamValue {
-  serviceGlasseID?: string;
-  values: any;
-}
 
 export class ServiceGlasse {
   public static columnDefs () {
@@ -70,58 +62,3 @@ export class ServiceConsumable {
   consumable : Consumable;
   service: Service;
 }
-
-export class Coupe extends Service {
-  epaisseur:number=2;
-  outil:string='';
-}
-
-export class BordPolis extends Service {
-  epaisseur:number=2;
-  outil:string='';
-  type:string='';
-}
-
-export class Trous extends Service  {
-  epaisseur_min:number=2;
-  epaisseur_max:number=19;
-  diametre_min:number;
-  diametre_max:number;
-  outil:string='';
-}
-
-export class Encoche extends Service {
-  epaisseur_min:number=2;
-  epaisseur_max:number=19;
-  outil:string='';
-  type:string='';
-}
-
-export class Biseautage extends Service {
-  type:string='';
-}
-
-export class Trempage extends Service  {
-  epaisseur:number=2;
-}
-
-export class Bombage extends Service  {
-}
-
-export class Sablage extends Service {
-  type:string='';
-}
-
-export class Peinture extends Service  {
-}
-export class Gravage extends Service  {
-}
-export class Aluminium extends Service  {
-}
-export class Pose extends Service  {
-}
-
-
-
-
-

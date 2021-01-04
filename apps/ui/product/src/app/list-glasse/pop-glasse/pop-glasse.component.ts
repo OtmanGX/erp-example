@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, Inject, ViewChild } from '@angular/core';
-import { MatierePremiereMockService } from '@TanglassCore/mock/produit/mat_premiere.mock.service';
-import { Glasse } from '@TanglassCore/models/produit/glasse.model';
+import { Component, Input, Inject, ViewChild } from '@angular/core';
 import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
 import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, DynamicFormComponent, Groupfield } from '@tanglass-erp/material';
 import { forkJoin } from 'rxjs';
+import { Glasse } from '@tanglass-erp/core/product';
 
 @Component({
   selector: 'ngx-pop-glass',
@@ -26,20 +25,19 @@ export class PopGlasseComponent extends FormDialog {
   constructor(
     public dialogRef: MatDialogRef<PopGlasseComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Glasse,
-    public matierePremiereService: MatierePremiereMockService,
   ) {
     super(dialogRef, data);
   }
 
   ngOnInit(): void {
-    forkJoin([this.getMP_types(), this.getMP_colors()]).subscribe(
-      values => {
-        this.MP_types = values[0];
-        this.MP_colors = values[1];
-      },
-      error => console.error(error),
-      () => this.buildMpForm()
-    );
+    // forkJoin([this.getMP_types(), this.getMP_colors()]).subscribe(
+    //   values => {
+    //     this.MP_types = values[0];
+    //     this.MP_colors = values[1];
+    //   },
+    //   error => console.error(error),
+    //   () => this.buildMpForm()
+    // );
   }
 
   buildMpForm() {
@@ -98,32 +96,32 @@ export class PopGlasseComponent extends FormDialog {
     ];
 
   }
-  getMP_types() {
-    return this.matierePremiereService
-      .getTypeMatierePremiere();
-  }
-  getMP_colors() {
-    return this.matierePremiereService
-      .getColorMatierePremiere();
-  }
+  // getMP_types() {
+  //   return this.matierePremiereService
+  //     .getTypeMatierePremiere();
+  // }
+  // getMP_colors() {
+  //   return this.matierePremiereService
+  //     .getColorMatierePremiere();
+  // }
 
   onSubmit(formValue) {
     const type = formValue.type;
     const color = formValue.color;
-    if (this.MP_types.map(elem => elem.name).includes(type)) {
-      this.newType.name = type;
-      this.matierePremiereService
-        .addTypeMatierePremiere(this.newType)
-        .subscribe({
-          next: () => console.log(this.newType),
-        });
-    }
-    if (this.MP_colors.map(elem => elem.name).includes(color)) {
-      this.newColor.name = color;
-      this.matierePremiereService
-        .addColorMatierePremiere(this.newColor)
-        .subscribe();
-    }
+    // if (this.MP_types.map(elem => elem.name).includes(type)) {
+    //   this.newType.name = type;
+    //   this.matierePremiereService
+    //     .addTypeMatierePremiere(this.newType)
+    //     .subscribe({
+    //       next: () => console.log(this.newType),
+    //     });
+    // }
+    // if (this.MP_colors.map(elem => elem.name).includes(color)) {
+    //   this.newColor.name = color;
+    //   this.matierePremiereService
+    //     .addColorMatierePremiere(this.newColor)
+    //     .subscribe();
+    // }
     this.submit(formValue);
   }
 }

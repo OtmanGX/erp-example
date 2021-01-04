@@ -1,26 +1,4 @@
-
-export class MatièrePremière {
-  id?: number;
-  code:string = '';
-  type: string = '';
-  color:string = '';
-  label: string = '';
-  prix_Achat: number = 0;
-  prix_default: number = 0;
-  prix_min: number = 1;
-  prix_max: number = 1;
-  epaisseur: number = 0;
-  tags: string[] = [];
-  companie:string[]=[];
-}
-
-export class VerreClient {
-  id?: number;
-  code:string='';
-  libelle: string='';
-  epaisseur: number=0;
-  tags: string[] =[];
-}
+import { DateFields } from '@tanglass-erp/core/shared';
 
 export class Product {
   public static columnDefs (prefix = '') {
@@ -49,6 +27,14 @@ export class Product {
   companies:string[]=[];
 }
 
+
+export class Mat {
+  id? : number;
+  type: string;
+}
+
+
+@DateFields
 export class Glasse {
   public static columnDefs (prefix = '') {
     if (prefix.length) prefix += '.';
@@ -71,9 +57,4 @@ export class Glasse {
   thickness: string;
   product: Product;
   Mat: Mat;
-}
-
-export class Mat {
-  id? : number;
-  type: string;
 }

@@ -1,4 +1,4 @@
-import { MatièrePremière,VerreClient } from "../../produit/glasse.model";
+import { MatièrePremière,VerreClient } from "../../../../../core/product/src/lib/models/glasse.model";
 import { Item_purchases } from "./item_purchases.model";
 
 export class MatierePremiere_purchases extends Item_purchases {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { Encoche } from "../../../models/produit/service.model";
+import { Encoche } from "../../../../../core/product/src/lib/models/service.model";
 import { encoches} from '../../../data/produit/service.data';
 import { BaseMockService } from "../../shared/base.mock.service";
 

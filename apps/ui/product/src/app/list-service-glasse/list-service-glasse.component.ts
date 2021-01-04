@@ -5,7 +5,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { GridView } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import { PopServiceGlasseComponent } from './pop-service-glasse/pop-service-glasse.component';
-import { ServiceGlasse } from '@TanglassCore/models/produit/service.model';
+import { ServiceGlasse } from '@tanglass-erp/core/product';
 
 
 @Component({

@@ -5,7 +5,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { BaseMockService } from '@TanglassCore/mock/shared/base.mock.service';
 import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
 import { Subscription } from 'rxjs';
-import { Consumable } from '@TanglassCore/models/produit/consommable.model';
+import { Consumable } from '../../../../../../../libs/core/product/src/lib/models/consommable.model';
 import { commandes } from '@TanglassCore/data/ventes/commande.data';
 @Component({
   selector: 'ngx-based-consommable',

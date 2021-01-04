@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Coupe } from '@TanglassCore/models/produit/service.model';
+import { Coupe } from '../../../../../../../../../libs/core/product/src/lib/models/service.model';
 @Component({
   selector: 'ngx-pop-coupe',
   templateUrl: './pop-coupe.component.html',

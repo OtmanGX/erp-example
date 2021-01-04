@@ -7,7 +7,7 @@ import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import {
   PopServiceConsumableComponent,
 } from './pop-service-glasse/pop-service-consumable.component';
-import { ServiceConsumable, ServiceGlasse } from '@TanglassCore/models/produit/service.model';
+import { ServiceConsumable } from '@tanglass-erp/core/product';
 
 
 @Component({

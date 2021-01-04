@@ -8,7 +8,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { AccessoireMockService } from '@TanglassCore/mock/produit/accessoire.mock.service';
-import { Accessory } from '@TanglassCore/models/produit/accessoire.model';
+import { Accessory } from '../../../../../../../../libs/core/product/src/lib/models/accessoire.model';
 import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
 import { companies } from '@TanglassCore/data/management/companies.data';
 @Component({

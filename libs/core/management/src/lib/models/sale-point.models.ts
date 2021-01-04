@@ -1,4 +1,5 @@
 import {UsersProfile  } from "./use.models";
+import { DateFields } from '@tanglass-erp/core/shared';
 
 export class SalePoint{
     address:string;
@@ -9,6 +10,7 @@ export class SalePoint{
     phone:string;
   }
 
+@DateFields
 export class DetailedSalePoint {
     address:string;
     email:string;
@@ -16,11 +18,7 @@ export class DetailedSalePoint {
     id:string;
     name:string;
     phone:string;
-    createdBy:string;
-    updatedBy:string;
     usersProfiles:UsersProfile[];
-    createdAt:Date;
-    updatedAt:Date;
   }
 
 

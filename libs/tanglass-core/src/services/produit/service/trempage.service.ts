@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ErrorHandlerService } from "../../shared/errorHandler.service";
 import { Observable } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
-import { Trempage } from "../../../models/produit/service.model";
+import { Trempage } from "../../../../../core/product/src/lib/models/service.model";
 import { BaseService} from "../../shared/baseService.service";
 
 @Injectable({

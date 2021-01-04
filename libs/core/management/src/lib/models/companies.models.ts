@@ -1,3 +1,4 @@
+import { DateFields } from '@tanglass-erp/core/shared';
 
 export class Companie{
     CNSS:string;
@@ -10,7 +11,7 @@ export class Companie{
     phone:string;
 }
 
-
+@DateFields
 export class DetailedCompanie{
     id:string;
 
@@ -22,10 +23,5 @@ export class DetailedCompanie{
     email:string;
     name:string;
     phone:string;
-
     website:string;
-    createdAt:Date;
-    createdBy:string;
-    updatedAt:Date;
-    updatedBy:string;   // other details gonna be added after completing other modules (warehouses , products ..) 
 }

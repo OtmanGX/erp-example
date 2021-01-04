@@ -27,7 +27,7 @@ const allowMultiSelect = true;
 })
 export class SalePointsComponent implements AfterViewInit, OnInit {
   selectedRows = [];
-  dataSalesPoints$:  Observable<SalePointSelector.SalePointsViewModel>;;
+  dataSalesPoints$:  Observable<SalePointSelector.SalePointsViewModel>;
   source: LocalDataSource = new LocalDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

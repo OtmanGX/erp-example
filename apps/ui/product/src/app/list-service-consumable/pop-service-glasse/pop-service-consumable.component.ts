@@ -1,14 +1,9 @@
-import { Component, OnInit, Input, Inject, ViewChild, ContentChild } from '@angular/core';
-import { MatierePremiereMockService } from '@TanglassCore/mock/produit/mat_premiere.mock.service';
-import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
+import { Component, Inject, ContentChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, DynamicFormComponent, Groupfield, FieldConfig } from '@tanglass-erp/material';
-import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
-import { Accessory } from '@TanglassCore/models/produit/accessoire.model';
 import {
   ServiceConsumable,
-  ServiceGlasse
-} from '../../../../../../../libs/tanglass-core/src/models/produit/service.model';
+} from '@tanglass-erp/core/product';
 
 @Component({
   selector: 'ngx-pop-glass',

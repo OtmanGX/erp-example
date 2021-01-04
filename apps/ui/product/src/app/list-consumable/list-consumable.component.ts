@@ -1,11 +1,10 @@
-import { AfterViewInit, Component, ContentChild, OnInit, ViewChild } from '@angular/core';
-import { MatierePremiereMockService } from '@TanglassCore/mock/produit/mat_premiere.mock.service';
+import { Component, ContentChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 import { GridView } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
-import { Consumable } from '../../../../../../libs/tanglass-core/src/models/produit/consommable.model';
+import { Consumable } from '@tanglass-erp/core/product';
 import { PopConsumableComponent } from './pop-consumable/pop-consumable.component';
 
 

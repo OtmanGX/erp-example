@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopBombageComponent } from './pop-bombage/pop-bombage.component';
-import { Bombage } from '@TanglassCore/models/produit/service.model';
+import { Bombage } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
 import { BombageMockService } from '@TanglassCore/mock/produit/service/bombage.mock.service';
 
 import { BasedServiceComponent } from '../based-service.component';

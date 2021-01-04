@@ -5,7 +5,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from '@TanglassCore/core.module';
 import { ManagementModule } from './management.module';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from '@tanglass-erp/material';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from '@tanglass-erp/store/app';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +25,8 @@ import { MaterialModule } from '@tanglass-erp/material';
       },
     ]),
     CoreModule.forRoot(),
+    StoreModule.forRoot(reducers, {}),
+    EffectsModule.forRoot()
   ],
   bootstrap: [AppComponent],
 })

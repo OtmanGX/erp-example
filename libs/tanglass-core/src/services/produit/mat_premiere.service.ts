@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import {  Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { MatièrePremière } from "../../models/produit/glasse.model";
 import { catchError, map, tap } from "rxjs/operators";
 import { additionalParam_PD } from "../../models/produit/type_produit.model";
 import { ErrorHandlerService } from "../shared/errorHandler.service";
 
+class MatièrePremière{}
 
 import { BaseService} from "../shared/baseService.service";
 

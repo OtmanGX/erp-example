@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 import { GridView } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import { PopAccessoriesComponent } from './pop-accessories/pop-accessories.component';
-import { Accessory } from '@TanglassCore/models/produit/accessoire.model';
+import { Accessory } from '@tanglass-erp/core/product';
 
 
 @Component({

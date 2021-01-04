@@ -1,7 +1,7 @@
-import { Service } from "../../produit/service.model";
-import { MatièrePremière } from "../../produit/glasse.model";
-import { Accessory } from "../../produit/accessoire.model";
-import { Consumable } from '../../produit/consommable.model';
+import { Service } from "../../../../../core/product/src/lib/models/service.model";
+import { MatièrePremière } from "../../../../../core/product/src/lib/models/glasse.model";
+import { Accessory } from "../../../../../core/product/src/lib/models/accessoire.model";
+import { Consumable } from '../../../../../core/product/src/lib/models/consommable.model';
 import { SystemApparent } from "../../produit/systemApparent.model";
 
 export abstract class Item_purchases {
