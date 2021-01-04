@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopPoseComponent } from './pop-pose/pop-pose.component';
-import { Pose } from '@TanglassCore/models/produit/service.model';
+import { Pose } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
 import { BasedServiceComponent } from '../based-service.component';
 import { PoseMockService } from '@TanglassCore/mock/produit/service/pose.mock.service';
 

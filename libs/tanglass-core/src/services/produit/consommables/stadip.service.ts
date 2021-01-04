@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { ErrorHandlerService } from "../../shared/errorHandler.service";
-import { Stadip } from "../../../models/produit/consommable.model";
+import { Stadip } from "../../../../../core/product/src/lib/models/consommable.model";
 import { BaseService} from "../../shared/baseService.service";
 
 @Injectable({

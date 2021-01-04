@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Consumable } from '@TanglassCore/models/produit/consommable.model';
+import { Consumable } from '../../../../../../../../../libs/core/product/src/lib/models/consommable.model';
 import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
 
 @Component({

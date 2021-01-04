@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
-import { Consumable } from '@TanglassCore/models/produit/consommable.model';
+import { Consumable } from '../../../../../../../../libs/core/product/src/lib/models/consommable.model';
 import { StadipMockService } from '@TanglassCore/mock/produit/consommable/baguette.mock.service';
 import { BasedConsommableComponent } from '../based-consommable.component';
 import { PopDoubleVitrageComponent } from './pop-double-vitrage/pop-double-vitrage.component';

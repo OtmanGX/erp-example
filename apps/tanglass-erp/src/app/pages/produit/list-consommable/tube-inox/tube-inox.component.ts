@@ -3,7 +3,7 @@ import { NbDialogService } from '@nebular/theme';
 import {
   Consumable,
   TubeInox,
-} from '@TanglassCore/models/produit/consommable.model';
+} from '../../../../../../../../libs/core/product/src/lib/models/consommable.model';
 import { TubeInoxMockService } from '@TanglassCore/mock/produit/consommable/tubeInox.mock.service';
 import { BasedConsommableComponent } from '../based-consommable.component';
 import { PopInoxComponent } from './pop-inox/pop-inox.component';

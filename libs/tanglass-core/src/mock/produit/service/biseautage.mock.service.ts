@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { Biseautage } from "../../../models/produit/service.model";
+import { Biseautage } from "../../../../../core/product/src/lib/models/service.model";
 import { biseautages} from '../../../data/produit/service.data';
 import { BaseMockService } from "../../shared/base.mock.service";
 import {BiseautageService} from '../../../services/produit/service/biseautage.service'

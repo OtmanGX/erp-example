@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Bombage } from "../../../models/produit/service.model";
+import { Bombage } from "../../../../../core/product/src/lib/models/service.model";
 import { bombages} from '../../../data/produit/service.data';
 import { BaseMockService } from "../../shared/base.mock.service";
 import {BombageService} from '../../../services/produit/service/bombage.service'

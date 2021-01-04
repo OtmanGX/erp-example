@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopBordPolisComponent } from './pop-bord-polis/pop-bord-polis.component';
-import { BordPolis } from '@TanglassCore/models/produit/service.model';
+import { BordPolis } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
 import { BordPolisMockService } from '@TanglassCore/mock/produit/service/bord_polis.mock.service';
 import { BasedServiceComponent } from '../based-service.component';
 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopSablageComponent } from './pop-sablage/pop-sablage.component';
 import { SablageMockService } from '@TanglassCore/mock/produit/service/sablage.mock.service';
-import { Sablage } from '@TanglassCore/models/produit/service.model';
+import { Sablage } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
 import { BasedServiceComponent } from '../based-service.component';
 
 @Component({

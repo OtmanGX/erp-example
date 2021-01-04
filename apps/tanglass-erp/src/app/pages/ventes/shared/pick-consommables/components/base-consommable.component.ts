@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { Consumable } from '@TanglassCore/models/produit/consommable.model';
+import { Consumable } from '../../../../../../../../../libs/core/product/src/lib/models/consommable.model';
 import { BaseMockService } from '@TanglassCore/mock/shared/base.mock.service';
 import { Consommable_purchases } from '@TanglassCore/models/ventes/customerPurchases/consommable_purchases.model';
 

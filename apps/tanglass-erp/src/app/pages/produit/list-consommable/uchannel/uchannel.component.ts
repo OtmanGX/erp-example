@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
-import { Uchannel } from '@TanglassCore/models/produit/consommable.model';
+import { Uchannel } from '../../../../../../../../libs/core/product/src/lib/models/consommable.model';
 import { UchannelMockService } from '@TanglassCore/mock/produit/consommable/uchannel.mock.service';
 import { BasedConsommableComponent } from '../based-consommable.component';
 import { PopUchannelComponent } from './pop-uchannel/pop-uchannel.component';

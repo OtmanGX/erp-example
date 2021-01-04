@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatierePremiereMockService } from '@TanglassCore/mock/produit/mat_premiere.mock.service';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 import { GridView } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import { PopGlasseComponent } from './pop-glasse/pop-glasse.component';
-import { Glasse } from '@TanglassCore/models/produit/glasse.model';
+import { Glasse } from '@tanglass-erp/core/product';
 
 
 @Component({
@@ -23,7 +22,6 @@ export class ListGlasseComponent implements GridView {
 
   constructor(
     private dialog: MatDialog,
-    private matierePremiereService: MatierePremiereMockService
   ) {
     this.setColumnDefs();
   }
@@ -73,9 +71,7 @@ export class ListGlasseComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === 'add') {
-          this.matierePremiereService.addNewOne(result).subscribe(
-            value => console.log(value)
-          );
+
         } else {}
       }
     });

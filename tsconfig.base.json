@@ -31,7 +31,8 @@
       ],
       "@tanglass-erp/core/management": ["libs/core/management/src/index.ts"],
       "@tanglass-erp/core/product": ["libs/core/product/src/index.ts"],
-      "@tanglass-erp/core/contact": ["libs/core/contact/src/index.ts"]
+      "@tanglass-erp/core/contact": ["libs/core/contact/src/index.ts"],
+      "@tanglass-erp/core/shared": ["libs/core/shared/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

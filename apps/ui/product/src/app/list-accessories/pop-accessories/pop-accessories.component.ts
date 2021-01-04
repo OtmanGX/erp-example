@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, Inject, ViewChild, ContentChild } from '@angular/core';
-import { MatierePremiereMockService } from '@TanglassCore/mock/produit/mat_premiere.mock.service';
+import { Component, Inject, ContentChild } from '@angular/core';
 import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, DynamicFormComponent, Groupfield } from '@tanglass-erp/material';
 import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
-import { Accessory } from '@TanglassCore/models/produit/accessoire.model';
+import { Accessory } from '@tanglass-erp/core/product';
 
 @Component({
   selector: 'ngx-pop-glass',
@@ -20,25 +19,14 @@ export class PopAccessoriesComponent extends FormDialog {
   constructor(
     public dialogRef: MatDialogRef<PopAccessoriesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Accessory,
-    private matierePremiereService:MatierePremiereMockService
   ) {
     super(dialogRef, data);
   }
 
   ngOnInit(): void {
     console.log("build Form");
-    this.getMP_types().subscribe(
-      value => {
-        this.MP_types = value;
-      }, error => {},
-      () => this.buildMpForm()
-    );
   }
 
-  getMP_types() {
-    return this.matierePremiereService
-      .getTypeMatierePremiere();
-  }
 
   buildMpForm() {
     this.regConfig = [

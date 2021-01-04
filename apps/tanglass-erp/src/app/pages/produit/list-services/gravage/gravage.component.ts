@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopGravageComponent } from './pop-gravage/pop-gravage.component';
 import { GravageMockService } from '@TanglassCore/mock/produit/service/gravage.mock.service';
-import { Gravage } from '@TanglassCore/models/produit/service.model';
+import { Gravage } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
 import { BasedServiceComponent } from '../based-service.component';
 
 @Component({

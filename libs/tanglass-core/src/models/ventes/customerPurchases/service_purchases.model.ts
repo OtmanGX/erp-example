@@ -1,6 +1,6 @@
 import { Service,Coupe,BordPolis,Encoche,Sablage,Trempage,Trous,Biseautage,
     Bombage, Gravage, Aluminium ,Pose }
- from "../../produit/service.model";
+ from "../../../../../core/product/src/lib/models/service.model";
 import { Item_purchases } from "./item_purchases.model";
 
 export class Services_items{

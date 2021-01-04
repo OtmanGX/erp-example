@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { Trous } from "../../../models/produit/service.model";
+import { Trous } from "../../../../../core/product/src/lib/models/service.model";
 import { trous } from "../../../data/produit/service.data";
 import { BaseMockService } from "../../shared/base.mock.service";
 import {TrousService} from '../../../services/produit/service/trous.service'

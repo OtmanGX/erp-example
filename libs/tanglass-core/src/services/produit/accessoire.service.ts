@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Accessory } from "../../models/produit/accessoire.model";
+import { Accessory } from "../../../../core/product/src/lib/models/accessoire.model";
 import { additionalParam_PD } from "../../models/produit/type_produit.model";
 import { catchError, map, tap } from "rxjs/operators";
 import { ErrorHandlerService } from "../shared/errorHandler.service";

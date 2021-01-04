@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Service } from '@TanglassCore/models/produit/service.model';
+import { Service } from '@tanglass-erp/core/product';
 import { MatDialog } from '@angular/material/dialog';
 import { PopServiceComponent } from './pop-service/pop-service.component';
 

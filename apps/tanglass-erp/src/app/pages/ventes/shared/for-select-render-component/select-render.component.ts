@@ -1,10 +1,10 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import * as _ from 'lodash';
-import { MatièrePremière } from '@TanglassCore/models/produit/glasse.model';
-import { Accessory } from '@TanglassCore/models/produit/accessoire.model';
-import { Service } from '@TanglassCore/models/produit/service.model';
-import { Consumable } from '@TanglassCore/models/produit/consommable.model';
+import { MatièrePremière } from '../../../../../../../../libs/core/product/src/lib/models/glasse.model';
+import { Accessory } from '../../../../../../../../libs/core/product/src/lib/models/accessoire.model';
+import { Service } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
+import { Consumable } from '../../../../../../../../libs/core/product/src/lib/models/consommable.model';
 import { SystemApparent } from '@TanglassCore/models/produit/systemApparent.model';
 
 type ProductType =

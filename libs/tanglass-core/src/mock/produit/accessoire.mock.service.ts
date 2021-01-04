@@ -2,7 +2,7 @@ import { of as observableOf,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {AccessoireService} from '../../services/produit/accessoire.service'
 import { accessoires,types_Accessoire} from '../../data/produit/accessoire.data';
-import {Accessory} from '../../models/produit/accessoire.model'
+import {Accessory} from '../../../../core/product/src/lib/models/accessoire.model'
 import {additionalParam_PD} from '../../models/produit/type_produit.model'
 
 import { Mixin } from 'ts-mixer';

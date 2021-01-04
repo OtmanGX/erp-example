@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
-import { Consumable } from '@TanglassCore/models/produit/consommable.model';
+import { Consumable } from '../../../../../../../../libs/core/product/src/lib/models/consommable.model';
 import { PeintureMockService } from '@TanglassCore/mock/produit/consommable/peinture.mock.service';
 import { BasedConsommableComponent } from '../based-consommable.component';
 import { PopPeintureComponent } from './pop-peinture/pop-peinture.component';

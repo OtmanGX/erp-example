@@ -1,5 +1,7 @@
-import { Mat, Product } from '@TanglassCore/models/produit/glasse.model';
+import { Mat, Product } from './glasse.model';
+import { DateFields } from '@tanglass-erp/core/shared';
 
+@DateFields
 export class Accessory {
   public static columnDefs(prefix = '') {
     if (prefix.length) prefix += '.';

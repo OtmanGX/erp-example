@@ -82,12 +82,12 @@ export const COMPONENTS = [
   RadiobuttonComponent,
   TagInputComponent,
   CheckboxComponent,
-  DynamicFormComponent,
-  DialogBodyComponent];
+  ];
 
 export const OTHER_COMPONENTS = [
   DynamicFieldDirective,
-  DynamicFormComponent
+  DynamicFormComponent,
+  DialogBodyComponent
 ];
 
 @NgModule({

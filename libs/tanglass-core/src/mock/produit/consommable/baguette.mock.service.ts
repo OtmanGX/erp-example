@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Stadip } from "../../../models/produit/consommable.model";
+import { Stadip } from "../../../../../core/product/src/lib/models/consommable.model";
 import { films,colorsStadip,typesStadip} from '../../../data/produit/consommable.data';
 import { BaseMockService } from "../../shared/base.mock.service";
 import {additionalParam_PD} from '../../../models/produit/type_produit.model'

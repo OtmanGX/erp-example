@@ -4,8 +4,8 @@ import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.mo
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, DynamicFormComponent, Groupfield, FieldConfig } from '@tanglass-erp/material';
 import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
-import { Accessory } from '@TanglassCore/models/produit/accessoire.model';
-import { ServiceGlasse } from '../../../../../../../libs/tanglass-core/src/models/produit/service.model';
+import { Accessory } from '../../../../../../../libs/core/product/src/lib/models/accessoire.model';
+import { ServiceGlasse } from '../../../../../../../libs/core/product/src/lib/models/service.model';
 
 @Component({
   selector: 'ngx-pop-glass',

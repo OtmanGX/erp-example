@@ -4,7 +4,7 @@ import { NbDialogService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
 import { BaseMockService } from '@TanglassCore/mock/shared/base.mock.service';
 import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
-import { Service } from '@TanglassCore/models/produit/service.model';
+import { Service } from '../../../../../../../libs/core/product/src/lib/models/service.model';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'ngx-based-service',

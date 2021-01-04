@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopTrempageComponent } from './pop-trempage/pop-trempage.component';
 import { TrempageMockService } from '@TanglassCore/mock/produit/service/trempage.mock.service';
-import { Trempage } from '@TanglassCore/models/produit/service.model';
+import { Trempage } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
 import { BasedServiceComponent } from '../based-service.component';
 @Component({
   selector: 'ngx-trempage',

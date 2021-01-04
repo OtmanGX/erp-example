@@ -2,7 +2,7 @@ import { of as observableOf,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {MatierePremiereService} from '../../services/produit/mat_premiere.service'
 import { matierePremiere,} from '../../data/produit/matiere_premiere.data';
-import {MatièrePremière} from '../../models/produit/glasse.model'
+import {MatièrePremière} from '../../../../core/product/src/lib/models/glasse.model'
 import {additionalParam_PD} from '../../models/produit/type_produit.model'
 
 

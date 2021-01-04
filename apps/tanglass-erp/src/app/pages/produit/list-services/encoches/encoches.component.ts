@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopEncochesComponent } from './pop-encoches/pop-encoches.component';
 import { EncocheMockService } from '@TanglassCore/mock/produit/service/encoche.mock.service';
-import { Encoche } from '@TanglassCore/models/produit/service.model';
+import { Encoche } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
 import { BasedServiceComponent } from '../based-service.component';
 
 @Component({

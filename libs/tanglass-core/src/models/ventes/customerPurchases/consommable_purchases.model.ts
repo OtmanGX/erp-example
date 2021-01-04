@@ -1,4 +1,4 @@
-import { Consumable } from "../../produit/consommable.model";
+import { Consumable } from "../../../../../core/product/src/lib/models/consommable.model";
 import { Item_purchases } from "./item_purchases.model";
 import { Mixin } from 'ts-mixer';
 
