@@ -23,7 +23,6 @@ export class PopConsumableComponent extends FormDialog {
   }
 
   ngOnInit(): void {
-    console.log("build Form");
     this.buildMpForm();
   }
 
