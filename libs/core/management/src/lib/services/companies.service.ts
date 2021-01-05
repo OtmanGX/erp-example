@@ -7,10 +7,9 @@ import {
   GetCompanyByIdQueryVariables,
   InsertCompanyGQL,
   InsertCompanyMutationVariables,InsertCompanyMutation,
-
 } from '@tanglass-erp/infrastructure/graphql';
-import {  ApolloQueryResult,ApolloClientOptions,WatchQueryOptions,FetchResult} from '@apollo/client/core';
-import {Observable,of  } from "rxjs";
+import {  ApolloQueryResult,FetchResult} from '@apollo/client/core';
+import {Observable  } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -24,15 +23,16 @@ export class CompaniesService {
   ) {}
 
 
-  getCompanies():Observable<ApolloQueryResult<GetAllCompaniesQuery>>{
+  getAll():Observable<ApolloQueryResult<GetAllCompaniesQuery>>{
     return this.getAllGQL.watch().valueChanges
   }
-  getCompanyById(
+  getOneById(
     $id?: GetCompanyByIdQueryVariables,):Observable<ApolloQueryResult<GetCompanyByIdQuery>>{
     return  this.getByIdGQL.fetch($id)
+
   }
   
-  insertOneCompany($createdCompany:InsertCompanyMutationVariables):Observable<FetchResult<InsertCompanyMutation>>{
+  insertOne($createdCompany:InsertCompanyMutationVariables):Observable<FetchResult<InsertCompanyMutation>>{
    return  this.insertOneGQL.mutate($createdCompany)
   }
 
