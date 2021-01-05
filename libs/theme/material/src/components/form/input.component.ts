@@ -12,7 +12,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
 </ng-container>
 </mat-form-field>
 `,
-  styles: [':host {flex: 1 1 50%}'],
+  styles: [':host {flex: 0 1 50%}'],
 })
 export class InputComponent {
   field: FieldConfig;

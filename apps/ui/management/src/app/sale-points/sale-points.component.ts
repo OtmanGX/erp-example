@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopSalePointsComponent } from '@TanglassUi/management/sale-points/pop-sale-points/pop-sale-points.component';
 import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
@@ -16,14 +16,14 @@ import { SalePoint } from '@tanglass-erp/core/management'
   styleUrls: ['./sale-points.component.scss'],
 })
 export class SalePointsComponent implements GridView {
+  @ViewChild(MainGridComponent) mainGrid;
   agGrid: AgGridAngular;
   columnDefs;
-  columnId: string;
-  data$: Observable<any>;
-  mainGrid: MainGridComponent;
+  columnId: string = 'id';
+  data$: Observable<SalePoint[]>;
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {
-
+    this.setColumnDefs();
   }
 
   ngAfterViewInit(): void {

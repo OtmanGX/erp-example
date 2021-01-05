@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { PopCompaniesComponent } from './pop-companies/pop-companies.component';
 import { MatDialog } from '@angular/material/dialog';
 import * as CompanieActions from '@TanglassStore/management/actions/companies.actions';
@@ -19,12 +19,12 @@ export class CompaniesComponent implements GridView {
 
   agGrid: AgGridAngular;
   columnDefs;
-  columnId: string;
+  columnId = 'id';
   data$: Observable<any>;
-  mainGrid: MainGridComponent;
+  @ViewChild(MainGridComponent) mainGrid;
 
   constructor(public dialog: MatDialog, private store: Store<AppState> ) {
-
+    this.setColumnDefs();
   }
 
   ngOnInit(): void {

@@ -10,7 +10,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
 </mat-select>
 </mat-form-field>
 `,
-  styles: [':host {flex: 1 1 50%}'],
+  styles: [':host {flex: 0 1 50%}'],
 })
 export class SelectComponent implements OnInit {
   field: FieldConfig;

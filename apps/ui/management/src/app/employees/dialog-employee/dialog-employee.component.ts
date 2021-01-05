@@ -38,13 +38,8 @@ export class DialogEmployeeComponent extends FormDialog {
     // this.dataSalePoint$ = this.store.pipe(select(SalePointSelector.selectSalePointsViewModel));
     this.buildUserForm();
   }
+
   buildUserForm(): void {
-    // active:boolean;
-    // firstname:string
-    // lastname:string;
-    // phone:string;
-    // username:string;
-    // user_role :User_role;
     this.regConfig = [
       {type: "input", label: "Prénom", inputType: "text", name: "firstname", value: this.data.firstname,
         validations: [
@@ -66,10 +61,8 @@ export class DialogEmployeeComponent extends FormDialog {
           FormDialog.REQUIRED
         ]
       },
-      {type: "checkbox", label: "Active", inputType: "text", name: "active", value: this.data.active,
-        validations: [
-          FormDialog.REQUIRED
-        ]
+      {type: "checkbox", label: "Active", inputType: "text", name: "active",
+        value: this.data.active ?? true,
       },
     ];
   }

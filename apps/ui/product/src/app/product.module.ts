@@ -47,7 +47,7 @@ const routes: Routes = [
     },
     {
       path: 'listServicesConsommable',
-      component: ListServiceGlasseComponent,
+      component: ListServiceConsumableComponent,
     },{
       path: 'service/:id',
       component: ServiceComponent,

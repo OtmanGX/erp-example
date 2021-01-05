@@ -22,21 +22,21 @@ import { Groupfield } from '../../interfaces/groupfield.interface';
   <form class="p-4" style="width: 100%" [formGroup]="form" (submit)="onSubmit($event)">
     <div *ngFor="let g of groups">
       <div *ngIf="g.headerVisible" class="mat-h1">{{g.label}}</div>
-      <div fxLayoutGap="10px grid" fxLayout="row wrap" fxLayoutAlign="space-around center">
+      <div fxLayoutGap="10px grid" fxLayout="row wrap" fxLayoutAlign="start">
       <ng-container *ngFor="let field of g.fields;" dynamicField [field]="field" [group]="form.controls[g.name]">
       </ng-container>
         </div>
     </div>
 
-  <div *ngIf="fields.length" class="p-4" fxLayoutGap="10px grid" fxLayout="row wrap" fxLayoutAlign="space-around center">
+  <div *ngIf="fields.length" class="p-4" fxLayoutGap="10px grid" fxLayout="row wrap" fxLayoutAlign="start center">
     <ng-container *ngFor="let field of fields;" dynamicField [field]="field" [group]="form">
     </ng-container>
   </div>
 
 
     <div fxLayout="row" fxLayoutAlign="center center"  mat-dialog-actions>
-      <button mat-raised-button color="primary" type="submit">Confirmer</button>
-      <button mat-raised-button color="warn" type="button" (click)="close.emit()">Annuler</button>
+      <button matTooltip="Confirmer" mat-raised-button color="primary" type="submit">Confirmer</button>
+      <button matTooltip="Annuler" mat-raised-button color="warn" type="button" (click)="close.emit()">Annuler</button>
     </div>
   </form>
   `,
@@ -70,6 +70,9 @@ export class DynamicFormComponent implements OnInit {
       this.submit.emit(this.form.value);
     } else {
       this.validateAllFormFields(this.form);
+      for (let group of this.groups) {
+        this.validateAllFormFields(<FormGroup> this.form.get(group.name));
+      }
     }
   }
 
