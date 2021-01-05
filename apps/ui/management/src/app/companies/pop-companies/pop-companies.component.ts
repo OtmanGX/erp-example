@@ -50,7 +50,7 @@ export class PopCompaniesComponent extends FormDialog {
           FormDialog.REQUIRED
         ]
       },
-      {type: "input", label: "Address", inputType: "text", name: "address", value: this.data.address,
+      {type: "input", label: "Adresse", inputType: "text", name: "address", value: this.data.address,
         validations: [
           FormDialog.REQUIRED
         ]

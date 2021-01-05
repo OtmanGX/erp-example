@@ -30,7 +30,7 @@ export class PopSalePointsComponent extends FormDialog{
           FormDialog.REQUIRED
         ]
       },
-      {type: "input", label: "Adresse", inputType: "text", name: "addresse", value: this.data.address,
+      {type: "input", label: "Adresse", inputType: "text", name: "address", value: this.data.address,
         validations: [
           FormDialog.REQUIRED
         ]

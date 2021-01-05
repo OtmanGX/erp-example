@@ -1,11 +1,6 @@
-import { Observable } from 'rxjs';
 import { Component, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {  User } from '@tanglass-erp/core/management';
-import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
-import * as CompaniesActions from '@TanglassStore/management/actions/companies.actions';
-import { AppState } from '@tanglass-erp/store/app';
-import { Store, select } from '@ngrx/store';
+
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
 
 @Component({
@@ -15,27 +10,15 @@ import { FieldConfig, FormDialog } from '@tanglass-erp/material';
 })
 export class DialogEmployeeComponent extends FormDialog {
 
-  // dataCompanies$: Observable<CompanieSelector.CompaniesViewModel>;
-  // dataSalePoint$: Observable<SalePointSelector.SalePointsViewModel>;
   regConfig: FieldConfig[];
-  listCompanies = ['Tanglass', 'Trimar'];
-  listSalesPoints = [
-    'Tanja Balia',
-    'Mabrouk',
-    'Souani',
-    'Dar Tounssi',
-    'Sidi Driss',
-  ];
 
   constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: User,
-              private store: Store<AppState>) {
+              @Inject(MAT_DIALOG_DATA) public data: any) {
     super(dialogRef, data);
   }
 
   ngOnInit(): void {
-    // this.dataCompanies$ = this.store.pipe(select(CompanieSelector.selectCompaniesViewModel));
-    // this.dataSalePoint$ = this.store.pipe(select(SalePointSelector.selectSalePointsViewModel));
+    console.log(this.data);
     this.buildUserForm();
   }
 
@@ -65,12 +48,6 @@ export class DialogEmployeeComponent extends FormDialog {
         value: this.data.active ?? true,
       },
     ];
-  }
-
-  getSalesPoint(): void {
-    this.store.dispatch(
-      SalePointActions.loadSalePointsByUser()
-    );
   }
 
 }
