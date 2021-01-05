@@ -1,7 +1,14 @@
-import { Service,Coupe,BordPolis,Encoche,Sablage,Trempage,Trous,Biseautage,
-    Bombage, Gravage, Aluminium ,Pose }
- from "../../../../../core/product/src/lib/models/service.model";
 import { Item_purchases } from "./item_purchases.model";
+import {
+  Aluminium,
+  Biseautage, Bombage,
+  BordPolis,
+  Coupe,
+  Encoche, Gravage, Pose, Sablage,
+  Service,
+  Trempage,
+  Trous
+} from '@TanglassCore/models/produit/service.model';
 
 export class Services_items{
   coupe:Coupe_purchases[]=[];

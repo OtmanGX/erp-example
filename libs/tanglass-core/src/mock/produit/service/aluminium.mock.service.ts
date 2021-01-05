@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Aluminium } from "../../../../../core/product/src/lib/models/service.model";
+import { Aluminium } from "../../../models/produit/service.model";
 import { aluminiums} from '../../../data/produit/service.data';
 import { BaseMockService } from "../../shared/base.mock.service";
 import {AluminiumService} from '../../../services/produit/service/aluminium.service'

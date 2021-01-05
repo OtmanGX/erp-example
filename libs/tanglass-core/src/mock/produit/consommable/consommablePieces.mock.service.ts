@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ConsommablePieces } from "../../../../../core/product/src/lib/models/consommable.model";
+import { ConsommablePieces } from "../../../models/produit/consommable.model";
 import { BaseMockService } from "../../shared/base.mock.service";
 
 

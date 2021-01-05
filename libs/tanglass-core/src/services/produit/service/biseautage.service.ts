@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ErrorHandlerService } from "../../shared/errorHandler.service";
 import { Observable } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
-import { Biseautage } from "../../../../../core/product/src/lib/models/service.model";
 import { BaseService} from "../../shared/baseService.service";
+import { Biseautage } from '@TanglassCore/models/produit/service.model';
 
 
 export class BiseautageService extends BaseService<Biseautage> {

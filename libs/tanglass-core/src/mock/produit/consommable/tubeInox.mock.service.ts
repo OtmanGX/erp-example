@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TubeInox } from "../../../../../core/product/src/lib/models/consommable.model";
+import { TubeInox } from "../../../models/produit/consommable.model";
 import { tubesInox} from '../../../data/produit/consommable.data';
 import { BaseMockService } from "../../shared/base.mock.service";
 import {TubeInoxService} from '../../../services/produit/consommables/tubeInox.service'

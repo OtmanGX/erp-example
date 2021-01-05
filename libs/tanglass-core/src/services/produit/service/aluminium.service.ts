@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ErrorHandlerService } from "../../shared/errorHandler.service";
 import { Observable } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
-import { Aluminium } from "../../../../../core/product/src/lib/models/service.model";
 
 import { BaseService} from "../../shared/baseService.service";
+import { Aluminium } from '@TanglassCore/models/produit/service.model';
 
 @Injectable({
   providedIn: 'root'

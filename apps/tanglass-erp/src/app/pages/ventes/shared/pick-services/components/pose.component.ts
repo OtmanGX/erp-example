@@ -4,7 +4,7 @@ import { ActionsRenderComponent } from '../../actions-render-component/actions-r
 import { InputRenderComponent } from '../../input-render-component/input-render.component';
 import { SelectRenderComponent } from '../../for-select-render-component/select-render.component';
 import { UniSelectRenderComponent } from '../../select-render-component/uni-select-render.component';
-import { Pose } from '../../../../../../../../../libs/core/product/src/lib/models/service.model';
+import { Pose } from '@TanglassCore/models/produit/service.model';
 import { PoseMockService } from '@TanglassCore/mock/produit/service/pose.mock.service';
 import { Pose_purchases } from '@TanglassCore/models/ventes/customerPurchases/service_purchases.model';
 import { BaseServiceComponent } from './base-service.component';

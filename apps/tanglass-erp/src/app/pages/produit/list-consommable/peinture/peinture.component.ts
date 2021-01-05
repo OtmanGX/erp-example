@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
-import { Consumable } from '../../../../../../../../libs/core/product/src/lib/models/consommable.model';
+import { Consommable } from '@TanglassCore/models/produit/consommable.model';
 import { PeintureMockService } from '@TanglassCore/mock/produit/consommable/peinture.mock.service';
 import { BasedConsommableComponent } from '../based-consommable.component';
 import { PopPeintureComponent } from './pop-peinture/pop-peinture.component';
@@ -10,7 +10,7 @@ import { PopPeintureComponent } from './pop-peinture/pop-peinture.component';
   templateUrl: '../based-consommable.component.html',
   styleUrls: ['../based-consommable.component.scss'],
 })
-export class PeintureComponent extends BasedConsommableComponent<Consumable> {
+export class PeintureComponent extends BasedConsommableComponent<Consommable> {
   constructor(
     public dialogService: NbDialogService,
     consommableService: PeintureMockService
@@ -62,7 +62,7 @@ export class PeintureComponent extends BasedConsommableComponent<Consumable> {
         },
         closeOnBackdropClick: false,
       })
-      .onClose.subscribe((newElement: Consumable) => {
+      .onClose.subscribe((newElement: Consommable) => {
         this.addItem(newElement);
       });
   }

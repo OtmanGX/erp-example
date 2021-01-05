@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopAluminiumComponent } from './pop-aluminium/pop-aluminium.component';
-import { Aluminium } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
+import { Aluminium } from '@TanglassCore/models/produit/service.model';
 import { AluminiumMockService } from '@TanglassCore/mock/produit/service/aluminium.mock.service';
 import { BasedServiceComponent } from '../based-service.component';
 

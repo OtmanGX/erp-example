@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DoubleVitrage } from "../../../../../core/product/src/lib/models/consommable.model";
+import { DoubleVitrage } from "../../../models/produit/consommable.model";
 import { Baguettes} from '../../../data/produit/consommable.data';
 import { BaseMockService } from "../../shared/base.mock.service";
 import {DoubleVitrageService} from '../../../services/produit/consommables/double_vitrage.service'

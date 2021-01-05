@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { ErrorHandlerService } from "../../shared/errorHandler.service";
-import { DoubleVitrage } from "../../../../../core/product/src/lib/models/consommable.model";
 import { BaseService} from "../../shared/baseService.service";
+import { DoubleVitrage } from '@TanglassCore/models/produit/consommable.model';
 
 @Injectable({
   providedIn: 'root'

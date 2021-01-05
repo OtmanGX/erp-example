@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { Service } from '../../../../../../../../../libs/core/product/src/lib/models/service.model';
+import { Service } from '@TanglassCore/models/produit/service.model';
 import { BaseMockService } from '@TanglassCore/mock/shared/base.mock.service';
 import { Service_purchases } from '@TanglassCore/models/ventes/customerPurchases/service_purchases.model';
 import { BehaviorSubject } from 'rxjs';
