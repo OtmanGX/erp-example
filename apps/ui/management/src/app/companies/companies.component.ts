@@ -8,6 +8,7 @@ import { select, Store } from '@ngrx/store';
 import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Companie } from '@tanglass-erp/core/management';
+import { CompanieHeaders } from '@TanglassUi/management/utils/grid-headers';
 
 
 @Component({
@@ -67,7 +68,7 @@ export class CompaniesComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-      ...Companie.columnDefs(),
+      ...CompanieHeaders,
       { field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }

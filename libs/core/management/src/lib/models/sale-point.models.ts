@@ -1,16 +1,6 @@
 import {UsersProfile  } from "./user.models";
-import { DateFields } from '@tanglass-erp/core/shared';
 
-export class SalePoint{
-  public static columnDefs (prefix = '') {
-    if (prefix.length) prefix += '.';
-    return [
-          { field: prefix + 'name', headerName: 'Nom', type: "textColumn" },
-          { field: prefix + 'phone', headerName: 'Téléphone', type: "textColumn"},
-          { field: prefix + 'fax', headerName: 'Fax', type: "textColumn"},
-          { field: prefix + 'email', headerName: 'E-mail', type: "textColumn"},
-      ]
-  }
+export interface SalePoint{
     address:string;
     email:string;
     fax:string;
@@ -19,8 +9,7 @@ export class SalePoint{
     phone:string;
   }
 
-@DateFields
-export class DetailedSalePoint {
+export interface DetailedSalePoint {
     address:string;
     email:string;
     fax:string;
@@ -28,6 +17,10 @@ export class DetailedSalePoint {
     name:string;
     phone:string;
     usersProfiles:UsersProfile[];
+    createdAt:Date;
+    createdBy:string;
+    updatedAt:Date;
+    updatedBy:string;
   }
 
 

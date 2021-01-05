@@ -8,6 +8,7 @@ import { DialogEmployeeComponent } from '@TanglassUi/management/employees/dialog
 import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { UsersProfile } from '@tanglass-erp/core/management';
+import { UserHeaders } from '@TanglassUi/management/utils/grid-headers';
 
 
 @Component({
@@ -68,7 +69,7 @@ export class EmployeesComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-      ...UsersProfile.columnDefs(),
+      ...UserHeaders,
       { field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }
