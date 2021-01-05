@@ -2252,10 +2252,11 @@ export type InsertUserMutationVariables = Exact<{
   email?: Maybe<Scalars['String']>;
   firstname: Scalars['String'];
   lastname: Scalars['String'];
-  password: Scalars['String'];
+  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
-  role?: Maybe<Management_User_Role_Enum>;
   username: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -2263,7 +2264,14 @@ export type InsertUserMutation = (
   { __typename?: 'mutation_root' }
   & { insert_management_userProfile_one?: Maybe<(
     { __typename?: 'management_userProfile' }
-    & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone' | 'role' | 'username'>
+    & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone' | 'username'>
+    & { user_role: (
+      { __typename?: 'management_user_role' }
+      & Pick<Management_User_Role, 'name' | 'description'>
+    ), SalesPoint?: Maybe<(
+      { __typename?: 'management_SalesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'phone' | 'address'>
+    )> }
   )> }
 );
 
@@ -2415,17 +2423,25 @@ export const InsertSalePointDocument = gql`
     }
   }
 export const InsertUserDocument = gql`
-    mutation InsertUser($CIN: String, $active: Boolean = true, $email: String, $firstname: String!, $lastname: String!, $password: String!, $phone: String, $role: management_user_role_enum = user, $username: String!) {
+    mutation InsertUser($CIN: String, $active: Boolean = true, $email: String, $firstname: String!, $lastname: String!, $password: String, $phone: String, $username: String!, $name: String = "", $description: String = "") {
   insert_management_userProfile_one(
-    object: {CIN: $CIN, active: $active, email: $email, firstname: $firstname, lastname: $lastname, password: $password, phone: $phone, username: $username, role: $role}
+    object: {CIN: $CIN, active: $active, email: $email, firstname: $firstname, lastname: $lastname, password: $password, phone: $phone, username: $username, user_role: {data: {description: $description, name: $name}}}
   ) {
     id
     active
     firstname
     lastname
     phone
-    role
     username
+    user_role {
+      name
+      description
+    }
+    SalesPoint {
+      name
+      phone
+      address
+    }
   }
 }
     `;
