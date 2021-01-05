@@ -14,12 +14,13 @@ export class Companie{
       { field: prefix + 'email', headerName: 'E-mail', type: "textColumn"},
     ]
   }
+    id:string;
     CNSS:string;
     ICE:string;
     IF:string;
     RC:string;
     address:string;
-    email:string;
+    email?:string;
     name:string;
     phone:string;
 }
@@ -32,8 +33,8 @@ export class DetailedCompanie{
     IF:string;
     RC:string;
     address:string;
-    email:string;
+    email?:string;
     name:string;
     phone:string;
-    website:string;
+    website?:string;
 }
