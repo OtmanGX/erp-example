@@ -2225,7 +2225,7 @@ export type InsertCompanyMutation = (
   { __typename?: 'mutation_root' }
   & { insert_management_Company_one?: Maybe<(
     { __typename?: 'management_Company' }
-    & Pick<Management_Company, 'id' | 'name'>
+    & Pick<Management_Company, 'id' | 'name' | 'phone' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email'>
   )> }
 );
 
@@ -2244,7 +2244,7 @@ export type InsertSalePointMutation = (
     { __typename?: 'management_SalesPoint_mutation_response' }
     & { returning: Array<(
       { __typename?: 'management_SalesPoint' }
-      & Pick<Management_SalesPoint, 'name'>
+      & Pick<Management_SalesPoint, 'name' | 'address' | 'email' | 'fax' | 'id' | 'phone'>
     )> }
   )> }
 );
@@ -2375,6 +2375,13 @@ export const InsertCompanyDocument = gql`
   ) {
     id
     name
+    phone
+    CNSS
+    ICE
+    IF
+    RC
+    address
+    email
   }
 }
     `;
@@ -2396,6 +2403,11 @@ export const InsertSalePointDocument = gql`
   ) {
     returning {
       name
+      address
+      email
+      fax
+      id
+      phone
     }
   }
 }

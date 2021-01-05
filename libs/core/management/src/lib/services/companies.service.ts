@@ -29,11 +29,11 @@ export class CompaniesService {
   getOneById(
     $id?: GetCompanyByIdQueryVariables,):Observable<ApolloQueryResult<GetCompanyByIdQuery>>{
     return  this.getByIdGQL.fetch($id)
-
   }
   
   insertOne($createdCompany:InsertCompanyMutationVariables):Observable<FetchResult<InsertCompanyMutation>>{
    return  this.insertOneGQL.mutate($createdCompany)
+
   }
 
 }
