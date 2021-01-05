@@ -2,7 +2,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as UserActions from '../actions/user.actions';
-import { User } from '@TanglassCore/models/management/users';
+import { User } from '@tanglass-erp/core/management';
 
 export const USER_FEATURE_KEY = 'users';
 

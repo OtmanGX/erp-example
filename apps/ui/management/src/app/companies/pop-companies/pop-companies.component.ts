@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Companie } from '@tanglass-erp/core/management';
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
 
 @Component({
@@ -15,9 +14,9 @@ export class PopCompaniesComponent extends FormDialog {
 
   constructor(
     public dialogRef: MatDialogRef<PopCompaniesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Companie,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
-    super(dialogRef, data);
+    super(dialogRef,data);
   }
 
   ngOnInit(): void {
@@ -51,7 +50,7 @@ export class PopCompaniesComponent extends FormDialog {
           FormDialog.REQUIRED
         ]
       },
-      {type: "input", label: "Adresse", inputType: "text", name: "addresse", value: this.data.address,
+      {type: "input", label: "Address", inputType: "text", name: "address", value: this.data.address,
         validations: [
           FormDialog.REQUIRED
         ]

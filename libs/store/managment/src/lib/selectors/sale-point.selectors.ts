@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { SalePoint } from '@TanglassCore/models/management/sales-points';
+import { SalePoint } from '@tanglass-erp/core/management';
 
 import {
   SALE_POINT_FEATURE_KEY,

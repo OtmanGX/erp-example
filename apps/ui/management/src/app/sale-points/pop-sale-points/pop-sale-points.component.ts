@@ -1,10 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { SalePoint } from '@tanglass-erp/core/management';
-import * as UserActions from '@TanglassStore/management/actions/user.actions';
-import { AppState } from '@tanglass-erp/store/app';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
 
 @Component({
@@ -13,8 +8,6 @@ import { FieldConfig, FormDialog } from '@tanglass-erp/material';
   styleUrls: ['./pop-sale-points.component.scss'],
 })
 export class PopSalePointsComponent extends FormDialog{
-  // dataCompanies$: Observable<CompanieSelector.CompaniesViewModel>;
-  // dataUser$: Observable<UserSelector.UsersViewModel>;
 
   listCompanies = ['Tanglass', 'Trimar'];
   listUsers = ['Tanja Balia', 'Mabrouk', 'Souani', 'Dar Tounssi', 'Sidi Driss'];
@@ -22,14 +15,11 @@ export class PopSalePointsComponent extends FormDialog{
 
   constructor(
     public dialogRef: MatDialogRef<PopSalePointsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: SalePoint,
-    private store: Store<AppState>
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     super(dialogRef, data);
   }
   ngOnInit(): void {
-    // this.dataCompanies$ = this.store.pipe(select(CompanieSelector.selectCompaniesViewModel));
-    // this.dataUser$ = this.store.pipe(select(UserSelector.selectUsersViewModel));
     this.buildUserForm();
   }
 
@@ -61,11 +51,5 @@ export class PopSalePointsComponent extends FormDialog{
         ]
       },
     ];
-  }
-
-  getUsers(): void {
-    this.store.dispatch(
-      UserActions.loadUsersBySalePoint()
-    );
   }
 }
