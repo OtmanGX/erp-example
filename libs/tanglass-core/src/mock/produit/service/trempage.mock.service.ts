@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Trempage } from "../../../../../core/product/src/lib/models/service.model";
+import { Trempage } from "../../../models/produit/service.model";
 import { trempages } from "../../../data/produit/service.data";
 import { BaseMockService } from "../../shared/base.mock.service";
 

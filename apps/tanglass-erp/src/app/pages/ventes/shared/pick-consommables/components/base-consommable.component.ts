@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { Consumable } from '../../../../../../../../../libs/core/product/src/lib/models/consommable.model';
+import { Consommable } from '@TanglassCore/models/produit/consommable.model';
 import { BaseMockService } from '@TanglassCore/mock/shared/base.mock.service';
 import { Consommable_purchases } from '@TanglassCore/models/ventes/customerPurchases/consommable_purchases.model';
 
@@ -9,7 +9,7 @@ import { Consommable_purchases } from '@TanglassCore/models/ventes/customerPurch
   templateUrl: './base-consommable.component.html',
   styleUrls: ['./base-consommable.component.scss'],
 })
-export class BaseConsommableComponent<T extends Consumable> implements OnInit {
+export class BaseConsommableComponent<T extends Consommable> implements OnInit {
   @Output() sendItems = new EventEmitter<any>();
   data: T[] = [];
   items;

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Consumable } from '../../../../../../../../../libs/core/product/src/lib/models/consommable.model';
+import { Consommable } from '@TanglassCore/models/produit/consommable.model';
 import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
 
 @Component({
@@ -13,7 +13,7 @@ import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
 export class PopConsommablePiecesComponent implements OnInit {
   @Input() title: string;
   consommableForm: FormGroup;
-  consommable: Consumable;
+  consommable: Consommable;
   constructor(
     private ref: NbDialogRef<PopConsommablePiecesComponent>,
     private fb: FormBuilder

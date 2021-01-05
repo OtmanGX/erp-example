@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AccessoireMockService } from '@TanglassCore/mock/produit/accessoire.mock.service';
-import { Accessory } from '../../../../../../../../libs/core/product/src/lib/models/accessoire.model';
+import { Accessoire } from '@TanglassCore/models/produit/accessoire.model';
 import { Accessoire_purchases } from '@TanglassCore/models/ventes/customerPurchases/accessoire_purchases.model';
 import { SelectRenderComponent } from '../for-select-render-component/select-render.component';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -17,7 +17,7 @@ export class PickAccessoiresComponent implements OnInit {
   @Output() sendAccessoires = new EventEmitter<any>();
   @Input() disabled: boolean;
 
-  data: Accessory[];
+  data: Accessoire[];
   items: Accessoire_purchases[] = [];
   filtrageArgs = ['code'];
   source: LocalDataSource = new LocalDataSource();
@@ -63,7 +63,7 @@ export class PickAccessoiresComponent implements OnInit {
             textField: 'code',
             data: this.data,
             filtrageArgs: this.filtrageArgs,
-            instance: new Accessory(),
+            instance: new Accessoire(),
           };
         },
         onComponentInitFunction: (instance) => {

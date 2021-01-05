@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopTrousComponent } from './pop-trous/pop-trous.component';
 import { TrousMockService } from '@TanglassCore/mock/produit/service/trous.mock.service';
-import { Trous } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
+import { Trous } from '@TanglassCore/models/produit/service.model';
 import { BasedServiceComponent } from '../based-service.component';
 
 @Component({

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import {
-  Consumable,
+  Consommable,
   TubeInox,
-} from '../../../../../../../../libs/core/product/src/lib/models/consommable.model';
+} from '@TanglassCore/models/produit/consommable.model';
 import { TubeInoxMockService } from '@TanglassCore/mock/produit/consommable/tubeInox.mock.service';
 import { BasedConsommableComponent } from '../based-consommable.component';
 import { PopInoxComponent } from './pop-inox/pop-inox.component';

@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { Trous_purchases } from '@TanglassCore/models/ventes/customerPurchases/service_purchases.model';
-import { Trous } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
+import { Trous } from '@TanglassCore/models/produit/service.model';
 
 @Component({
   selector: 'ngx-multi-select-diametre',

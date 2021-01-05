@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { ErrorHandlerService } from "../../shared/errorHandler.service";
 import { BaseService} from "../../shared/baseService.service";
-import { ConsommablePieces } from '../../../../../core/product/src/lib/models/consommable.model';
+import { ConsommablePieces } from '@TanglassCore/models/produit/consommable.model';
 
 @Injectable({
   providedIn: 'root'

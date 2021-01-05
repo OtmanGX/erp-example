@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
-import { Consumable } from '../../../../../../../../libs/core/product/src/lib/models/consommable.model';
+import { Consommable } from '@TanglassCore/models/produit/consommable.model';
 import { ConsommablePiecesMockService } from '@TanglassCore/mock/produit/consommable/consommablePieces.mock.service';
 import { BasedConsommableComponent } from '../based-consommable.component';
 import { PopConsommablePiecesComponent } from './pop-consommable-pieces/pop-consommable-pieces.component';
@@ -10,7 +10,7 @@ import { PopConsommablePiecesComponent } from './pop-consommable-pieces/pop-cons
   templateUrl: '../based-consommable.component.html',
   styleUrls: ['../based-consommable.component.scss'],
 })
-export class PiecesComponent extends BasedConsommableComponent<Consumable> {
+export class PiecesComponent extends BasedConsommableComponent<Consommable> {
   constructor(
     public dialogService: NbDialogService,
     consommableService: ConsommablePiecesMockService
@@ -62,7 +62,7 @@ export class PiecesComponent extends BasedConsommableComponent<Consumable> {
         },
         closeOnBackdropClick: false,
       })
-      .onClose.subscribe((newElement: Consumable) => {
+      .onClose.subscribe((newElement: Consommable) => {
         this.addItem(newElement);
       });
   }
