@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Uchannel } from "../../../../../core/product/src/lib/models/consommable.model";
+import { Uchannel } from "../../../models/produit/consommable.model";
 import { uchannels} from '../../../data/produit/consommable.data';
 import { BaseMockService } from "../../shared/base.mock.service";
 import {UchannelService} from '../../../services/produit/consommables/uchannel.service'

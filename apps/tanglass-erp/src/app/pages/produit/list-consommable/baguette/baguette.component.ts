@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
-import { Consumable } from '../../../../../../../../libs/core/product/src/lib/models/consommable.model';
+import { Consommable } from '@TanglassCore/models/produit/consommable.model';
 import { DoubleVitrageMockService } from '@TanglassCore/mock/produit/consommable/film.mock.service';
 import { BasedConsommableComponent } from '../based-consommable.component';
 import { PopStadipComponent } from './pop-stadip/pop-stadip.component';
@@ -9,7 +9,7 @@ import { PopStadipComponent } from './pop-stadip/pop-stadip.component';
   templateUrl: '../based-consommable.component.html',
   styleUrls: ['../based-consommable.component.scss'],
 })
-export class BaguetteComponent extends BasedConsommableComponent<Consumable> {
+export class BaguetteComponent extends BasedConsommableComponent<Consommable> {
   constructor(
     public dialogService: NbDialogService,
     consommableService: DoubleVitrageMockService
@@ -61,7 +61,7 @@ export class BaguetteComponent extends BasedConsommableComponent<Consumable> {
         },
         closeOnBackdropClick: false,
       })
-      .onClose.subscribe((newElement: Consumable) => {
+      .onClose.subscribe((newElement: Consommable) => {
         this.addItem(newElement);
       });
   }

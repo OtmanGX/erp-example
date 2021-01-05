@@ -1,5 +1,5 @@
-import { MatièrePremière,VerreClient } from "../../../../../core/product/src/lib/models/glasse.model";
 import { Item_purchases } from "./item_purchases.model";
+import { MatièrePremière, VerreClient } from '@TanglassCore/models/produit/matiere_premiere.model';
 
 export class MatierePremiere_purchases extends Item_purchases {
   item: MatièrePremière=new MatièrePremière();

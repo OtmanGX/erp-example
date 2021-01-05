@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PopCoupeComponent } from './pop-coupe/pop-coupe.component';
 import { CoupeMockService } from '@TanglassCore/mock/produit/service/coupe.mock.service';
-import { Coupe } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
+import { Coupe } from '@TanglassCore/models/produit/service.model';
 import { BasedServiceComponent } from '../based-service.component';
 @Component({
   selector: 'ngx-coupe',

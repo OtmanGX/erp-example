@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ErrorHandlerService } from "../shared/errorHandler.service";
 
-import { VerreClient } from "../../../../core/product/src/lib/models/glasse.model";
 
 import { BaseService} from "../shared/baseService.service";
+import { VerreClient } from '@TanglassCore/models/produit/matiere_premiere.model';
 
 @Injectable({
   providedIn: 'root'

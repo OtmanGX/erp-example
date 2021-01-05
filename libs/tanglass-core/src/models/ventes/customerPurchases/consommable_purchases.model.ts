@@ -1,6 +1,6 @@
-import { Consumable } from "../../../../../core/product/src/lib/models/consommable.model";
 import { Item_purchases } from "./item_purchases.model";
 import { Mixin } from 'ts-mixer';
+import { Consommable } from '@TanglassCore/models/produit/consommable.model';
 
 
 export class Consommable_items{
@@ -14,7 +14,7 @@ export class Consommable_items{
 export class Consommable_purchases extends Item_purchases  {
   Mat_Premiere_Code='-';
   Mat_Premiere_Count:number=0;
-  item:Consumable= new Consumable()
+  item:Consommable= new Consommable();
 }
  class QuantityLinearCalculator {
   quantity:number;

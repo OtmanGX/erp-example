@@ -1,8 +1,8 @@
 import { of as observableOf,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {MatierePremiereService} from '../../services/produit/mat_premiere.service'
-import { matierePremiere,} from '../../data/produit/matiere_premiere.data';
-import {MatièrePremière} from '../../../../core/product/src/lib/models/glasse.model'
+import { matierePremiere,typesMatierePremiere,colorsMatierePremiere} from '../../data/produit/matiere_premiere.data';
+import {MatièrePremière} from '../../models/produit/matiere_premiere.model'
 import {additionalParam_PD} from '../../models/produit/type_produit.model'
 
 
@@ -22,8 +22,8 @@ class MatierePremiereMockData extends BaseMockService<MatièrePremière> {
 })
 export class MatierePremiereMockService extends Mixin(MatierePremiereService,MatierePremiereMockData){
 
-  private colorsMatierePremiere:additionalParam_PD[]=[];
-  private typesMatierePremiere:additionalParam_PD[]=[];
+  private colorsMatierePremiere:additionalParam_PD[]=colorsMatierePremiere;
+  private typesMatierePremiere:additionalParam_PD[]=typesMatierePremiere;
 
 
   /** GET All MatièrePremière  Types from fake data  */

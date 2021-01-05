@@ -3,7 +3,7 @@ import { NbDialogService } from '@nebular/theme';
 import { PopBiseautageComponent } from './pop-biseautage/pop-biseautage.component';
 import { FormBuilder } from '@angular/forms';
 import { BiseautageMockService } from '@TanglassCore/mock/produit/service/biseautage.mock.service';
-import { Biseautage } from '../../../../../../../../libs/core/product/src/lib/models/service.model';
+import { Biseautage } from '@TanglassCore/models/produit/service.model';
 import { BasedServiceComponent } from '../based-service.component';
 
 @Component({
