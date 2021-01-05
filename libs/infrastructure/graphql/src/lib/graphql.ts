@@ -2296,13 +2296,13 @@ export type GetAllUsersQuery = (
   { __typename?: 'query_root' }
   & { management_userProfile: Array<(
     { __typename?: 'management_userProfile' }
-    & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone'>
+    & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone' | 'username'>
     & { user_role: (
       { __typename?: 'management_user_role' }
-      & Pick<Management_User_Role, 'name'>
+      & Pick<Management_User_Role, 'name' | 'description'>
     ), SalesPoint?: Maybe<(
       { __typename?: 'management_SalesPoint' }
-      & Pick<Management_SalesPoint, 'name'>
+      & Pick<Management_SalesPoint, 'name' | 'address' | 'phone'>
     )> }
   )> }
 );
@@ -2497,11 +2497,15 @@ export const GetAllUsersDocument = gql`
     firstname
     lastname
     phone
+    username
     user_role {
       name
+      description
     }
     SalesPoint {
       name
+      address
+      phone
     }
   }
 }

@@ -3,14 +3,15 @@ import { SalePointForUser } from "./sale-point.models";
 
 
 export interface User {
-  id: string;
-  active: boolean;
-  firstname: string;
-  lastname: string;
-  phone: string;
+  id:string;
+  active:boolean;
+  firstname:string;
+  lastname:string;
+  phone:string
   username:string;
-  user_role: elementName;
-  SalesPoint?: elementName;
+  user_role:UserRole;
+  SalesPoint? :SalePointForUser;
+
 }
 
 
@@ -27,7 +28,7 @@ export interface DetailedUser extends MetaData {
   password: string;
   SalesPointsid?: string
   username: string;
-  user_role: DetailedUserRole;
+  user_role: UserRole;
   SalesPoint?: SalePointForUser
 
 }
@@ -40,16 +41,13 @@ export interface UsersProfileForSalePoint {
   lastname: string;
   phone: string;
   username: string;
-  user_role: elementName;
-}
-
-interface DetailedUserRole {
-  description: string
-  name: string
+  user_role: UserRole;
 }
 
 
-interface elementName{
+
+interface UserRole{
   name:string;
+  description:string;
 }
 
