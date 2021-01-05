@@ -1,17 +1,16 @@
 import { MetaData } from "libs/core/shared/metaData";
-import { SalePoint } from "./sale-point.models";
 import { SalePointForUser } from "./sale-point.models";
 
 
 export interface User {
-
   id: string;
   active: boolean;
   firstname: string;
   lastname: string;
   phone: string;
-  user_role: UserRole
-  SalesPoint: SalePoint
+  username:string;
+  user_role: elementName;
+  SalesPoint?: elementName;
 }
 
 
@@ -34,7 +33,6 @@ export interface DetailedUser extends MetaData {
 }
 
 
-
 export interface UsersProfileForSalePoint {
   id: string;
   active: boolean;
@@ -42,7 +40,7 @@ export interface UsersProfileForSalePoint {
   lastname: string;
   phone: string;
   username: string;
-  user_role: UserRole;
+  user_role: elementName;
 }
 
 interface DetailedUserRole {
@@ -50,6 +48,8 @@ interface DetailedUserRole {
   name: string
 }
 
-interface UserRole {
-  name: string;
+
+interface elementName{
+  name:string;
 }
+

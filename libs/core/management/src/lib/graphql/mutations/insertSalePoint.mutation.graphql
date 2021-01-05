@@ -1,12 +1,12 @@
-mutation InsertSalePoint($phone: String!, $name: String!, $fax: String, $email: String, $address: String!) {
-  insert_management_SalesPoint(objects: {address: $address, email: $email, fax: $fax, name: $name, phone: $phone}) {
-    returning {
-      name
-      address
-      email
-      fax
-      id
-      phone
-    }
+
+
+mutation InsertSalePoint($address: String!, $email: String, $name: String!, $phone: String!, $fax: String,) {
+  insert_management_SalesPoint_one(object: {address: $address, email: $email, name: $name, phone: $phone, fax: $fax}) {
+    name
+    address
+    email
+    fax
+    id
+    phone
   }
 }
