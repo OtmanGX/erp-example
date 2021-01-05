@@ -2,7 +2,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as SalePointActions from '../actions/salePoint.actions';
-import { SalePoint } from '@TanglassCore/models/management/sales-points';
+import { SalePoint } from '@tanglass-erp/core/management';
 
 export const SALE_POINT_FEATURE_KEY = 'sale-points';
 

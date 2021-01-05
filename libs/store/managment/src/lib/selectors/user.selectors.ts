@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { User } from '@TanglassCore/models/management/users';
+import { User } from '@tanglass-erp/core/management';
 
 import {
   USER_FEATURE_KEY,

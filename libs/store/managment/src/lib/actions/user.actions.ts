@@ -1,4 +1,4 @@
-import { User } from '@TanglassCore/models/management/users';
+import { User } from '@tanglass-erp/core/management';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -7,9 +7,6 @@ import { createAction, props } from '@ngrx/store';
 
 export const loadUsers= createAction('[Users Component] Load Users');
 
-export const loadUsersByCompanies= createAction('[Pop Companies Component] Load Users');
-
-export const loadUsersBySalePoint= createAction('[Pop SalePoint Component] Load Users');
 
 export const loadUsersSuccess = createAction(
   '[User Effect] Load Users Success',

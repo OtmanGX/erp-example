@@ -9,7 +9,7 @@ export interface User {
   lastname: string;
   phone: string;
   username:string;
-  user_role: elementName;
+  role: elementName;
   SalesPoint?: elementName;
 }
 

@@ -1,4 +1,4 @@
-import { SalePoint } from '@TanglassCore/models/management/sales-points';
+import { SalePoint } from '@tanglass-erp/core/management';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -7,9 +7,6 @@ import { createAction, props } from '@ngrx/store';
 
 export const loadSalePoints= createAction('[SalePoints Component] Load SalePoints');
 
-export const loadSalePointsByCompanies= createAction('[Pop Companies Component] Load SalePoints');
-
-export const loadSalePointsByUser= createAction('[Pop User Component] Load SalePoints');
 
 export const loadSalePointsSuccess = createAction(
   '[SalePoint Effect] Load SalePoints Success',
