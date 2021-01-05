@@ -24,6 +24,7 @@ export class PopAccessoriesComponent extends FormDialog {
 
   ngOnInit(): void {
     console.log("build Form");
+    this.buildMpForm();
   }
 
 
@@ -34,7 +35,7 @@ export class PopAccessoriesComponent extends FormDialog {
         label: 'Accessoire',
         headerVisible:false,
         fields: [
-          {type: "input", label: "Name", inputType: "text", name: "name", value: this.data.name},
+          {type: "input", label: "Nom", inputType: "text", name: "name", value: this.data.name},
           {type: "input", label: "Quota", inputType: "number", name: "quota", value: this.data.quota},
           {type: "inputSelect", label: "Type", inputType: "text", name: "type", value: this.data.type,
             options: this.MP_types.map((elem, index) => ({key: elem.name, value: elem.name}))},

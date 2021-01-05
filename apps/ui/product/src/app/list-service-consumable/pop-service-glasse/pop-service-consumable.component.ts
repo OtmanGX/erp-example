@@ -27,10 +27,10 @@ export class PopServiceConsumableComponent extends FormDialog {
 
   buildMpForm() {
     this.regConfig = [
-      {type: "inputSelect", label: "Service", inputType: "text", name: "service", value: this.data.service,
+      {type: "select", label: "Service", inputType: "text", name: "service", value: this.data.service,
         options: []},
       {type: "input", label: "Quota", inputType: "text", name: "quota", value: this.data.quota},
-      {type: "inputSelect", label: "Consommable", inputType: "text", name: "consumable", value: this.data.consumable,
+      {type: "select", label: "Consommable", inputType: "text", name: "consumable", value: this.data.consumable,
             options: []},
       ]
   }

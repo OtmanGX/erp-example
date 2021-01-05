@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import * as UserActions from '@TanglassStore/management/actions/user.actions';
 import { AppState} from '@tanglass-erp/store/app';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,17 +19,19 @@ export class EmployeesComponent implements GridView {
 
   agGrid: AgGridAngular;
   columnDefs;
-  columnId: string;
+  columnId = 'id';
   data$: Observable<any>;
-  mainGrid: MainGridComponent;
+  @ViewChild(MainGridComponent) mainGrid;
   constructor(private store: Store<AppState>,
               public dialog: MatDialog) {
+    this.setColumnDefs();
   }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
+    this.agGrid = this.mainGrid.agGrid;
   }
 
   openDialog(action, data = {}) {

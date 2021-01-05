@@ -26,11 +26,12 @@ export class PopServiceGlasseComponent extends FormDialog {
 
   buildMpForm() {
     this.regConfig = [
-      {type: "inputSelect", label: "Service", inputType: "text", name: "service", value: this.data.service,
-        options: []},
-      {type: "input", label: "Etiquette d\'usine", inputType: "text", name: "labelFactory", value: this.data.labelFactory},
-      {type: "inputSelect", label: "Verre", inputType: "text", name: "glasse", value: this.data.glasse,
-            options: []},
+      {type: "select", label: "Service", inputType: "text", name: "service", value: this.data.service,
+        options: [], validations: [FormDialog.REQUIRED]},
+      {type: "input", label: "Etiquette d\'usine", inputType: "text", name: "labelFactory",
+        value: this.data.labelFactory, validations: [FormDialog.REQUIRED]},
+      {type: "select", label: "Verre", inputType: "text", name: "glasse", value: this.data.glasse,
+            options: [], validations: [FormDialog.REQUIRED]},
       ]
   }
 }

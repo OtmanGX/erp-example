@@ -1,4 +1,4 @@
-import { Component, ContentChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
@@ -14,7 +14,7 @@ import { PopConsumableComponent } from './pop-consumable/pop-consumable.componen
   styleUrls: ['./list-consumable.component.scss'],
 })
 export class ListConsumableComponent implements GridView {
-  @ContentChild(MainGridComponent) mainGrid;
+  @ViewChild(MainGridComponent) mainGrid;
   data$: Observable<Consumable[]>;
   agGrid: AgGridAngular;
   columnId = 'id';

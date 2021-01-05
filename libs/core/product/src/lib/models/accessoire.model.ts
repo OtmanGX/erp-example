@@ -6,7 +6,7 @@ export class Accessory {
   public static columnDefs(prefix = '') {
     if (prefix.length) prefix += '.';
     return [
-      {headerName: 'Accssoire', children: [
+      {headerName: 'Accessoire', children: [
           { field: prefix + 'name', headerName: 'Nom', type: "textColumn"},
           { field: prefix + 'type', headerName: 'Type', type: "textColumn"},
           { field: prefix + 'quota', headerName: 'Quota', type: "numberColumn"}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Inject, ViewChild, ContentChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, DynamicFormComponent, Groupfield } from '@tanglass-erp/material';
 import { forkJoin } from 'rxjs';
@@ -11,7 +11,7 @@ import { Service } from '@tanglass-erp/core/product';
 })
 export class PopServiceComponent extends FormDialog implements OnInit {
   @Input() title: string;
-  @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
+  @ContentChild(DynamicFormComponent) form: DynamicFormComponent;
   regConfig: Groupfield[];
 
   constructor(
@@ -49,7 +49,7 @@ export class PopServiceComponent extends FormDialog implements OnInit {
         label: "Params",
         headerVisible:false,
         fields: [
-          {type: "inputTag", label: "Paramètres", name: "params", value: this.data.params, options: []}
+          {type: "inputTag", label: "Paramètres", name: "params", value: this.data.params ?? [], options: []}
         ]
       },
 
@@ -58,7 +58,6 @@ export class PopServiceComponent extends FormDialog implements OnInit {
   }
 
   onSubmit(formValue) {
-
     this.submit(formValue);
   }
 }

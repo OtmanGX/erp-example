@@ -41,7 +41,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
       </ng-container>
     </mat-form-field>
 `,
-  styles: [':host {flex: 1 1 50%}'],
+  styles: [':host {flex: 0 1 50%}'],
 })
 export class TagInputComponent implements OnInit, AfterViewInit {
   // Default

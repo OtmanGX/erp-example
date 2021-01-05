@@ -1,4 +1,4 @@
-import { Component, Input, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, ContentChild } from '@angular/core';
 import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, DynamicFormComponent, Groupfield } from '@tanglass-erp/material';
@@ -11,14 +11,13 @@ import { Glasse } from '@tanglass-erp/core/product';
   styleUrls: ['./pop-glasse.component.scss'],
 })
 export class PopGlasseComponent extends FormDialog {
-  @Input() title: string;
   MP_types: additionalParam_PD[] = [];
   MP_colors: additionalParam_PD[] = [];
   newType: additionalParam_PD = new additionalParam_PD();
   newColor: additionalParam_PD = new additionalParam_PD();
   listCompanies = [];
 
-  @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
+  @ContentChild(DynamicFormComponent) form: DynamicFormComponent;
   regConfig: Groupfield[];
 
   constructor(
@@ -37,6 +36,7 @@ export class PopGlasseComponent extends FormDialog {
     //   error => console.error(error),
     //   () => this.buildMpForm()
     // );
+    this.buildMpForm();
   }
 
   buildMpForm() {
