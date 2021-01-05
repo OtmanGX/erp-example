@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { Companie } from '@TanglassCore/models/management/companie';
+import { Companie } from '@tanglass-erp/core/management';
 
 import {
   COMPANIE_FEATURE_KEY,

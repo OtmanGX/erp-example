@@ -1,4 +1,4 @@
-import { Companie } from '@TanglassCore/models/management/companie';
+import { Companie } from '@tanglass-erp/core/management';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -7,9 +7,6 @@ import { createAction, props } from '@ngrx/store';
 
 export const loadCompanies= createAction('[Companies Component] Load Companies');
 
-export const loadCompaniesBySalePoint= createAction('[Pop SalePoint Component] Load Companies');
-
-export const loadCompaniesByUser= createAction('[Pop User Component] Load Companies');
 
 export const loadCompaniesSuccess = createAction(
   '[Companie Effect] Load Companies Success',
@@ -27,7 +24,7 @@ export const loadCompaniesFailure = createAction(
 /****************************************************************** */
 
 export const addCompanie = createAction(
-  '[Pop Companies Component] Add Companie',
+  '[Companies Component] Add Companie',
   props<{ companie: Companie }>()
 );
 
@@ -46,7 +43,7 @@ export const addCompanieFailure = createAction(
 /****************************************************************** */
 
 export const updateCompanie = createAction(
-  '[Pop Companies Component] Update Companie',
+  '[Companies Component] Update Companie',
   props<{ companie: Companie }>()
 );
 export const updateCompanieSuccess = createAction(

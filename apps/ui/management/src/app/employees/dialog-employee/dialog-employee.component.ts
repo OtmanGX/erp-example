@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Component, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import { User_role, UsersProfile } from '@tanglass-erp/core/management';
+import {  User } from '@tanglass-erp/core/management';
 import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
 import * as CompaniesActions from '@TanglassStore/management/actions/companies.actions';
 import { AppState } from '@tanglass-erp/store/app';
@@ -28,7 +28,7 @@ export class DialogEmployeeComponent extends FormDialog {
   ];
 
   constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: UsersProfile,
+              @Inject(MAT_DIALOG_DATA) public data: User,
               private store: Store<AppState>) {
     super(dialogRef, data);
   }
@@ -67,11 +67,6 @@ export class DialogEmployeeComponent extends FormDialog {
     ];
   }
 
-  getCompanies(): void {
-    this.store.dispatch(
-      CompaniesActions.loadCompaniesByUser()
-    );
-  }
   getSalesPoint(): void {
     this.store.dispatch(
       SalePointActions.loadSalePointsByUser()

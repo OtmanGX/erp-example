@@ -1,4 +1,4 @@
-import { companieMockService } from '@TanglassCore/mock/management/companie.mock.service';
+import { CompaniesService } from '@tanglass-erp/core/management';
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 
@@ -11,11 +11,11 @@ export class CompaniesEffects {
 
   loadCompanies$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CompaniesActions.loadCompanies, CompaniesActions.loadCompaniesBySalePoint, CompaniesActions.loadCompaniesByUser),
+      ofType(CompaniesActions.loadCompanies),
       mergeMap((action) =>
         this.companieService.getAll().pipe(
           map((data) =>
-          CompaniesActions.loadCompaniesSuccess({companies: data})
+          CompaniesActions.loadCompaniesSuccess({companies: data.data.management_Company})
           ),
           catchError((error) =>
             of(CompaniesActions.loadCompaniesFailure({ error }))
@@ -25,13 +25,13 @@ export class CompaniesEffects {
     )
   });
 
-  createCompanie$ = createEffect(() => {
+  insertCompanie$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CompaniesActions.addCompanie),
       mergeMap((action) =>
-        this.companieService.addNewOne(action.companie).pipe(
+        this.companieService.insertOne(action.companie).pipe(
           map((data) =>
-          CompaniesActions.addCompanieSuccess({companie: data})
+          CompaniesActions.addCompanieSuccess({companie: data.data.insert_management_Company_one})
           ),
           catchError((error) =>
             of(CompaniesActions.addCompanieFailure({ error }))
@@ -42,22 +42,9 @@ export class CompaniesEffects {
   });
 
 
-  updateCompanie$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CompaniesActions.updateCompanie),
-      mergeMap((action) =>
-        this.companieService.addNewOne(action.companie).pipe(
-          map((data) =>
-          CompaniesActions.updateCompanieSuccess({companie: data})
-          ),
-          catchError((error) =>
-            of(CompaniesActions.updateCompanieFailure({ error }))
-          )
-        )
-      )
-    )
-  });
+
+
 
   constructor(private actions$: Actions,
-              private companieService: companieMockService) {}
+              private companieService: CompaniesService) {}
 }

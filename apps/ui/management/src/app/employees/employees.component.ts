@@ -68,7 +68,6 @@ export class EmployeesComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-      ...UsersProfile.columnDefs(),
       { field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }

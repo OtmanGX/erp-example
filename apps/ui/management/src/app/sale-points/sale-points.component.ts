@@ -66,7 +66,6 @@ export class SalePointsComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-      ...SalePoint.columnDefs(),
       { field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }
