@@ -2,7 +2,6 @@ import { Component, Inject, ContentChild } from '@angular/core';
 import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, DynamicFormComponent, Groupfield } from '@tanglass-erp/material';
-import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
 import { Accessory } from '@tanglass-erp/core/product';
 
 @Component({
@@ -14,7 +13,7 @@ export class PopAccessoriesComponent extends FormDialog {
   @ContentChild(DynamicFormComponent) form: DynamicFormComponent;
   MP_types: additionalParam_PD[] = [];
   regConfig: Groupfield[];
-  listCompanies = Object.values(companiesDirection);
+  listCompanies = [];
 
   constructor(
     public dialogRef: MatDialogRef<PopAccessoriesComponent>,

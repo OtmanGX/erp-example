@@ -1,4 +1,4 @@
-import { MatièrePremière,VerreClient } from "../../../../core/product/src/lib/models/glasse.model";
+import { MatièrePremière,VerreClient } from "../../models/produit/glasse.model";
 import { additionalParam_PD } from "../../models/produit/type_produit.model";
 
   export const matierePremiere: MatièrePremière[] = [

@@ -1,36 +1,23 @@
 import { Observable } from 'rxjs';
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { User } from '@TanglassCore/models/management/users';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import * as CompanieSelector from '@TanglassStore/management/selectors/companies.selectors';
-import * as SalePointSelector from '@TanglassStore/management/selectors/sale-point.selectors';
+import { User_role, UsersProfile } from '@tanglass-erp/core/management';
 import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
 import * as CompaniesActions from '@TanglassStore/management/actions/companies.actions';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store, select } from '@ngrx/store';
+import { FieldConfig, FormDialog } from '@tanglass-erp/material';
 
 @Component({
   selector: 'ngx-dialog-employee',
   templateUrl: './dialog-employee.component.html',
   styleUrls: ['./dialog-employee.component.scss']
 })
-export class DialogEmployeeComponent implements OnInit {
-  @Input() title: string;
-  UserForm: FormGroup;
-  user: User;
-  submitted: boolean;
-  dropdownSettings: IDropdownSettings = {
-    singleSelection: false,
-    allowSearchFilter: true,
-    idField: 'id',
-    textField: 'name',
-    maxHeight: 100,
-  };
-  dataCompanies$: Observable<CompanieSelector.CompaniesViewModel>;
-  dataSalePoint$: Observable<SalePointSelector.SalePointsViewModel>;
+export class DialogEmployeeComponent extends FormDialog {
 
+  // dataCompanies$: Observable<CompanieSelector.CompaniesViewModel>;
+  // dataSalePoint$: Observable<SalePointSelector.SalePointsViewModel>;
+  regConfig: FieldConfig[];
   listCompanies = ['Tanglass', 'Trimar'];
   listSalesPoints = [
     'Tanja Balia',
@@ -41,29 +28,50 @@ export class DialogEmployeeComponent implements OnInit {
   ];
 
   constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: User,
-              private fb: FormBuilder,
-              private store: Store<AppState>) { }
+              @Inject(MAT_DIALOG_DATA) public data: UsersProfile,
+              private store: Store<AppState>) {
+    super(dialogRef, data);
+  }
 
   ngOnInit(): void {
-    this.dataCompanies$ = this.store.pipe(select(CompanieSelector.selectCompaniesViewModel));
-    this.dataSalePoint$ = this.store.pipe(select(SalePointSelector.selectSalePointsViewModel));
+    // this.dataCompanies$ = this.store.pipe(select(CompanieSelector.selectCompaniesViewModel));
+    // this.dataSalePoint$ = this.store.pipe(select(SalePointSelector.selectSalePointsViewModel));
     this.buildUserForm();
   }
   buildUserForm(): void {
-    this.UserForm = this.fb.group({
-      FirstName: [this.data.FirstName],
-      LastName: [this.data.LastName],
-      civilité: [this.data.civilité],
-      address: [this.data.address],
-      phone: [this.data.phone],
-      CIN: [this.data.CIN],
-      role: [this.data.role],
-      email: [this.data.email],
-      departement: [this.data.departement],
-      companies: [this.data.companies],
-      salepoints: [this.data.salepoints],
-    });
+    // active:boolean;
+    // firstname:string
+    // lastname:string;
+    // phone:string;
+    // username:string;
+    // user_role :User_role;
+    this.regConfig = [
+      {type: "input", label: "Prénom", inputType: "text", name: "firstname", value: this.data.firstname,
+        validations: [
+          FormDialog.REQUIRED
+        ]
+      },
+      {type: "input", label: "Nom", inputType: "text", name: "lastname", value: this.data.lastname,
+        validations: [
+          FormDialog.REQUIRED
+        ]
+      },
+      {type: "input", label: "Nom d'utilisateur", inputType: "text", name: "username", value: this.data.username,
+        validations: [
+          FormDialog.REQUIRED
+        ]
+      },
+      {type: "input", label: "Téléphone", inputType: "text", name: "phone", value: this.data.phone,
+        validations: [
+          FormDialog.REQUIRED
+        ]
+      },
+      {type: "checkbox", label: "Active", inputType: "text", name: "active", value: this.data.active,
+        validations: [
+          FormDialog.REQUIRED
+        ]
+      },
+    ];
   }
 
   getCompanies(): void {
@@ -75,46 +83,6 @@ export class DialogEmployeeComponent implements OnInit {
     this.store.dispatch(
       SalePointActions.loadSalePointsByUser()
     );
-  }
-
-  onSelectCompanie( event ): void {
-    const subscription = this.dataCompanies$.subscribe( dataCompanies => {
-      var obj = dataCompanies.companies.filter(function (e) {
-        return e.id == event.id;
-      });
-      if (obj) {
-        this.UserForm.get('companies').setValue(obj);
-      }
-    });
-    subscription.unsubscribe();
-  }
-
-  onSelectSalePoint( event ): void {
-    const subscription = this.dataSalePoint$.subscribe( dataSalePoint => {
-      var obj = dataSalePoint.salePoints.filter(function (e) {
-        return e.id == event.id;
-      });
-      this.UserForm.get('salepoints').setValue(obj);
-    });
-    subscription.unsubscribe();
-  }
-
-  onSave() {
-    this.submitted = true;
-    this.user = this.UserForm.value;
-    this.UserForm.reset();
-    this.submit(this.user);
-  }
-  closePopup() {
-    this.onNoClick();
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  submit(value: any) {
-    this.dialogRef.close(value);
   }
 
 }

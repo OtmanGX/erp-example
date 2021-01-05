@@ -1,63 +1,6 @@
-<mat-toolbar color="primary" class="m-0 mb-2 text-center">
-  <h1 mat-dialog-title>Ajouter une point de vente</h1>
-</mat-toolbar>
-
-<form [formGroup]="SalePointForm" (ngSubmit)="onSave()" class="m-3">
-  <div class="row">
-    <div class="col">
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Raison Sociale" formControlName="name">
-      </mat-form-field>
-    </div>
-
-  </div>
-  <div class="form-group">
-    <label class="label">Informations</label>
-    <div class="row">
-      <div class="col">
-        <mat-form-field class="full-width">
-          <input matInput type="tel" placeholder="Tél" formControlName="phone">
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field class="full-width">
-          <input matInput type="email" placeholder="Email" formControlName="email">
-        </mat-form-field>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col">
-        <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="Fax" formControlName="Fax">
-        </mat-form-field>
-      </div>
-
-      <div class="col">
-        <mat-form-field class="full-width">
-          <input matInput type="text" placeholder="Adresse" formControlName="address">
-        </mat-form-field>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="label">Sociétés</label>
-
-    <div class="col">
-      <mat-form-field class="full-width">
-        <mat-select placeholder="Point de vente" formControlName="companie" multiple>
-          <mat-option *ngFor="let company of listCompanies" [value]="company">{{company}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-
-
-
-  <div fxLayout="row" fxLayoutAlign="center center"  mat-dialog-actions>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!SalePointForm.valid">Confirmer</button>
-    <button mat-raised-button color="warn" type="button" (click)="closePopup()">Annuler</button>
-  </div>
-</form>
+<ngx-dialog-body title="Ajouter une point de vente">
+  <dynamic-form [fields]="regConfig"
+                (close)="closePopup()"
+                (submit)="submit($event)">
+  </dynamic-form>
+</ngx-dialog-body>

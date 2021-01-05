@@ -1,6 +1,6 @@
 import { Coupe ,BordPolis ,Encoche,Sablage,
   Trempage,Trous,Biseautage,Bombage,Peinture,
-  Gravage,Aluminium, Pose } from "../../../../core/product/src/lib/models/service.model";
+  Gravage,Aluminium, Pose } from "../../models/produit/service.model";
 import { additionalParam_PD } from "../../models/produit/type_produit.model";
 
 export const coupes:Coupe []=[];

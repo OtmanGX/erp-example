@@ -1,6 +1,5 @@
 import { Component, Input, Inject, ViewChild } from '@angular/core';
 import { additionalParam_PD } from '@TanglassCore/models/produit/type_produit.model';
-import { companiesDirection } from '@TanglassCore/enums/ventes.enum';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, DynamicFormComponent, Groupfield } from '@tanglass-erp/material';
 import { forkJoin } from 'rxjs';
@@ -17,7 +16,7 @@ export class PopGlasseComponent extends FormDialog {
   MP_colors: additionalParam_PD[] = [];
   newType: additionalParam_PD = new additionalParam_PD();
   newColor: additionalParam_PD = new additionalParam_PD();
-  listCompanies = Object.values(companiesDirection);
+  listCompanies = [];
 
   @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
   regConfig: Groupfield[];
