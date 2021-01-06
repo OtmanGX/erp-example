@@ -7,7 +7,6 @@ import * as SalePointSelectors from '@TanglassStore/management/selectors/sale-po
 import { map, take } from 'rxjs/operators';
 import { rolesDirection } from '@tanglass-erp/store/app';
 
-rolesDirection;
 @Component({
   selector: 'ngx-dialog-employee',
   templateUrl: './dialog-employee.component.html',
@@ -18,7 +17,6 @@ export class DialogEmployeeComponent extends FormDialog {
   regConfig: FieldConfig[];
 
   salePoints$ = this.store.select(SalePointSelectors.getAllSalePoints);
-  salePoints;
 
   constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
