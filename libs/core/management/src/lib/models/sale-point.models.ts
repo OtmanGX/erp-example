@@ -1,3 +1,4 @@
+
 import { MetaData } from "libs/core/shared/metaData";
 import { UsersProfileForSalePoint } from "./user.models";
 

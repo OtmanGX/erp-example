@@ -9,9 +9,10 @@ import { AppState} from '@tanglass-erp/store/app';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEmployeeComponent } from '@TanglassUi/management/employees/dialog-employee/dialog-employee.component';
 import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
+//import { UsersProfile } from '@tanglass-erp/core/management';
+import { UserHeaders } from '@TanglassUi/management/utils/grid-headers';
+
 import { AgGridAngular } from 'ag-grid-angular';
-
-
 
 @Component({
   selector: 'tanglass-erp-employees',

@@ -9,6 +9,9 @@ import { Store } from '@ngrx/store';
 import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 
+import { SalePoint } from '@tanglass-erp/core/management'
+import { SalePointHeaders } from '@TanglassUi/management/utils/grid-headers';
+
 
 @Component({
   selector: 'ngx-sale-points',
@@ -67,6 +70,7 @@ export class SalePointsComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
+
       { field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }

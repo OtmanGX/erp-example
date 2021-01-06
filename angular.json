@@ -923,7 +923,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ag-grid/**/*.ts"],
+            "lintFilePatterns": ["libs/ag-grid/**/*.ts"]
           }
         },
         "test": {

@@ -1,3 +1,4 @@
+
 import { MetaData } from "libs/core/shared/metaData";
 import { SalePointForUser } from "./sale-point.models";
 
