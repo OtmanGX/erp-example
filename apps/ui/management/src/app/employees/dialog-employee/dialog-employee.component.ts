@@ -1,7 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
+
+import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
+import * as SalePointSelectors from '@TanglassStore/management/selectors/sale-point.selectors';
 
 @Component({
   selector: 'ngx-dialog-employee',
@@ -12,13 +16,16 @@ export class DialogEmployeeComponent extends FormDialog {
 
   regConfig: FieldConfig[];
 
+  salePoints$ = this.store.select(SalePointSelectors.getAllSalePoints);
+
   constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private store: Store) {
     super(dialogRef, data);
   }
 
   ngOnInit(): void {
-    console.log(this.data);
+    this.store.dispatch(SalePointActions.loadSalePoints());
     this.buildUserForm();
   }
 
