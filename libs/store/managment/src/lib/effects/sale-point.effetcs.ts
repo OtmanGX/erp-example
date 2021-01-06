@@ -1,4 +1,4 @@
-import { SalePointMockService } from '@TanglassCore/mock/management/salePoint.mock.service';
+import { SalePointService } from '@tanglass-erp/core/management';
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 
@@ -11,11 +11,11 @@ export class SalePointEffects {
 
   loadSalePoints$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(SalePointActions.loadSalePoints, SalePointActions.loadSalePointsByCompanies, SalePointActions.loadSalePointsByUser),
+      ofType(SalePointActions.loadSalePoints),
       mergeMap((action) =>
         this.salePointService.getAll().pipe(
           map((data) =>
-            SalePointActions.loadSalePointsSuccess({salePoints: data})
+            SalePointActions.loadSalePointsSuccess({salePoints: data.data.management_SalesPoint})
           ),
           catchError((error) =>
             of(SalePointActions.loadSalePointsFailure({ error }))
@@ -30,9 +30,9 @@ export class SalePointEffects {
     return this.actions$.pipe(
       ofType(SalePointActions.addSalePoint),
       mergeMap((action) =>
-        this.salePointService.addNewOne(action.salePoint).pipe(
+        this.salePointService.insertOne(action.salePoint).pipe(
           map((data) =>
-            SalePointActions.addSalePointSuccess({salePoint: data})
+            SalePointActions.addSalePointSuccess({salePoint: data.data.insert_management_SalesPoint_one})
           ),
           catchError((error) =>
             of(SalePointActions.addSalePointFailure({ error }))
@@ -43,22 +43,6 @@ export class SalePointEffects {
   });
 
 
-  updateSalePoint$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(SalePointActions.updateSalePoint),
-      mergeMap((action) =>
-        this.salePointService.addNewOne(action.salePoint).pipe(
-          map((data) =>
-          SalePointActions.updateSalePointSuccess({salePoint: data})
-          ),
-          catchError((error) =>
-            of(SalePointActions.updateSalePointFailure({ error }))
-          )
-        )
-      )
-    )
-  });
-
   constructor(private actions$: Actions,
-              private salePointService: SalePointMockService) {}
+              private salePointService: SalePointService) {}
 }

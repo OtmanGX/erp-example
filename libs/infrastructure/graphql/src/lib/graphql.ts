@@ -2225,51 +2225,52 @@ export type InsertCompanyMutation = (
   { __typename?: 'mutation_root' }
   & { insert_management_Company_one?: Maybe<(
     { __typename?: 'management_Company' }
-    & Pick<Management_Company, 'id' | 'name'>
+    & Pick<Management_Company, 'id' | 'name' | 'phone' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email'>
   )> }
 );
 
 export type InsertSalePointMutationVariables = Exact<{
-  phone: Scalars['String'];
-  name: Scalars['String'];
-  fax?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['String']>;
   address: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  phone: Scalars['String'];
+  fax?: Maybe<Scalars['String']>;
 }>;
 
 
 export type InsertSalePointMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_management_SalesPoint?: Maybe<(
-    { __typename?: 'management_SalesPoint_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'management_SalesPoint' }
-      & Pick<Management_SalesPoint, 'name'>
-    )> }
+  & { insert_management_SalesPoint_one?: Maybe<(
+    { __typename?: 'management_SalesPoint' }
+    & Pick<Management_SalesPoint, 'name' | 'address' | 'email' | 'fax' | 'id' | 'phone'>
   )> }
 );
 
 export type InsertUserMutationVariables = Exact<{
+  CIN?: Maybe<Scalars['String']>;
+  active?: Maybe<Scalars['Boolean']>;
   email?: Maybe<Scalars['String']>;
   firstname: Scalars['String'];
-  joinUs?: Maybe<Scalars['date']>;
   lastname: Scalars['String'];
-  password: Scalars['String'];
-  phone: Scalars['String'];
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
   username: Scalars['String'];
-  CIN: Scalars['String'];
-  active?: Maybe<Scalars['Boolean']>;
-  role?: Maybe<Management_User_Role_Enum>;
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 }>;
 
 
 export type InsertUserMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_management_userProfile?: Maybe<(
-    { __typename?: 'management_userProfile_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'management_userProfile' }
-      & Pick<Management_UserProfile, 'username'>
+  & { insert_management_userProfile_one?: Maybe<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone' | 'username'>
+    & { user_role: (
+      { __typename?: 'management_user_role' }
+      & Pick<Management_User_Role, 'name' | 'description'>
+    ), SalesPoint?: Maybe<(
+      { __typename?: 'management_SalesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'phone' | 'address'>
     )> }
   )> }
 );
@@ -2303,13 +2304,13 @@ export type GetAllUsersQuery = (
   { __typename?: 'query_root' }
   & { management_userProfile: Array<(
     { __typename?: 'management_userProfile' }
-    & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone'>
+    & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone' | 'username'>
     & { user_role: (
       { __typename?: 'management_user_role' }
-      & Pick<Management_User_Role, 'name'>
+      & Pick<Management_User_Role, 'name' | 'description'>
     ), SalesPoint?: Maybe<(
       { __typename?: 'management_SalesPoint' }
-      & Pick<Management_SalesPoint, 'name'>
+      & Pick<Management_SalesPoint, 'name' | 'address' | 'phone'>
     )> }
   )> }
 );
@@ -2375,6 +2376,13 @@ export const InsertCompanyDocument = gql`
   ) {
     id
     name
+    phone
+    CNSS
+    ICE
+    IF
+    RC
+    address
+    email
   }
 }
     `;
@@ -2390,13 +2398,16 @@ export const InsertCompanyDocument = gql`
     }
   }
 export const InsertSalePointDocument = gql`
-    mutation InsertSalePoint($phone: String!, $name: String!, $fax: String, $email: String, $address: String!) {
-  insert_management_SalesPoint(
-    objects: {address: $address, email: $email, fax: $fax, name: $name, phone: $phone}
+    mutation InsertSalePoint($address: String!, $email: String, $name: String!, $phone: String!, $fax: String) {
+  insert_management_SalesPoint_one(
+    object: {address: $address, email: $email, name: $name, phone: $phone, fax: $fax}
   ) {
-    returning {
-      name
-    }
+    name
+    address
+    email
+    fax
+    id
+    phone
   }
 }
     `;
@@ -2412,12 +2423,24 @@ export const InsertSalePointDocument = gql`
     }
   }
 export const InsertUserDocument = gql`
-    mutation InsertUser($email: String, $firstname: String!, $joinUs: date, $lastname: String!, $password: String!, $phone: String!, $username: String!, $CIN: String!, $active: Boolean = true, $role: management_user_role_enum = user) {
-  insert_management_userProfile(
-    objects: {email: $email, firstname: $firstname, joinUs: $joinUs, lastname: $lastname, password: $password, phone: $phone, username: $username, CIN: $CIN, active: $active, role: $role}
+    mutation InsertUser($CIN: String, $active: Boolean = true, $email: String, $firstname: String!, $lastname: String!, $password: String, $phone: String, $username: String!, $name: String = "", $description: String = "") {
+  insert_management_userProfile_one(
+    object: {CIN: $CIN, active: $active, email: $email, firstname: $firstname, lastname: $lastname, password: $password, phone: $phone, username: $username, user_role: {data: {description: $description, name: $name}}}
   ) {
-    returning {
-      username
+    id
+    active
+    firstname
+    lastname
+    phone
+    username
+    user_role {
+      name
+      description
+    }
+    SalesPoint {
+      name
+      phone
+      address
     }
   }
 }
@@ -2490,11 +2513,15 @@ export const GetAllUsersDocument = gql`
     firstname
     lastname
     phone
+    username
     user_role {
       name
+      description
     }
     SalesPoint {
       name
+      address
+      phone
     }
   }
 }

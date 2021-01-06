@@ -2,7 +2,7 @@ import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as CompaniesActions from '../actions/companies.actions';
-import { Companie } from '@TanglassCore/models/management/companie';
+import { Companie } from '@tanglass-erp/core/management';
 
 export const COMPANIE_FEATURE_KEY = 'companies';
 

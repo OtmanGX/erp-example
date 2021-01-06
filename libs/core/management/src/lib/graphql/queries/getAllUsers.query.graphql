@@ -1,4 +1,5 @@
 
+  
 query GetAllUsers {
   management_userProfile {
     id
@@ -6,11 +7,15 @@ query GetAllUsers {
     firstname
     lastname
     phone
+    username
     user_role {
       name
+      description
     }
     SalesPoint {
       name
+      address
+      phone
     }
   }
 }

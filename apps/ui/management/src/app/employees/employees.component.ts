@@ -2,12 +2,16 @@ import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { Component, ViewChild } from '@angular/core';
 import * as UserActions from '@TanglassStore/management/actions/user.actions';
+import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
+import * as UserSelectors from '@TanglassStore/management/selectors/user.selectors';
+import * as SalePointSelectors from '@TanglassStore/management/selectors/sale-point.selectors';
 import { AppState} from '@tanglass-erp/store/app';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEmployeeComponent } from '@TanglassUi/management/employees/dialog-employee/dialog-employee.component';
 import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
+
 import { AgGridAngular } from 'ag-grid-angular';
-import { UsersProfile } from '@tanglass-erp/core/management';
+//import { UsersProfile } from '@tanglass-erp/core/management';
 import { UserHeaders } from '@TanglassUi/management/utils/grid-headers';
 
 
@@ -21,7 +25,8 @@ export class EmployeesComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId = 'id';
-  data$: Observable<any>;
+  data$ =  this.store.select(UserSelectors.getAllUsers);
+  dataUser$ = this.store.select(SalePointSelectors.getAllSalePoints);
   @ViewChild(MainGridComponent) mainGrid;
   constructor(private store: Store<AppState>,
               public dialog: MatDialog) {
@@ -29,6 +34,7 @@ export class EmployeesComponent implements GridView {
   }
 
   ngOnInit() {
+    this.store.dispatch(UserActions.loadUsers());
   }
 
   ngAfterViewInit() {
@@ -36,6 +42,8 @@ export class EmployeesComponent implements GridView {
   }
 
   openDialog(action, data = {}) {
+    this.store.dispatch(SalePointActions.loadSalePoints());
+    this.dataUser$.subscribe( dataUser => data['SalesPoint'] = dataUser );
     const dialogRef = this.dialog.open(DialogEmployeeComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',

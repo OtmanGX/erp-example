@@ -1,4 +1,4 @@
-import { UserMockService } from '@TanglassCore/mock/management/user.mock.service';
+import { UserService } from '@tanglass-erp/core/management';
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 
@@ -11,11 +11,11 @@ export class UsersEffects {
 
   loadUsers$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(UsersActions.loadUsers, UsersActions.loadUsersByCompanies, UsersActions.loadUsersBySalePoint),
+      ofType(UsersActions.loadUsers),
       mergeMap((action) =>
         this.userService.getAll().pipe(
           map((data) =>
-          UsersActions.loadUsersSuccess({users: data})
+          UsersActions.loadUsersSuccess({users: data.data.management_userProfile})
           ),
           catchError((error) =>
             of(UsersActions.loadUsersFailure({ error }))
@@ -32,9 +32,9 @@ export class UsersEffects {
     return this.actions$.pipe(
       ofType(UsersActions.addUser),
       mergeMap((action) =>
-        this.userService.addNewOne(action.user).pipe(
+        this.userService.insertOne(action.user).pipe(
           map((data) =>
-          UsersActions.addUserSuccess({user: data})
+          UsersActions.addUserSuccess({user: data.data.insert_management_userProfile_one})
           ),
           catchError((error) =>
             of(UsersActions.addUserFailure({ error }))
@@ -45,22 +45,6 @@ export class UsersEffects {
   });
 
 
-  updateUser$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(UsersActions.updateUser),
-      mergeMap((action) =>
-        this.userService.addNewOne(action.user).pipe(
-          map((data) =>
-          UsersActions.updateUserSuccess({user: data})
-          ),
-          catchError((error) =>
-            of(UsersActions.updateUserFailure({ error }))
-          )
-        )
-      )
-    )
-  });
-
   constructor(private actions$: Actions,
-              private userService: UserMockService) {}
+              private userService: UserService) {}
 }

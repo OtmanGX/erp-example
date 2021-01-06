@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from '@tanglass-erp/store/app';
 import { EffectsModule } from '@ngrx/effects';
+import { InfrastructureGraphqlModule} from '@tanglass-erp/infrastructure/graphql';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +26,9 @@ import { EffectsModule } from '@ngrx/effects';
           ),
       },
     ]),
+    InfrastructureGraphqlModule,
     StoreModule.forRoot(reducers, {}),
+    StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot()
   ],
   bootstrap: [AppComponent],

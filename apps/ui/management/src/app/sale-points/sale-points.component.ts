@@ -2,11 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopSalePointsComponent } from '@TanglassUi/management/sale-points/pop-sale-points/pop-sale-points.component';
 import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
+import * as SalePointSelectors from '@TanglassStore/management/selectors/sale-point.selectors';
+
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
+
 import { SalePoint } from '@tanglass-erp/core/management'
 import { SalePointHeaders } from '@TanglassUi/management/utils/grid-headers';
 
@@ -21,7 +23,7 @@ export class SalePointsComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$: Observable<SalePoint[]>;
+  data$= this.store.select(SalePointSelectors.getAllSalePoints);
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {
     this.setColumnDefs();
@@ -32,6 +34,7 @@ export class SalePointsComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(SalePointActions.loadSalePoints());
   }
 
   openDialog(action, data = {}) {
@@ -68,7 +71,7 @@ export class SalePointsComponent implements GridView {
   setColumnDefs(): void {
     this.columnDefs = [
       ...SalePointHeaders,
-      { field: 'id', headerName: 'Action', type: "editColumn"},
+  { field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }
 
