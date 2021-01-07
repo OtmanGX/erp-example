@@ -8,10 +8,11 @@ import { CompaniesComponent } from '@TanglassUi/management/companies/companies.c
 import { PopCompaniesComponent } from '@TanglassUi/management/companies/pop-companies/pop-companies.component';
 import { SalePointsComponent } from '@TanglassUi/management/sale-points/sale-points.component';
 import { PopSalePointsComponent } from '@TanglassUi/management/sale-points/pop-sale-points/pop-sale-points.component';
-import { ManagementStateModule } from '@TanglassStore/management/management-state.module'
+import { ManagementStateModule } from '@TanglassStore/management/management-state.module';
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from '@tanglass-erp/store/app';
+import { SalePointCardComponent } from '@TanglassUi/management/sale-points/sale-point-card/sale-point-card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { reducers } from '@tanglass-erp/store/app';
     PopSalePointsComponent,
     PopCompaniesComponent,
     DialogEmployeeComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    SalePointCardComponent
   ],
   imports: [
     CommonModule,

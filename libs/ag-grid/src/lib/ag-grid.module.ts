@@ -15,7 +15,7 @@ export const MODULES = [
 @NgModule({
   declarations: [MainGridComponent, MatEditComponent, ExportBottomSheetComponent],
   imports: [...MODULES, AgGridModule.withComponents([MatEditComponent])],
-  exports: [...MODULES, AgGridModule, MainGridComponent, MatEditComponent],
+  exports: [...MODULES, MainGridComponent, MatEditComponent],
   providers: [DatePipe]
 })
 export class MainAgGridModule {

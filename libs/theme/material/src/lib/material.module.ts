@@ -39,6 +39,7 @@ import { TagInputComponent } from '../components/form/tag-input.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { DialogBodyComponent } from '../components/dialog-body.component';
+import { FicheCardComponent } from '../components/fiche-card/fiche-card.component';
 
 
 export const MATERIAL_MODULES = [
@@ -63,14 +64,16 @@ export const MATERIAL_MODULES = [
   MatRadioModule,
   MatDialogModule,
   MatDatepickerModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
+  MatAutocompleteModule,
+  MatChipsModule
 ];
 
 export const OTHER_MODULES = [
   CommonModule,
   ReactiveFormsModule,
   FormsModule,
-  NgxMatTagInputModule
+  NgxMatTagInputModule,
 ];
 
 export const COMPONENTS = [
@@ -87,12 +90,13 @@ export const COMPONENTS = [
 export const OTHER_COMPONENTS = [
   DynamicFieldDirective,
   DynamicFormComponent,
-  DialogBodyComponent
+  DialogBodyComponent,
+  FicheCardComponent
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, ...OTHER_COMPONENTS, DialogBodyComponent],
-  imports: [...OTHER_MODULES, ...MATERIAL_MODULES, MatAutocompleteModule, MatChipsModule],
+  declarations: [...COMPONENTS, ...OTHER_COMPONENTS],
+  imports: [...OTHER_MODULES, ...MATERIAL_MODULES],
   exports: [...OTHER_MODULES, ...MATERIAL_MODULES, ...COMPONENTS, ...OTHER_COMPONENTS],
   entryComponents: COMPONENTS,
 })
