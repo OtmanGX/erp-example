@@ -4,7 +4,7 @@
       <button (click)="triggerAction('add')" mat-icon-button matTooltip="Ajouter"  color="primary" aria-label="Example icon-button with a menu">
       <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
     </button>
-    <button [disabled]="selectedData.length===0" (click)="triggerAction('delete', getSelectedRows())" mat-icon-button matTooltip="Supprimer" color="warn">
+    <button [disabled]="selectedData.length===0" (click)="deleteDialog()" mat-icon-button matTooltip="Supprimer" color="warn">
       <mat-icon fontSet="far" fontIcon="fa-trash-alt"></mat-icon>
     </button>
     <mat-divider class="mx-3" vertical style="height:auto; display: inline"></mat-divider>

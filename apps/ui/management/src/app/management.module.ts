@@ -13,6 +13,8 @@ import { MainAgGridModule } from '@tanglass-erp/ag-grid';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from '@tanglass-erp/store/app';
 import { SalePointCardComponent } from '@TanglassUi/management/sale-points/sale-point-card/sale-point-card.component';
+import { EmployeeCardComponent } from '@TanglassUi/management/employees/employee-card/employee-card.component';
+import { CompanyCardComponent } from '@TanglassUi/management/companies/company-card/company-card.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SalePointCardComponent } from '@TanglassUi/management/sale-points/sale-
     PopCompaniesComponent,
     DialogEmployeeComponent,
     EmployeesComponent,
-    SalePointCardComponent
+    SalePointCardComponent,
+    EmployeeCardComponent,
+    CompanyCardComponent
   ],
   imports: [
     CommonModule,

@@ -12,7 +12,7 @@ import { PopCompaniesComponent } from './pop-companies/pop-companies.component';
 import { Companie } from '@tanglass-erp/core/management';
 import { CompanieHeaders } from '@TanglassUi/management/utils/grid-headers';
 @Component({
-  selector: 'ngx-companies',
+  selector: 'tanglass-erp-companies',
   templateUrl: './companies.component.html',
   styleUrls: ['./companies.component.scss'],
 })
@@ -30,12 +30,10 @@ export class CompaniesComponent implements GridView {
 
   ngOnInit(): void {
     this.store.dispatch(CompanieActions.loadCompanies());
-
   }
 
   ngAfterViewInit() {
     this.agGrid = this.mainGrid.agGrid;
-
   }
 
   openDialog(action, data = {}) {
@@ -48,7 +46,7 @@ export class CompaniesComponent implements GridView {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (action === 'add') {
-          console.log(result)
+          console.log(result);
           this.store.dispatch(CompanieActions.addCompanie({ companie: result }));
         } else {}
       }
@@ -71,7 +69,6 @@ export class CompaniesComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-
       ...CompanieHeaders,
       { field: 'id', headerName: 'Action', type: "editColumn"},
     ];

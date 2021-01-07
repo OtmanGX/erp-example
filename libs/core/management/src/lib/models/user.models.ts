@@ -1,19 +1,16 @@
-
-
-import { MetaData } from "libs/core/shared/metaData";
 import { SalePointForUser } from "./sale-point.models";
+import { MetaData } from '@tanglass-erp/core/shared';
 
 
 export interface User {
-  id:string;
-  active:boolean;
-  firstname:string;
-  lastname:string;
-  phone:string
-  username:string;
-  user_role:UserRole;
-  SalesPoint? :SalePointForUser;
-
+  id: string;
+  active: boolean;
+  firstname: string;
+  lastname: string;
+  phone: string;
+  username: string;
+  user_role: UserRole;
+  SalesPoint?: SalePointForUser;
 }
 
 
@@ -28,18 +25,17 @@ export interface DetailedUser extends MetaData {
   leftUs?: Date;
   phone: string;
   password: string;
-  SalesPointsid?: string
+  SalesPointsid?: string;
   username: string;
   user_role: UserRole;
-  SalesPoint?: SalePointForUser
-
+  SalesPoint?: SalePointForUser;
 }
 
 
 export interface UsersProfileForSalePoint {
   id: string;
   active: boolean;
-  firstname: string
+  firstname: string;
   lastname: string;
   phone: string;
   username: string;
@@ -48,8 +44,8 @@ export interface UsersProfileForSalePoint {
 
 
 
-interface UserRole{
-  name:string;
-  description:string;
+interface UserRole {
+  name: string;
+  description: string;
 }
 

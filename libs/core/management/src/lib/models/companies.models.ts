@@ -15,7 +15,6 @@ export interface Companie {
 }
 
 export interface DetailedCompanie extends MetaData {
-
     id: string;
     CNSS: string;
     ICE: string;

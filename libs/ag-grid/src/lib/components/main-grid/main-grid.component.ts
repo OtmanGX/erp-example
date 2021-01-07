@@ -7,6 +7,8 @@ import { GridObjectRenderComponentComponent } from '../grid-object-render-compon
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ExportBottomSheetComponent } from '../export-bottom-sheet/export-bottom-sheet.component';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '@tanglass-erp/material';
 
 
 @Component({
@@ -14,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './main-grid.component.html',
   styleUrls: ['./main-grid.component.scss']
 })
-export class MainGridComponent implements OnInit {
+export class MainGridComponent {
   @ViewChild('agGrid') public agGrid: AgGridAngular;
   @Input() rowData: Observable<any>;
   @Input() columnDefs: any;
@@ -129,13 +131,11 @@ export class MainGridComponent implements OnInit {
   constructor(
     public datepipe: DatePipe,
     private _bottomSheet: MatBottomSheet,
-    private route:ActivatedRoute) {
+    public dialog: MatDialog,
+    private route: ActivatedRoute) {
     this.context = {
       componentParent: this
     };
-  }
-
-  ngOnInit(): void {
   }
 
   onGridReady(params) {
@@ -152,7 +152,7 @@ export class MainGridComponent implements OnInit {
   }
 
   applyFilter(key, value) {
-    let instance = this.gridApi.getFilterInstance(key);
+    const instance = this.gridApi.getFilterInstance(key);
     instance.setModel({
       values: [value],
     });
@@ -200,5 +200,18 @@ export class MainGridComponent implements OnInit {
 
   exportExcel() {
     this.gridApi.exportDataAsExcel();
+  }
+
+  deleteDialog() {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        width: '250px',
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+        if (result)
+          this.triggerAction('delete', this.getSelectedRows());
+
+      });
   }
 }

@@ -5,6 +5,7 @@
     "component-selector": [true, "element", "tanglass-erp", "kebab-case"]
   },
   "linterOptions": {
-    "exclude": ["!**/*"]
+    "exclude": ["!**/*"],
+    "use-life-cycle-interface": true
   }
 }

@@ -7,6 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FicheCardComponent {
   @Input() title: string = '';
+  @Input() data: Array<any>;
+  @Input() gap = "50px";
   constructor() { }
 
 }

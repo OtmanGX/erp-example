@@ -1,0 +1,12 @@
+<ngx-fiche-card [title]="title" [data]="passedData">
+  <div class="ml-5" fxLayout="row" style="width: 100%"
+       *ngIf="data?.SalesPoint ; let salepoint">
+    <div class="model" fxLayout="row wrap" fxLayoutAlign="start center">
+      <div fxFlex="30">Nom</div> <div fxFlex="70">{{salepoint.name}}</div>
+      <div fxFlex="30">Téléphone</div> <div fxFlex="70">{{salepoint.phone}}</div>
+      <div fxFlex="30">Adresse</div> <div fxFlex="70">{{salepoint.address}}</div>
+    </div>
+</div>
+</ngx-fiche-card>
+
+

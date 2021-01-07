@@ -40,6 +40,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { DialogBodyComponent } from '../components/dialog-body.component';
 import { FicheCardComponent } from '../components/fiche-card/fiche-card.component';
+import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 export const MATERIAL_MODULES = [
@@ -66,7 +68,8 @@ export const MATERIAL_MODULES = [
   MatDatepickerModule,
   MatBottomSheetModule,
   MatAutocompleteModule,
-  MatChipsModule
+  MatChipsModule,
+  MatExpansionModule
 ];
 
 export const OTHER_MODULES = [
@@ -91,7 +94,8 @@ export const OTHER_COMPONENTS = [
   DynamicFieldDirective,
   DynamicFormComponent,
   DialogBodyComponent,
-  FicheCardComponent
+  FicheCardComponent,
+  ConfirmDialogComponent
 ];
 
 @NgModule({
