@@ -415,14 +415,14 @@ export enum Management_Company_Update_Column {
 export type Management_SalesPoint = {
   __typename?: 'management_SalesPoint';
   address: Scalars['String'];
-  createdAt: Scalars['timestamptz'];
+  createdAt?: Maybe<Scalars['timestamptz']>;
   createdBy?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
   fax?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   name: Scalars['String'];
   phone: Scalars['String'];
-  updatedAt: Scalars['timestamptz'];
+  updatedAt?: Maybe<Scalars['timestamptz']>;
   updatedBy?: Maybe<Scalars['uuid']>;
   /** An array relationship */
   usersProfiles: Array<Management_UserProfile>;
@@ -2208,6 +2208,45 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type DeleteCompanyMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteCompanyMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_management_Company_by_pk?: Maybe<(
+    { __typename?: 'management_Company' }
+    & Pick<Management_Company, 'name' | 'id'>
+  )> }
+);
+
+export type DeleteSalePointMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteSalePointMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_management_SalesPoint_by_pk?: Maybe<(
+    { __typename?: 'management_SalesPoint' }
+    & Pick<Management_SalesPoint, 'name' | 'id'>
+  )> }
+);
+
+export type DeleteUserMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteUserMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_management_userProfile_by_pk?: Maybe<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'username' | 'id'>
+  )> }
+);
+
 export type InsertCompanyMutationVariables = Exact<{
   CNSS: Scalars['String'];
   ICE: Scalars['String'];
@@ -2242,7 +2281,7 @@ export type InsertSalePointMutation = (
   { __typename?: 'mutation_root' }
   & { insert_management_SalesPoint_one?: Maybe<(
     { __typename?: 'management_SalesPoint' }
-    & Pick<Management_SalesPoint, 'name' | 'address' | 'email' | 'fax' | 'id' | 'phone'>
+    & Pick<Management_SalesPoint, 'id' | 'address' | 'email' | 'fax' | 'name' | 'phone'>
   )> }
 );
 
@@ -2263,6 +2302,76 @@ export type InsertUserMutationVariables = Exact<{
 export type InsertUserMutation = (
   { __typename?: 'mutation_root' }
   & { insert_management_userProfile_one?: Maybe<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone' | 'username'>
+    & { user_role: (
+      { __typename?: 'management_user_role' }
+      & Pick<Management_User_Role, 'name' | 'description'>
+    ), SalesPoint?: Maybe<(
+      { __typename?: 'management_SalesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'phone' | 'address'>
+    )> }
+  )> }
+);
+
+export type UpdateCompanyMutationVariables = Exact<{
+  CNSS?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  RC?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  id: Scalars['uuid'];
+}>;
+
+
+export type UpdateCompanyMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_management_Company_by_pk?: Maybe<(
+    { __typename?: 'management_Company' }
+    & Pick<Management_Company, 'id' | 'name' | 'phone' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email'>
+  )> }
+);
+
+export type UpdateSalePointMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  address?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  fax?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateSalePointMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_management_SalesPoint_by_pk?: Maybe<(
+    { __typename?: 'management_SalesPoint' }
+    & Pick<Management_SalesPoint, 'id' | 'address' | 'email' | 'fax' | 'name' | 'phone'>
+  )> }
+);
+
+export type UpdateUserMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  CIN?: Maybe<Scalars['String']>;
+  SalesPointsid?: Maybe<Scalars['uuid']>;
+  active?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  firstname?: Maybe<Scalars['String']>;
+  lastname?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  username?: Maybe<Scalars['String']>;
+  role?: Maybe<Management_User_Role_Enum>;
+}>;
+
+
+export type UpdateUserMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_management_userProfile_by_pk?: Maybe<(
     { __typename?: 'management_userProfile' }
     & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone' | 'username'>
     & { user_role: (
@@ -2369,6 +2478,63 @@ export type GetUserByIdQuery = (
   )> }
 );
 
+export const DeleteCompanyDocument = gql`
+    mutation DeleteCompany($id: uuid!) {
+  delete_management_Company_by_pk(id: $id) {
+    name
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteCompanyGQL extends Apollo.Mutation<DeleteCompanyMutation, DeleteCompanyMutationVariables> {
+    document = DeleteCompanyDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteSalePointDocument = gql`
+    mutation DeleteSalePoint($id: uuid!) {
+  delete_management_SalesPoint_by_pk(id: $id) {
+    name
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteSalePointGQL extends Apollo.Mutation<DeleteSalePointMutation, DeleteSalePointMutationVariables> {
+    document = DeleteSalePointDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteUserDocument = gql`
+    mutation DeleteUser($id: uuid!) {
+  delete_management_userProfile_by_pk(id: $id) {
+    username
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteUserGQL extends Apollo.Mutation<DeleteUserMutation, DeleteUserMutationVariables> {
+    document = DeleteUserDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertCompanyDocument = gql`
     mutation InsertCompany($CNSS: String!, $ICE: String!, $IF: String!, $RC: String!, $address: String!, $email: String, $name: String!, $phone: String!, $website: String) {
   insert_management_Company_one(
@@ -2402,11 +2568,11 @@ export const InsertSalePointDocument = gql`
   insert_management_SalesPoint_one(
     object: {address: $address, email: $email, name: $name, phone: $phone, fax: $fax}
   ) {
-    name
+    id
     address
     email
     fax
-    id
+    name
     phone
   }
 }
@@ -2451,6 +2617,96 @@ export const InsertUserDocument = gql`
   })
   export class InsertUserGQL extends Apollo.Mutation<InsertUserMutation, InsertUserMutationVariables> {
     document = InsertUserDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateCompanyDocument = gql`
+    mutation UpdateCompany($CNSS: String, $ICE: String, $IF: String, $RC: String, $address: String, $email: String, $name: String, $phone: String, $website: String, $id: uuid!) {
+  update_management_Company_by_pk(
+    pk_columns: {id: $id}
+    _set: {CNSS: $CNSS, ICE: $ICE, IF: $IF, RC: $RC, address: $address, email: $email, name: $name, phone: $phone, website: $website}
+  ) {
+    id
+    name
+    phone
+    CNSS
+    ICE
+    IF
+    RC
+    address
+    email
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateCompanyGQL extends Apollo.Mutation<UpdateCompanyMutation, UpdateCompanyMutationVariables> {
+    document = UpdateCompanyDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateSalePointDocument = gql`
+    mutation UpdateSalePoint($id: uuid!, $address: String = "", $email: String = "", $fax: String = "", $name: String = "", $phone: String = "") {
+  update_management_SalesPoint_by_pk(
+    pk_columns: {id: $id}
+    _set: {address: $address, email: $email, fax: $fax, id: $id, name: $name, phone: $phone}
+  ) {
+    id
+    address
+    email
+    fax
+    name
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateSalePointGQL extends Apollo.Mutation<UpdateSalePointMutation, UpdateSalePointMutationVariables> {
+    document = UpdateSalePointDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateUserDocument = gql`
+    mutation UpdateUser($id: uuid!, $CIN: String, $SalesPointsid: uuid, $active: Boolean = true, $email: String, $firstname: String, $lastname: String, $password: String, $phone: String, $username: String, $role: management_user_role_enum = admin) {
+  update_management_userProfile_by_pk(
+    pk_columns: {id: $id}
+    _set: {CIN: $CIN, SalesPointsid: $SalesPointsid, active: $active, email: $email, firstname: $firstname, lastname: $lastname, password: $password, phone: $phone, username: $username, role: $role}
+  ) {
+    id
+    active
+    firstname
+    lastname
+    phone
+    username
+    user_role {
+      name
+      description
+    }
+    SalesPoint {
+      name
+      phone
+      address
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateUserGQL extends Apollo.Mutation<UpdateUserMutation, UpdateUserMutationVariables> {
+    document = UpdateUserDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

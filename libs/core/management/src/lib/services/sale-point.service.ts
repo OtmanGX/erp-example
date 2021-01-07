@@ -5,6 +5,10 @@ import {
   InsertSalePointGQL,
   GetSalePointByIdQueryVariables,
   InsertSalePointMutationVariables,
+  UpdateSalePointGQL,
+  UpdateSalePointMutationVariables,
+  DeleteSalePointGQL,
+  DeleteSalePointMutationVariables,
 } from '@tanglass-erp/infrastructure/graphql';
 
 
@@ -17,6 +21,8 @@ export class SalePointService {
     private getAllGQL: GetAllSalesPointsGQL,
     private getByIdGQL:GetSalePointByIdGQL,
     private insertOneGQL:InsertSalePointGQL,
+    private updateOneGQL: UpdateSalePointGQL,
+    private deleteOneGQL: DeleteSalePointGQL,
   ) { }
 
   getAll(){
@@ -29,5 +35,13 @@ export class SalePointService {
   
   insertOne($createdCompany:InsertSalePointMutationVariables){
    return  this.insertOneGQL.mutate($createdCompany)
+  }
+
+  updateOne($id?: UpdateSalePointMutationVariables) {
+    return this.updateOneGQL.mutate($id)
+  }
+
+  removeOne($id?: DeleteSalePointMutationVariables) {
+    return this.deleteOneGQL.mutate($id)
   }
 }

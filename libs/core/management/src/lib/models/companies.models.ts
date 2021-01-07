@@ -14,7 +14,7 @@ export interface Companie {
     phone: string;
 }
 
-export interface DetailedCompanie extends MetaData {
+export interface DetailedCompany extends MetaData {
 
     id: string;
     CNSS: string;

@@ -1,0 +1,10 @@
+mutation UpdateSalePoint($id: uuid!, $address: String = "", $email: String = "", $fax: String = "", $name: String = "", $phone: String = "",) {
+  update_management_SalesPoint_by_pk(pk_columns: {id: $id}, _set: {address: $address, email: $email, fax: $fax, id: $id, name: $name, phone: $phone}) {
+   id
+  address
+  email
+  fax
+  name
+  phone
+  }
+}

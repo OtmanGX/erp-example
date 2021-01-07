@@ -1,4 +1,4 @@
-enum rolesDirection {
+export enum rolesDirection {
     admin = "admin",
     user= "user",
   }

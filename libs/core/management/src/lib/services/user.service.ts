@@ -5,6 +5,10 @@ import {
   InsertUserGQL,
   GetUserByIdQueryVariables,
   InsertUserMutationVariables,
+  UpdateUserGQL,
+  UpdateUserMutationVariables,
+  DeleteUserGQL,
+  DeleteUserMutationVariables,
 } from '@tanglass-erp/infrastructure/graphql';
 @Injectable({
   providedIn: 'root'
@@ -15,6 +19,8 @@ export class UserService {
     private getAllGQL: GetAllUsersGQL,
     private getByIdGQL:GetUserByIdGQL,
     private insertOneGQL:InsertUserGQL,
+    private updateOneGQL: UpdateUserGQL,
+    private deleteOneGQL: DeleteUserGQL,
   ) { }
 
   getAll(){
@@ -27,5 +33,13 @@ export class UserService {
   
   insertOne($createdCompany:InsertUserMutationVariables){
    return  this.insertOneGQL.mutate($createdCompany)
+  }
+
+  updateOne($id?: UpdateUserMutationVariables) {
+    return this.updateOneGQL.mutate($id)
+  }
+
+  removeOne($id?: DeleteUserMutationVariables) {
+    return this.deleteOneGQL.mutate($id)
   }
 }

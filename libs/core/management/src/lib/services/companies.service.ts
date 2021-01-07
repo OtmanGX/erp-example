@@ -6,10 +6,15 @@ import {
   GetCompanyByIdQuery,
   GetCompanyByIdQueryVariables,
   InsertCompanyGQL,
-  InsertCompanyMutationVariables,InsertCompanyMutation,
+  InsertCompanyMutationVariables, InsertCompanyMutation,
+  UpdateCompanyGQL,
+  UpdateCompanyMutationVariables,
+  DeleteCompanyGQL,
+  DeleteCompanyMutationVariables,
+
 } from '@tanglass-erp/infrastructure/graphql';
-import {  ApolloQueryResult,FetchResult} from '@apollo/client/core';
-import {Observable  } from "rxjs";
+import { ApolloQueryResult, FetchResult } from '@apollo/client/core';
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -17,23 +22,31 @@ import {Observable  } from "rxjs";
 export class CompaniesService {
   constructor(
     private getAllGQL: GetAllCompaniesGQL,
-    private getByIdGQL:GetCompanyByIdGQL,
-    private insertOneGQL:InsertCompanyGQL,
+    private getByIdGQL: GetCompanyByIdGQL,
+    private insertOneGQL: InsertCompanyGQL,
+    private updateOneGQL: UpdateCompanyGQL,
+    private deleteOneGQL: DeleteCompanyGQL,
+  ) { }
 
-  ) {}
 
-
-  getAll():Observable<ApolloQueryResult<GetAllCompaniesQuery>>{
+  getAll(): Observable<ApolloQueryResult<GetAllCompaniesQuery>> {
     return this.getAllGQL.watch().valueChanges
   }
   getOneById(
-    $id?: GetCompanyByIdQueryVariables,):Observable<ApolloQueryResult<GetCompanyByIdQuery>>{
-    return  this.getByIdGQL.fetch($id)
+    $id?: GetCompanyByIdQueryVariables): Observable<ApolloQueryResult<GetCompanyByIdQuery>> {
+    return this.getByIdGQL.fetch($id)
   }
-  
-  insertOne($createdCompany:InsertCompanyMutationVariables):Observable<FetchResult<InsertCompanyMutation>>{
-   return  this.insertOneGQL.mutate($createdCompany)
 
+  insertOne($createdCompany: InsertCompanyMutationVariables): Observable<FetchResult<InsertCompanyMutation>> {
+    return this.insertOneGQL.mutate($createdCompany)
+
+  }
+  updateOne($id?: UpdateCompanyMutationVariables) {
+    return this.updateOneGQL.mutate($id)
+  }
+
+  removeOne($id?: DeleteCompanyMutationVariables) {
+    return this.deleteOneGQL.mutate($id)
   }
 
 }
