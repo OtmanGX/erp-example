@@ -1,5 +1,5 @@
 import { SalePoint } from "../models/sale-point.models";
-import { User } from "../models/user.models";
+import { User,DetailedUser } from "../models/user.models";
 
 //list of Users
 export interface UsersVM {
@@ -11,7 +11,7 @@ export interface UsersVM {
 
 //User  fiche 
 export interface DetailedUserVM{
-    user:User;
+    user:DetailedUser;
     loading:boolean;
     error?:string;
 }

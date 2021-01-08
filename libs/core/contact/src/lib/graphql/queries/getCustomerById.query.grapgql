@@ -1,0 +1,34 @@
+query GetCustomerById($id: uuid!) {
+  contact_Customer_by_pk(id: $id) {
+    FAX
+    ICE
+    IF
+    code
+    createdAt
+    createdBy
+    id
+    mail
+    name
+    note
+    phone
+    updatedAt
+    updatedBy
+    website
+    addresses {
+      Address {
+        address
+        city
+        id
+        zip
+      }
+    }
+    contacts {
+      Contact {
+        code
+        name
+        note
+        phone
+      }
+    }
+  }
+}

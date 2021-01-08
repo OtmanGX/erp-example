@@ -1,4 +1,5 @@
-import { Companie } from "../models/companies.models";
+import { DeleteCompanyGQL } from "@tanglass-erp/infrastructure/graphql";
+import { Companie, DetailedCompanie } from "../models/companies.models";
 
 //list of companies
 export interface CompaniesVM {
@@ -10,7 +11,7 @@ export interface CompaniesVM {
 
 //company fiche 
 export interface DetailedCompanyVM{
-    company:Companie;
+    company:DetailedCompanie;
     loading:boolean;
     error?:string;
 }
