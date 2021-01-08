@@ -19,11 +19,11 @@ export class PopCompaniesComponent extends FormDialog {
     super(dialogRef, data);
   }
 
-  ngOnInit(): void {
-    this.buildUserForm();
+  ngOnInit() {
+    super.ngOnInit();
   }
 
-  buildUserForm(): void {
+  buildForm(): void {
     this.regConfig = [
       {type: "input", label: "Nom", inputType: "text", name: "name", value: this.data.name,
         validations: [
@@ -65,6 +65,7 @@ export class PopCompaniesComponent extends FormDialog {
           FormDialog.REQUIRED
         ]
       },
+      {type: "input", label: "Site web", inputType: "text", name: "website", value: this.data.website},
     ];
   }
 

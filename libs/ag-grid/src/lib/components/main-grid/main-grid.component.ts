@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, ViewChild, EventEmitter, AfterViewInit } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { DatePipe } from '@angular/common';
-import { MatEditComponent } from '../mat-edit/mat-edit.component';
+import { MatEditComponent } from '../mat-edit.component';
 import { Observable } from 'rxjs';
 import { GridObjectRenderComponentComponent } from '../grid-object-render-component/grid-object-render-component.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -9,6 +9,8 @@ import { ExportBottomSheetComponent } from '../export-bottom-sheet/export-bottom
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '@tanglass-erp/material';
+import { LinkComponent } from '../link.component';
+import { Operations } from '../../enums/operations';
 
 
 @Component({
@@ -17,6 +19,7 @@ import { ConfirmDialogComponent } from '@tanglass-erp/material';
   styleUrls: ['./main-grid.component.scss']
 })
 export class MainGridComponent {
+  operations = Operations;
   @ViewChild('agGrid') public agGrid: AgGridAngular;
   @Input() rowData: Observable<any>;
   @Input() columnDefs: any;
@@ -68,6 +71,7 @@ export class MainGridComponent {
     textColumn: {filter: 'agTextColumnFilter'},
     editColumn: {cellRendererFramework: MatEditComponent, filter: false},
     objectColumn: {cellRendererFramework: GridObjectRenderComponentComponent, filter: true},
+    linkColumn: {cellRendererFramework: LinkComponent, filter: 'agTextColumnFilter'},
     dateColumn: {
       filter: 'agDateColumnFilter',
       suppressMenu: true,
@@ -210,8 +214,7 @@ export class MainGridComponent {
       dialogRef.afterClosed().subscribe(result => {
         console.log(result);
         if (result)
-          this.triggerAction('delete', this.getSelectedRows());
-
+          this.triggerAction(this.operations.delete, this.getSelectedRows());
       });
   }
 }

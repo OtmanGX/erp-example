@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '@tanglass-erp/store/app';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'ngx-sale-point-card',
@@ -12,9 +15,9 @@ export class CompanyCardComponent implements OnInit {
   step = null;
   data: any;
   passedData: any;
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(value => {
-      this.id = value.id;
+  constructor(private store: Store<AppState>,
+              private location: Location) {
+      this.id = (<any>location.getState()).id;
       this.passedData = [
         {label: 'Nom', value: this.data?.name},
         {label: 'CNSS', value: this.data?.CNSS},
@@ -25,21 +28,7 @@ export class CompanyCardComponent implements OnInit {
         {label: 'Téléphone', value: this.data?.phone},
         {label: 'Site web', value: this.data?.website},
       ];
-    });
   }
-
-//   export interface DetailedCompanie extends MetaData {
-//   id: string;
-//   CNSS: string;
-//   ICE: string;
-//   IF: string;
-//   RC: string;
-//   address: string;
-//   email?: string;
-//   name: string;
-//   phone: string;
-//   website?: string;
-// }
 
   ngOnInit(): void {
   }

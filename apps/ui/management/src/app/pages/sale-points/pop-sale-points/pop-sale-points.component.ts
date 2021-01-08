@@ -7,7 +7,7 @@ import { FieldConfig, FormDialog } from '@tanglass-erp/material';
   templateUrl: './pop-sale-points.component.html',
   styleUrls: ['./pop-sale-points.component.scss'],
 })
-export class PopSalePointsComponent extends FormDialog{
+export class PopSalePointsComponent extends FormDialog {
 
   listCompanies = ['Tanglass', 'Trimar'];
   listUsers = ['Tanja Balia', 'Mabrouk', 'Souani', 'Dar Tounssi', 'Sidi Driss'];
@@ -19,11 +19,8 @@ export class PopSalePointsComponent extends FormDialog{
   ) {
     super(dialogRef, data);
   }
-  ngOnInit(): void {
-    this.buildUserForm();
-  }
 
-  buildUserForm(): void {
+  buildForm(): void {
     this.regConfig = [
       {type: "input", label: "Nom", inputType: "text", name: "name", value: this.data.name,
         validations: [
