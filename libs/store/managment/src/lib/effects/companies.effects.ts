@@ -42,6 +42,23 @@ export class CompaniesEffects {
   });
 
 
+  getCompanieById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CompaniesActions.loadCompanieById),
+      mergeMap((action) =>
+        this.companieService.getOneById(action.id).pipe(
+          map((data) =>
+          CompaniesActions.loadCompanieByIdSuccess({companie: data.data.management_Company_by_pk})
+          ),
+          catchError((error) =>
+            of(CompaniesActions.loadCompanieByIdFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+
 
 
 

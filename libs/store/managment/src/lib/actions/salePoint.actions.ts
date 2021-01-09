@@ -25,7 +25,7 @@ export const loadSalePointsFailure = createAction(
 
 export const loadSalePointById = createAction(
   '[SalePoint Card Component] Load SalePoint By Id',
-  props<{ id: string }>()
+  props<{ id: any }>()
   );
 
 

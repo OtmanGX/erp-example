@@ -25,7 +25,7 @@ export const loadUsersFailure = createAction(
 
 export const loadUserById = createAction(
   '[User Card Component] Load User By Id',
-  props<{ id: string }>()
+  props<{ id: any }>()
   );
 
 

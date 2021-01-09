@@ -44,6 +44,22 @@ export class UsersEffects {
     )
   });
 
+  getUserById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UsersActions.loadUserById),
+      mergeMap((action) =>
+        this.userService.getOneById(action.id).pipe(
+          map((data) =>
+          UsersActions.loadUserByIdSuccess({user: data.data.management_userProfile_by_pk})
+          ),
+          catchError((error) =>
+            of(UsersActions.loadUserByIdFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
 
   constructor(private actions$: Actions,
               private userService: UserService) {}
