@@ -70,7 +70,7 @@ export class DynamicFormComponent implements OnInit {
       this.submit.emit(this.form.value);
     } else {
       this.validateAllFormFields(this.form);
-      for (let group of this.groups) {
+      for (const group of this.groups) {
         this.validateAllFormFields(<FormGroup> this.form.get(group.name));
       }
     }

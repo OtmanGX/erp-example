@@ -4,8 +4,8 @@ import * as UserActions from '@TanglassStore/management/actions/user.actions';
 import * as UserSelectors from '@TanglassStore/management/selectors/user.selectors';
 import { AppState} from '@tanglass-erp/store/app';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogEmployeeComponent } from '@TanglassUi/management/employees/dialog-employee/dialog-employee.component';
-import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
+import { DialogEmployeeComponent } from '@TanglassUi/management/pages/employees/dialog-employee/dialog-employee.component';
+import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 
 import { AgGridAngular } from 'ag-grid-angular';
 import { UserHeaders } from '@TanglassUi/management/utils/grid-headers';
@@ -45,7 +45,7 @@ export class EmployeesComponent implements GridView {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (action === 'add')
+        if (action === Operations.add)
           this.store.dispatch(
             UserActions.addUser({user: result})
           );
@@ -58,11 +58,11 @@ export class EmployeesComponent implements GridView {
     // Store Action Dispatching
     console.log(event);
     switch (event.action) {
-      case 'add':
-      case 'edit':
+      case Operations.add:
+      case Operations.update:
         this.openDialog(event.action, event.data);
         break;
-      case 'delete':
+      case Operations.delete:
         break;
       // ...
     }

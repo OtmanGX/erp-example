@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { PopSalePointsComponent } from '@TanglassUi/management/sale-points/pop-sale-points/pop-sale-points.component';
+import { PopSalePointsComponent } from '@TanglassUi/management/pages/sale-points/pop-sale-points/pop-sale-points.component';
 import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
 import * as SalePointSelectors from '@TanglassStore/management/selectors/sale-point.selectors';
 import { AppState } from '@tanglass-erp/store/app';
@@ -8,6 +8,8 @@ import { Store } from '@ngrx/store';
 import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { SalePointHeaders } from '@TanglassUi/management/utils/grid-headers';
+import { Observable } from 'rxjs';
+import { Operations } from '@tanglass-erp/ag-grid';
 
 
 @Component({
@@ -20,9 +22,10 @@ export class SalePointsComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$ = this.store.select(SalePointSelectors.getAllSalePoints);
+  data$: Observable<any>;
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {
+    this.data$ = this.store.select(SalePointSelectors.getAllSalePoints);
     this.setColumnDefs();
   }
 
@@ -44,9 +47,10 @@ export class SalePointsComponent implements GridView {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Store action dispatching
-        if (action === 'add') {
+        if (action === Operations.add) {
           this.store.dispatch(SalePointActions.addSalePoint({ salePoint: result }));
-        } else {}
+        } else {
+        }
       }
     });
   }
@@ -55,11 +59,11 @@ export class SalePointsComponent implements GridView {
     // Store Action Dispatching
     console.log(event);
     switch (event.action) {
-      case 'add':
-      case 'edit':
+      case Operations.add:
+      case Operations.update:
         this.openDialog(event.action, event.data);
         break;
-      case 'delete':
+      case Operations.delete:
         break;
       // ...
     }

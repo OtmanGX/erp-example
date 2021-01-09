@@ -7,7 +7,7 @@ import * as CompanieSelectors from '@TanglassStore/management/selectors/companie
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 
-import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
+import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopCompaniesComponent } from './pop-companies/pop-companies.component';
 import { Companie } from '@tanglass-erp/core/management';
 import { CompanieHeaders } from '@TanglassUi/management/utils/grid-headers';
@@ -45,7 +45,7 @@ export class CompaniesComponent implements GridView {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (action === 'add') {
+        if (action === Operations.add) {
           console.log(result);
           this.store.dispatch(CompanieActions.addCompanie({ companie: result }));
         } else {}
@@ -57,11 +57,11 @@ export class CompaniesComponent implements GridView {
     // Store Action Dispatching
     console.log(event);
     switch (event.action) {
-      case 'add':
-      case 'edit':
+      case Operations.add:
+      case Operations.update:
         this.openDialog(event.action, event.data);
         break;
-      case 'delete':
+      case Operations.delete:
         break;
       // ...
     }

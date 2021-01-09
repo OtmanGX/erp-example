@@ -1,7 +1,7 @@
 <mat-toolbar *ngIf="withToolbar">
   <div class="ml-3">
     <span *ngIf="withCrud">
-      <button (click)="triggerAction('add')" mat-icon-button matTooltip="Ajouter"  color="primary" aria-label="Example icon-button with a menu">
+      <button (click)="triggerAction(operations.add)" mat-icon-button matTooltip="Ajouter"  color="primary" aria-label="Example icon-button with a menu">
       <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
     </button>
     <button [disabled]="selectedData.length===0" (click)="deleteDialog()" mat-icon-button matTooltip="Supprimer" color="warn">

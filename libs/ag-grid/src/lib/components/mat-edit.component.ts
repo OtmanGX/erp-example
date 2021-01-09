@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
+import { Operations } from '../enums/operations';
 
 @Component({
   selector: 'ngx-mat-edit',
@@ -21,7 +22,7 @@ export class MatEditComponent implements ICellRendererAngularComp {
   }
 
   click() {
-    this.params.context.componentParent.triggerAction('edit', this.params.data);
+    this.params.context.componentParent.triggerAction(Operations.update, this.params.data);
   }
 
   refresh(params: any): boolean {

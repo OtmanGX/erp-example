@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DetailedSalePoint, SalePoint } from '@tanglass-erp/core/management';
-import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { AppState } from '@tanglass-erp/store/app';
 
 @Component({
   selector: 'ngx-sale-point-card',
@@ -14,9 +15,11 @@ export class SalePointCardComponent implements OnInit {
   step = null;
   data: any;
   passedData: any;
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(value => {
-      this.id = value.id;
+
+  constructor(
+    private store: Store<AppState>,
+    private location: Location) {
+      this.id = (<any>location.getState()).id;
       this.passedData = [
         {label: 'Nom', value: this.data?.name},
         {label: 'Adresse', value: this.data?.address},
@@ -24,7 +27,6 @@ export class SalePointCardComponent implements OnInit {
         {label: 'Téléphone', value: this.data?.phone},
         {label: 'Les profiles d\'utilisateurs', value: ''},
       ];
-    });
   }
 
   ngOnInit(): void {
