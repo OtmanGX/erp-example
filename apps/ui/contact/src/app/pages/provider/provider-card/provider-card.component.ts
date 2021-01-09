@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '@tanglass-erp/store/app';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'ngx-provider-card',
@@ -13,13 +15,18 @@ export class ProviderCardComponent implements OnInit {
   step = null;
   data: any;
   passedData: any;
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(value => {
-      this.id = value.id;
-      this.passedData = [
-        {label: 'Nom', value: this.data?.name},
-      ];
-    });
+
+  constructor(
+    private store: Store<AppState>,
+    private location: Location
+  ) {
+    this.id = (<any>location.getState()).id;
+    this.passedData = [
+      {label: 'Nom', value: this.data?.name},
+      {label: 'Note', value: this.data?.note},
+      {label: 'Téléphone', value: this.data?.phone},
+      {label: 'E-mail', value: this.data?.mail},
+    ];
   }
 
   ngOnInit(): void {

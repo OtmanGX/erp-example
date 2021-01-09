@@ -2,9 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
-import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
+import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PopProviderComponent } from './pop-provider/pop-provider.component';
+import { ProviderHeaders } from '../../utils/grid-headers';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class ProviderComponent implements GridView {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (action === 'add') {
+        if (action === Operations.add) {
         } else {}
       }
     });
@@ -49,11 +50,11 @@ export class ProviderComponent implements GridView {
     // Store Action Dispatching
     console.log(event);
     switch (event.action) {
-      case 'add':
-      case 'edit':
+      case Operations.add:
+      case Operations.update:
         this.openDialog(event.action, event.data);
         break;
-      case 'delete':
+      case Operations.delete:
         break;
       // ...
     }
@@ -61,7 +62,8 @@ export class ProviderComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-  { field: 'id', headerName: 'Action', type: "editColumn"},
+      ...ProviderHeaders,
+      { field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }
 

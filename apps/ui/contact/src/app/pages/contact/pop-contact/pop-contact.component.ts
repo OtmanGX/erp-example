@@ -22,6 +22,20 @@ export class PopContactComponent extends FormDialog {
   }
 
   buildForm(): void {
-    this.regConfig = [];
+    this.regConfig = [
+      {type: "input", name: "code", label: "Code", inputType: "text", value: this.data.code,
+        validations: [
+          FormDialog.REQUIRED
+        ]
+      },
+      {type: "input", name: "name", label: "Nom", inputType: "text", value: this.data.name,
+        validations: [
+          FormDialog.REQUIRED
+        ]
+      },
+      {type: "input", name: "mail", label: "E-mail", inputType: "text", value: this.data.mail},
+      {type: "input", name: "note", label: "Note", inputType: "text", value: this.data.note},
+      {type: "input", name: "phone", label: "Téléphone", inputType: "text", value: this.data.phone},
+    ];
   }
 }

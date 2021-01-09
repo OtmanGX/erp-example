@@ -7,7 +7,6 @@ import { CustomerComponent } from './pages/customer/customer.component';
 import { CustomerCardComponent } from './pages/customer/customer-card/customer-card.component';
 import { PopCustomerComponent } from './pages/customer/pop-customer/pop-customer.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { Contact } from '../../../../../libs/tanglass-core/src/models/ventes/contact.model';
 import { ContactCardComponent } from './pages/contact/contact-card/contact-card.component';
 import { PopContactComponent } from './pages/contact/pop-contact/pop-contact.component';
 import { ProviderComponent } from './pages/provider/provider.component';
