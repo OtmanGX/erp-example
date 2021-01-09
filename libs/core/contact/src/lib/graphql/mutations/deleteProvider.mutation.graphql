@@ -1,0 +1,16 @@
+mutation DeleteProvider($id: uuid!, $_eq: uuid = "id") {
+  delete_contact_provider_address(where: {providerid: {_eq: $id}}) {
+    returning {
+      addressid
+    }
+  }
+ delete_contact_provider_contact(where: {providerid: {_eq: $id}}) {
+  returning {
+      providerid
+    }
+  }
+  delete_contact_provider_by_pk(id: $id) {
+    id
+  }
+  
+}

@@ -1,0 +1,16 @@
+mutation DeleteCustomer($id: uuid!) {
+   delete_contact_customer_address(where: {customerid: {_eq: $id}}) {
+    returning {
+      addressid
+    }
+  }
+   delete_contact_customer_contact(where: {customerid: {_eq: $id}}) {
+  returning {
+      customerid
+    }
+  }
+  delete_contact_customer_by_pk(id: $id) {
+    id
+  }
+ 
+}

@@ -3,18 +3,15 @@ import {
   GetAllUsersGQL,
   GetUserByIdGQL,
   InsertUserGQL,
-  GetUserByIdQueryVariables,
   InsertUserMutationVariables,
   UpdateUserGQL,
   UpdateUserMutationVariables,
   DeleteUserGQL,
-  DeleteUserMutationVariables,
 } from '@tanglass-erp/infrastructure/graphql';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
   constructor(
     private getAllGQL: GetAllUsersGQL,
     private getByIdGQL:GetUserByIdGQL,
@@ -22,6 +19,7 @@ export class UserService {
     private updateOneGQL: UpdateUserGQL,
     private deleteOneGQL: DeleteUserGQL,
   ) { 
+
   }
 
   getAll(){
@@ -35,8 +33,8 @@ export class UserService {
    return  this.insertOneGQL.mutate(createdUser)
   }
 
-  updateOne(id: string) {
-    return this.updateOneGQL.mutate({id})
+  updateOne(updatedOne: UpdateUserMutationVariables) {
+    return this.updateOneGQL.mutate(updatedOne)
   }
 
   removeOne(id: string) {

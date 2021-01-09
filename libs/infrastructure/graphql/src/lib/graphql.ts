@@ -7657,6 +7657,91 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type DeleteContactMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_contact_address?: Maybe<(
+    { __typename?: 'contact_contact_address_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_contact_address' }
+      & Pick<Contact_Contact_Address, 'contactid'>
+    )> }
+  )>, delete_contact_customer_contact?: Maybe<(
+    { __typename?: 'contact_customer_contact_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_customer_contact' }
+      & Pick<Contact_Customer_Contact, 'contactid'>
+    )> }
+  )>, delete_contact_provider_contact?: Maybe<(
+    { __typename?: 'contact_provider_contact_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_provider_contact' }
+      & Pick<Contact_Provider_Contact, 'contactid'>
+    )> }
+  )>, delete_contact_contact?: Maybe<(
+    { __typename?: 'contact_contact_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'id'>
+    )> }
+  )> }
+);
+
+export type DeleteCustomerMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteCustomerMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_customer_address?: Maybe<(
+    { __typename?: 'contact_customer_address_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_customer_address' }
+      & Pick<Contact_Customer_Address, 'addressid'>
+    )> }
+  )>, delete_contact_customer_contact?: Maybe<(
+    { __typename?: 'contact_customer_contact_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_customer_contact' }
+      & Pick<Contact_Customer_Contact, 'customerid'>
+    )> }
+  )>, delete_contact_customer_by_pk?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id'>
+  )> }
+);
+
+export type DeleteProviderMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  _eq?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type DeleteProviderMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_provider_address?: Maybe<(
+    { __typename?: 'contact_provider_address_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_provider_address' }
+      & Pick<Contact_Provider_Address, 'addressid'>
+    )> }
+  )>, delete_contact_provider_contact?: Maybe<(
+    { __typename?: 'contact_provider_contact_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_provider_contact' }
+      & Pick<Contact_Provider_Contact, 'providerid'>
+    )> }
+  )>, delete_contact_provider_by_pk?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id'>
+  )> }
+);
+
 export type GetAllContactsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -7687,6 +7772,29 @@ export type GetAllProvidersQuery = (
   & { contact_provider: Array<(
     { __typename?: 'contact_provider' }
     & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
+  )> }
+);
+
+export type GetContactByIdQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetContactByIdQuery = (
+  { __typename?: 'query_root' }
+  & { contact_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'phone' | 'note' | 'createdAt' | 'createdBy' | 'updatedBy' | 'updatedAt'>
+    & { addresses: Array<(
+      { __typename?: 'contact_contact_addresses_view' }
+      & Pick<Contact_Contact_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
+    )>, cutomers: Array<(
+      { __typename?: 'contact_contact_customers_view' }
+      & Pick<Contact_Contact_Customers_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
+    )>, providers: Array<(
+      { __typename?: 'contact_contact_providers_view' }
+      & Pick<Contact_Contact_Providers_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
+    )> }
   )> }
 );
 
@@ -8000,6 +8108,97 @@ export type GetUserByIdQuery = (
   )> }
 );
 
+export const DeleteContactDocument = gql`
+    mutation DeleteContact($id: uuid!) {
+  delete_contact_contact_address(where: {contactid: {_eq: $id}}) {
+    returning {
+      contactid
+    }
+  }
+  delete_contact_customer_contact(where: {contactid: {_eq: $id}}) {
+    returning {
+      contactid
+    }
+  }
+  delete_contact_provider_contact(where: {contactid: {_eq: $id}}) {
+    returning {
+      contactid
+    }
+  }
+  delete_contact_contact(where: {id: {_eq: $id}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteContactGQL extends Apollo.Mutation<DeleteContactMutation, DeleteContactMutationVariables> {
+    document = DeleteContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteCustomerDocument = gql`
+    mutation DeleteCustomer($id: uuid!) {
+  delete_contact_customer_address(where: {customerid: {_eq: $id}}) {
+    returning {
+      addressid
+    }
+  }
+  delete_contact_customer_contact(where: {customerid: {_eq: $id}}) {
+    returning {
+      customerid
+    }
+  }
+  delete_contact_customer_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteCustomerGQL extends Apollo.Mutation<DeleteCustomerMutation, DeleteCustomerMutationVariables> {
+    document = DeleteCustomerDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteProviderDocument = gql`
+    mutation DeleteProvider($id: uuid!, $_eq: uuid = "id") {
+  delete_contact_provider_address(where: {providerid: {_eq: $id}}) {
+    returning {
+      addressid
+    }
+  }
+  delete_contact_provider_contact(where: {providerid: {_eq: $id}}) {
+    returning {
+      providerid
+    }
+  }
+  delete_contact_provider_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteProviderGQL extends Apollo.Mutation<DeleteProviderMutation, DeleteProviderMutationVariables> {
+    document = DeleteProviderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAllContactsDocument = gql`
     query GetAllContacts {
   contact_contact {
@@ -8065,6 +8264,55 @@ export const GetAllProvidersDocument = gql`
   })
   export class GetAllProvidersGQL extends Apollo.Query<GetAllProvidersQuery, GetAllProvidersQueryVariables> {
     document = GetAllProvidersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetContactByIdDocument = gql`
+    query GetContactById($id: uuid!) {
+  contact_contact_by_pk(id: $id) {
+    id
+    code
+    mail
+    name
+    phone
+    note
+    addresses {
+      id
+      address
+      city
+      zip
+    }
+    cutomers {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    providers {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    createdAt
+    createdBy
+    updatedBy
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetContactByIdGQL extends Apollo.Query<GetContactByIdQuery, GetContactByIdQueryVariables> {
+    document = GetContactByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

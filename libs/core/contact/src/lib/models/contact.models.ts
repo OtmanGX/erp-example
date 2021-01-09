@@ -1,5 +1,6 @@
 import { MetaData } from "libs/core/shared/metaData";
 import { Address } from "./address.model";
+import { PartialContact } from "./shared.models";
 export interface Contact{
     id:string;
     code:string;
@@ -17,5 +18,7 @@ export interface DetailedContact extends MetaData{
     note:string;
     phone:string;
     addresses:Address[];
+    customers:PartialContact[];
+    provider:PartialContact[];
 }
 
