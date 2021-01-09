@@ -26,27 +26,29 @@ export class CompaniesService {
     private insertOneGQL: InsertCompanyGQL,
     private updateOneGQL: UpdateCompanyGQL,
     private deleteOneGQL: DeleteCompanyGQL,
-  ) { }
+    
+  ) {
+    
+   }
 
 
-  getAll(): Observable<ApolloQueryResult<GetAllCompaniesQuery>> {
+  getAll() {
     return this.getAllGQL.watch().valueChanges
   }
-  getOneById(
-    $id?: GetCompanyByIdQueryVariables): Observable<ApolloQueryResult<GetCompanyByIdQuery>> {
-    return this.getByIdGQL.fetch($id)
+  getOneById(id: string) {
+    return this.getByIdGQL.fetch({ id })
   }
 
-  insertOne($createdCompany: InsertCompanyMutationVariables): Observable<FetchResult<InsertCompanyMutation>> {
-    return this.insertOneGQL.mutate($createdCompany)
+  insertOne(createdCompany: InsertCompanyMutationVariables) {
+    return this.insertOneGQL.mutate(createdCompany)
 
   }
-  updateOne($id?: UpdateCompanyMutationVariables) {
-    return this.updateOneGQL.mutate($id)
+  updateOne(id: string) {
+    return this.updateOneGQL.mutate({id})
   }
 
-  removeOne($id?: DeleteCompanyMutationVariables) {
-    return this.deleteOneGQL.mutate($id)
+  removeOne(id: string) {
+    return this.deleteOneGQL.mutate({id})
   }
 
 }

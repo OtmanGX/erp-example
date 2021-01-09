@@ -1,3 +1,4 @@
+
 query GetSalePointById($id: uuid!) {
   management_SalesPoint_by_pk(id: $id) {
     id
