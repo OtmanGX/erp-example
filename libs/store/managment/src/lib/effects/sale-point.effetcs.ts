@@ -42,6 +42,22 @@ export class SalePointEffects {
     )
   });
 
+  getSalePointById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SalePointActions.loadSalePointById),
+      mergeMap((action) =>
+        this.salePointService.getOneById(action.id).pipe(
+          map((data) =>
+            SalePointActions.loadSalePointByIdSuccess({salePoint: data.data.management_SalesPoint_by_pk})
+          ),
+          catchError((error) =>
+            of(SalePointActions.addSalePointFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
 
   constructor(private actions$: Actions,
               private salePointService: SalePointService) {}
