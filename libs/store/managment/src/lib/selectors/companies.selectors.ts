@@ -36,6 +36,11 @@ export const getCompanieEntities = createSelector(
   (state: State) => selectEntities(state)
 );
 
+export const getSelectedCompanie = createSelector(
+  getCompaniesState,
+  (state: State) => state.selectedCompanie
+);
+
 
 /********************************************************************************* */
 /****RETURN COMPANIES VIEW MODEL */

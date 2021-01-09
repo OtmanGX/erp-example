@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DetailedSalePoint, SalePoint } from '@tanglass-erp/core/management';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

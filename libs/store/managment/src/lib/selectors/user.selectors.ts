@@ -34,6 +34,11 @@ export const getUsersEntities = createSelector(
   (state: State) => selectEntities(state)
 );
 
+export const getSelectedUser = createSelector(
+  getUsersState,
+  (state: State) => state.selectedUser
+);
+
 /********************************************************************************* */
 /****RETURN USERS VIEW MODEL */
 /********************************************************************************* */

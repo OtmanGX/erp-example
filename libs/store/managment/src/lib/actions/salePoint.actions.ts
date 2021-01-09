@@ -1,4 +1,4 @@
-import { SalePoint } from '@tanglass-erp/core/management';
+import { SalePoint, DetailedSalePoint } from '@tanglass-erp/core/management';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -18,6 +18,26 @@ export const loadSalePointsFailure = createAction(
   props<{ error: any }>()
 );
 
+
+/****************************************************************** */
+/*****LOAD INDIVIDUAL SalePoint ** */
+/****************************************************************** */
+
+export const loadSalePointById = createAction(
+  '[SalePoint Card Component] Load SalePoint By Id',
+  props<{ id: string }>()
+  );
+
+
+export const loadSalePointByIdSuccess = createAction(
+  '[SalePoint Effect] Load SalePoint By Id Success',
+  props<{ salePoint: DetailedSalePoint }>()
+);
+
+export const loadSalePointByIdFailure = createAction(
+  '[SalePoint Effect] Load SalePoint By Id Failure',
+  props<{ error: any }>()
+);
 
 
 

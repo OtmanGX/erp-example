@@ -8,10 +8,12 @@ import * as fromCompanies from './reducers/companies.reducer';
 import * as fromSalePoints from './reducers/sale-point-reducer';
 import * as fromUsers from './reducers/users.reducer';
 import { SalePointEffects } from './effects/sale-point.effetcs';
+import { CoreManagementModule } from '@tanglass-erp/core/management'
 
 @NgModule({
   imports: [
     CommonModule,
+    CoreManagementModule,
     StoreModule.forFeature(
       fromSalePoints.SALE_POINT_FEATURE_KEY,
       fromSalePoints.reducer,
