@@ -23,25 +23,26 @@ export class SalePointService {
     private insertOneGQL:InsertSalePointGQL,
     private updateOneGQL: UpdateSalePointGQL,
     private deleteOneGQL: DeleteSalePointGQL,
-  ) { }
+  ) {
+
+   }
 
   getAll(){
     return this.getAllGQL.watch().valueChanges
   }
-  getOneById(
-    $id?: GetSalePointByIdQueryVariables,){
-    return  this.getByIdGQL.fetch($id)
+  getOneById(id: string,){
+    return  this.getByIdGQL.fetch({id})
   }
   
-  insertOne($createdSalePoint:InsertSalePointMutationVariables){
-   return  this.insertOneGQL.mutate($createdSalePoint)
+  insertOne(createdSalePoint:InsertSalePointMutationVariables){
+   return  this.insertOneGQL.mutate(createdSalePoint)
   }
 
-  updateOne($id?: UpdateSalePointMutationVariables) {
-    return this.updateOneGQL.mutate($id)
+  updateOne(id: string) {
+    return this.updateOneGQL.mutate({id})
   }
 
-  removeOne($id?: DeleteSalePointMutationVariables) {
-    return this.deleteOneGQL.mutate($id)
+  removeOne(id: string) {
+    return this.deleteOneGQL.mutate({id})
   }
 }

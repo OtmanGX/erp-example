@@ -21,25 +21,25 @@ export class UserService {
     private insertOneGQL:InsertUserGQL,
     private updateOneGQL: UpdateUserGQL,
     private deleteOneGQL: DeleteUserGQL,
-  ) { }
+  ) { 
+  }
 
   getAll(){
     return this.getAllGQL.watch().valueChanges
   }
-  getOneById(
-    $id?: GetUserByIdQueryVariables,){
-    return  this.getByIdGQL.fetch($id)
+  getOneById(id: string){
+    return  this.getByIdGQL.fetch({id})
   }
   
-  insertOne($createdUser:InsertUserMutationVariables){
-   return  this.insertOneGQL.mutate($createdUser)
+  insertOne(createdUser:InsertUserMutationVariables){
+   return  this.insertOneGQL.mutate(createdUser)
   }
 
-  updateOne($id?: UpdateUserMutationVariables) {
-    return this.updateOneGQL.mutate($id)
+  updateOne(id: string) {
+    return this.updateOneGQL.mutate({id})
   }
 
-  removeOne($id?: DeleteUserMutationVariables) {
-    return this.deleteOneGQL.mutate($id)
+  removeOne(id: string) {
+    return this.deleteOneGQL.mutate({id})
   }
 }
