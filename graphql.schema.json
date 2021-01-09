@@ -2017,7 +2017,23 @@
         "description": "columns and relationships of \"contact.Contact\"",
         "fields": [
           {
-            "name": "addresses",
+            "name": "code",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contact_addresses",
             "description": "An array relationship",
             "args": [
               {
@@ -2108,7 +2124,7 @@
             "deprecationReason": null
           },
           {
-            "name": "addresses_aggregate",
+            "name": "contact_addresses_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -2191,47 +2207,7 @@
             "deprecationReason": null
           },
           {
-            "name": "code",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "date",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdBy",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "customers",
+            "name": "contact_customers",
             "description": "An array relationship",
             "args": [
               {
@@ -2322,7 +2298,7 @@
             "deprecationReason": null
           },
           {
-            "name": "customers_aggregate",
+            "name": "contact_customers_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -2405,79 +2381,7 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "uuid",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "mail",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "note",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "providers",
+            "name": "contact_providers",
             "description": "An array relationship",
             "args": [
               {
@@ -2568,7 +2472,7 @@
             "deprecationReason": null
           },
           {
-            "name": "providers_aggregate",
+            "name": "contact_providers_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -2644,6 +2548,102 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "contact_provider_contact_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "date",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdBy",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "mail",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "note",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "phone",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -2932,7 +2932,17 @@
             "defaultValue": null
           },
           {
-            "name": "addresses",
+            "name": "code",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "contact_addresses",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -2942,11 +2952,21 @@
             "defaultValue": null
           },
           {
-            "name": "code",
+            "name": "contact_customers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
+              "name": "contact_customer_contact_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "contact_providers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_provider_contact_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -2967,16 +2987,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "uuid_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "customers",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_customer_contact_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -3027,16 +3037,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "providers",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_provider_contact_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -3102,7 +3102,17 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "addresses",
+            "name": "code",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "contact_addresses",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -3112,11 +3122,21 @@
             "defaultValue": null
           },
           {
-            "name": "code",
+            "name": "contact_customers",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "INPUT_OBJECT",
+              "name": "contact_customer_contact_arr_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "contact_providers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_provider_contact_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -3137,16 +3157,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "uuid",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "customers",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_customer_contact_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -3197,16 +3207,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "providers",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_provider_contact_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -3870,7 +3870,17 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "addresses_aggregate",
+            "name": "code",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "contact_addresses_aggregate",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -3880,11 +3890,21 @@
             "defaultValue": null
           },
           {
-            "name": "code",
+            "name": "contact_customers_aggregate",
             "description": null,
             "type": {
-              "kind": "ENUM",
-              "name": "order_by",
+              "kind": "INPUT_OBJECT",
+              "name": "contact_customer_contact_aggregate_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "contact_providers_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_provider_contact_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -3905,16 +3925,6 @@
             "type": {
               "kind": "ENUM",
               "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "customers_aggregate",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_customer_contact_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -3965,16 +3975,6 @@
             "type": {
               "kind": "ENUM",
               "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "providers_aggregate",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_provider_contact_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -4336,7 +4336,43 @@
             "deprecationReason": null
           },
           {
-            "name": "addresses",
+            "name": "code",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "date",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdBy",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customer_addresses",
             "description": "An array relationship",
             "args": [
               {
@@ -4427,7 +4463,7 @@
             "deprecationReason": null
           },
           {
-            "name": "addresses_aggregate",
+            "name": "customer_addresses_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -4510,19 +4546,7 @@
             "deprecationReason": null
           },
           {
-            "name": "code",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "contacts",
+            "name": "customer_contacts",
             "description": "An array relationship",
             "args": [
               {
@@ -4613,7 +4637,7 @@
             "deprecationReason": null
           },
           {
-            "name": "contacts_aggregate",
+            "name": "customer_contacts_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -4691,30 +4715,6 @@
                 "name": "contact_customer_contact_aggregate",
                 "ofType": null
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "date",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdBy",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5127,31 +5127,11 @@
             "defaultValue": null
           },
           {
-            "name": "addresses",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_customer_address_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "code",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "contacts",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_customer_contact_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -5172,6 +5152,26 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "uuid_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "customer_addresses",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_customer_address_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "customer_contacts",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_customer_contact_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -5345,31 +5345,11 @@
             "defaultValue": null
           },
           {
-            "name": "addresses",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_customer_address_arr_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "code",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "contacts",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_customer_contact_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -5390,6 +5370,26 @@
             "type": {
               "kind": "SCALAR",
               "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "customer_addresses",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_customer_address_arr_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "customer_contacts",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_customer_contact_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -6319,31 +6319,11 @@
             "defaultValue": null
           },
           {
-            "name": "addresses_aggregate",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_customer_address_aggregate_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "code",
             "description": null,
             "type": {
               "kind": "ENUM",
               "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "contacts_aggregate",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_customer_contact_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -6364,6 +6344,26 @@
             "type": {
               "kind": "ENUM",
               "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "customer_addresses_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_customer_address_aggregate_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "customer_contacts_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_customer_contact_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -6825,7 +6825,127 @@
         "description": "columns and relationships of \"contact.Provider\"",
         "fields": [
           {
-            "name": "addresses",
+            "name": "code",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "date",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdBy",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "mail",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "note",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "phone",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "provider_addresses",
             "description": "An array relationship",
             "args": [
               {
@@ -6916,7 +7036,7 @@
             "deprecationReason": null
           },
           {
-            "name": "addresses_aggregate",
+            "name": "provider_addresses_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -6999,23 +7119,7 @@
             "deprecationReason": null
           },
           {
-            "name": "code",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "contacts",
+            "name": "provider_contacts",
             "description": "An array relationship",
             "args": [
               {
@@ -7106,7 +7210,7 @@
             "deprecationReason": null
           },
           {
-            "name": "contacts_aggregate",
+            "name": "provider_contacts_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -7182,106 +7286,6 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "contact_provider_contact_aggregate",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "date",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdBy",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "mail",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "note",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               }
             },
@@ -7570,31 +7574,11 @@
             "defaultValue": null
           },
           {
-            "name": "addresses",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_provider_address_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "code",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "contacts",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_provider_contact_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -7670,6 +7654,26 @@
             "defaultValue": null
           },
           {
+            "name": "provider_addresses",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_provider_address_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "provider_contacts",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_provider_contact_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "updatedAt",
             "description": null,
             "type": {
@@ -7725,6 +7729,12 @@
             "description": "unique or primary key constraint",
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "Provider_pkey",
+            "description": "unique or primary key constraint",
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -7736,31 +7746,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "addresses",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_provider_address_arr_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "code",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "contacts",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_provider_contact_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -7831,6 +7821,26 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "provider_addresses",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_provider_address_arr_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "provider_contacts",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_provider_contact_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -8494,31 +8504,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "addresses_aggregate",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_provider_address_aggregate_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "code",
             "description": null,
             "type": {
               "kind": "ENUM",
               "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "contacts_aggregate",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "contact_provider_contact_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -8594,6 +8584,26 @@
             "defaultValue": null
           },
           {
+            "name": "provider_addresses_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_provider_address_aggregate_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "provider_contacts_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "contact_provider_contact_aggregate_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "updatedAt",
             "description": null,
             "type": {
@@ -8610,6 +8620,31 @@
               "kind": "ENUM",
               "name": "order_by",
               "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "contact_Provider_pk_columns_input",
+        "description": "primary key columns input for table: \"contact.Provider\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
+                "ofType": null
+              }
             },
             "defaultValue": null
           }
@@ -21341,6 +21376,33 @@
             "deprecationReason": null
           },
           {
+            "name": "delete_contact_Provider_by_pk",
+            "description": "delete single row from the table: \"contact.Provider\"",
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "uuid",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "contact_Provider",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "delete_contact_contact_address",
             "description": "delete data from the table: \"contact.contact_address\"",
             "args": [
@@ -23379,6 +23441,43 @@
             "type": {
               "kind": "OBJECT",
               "name": "contact_Provider_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "update_contact_Provider_by_pk",
+            "description": "update single row of the table: \"contact.Provider\"",
+            "args": [
+              {
+                "name": "_set",
+                "description": "sets the columns of the filtered rows to the given values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "contact_Provider_set_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "pk_columns",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "contact_Provider_pk_columns_input",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "contact_Provider",
               "ofType": null
             },
             "isDeprecated": false,
@@ -26987,6 +27086,33 @@
             "deprecationReason": null
           },
           {
+            "name": "contact_Provider_by_pk",
+            "description": "fetch data from the table: \"contact.Provider\" using primary key columns",
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "uuid",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "contact_Provider",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "contact_contact_address",
             "description": "fetch data from the table: \"contact.contact_address\"",
             "args": [
@@ -29850,6 +29976,33 @@
                 "name": "contact_Provider_aggregate",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contact_Provider_by_pk",
+            "description": "fetch data from the table: \"contact.Provider\" using primary key columns",
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "uuid",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "contact_Provider",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null

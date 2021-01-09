@@ -13,6 +13,7 @@ export interface Provider{
 
 export interface DetailedProvider extends MetaData{
     id:string;
+    code:string;
     name:string;
     note:string;
     phone:string;

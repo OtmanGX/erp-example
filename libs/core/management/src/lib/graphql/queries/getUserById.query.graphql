@@ -1,5 +1,5 @@
-query getUserById($_id: uuid) {
-  management_userProfile(where: {id: {_eq: $_id}}) {
+query getUserById($id: uuid!) {
+  management_userProfile_by_pk(id: $id)  {
     CIN
     active
     createdAt

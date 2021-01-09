@@ -1,5 +1,5 @@
-query GetSalePointById($_id: uuid!) {
-  management_SalesPoint(where: {id: {_eq: $_id}}) {
+query GetSalePointById($id: uuid!) {
+  management_SalesPoint_by_pk(id: $id) {
     address
     email
     fax

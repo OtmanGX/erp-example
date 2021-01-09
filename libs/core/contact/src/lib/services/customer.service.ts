@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
   GetAllCustomersGQL,
-  InsertCustomerGQL,
-  InsertCustomerMutationVariables,
-  
-  
+
+
 } from '@tanglass-erp/infrastructure/graphql';
 
 @Injectable({
@@ -14,14 +12,23 @@ export class CustomerService {
 
   constructor(
     private getAllGQL: GetAllCustomersGQL,
-    private insertOneGQL:InsertCustomerGQL,
+    /** 
+    private getByIdGQL: GetCustomerByIdGQL,
+    private insertOneGQL: InsertCustomerGQL,*/
   ) { }
 
-  getAll(){
+  getAll() {
     return this.getAllGQL.watch().valueChanges
   }
+/** 
+  getOneById(
+    $id?: GetCustomerByIdQueryVariables,) {
+    return this.getByIdGQL.fetch($id)
+  }
 
-  insertOne($createdOne:InsertCustomerMutationVariables){
-    return  this.insertOneGQL.mutate($createdOne)
-   }
+  insertOne($createdOne: InsertCustomerMutationVariables) {
+    return this.insertOneGQL.mutate($createdOne)
+  }
+*/
+
 }

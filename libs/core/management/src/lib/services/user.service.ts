@@ -31,8 +31,8 @@ export class UserService {
     return  this.getByIdGQL.fetch($id)
   }
   
-  insertOne($createdCompany:InsertUserMutationVariables){
-   return  this.insertOneGQL.mutate($createdCompany)
+  insertOne($createdUser:InsertUserMutationVariables){
+   return  this.insertOneGQL.mutate($createdUser)
   }
 
   updateOne($id?: UpdateUserMutationVariables) {

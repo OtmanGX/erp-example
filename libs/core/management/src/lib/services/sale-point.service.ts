@@ -33,8 +33,8 @@ export class SalePointService {
     return  this.getByIdGQL.fetch($id)
   }
   
-  insertOne($createdCompany:InsertSalePointMutationVariables){
-   return  this.insertOneGQL.mutate($createdCompany)
+  insertOne($createdSalePoint:InsertSalePointMutationVariables){
+   return  this.insertOneGQL.mutate($createdSalePoint)
   }
 
   updateOne($id?: UpdateSalePointMutationVariables) {
