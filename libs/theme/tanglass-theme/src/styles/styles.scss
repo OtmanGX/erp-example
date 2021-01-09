@@ -1,33 +1,37 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
 
-// themes - our custom or/and out of the box themes
-@import 'themes';
+@import '~ag-grid-enterprise/dist/styles/ag-grid.css';
+@import '~ag-grid-enterprise/dist/styles/ag-theme-alpine.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import 'spacing';
+@import 'colors';
+@import 'palette';
 
-// framework component themes (styles tied to theme variables)
-@import '../../../../../node_modules/@nebular/theme/styles/globals';
-@import '../../../../../node_modules/@nebular/auth/styles/all';
+.panel-dialog .mat-dialog-container {
+  padding-top: 0;
+  padding-right: 0;
+  padding-left: 0;
+  margin: 0;
+}
 
-@import '../../../../../node_modules/bootstrap/scss/functions';
-@import '../../../../../node_modules/bootstrap/scss/variables';
-@import '../../../../../node_modules/bootstrap/scss/mixins';
-@import '../../../../../node_modules/bootstrap/scss/grid';
 
-// loading progress bar theme
-@import 'pace.theme';
+.full-width-table {
+  width: 100%;
+}
 
-@import 'layout';
-@import 'overrides';
+.mat-column-select {
+  overflow: initial;
+}
 
-// install the framework and custom global styles
-@include nb-install() {
+.mat-row:hover {
+  background-color: #f3f2f2;
+}
 
-  // framework global styles
-  @include nb-theme-global();
-  @include nb-auth-global();
+.mat-icon {
+  font-size: 24px;
+}
 
-  @include ngx-layout();
-  // loading progress bar
-  @include ngx-pace-theme();
-
-  @include nb-overrides();
-};
+.excel {
+  color: green;
+}
