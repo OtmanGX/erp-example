@@ -1,5 +1,5 @@
 query GetAllProviders {
-  contact_Provider {
+  contact_provider {
     id
     code
     name

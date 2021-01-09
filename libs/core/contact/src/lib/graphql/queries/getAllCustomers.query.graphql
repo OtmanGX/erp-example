@@ -1,5 +1,5 @@
 query GetAllCustomers {
-  contact_Customer {
+  contact_customer {
     id
     ICE
     IF
