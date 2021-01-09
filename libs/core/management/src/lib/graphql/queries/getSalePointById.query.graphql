@@ -1,24 +1,26 @@
+
 query GetSalePointById($id: uuid!) {
   management_SalesPoint_by_pk(id: $id) {
+    id
     address
     email
     fax
-    id
     name
     phone
-    createdBy
-    updatedBy
     usersProfiles {
-      firstname
       id
+      active
+      firstname
       lastname
       phone
       username
       user_role {
         name
+        description
       }
-      active
     }
+    createdBy
+    updatedBy
     createdAt
     updatedAt
   }
