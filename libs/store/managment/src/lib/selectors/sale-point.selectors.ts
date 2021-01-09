@@ -34,6 +34,11 @@ export const getSalePointsEntities = createSelector(
   (state: State) => selectEntities(state)
 );
 
+export const getSelectedSalePoint = createSelector(
+  getSalePointsState,
+  (state: State) => state.selectedSalePoint
+);
+
 /********************************************************************************* */
 /****RETURN SALEPOINTS VIEW MODEL */
 /********************************************************************************* */

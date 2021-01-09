@@ -10,8 +10,6 @@ import { SalePointsComponent } from '@TanglassUi/management/sale-points/sale-poi
 import { PopSalePointsComponent } from '@TanglassUi/management/sale-points/pop-sale-points/pop-sale-points.component';
 import { ManagementStateModule } from '@TanglassStore/management/management-state.module';
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
-import { StoreModule } from '@ngrx/store';
-import { reducers } from '@tanglass-erp/store/app';
 import { SalePointCardComponent } from '@TanglassUi/management/sale-points/sale-point-card/sale-point-card.component';
 import { EmployeeCardComponent } from '@TanglassUi/management/employees/employee-card/employee-card.component';
 import { CompanyCardComponent } from '@TanglassUi/management/companies/company-card/company-card.component';

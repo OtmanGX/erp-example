@@ -1,4 +1,4 @@
-import { Companie } from '@tanglass-erp/core/management';
+import { Companie, DetailedCompanie } from '@tanglass-erp/core/management';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -15,6 +15,27 @@ export const loadCompaniesSuccess = createAction(
 
 export const loadCompaniesFailure = createAction(
   '[Companie Effect] Load Companies Failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****LOAD INDIVIDUAL COMPANIE ** */
+/****************************************************************** */
+
+export const loadCompanieById = createAction(
+  '[Companie Card Component] Load Companie By Id',
+  props<{ id: any }>()
+  );
+
+
+export const loadCompanieByIdSuccess = createAction(
+  '[Companie Effect] Load Companie By Id Success',
+  props<{ companie: DetailedCompanie }>()
+);
+
+export const loadCompanieByIdFailure = createAction(
+  '[Companie Effect] Load Companie By Id Failure',
   props<{ error: any }>()
 );
 

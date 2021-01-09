@@ -1,4 +1,4 @@
-import { User } from '@tanglass-erp/core/management';
+import { User, DetailedUser } from '@tanglass-erp/core/management';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -15,6 +15,27 @@ export const loadUsersSuccess = createAction(
 
 export const loadUsersFailure = createAction(
   '[User Effect] Load Users Failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****LOAD INDIVIDUAL User ** */
+/****************************************************************** */
+
+export const loadUserById = createAction(
+  '[User Card Component] Load User By Id',
+  props<{ id: string }>()
+  );
+
+
+export const loadUserByIdSuccess = createAction(
+  '[User Effect] Load User By Id Success',
+  props<{ user: DetailedUser }>()
+);
+
+export const loadUserByIdFailure = createAction(
+  '[User Effect] Load User By Id Failure',
   props<{ error: any }>()
 );
 
