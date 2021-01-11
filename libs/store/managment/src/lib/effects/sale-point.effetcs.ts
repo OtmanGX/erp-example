@@ -51,7 +51,23 @@ export class SalePointEffects {
             SalePointActions.loadSalePointByIdSuccess({salePoint: data.data.management_SalesPoint_by_pk})
           ),
           catchError((error) =>
-            of(SalePointActions.addSalePointFailure({ error }))
+            of(SalePointActions.loadSalePointByIdFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  updateSalePoint$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SalePointActions.updateSalePoint),
+      mergeMap((action) =>
+        this.salePointService.updateOne(action.salePoint.id).pipe(
+          map((data) =>
+            SalePointActions.updateSalePointSuccess({salePoint: data.data.update_management_SalesPoint_by_pk})
+          ),
+          catchError((error) =>
+            of(SalePointActions.updateSalePointFailure({ error }))
           )
         )
       )

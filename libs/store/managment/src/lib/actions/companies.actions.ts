@@ -75,3 +75,20 @@ export const updateCompanieFailure = createAction(
   '[Companie Effect] Update Companie failure',
   props<{ error: any }>()
 );
+
+/****************************************************************** */
+/*****REMOVE INDIVIDUAL COMPANIE ** */
+/****************************************************************** */
+
+export const removeCompanie = createAction(
+  '[Companies Component] Update Companie',
+  props<{ companie: Companie }>()
+);
+export const removeCompanieSuccess = createAction(
+  '[Companie Effect] Update Companie Success',
+  props<{ companie: Companie }>()
+);
+export const removeCompanieFailure = createAction(
+  '[Companie Effect] Update Companie failure',
+  props<{ error: any }>()
+);

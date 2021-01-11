@@ -60,6 +60,22 @@ export class UsersEffects {
     )
   });
 
+  updateUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UsersActions.updateUser),
+      mergeMap((action) =>
+        this.userService.updateOne(action.user.id).pipe(
+          map((data) =>
+          UsersActions.updateUserSuccess({user: data.data.update_management_userProfile_by_pk})
+          ),
+          catchError((error) =>
+            of(UsersActions.updateUserFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
 
   constructor(private actions$: Actions,
               private userService: UserService) {}

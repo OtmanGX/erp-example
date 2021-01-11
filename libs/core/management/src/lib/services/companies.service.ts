@@ -26,9 +26,9 @@ export class CompaniesService {
     private insertOneGQL: InsertCompanyGQL,
     private updateOneGQL: UpdateCompanyGQL,
     private deleteOneGQL: DeleteCompanyGQL,
-    
+
   ) {
-    
+
    }
 
 
@@ -36,6 +36,7 @@ export class CompaniesService {
     return this.getAllGQL.watch().valueChanges
   }
   getOneById(id: string) {
+    console.log(id);
     return this.getByIdGQL.fetch({ id })
   }
 

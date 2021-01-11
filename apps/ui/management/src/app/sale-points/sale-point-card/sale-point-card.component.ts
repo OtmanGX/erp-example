@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+
+import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
+import * as SalePointSelectors from '@TanglassStore/management/selectors/sale-point.selectors';
 
 @Component({
   selector: 'ngx-sale-point-card',
@@ -11,22 +15,24 @@ export class SalePointCardComponent implements OnInit {
   gap = "50px";
   id: string;
   step = null;
-  data: any;
+  data = this.store.select(SalePointSelectors.getSelectedSalePoint);
   passedData: any;
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(value => {
-      this.id = value.id;
-      this.passedData = [
-        {label: 'Nom', value: this.data?.name},
-        {label: 'Adresse', value: this.data?.address},
-        {label: 'E-mail', value: this.data?.email},
-        {label: 'Téléphone', value: this.data?.phone},
-        {label: 'Les profiles d\'utilisateurs', value: ''},
-      ];
-    });
+  constructor(private route: ActivatedRoute, private store: Store) {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(value => {
+      this.store.dispatch(SalePointActions.loadSalePointById(value.id));
+      this.data.subscribe( data => {
+        this.passedData = [
+          {label: 'Nom', value: data?.name},
+          {label: 'Adresse', value: data?.address},
+          {label: 'E-mail', value: data?.email},
+          {label: 'Téléphone', value: data?.phone},
+          {label: 'Les profiles d\'utilisateurs', value: ''},
+        ];
+      })
+    })
   }
 
   // Steps

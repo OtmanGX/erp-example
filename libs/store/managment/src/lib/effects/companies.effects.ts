@@ -58,6 +58,22 @@ export class CompaniesEffects {
     )
   });
 
+  updateCompanie$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CompaniesActions.updateCompanie),
+      mergeMap((action) =>
+        this.companieService.updateOne(action.companie.id).pipe(
+          map((data) =>
+          CompaniesActions.updateCompanieSuccess({companie: data.data.update_management_Company_by_pk})
+          ),
+          catchError((error) =>
+            of(CompaniesActions.updateCompanieFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
 
 
 

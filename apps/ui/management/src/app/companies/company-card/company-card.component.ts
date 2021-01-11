@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+
+import * as CompanieActions from '@TanglassStore/management/actions/companies.actions';
+import * as CompanieSelectors from '@TanglassStore/management/selectors/companies.selectors';
 
 @Component({
   selector: 'ngx-sale-point-card',
@@ -10,38 +14,28 @@ export class CompanyCardComponent implements OnInit {
   title = "Profile d'utilisateur";
   id: string;
   step = null;
-  data: any;
+  data =  this.store.select(CompanieSelectors.getSelectedCompanie);
   passedData: any;
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(value => {
-      this.id = value.id;
-      this.passedData = [
-        {label: 'Nom', value: this.data?.name},
-        {label: 'CNSS', value: this.data?.CNSS},
-        {label: 'ICE', value: this.data?.ICE},
-        {label: 'IF', value: this.data?.IF},
-        {label: 'RC', value: this.data?.RC},
-        {label: 'E-mail', value: this.data?.email},
-        {label: 'Téléphone', value: this.data?.phone},
-        {label: 'Site web', value: this.data?.website},
-      ];
-    });
+  constructor(private route: ActivatedRoute, private store: Store) {
   }
 
-//   export interface DetailedCompanie extends MetaData {
-//   id: string;
-//   CNSS: string;
-//   ICE: string;
-//   IF: string;
-//   RC: string;
-//   address: string;
-//   email?: string;
-//   name: string;
-//   phone: string;
-//   website?: string;
-// }
-
   ngOnInit(): void {
+    this.route.params.subscribe(value => {
+      console.log(value.id);
+      this.store.dispatch(CompanieActions.loadCompanieById({id: value.id}));
+    });
+    this.data.subscribe( data => {
+      this.passedData = [
+        {label: 'Nom', value: data?.name},
+        {label: 'CNSS', value: data?.CNSS},
+        {label: 'ICE', value: data?.ICE},
+        {label: 'IF', value: data?.IF},
+        {label: 'RC', value: data?.RC},
+        {label: 'E-mail', value: data?.email},
+        {label: 'Téléphone', value: data?.phone},
+        {label: 'Site web', value: data?.website},
+      ];
+    })
   }
 
 }
