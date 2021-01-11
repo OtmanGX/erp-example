@@ -62,7 +62,7 @@ export class SalePointEffects {
     return this.actions$.pipe(
       ofType(SalePointActions.updateSalePoint),
       mergeMap((action) =>
-        this.salePointService.updateOne(action.salePoint.id).pipe(
+        this.salePointService.updateOne(action.salePoint).pipe(
           map((data) =>
             SalePointActions.updateSalePointSuccess({salePoint: data.data.update_management_SalesPoint_by_pk})
           ),
