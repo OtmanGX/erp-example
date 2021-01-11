@@ -11,6 +11,7 @@ query GetCustomerById($id: uuid!) {
     note
     website
     FAX
+    type 
    
     addresses {
       id

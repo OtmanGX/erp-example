@@ -14,11 +14,11 @@ export interface SalePoint {
 export interface DetailedSalePoint extends MetaData {
   id: string;
   address: string;
-  email: string;
-  fax: string;
+  email?: string;
+  fax?: string;
   name: string;
   phone: string;
-  usersProfiles: UsersProfileForSalePoint[];
+  usersProfiles?: UsersProfileForSalePoint[];
 }
 
 

@@ -6,5 +6,6 @@ query GetAllContacts {
     name
     note
     phone
+     
   }
 }

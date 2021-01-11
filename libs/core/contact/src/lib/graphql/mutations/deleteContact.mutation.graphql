@@ -1,22 +1,8 @@
 mutation DeleteContact($id: uuid!) {
-  delete_contact_contact_address(where: {contactid: {_eq: $id}}) {
-    returning {
-      contactid
-    }
+ 
+  delete_contact_contact_by_pk(id: $id) {
+    id
+    name
   }
-  delete_contact_customer_contact(where: {contactid: {_eq: $id}}) {
-    returning {
-      contactid
-    }
-  }
-  delete_contact_provider_contact(where: {contactid: {_eq: $id}}) {
-    returning {
-      contactid
-    }
-  }
-  delete_contact_contact(where: {id: {_eq: $id}}) {
-    returning {
-      id
-    }
-  }
+ 
 }

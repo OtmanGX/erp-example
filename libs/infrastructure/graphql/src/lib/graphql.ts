@@ -334,7 +334,7 @@ export type Contact_Contact = {
   addresses: Array<Contact_Contact_Addresses_View>;
   /** An aggregated array relationship */
   addresses_aggregate: Contact_Contact_Addresses_View_Aggregate;
-  code: Scalars['String'];
+  code?: Maybe<Scalars['String']>;
   /** An array relationship */
   contact_addresses: Array<Contact_Contact_Address>;
   /** An aggregated array relationship */
@@ -1376,9 +1376,9 @@ export enum Contact_Contact_Update_Column {
 /** columns and relationships of "contact.customer" */
 export type Contact_Customer = {
   __typename?: 'contact_customer';
-  FAX: Scalars['String'];
-  ICE: Scalars['String'];
-  IF: Scalars['String'];
+  FAX?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
   /** An array relationship */
   addresses: Array<Contact_Customer_Addresses_View>;
   /** An aggregated array relationship */
@@ -1399,13 +1399,14 @@ export type Contact_Customer = {
   /** An aggregated array relationship */
   customer_contacts_aggregate: Contact_Customer_Contact_Aggregate;
   id: Scalars['uuid'];
-  mail: Scalars['String'];
+  mail?: Maybe<Scalars['String']>;
   name: Scalars['String'];
-  note: Scalars['String'];
+  note?: Maybe<Scalars['String']>;
   phone: Scalars['String'];
+  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
-  website: Scalars['String'];
+  website?: Maybe<Scalars['String']>;
 };
 
 
@@ -1810,6 +1811,7 @@ export type Contact_Customer_Bool_Exp = {
   name?: Maybe<String_Comparison_Exp>;
   note?: Maybe<String_Comparison_Exp>;
   phone?: Maybe<String_Comparison_Exp>;
+  type?: Maybe<String_Comparison_Exp>;
   updatedAt?: Maybe<Date_Comparison_Exp>;
   updatedBy?: Maybe<Uuid_Comparison_Exp>;
   website?: Maybe<String_Comparison_Exp>;
@@ -1817,10 +1819,6 @@ export type Contact_Customer_Bool_Exp = {
 
 /** unique or primary key constraints on table "contact.customer" */
 export enum Contact_Customer_Constraint {
-  /** unique or primary key constraint */
-  CustomerIceKey = 'Customer_ICE_key',
-  /** unique or primary key constraint */
-  CustomerIfKey = 'Customer_IF_key',
   /** unique or primary key constraint */
   CustomerCodeKey = 'Customer_code_key',
   /** unique or primary key constraint */
@@ -2167,6 +2165,7 @@ export type Contact_Customer_Insert_Input = {
   name?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
   website?: Maybe<Scalars['String']>;
@@ -2186,6 +2185,7 @@ export type Contact_Customer_Max_Fields = {
   name?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
   website?: Maybe<Scalars['String']>;
@@ -2204,6 +2204,7 @@ export type Contact_Customer_Max_Order_By = {
   name?: Maybe<Order_By>;
   note?: Maybe<Order_By>;
   phone?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
   website?: Maybe<Order_By>;
@@ -2223,6 +2224,7 @@ export type Contact_Customer_Min_Fields = {
   name?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
   website?: Maybe<Scalars['String']>;
@@ -2241,6 +2243,7 @@ export type Contact_Customer_Min_Order_By = {
   name?: Maybe<Order_By>;
   note?: Maybe<Order_By>;
   phone?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
   website?: Maybe<Order_By>;
@@ -2285,6 +2288,7 @@ export type Contact_Customer_Order_By = {
   name?: Maybe<Order_By>;
   note?: Maybe<Order_By>;
   phone?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
   website?: Maybe<Order_By>;
@@ -2320,6 +2324,8 @@ export enum Contact_Customer_Select_Column {
   /** column name */
   Phone = 'phone',
   /** column name */
+  Type = 'type',
+  /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
   UpdatedBy = 'updatedBy',
@@ -2340,6 +2346,7 @@ export type Contact_Customer_Set_Input = {
   name?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
   website?: Maybe<Scalars['String']>;
@@ -2370,6 +2377,8 @@ export enum Contact_Customer_Update_Column {
   /** column name */
   Phone = 'phone',
   /** column name */
+  Type = 'type',
+  /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
   UpdatedBy = 'updatedBy',
@@ -2380,11 +2389,12 @@ export enum Contact_Customer_Update_Column {
 /** columns and relationships of "contact.provider" */
 export type Contact_Provider = {
   __typename?: 'contact_provider';
+  FAX?: Maybe<Scalars['String']>;
   /** An array relationship */
   addresses: Array<Contact_Provider_Addresses_View>;
   /** An aggregated array relationship */
   addresses_aggregate: Contact_Provider_Addresses_View_Aggregate;
-  code: Scalars['String'];
+  code?: Maybe<Scalars['String']>;
   /** An array relationship */
   contacts: Array<Contact_Provider_Contacts_View>;
   /** An aggregated array relationship */
@@ -2392,9 +2402,9 @@ export type Contact_Provider = {
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
   id: Scalars['uuid'];
-  mail: Scalars['String'];
+  mail?: Maybe<Scalars['String']>;
   name: Scalars['String'];
-  note: Scalars['String'];
+  note?: Maybe<Scalars['String']>;
   phone: Scalars['String'];
   /** An array relationship */
   provider_addresses: Array<Contact_Provider_Address>;
@@ -2406,6 +2416,7 @@ export type Contact_Provider = {
   provider_contacts_aggregate: Contact_Provider_Contact_Aggregate;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
 };
 
 
@@ -2792,6 +2803,7 @@ export type Contact_Provider_Arr_Rel_Insert_Input = {
 
 /** Boolean expression to filter rows from the table "contact.provider". All fields are combined with a logical 'AND'. */
 export type Contact_Provider_Bool_Exp = {
+  FAX?: Maybe<String_Comparison_Exp>;
   _and?: Maybe<Array<Maybe<Contact_Provider_Bool_Exp>>>;
   _not?: Maybe<Contact_Provider_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Contact_Provider_Bool_Exp>>>;
@@ -2809,6 +2821,7 @@ export type Contact_Provider_Bool_Exp = {
   provider_contacts?: Maybe<Contact_Provider_Contact_Bool_Exp>;
   updatedAt?: Maybe<Date_Comparison_Exp>;
   updatedBy?: Maybe<Uuid_Comparison_Exp>;
+  website?: Maybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "contact.provider" */
@@ -3148,6 +3161,7 @@ export enum Contact_Provider_Contacts_View_Select_Column {
 
 /** input type for inserting data into table "contact.provider" */
 export type Contact_Provider_Insert_Input = {
+  FAX?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
@@ -3160,11 +3174,13 @@ export type Contact_Provider_Insert_Input = {
   provider_contacts?: Maybe<Contact_Provider_Contact_Arr_Rel_Insert_Input>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type Contact_Provider_Max_Fields = {
   __typename?: 'contact_provider_max_fields';
+  FAX?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
@@ -3175,10 +3191,12 @@ export type Contact_Provider_Max_Fields = {
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "contact.provider" */
 export type Contact_Provider_Max_Order_By = {
+  FAX?: Maybe<Order_By>;
   code?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
@@ -3189,11 +3207,13 @@ export type Contact_Provider_Max_Order_By = {
   phone?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Contact_Provider_Min_Fields = {
   __typename?: 'contact_provider_min_fields';
+  FAX?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
@@ -3204,10 +3224,12 @@ export type Contact_Provider_Min_Fields = {
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "contact.provider" */
 export type Contact_Provider_Min_Order_By = {
+  FAX?: Maybe<Order_By>;
   code?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
@@ -3218,6 +3240,7 @@ export type Contact_Provider_Min_Order_By = {
   phone?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "contact.provider" */
@@ -3244,6 +3267,7 @@ export type Contact_Provider_On_Conflict = {
 
 /** ordering options when selecting data from "contact.provider" */
 export type Contact_Provider_Order_By = {
+  FAX?: Maybe<Order_By>;
   addresses_aggregate?: Maybe<Contact_Provider_Addresses_View_Aggregate_Order_By>;
   code?: Maybe<Order_By>;
   contacts_aggregate?: Maybe<Contact_Provider_Contacts_View_Aggregate_Order_By>;
@@ -3258,6 +3282,7 @@ export type Contact_Provider_Order_By = {
   provider_contacts_aggregate?: Maybe<Contact_Provider_Contact_Aggregate_Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "contact.provider" */
@@ -3268,6 +3293,8 @@ export type Contact_Provider_Pk_Columns_Input = {
 /** select columns of table "contact.provider" */
 export enum Contact_Provider_Select_Column {
   /** column name */
+  Fax = 'FAX',
+  /** column name */
   Code = 'code',
   /** column name */
   CreatedAt = 'createdAt',
@@ -3286,11 +3313,14 @@ export enum Contact_Provider_Select_Column {
   /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
-  UpdatedBy = 'updatedBy'
+  UpdatedBy = 'updatedBy',
+  /** column name */
+  Website = 'website'
 }
 
 /** input type for updating data in table "contact.provider" */
 export type Contact_Provider_Set_Input = {
+  FAX?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
@@ -3301,10 +3331,13 @@ export type Contact_Provider_Set_Input = {
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "contact.provider" */
 export enum Contact_Provider_Update_Column {
+  /** column name */
+  Fax = 'FAX',
   /** column name */
   Code = 'code',
   /** column name */
@@ -3324,7 +3357,9 @@ export enum Contact_Provider_Update_Column {
   /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
-  UpdatedBy = 'updatedBy'
+  UpdatedBy = 'updatedBy',
+  /** column name */
+  Website = 'website'
 }
 
 
@@ -3970,7 +4005,6 @@ export type Management_UserProfile = {
   joinUs?: Maybe<Scalars['date']>;
   lastname: Scalars['String'];
   leftUs?: Maybe<Scalars['date']>;
-  password: Scalars['String'];
   phone: Scalars['String'];
   role: Management_User_Role_Enum;
   updatedAt: Scalars['timestamptz'];
@@ -4032,7 +4066,6 @@ export type Management_UserProfile_Bool_Exp = {
   joinUs?: Maybe<Date_Comparison_Exp>;
   lastname?: Maybe<String_Comparison_Exp>;
   leftUs?: Maybe<Date_Comparison_Exp>;
-  password?: Maybe<String_Comparison_Exp>;
   phone?: Maybe<String_Comparison_Exp>;
   role?: Maybe<Management_User_Role_Enum_Comparison_Exp>;
   updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
@@ -4047,8 +4080,6 @@ export enum Management_UserProfile_Constraint {
   UserProfileCinKey = 'userProfile_CIN_key',
   /** unique or primary key constraint */
   UserProfileEmailKey = 'userProfile_email_key',
-  /** unique or primary key constraint */
-  UserProfilePasswordKey = 'userProfile_password_key',
   /** unique or primary key constraint */
   UserProfilePhoneKey = 'userProfile_phone_key',
   /** unique or primary key constraint */
@@ -4071,7 +4102,6 @@ export type Management_UserProfile_Insert_Input = {
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   role?: Maybe<Management_User_Role_Enum>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
@@ -4093,7 +4123,6 @@ export type Management_UserProfile_Max_Fields = {
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -4112,7 +4141,6 @@ export type Management_UserProfile_Max_Order_By = {
   joinUs?: Maybe<Order_By>;
   lastname?: Maybe<Order_By>;
   leftUs?: Maybe<Order_By>;
-  password?: Maybe<Order_By>;
   phone?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
@@ -4132,7 +4160,6 @@ export type Management_UserProfile_Min_Fields = {
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -4151,7 +4178,6 @@ export type Management_UserProfile_Min_Order_By = {
   joinUs?: Maybe<Order_By>;
   lastname?: Maybe<Order_By>;
   leftUs?: Maybe<Order_By>;
-  password?: Maybe<Order_By>;
   phone?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
@@ -4194,7 +4220,6 @@ export type Management_UserProfile_Order_By = {
   joinUs?: Maybe<Order_By>;
   lastname?: Maybe<Order_By>;
   leftUs?: Maybe<Order_By>;
-  password?: Maybe<Order_By>;
   phone?: Maybe<Order_By>;
   role?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
@@ -4233,8 +4258,6 @@ export enum Management_UserProfile_Select_Column {
   /** column name */
   LeftUs = 'leftUs',
   /** column name */
-  Password = 'password',
-  /** column name */
   Phone = 'phone',
   /** column name */
   Role = 'role',
@@ -4259,7 +4282,6 @@ export type Management_UserProfile_Set_Input = {
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   role?: Maybe<Management_User_Role_Enum>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
@@ -4291,8 +4313,6 @@ export enum Management_UserProfile_Update_Column {
   Lastname = 'lastname',
   /** column name */
   LeftUs = 'leftUs',
-  /** column name */
-  Password = 'password',
   /** column name */
   Phone = 'phone',
   /** column name */
@@ -7664,30 +7684,9 @@ export type DeleteContactMutationVariables = Exact<{
 
 export type DeleteContactMutation = (
   { __typename?: 'mutation_root' }
-  & { delete_contact_contact_address?: Maybe<(
-    { __typename?: 'contact_contact_address_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_contact_address' }
-      & Pick<Contact_Contact_Address, 'contactid'>
-    )> }
-  )>, delete_contact_customer_contact?: Maybe<(
-    { __typename?: 'contact_customer_contact_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_customer_contact' }
-      & Pick<Contact_Customer_Contact, 'contactid'>
-    )> }
-  )>, delete_contact_provider_contact?: Maybe<(
-    { __typename?: 'contact_provider_contact_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_provider_contact' }
-      & Pick<Contact_Provider_Contact, 'contactid'>
-    )> }
-  )>, delete_contact_contact?: Maybe<(
-    { __typename?: 'contact_contact_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_contact' }
-      & Pick<Contact_Contact, 'id'>
-    )> }
+  & { delete_contact_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'name'>
   )> }
 );
 
@@ -7698,47 +7697,144 @@ export type DeleteCustomerMutationVariables = Exact<{
 
 export type DeleteCustomerMutation = (
   { __typename?: 'mutation_root' }
-  & { delete_contact_customer_address?: Maybe<(
-    { __typename?: 'contact_customer_address_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_customer_address' }
-      & Pick<Contact_Customer_Address, 'addressid'>
-    )> }
-  )>, delete_contact_customer_contact?: Maybe<(
-    { __typename?: 'contact_customer_contact_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_customer_contact' }
-      & Pick<Contact_Customer_Contact, 'customerid'>
-    )> }
-  )>, delete_contact_customer_by_pk?: Maybe<(
+  & { delete_contact_customer_by_pk?: Maybe<(
     { __typename?: 'contact_customer' }
-    & Pick<Contact_Customer, 'id'>
+    & Pick<Contact_Customer, 'id' | 'name'>
   )> }
 );
 
 export type DeleteProviderMutationVariables = Exact<{
   id: Scalars['uuid'];
-  _eq?: Maybe<Scalars['uuid']>;
 }>;
 
 
 export type DeleteProviderMutation = (
   { __typename?: 'mutation_root' }
-  & { delete_contact_provider_address?: Maybe<(
-    { __typename?: 'contact_provider_address_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_provider_address' }
-      & Pick<Contact_Provider_Address, 'addressid'>
-    )> }
-  )>, delete_contact_provider_contact?: Maybe<(
-    { __typename?: 'contact_provider_contact_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_provider_contact' }
-      & Pick<Contact_Provider_Contact, 'providerid'>
-    )> }
-  )>, delete_contact_provider_by_pk?: Maybe<(
+  & { delete_contact_provider_by_pk?: Maybe<(
     { __typename?: 'contact_provider' }
-    & Pick<Contact_Provider, 'id'>
+    & Pick<Contact_Provider, 'id' | 'name'>
+  )> }
+);
+
+export type InsertContactMutationVariables = Exact<{
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  addresses?: Array<Contact_Contact_Address_Insert_Input>;
+}>;
+
+
+export type InsertContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_contact_one?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
+  )> }
+);
+
+export type InsertCustomerMutationVariables = Exact<{
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  addresses?: Array<Contact_Customer_Address_Insert_Input>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+}>;
+
+
+export type InsertCustomerMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_customer_one?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
+  )> }
+);
+
+export type InsertProviderMutationVariables = Exact<{
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  data?: Array<Contact_Provider_Address_Insert_Input>;
+}>;
+
+
+export type InsertProviderMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_provider_one?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
+  )> }
+);
+
+export type UpdateContactMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_contact_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
+  )> }
+);
+
+export type UpdateCustomerMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateCustomerMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_contact_customer_by_pk?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
+  )> }
+);
+
+export type UpdateProviderMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateProviderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_contact_provider_by_pk?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
   )> }
 );
 
@@ -7760,7 +7856,7 @@ export type GetAllCustomersQuery = (
   { __typename?: 'query_root' }
   & { contact_customer: Array<(
     { __typename?: 'contact_customer' }
-    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone'>
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
   )> }
 );
 
@@ -7807,7 +7903,7 @@ export type GetCustomerByIdQuery = (
   { __typename?: 'query_root' }
   & { contact_customer_by_pk?: Maybe<(
     { __typename?: 'contact_customer' }
-    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'note' | 'website' | 'FAX' | 'createdAt' | 'createdBy' | 'updatedBy' | 'updatedAt'>
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'note' | 'website' | 'FAX' | 'type' | 'createdAt' | 'createdBy' | 'updatedBy' | 'updatedAt'>
     & { addresses: Array<(
       { __typename?: 'contact_customer_addresses_view' }
       & Pick<Contact_Customer_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
@@ -7827,7 +7923,7 @@ export type GetProviderByIdQuery = (
   { __typename?: 'query_root' }
   & { contact_provider_by_pk?: Maybe<(
     { __typename?: 'contact_provider' }
-    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy'>
+    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail' | 'FAX' | 'website' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy'>
     & { contacts: Array<(
       { __typename?: 'contact_provider_contacts_view' }
       & Pick<Contact_Provider_Contacts_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
@@ -7918,14 +8014,13 @@ export type InsertSalePointMutation = (
 export type InsertUserMutationVariables = Exact<{
   CIN?: Maybe<Scalars['String']>;
   active?: Maybe<Scalars['Boolean']>;
+  SalesPointsid?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
-  firstname: Scalars['String'];
-  lastname: Scalars['String'];
-  password?: Maybe<Scalars['String']>;
+  firstname?: Maybe<Scalars['String']>;
+  lastname?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
-  username: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
+  username?: Maybe<Scalars['String']>;
+  role?: Maybe<Management_User_Role_Enum>;
 }>;
 
 
@@ -7992,7 +8087,6 @@ export type UpdateUserMutationVariables = Exact<{
   email?: Maybe<Scalars['String']>;
   firstname?: Maybe<Scalars['String']>;
   lastname?: Maybe<Scalars['String']>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
   role?: Maybe<Management_User_Role_Enum>;
@@ -8097,7 +8191,7 @@ export type GetUserByIdQuery = (
   { __typename?: 'query_root' }
   & { management_userProfile_by_pk?: Maybe<(
     { __typename?: 'management_userProfile' }
-    & Pick<Management_UserProfile, 'CIN' | 'active' | 'createdAt' | 'createdBy' | 'email' | 'firstname' | 'id' | 'joinUs' | 'lastname' | 'leftUs' | 'phone' | 'password' | 'role' | 'updatedAt' | 'updatedBy' | 'username' | 'SalesPointsid'>
+    & Pick<Management_UserProfile, 'CIN' | 'active' | 'createdAt' | 'createdBy' | 'email' | 'firstname' | 'id' | 'joinUs' | 'lastname' | 'leftUs' | 'phone' | 'role' | 'updatedAt' | 'updatedBy' | 'username' | 'SalesPointsid'>
     & { user_role: (
       { __typename?: 'management_user_role' }
       & Pick<Management_User_Role, 'description' | 'name'>
@@ -8110,25 +8204,9 @@ export type GetUserByIdQuery = (
 
 export const DeleteContactDocument = gql`
     mutation DeleteContact($id: uuid!) {
-  delete_contact_contact_address(where: {contactid: {_eq: $id}}) {
-    returning {
-      contactid
-    }
-  }
-  delete_contact_customer_contact(where: {contactid: {_eq: $id}}) {
-    returning {
-      contactid
-    }
-  }
-  delete_contact_provider_contact(where: {contactid: {_eq: $id}}) {
-    returning {
-      contactid
-    }
-  }
-  delete_contact_contact(where: {id: {_eq: $id}}) {
-    returning {
-      id
-    }
+  delete_contact_contact_by_pk(id: $id) {
+    id
+    name
   }
 }
     `;
@@ -8145,18 +8223,9 @@ export const DeleteContactDocument = gql`
   }
 export const DeleteCustomerDocument = gql`
     mutation DeleteCustomer($id: uuid!) {
-  delete_contact_customer_address(where: {customerid: {_eq: $id}}) {
-    returning {
-      addressid
-    }
-  }
-  delete_contact_customer_contact(where: {customerid: {_eq: $id}}) {
-    returning {
-      customerid
-    }
-  }
   delete_contact_customer_by_pk(id: $id) {
     id
+    name
   }
 }
     `;
@@ -8172,19 +8241,10 @@ export const DeleteCustomerDocument = gql`
     }
   }
 export const DeleteProviderDocument = gql`
-    mutation DeleteProvider($id: uuid!, $_eq: uuid = "id") {
-  delete_contact_provider_address(where: {providerid: {_eq: $id}}) {
-    returning {
-      addressid
-    }
-  }
-  delete_contact_provider_contact(where: {providerid: {_eq: $id}}) {
-    returning {
-      providerid
-    }
-  }
+    mutation DeleteProvider($id: uuid!) {
   delete_contact_provider_by_pk(id: $id) {
     id
+    name
   }
 }
     `;
@@ -8194,6 +8254,163 @@ export const DeleteProviderDocument = gql`
   })
   export class DeleteProviderGQL extends Apollo.Mutation<DeleteProviderMutation, DeleteProviderMutationVariables> {
     document = DeleteProviderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertContactDocument = gql`
+    mutation InsertContact($code: String, $mail: String, $name: String, $note: String, $phone: String, $addresses: [contact_contact_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}}) {
+  insert_contact_contact_one(
+    object: {code: $code, mail: $mail, name: $name, note: $note, phone: $phone, contact_addresses: {data: $addresses}}
+  ) {
+    id
+    code
+    mail
+    name
+    note
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertContactGQL extends Apollo.Mutation<InsertContactMutation, InsertContactMutationVariables> {
+    document = InsertContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertCustomerDocument = gql`
+    mutation InsertCustomer($FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $addresses: [contact_customer_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}}, $ICE: String, $IF: String, $type: String) {
+  insert_contact_customer_one(
+    object: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, customer_addresses: {data: $addresses}, ICE: $ICE, IF: $IF, type: $type}
+  ) {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    type
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertCustomerGQL extends Apollo.Mutation<InsertCustomerMutation, InsertCustomerMutationVariables> {
+    document = InsertCustomerDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertProviderDocument = gql`
+    mutation InsertProvider($FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $data: [contact_provider_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}}) {
+  insert_contact_provider_one(
+    object: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, provider_addresses: {data: $data}}
+  ) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertProviderGQL extends Apollo.Mutation<InsertProviderMutation, InsertProviderMutationVariables> {
+    document = InsertProviderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateContactDocument = gql`
+    mutation updateContact($id: uuid!, $code: String, $mail: String, $name: String, $note: String, $phone: String) {
+  update_contact_contact_by_pk(
+    pk_columns: {id: $id}
+    _set: {code: $code, mail: $mail, name: $name, note: $note, phone: $phone}
+  ) {
+    id
+    code
+    mail
+    name
+    note
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateContactGQL extends Apollo.Mutation<UpdateContactMutation, UpdateContactMutationVariables> {
+    document = UpdateContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateCustomerDocument = gql`
+    mutation updateCustomer($id: uuid!, $FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $ICE: String, $IF: String, $type: String) {
+  update_contact_customer_by_pk(
+    pk_columns: {id: $id}
+    _set: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, ICE: $ICE, IF: $IF, type: $type}
+  ) {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    type
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateCustomerGQL extends Apollo.Mutation<UpdateCustomerMutation, UpdateCustomerMutationVariables> {
+    document = UpdateCustomerDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateProviderDocument = gql`
+    mutation updateProvider($id: uuid!, $FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String) {
+  update_contact_provider_by_pk(
+    pk_columns: {id: $id}
+    _set: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website}
+  ) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateProviderGQL extends Apollo.Mutation<UpdateProviderMutation, UpdateProviderMutationVariables> {
+    document = UpdateProviderDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -8232,6 +8449,7 @@ export const GetAllCustomersDocument = gql`
     mail
     name
     phone
+    type
   }
 }
     `;
@@ -8331,6 +8549,7 @@ export const GetCustomerByIdDocument = gql`
     note
     website
     FAX
+    type
     addresses {
       id
       address
@@ -8372,6 +8591,8 @@ export const GetProviderByIdDocument = gql`
     note
     phone
     mail
+    FAX
+    website
     contacts {
       id
       code
@@ -8515,9 +8736,9 @@ export const InsertSalePointDocument = gql`
     }
   }
 export const InsertUserDocument = gql`
-    mutation InsertUser($CIN: String, $active: Boolean = true, $email: String, $firstname: String!, $lastname: String!, $password: String, $phone: String, $username: String!, $name: String = "", $description: String = "") {
+    mutation InsertUser($CIN: String, $active: Boolean = true, $SalesPointsid: uuid, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = user) {
   insert_management_userProfile_one(
-    object: {CIN: $CIN, active: $active, email: $email, firstname: $firstname, lastname: $lastname, password: $password, phone: $phone, username: $username, user_role: {data: {description: $description, name: $name}}}
+    object: {CIN: $CIN, active: $active, SalesPointsid: $SalesPointsid, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}
   ) {
     id
     active
@@ -8604,10 +8825,10 @@ export const UpdateSalePointDocument = gql`
     }
   }
 export const UpdateUserDocument = gql`
-    mutation UpdateUser($id: uuid!, $CIN: String, $SalesPointsid: uuid, $active: Boolean = true, $email: String, $firstname: String, $lastname: String, $password: String, $phone: String, $username: String, $role: management_user_role_enum = admin) {
+    mutation UpdateUser($id: uuid!, $CIN: String, $SalesPointsid: uuid, $active: Boolean = true, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = admin) {
   update_management_userProfile_by_pk(
     pk_columns: {id: $id}
-    _set: {CIN: $CIN, SalesPointsid: $SalesPointsid, active: $active, email: $email, firstname: $firstname, lastname: $lastname, password: $password, phone: $phone, username: $username, role: $role}
+    _set: {CIN: $CIN, SalesPointsid: $SalesPointsid, active: $active, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}
   ) {
     id
     active
@@ -8803,7 +9024,6 @@ export const GetUserByIdDocument = gql`
     lastname
     leftUs
     phone
-    password
     role
     updatedAt
     updatedBy

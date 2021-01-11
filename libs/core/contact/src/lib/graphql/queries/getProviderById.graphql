@@ -6,6 +6,8 @@ query GetProviderById($id: uuid!) {
     note
     phone
     mail
+    FAX
+    website
     contacts {
       id
       code
