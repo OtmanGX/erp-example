@@ -1,10 +1,11 @@
 query GetAllContacts {
-  contact_Contact {
+  contact_contact {
     id
     code
     mail
     name
     note
     phone
+     
   }
 }

@@ -1,28 +1,25 @@
 
-
-query GetContactById($id: uuid!) {
-  contact_contact_by_pk(id: $id) {
+query GetCustomerById($id: uuid!) {
+  contact_customer_by_pk(id: $id) {
     id
+    ICE
+    IF
     code
     mail
     name
     phone
     note
+    website
+    FAX
+    type 
+   
     addresses {
       id
       address
       city
       zip
     }
-    cutomers {
-      id
-      code
-      name
-      phone
-      mail
-      note
-    }
-    providers {
+    contacts {
       id
       code
       name
@@ -34,5 +31,6 @@ query GetContactById($id: uuid!) {
     createdBy
     updatedBy
     updatedAt
+    
   }
 }

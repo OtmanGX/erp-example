@@ -24,7 +24,6 @@ export interface DetailedUser extends MetaData {
   lastname: string;
   leftUs?: Date;
   phone: string;
-  password: string;
   SalesPointsid?: string;
   username: string;
   user_role: UserRole;
@@ -46,6 +45,6 @@ export interface UsersProfileForSalePoint {
 
 interface UserRole {
   name: string;
-  description: string;
+  description?: string;
 }
 

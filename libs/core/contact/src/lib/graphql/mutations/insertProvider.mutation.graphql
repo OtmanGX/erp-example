@@ -1,0 +1,11 @@
+mutation InsertProvider($FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $data: [contact_provider_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}}) {
+  insert_contact_provider_one(object: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, provider_addresses: {data: $data}}) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+ 
+  }
+}
