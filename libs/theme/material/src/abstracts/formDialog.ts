@@ -6,7 +6,7 @@ import { Validators } from '@angular/forms';
 @Component({
   template: ''
 })
-export abstract class FormDialog implements OnInit{
+export abstract class FormDialog implements OnInit {
   abstract regConfig: FieldConfig[];
   static REQUIRED = {
     name: "required",
@@ -31,6 +31,10 @@ export abstract class FormDialog implements OnInit{
     this.dialogRef.close(value);
   }
 
-  abstract ngOnInit(): void ;
+  ngOnInit(): void {
+    this.buildForm();
+  }
+
+  abstract buildForm(): void ;
 
 }

@@ -42,6 +42,7 @@ import { DialogBodyComponent } from '../components/dialog-body.component';
 import { FicheCardComponent } from '../components/fiche-card/fiche-card.component';
 import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 export const MATERIAL_MODULES = [
@@ -69,7 +70,8 @@ export const MATERIAL_MODULES = [
   MatBottomSheetModule,
   MatAutocompleteModule,
   MatChipsModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatStepperModule
 ];
 
 export const OTHER_MODULES = [

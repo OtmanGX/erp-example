@@ -3,6 +3,7 @@ import {
   ActionReducerMap,
 } from '@ngrx/store';
 import * as fromAuth from './lib/auth.reducer';
+import { rolesDirection } from '@tanglass-erp/core/management';
 
 export interface AppState {
   [fromAuth.authFeatureKey]: fromAuth.State;
@@ -22,4 +23,7 @@ export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
     return reducer(state, action);
   };
 }
+
+// Export enums
+export {rolesDirection};
 
