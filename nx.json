@@ -75,6 +75,13 @@
     },
     "core-contact": {
       "tags": []
+    },
+    "ui-contact": {
+      "tags": []
+    },
+    "ui/contact-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-contact"]
     }
   }
 }

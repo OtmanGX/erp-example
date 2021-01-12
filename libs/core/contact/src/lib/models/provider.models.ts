@@ -1,23 +1,26 @@
 import { MetaData } from "libs/core/shared/metaData";
 import { Address } from "./address.model";
-import { PartialContact } from "./shared.models";
+import { Contact } from "./contact.models";
 
 export interface Provider{
     id:string;
     name:string;
-    note:string;
+    note?:string;
     phone:string;
-    mail:string;
+    mail?:string;
 
 }
 
 export interface DetailedProvider extends MetaData{
     id:string;
+    code?:string;
     name:string;
-    note:string;
+    note?:string;
     phone:string;
-    mail:string;
-    addresses:Address[];
-    contacts:PartialContact[];
+    mail?:string;
+    FAX?:string;
+    website?:string;
+    addresses?:Address[];
+    contacts?:Contact[];
     
 }
