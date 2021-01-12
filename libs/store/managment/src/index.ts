@@ -12,3 +12,4 @@ export  { Companie,
           User,
           UserCreationVM,
           UsersVM } from '@tanglass-erp/core/management';
+export { rolesDirection } from '@tanglass-erp/core/management';

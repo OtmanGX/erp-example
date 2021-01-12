@@ -64,12 +64,28 @@ export class UsersEffects {
     return this.actions$.pipe(
       ofType(UsersActions.updateUser),
       mergeMap((action) =>
-        this.userService.updateOne(action.user.id).pipe(
+        this.userService.updateOne(action.user).pipe(
           map((data) =>
           UsersActions.updateUserSuccess({user: data.data.update_management_userProfile_by_pk})
           ),
           catchError((error) =>
             of(UsersActions.updateUserFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  removeUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UsersActions.removeUser),
+      mergeMap((action) =>
+        this.userService.removeOne(action.user.id).pipe(
+          map((data) =>
+          UsersActions.removeUserSuccess({user: data.data.delete_management_userProfile_by_pk.id})
+          ),
+          catchError((error) =>
+            of(UsersActions.removeUserFailure({ error }))
           )
         )
       )

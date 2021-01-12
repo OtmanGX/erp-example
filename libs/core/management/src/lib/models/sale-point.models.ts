@@ -18,7 +18,7 @@ export interface DetailedSalePoint extends MetaData {
   fax?: string;
   name: string;
   phone: string;
-  usersProfiles: UsersProfileForSalePoint[];
+  usersProfiles?: UsersProfileForSalePoint[];
 }
 
 

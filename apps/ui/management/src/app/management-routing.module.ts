@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ManagementComponent } from './management.component';
-import { EmployeesComponent } from '@TanglassUi/management/employees/employees.component';
-import { CompaniesComponent } from '@TanglassUi/management/companies/companies.component';
-import { SalePointsComponent } from '@TanglassUi/management/sale-points/sale-points.component';
-import { SalePointCardComponent } from '@TanglassUi/management/sale-points/sale-point-card/sale-point-card.component';
-import { EmployeeCardComponent } from '@TanglassUi/management/employees/employee-card/employee-card.component';
-import { CompanyCardComponent } from '@TanglassUi/management/companies/company-card/company-card.component';
+import { EmployeesComponent } from '@TanglassUi/management/pages/employees/employees.component';
+import { CompaniesComponent } from '@TanglassUi/management/pages/companies/companies.component';
+import { SalePointsComponent } from '@TanglassUi/management/pages/sale-points/sale-points.component';
+import { SalePointCardComponent } from '@TanglassUi/management/pages/sale-points/sale-point-card/sale-point-card.component';
+import { EmployeeCardComponent } from '@TanglassUi/management/pages/employees/employee-card/employee-card.component';
+import { CompanyCardComponent } from '@TanglassUi/management/pages/companies/company-card/company-card.component';
 
 const routes: Routes = [
   {

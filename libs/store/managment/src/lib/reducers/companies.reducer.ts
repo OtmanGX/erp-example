@@ -52,10 +52,14 @@ const companieReducer = createReducer<State>(
   on(CompaniesActions.updateCompanieSuccess, (state, action) =>
      companieAdapter.upsertOne(action.companie, state)
   ),
+  on(CompaniesActions.removeCompanieSuccess, (state, action) =>
+     companieAdapter.removeOne(action.companie.id, state)
+  ),
   on(CompaniesActions.loadCompaniesFailure,
      CompaniesActions.updateCompanieFailure,
      CompaniesActions.addCompanieFailure,
      CompaniesActions.loadCompanieByIdFailure,
+     CompaniesActions.removeCompanieFailure,
      (state, { error }) => ({
     ...state,
     error,

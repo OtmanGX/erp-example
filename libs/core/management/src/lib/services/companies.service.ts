@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
 import {
   GetAllCompaniesGQL,
-  GetAllCompaniesQuery,
   GetCompanyByIdGQL,
-  GetCompanyByIdQuery,
-  GetCompanyByIdQueryVariables,
   InsertCompanyGQL,
-  InsertCompanyMutationVariables, InsertCompanyMutation,
+  InsertCompanyMutationVariables,
   UpdateCompanyGQL,
   UpdateCompanyMutationVariables,
   DeleteCompanyGQL,
-  DeleteCompanyMutationVariables,
 
 } from '@tanglass-erp/infrastructure/graphql';
-import { ApolloQueryResult, FetchResult } from '@apollo/client/core';
-import { Observable } from "rxjs";
 
+import { Companie, DetailedCompanie } from "../models/companies.models";
 @Injectable({
   providedIn: 'root'
 })
 export class CompaniesService {
+
+
   constructor(
     private getAllGQL: GetAllCompaniesGQL,
     private getByIdGQL: GetCompanyByIdGQL,
@@ -40,16 +37,16 @@ export class CompaniesService {
     return this.getByIdGQL.fetch({ id })
   }
 
-  insertOne(createdCompany: InsertCompanyMutationVariables) {
-    return this.insertOneGQL.mutate(createdCompany)
+  insertOne(createdOne: InsertCompanyMutationVariables) {
+    return this.insertOneGQL.mutate(createdOne)
 
   }
-  updateOne(id: string) {
-    return this.updateOneGQL.mutate({id})
+  updateOne(updatedOne: UpdateCompanyMutationVariables) {
+    return this.updateOneGQL.mutate(updatedOne)
   }
 
   removeOne(id: string) {
-    return this.deleteOneGQL.mutate({id})
+    return this.deleteOneGQL.mutate({ id })
   }
 
 }

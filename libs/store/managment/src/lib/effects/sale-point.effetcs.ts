@@ -75,6 +75,23 @@ export class SalePointEffects {
   });
 
 
+  removeSalePoint$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SalePointActions.removeSalePoint),
+      mergeMap((action) =>
+        this.salePointService.removeOne(action.salePoint.id).pipe(
+          map((data) =>
+            SalePointActions.removeSalePointSuccess({salePoint: data.data.delete_management_SalesPoint_by_pk.id})
+          ),
+          catchError((error) =>
+            of(SalePointActions.removeSalePointFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+
   constructor(private actions$: Actions,
               private salePointService: SalePointService) {}
 }

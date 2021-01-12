@@ -7,5 +7,6 @@ query GetAllCustomers {
     mail
     name
     phone
+    type
   }
 }
