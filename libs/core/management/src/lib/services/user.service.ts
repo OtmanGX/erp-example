@@ -14,8 +14,6 @@ import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
 interface RequestSignUp {
-  // client_id?: 'k35khcRkef3IyRQWkIBRLd7vwFA2guV5';
-  // connection?: 'Username-Password-Authentication';
   email: string;
   password: string;
   username?: string;
@@ -78,6 +76,8 @@ export class UserService {
   }
 
   signUp(data: RequestSignUp) {
+    data.client_id = 'k35khcRkef3IyRQWkIBRLd7vwFA2guV5';
+    data.connection = 'Username-Password-Authentication';
     return this.http.post('https://gxm.us.auth0.com/dbconnections/signup', data);
   }
 
