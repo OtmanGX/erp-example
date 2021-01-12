@@ -1,5 +1,5 @@
-<mat-toolbar *ngIf="withToolbar">
-  <div class="ml-3">
+<mat-toolbar class="pt-8" *ngIf="withToolbar">
+  <div>
     <span *ngIf="withCrud">
       <button (click)="triggerAction(operations.add)" mat-icon-button matTooltip="Ajouter"  color="primary" aria-label="Example icon-button with a menu">
       <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
