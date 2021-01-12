@@ -14,7 +14,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
 </ng-container>
 </mat-form-field>
 `,
-  styles: [':host {flex: 0 1 50%}'],
+  styles: [],
 })
 export class DateComponent implements OnInit {
   field: FieldConfig;

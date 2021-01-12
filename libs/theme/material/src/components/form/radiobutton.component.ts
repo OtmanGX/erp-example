@@ -11,7 +11,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
 </mat-radio-group>
 </div>
 `,
-  styles: [':host {flex: 0 1 50%}'],
+  styles: [],
 })
 export class RadiobuttonComponent implements OnInit {
   field: FieldConfig;
