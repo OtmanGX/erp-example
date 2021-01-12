@@ -7,7 +7,7 @@
                     (close)="closePopup()"
                     [withActions]="false">
       </dynamic-form>
-      <div>
+      <div class="mt-28">
         <button mat-button matStepperNext>Suivant</button>
       </div>
     </mat-step>
@@ -37,7 +37,7 @@
         </mat-action-row>
       </mat-expansion-panel>
       </mat-accordion>
-      <div>
+      <div class="mt-28">
         <button mat-button matStepperPrevious>Précédent</button>
         <button mat-button matStepperNext>Suivant</button>
       </div>
@@ -46,7 +46,7 @@
     <mat-step>
       <ng-template matStepLabel>Terminer</ng-template>
       <p>Vous avez terminé maintenant.</p>
-      <div>
+      <div class="mt-28">
         <button mat-button matStepperPrevious>Précédent</button>
         <button mat-button (click)="stepper.reset()">Réinitialiser</button>
         <button mat-button color="primary" (click)="submitAll()" cdkFocusInitial>Confirmer</button>

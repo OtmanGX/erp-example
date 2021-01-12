@@ -15,7 +15,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 @Component({
   selector: "app-tag-input",
   template: `
-    <mat-form-field style="width: 90%" [formGroup]="group">
+    <mat-form-field style="width: 100%" [formGroup]="group">
       <mat-label>{{field.label}}</mat-label>
       <mat-chip-list #chipList>
         <mat-chip (removed)="remove(item)" *ngFor="let item of field.value" [removable]="true" [selectable]="true">
@@ -41,7 +41,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
       </ng-container>
     </mat-form-field>
 `,
-  styles: [':host {flex: 0 1 50%}'],
+  styles: [],
 })
 export class TagInputComponent implements OnInit, AfterViewInit {
   // Default

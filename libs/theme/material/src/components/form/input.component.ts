@@ -4,7 +4,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
 @Component({
   selector: "app-input",
   template: `
-<mat-form-field style="width: 90%" [formGroup]="group">
+<mat-form-field style="width: 100%" [formGroup]="group">
   <mat-label>{{field.label}}</mat-label>
   <input matInput [formControlName]="field.name" [type]="field.inputType">
 <ng-container *ngFor="let validation of field.validations;" ngProjectAs="mat-error">
@@ -12,7 +12,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
 </ng-container>
 </mat-form-field>
 `,
-  styles: [':host {flex: 0 1 50%}'],
+  styles: [],
 })
 export class InputComponent {
   field: FieldConfig;

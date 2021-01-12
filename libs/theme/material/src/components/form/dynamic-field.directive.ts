@@ -1,11 +1,11 @@
 import {
   ComponentFactoryResolver,
   ComponentRef,
-  Directive,
+  Directive, HostBinding,
   Input,
   OnInit,
   ViewContainerRef
-} from "@angular/core";
+} from '@angular/core';
 import { FormGroup } from "@angular/forms";
 import { FieldConfig } from "../../interfaces/field.interface";
 import { ButtonComponent } from "./button.component";
@@ -27,12 +27,18 @@ const componentMapper = {
   radiobutton: RadiobuttonComponent,
   checkbox: CheckboxComponent
 };
+
 @Directive({
   selector: "[dynamicField]"
 })
 export class DynamicFieldDirective implements OnInit {
   @Input() field: FieldConfig;
   @Input() group: FormGroup;
+  @Input() style = 'flex: 0 1 50%; box-sizing: border-box';
+  //
+  // @hostBinding
+  // top:number;
+
   componentRef: any;
   constructor(
     private resolver: ComponentFactoryResolver,
@@ -43,7 +49,9 @@ export class DynamicFieldDirective implements OnInit {
       componentMapper[this.field.type]
     );
     this.componentRef = this.container.createComponent(factory);
+    this.componentRef.location.nativeElement.style = this.style;
     this.componentRef.instance.field = this.field;
     this.componentRef.instance.group = this.group;
+
   }
 }

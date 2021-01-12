@@ -11,7 +11,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
   </ng-container>
 </div>
 `,
-  styles: [':host {flex: 1 1 50%}'],
+  styles: [],
 })
 export class CheckboxComponent implements OnInit {
   field: FieldConfig;
