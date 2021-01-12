@@ -14,7 +14,7 @@ export interface Customer {
 }
 
 export interface DetailedCustomer extends MetaData {
-    id: string;
+    id?: string;
     ICE?: string;
     IF?: string;
     code?: string;

@@ -82,6 +82,9 @@
     "ui/contact-e2e": {
       "tags": [],
       "implicitDependencies": ["ui-contact"]
+    },
+    "core-inventory": {
+      "tags": []
     }
   }
 }
