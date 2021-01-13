@@ -23,7 +23,7 @@
 @import 'overrides';
 
 // install the framework and custom global styles
-@include nb-install() {a
+@include nb-install() {
 
   // framework global styles
   @include nb-theme-global();

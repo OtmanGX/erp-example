@@ -20,6 +20,7 @@
       }
     ],
     "paths": {
+      "@Tanglass-erp/main/*": ["./apps/tanglass-erp/src/*"],
       "@TanglassUi/management/*": ["./apps/ui/management/src/app/*"],
       "@TanglassUi/inventory/*": ["./apps/ui/inventory/src/app/*"],
       "@TanglassCore/*": ["./libs/tanglass-core/src/*"],

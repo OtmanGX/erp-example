@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { UsersEffects } from './effects/user.effetcs';
+import { UsersEffects } from './effects/user.effects';
 import * as fromCompanies from './reducers/companies.reducer';
 import * as fromSalePoints from './reducers/sale-point-reducer';
 import * as fromUsers from './reducers/users.reducer';
-import { SalePointEffects } from './effects/sale-point.effetcs';
+import { SalePointEffects } from './effects/sale-point.effects';
 import { CoreManagementModule } from '@tanglass-erp/core/management'
 
 @NgModule({
