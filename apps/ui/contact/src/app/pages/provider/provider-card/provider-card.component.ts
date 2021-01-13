@@ -55,7 +55,7 @@ export class ProviderCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // Steps
+  // Contact Steps
 
   setStepContact(index: number) {
     this.stepContact = index;
@@ -69,7 +69,7 @@ export class ProviderCardComponent implements OnInit {
     this.stepContact--;
   }
 
-  // Address
+  // Address Steps
 
   setStepAddress(index: number) {
     this.stepAddress = index;

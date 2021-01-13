@@ -1,4 +1,11 @@
 <ngx-fiche-card [title]="title" [data]="passedData">
+
+  <div fxLayout="row">
+    <div class="spacer"></div>
+    <button mat-fab class="bg-white">
+      <mat-icon fontSet="fas" fontIcon="fa-pen"></mat-icon>
+    </button>
+  </div>
   <ngx-list-item [data]="otherData[0]">
   </ngx-list-item>
 
@@ -63,6 +70,7 @@
       </button>
     </div>
   </div>
+
 
 </ngx-fiche-card>
 
