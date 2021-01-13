@@ -41,6 +41,7 @@ export class CustomerComponent implements GridView {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Store action dispatching
+        console.log(result);
         if (action === Operations.add) {
         } else {}
       }

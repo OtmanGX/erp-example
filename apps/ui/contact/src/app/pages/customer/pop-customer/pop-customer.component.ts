@@ -1,45 +1,101 @@
-import { Component, Inject } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  QueryList, ViewChildren
+} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FieldConfig, FormDialog } from '@tanglass-erp/material';
+import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
+import { FormGroup, FormArray } from '@angular/forms';
+import { regConfigAddresses, regConfigContact, regCustomerConfig } from '../../../utils/forms';
 
 @Component({
   selector: 'ngx-pop-customer',
   templateUrl: './pop-customer.component.html',
   styleUrls: ['./pop-customer.component.scss'],
 })
-export class PopCustomerComponent extends FormDialog {
+export class PopCustomerComponent extends FormDialog implements AfterViewInit {
 
+  title = "Ajouter un client";
   regConfig: FieldConfig[];
+  addressFormGroup: FormGroup;
+  contactFormGroup: FormGroup;
+  addresses = [];
+  contacts = [];
+  customerForm: DynamicFormComponent;
+  @ViewChildren(DynamicFormComponent) dynamicForms: QueryList<DynamicFormComponent>;
+  get addressFormArray() {
+    return this.addressFormGroup.get('addresses') as FormArray;
+  }
+
+  get contactFormArray() {
+    return this.contactFormGroup.get('contacts') as FormArray;
+  }
 
   constructor(
     public dialogRef: MatDialogRef<PopCustomerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private cdr: ChangeDetectorRef
   ) {
     super(dialogRef, data);
+    this.addressFormGroup = new FormGroup({addresses: new FormArray([])});
+    this.contactFormGroup = new FormGroup({contacts: new FormArray([])});
+    this.newAddress(); this.newContact();
   }
-  ngOnInit(): void {
-    this.buildForm();
+
+  ngAfterViewInit() {
+    this.customerForm = this.dynamicForms.find(
+      component => component.name === 'main');
+    this.cdr.detectChanges();
+    this.assignAllForms();
+    this.dynamicForms.changes.subscribe(value => {
+      this.assignAllForms();
+    });
   }
 
   buildForm(): void {
-    this.regConfig = [
-      {type: "input", name: "code", label: "ICE", inputType: "text", value: this.data.code},
-      {type: "input", name: "name", label: "Nom", inputType: "text", value: this.data.name},
-      {type: "input", label: "ICE", inputType: "text", name: "ICE", value: this.data.ICE,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", label: "IF", inputType: "text", name: "IF", value: this.data.IF,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", name: "phone", label: "Téléphone", inputType: "text", value: this.data.phone},
-      {type: "input", name: "mail", label: "E-mail", inputType: "text", value: this.data.mail},
-      {type: "input", name: "note", label: "Note", inputType: "text", value: this.data.note},
-      {type: "input", name: "website", label: "Site web", inputType: "text", value: this.data.website},
-      {type: "input", name: "Fax", label: "Fax", inputType: "text", value: this.data.Fax},
-    ];
+    this.regConfig = regCustomerConfig(this.data);
+  }
+
+  assignAllForms() {
+    this.assignForms(this.addressFormArray, 'address');
+    this.assignForms(this.contactFormArray, 'contact');
+  }
+
+  assignForms(formArray: FormArray, name: string) {
+    const forms = this.dynamicForms.filter(
+      (i, index) => i.name === name)
+      .map((dynamicForm: DynamicFormComponent) => dynamicForm.form);
+
+    while (formArray.length) {
+      formArray.removeAt(0);
+    }
+    forms.forEach((form) => formArray.push(form));
+  }
+
+  newAddress() {
+    this.addresses.push(Object.assign([], regConfigAddresses()));
+  }
+
+  deleteAddress(addresse) {
+    this.addresses = this.addresses.filter(item => item !== addresse);
+  }
+
+  newContact() {
+    this.contacts.push(Object.assign([], regConfigContact()));
+  }
+
+  deleteContact(contact) {
+    this.contacts = this.contacts.filter(item => item !== contact);
+  }
+
+  submitAll() {
+    this.closePopup();
+    this.submit([
+      this.customerForm.form.value,
+      this.addressFormArray.value,
+      this.contactFormArray.value
+    ]);
   }
 }
