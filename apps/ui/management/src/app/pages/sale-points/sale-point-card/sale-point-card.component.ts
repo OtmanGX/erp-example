@@ -15,7 +15,7 @@ export class SalePointCardComponent implements OnInit {
   gap = "50px";
   id: string;
   step = null;
-  data = this.store.select(SalePointSelectors.getSelectedSalePoint);
+  data$ = this.store.select(SalePointSelectors.getSelectedSalePoint);
   passedData: any;
 
   constructor(
@@ -27,7 +27,7 @@ export class SalePointCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(SalePointActions.loadSalePointById({id: this.id}));
-    this.data.subscribe( data => {
+    this.data$.subscribe( data => {
       this.passedData = [
         {label: 'Nom', value: data?.name},
         {label: 'Adresse', value: data?.address},

@@ -14,7 +14,7 @@ export class EmployeeCardComponent implements OnInit {
   title = "Profile d'utilisateur";
   id: string;
   step = null;
-  data = this.store.select(UserSelectors.getSelectedUser);
+  data$ = this.store.select(UserSelectors.getSelectedUser);
   passedData: any;
   constructor(private store: Store<AppState>,
               private location: Location) {
@@ -23,7 +23,7 @@ export class EmployeeCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(UserActions.loadUserById({id: this.id}));
-    this.data.subscribe(data => {
+    this.data$.subscribe(data => {
       this.passedData = [
         {label: 'Nom d\'utilisateur', value: data?.username},
         {label: 'Nom', value: data?.lastname},

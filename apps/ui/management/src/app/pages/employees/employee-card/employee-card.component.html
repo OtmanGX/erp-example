@@ -1,4 +1,4 @@
-<ngx-fiche-card [title]="title" [data]="passedData">
+<ngx-fiche-card [title]="title" [data]="passedData" *ngIf="data$ | async as data">
   <div class="ml-5" fxLayout="row" style="width: 100%"
        *ngIf="data?.SalesPoint ; let salepoint">
     <div class="model" fxLayout="row wrap" fxLayoutAlign="start center">
