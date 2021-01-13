@@ -84,7 +84,9 @@
       "implicitDependencies": ["ui-contact"]
     },
     "store-contact": {
-  
+      "tags": []
+    },
+    "core-inventory": {
       "tags": []
     }
   }
