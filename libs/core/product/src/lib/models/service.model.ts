@@ -1,25 +1,24 @@
-import { Glasse } from './glasse.model';
-import { Consumable } from './consommable.model';
+import { Glass, Product } from './glass.model';
+import { Consumable } from './consummable.model';
 import { optionalServiceParam } from './service_params';
 
 export interface Service {
 
   id?: string;
   name:string;
-  defaultPriceUnit:string;
   params: optionalServiceParam[] ;
 
 }
 
 
-export interface ServiceGlasse {
- 
+
+export interface ServiceGlass{
   id? : string;
-  glasse : Glasse;
+  glasse : Glass;
   service: Service;
   labelFactory: string ;
+  product:Product
 }
-
 
 export interface ServiceConsumable {
  
@@ -27,4 +26,5 @@ export interface ServiceConsumable {
   quota: number ;
   consumable : Consumable;
   service: Service;
+  
 }

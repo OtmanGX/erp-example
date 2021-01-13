@@ -26690,13 +26690,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -26734,13 +26730,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -26762,13 +26754,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -28965,7 +28953,7 @@
             "deprecationReason": null
           },
           {
-            "name": "user_profiles",
+            "name": "userProfiles",
             "description": "An array relationship",
             "args": [
               {
@@ -29056,7 +29044,7 @@
             "deprecationReason": null
           },
           {
-            "name": "user_profiles_aggregate",
+            "name": "userProfiles_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -29416,7 +29404,7 @@
             "defaultValue": null
           },
           {
-            "name": "user_profiles",
+            "name": "userProfiles",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -29457,13 +29445,7 @@
         "enumValues": [
           {
             "name": "admin",
-            "description": "admin role",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "user",
-            "description": "empty user",
+            "description": "admin description",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -29574,7 +29556,7 @@
             "defaultValue": null
           },
           {
-            "name": "user_profiles",
+            "name": "userProfiles",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -29890,7 +29872,7 @@
             "defaultValue": null
           },
           {
-            "name": "user_profiles_aggregate",
+            "name": "userProfiles_aggregate",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",

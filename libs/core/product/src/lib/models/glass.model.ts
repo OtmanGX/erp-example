@@ -3,8 +3,9 @@ export interface Product {
  
   id?: number;
   code:string ;
-  type: string ;
+  category: string ;
   label: string ;
+  unit:string;
   price: number ;
   price_min: number ;
   price_max: number ;
@@ -18,7 +19,7 @@ export interface Mat {
 }
 
 
-export interface Glasse {
+export interface Glass {
 
   id?: number;
   type: string;

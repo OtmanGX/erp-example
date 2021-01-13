@@ -4000,12 +4000,12 @@ export type Management_UserProfile = {
   createdAt: Scalars['timestamptz'];
   createdBy?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
-  firstname: Scalars['String'];
+  firstname?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   joinUs?: Maybe<Scalars['date']>;
-  lastname: Scalars['String'];
+  lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
-  phone: Scalars['String'];
+  phone?: Maybe<Scalars['String']>;
   role: Management_User_Role_Enum;
   updatedAt: Scalars['timestamptz'];
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -4331,14 +4331,14 @@ export type Management_User_Role = {
   description: Scalars['String'];
   name: Scalars['String'];
   /** An array relationship */
-  user_profiles: Array<Management_UserProfile>;
+  userProfiles: Array<Management_UserProfile>;
   /** An aggregated array relationship */
-  user_profiles_aggregate: Management_UserProfile_Aggregate;
+  userProfiles_aggregate: Management_UserProfile_Aggregate;
 };
 
 
 /** columns and relationships of "management.user_role" */
-export type Management_User_RoleUser_ProfilesArgs = {
+export type Management_User_RoleUserProfilesArgs = {
   distinct_on?: Maybe<Array<Management_UserProfile_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -4348,7 +4348,7 @@ export type Management_User_RoleUser_ProfilesArgs = {
 
 
 /** columns and relationships of "management.user_role" */
-export type Management_User_RoleUser_Profiles_AggregateArgs = {
+export type Management_User_RoleUserProfiles_AggregateArgs = {
   distinct_on?: Maybe<Array<Management_UserProfile_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -4398,7 +4398,7 @@ export type Management_User_Role_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Management_User_Role_Bool_Exp>>>;
   description?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
-  user_profiles?: Maybe<Management_UserProfile_Bool_Exp>;
+  userProfiles?: Maybe<Management_UserProfile_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "management.user_role" */
@@ -4408,10 +4408,8 @@ export enum Management_User_Role_Constraint {
 }
 
 export enum Management_User_Role_Enum {
-  /** admin role */
-  Admin = 'admin',
-  /** empty user */
-  User = 'user'
+  /** admin description */
+  Admin = 'admin'
 }
 
 /** expression to compare columns of type management_user_role_enum. All fields are combined with logical 'AND'. */
@@ -4427,7 +4425,7 @@ export type Management_User_Role_Enum_Comparison_Exp = {
 export type Management_User_Role_Insert_Input = {
   description?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  user_profiles?: Maybe<Management_UserProfile_Arr_Rel_Insert_Input>;
+  userProfiles?: Maybe<Management_UserProfile_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -4482,7 +4480,7 @@ export type Management_User_Role_On_Conflict = {
 export type Management_User_Role_Order_By = {
   description?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  user_profiles_aggregate?: Maybe<Management_UserProfile_Aggregate_Order_By>;
+  userProfiles_aggregate?: Maybe<Management_UserProfile_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: "management.user_role" */
@@ -8736,7 +8734,7 @@ export const InsertSalePointDocument = gql`
     }
   }
 export const InsertUserDocument = gql`
-    mutation InsertUser($CIN: String, $active: Boolean = true, $SalesPointsid: uuid, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = user) {
+    mutation InsertUser($CIN: String, $active: Boolean = true, $SalesPointsid: uuid, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = admin) {
   insert_management_userProfile_one(
     object: {CIN: $CIN, active: $active, SalesPointsid: $SalesPointsid, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}
   ) {

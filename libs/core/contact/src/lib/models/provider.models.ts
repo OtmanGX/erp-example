@@ -3,7 +3,7 @@ import { Address } from "./address.model";
 import { Contact } from "./contact.models";
 
 export interface Provider{
-    id:string;
+    id?:string;
     name:string;
     note?:string;
     phone:string;
@@ -12,7 +12,7 @@ export interface Provider{
 }
 
 export interface DetailedProvider extends MetaData{
-    id:string;
+    id?:string;
     code?:string;
     name:string;
     note?:string;

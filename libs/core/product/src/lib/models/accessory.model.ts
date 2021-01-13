@@ -1,4 +1,4 @@
-import { Mat, Product } from './glasse.model';
+import { Mat, Product } from './glass.model';
 
 export interface Accessory {
  

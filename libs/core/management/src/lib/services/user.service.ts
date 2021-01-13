@@ -27,8 +27,8 @@ interface RequestSignUp {
 export class UserService {
   constructor(
     private getAllGQL: GetAllUsersGQL,
-    private getByIdGQL:GetUserByIdGQL,
-    private insertOneGQL:InsertUserGQL,
+    private getByIdGQL: GetUserByIdGQL,
+    private insertOneGQL: InsertUserGQL,
     private updateOneGQL: UpdateUserGQL,
     private deleteOneGQL: DeleteUserGQL,
     public auth: AuthService,
@@ -36,7 +36,7 @@ export class UserService {
     private http: HttpClient
   ) {
     this.getOneById('a1d93bb6-d9f0-462a-a967-986d6898a4f9').subscribe(obj => { let data: DetailedUser = obj.data.management_userProfile_by_pk; console.log(obj.data.management_userProfile_by_pk) });
-    this.getAll().subscribe(obj =>{let data: User[]=obj.data.management_userProfile;console.log(obj.data.management_userProfile)} );
+    this.getAll().subscribe(obj => { let data: User[] = obj.data.management_userProfile; console.log(obj.data.management_userProfile) });
     this.insertOne(
       {CIN: "ghbfb",
       email: "fgdnf",
@@ -50,15 +50,15 @@ export class UserService {
 
   }
 
-  getAll(){
+  getAll() {
     return this.getAllGQL.watch().valueChanges
   }
-  getOneById(id: string){
-    return  this.getByIdGQL.fetch({id})
+  getOneById(id: string) {
+    return this.getByIdGQL.fetch({ id })
   }
 
-  insertOne(createdOne:InsertUserMutationVariables){
-   return  this.insertOneGQL.mutate(createdOne)
+  insertOne(createdOne: InsertUserMutationVariables) {
+    return this.insertOneGQL.mutate(createdOne)
   }
 
   updateOne(updatedOne: UpdateUserMutationVariables) {
@@ -66,7 +66,7 @@ export class UserService {
   }
 
   removeOne(id: string) {
-    return this.deleteOneGQL.mutate({id})
+    return this.deleteOneGQL.mutate({ id })
   }
 
   loginWithRedirect() {
