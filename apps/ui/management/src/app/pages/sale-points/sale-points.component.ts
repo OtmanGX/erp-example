@@ -1,14 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopSalePointsComponent } from '@TanglassUi/management/pages/sale-points/pop-sale-points/pop-sale-points.component';
-import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
-import * as SalePointSelectors from '@TanglassStore/management/selectors/sale-point.selectors';
+import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoint.actions';
+import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { SalePointHeaders } from '@TanglassUi/management/utils/grid-headers';
-import { Observable } from 'rxjs';
 import { Operations } from '@tanglass-erp/ag-grid';
 
 
@@ -22,10 +21,9 @@ export class SalePointsComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$: Observable<any>;
+  data$ = this.store.select(SalePointSelectors.getAllSalePoints);
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {
-    this.data$ = this.store.select(SalePointSelectors.getAllSalePoints);
     this.setColumnDefs();
   }
 

@@ -1241,9 +1241,7 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "libs/theme/tanglass-theme/src/styles/styles.scss"
             ],
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js"
-            ]
+            "scripts": ["node_modules/chart.js/dist/Chart.min.js"]
           },
           "configurations": {
             "production": {
@@ -1337,6 +1335,36 @@
             "tsConfig": ["apps/ui/contact-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/ui/contact-e2e/**/*"]
           }
+        }
+      }
+    },
+    "store-contact": {
+      "projectType": "library",
+      "root": "libs/store/contact",
+      "sourceRoot": "libs/store/contact/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/contact/tsconfig.lib.json",
+              "libs/store/contact/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/contact/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/contact/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
         }
       }
     }

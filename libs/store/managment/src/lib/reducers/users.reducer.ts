@@ -2,11 +2,12 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as UserActions from '../actions/user.actions';
-import { User } from '@tanglass-erp/core/management';
+import { User, DetailedUser } from '@tanglass-erp/core/management';
 
 export const USER_FEATURE_KEY = 'users';
 
 export interface State extends EntityState<User> {
+  selectedUser: DetailedUser
   loaded: boolean; // has the Companie list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -18,16 +19,17 @@ User
 
 export const initialState: State = userAdapter.getInitialState({
   // set initial required properties
+  selectedUser: null,
   loaded: false,
   error: null,
 });
 
 const userReducer = createReducer(
   initialState,
-  on(UserActions.loadUsers, (state) => ({
+  on(UserActions.loadUserByIdSuccess, (state, action) => ({
     ...state,
-    loaded: false,
-    error: null,
+    selectedUser: action.user,
+    error: null
   })),
   on(UserActions.loadUsersSuccess,
       (state, action) =>
@@ -37,11 +39,16 @@ const userReducer = createReducer(
     (state, action) => userAdapter.addOne(action.user, state)
   ),
   on(UserActions.updateUserSuccess, (state, action) =>
-  userAdapter.upsertOne(action.user, state)
+    userAdapter.upsertOne(action.user, state)
+  ),
+  on(UserActions.removeUserSuccess, (state, action) =>
+    userAdapter.removeOne(action.user.id, state)
   ),
   on(UserActions.addUserFailure,
      UserActions.loadUsersFailure,
      UserActions.updateUserFailure,
+     UserActions.loadUserByIdFailure,
+     UserActions.removeUserFailure,
      (state, { error }) => ({
     ...state,
     error,

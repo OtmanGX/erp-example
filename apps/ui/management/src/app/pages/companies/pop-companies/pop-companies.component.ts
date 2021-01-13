@@ -20,7 +20,6 @@ export class PopCompaniesComponent extends FormDialog {
   }
 
   ngOnInit() {
-    super.ngOnInit();
   }
 
   buildForm(): void {

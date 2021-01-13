@@ -25,18 +25,15 @@ export class CompaniesService {
     private deleteOneGQL: DeleteCompanyGQL,
 
   ) {
-    this.getOneById('8a8999db-1ada-4979-8ef7-d79d7871cd5b').subscribe(obj => { let data: DetailedCompanie = obj.data.management_Company_by_pk; console.log(obj.data.management_Company_by_pk) });
-    this.getAll().subscribe(obj =>{let data: Companie[]=obj.data.management_Company;console.log(obj.data.management_Company)} );
-    this.insertOne({CNSS:"tefgdbst",ICE:"tfdgbfgest",IF:"IfghbfF",RC:"RdfgbC",address:"testcgbf",name:"namefgb",phone:"phoneghb"}).subscribe(obj =>{let data: Companie=obj.data.insert_management_Company_one;console.log(obj.data.insert_management_Company_one)} );
-    this.updateOne({id:"8a8999db-1ada-4979-8ef7-d79d7871cd5b",CNSS:"te452date",ICE:"testg452hnghjg",IF:"I542Fn",RC:"RCgg452n",address:"test",name:"tesate",phone:"phhn"}).subscribe(obj =>{let data: Companie=obj.data.update_management_Company_by_pk;console.log(obj.data.update_management_Company_by_pk)} );
 
-  }
+   }
 
 
   getAll() {
     return this.getAllGQL.watch().valueChanges
   }
   getOneById(id: string) {
+    console.log(id);
     return this.getByIdGQL.fetch({ id })
   }
 

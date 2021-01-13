@@ -6,6 +6,8 @@ import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PopCustomerComponent } from './pop-customer/pop-customer.component';
 import { CustomerHeaders } from '../../utils/grid-headers';
+import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
+import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class CustomerComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$: any;
+  data$ = this.store.select(CustomerSelectors.getAllCustomers);
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {
     this.setColumnDefs();
@@ -29,6 +31,7 @@ export class CustomerComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(CustomerActions.loadCustomers());
   }
 
   openDialog(action, data = {}) {
@@ -42,6 +45,7 @@ export class CustomerComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
+          this.store.dispatch(CustomerActions.addCustomer({customer: result}));
         } else {}
       }
     });

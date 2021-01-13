@@ -42,6 +42,55 @@ export class SalePointEffects {
     )
   });
 
+  getSalePointById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SalePointActions.loadSalePointById),
+      mergeMap((action) =>
+        this.salePointService.getOneById(action.id).pipe(
+          map((data) =>
+            SalePointActions.loadSalePointByIdSuccess({salePoint: data.data.management_SalesPoint_by_pk})
+          ),
+          catchError((error) =>
+            of(SalePointActions.loadSalePointByIdFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  updateSalePoint$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SalePointActions.updateSalePoint),
+      mergeMap((action) =>
+        this.salePointService.updateOne(action.salePoint).pipe(
+          map((data) =>
+            SalePointActions.updateSalePointSuccess({salePoint: data.data.update_management_SalesPoint_by_pk})
+          ),
+          catchError((error) =>
+            of(SalePointActions.updateSalePointFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+
+  removeSalePoint$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SalePointActions.removeSalePoint),
+      mergeMap((action) =>
+        this.salePointService.removeOne(action.salePoint.id).pipe(
+          map((data) =>
+            SalePointActions.removeSalePointSuccess({salePoint: data.data.delete_management_SalesPoint_by_pk.id})
+          ),
+          catchError((error) =>
+            of(SalePointActions.removeSalePointFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
 
   constructor(private actions$: Actions,
               private salePointService: SalePointService) {}

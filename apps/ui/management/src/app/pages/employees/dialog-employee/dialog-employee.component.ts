@@ -2,10 +2,10 @@ import { Component, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
-import * as SalePointActions from '@TanglassStore/management/actions/salePoint.actions';
-import * as SalePointSelectors from '@TanglassStore/management/selectors/sale-point.selectors';
-import { map, take } from 'rxjs/operators';
-import { rolesDirection } from '@tanglass-erp/store/app';
+import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoint.actions';
+import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
+import { map } from 'rxjs/operators';
+import { rolesDirection } from '@TanglassStore/management/index';
 
 @Component({
   selector: 'ngx-dialog-employee',
@@ -26,7 +26,6 @@ export class DialogEmployeeComponent extends FormDialog {
 
   ngOnInit(): void {
     this.store.dispatch(SalePointActions.loadSalePoints());
-    super.ngOnInit();
   }
 
   buildForm(): void {

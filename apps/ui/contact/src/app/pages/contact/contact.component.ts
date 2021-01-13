@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
+import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
+import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PopContactComponent } from './pop-contact/pop-contact.component';
@@ -18,7 +20,7 @@ export class ContactComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$: any;
+  data$ =  this.store.select(ContactSelectors.getAllContacts);
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {
     this.setColumnDefs();
@@ -29,6 +31,7 @@ export class ContactComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(ContactActions.loadContacts());
   }
 
   openDialog(action, data = {}) {
@@ -42,6 +45,7 @@ export class ContactComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
+          this.store.dispatch(ContactActions.addContact({contact: result}))
         } else {}
       }
     });

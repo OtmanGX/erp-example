@@ -2,14 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 
-import * as CompanieActions from '@TanglassStore/management/actions/companies.actions';
-import * as CompanieSelectors from '@TanglassStore/management/selectors/companies.selectors';
+import * as CompanieActions from '@TanglassStore/management/lib/actions/companies.actions';
+import * as CompanieSelectors from '@TanglassStore/management/lib/selectors/companies.selectors';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopCompaniesComponent } from './pop-companies/pop-companies.component';
-import { Companie } from '@tanglass-erp/core/management';
 import { CompanieHeaders } from '@TanglassUi/management/utils/grid-headers';
 @Component({
   selector: 'tanglass-erp-companies',
