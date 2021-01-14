@@ -9,6 +9,7 @@ export class FicheCardComponent {
   @Input() title: string = '';
   @Input() data: Array<any>;
   @Input() gap = "50px";
+  @Input() withToolbar = true;
   constructor() { }
 
 }

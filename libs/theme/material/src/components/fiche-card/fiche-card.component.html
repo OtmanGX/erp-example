@@ -1,5 +1,5 @@
 <mat-card class="card">
-  <mat-toolbar class="mat-elevation-z15" style="height: 70px" color="primary">
+  <mat-toolbar *ngIf="withToolbar" class="mat-elevation-z15" style="height: 70px" color="primary">
   </mat-toolbar>
   <div class="flip" fxLayout="row" fxLayoutAlign="space-around center" >
     <mat-card fxFlex="30">
@@ -7,17 +7,7 @@
     </mat-card>
   </div>
   <mat-card-content class="card-content">
-    <mat-list>
-      <mat-list-item *ngFor="let item of data; last as last">
-        <div fxLayout="row" style="width: 100%" fxLayoutAlign="start center" [fxLayoutGap]="gap">
-          <span class="label" fxFlex="30">{{item?.label}}</span>
-          <span fxFlexAlign="center">
-            {{item?.type === 'date'?(item?.value | date):item?.value}}
-          </span>
-        </div>
-        <mat-divider *ngIf="!last"></mat-divider>
-      </mat-list-item>
-    </mat-list>
+    <ngx-list-item [data]="data" [gap]="gap"></ngx-list-item>
     <ng-content></ng-content>
   </mat-card-content>
 </mat-card>

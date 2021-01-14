@@ -44,7 +44,12 @@ export class ProviderComponent implements GridView {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        console.log(result);
         if (action === Operations.add) {
+          // It will return 3 forms
+          // Main Informations Form
+          // Adresses Form
+          // Contacts Form
           this.store.dispatch(ProviderActions.addProvider({provider: result}))
         } else {}
       }
