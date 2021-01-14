@@ -16,20 +16,24 @@ import { CheckboxComponent } from "./checkbox.component";
 import { InputComponent } from './input.component';
 import { InputSelectComponent } from './input-select.component';
 import { TagInputComponent } from './tag-input.component';
+import { TextareaComponent } from './textarea.component';
+import { HeaderComponent } from './header.component';
 
 const componentMapper = {
   input: InputComponent,
   inputSelect: InputSelectComponent,
   inputTag: TagInputComponent,
+  textarea: TextareaComponent,
   button: ButtonComponent,
   select: SelectComponent,
   date: DateComponent,
   radiobutton: RadiobuttonComponent,
-  checkbox: CheckboxComponent
+  checkbox: CheckboxComponent,
+  header: HeaderComponent
 };
 
 @Directive({
-  selector: "[dynamicField]"
+  selector: "[dynamicField]",
 })
 export class DynamicFieldDirective implements OnInit {
   @Input() field: FieldConfig;
@@ -49,7 +53,7 @@ export class DynamicFieldDirective implements OnInit {
       componentMapper[this.field.type]
     );
     this.componentRef = this.container.createComponent(factory);
-    this.componentRef.location.nativeElement.style = this.style;
+    this.componentRef.location.nativeElement.style = this.field.style ?? this.style;
     this.componentRef.instance.field = this.field;
     this.componentRef.instance.group = this.group;
 

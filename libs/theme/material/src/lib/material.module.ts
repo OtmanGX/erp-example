@@ -43,6 +43,8 @@ import { FicheCardComponent } from '../components/fiche-card/fiche-card.componen
 import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
+import { TextareaComponent } from '../components/form/textarea.component';
+import { HeaderComponent } from '../components/form/header.component';
 
 
 export const MATERIAL_MODULES = [
@@ -90,6 +92,8 @@ export const COMPONENTS = [
   RadiobuttonComponent,
   TagInputComponent,
   CheckboxComponent,
+  TextareaComponent,
+  HeaderComponent
   ];
 
 export const OTHER_COMPONENTS = [
