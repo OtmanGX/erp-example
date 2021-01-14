@@ -1,5 +1,5 @@
 import { Customer, DetailedCustomer } from "../models/customer.models";
-import { Contact } from "../models/contact.models";
+import { PartialContact } from "../models/shared.models";
 
 //list of Customers
 export interface CustomersVM {
@@ -21,7 +21,7 @@ export interface DetailedCustomerVM{
 
 export interface CustomerCreationVM{
 
-    contacts:Contact[];
+    contacts:PartialContact[];
     loading:boolean;
     error?:string;
     

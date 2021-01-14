@@ -35,6 +35,7 @@ export class UserService {
     @Inject(DOCUMENT) private doc: Document,
     private http: HttpClient
   ) {
+    /** 
     this.getOneById('a1d93bb6-d9f0-462a-a967-986d6898a4f9').subscribe(obj => { let data: DetailedUser = obj.data.management_userProfile_by_pk; console.log(obj.data.management_userProfile_by_pk) });
     this.getAll().subscribe(obj => { let data: User[] = obj.data.management_userProfile; console.log(obj.data.management_userProfile) });
     this.insertOne(
@@ -47,7 +48,7 @@ export class UserService {
 
       ).subscribe(obj =>{let data: User=obj.data.insert_management_userProfile_one;console.log(obj.data.insert_management_userProfile_one)} );
     this.updateOne({id:"a1d93bb6-d9f0-462a-a967-986d6898a4f9",phone:"phoneyht",firstname:"firseth",lastname:"lasttyj",username:"rnametyh"}).subscribe(obj =>{let data: User=obj.data.update_management_userProfile_by_pk;console.log(obj.data.update_management_userProfile_by_pk)} );
-
+*/
   }
 
   getAll() {

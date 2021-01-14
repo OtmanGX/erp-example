@@ -34,6 +34,19 @@ export type Boolean_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['Boolean']>>;
 };
 
+/** expression to compare columns of type Float. All fields are combined with logical 'AND'. */
+export type Float_Comparison_Exp = {
+  _eq?: Maybe<Scalars['Float']>;
+  _gt?: Maybe<Scalars['Float']>;
+  _gte?: Maybe<Scalars['Float']>;
+  _in?: Maybe<Array<Scalars['Float']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['Float']>;
+  _lte?: Maybe<Scalars['Float']>;
+  _neq?: Maybe<Scalars['Float']>;
+  _nin?: Maybe<Array<Scalars['Float']>>;
+};
+
 /** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
   _eq?: Maybe<Scalars['Int']>;
@@ -3399,17 +3412,13 @@ export type Management_Company = {
   RC: Scalars['String'];
   address: Scalars['String'];
   createdAt: Scalars['timestamptz'];
-  createdBy?: Maybe<Scalars['uuid']>;
-  /** An object relationship */
-  createdByUser?: Maybe<Management_UserProfile>;
+  createdBy?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   name: Scalars['String'];
   phone: Scalars['String'];
   updatedAt: Scalars['timestamptz'];
   updatedBy?: Maybe<Scalars['uuid']>;
-  /** An object relationship */
-  updatedByUser?: Maybe<Management_UserProfile>;
   website?: Maybe<Scalars['String']>;
 };
 
@@ -3459,15 +3468,13 @@ export type Management_Company_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Management_Company_Bool_Exp>>>;
   address?: Maybe<String_Comparison_Exp>;
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
-  createdBy?: Maybe<Uuid_Comparison_Exp>;
-  createdByUser?: Maybe<Management_UserProfile_Bool_Exp>;
+  createdBy?: Maybe<String_Comparison_Exp>;
   email?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   phone?: Maybe<String_Comparison_Exp>;
   updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
   updatedBy?: Maybe<Uuid_Comparison_Exp>;
-  updatedByUser?: Maybe<Management_UserProfile_Bool_Exp>;
   website?: Maybe<String_Comparison_Exp>;
 };
 
@@ -3495,15 +3502,13 @@ export type Management_Company_Insert_Input = {
   RC?: Maybe<Scalars['String']>;
   address?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  createdByUser?: Maybe<Management_UserProfile_Obj_Rel_Insert_Input>;
+  createdBy?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
   updatedBy?: Maybe<Scalars['uuid']>;
-  updatedByUser?: Maybe<Management_UserProfile_Obj_Rel_Insert_Input>;
   website?: Maybe<Scalars['String']>;
 };
 
@@ -3516,7 +3521,7 @@ export type Management_Company_Max_Fields = {
   RC?: Maybe<Scalars['String']>;
   address?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
-  createdBy?: Maybe<Scalars['uuid']>;
+  createdBy?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
@@ -3553,7 +3558,7 @@ export type Management_Company_Min_Fields = {
   RC?: Maybe<Scalars['String']>;
   address?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
-  createdBy?: Maybe<Scalars['uuid']>;
+  createdBy?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
@@ -3612,14 +3617,12 @@ export type Management_Company_Order_By = {
   address?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
-  createdByUser?: Maybe<Management_UserProfile_Order_By>;
   email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   phone?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
-  updatedByUser?: Maybe<Management_UserProfile_Order_By>;
   website?: Maybe<Order_By>;
 };
 
@@ -3668,7 +3671,7 @@ export type Management_Company_Set_Input = {
   RC?: Maybe<Scalars['String']>;
   address?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
-  createdBy?: Maybe<Scalars['uuid']>;
+  createdBy?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
@@ -4001,7 +4004,7 @@ export type Management_UserProfile = {
   createdBy?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
   firstname?: Maybe<Scalars['String']>;
-  id: Scalars['uuid'];
+  id: Scalars['String'];
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
@@ -4062,7 +4065,7 @@ export type Management_UserProfile_Bool_Exp = {
   createdBy?: Maybe<Uuid_Comparison_Exp>;
   email?: Maybe<String_Comparison_Exp>;
   firstname?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<String_Comparison_Exp>;
   joinUs?: Maybe<Date_Comparison_Exp>;
   lastname?: Maybe<String_Comparison_Exp>;
   leftUs?: Maybe<Date_Comparison_Exp>;
@@ -4098,7 +4101,7 @@ export type Management_UserProfile_Insert_Input = {
   createdBy?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
   firstname?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['String']>;
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
@@ -4119,7 +4122,7 @@ export type Management_UserProfile_Max_Fields = {
   createdBy?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
   firstname?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['String']>;
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
@@ -4156,7 +4159,7 @@ export type Management_UserProfile_Min_Fields = {
   createdBy?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
   firstname?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['String']>;
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
@@ -4230,7 +4233,7 @@ export type Management_UserProfile_Order_By = {
 
 /** primary key columns input for table: "management.userProfile" */
 export type Management_UserProfile_Pk_Columns_Input = {
-  id: Scalars['uuid'];
+  id: Scalars['String'];
 };
 
 /** select columns of table "management.userProfile" */
@@ -4278,7 +4281,7 @@ export type Management_UserProfile_Set_Input = {
   createdBy?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
   firstname?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['String']>;
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
@@ -4409,7 +4412,9 @@ export enum Management_User_Role_Constraint {
 
 export enum Management_User_Role_Enum {
   /** admin description */
-  Admin = 'admin'
+  Admin = 'admin',
+  /** user des */
+  User = 'user'
 }
 
 /** expression to compare columns of type management_user_role_enum. All fields are combined with logical 'AND'. */
@@ -4569,14 +4574,42 @@ export type Mutation_Root = {
   delete_product_accessory?: Maybe<Product_Accessory_Mutation_Response>;
   /** delete single row from the table: "product.accessory" */
   delete_product_accessory_by_pk?: Maybe<Product_Accessory>;
+  /** delete data from the table: "product.consumable" */
+  delete_product_consumable?: Maybe<Product_Consumable_Mutation_Response>;
+  /** delete single row from the table: "product.consumable" */
+  delete_product_consumable_by_pk?: Maybe<Product_Consumable>;
   /** delete data from the table: "product.glass" */
   delete_product_glass?: Maybe<Product_Glass_Mutation_Response>;
   /** delete single row from the table: "product.glass" */
   delete_product_glass_by_pk?: Maybe<Product_Glass>;
+  /** delete data from the table: "product.optionalServiceParam" */
+  delete_product_optionalServiceParam?: Maybe<Product_OptionalServiceParam_Mutation_Response>;
+  /** delete single row from the table: "product.optionalServiceParam" */
+  delete_product_optionalServiceParam_by_pk?: Maybe<Product_OptionalServiceParam>;
+  /** delete data from the table: "product.product" */
+  delete_product_product?: Maybe<Product_Product_Mutation_Response>;
+  /** delete single row from the table: "product.product" */
+  delete_product_product_by_pk?: Maybe<Product_Product>;
+  /** delete data from the table: "product.product_companies" */
+  delete_product_product_companies?: Maybe<Product_Product_Companies_Mutation_Response>;
+  /** delete single row from the table: "product.product_companies" */
+  delete_product_product_companies_by_pk?: Maybe<Product_Product_Companies>;
+  /** delete data from the table: "product.service" */
+  delete_product_service?: Maybe<Product_Service_Mutation_Response>;
+  /** delete single row from the table: "product.service" */
+  delete_product_service_by_pk?: Maybe<Product_Service>;
+  /** delete data from the table: "product.service_consumable" */
+  delete_product_service_consumable?: Maybe<Product_Service_Consumable_Mutation_Response>;
+  /** delete single row from the table: "product.service_consumable" */
+  delete_product_service_consumable_by_pk?: Maybe<Product_Service_Consumable>;
   /** delete data from the table: "product.service_glasses" */
   delete_product_service_glasses?: Maybe<Product_Service_Glasses_Mutation_Response>;
   /** delete single row from the table: "product.service_glasses" */
   delete_product_service_glasses_by_pk?: Maybe<Product_Service_Glasses>;
+  /** delete data from the table: "product.substance" */
+  delete_product_substance?: Maybe<Product_Substance_Mutation_Response>;
+  /** delete single row from the table: "product.substance" */
+  delete_product_substance_by_pk?: Maybe<Product_Substance>;
   /** insert data into the table: "contact.address" */
   insert_contact_address?: Maybe<Contact_Address_Mutation_Response>;
   /** insert a single row into the table: "contact.address" */
@@ -4633,14 +4666,42 @@ export type Mutation_Root = {
   insert_product_accessory?: Maybe<Product_Accessory_Mutation_Response>;
   /** insert a single row into the table: "product.accessory" */
   insert_product_accessory_one?: Maybe<Product_Accessory>;
+  /** insert data into the table: "product.consumable" */
+  insert_product_consumable?: Maybe<Product_Consumable_Mutation_Response>;
+  /** insert a single row into the table: "product.consumable" */
+  insert_product_consumable_one?: Maybe<Product_Consumable>;
   /** insert data into the table: "product.glass" */
   insert_product_glass?: Maybe<Product_Glass_Mutation_Response>;
   /** insert a single row into the table: "product.glass" */
   insert_product_glass_one?: Maybe<Product_Glass>;
+  /** insert data into the table: "product.optionalServiceParam" */
+  insert_product_optionalServiceParam?: Maybe<Product_OptionalServiceParam_Mutation_Response>;
+  /** insert a single row into the table: "product.optionalServiceParam" */
+  insert_product_optionalServiceParam_one?: Maybe<Product_OptionalServiceParam>;
+  /** insert data into the table: "product.product" */
+  insert_product_product?: Maybe<Product_Product_Mutation_Response>;
+  /** insert data into the table: "product.product_companies" */
+  insert_product_product_companies?: Maybe<Product_Product_Companies_Mutation_Response>;
+  /** insert a single row into the table: "product.product_companies" */
+  insert_product_product_companies_one?: Maybe<Product_Product_Companies>;
+  /** insert a single row into the table: "product.product" */
+  insert_product_product_one?: Maybe<Product_Product>;
+  /** insert data into the table: "product.service" */
+  insert_product_service?: Maybe<Product_Service_Mutation_Response>;
+  /** insert data into the table: "product.service_consumable" */
+  insert_product_service_consumable?: Maybe<Product_Service_Consumable_Mutation_Response>;
+  /** insert a single row into the table: "product.service_consumable" */
+  insert_product_service_consumable_one?: Maybe<Product_Service_Consumable>;
   /** insert data into the table: "product.service_glasses" */
   insert_product_service_glasses?: Maybe<Product_Service_Glasses_Mutation_Response>;
   /** insert a single row into the table: "product.service_glasses" */
   insert_product_service_glasses_one?: Maybe<Product_Service_Glasses>;
+  /** insert a single row into the table: "product.service" */
+  insert_product_service_one?: Maybe<Product_Service>;
+  /** insert data into the table: "product.substance" */
+  insert_product_substance?: Maybe<Product_Substance_Mutation_Response>;
+  /** insert a single row into the table: "product.substance" */
+  insert_product_substance_one?: Maybe<Product_Substance>;
   /** perform the action: "login" */
   login?: Maybe<LoginOutput>;
   /** update data of the table: "contact.address" */
@@ -4699,14 +4760,42 @@ export type Mutation_Root = {
   update_product_accessory?: Maybe<Product_Accessory_Mutation_Response>;
   /** update single row of the table: "product.accessory" */
   update_product_accessory_by_pk?: Maybe<Product_Accessory>;
+  /** update data of the table: "product.consumable" */
+  update_product_consumable?: Maybe<Product_Consumable_Mutation_Response>;
+  /** update single row of the table: "product.consumable" */
+  update_product_consumable_by_pk?: Maybe<Product_Consumable>;
   /** update data of the table: "product.glass" */
   update_product_glass?: Maybe<Product_Glass_Mutation_Response>;
   /** update single row of the table: "product.glass" */
   update_product_glass_by_pk?: Maybe<Product_Glass>;
+  /** update data of the table: "product.optionalServiceParam" */
+  update_product_optionalServiceParam?: Maybe<Product_OptionalServiceParam_Mutation_Response>;
+  /** update single row of the table: "product.optionalServiceParam" */
+  update_product_optionalServiceParam_by_pk?: Maybe<Product_OptionalServiceParam>;
+  /** update data of the table: "product.product" */
+  update_product_product?: Maybe<Product_Product_Mutation_Response>;
+  /** update single row of the table: "product.product" */
+  update_product_product_by_pk?: Maybe<Product_Product>;
+  /** update data of the table: "product.product_companies" */
+  update_product_product_companies?: Maybe<Product_Product_Companies_Mutation_Response>;
+  /** update single row of the table: "product.product_companies" */
+  update_product_product_companies_by_pk?: Maybe<Product_Product_Companies>;
+  /** update data of the table: "product.service" */
+  update_product_service?: Maybe<Product_Service_Mutation_Response>;
+  /** update single row of the table: "product.service" */
+  update_product_service_by_pk?: Maybe<Product_Service>;
+  /** update data of the table: "product.service_consumable" */
+  update_product_service_consumable?: Maybe<Product_Service_Consumable_Mutation_Response>;
+  /** update single row of the table: "product.service_consumable" */
+  update_product_service_consumable_by_pk?: Maybe<Product_Service_Consumable>;
   /** update data of the table: "product.service_glasses" */
   update_product_service_glasses?: Maybe<Product_Service_Glasses_Mutation_Response>;
   /** update single row of the table: "product.service_glasses" */
   update_product_service_glasses_by_pk?: Maybe<Product_Service_Glasses>;
+  /** update data of the table: "product.substance" */
+  update_product_substance?: Maybe<Product_Substance_Mutation_Response>;
+  /** update single row of the table: "product.substance" */
+  update_product_substance_by_pk?: Maybe<Product_Substance>;
 };
 
 
@@ -4855,7 +4944,7 @@ export type Mutation_RootDelete_Management_UserProfileArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Management_UserProfile_By_PkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['String'];
 };
 
 
@@ -4884,6 +4973,18 @@ export type Mutation_RootDelete_Product_Accessory_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Product_ConsumableArgs = {
+  where: Product_Consumable_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Consumable_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Product_GlassArgs = {
   where: Product_Glass_Bool_Exp;
 };
@@ -4896,6 +4997,68 @@ export type Mutation_RootDelete_Product_Glass_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Product_OptionalServiceParamArgs = {
+  where: Product_OptionalServiceParam_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_OptionalServiceParam_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_ProductArgs = {
+  where: Product_Product_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Product_By_PkArgs = {
+  code: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Product_CompaniesArgs = {
+  where: Product_Product_Companies_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Product_Companies_By_PkArgs = {
+  companyid: Scalars['uuid'];
+  productCode: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_ServiceArgs = {
+  where: Product_Service_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Service_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Service_ConsumableArgs = {
+  where: Product_Service_Consumable_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Service_Consumable_By_PkArgs = {
+  consumableid: Scalars['uuid'];
+  serviceid: Scalars['uuid'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Product_Service_GlassesArgs = {
   where: Product_Service_Glasses_Bool_Exp;
 };
@@ -4904,8 +5067,19 @@ export type Mutation_RootDelete_Product_Service_GlassesArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Product_Service_Glasses_By_PkArgs = {
   glasseid: Scalars['uuid'];
-  productCode: Scalars['String'];
   serviceid: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_SubstanceArgs = {
+  where: Product_Substance_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Substance_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -5106,6 +5280,20 @@ export type Mutation_RootInsert_Product_Accessory_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Product_ConsumableArgs = {
+  objects: Array<Product_Consumable_Insert_Input>;
+  on_conflict?: Maybe<Product_Consumable_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Consumable_OneArgs = {
+  object: Product_Consumable_Insert_Input;
+  on_conflict?: Maybe<Product_Consumable_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Product_GlassArgs = {
   objects: Array<Product_Glass_Insert_Input>;
   on_conflict?: Maybe<Product_Glass_On_Conflict>;
@@ -5120,6 +5308,69 @@ export type Mutation_RootInsert_Product_Glass_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Product_OptionalServiceParamArgs = {
+  objects: Array<Product_OptionalServiceParam_Insert_Input>;
+  on_conflict?: Maybe<Product_OptionalServiceParam_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_OptionalServiceParam_OneArgs = {
+  object: Product_OptionalServiceParam_Insert_Input;
+  on_conflict?: Maybe<Product_OptionalServiceParam_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_ProductArgs = {
+  objects: Array<Product_Product_Insert_Input>;
+  on_conflict?: Maybe<Product_Product_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Product_CompaniesArgs = {
+  objects: Array<Product_Product_Companies_Insert_Input>;
+  on_conflict?: Maybe<Product_Product_Companies_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Product_Companies_OneArgs = {
+  object: Product_Product_Companies_Insert_Input;
+  on_conflict?: Maybe<Product_Product_Companies_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Product_OneArgs = {
+  object: Product_Product_Insert_Input;
+  on_conflict?: Maybe<Product_Product_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_ServiceArgs = {
+  objects: Array<Product_Service_Insert_Input>;
+  on_conflict?: Maybe<Product_Service_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Service_ConsumableArgs = {
+  objects: Array<Product_Service_Consumable_Insert_Input>;
+  on_conflict?: Maybe<Product_Service_Consumable_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Service_Consumable_OneArgs = {
+  object: Product_Service_Consumable_Insert_Input;
+  on_conflict?: Maybe<Product_Service_Consumable_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Product_Service_GlassesArgs = {
   objects: Array<Product_Service_Glasses_Insert_Input>;
   on_conflict?: Maybe<Product_Service_Glasses_On_Conflict>;
@@ -5130,6 +5381,27 @@ export type Mutation_RootInsert_Product_Service_GlassesArgs = {
 export type Mutation_RootInsert_Product_Service_Glasses_OneArgs = {
   object: Product_Service_Glasses_Insert_Input;
   on_conflict?: Maybe<Product_Service_Glasses_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Service_OneArgs = {
+  object: Product_Service_Insert_Input;
+  on_conflict?: Maybe<Product_Service_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_SubstanceArgs = {
+  objects: Array<Product_Substance_Insert_Input>;
+  on_conflict?: Maybe<Product_Substance_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Substance_OneArgs = {
+  object: Product_Substance_Insert_Input;
+  on_conflict?: Maybe<Product_Substance_On_Conflict>;
 };
 
 
@@ -5338,6 +5610,20 @@ export type Mutation_RootUpdate_Product_Accessory_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Product_ConsumableArgs = {
+  _set?: Maybe<Product_Consumable_Set_Input>;
+  where: Product_Consumable_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Consumable_By_PkArgs = {
+  _set?: Maybe<Product_Consumable_Set_Input>;
+  pk_columns: Product_Consumable_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Product_GlassArgs = {
   _inc?: Maybe<Product_Glass_Inc_Input>;
   _set?: Maybe<Product_Glass_Set_Input>;
@@ -5354,6 +5640,80 @@ export type Mutation_RootUpdate_Product_Glass_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Product_OptionalServiceParamArgs = {
+  _set?: Maybe<Product_OptionalServiceParam_Set_Input>;
+  where: Product_OptionalServiceParam_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_OptionalServiceParam_By_PkArgs = {
+  _set?: Maybe<Product_OptionalServiceParam_Set_Input>;
+  pk_columns: Product_OptionalServiceParam_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_ProductArgs = {
+  _inc?: Maybe<Product_Product_Inc_Input>;
+  _set?: Maybe<Product_Product_Set_Input>;
+  where: Product_Product_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Product_By_PkArgs = {
+  _inc?: Maybe<Product_Product_Inc_Input>;
+  _set?: Maybe<Product_Product_Set_Input>;
+  pk_columns: Product_Product_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Product_CompaniesArgs = {
+  _set?: Maybe<Product_Product_Companies_Set_Input>;
+  where: Product_Product_Companies_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Product_Companies_By_PkArgs = {
+  _set?: Maybe<Product_Product_Companies_Set_Input>;
+  pk_columns: Product_Product_Companies_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_ServiceArgs = {
+  _set?: Maybe<Product_Service_Set_Input>;
+  where: Product_Service_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Service_By_PkArgs = {
+  _set?: Maybe<Product_Service_Set_Input>;
+  pk_columns: Product_Service_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Service_ConsumableArgs = {
+  _inc?: Maybe<Product_Service_Consumable_Inc_Input>;
+  _set?: Maybe<Product_Service_Consumable_Set_Input>;
+  where: Product_Service_Consumable_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Service_Consumable_By_PkArgs = {
+  _inc?: Maybe<Product_Service_Consumable_Inc_Input>;
+  _set?: Maybe<Product_Service_Consumable_Set_Input>;
+  pk_columns: Product_Service_Consumable_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Product_Service_GlassesArgs = {
   _set?: Maybe<Product_Service_Glasses_Set_Input>;
   where: Product_Service_Glasses_Bool_Exp;
@@ -5364,6 +5724,20 @@ export type Mutation_RootUpdate_Product_Service_GlassesArgs = {
 export type Mutation_RootUpdate_Product_Service_Glasses_By_PkArgs = {
   _set?: Maybe<Product_Service_Glasses_Set_Input>;
   pk_columns: Product_Service_Glasses_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_SubstanceArgs = {
+  _set?: Maybe<Product_Substance_Set_Input>;
+  where: Product_Substance_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Substance_By_PkArgs = {
+  _set?: Maybe<Product_Substance_Set_Input>;
+  pk_columns: Product_Substance_Pk_Columns_Input;
 };
 
 
@@ -5399,16 +5773,18 @@ export enum Order_By {
 /** columns and relationships of "product.accessory" */
 export type Product_Accessory = {
   __typename?: 'product_accessory';
-  createdAt: Scalars['timestamptz'];
-  createdBy: Scalars['uuid'];
-  /** An object relationship */
-  createdByUser: Management_UserProfile;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
-  quota: Scalars['numeric'];
-  updatedAt: Scalars['timestamptz'];
-  updatedBy: Scalars['uuid'];
   /** An object relationship */
-  updatedByUser: Management_UserProfile;
+  product?: Maybe<Product_Product>;
+  productCode?: Maybe<Scalars['String']>;
+  quota: Scalars['numeric'];
+  /** An object relationship */
+  substance?: Maybe<Product_Substance>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "product.accessory" */
@@ -5478,22 +5854,26 @@ export type Product_Accessory_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Product_Accessory_Bool_Exp>>>;
   _not?: Maybe<Product_Accessory_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Product_Accessory_Bool_Exp>>>;
-  createdAt?: Maybe<Timestamptz_Comparison_Exp>;
-  createdBy?: Maybe<Uuid_Comparison_Exp>;
-  createdByUser?: Maybe<Management_UserProfile_Bool_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
+  createdBy?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  product?: Maybe<Product_Product_Bool_Exp>;
+  productCode?: Maybe<String_Comparison_Exp>;
   quota?: Maybe<Numeric_Comparison_Exp>;
-  updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
-  updatedBy?: Maybe<Uuid_Comparison_Exp>;
-  updatedByUser?: Maybe<Management_UserProfile_Bool_Exp>;
+  substance?: Maybe<Product_Substance_Bool_Exp>;
+  substanceid?: Maybe<Uuid_Comparison_Exp>;
+  updatedAt?: Maybe<Date_Comparison_Exp>;
+  updatedBy?: Maybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "product.accessory" */
 export enum Product_Accessory_Constraint {
   /** unique or primary key constraint */
-  AccessoiresCreatedByKey = 'accessoires_createdBy_key',
+  AccessoiresPkey = 'accessoires_pkey',
   /** unique or primary key constraint */
-  AccessoiresPkey = 'accessoires_pkey'
+  AccessoryProductCodeKey = 'accessory_productCode_key',
+  /** unique or primary key constraint */
+  AccessorySubstanceidKey = 'accessory_substanceid_key'
 }
 
 /** input type for incrementing integer column in table "product.accessory" */
@@ -5503,25 +5883,29 @@ export type Product_Accessory_Inc_Input = {
 
 /** input type for inserting data into table "product.accessory" */
 export type Product_Accessory_Insert_Input = {
-  createdAt?: Maybe<Scalars['timestamptz']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  createdByUser?: Maybe<Management_UserProfile_Obj_Rel_Insert_Input>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  product?: Maybe<Product_Product_Obj_Rel_Insert_Input>;
+  productCode?: Maybe<Scalars['String']>;
   quota?: Maybe<Scalars['numeric']>;
-  updatedAt?: Maybe<Scalars['timestamptz']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-  updatedByUser?: Maybe<Management_UserProfile_Obj_Rel_Insert_Input>;
+  substance?: Maybe<Product_Substance_Obj_Rel_Insert_Input>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type Product_Accessory_Max_Fields = {
   __typename?: 'product_accessory_max_fields';
-  createdAt?: Maybe<Scalars['timestamptz']>;
-  createdBy?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
   quota?: Maybe<Scalars['numeric']>;
-  updatedAt?: Maybe<Scalars['timestamptz']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "product.accessory" */
@@ -5529,7 +5913,9 @@ export type Product_Accessory_Max_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
   quota?: Maybe<Order_By>;
+  substanceid?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
 };
@@ -5537,12 +5923,14 @@ export type Product_Accessory_Max_Order_By = {
 /** aggregate min on columns */
 export type Product_Accessory_Min_Fields = {
   __typename?: 'product_accessory_min_fields';
-  createdAt?: Maybe<Scalars['timestamptz']>;
-  createdBy?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
   quota?: Maybe<Scalars['numeric']>;
-  updatedAt?: Maybe<Scalars['timestamptz']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "product.accessory" */
@@ -5550,7 +5938,9 @@ export type Product_Accessory_Min_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
   quota?: Maybe<Order_By>;
+  substanceid?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
 };
@@ -5581,12 +5971,14 @@ export type Product_Accessory_On_Conflict = {
 export type Product_Accessory_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
-  createdByUser?: Maybe<Management_UserProfile_Order_By>;
   id?: Maybe<Order_By>;
+  product?: Maybe<Product_Product_Order_By>;
+  productCode?: Maybe<Order_By>;
   quota?: Maybe<Order_By>;
+  substance?: Maybe<Product_Substance_Order_By>;
+  substanceid?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
-  updatedByUser?: Maybe<Management_UserProfile_Order_By>;
 };
 
 /** primary key columns input for table: "product.accessory" */
@@ -5603,7 +5995,11 @@ export enum Product_Accessory_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  ProductCode = 'productCode',
+  /** column name */
   Quota = 'quota',
+  /** column name */
+  Substanceid = 'substanceid',
   /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
@@ -5612,12 +6008,14 @@ export enum Product_Accessory_Select_Column {
 
 /** input type for updating data in table "product.accessory" */
 export type Product_Accessory_Set_Input = {
-  createdAt?: Maybe<Scalars['timestamptz']>;
-  createdBy?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
   quota?: Maybe<Scalars['numeric']>;
-  updatedAt?: Maybe<Scalars['timestamptz']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
@@ -5673,7 +6071,11 @@ export enum Product_Accessory_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  ProductCode = 'productCode',
+  /** column name */
   Quota = 'quota',
+  /** column name */
+  Substanceid = 'substanceid',
   /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
@@ -5713,6 +6115,262 @@ export type Product_Accessory_Variance_Order_By = {
   quota?: Maybe<Order_By>;
 };
 
+/** columns and relationships of "product.consumable" */
+export type Product_Consumable = {
+  __typename?: 'product_consumable';
+  code: Scalars['String'];
+  createdAt: Scalars['date'];
+  createdBy: Scalars['String'];
+  id: Scalars['uuid'];
+  label: Scalars['String'];
+  /** An array relationship */
+  service_consumables: Array<Product_Service_Consumable>;
+  /** An aggregated array relationship */
+  service_consumables_aggregate: Product_Service_Consumable_Aggregate;
+  /** An object relationship */
+  substance: Product_Substance;
+  substanceid: Scalars['uuid'];
+  updatedAt: Scalars['date'];
+  updatedBy: Scalars['String'];
+};
+
+
+/** columns and relationships of "product.consumable" */
+export type Product_ConsumableService_ConsumablesArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
+  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.consumable" */
+export type Product_ConsumableService_Consumables_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
+  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
+};
+
+/** aggregated selection of "product.consumable" */
+export type Product_Consumable_Aggregate = {
+  __typename?: 'product_consumable_aggregate';
+  aggregate?: Maybe<Product_Consumable_Aggregate_Fields>;
+  nodes: Array<Product_Consumable>;
+};
+
+/** aggregate fields of "product.consumable" */
+export type Product_Consumable_Aggregate_Fields = {
+  __typename?: 'product_consumable_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_Consumable_Max_Fields>;
+  min?: Maybe<Product_Consumable_Min_Fields>;
+};
+
+
+/** aggregate fields of "product.consumable" */
+export type Product_Consumable_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Consumable_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.consumable" */
+export type Product_Consumable_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_Consumable_Max_Order_By>;
+  min?: Maybe<Product_Consumable_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.consumable" */
+export type Product_Consumable_Arr_Rel_Insert_Input = {
+  data: Array<Product_Consumable_Insert_Input>;
+  on_conflict?: Maybe<Product_Consumable_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "product.consumable". All fields are combined with a logical 'AND'. */
+export type Product_Consumable_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_Consumable_Bool_Exp>>>;
+  _not?: Maybe<Product_Consumable_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Consumable_Bool_Exp>>>;
+  code?: Maybe<String_Comparison_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
+  createdBy?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  label?: Maybe<String_Comparison_Exp>;
+  service_consumables?: Maybe<Product_Service_Consumable_Bool_Exp>;
+  substance?: Maybe<Product_Substance_Bool_Exp>;
+  substanceid?: Maybe<Uuid_Comparison_Exp>;
+  updatedAt?: Maybe<Date_Comparison_Exp>;
+  updatedBy?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "product.consumable" */
+export enum Product_Consumable_Constraint {
+  /** unique or primary key constraint */
+  ConsumablePkey = 'consumable_pkey',
+  /** unique or primary key constraint */
+  ConsumableSubstanceidKey = 'consumable_substanceid_key'
+}
+
+/** input type for inserting data into table "product.consumable" */
+export type Product_Consumable_Insert_Input = {
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  label?: Maybe<Scalars['String']>;
+  service_consumables?: Maybe<Product_Service_Consumable_Arr_Rel_Insert_Input>;
+  substance?: Maybe<Product_Substance_Obj_Rel_Insert_Input>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Product_Consumable_Max_Fields = {
+  __typename?: 'product_consumable_max_fields';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  label?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "product.consumable" */
+export type Product_Consumable_Max_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  substanceid?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_Consumable_Min_Fields = {
+  __typename?: 'product_consumable_min_fields';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  label?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "product.consumable" */
+export type Product_Consumable_Min_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  substanceid?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.consumable" */
+export type Product_Consumable_Mutation_Response = {
+  __typename?: 'product_consumable_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_Consumable>;
+};
+
+/** input type for inserting object relation for remote table "product.consumable" */
+export type Product_Consumable_Obj_Rel_Insert_Input = {
+  data: Product_Consumable_Insert_Input;
+  on_conflict?: Maybe<Product_Consumable_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.consumable" */
+export type Product_Consumable_On_Conflict = {
+  constraint: Product_Consumable_Constraint;
+  update_columns: Array<Product_Consumable_Update_Column>;
+  where?: Maybe<Product_Consumable_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.consumable" */
+export type Product_Consumable_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  service_consumables_aggregate?: Maybe<Product_Service_Consumable_Aggregate_Order_By>;
+  substance?: Maybe<Product_Substance_Order_By>;
+  substanceid?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.consumable" */
+export type Product_Consumable_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "product.consumable" */
+export enum Product_Consumable_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Label = 'label',
+  /** column name */
+  Substanceid = 'substanceid',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy'
+}
+
+/** input type for updating data in table "product.consumable" */
+export type Product_Consumable_Set_Input = {
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  label?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "product.consumable" */
+export enum Product_Consumable_Update_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Label = 'label',
+  /** column name */
+  Substanceid = 'substanceid',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy'
+}
+
 /** columns and relationships of "product.glass" */
 export type Product_Glass = {
   __typename?: 'product_glass';
@@ -5720,36 +6378,16 @@ export type Product_Glass = {
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
   id: Scalars['uuid'];
-  matid: Scalars['uuid'];
+  /** An object relationship */
+  product: Product_Product;
   productCode: Scalars['String'];
-  /** An array relationship */
-  service_glasses: Array<Product_Service_Glasses>;
-  /** An aggregated array relationship */
-  service_glasses_aggregate: Product_Service_Glasses_Aggregate;
+  /** An object relationship */
+  substance: Product_Substance;
+  substanceid: Scalars['uuid'];
   thickness: Scalars['Int'];
   type: Scalars['String'];
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-
-/** columns and relationships of "product.glass" */
-export type Product_GlassService_GlassesArgs = {
-  distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_Service_Glasses_Order_By>>;
-  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
-};
-
-
-/** columns and relationships of "product.glass" */
-export type Product_GlassService_Glasses_AggregateArgs = {
-  distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_Service_Glasses_Order_By>>;
-  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
 };
 
 /** aggregated selection of "product.glass" */
@@ -5823,9 +6461,10 @@ export type Product_Glass_Bool_Exp = {
   createdAt?: Maybe<Date_Comparison_Exp>;
   createdBy?: Maybe<Uuid_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
-  matid?: Maybe<Uuid_Comparison_Exp>;
+  product?: Maybe<Product_Product_Bool_Exp>;
   productCode?: Maybe<String_Comparison_Exp>;
-  service_glasses?: Maybe<Product_Service_Glasses_Bool_Exp>;
+  substance?: Maybe<Product_Substance_Bool_Exp>;
+  substanceid?: Maybe<Uuid_Comparison_Exp>;
   thickness?: Maybe<Int_Comparison_Exp>;
   type?: Maybe<String_Comparison_Exp>;
   updatedAt?: Maybe<Date_Comparison_Exp>;
@@ -5837,7 +6476,9 @@ export enum Product_Glass_Constraint {
   /** unique or primary key constraint */
   GlassPkey = 'glass_pkey',
   /** unique or primary key constraint */
-  GlassProductCodeKey = 'glass_productCode_key'
+  GlassProductCodeKey = 'glass_productCode_key',
+  /** unique or primary key constraint */
+  GlassSubstanceidKey = 'glass_substanceid_key'
 }
 
 /** input type for incrementing integer column in table "product.glass" */
@@ -5851,9 +6492,10 @@ export type Product_Glass_Insert_Input = {
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
-  matid?: Maybe<Scalars['uuid']>;
+  product?: Maybe<Product_Product_Obj_Rel_Insert_Input>;
   productCode?: Maybe<Scalars['String']>;
-  service_glasses?: Maybe<Product_Service_Glasses_Arr_Rel_Insert_Input>;
+  substance?: Maybe<Product_Substance_Obj_Rel_Insert_Input>;
+  substanceid?: Maybe<Scalars['uuid']>;
   thickness?: Maybe<Scalars['Int']>;
   type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
@@ -5867,8 +6509,8 @@ export type Product_Glass_Max_Fields = {
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
-  matid?: Maybe<Scalars['uuid']>;
   productCode?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
   thickness?: Maybe<Scalars['Int']>;
   type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
@@ -5881,8 +6523,8 @@ export type Product_Glass_Max_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  matid?: Maybe<Order_By>;
   productCode?: Maybe<Order_By>;
+  substanceid?: Maybe<Order_By>;
   thickness?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
@@ -5896,8 +6538,8 @@ export type Product_Glass_Min_Fields = {
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
-  matid?: Maybe<Scalars['uuid']>;
   productCode?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
   thickness?: Maybe<Scalars['Int']>;
   type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
@@ -5910,8 +6552,8 @@ export type Product_Glass_Min_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  matid?: Maybe<Order_By>;
   productCode?: Maybe<Order_By>;
+  substanceid?: Maybe<Order_By>;
   thickness?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
@@ -5946,9 +6588,10 @@ export type Product_Glass_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  matid?: Maybe<Order_By>;
+  product?: Maybe<Product_Product_Order_By>;
   productCode?: Maybe<Order_By>;
-  service_glasses_aggregate?: Maybe<Product_Service_Glasses_Aggregate_Order_By>;
+  substance?: Maybe<Product_Substance_Order_By>;
+  substanceid?: Maybe<Order_By>;
   thickness?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
@@ -5971,9 +6614,9 @@ export enum Product_Glass_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  Matid = 'matid',
-  /** column name */
   ProductCode = 'productCode',
+  /** column name */
+  Substanceid = 'substanceid',
   /** column name */
   Thickness = 'thickness',
   /** column name */
@@ -5990,8 +6633,8 @@ export type Product_Glass_Set_Input = {
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
-  matid?: Maybe<Scalars['uuid']>;
   productCode?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
   thickness?: Maybe<Scalars['Int']>;
   type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
@@ -6053,9 +6696,9 @@ export enum Product_Glass_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  Matid = 'matid',
-  /** column name */
   ProductCode = 'productCode',
+  /** column name */
+  Substanceid = 'substanceid',
   /** column name */
   Thickness = 'thickness',
   /** column name */
@@ -6099,13 +6742,1102 @@ export type Product_Glass_Variance_Order_By = {
   thickness?: Maybe<Order_By>;
 };
 
+/** columns and relationships of "product.optionalServiceParam" */
+export type Product_OptionalServiceParam = {
+  __typename?: 'product_optionalServiceParam';
+  id: Scalars['uuid'];
+  /** An object relationship */
+  service: Product_Service;
+  serviceid: Scalars['uuid'];
+};
+
+/** aggregated selection of "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Aggregate = {
+  __typename?: 'product_optionalServiceParam_aggregate';
+  aggregate?: Maybe<Product_OptionalServiceParam_Aggregate_Fields>;
+  nodes: Array<Product_OptionalServiceParam>;
+};
+
+/** aggregate fields of "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Aggregate_Fields = {
+  __typename?: 'product_optionalServiceParam_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_OptionalServiceParam_Max_Fields>;
+  min?: Maybe<Product_OptionalServiceParam_Min_Fields>;
+};
+
+
+/** aggregate fields of "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_OptionalServiceParam_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_OptionalServiceParam_Max_Order_By>;
+  min?: Maybe<Product_OptionalServiceParam_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Arr_Rel_Insert_Input = {
+  data: Array<Product_OptionalServiceParam_Insert_Input>;
+  on_conflict?: Maybe<Product_OptionalServiceParam_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "product.optionalServiceParam". All fields are combined with a logical 'AND'. */
+export type Product_OptionalServiceParam_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_OptionalServiceParam_Bool_Exp>>>;
+  _not?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_OptionalServiceParam_Bool_Exp>>>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  service?: Maybe<Product_Service_Bool_Exp>;
+  serviceid?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "product.optionalServiceParam" */
+export enum Product_OptionalServiceParam_Constraint {
+  /** unique or primary key constraint */
+  OptionalServiceParamPkey = 'optionalServiceParam_pkey'
+}
+
+/** input type for inserting data into table "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Insert_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  service?: Maybe<Product_Service_Obj_Rel_Insert_Input>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Product_OptionalServiceParam_Max_Fields = {
+  __typename?: 'product_optionalServiceParam_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  serviceid?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_OptionalServiceParam_Min_Fields = {
+  __typename?: 'product_optionalServiceParam_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  serviceid?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Mutation_Response = {
+  __typename?: 'product_optionalServiceParam_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_OptionalServiceParam>;
+};
+
+/** input type for inserting object relation for remote table "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Obj_Rel_Insert_Input = {
+  data: Product_OptionalServiceParam_Insert_Input;
+  on_conflict?: Maybe<Product_OptionalServiceParam_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_On_Conflict = {
+  constraint: Product_OptionalServiceParam_Constraint;
+  update_columns: Array<Product_OptionalServiceParam_Update_Column>;
+  where?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Order_By = {
+  id?: Maybe<Order_By>;
+  service?: Maybe<Product_Service_Order_By>;
+  serviceid?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "product.optionalServiceParam" */
+export enum Product_OptionalServiceParam_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Serviceid = 'serviceid'
+}
+
+/** input type for updating data in table "product.optionalServiceParam" */
+export type Product_OptionalServiceParam_Set_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "product.optionalServiceParam" */
+export enum Product_OptionalServiceParam_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Serviceid = 'serviceid'
+}
+
+/** columns and relationships of "product.product" */
+export type Product_Product = {
+  __typename?: 'product_product';
+  /** An object relationship */
+  accessory?: Maybe<Product_Accessory>;
+  code: Scalars['String'];
+  /** An object relationship */
+  glass?: Maybe<Product_Glass>;
+  label: Scalars['String'];
+  price: Scalars['Float'];
+  priceMax: Scalars['Float'];
+  priceMin: Scalars['Float'];
+  /** An array relationship */
+  product_companies: Array<Product_Product_Companies>;
+  /** An aggregated array relationship */
+  product_companies_aggregate: Product_Product_Companies_Aggregate;
+  /** An object relationship */
+  service_glass?: Maybe<Product_Service_Glasses>;
+};
+
+
+/** columns and relationships of "product.product" */
+export type Product_ProductProduct_CompaniesArgs = {
+  distinct_on?: Maybe<Array<Product_Product_Companies_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Product_Companies_Order_By>>;
+  where?: Maybe<Product_Product_Companies_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.product" */
+export type Product_ProductProduct_Companies_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Product_Companies_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Product_Companies_Order_By>>;
+  where?: Maybe<Product_Product_Companies_Bool_Exp>;
+};
+
+/** aggregated selection of "product.product" */
+export type Product_Product_Aggregate = {
+  __typename?: 'product_product_aggregate';
+  aggregate?: Maybe<Product_Product_Aggregate_Fields>;
+  nodes: Array<Product_Product>;
+};
+
+/** aggregate fields of "product.product" */
+export type Product_Product_Aggregate_Fields = {
+  __typename?: 'product_product_aggregate_fields';
+  avg?: Maybe<Product_Product_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_Product_Max_Fields>;
+  min?: Maybe<Product_Product_Min_Fields>;
+  stddev?: Maybe<Product_Product_Stddev_Fields>;
+  stddev_pop?: Maybe<Product_Product_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Product_Product_Stddev_Samp_Fields>;
+  sum?: Maybe<Product_Product_Sum_Fields>;
+  var_pop?: Maybe<Product_Product_Var_Pop_Fields>;
+  var_samp?: Maybe<Product_Product_Var_Samp_Fields>;
+  variance?: Maybe<Product_Product_Variance_Fields>;
+};
+
+
+/** aggregate fields of "product.product" */
+export type Product_Product_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Product_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.product" */
+export type Product_Product_Aggregate_Order_By = {
+  avg?: Maybe<Product_Product_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_Product_Max_Order_By>;
+  min?: Maybe<Product_Product_Min_Order_By>;
+  stddev?: Maybe<Product_Product_Stddev_Order_By>;
+  stddev_pop?: Maybe<Product_Product_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Product_Product_Stddev_Samp_Order_By>;
+  sum?: Maybe<Product_Product_Sum_Order_By>;
+  var_pop?: Maybe<Product_Product_Var_Pop_Order_By>;
+  var_samp?: Maybe<Product_Product_Var_Samp_Order_By>;
+  variance?: Maybe<Product_Product_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.product" */
+export type Product_Product_Arr_Rel_Insert_Input = {
+  data: Array<Product_Product_Insert_Input>;
+  on_conflict?: Maybe<Product_Product_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Product_Product_Avg_Fields = {
+  __typename?: 'product_product_avg_fields';
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "product.product" */
+export type Product_Product_Avg_Order_By = {
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "product.product". All fields are combined with a logical 'AND'. */
+export type Product_Product_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_Product_Bool_Exp>>>;
+  _not?: Maybe<Product_Product_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Product_Bool_Exp>>>;
+  accessory?: Maybe<Product_Accessory_Bool_Exp>;
+  code?: Maybe<String_Comparison_Exp>;
+  glass?: Maybe<Product_Glass_Bool_Exp>;
+  label?: Maybe<String_Comparison_Exp>;
+  price?: Maybe<Float_Comparison_Exp>;
+  priceMax?: Maybe<Float_Comparison_Exp>;
+  priceMin?: Maybe<Float_Comparison_Exp>;
+  product_companies?: Maybe<Product_Product_Companies_Bool_Exp>;
+  service_glass?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+/** columns and relationships of "product.product_companies" */
+export type Product_Product_Companies = {
+  __typename?: 'product_product_companies';
+  /** An object relationship */
+  Company: Management_Company;
+  companyid: Scalars['uuid'];
+  /** An object relationship */
+  product: Product_Product;
+  productCode: Scalars['String'];
+};
+
+/** aggregated selection of "product.product_companies" */
+export type Product_Product_Companies_Aggregate = {
+  __typename?: 'product_product_companies_aggregate';
+  aggregate?: Maybe<Product_Product_Companies_Aggregate_Fields>;
+  nodes: Array<Product_Product_Companies>;
+};
+
+/** aggregate fields of "product.product_companies" */
+export type Product_Product_Companies_Aggregate_Fields = {
+  __typename?: 'product_product_companies_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_Product_Companies_Max_Fields>;
+  min?: Maybe<Product_Product_Companies_Min_Fields>;
+};
+
+
+/** aggregate fields of "product.product_companies" */
+export type Product_Product_Companies_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Product_Companies_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.product_companies" */
+export type Product_Product_Companies_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_Product_Companies_Max_Order_By>;
+  min?: Maybe<Product_Product_Companies_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.product_companies" */
+export type Product_Product_Companies_Arr_Rel_Insert_Input = {
+  data: Array<Product_Product_Companies_Insert_Input>;
+  on_conflict?: Maybe<Product_Product_Companies_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "product.product_companies". All fields are combined with a logical 'AND'. */
+export type Product_Product_Companies_Bool_Exp = {
+  Company?: Maybe<Management_Company_Bool_Exp>;
+  _and?: Maybe<Array<Maybe<Product_Product_Companies_Bool_Exp>>>;
+  _not?: Maybe<Product_Product_Companies_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Product_Companies_Bool_Exp>>>;
+  companyid?: Maybe<Uuid_Comparison_Exp>;
+  product?: Maybe<Product_Product_Bool_Exp>;
+  productCode?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "product.product_companies" */
+export enum Product_Product_Companies_Constraint {
+  /** unique or primary key constraint */
+  ProductComanyPkey = 'productComany_pkey'
+}
+
+/** input type for inserting data into table "product.product_companies" */
+export type Product_Product_Companies_Insert_Input = {
+  Company?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
+  companyid?: Maybe<Scalars['uuid']>;
+  product?: Maybe<Product_Product_Obj_Rel_Insert_Input>;
+  productCode?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Product_Product_Companies_Max_Fields = {
+  __typename?: 'product_product_companies_max_fields';
+  companyid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "product.product_companies" */
+export type Product_Product_Companies_Max_Order_By = {
+  companyid?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_Product_Companies_Min_Fields = {
+  __typename?: 'product_product_companies_min_fields';
+  companyid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "product.product_companies" */
+export type Product_Product_Companies_Min_Order_By = {
+  companyid?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.product_companies" */
+export type Product_Product_Companies_Mutation_Response = {
+  __typename?: 'product_product_companies_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_Product_Companies>;
+};
+
+/** input type for inserting object relation for remote table "product.product_companies" */
+export type Product_Product_Companies_Obj_Rel_Insert_Input = {
+  data: Product_Product_Companies_Insert_Input;
+  on_conflict?: Maybe<Product_Product_Companies_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.product_companies" */
+export type Product_Product_Companies_On_Conflict = {
+  constraint: Product_Product_Companies_Constraint;
+  update_columns: Array<Product_Product_Companies_Update_Column>;
+  where?: Maybe<Product_Product_Companies_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.product_companies" */
+export type Product_Product_Companies_Order_By = {
+  Company?: Maybe<Management_Company_Order_By>;
+  companyid?: Maybe<Order_By>;
+  product?: Maybe<Product_Product_Order_By>;
+  productCode?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.product_companies" */
+export type Product_Product_Companies_Pk_Columns_Input = {
+  companyid: Scalars['uuid'];
+  productCode: Scalars['String'];
+};
+
+/** select columns of table "product.product_companies" */
+export enum Product_Product_Companies_Select_Column {
+  /** column name */
+  Companyid = 'companyid',
+  /** column name */
+  ProductCode = 'productCode'
+}
+
+/** input type for updating data in table "product.product_companies" */
+export type Product_Product_Companies_Set_Input = {
+  companyid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "product.product_companies" */
+export enum Product_Product_Companies_Update_Column {
+  /** column name */
+  Companyid = 'companyid',
+  /** column name */
+  ProductCode = 'productCode'
+}
+
+/** unique or primary key constraints on table "product.product" */
+export enum Product_Product_Constraint {
+  /** unique or primary key constraint */
+  ProductPkey = 'product_pkey'
+}
+
+/** input type for incrementing integer column in table "product.product" */
+export type Product_Product_Inc_Input = {
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** input type for inserting data into table "product.product" */
+export type Product_Product_Insert_Input = {
+  accessory?: Maybe<Product_Accessory_Obj_Rel_Insert_Input>;
+  code?: Maybe<Scalars['String']>;
+  glass?: Maybe<Product_Glass_Obj_Rel_Insert_Input>;
+  label?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+  product_companies?: Maybe<Product_Product_Companies_Arr_Rel_Insert_Input>;
+  service_glass?: Maybe<Product_Service_Glasses_Obj_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Product_Product_Max_Fields = {
+  __typename?: 'product_product_max_fields';
+  code?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** order by max() on columns of table "product.product" */
+export type Product_Product_Max_Order_By = {
+  code?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_Product_Min_Fields = {
+  __typename?: 'product_product_min_fields';
+  code?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** order by min() on columns of table "product.product" */
+export type Product_Product_Min_Order_By = {
+  code?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.product" */
+export type Product_Product_Mutation_Response = {
+  __typename?: 'product_product_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_Product>;
+};
+
+/** input type for inserting object relation for remote table "product.product" */
+export type Product_Product_Obj_Rel_Insert_Input = {
+  data: Product_Product_Insert_Input;
+  on_conflict?: Maybe<Product_Product_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.product" */
+export type Product_Product_On_Conflict = {
+  constraint: Product_Product_Constraint;
+  update_columns: Array<Product_Product_Update_Column>;
+  where?: Maybe<Product_Product_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.product" */
+export type Product_Product_Order_By = {
+  accessory?: Maybe<Product_Accessory_Order_By>;
+  code?: Maybe<Order_By>;
+  glass?: Maybe<Product_Glass_Order_By>;
+  label?: Maybe<Order_By>;
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+  product_companies_aggregate?: Maybe<Product_Product_Companies_Aggregate_Order_By>;
+  service_glass?: Maybe<Product_Service_Glasses_Order_By>;
+};
+
+/** primary key columns input for table: "product.product" */
+export type Product_Product_Pk_Columns_Input = {
+  code: Scalars['String'];
+};
+
+/** select columns of table "product.product" */
+export enum Product_Product_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  Label = 'label',
+  /** column name */
+  Price = 'price',
+  /** column name */
+  PriceMax = 'priceMax',
+  /** column name */
+  PriceMin = 'priceMin'
+}
+
+/** input type for updating data in table "product.product" */
+export type Product_Product_Set_Input = {
+  code?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev on columns */
+export type Product_Product_Stddev_Fields = {
+  __typename?: 'product_product_stddev_fields';
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "product.product" */
+export type Product_Product_Stddev_Order_By = {
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Product_Product_Stddev_Pop_Fields = {
+  __typename?: 'product_product_stddev_pop_fields';
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "product.product" */
+export type Product_Product_Stddev_Pop_Order_By = {
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Product_Product_Stddev_Samp_Fields = {
+  __typename?: 'product_product_stddev_samp_fields';
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "product.product" */
+export type Product_Product_Stddev_Samp_Order_By = {
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Product_Product_Sum_Fields = {
+  __typename?: 'product_product_sum_fields';
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** order by sum() on columns of table "product.product" */
+export type Product_Product_Sum_Order_By = {
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+};
+
+/** update columns of table "product.product" */
+export enum Product_Product_Update_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  Label = 'label',
+  /** column name */
+  Price = 'price',
+  /** column name */
+  PriceMax = 'priceMax',
+  /** column name */
+  PriceMin = 'priceMin'
+}
+
+/** aggregate var_pop on columns */
+export type Product_Product_Var_Pop_Fields = {
+  __typename?: 'product_product_var_pop_fields';
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "product.product" */
+export type Product_Product_Var_Pop_Order_By = {
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Product_Product_Var_Samp_Fields = {
+  __typename?: 'product_product_var_samp_fields';
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "product.product" */
+export type Product_Product_Var_Samp_Order_By = {
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Product_Product_Variance_Fields = {
+  __typename?: 'product_product_variance_fields';
+  price?: Maybe<Scalars['Float']>;
+  priceMax?: Maybe<Scalars['Float']>;
+  priceMin?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "product.product" */
+export type Product_Product_Variance_Order_By = {
+  price?: Maybe<Order_By>;
+  priceMax?: Maybe<Order_By>;
+  priceMin?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "product.service" */
+export type Product_Service = {
+  __typename?: 'product_service';
+  id: Scalars['uuid'];
+  labelFactory: Scalars['String'];
+  name: Scalars['String'];
+  /** An array relationship */
+  optionalServiceParams: Array<Product_OptionalServiceParam>;
+  /** An aggregated array relationship */
+  optionalServiceParams_aggregate: Product_OptionalServiceParam_Aggregate;
+  productCode: Scalars['String'];
+  /** An array relationship */
+  service_consumables: Array<Product_Service_Consumable>;
+  /** An aggregated array relationship */
+  service_consumables_aggregate: Product_Service_Consumable_Aggregate;
+  /** An array relationship */
+  service_glasses: Array<Product_Service_Glasses>;
+  /** An aggregated array relationship */
+  service_glasses_aggregate: Product_Service_Glasses_Aggregate;
+};
+
+
+/** columns and relationships of "product.service" */
+export type Product_ServiceOptionalServiceParamsArgs = {
+  distinct_on?: Maybe<Array<Product_OptionalServiceParam_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_OptionalServiceParam_Order_By>>;
+  where?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.service" */
+export type Product_ServiceOptionalServiceParams_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_OptionalServiceParam_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_OptionalServiceParam_Order_By>>;
+  where?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.service" */
+export type Product_ServiceService_ConsumablesArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
+  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.service" */
+export type Product_ServiceService_Consumables_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
+  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.service" */
+export type Product_ServiceService_GlassesArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Glasses_Order_By>>;
+  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.service" */
+export type Product_ServiceService_Glasses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Glasses_Order_By>>;
+  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+/** aggregated selection of "product.service" */
+export type Product_Service_Aggregate = {
+  __typename?: 'product_service_aggregate';
+  aggregate?: Maybe<Product_Service_Aggregate_Fields>;
+  nodes: Array<Product_Service>;
+};
+
+/** aggregate fields of "product.service" */
+export type Product_Service_Aggregate_Fields = {
+  __typename?: 'product_service_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_Service_Max_Fields>;
+  min?: Maybe<Product_Service_Min_Fields>;
+};
+
+
+/** aggregate fields of "product.service" */
+export type Product_Service_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Service_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.service" */
+export type Product_Service_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_Service_Max_Order_By>;
+  min?: Maybe<Product_Service_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.service" */
+export type Product_Service_Arr_Rel_Insert_Input = {
+  data: Array<Product_Service_Insert_Input>;
+  on_conflict?: Maybe<Product_Service_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "product.service". All fields are combined with a logical 'AND'. */
+export type Product_Service_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_Service_Bool_Exp>>>;
+  _not?: Maybe<Product_Service_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Service_Bool_Exp>>>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  labelFactory?: Maybe<String_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  optionalServiceParams?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
+  productCode?: Maybe<String_Comparison_Exp>;
+  service_consumables?: Maybe<Product_Service_Consumable_Bool_Exp>;
+  service_glasses?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "product.service" */
+export enum Product_Service_Constraint {
+  /** unique or primary key constraint */
+  ServicePkey = 'service_pkey'
+}
+
+/** columns and relationships of "product.service_consumable" */
+export type Product_Service_Consumable = {
+  __typename?: 'product_service_consumable';
+  /** An object relationship */
+  consumable: Product_Consumable;
+  consumableid: Scalars['uuid'];
+  quota: Scalars['Float'];
+  /** An object relationship */
+  service: Product_Service;
+  serviceid: Scalars['uuid'];
+};
+
+/** aggregated selection of "product.service_consumable" */
+export type Product_Service_Consumable_Aggregate = {
+  __typename?: 'product_service_consumable_aggregate';
+  aggregate?: Maybe<Product_Service_Consumable_Aggregate_Fields>;
+  nodes: Array<Product_Service_Consumable>;
+};
+
+/** aggregate fields of "product.service_consumable" */
+export type Product_Service_Consumable_Aggregate_Fields = {
+  __typename?: 'product_service_consumable_aggregate_fields';
+  avg?: Maybe<Product_Service_Consumable_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_Service_Consumable_Max_Fields>;
+  min?: Maybe<Product_Service_Consumable_Min_Fields>;
+  stddev?: Maybe<Product_Service_Consumable_Stddev_Fields>;
+  stddev_pop?: Maybe<Product_Service_Consumable_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Product_Service_Consumable_Stddev_Samp_Fields>;
+  sum?: Maybe<Product_Service_Consumable_Sum_Fields>;
+  var_pop?: Maybe<Product_Service_Consumable_Var_Pop_Fields>;
+  var_samp?: Maybe<Product_Service_Consumable_Var_Samp_Fields>;
+  variance?: Maybe<Product_Service_Consumable_Variance_Fields>;
+};
+
+
+/** aggregate fields of "product.service_consumable" */
+export type Product_Service_Consumable_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.service_consumable" */
+export type Product_Service_Consumable_Aggregate_Order_By = {
+  avg?: Maybe<Product_Service_Consumable_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_Service_Consumable_Max_Order_By>;
+  min?: Maybe<Product_Service_Consumable_Min_Order_By>;
+  stddev?: Maybe<Product_Service_Consumable_Stddev_Order_By>;
+  stddev_pop?: Maybe<Product_Service_Consumable_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Product_Service_Consumable_Stddev_Samp_Order_By>;
+  sum?: Maybe<Product_Service_Consumable_Sum_Order_By>;
+  var_pop?: Maybe<Product_Service_Consumable_Var_Pop_Order_By>;
+  var_samp?: Maybe<Product_Service_Consumable_Var_Samp_Order_By>;
+  variance?: Maybe<Product_Service_Consumable_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.service_consumable" */
+export type Product_Service_Consumable_Arr_Rel_Insert_Input = {
+  data: Array<Product_Service_Consumable_Insert_Input>;
+  on_conflict?: Maybe<Product_Service_Consumable_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Product_Service_Consumable_Avg_Fields = {
+  __typename?: 'product_service_consumable_avg_fields';
+  quota?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "product.service_consumable" */
+export type Product_Service_Consumable_Avg_Order_By = {
+  quota?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "product.service_consumable". All fields are combined with a logical 'AND'. */
+export type Product_Service_Consumable_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_Service_Consumable_Bool_Exp>>>;
+  _not?: Maybe<Product_Service_Consumable_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Service_Consumable_Bool_Exp>>>;
+  consumable?: Maybe<Product_Consumable_Bool_Exp>;
+  consumableid?: Maybe<Uuid_Comparison_Exp>;
+  quota?: Maybe<Float_Comparison_Exp>;
+  service?: Maybe<Product_Service_Bool_Exp>;
+  serviceid?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "product.service_consumable" */
+export enum Product_Service_Consumable_Constraint {
+  /** unique or primary key constraint */
+  ServiceConsumablePkey = 'service_consumable_pkey'
+}
+
+/** input type for incrementing integer column in table "product.service_consumable" */
+export type Product_Service_Consumable_Inc_Input = {
+  quota?: Maybe<Scalars['Float']>;
+};
+
+/** input type for inserting data into table "product.service_consumable" */
+export type Product_Service_Consumable_Insert_Input = {
+  consumable?: Maybe<Product_Consumable_Obj_Rel_Insert_Input>;
+  consumableid?: Maybe<Scalars['uuid']>;
+  quota?: Maybe<Scalars['Float']>;
+  service?: Maybe<Product_Service_Obj_Rel_Insert_Input>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Product_Service_Consumable_Max_Fields = {
+  __typename?: 'product_service_consumable_max_fields';
+  consumableid?: Maybe<Scalars['uuid']>;
+  quota?: Maybe<Scalars['Float']>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "product.service_consumable" */
+export type Product_Service_Consumable_Max_Order_By = {
+  consumableid?: Maybe<Order_By>;
+  quota?: Maybe<Order_By>;
+  serviceid?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_Service_Consumable_Min_Fields = {
+  __typename?: 'product_service_consumable_min_fields';
+  consumableid?: Maybe<Scalars['uuid']>;
+  quota?: Maybe<Scalars['Float']>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "product.service_consumable" */
+export type Product_Service_Consumable_Min_Order_By = {
+  consumableid?: Maybe<Order_By>;
+  quota?: Maybe<Order_By>;
+  serviceid?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.service_consumable" */
+export type Product_Service_Consumable_Mutation_Response = {
+  __typename?: 'product_service_consumable_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_Service_Consumable>;
+};
+
+/** input type for inserting object relation for remote table "product.service_consumable" */
+export type Product_Service_Consumable_Obj_Rel_Insert_Input = {
+  data: Product_Service_Consumable_Insert_Input;
+  on_conflict?: Maybe<Product_Service_Consumable_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.service_consumable" */
+export type Product_Service_Consumable_On_Conflict = {
+  constraint: Product_Service_Consumable_Constraint;
+  update_columns: Array<Product_Service_Consumable_Update_Column>;
+  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.service_consumable" */
+export type Product_Service_Consumable_Order_By = {
+  consumable?: Maybe<Product_Consumable_Order_By>;
+  consumableid?: Maybe<Order_By>;
+  quota?: Maybe<Order_By>;
+  service?: Maybe<Product_Service_Order_By>;
+  serviceid?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.service_consumable" */
+export type Product_Service_Consumable_Pk_Columns_Input = {
+  consumableid: Scalars['uuid'];
+  serviceid: Scalars['uuid'];
+};
+
+/** select columns of table "product.service_consumable" */
+export enum Product_Service_Consumable_Select_Column {
+  /** column name */
+  Consumableid = 'consumableid',
+  /** column name */
+  Quota = 'quota',
+  /** column name */
+  Serviceid = 'serviceid'
+}
+
+/** input type for updating data in table "product.service_consumable" */
+export type Product_Service_Consumable_Set_Input = {
+  consumableid?: Maybe<Scalars['uuid']>;
+  quota?: Maybe<Scalars['Float']>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate stddev on columns */
+export type Product_Service_Consumable_Stddev_Fields = {
+  __typename?: 'product_service_consumable_stddev_fields';
+  quota?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "product.service_consumable" */
+export type Product_Service_Consumable_Stddev_Order_By = {
+  quota?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Product_Service_Consumable_Stddev_Pop_Fields = {
+  __typename?: 'product_service_consumable_stddev_pop_fields';
+  quota?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "product.service_consumable" */
+export type Product_Service_Consumable_Stddev_Pop_Order_By = {
+  quota?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Product_Service_Consumable_Stddev_Samp_Fields = {
+  __typename?: 'product_service_consumable_stddev_samp_fields';
+  quota?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "product.service_consumable" */
+export type Product_Service_Consumable_Stddev_Samp_Order_By = {
+  quota?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Product_Service_Consumable_Sum_Fields = {
+  __typename?: 'product_service_consumable_sum_fields';
+  quota?: Maybe<Scalars['Float']>;
+};
+
+/** order by sum() on columns of table "product.service_consumable" */
+export type Product_Service_Consumable_Sum_Order_By = {
+  quota?: Maybe<Order_By>;
+};
+
+/** update columns of table "product.service_consumable" */
+export enum Product_Service_Consumable_Update_Column {
+  /** column name */
+  Consumableid = 'consumableid',
+  /** column name */
+  Quota = 'quota',
+  /** column name */
+  Serviceid = 'serviceid'
+}
+
+/** aggregate var_pop on columns */
+export type Product_Service_Consumable_Var_Pop_Fields = {
+  __typename?: 'product_service_consumable_var_pop_fields';
+  quota?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "product.service_consumable" */
+export type Product_Service_Consumable_Var_Pop_Order_By = {
+  quota?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Product_Service_Consumable_Var_Samp_Fields = {
+  __typename?: 'product_service_consumable_var_samp_fields';
+  quota?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "product.service_consumable" */
+export type Product_Service_Consumable_Var_Samp_Order_By = {
+  quota?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Product_Service_Consumable_Variance_Fields = {
+  __typename?: 'product_service_consumable_variance_fields';
+  quota?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "product.service_consumable" */
+export type Product_Service_Consumable_Variance_Order_By = {
+  quota?: Maybe<Order_By>;
+};
+
 /** columns and relationships of "product.service_glasses" */
 export type Product_Service_Glasses = {
   __typename?: 'product_service_glasses';
   /** An object relationship */
   glass: Product_Glass;
   glasseid: Scalars['uuid'];
+  /** An object relationship */
+  product: Product_Product;
   productCode: Scalars['String'];
+  /** An object relationship */
+  service: Product_Service;
   serviceid: Scalars['uuid'];
 };
 
@@ -6151,21 +7883,27 @@ export type Product_Service_Glasses_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Product_Service_Glasses_Bool_Exp>>>;
   glass?: Maybe<Product_Glass_Bool_Exp>;
   glasseid?: Maybe<Uuid_Comparison_Exp>;
+  product?: Maybe<Product_Product_Bool_Exp>;
   productCode?: Maybe<String_Comparison_Exp>;
+  service?: Maybe<Product_Service_Bool_Exp>;
   serviceid?: Maybe<Uuid_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "product.service_glasses" */
 export enum Product_Service_Glasses_Constraint {
   /** unique or primary key constraint */
-  ServiceGlassesPkey = 'service_glasses_pkey'
+  ServiceGlassesPkey = 'service_glasses_pkey',
+  /** unique or primary key constraint */
+  ServiceGlassesProductCodeKey = 'service_glasses_productCode_key'
 }
 
 /** input type for inserting data into table "product.service_glasses" */
 export type Product_Service_Glasses_Insert_Input = {
   glass?: Maybe<Product_Glass_Obj_Rel_Insert_Input>;
   glasseid?: Maybe<Scalars['uuid']>;
+  product?: Maybe<Product_Product_Obj_Rel_Insert_Input>;
   productCode?: Maybe<Scalars['String']>;
+  service?: Maybe<Product_Service_Obj_Rel_Insert_Input>;
   serviceid?: Maybe<Scalars['uuid']>;
 };
 
@@ -6225,14 +7963,15 @@ export type Product_Service_Glasses_On_Conflict = {
 export type Product_Service_Glasses_Order_By = {
   glass?: Maybe<Product_Glass_Order_By>;
   glasseid?: Maybe<Order_By>;
+  product?: Maybe<Product_Product_Order_By>;
   productCode?: Maybe<Order_By>;
+  service?: Maybe<Product_Service_Order_By>;
   serviceid?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "product.service_glasses" */
 export type Product_Service_Glasses_Pk_Columns_Input = {
   glasseid: Scalars['uuid'];
-  productCode: Scalars['String'];
   serviceid: Scalars['uuid'];
 };
 
@@ -6261,6 +8000,270 @@ export enum Product_Service_Glasses_Update_Column {
   ProductCode = 'productCode',
   /** column name */
   Serviceid = 'serviceid'
+}
+
+/** input type for inserting data into table "product.service" */
+export type Product_Service_Insert_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  optionalServiceParams?: Maybe<Product_OptionalServiceParam_Arr_Rel_Insert_Input>;
+  productCode?: Maybe<Scalars['String']>;
+  service_consumables?: Maybe<Product_Service_Consumable_Arr_Rel_Insert_Input>;
+  service_glasses?: Maybe<Product_Service_Glasses_Arr_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Product_Service_Max_Fields = {
+  __typename?: 'product_service_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  productCode?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "product.service" */
+export type Product_Service_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_Service_Min_Fields = {
+  __typename?: 'product_service_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  productCode?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "product.service" */
+export type Product_Service_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.service" */
+export type Product_Service_Mutation_Response = {
+  __typename?: 'product_service_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_Service>;
+};
+
+/** input type for inserting object relation for remote table "product.service" */
+export type Product_Service_Obj_Rel_Insert_Input = {
+  data: Product_Service_Insert_Input;
+  on_conflict?: Maybe<Product_Service_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.service" */
+export type Product_Service_On_Conflict = {
+  constraint: Product_Service_Constraint;
+  update_columns: Array<Product_Service_Update_Column>;
+  where?: Maybe<Product_Service_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.service" */
+export type Product_Service_Order_By = {
+  id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  optionalServiceParams_aggregate?: Maybe<Product_OptionalServiceParam_Aggregate_Order_By>;
+  productCode?: Maybe<Order_By>;
+  service_consumables_aggregate?: Maybe<Product_Service_Consumable_Aggregate_Order_By>;
+  service_glasses_aggregate?: Maybe<Product_Service_Glasses_Aggregate_Order_By>;
+};
+
+/** primary key columns input for table: "product.service" */
+export type Product_Service_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "product.service" */
+export enum Product_Service_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  LabelFactory = 'labelFactory',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  ProductCode = 'productCode'
+}
+
+/** input type for updating data in table "product.service" */
+export type Product_Service_Set_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  productCode?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "product.service" */
+export enum Product_Service_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  LabelFactory = 'labelFactory',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  ProductCode = 'productCode'
+}
+
+/** columns and relationships of "product.substance" */
+export type Product_Substance = {
+  __typename?: 'product_substance';
+  category: Scalars['String'];
+  /** An object relationship */
+  consumable?: Maybe<Product_Consumable>;
+  id: Scalars['uuid'];
+};
+
+/** aggregated selection of "product.substance" */
+export type Product_Substance_Aggregate = {
+  __typename?: 'product_substance_aggregate';
+  aggregate?: Maybe<Product_Substance_Aggregate_Fields>;
+  nodes: Array<Product_Substance>;
+};
+
+/** aggregate fields of "product.substance" */
+export type Product_Substance_Aggregate_Fields = {
+  __typename?: 'product_substance_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_Substance_Max_Fields>;
+  min?: Maybe<Product_Substance_Min_Fields>;
+};
+
+
+/** aggregate fields of "product.substance" */
+export type Product_Substance_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Substance_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.substance" */
+export type Product_Substance_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_Substance_Max_Order_By>;
+  min?: Maybe<Product_Substance_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.substance" */
+export type Product_Substance_Arr_Rel_Insert_Input = {
+  data: Array<Product_Substance_Insert_Input>;
+  on_conflict?: Maybe<Product_Substance_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "product.substance". All fields are combined with a logical 'AND'. */
+export type Product_Substance_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_Substance_Bool_Exp>>>;
+  _not?: Maybe<Product_Substance_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Substance_Bool_Exp>>>;
+  category?: Maybe<String_Comparison_Exp>;
+  consumable?: Maybe<Product_Consumable_Bool_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "product.substance" */
+export enum Product_Substance_Constraint {
+  /** unique or primary key constraint */
+  SubstancePkey = 'substance_pkey'
+}
+
+/** input type for inserting data into table "product.substance" */
+export type Product_Substance_Insert_Input = {
+  category?: Maybe<Scalars['String']>;
+  consumable?: Maybe<Product_Consumable_Obj_Rel_Insert_Input>;
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Product_Substance_Max_Fields = {
+  __typename?: 'product_substance_max_fields';
+  category?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "product.substance" */
+export type Product_Substance_Max_Order_By = {
+  category?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_Substance_Min_Fields = {
+  __typename?: 'product_substance_min_fields';
+  category?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "product.substance" */
+export type Product_Substance_Min_Order_By = {
+  category?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.substance" */
+export type Product_Substance_Mutation_Response = {
+  __typename?: 'product_substance_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_Substance>;
+};
+
+/** input type for inserting object relation for remote table "product.substance" */
+export type Product_Substance_Obj_Rel_Insert_Input = {
+  data: Product_Substance_Insert_Input;
+  on_conflict?: Maybe<Product_Substance_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.substance" */
+export type Product_Substance_On_Conflict = {
+  constraint: Product_Substance_Constraint;
+  update_columns: Array<Product_Substance_Update_Column>;
+  where?: Maybe<Product_Substance_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.substance" */
+export type Product_Substance_Order_By = {
+  category?: Maybe<Order_By>;
+  consumable?: Maybe<Product_Consumable_Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.substance" */
+export type Product_Substance_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "product.substance" */
+export enum Product_Substance_Select_Column {
+  /** column name */
+  Category = 'category',
+  /** column name */
+  Id = 'id'
+}
+
+/** input type for updating data in table "product.substance" */
+export type Product_Substance_Set_Input = {
+  category?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "product.substance" */
+export enum Product_Substance_Update_Column {
+  /** column name */
+  Category = 'category',
+  /** column name */
+  Id = 'id'
 }
 
 /** query root */
@@ -6378,18 +8381,60 @@ export type Query_Root = {
   product_accessory_aggregate: Product_Accessory_Aggregate;
   /** fetch data from the table: "product.accessory" using primary key columns */
   product_accessory_by_pk?: Maybe<Product_Accessory>;
+  /** fetch data from the table: "product.consumable" */
+  product_consumable: Array<Product_Consumable>;
+  /** fetch aggregated fields from the table: "product.consumable" */
+  product_consumable_aggregate: Product_Consumable_Aggregate;
+  /** fetch data from the table: "product.consumable" using primary key columns */
+  product_consumable_by_pk?: Maybe<Product_Consumable>;
   /** fetch data from the table: "product.glass" */
   product_glass: Array<Product_Glass>;
   /** fetch aggregated fields from the table: "product.glass" */
   product_glass_aggregate: Product_Glass_Aggregate;
   /** fetch data from the table: "product.glass" using primary key columns */
   product_glass_by_pk?: Maybe<Product_Glass>;
+  /** fetch data from the table: "product.optionalServiceParam" */
+  product_optionalServiceParam: Array<Product_OptionalServiceParam>;
+  /** fetch aggregated fields from the table: "product.optionalServiceParam" */
+  product_optionalServiceParam_aggregate: Product_OptionalServiceParam_Aggregate;
+  /** fetch data from the table: "product.optionalServiceParam" using primary key columns */
+  product_optionalServiceParam_by_pk?: Maybe<Product_OptionalServiceParam>;
+  /** fetch data from the table: "product.product" */
+  product_product: Array<Product_Product>;
+  /** fetch aggregated fields from the table: "product.product" */
+  product_product_aggregate: Product_Product_Aggregate;
+  /** fetch data from the table: "product.product" using primary key columns */
+  product_product_by_pk?: Maybe<Product_Product>;
+  /** fetch data from the table: "product.product_companies" */
+  product_product_companies: Array<Product_Product_Companies>;
+  /** fetch aggregated fields from the table: "product.product_companies" */
+  product_product_companies_aggregate: Product_Product_Companies_Aggregate;
+  /** fetch data from the table: "product.product_companies" using primary key columns */
+  product_product_companies_by_pk?: Maybe<Product_Product_Companies>;
+  /** fetch data from the table: "product.service" */
+  product_service: Array<Product_Service>;
+  /** fetch aggregated fields from the table: "product.service" */
+  product_service_aggregate: Product_Service_Aggregate;
+  /** fetch data from the table: "product.service" using primary key columns */
+  product_service_by_pk?: Maybe<Product_Service>;
+  /** fetch data from the table: "product.service_consumable" */
+  product_service_consumable: Array<Product_Service_Consumable>;
+  /** fetch aggregated fields from the table: "product.service_consumable" */
+  product_service_consumable_aggregate: Product_Service_Consumable_Aggregate;
+  /** fetch data from the table: "product.service_consumable" using primary key columns */
+  product_service_consumable_by_pk?: Maybe<Product_Service_Consumable>;
   /** fetch data from the table: "product.service_glasses" */
   product_service_glasses: Array<Product_Service_Glasses>;
   /** fetch aggregated fields from the table: "product.service_glasses" */
   product_service_glasses_aggregate: Product_Service_Glasses_Aggregate;
   /** fetch data from the table: "product.service_glasses" using primary key columns */
   product_service_glasses_by_pk?: Maybe<Product_Service_Glasses>;
+  /** fetch data from the table: "product.substance" */
+  product_substance: Array<Product_Substance>;
+  /** fetch aggregated fields from the table: "product.substance" */
+  product_substance_aggregate: Product_Substance_Aggregate;
+  /** fetch data from the table: "product.substance" using primary key columns */
+  product_substance_by_pk?: Maybe<Product_Substance>;
 };
 
 
@@ -6846,7 +8891,7 @@ export type Query_RootManagement_UserProfile_AggregateArgs = {
 
 /** query root */
 export type Query_RootManagement_UserProfile_By_PkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['String'];
 };
 
 
@@ -6903,6 +8948,32 @@ export type Query_RootProduct_Accessory_By_PkArgs = {
 
 
 /** query root */
+export type Query_RootProduct_ConsumableArgs = {
+  distinct_on?: Maybe<Array<Product_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Consumable_Order_By>>;
+  where?: Maybe<Product_Consumable_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Consumable_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Consumable_Order_By>>;
+  where?: Maybe<Product_Consumable_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Consumable_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** query root */
 export type Query_RootProduct_GlassArgs = {
   distinct_on?: Maybe<Array<Product_Glass_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -6929,6 +9000,138 @@ export type Query_RootProduct_Glass_By_PkArgs = {
 
 
 /** query root */
+export type Query_RootProduct_OptionalServiceParamArgs = {
+  distinct_on?: Maybe<Array<Product_OptionalServiceParam_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_OptionalServiceParam_Order_By>>;
+  where?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_OptionalServiceParam_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_OptionalServiceParam_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_OptionalServiceParam_Order_By>>;
+  where?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_OptionalServiceParam_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootProduct_ProductArgs = {
+  distinct_on?: Maybe<Array<Product_Product_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Product_Order_By>>;
+  where?: Maybe<Product_Product_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Product_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Product_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Product_Order_By>>;
+  where?: Maybe<Product_Product_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Product_By_PkArgs = {
+  code: Scalars['String'];
+};
+
+
+/** query root */
+export type Query_RootProduct_Product_CompaniesArgs = {
+  distinct_on?: Maybe<Array<Product_Product_Companies_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Product_Companies_Order_By>>;
+  where?: Maybe<Product_Product_Companies_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Product_Companies_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Product_Companies_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Product_Companies_Order_By>>;
+  where?: Maybe<Product_Product_Companies_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Product_Companies_By_PkArgs = {
+  companyid: Scalars['uuid'];
+  productCode: Scalars['String'];
+};
+
+
+/** query root */
+export type Query_RootProduct_ServiceArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Order_By>>;
+  where?: Maybe<Product_Service_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Service_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Order_By>>;
+  where?: Maybe<Product_Service_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Service_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootProduct_Service_ConsumableArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
+  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Service_Consumable_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
+  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Service_Consumable_By_PkArgs = {
+  consumableid: Scalars['uuid'];
+  serviceid: Scalars['uuid'];
+};
+
+
+/** query root */
 export type Query_RootProduct_Service_GlassesArgs = {
   distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -6951,8 +9154,33 @@ export type Query_RootProduct_Service_Glasses_AggregateArgs = {
 /** query root */
 export type Query_RootProduct_Service_Glasses_By_PkArgs = {
   glasseid: Scalars['uuid'];
-  productCode: Scalars['String'];
   serviceid: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootProduct_SubstanceArgs = {
+  distinct_on?: Maybe<Array<Product_Substance_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Substance_Order_By>>;
+  where?: Maybe<Product_Substance_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Substance_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Substance_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Substance_Order_By>>;
+  where?: Maybe<Product_Substance_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Substance_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 /** subscription root */
@@ -7070,18 +9298,60 @@ export type Subscription_Root = {
   product_accessory_aggregate: Product_Accessory_Aggregate;
   /** fetch data from the table: "product.accessory" using primary key columns */
   product_accessory_by_pk?: Maybe<Product_Accessory>;
+  /** fetch data from the table: "product.consumable" */
+  product_consumable: Array<Product_Consumable>;
+  /** fetch aggregated fields from the table: "product.consumable" */
+  product_consumable_aggregate: Product_Consumable_Aggregate;
+  /** fetch data from the table: "product.consumable" using primary key columns */
+  product_consumable_by_pk?: Maybe<Product_Consumable>;
   /** fetch data from the table: "product.glass" */
   product_glass: Array<Product_Glass>;
   /** fetch aggregated fields from the table: "product.glass" */
   product_glass_aggregate: Product_Glass_Aggregate;
   /** fetch data from the table: "product.glass" using primary key columns */
   product_glass_by_pk?: Maybe<Product_Glass>;
+  /** fetch data from the table: "product.optionalServiceParam" */
+  product_optionalServiceParam: Array<Product_OptionalServiceParam>;
+  /** fetch aggregated fields from the table: "product.optionalServiceParam" */
+  product_optionalServiceParam_aggregate: Product_OptionalServiceParam_Aggregate;
+  /** fetch data from the table: "product.optionalServiceParam" using primary key columns */
+  product_optionalServiceParam_by_pk?: Maybe<Product_OptionalServiceParam>;
+  /** fetch data from the table: "product.product" */
+  product_product: Array<Product_Product>;
+  /** fetch aggregated fields from the table: "product.product" */
+  product_product_aggregate: Product_Product_Aggregate;
+  /** fetch data from the table: "product.product" using primary key columns */
+  product_product_by_pk?: Maybe<Product_Product>;
+  /** fetch data from the table: "product.product_companies" */
+  product_product_companies: Array<Product_Product_Companies>;
+  /** fetch aggregated fields from the table: "product.product_companies" */
+  product_product_companies_aggregate: Product_Product_Companies_Aggregate;
+  /** fetch data from the table: "product.product_companies" using primary key columns */
+  product_product_companies_by_pk?: Maybe<Product_Product_Companies>;
+  /** fetch data from the table: "product.service" */
+  product_service: Array<Product_Service>;
+  /** fetch aggregated fields from the table: "product.service" */
+  product_service_aggregate: Product_Service_Aggregate;
+  /** fetch data from the table: "product.service" using primary key columns */
+  product_service_by_pk?: Maybe<Product_Service>;
+  /** fetch data from the table: "product.service_consumable" */
+  product_service_consumable: Array<Product_Service_Consumable>;
+  /** fetch aggregated fields from the table: "product.service_consumable" */
+  product_service_consumable_aggregate: Product_Service_Consumable_Aggregate;
+  /** fetch data from the table: "product.service_consumable" using primary key columns */
+  product_service_consumable_by_pk?: Maybe<Product_Service_Consumable>;
   /** fetch data from the table: "product.service_glasses" */
   product_service_glasses: Array<Product_Service_Glasses>;
   /** fetch aggregated fields from the table: "product.service_glasses" */
   product_service_glasses_aggregate: Product_Service_Glasses_Aggregate;
   /** fetch data from the table: "product.service_glasses" using primary key columns */
   product_service_glasses_by_pk?: Maybe<Product_Service_Glasses>;
+  /** fetch data from the table: "product.substance" */
+  product_substance: Array<Product_Substance>;
+  /** fetch aggregated fields from the table: "product.substance" */
+  product_substance_aggregate: Product_Substance_Aggregate;
+  /** fetch data from the table: "product.substance" using primary key columns */
+  product_substance_by_pk?: Maybe<Product_Substance>;
 };
 
 
@@ -7538,7 +9808,7 @@ export type Subscription_RootManagement_UserProfile_AggregateArgs = {
 
 /** subscription root */
 export type Subscription_RootManagement_UserProfile_By_PkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['String'];
 };
 
 
@@ -7595,6 +9865,32 @@ export type Subscription_RootProduct_Accessory_By_PkArgs = {
 
 
 /** subscription root */
+export type Subscription_RootProduct_ConsumableArgs = {
+  distinct_on?: Maybe<Array<Product_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Consumable_Order_By>>;
+  where?: Maybe<Product_Consumable_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Consumable_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Consumable_Order_By>>;
+  where?: Maybe<Product_Consumable_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Consumable_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
 export type Subscription_RootProduct_GlassArgs = {
   distinct_on?: Maybe<Array<Product_Glass_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -7621,6 +9917,138 @@ export type Subscription_RootProduct_Glass_By_PkArgs = {
 
 
 /** subscription root */
+export type Subscription_RootProduct_OptionalServiceParamArgs = {
+  distinct_on?: Maybe<Array<Product_OptionalServiceParam_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_OptionalServiceParam_Order_By>>;
+  where?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_OptionalServiceParam_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_OptionalServiceParam_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_OptionalServiceParam_Order_By>>;
+  where?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_OptionalServiceParam_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_ProductArgs = {
+  distinct_on?: Maybe<Array<Product_Product_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Product_Order_By>>;
+  where?: Maybe<Product_Product_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Product_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Product_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Product_Order_By>>;
+  where?: Maybe<Product_Product_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Product_By_PkArgs = {
+  code: Scalars['String'];
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Product_CompaniesArgs = {
+  distinct_on?: Maybe<Array<Product_Product_Companies_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Product_Companies_Order_By>>;
+  where?: Maybe<Product_Product_Companies_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Product_Companies_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Product_Companies_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Product_Companies_Order_By>>;
+  where?: Maybe<Product_Product_Companies_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Product_Companies_By_PkArgs = {
+  companyid: Scalars['uuid'];
+  productCode: Scalars['String'];
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_ServiceArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Order_By>>;
+  where?: Maybe<Product_Service_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Service_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Order_By>>;
+  where?: Maybe<Product_Service_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Service_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Service_ConsumableArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
+  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Service_Consumable_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
+  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Service_Consumable_By_PkArgs = {
+  consumableid: Scalars['uuid'];
+  serviceid: Scalars['uuid'];
+};
+
+
+/** subscription root */
 export type Subscription_RootProduct_Service_GlassesArgs = {
   distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -7643,8 +10071,33 @@ export type Subscription_RootProduct_Service_Glasses_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootProduct_Service_Glasses_By_PkArgs = {
   glasseid: Scalars['uuid'];
-  productCode: Scalars['String'];
   serviceid: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_SubstanceArgs = {
+  distinct_on?: Maybe<Array<Product_Substance_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Substance_Order_By>>;
+  where?: Maybe<Product_Substance_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Substance_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Substance_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Substance_Order_By>>;
+  where?: Maybe<Product_Substance_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Substance_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -7959,7 +10412,7 @@ export type DeleteSalePointMutation = (
 );
 
 export type DeleteUserMutationVariables = Exact<{
-  id: Scalars['uuid'];
+  id: Scalars['String'];
 }>;
 
 
@@ -8078,7 +10531,6 @@ export type UpdateSalePointMutation = (
 );
 
 export type UpdateUserMutationVariables = Exact<{
-  id: Scalars['uuid'];
   CIN?: Maybe<Scalars['String']>;
   SalesPointsid?: Maybe<Scalars['uuid']>;
   active?: Maybe<Scalars['Boolean']>;
@@ -8088,6 +10540,7 @@ export type UpdateUserMutationVariables = Exact<{
   phone?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
   role?: Maybe<Management_User_Role_Enum>;
+  id: Scalars['String'];
 }>;
 
 
@@ -8181,7 +10634,7 @@ export type GetSalePointByIdQuery = (
 );
 
 export type GetUserByIdQueryVariables = Exact<{
-  id: Scalars['uuid'];
+  id: Scalars['String'];
 }>;
 
 
@@ -8662,7 +11115,7 @@ export const DeleteSalePointDocument = gql`
     }
   }
 export const DeleteUserDocument = gql`
-    mutation DeleteUser($id: uuid!) {
+    mutation DeleteUser($id: String!) {
   delete_management_userProfile_by_pk(id: $id) {
     username
     id
@@ -8823,7 +11276,7 @@ export const UpdateSalePointDocument = gql`
     }
   }
 export const UpdateUserDocument = gql`
-    mutation UpdateUser($id: uuid!, $CIN: String, $SalesPointsid: uuid, $active: Boolean = true, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = admin) {
+    mutation UpdateUser($CIN: String, $SalesPointsid: uuid, $active: Boolean = true, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = admin, $id: String!) {
   update_management_userProfile_by_pk(
     pk_columns: {id: $id}
     _set: {CIN: $CIN, SalesPointsid: $SalesPointsid, active: $active, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}
@@ -9009,7 +11462,7 @@ export const GetSalePointByIdDocument = gql`
     }
   }
 export const GetUserByIdDocument = gql`
-    query getUserById($id: uuid!) {
+    query getUserById($id: String!) {
   management_userProfile_by_pk(id: $id) {
     CIN
     active

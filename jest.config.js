@@ -19,5 +19,6 @@ module.exports = {
     '<rootDir>/libs/core/contact',
     '<rootDir>/apps/ui/contact',
     '<rootDir>/libs/store/contact',
+    '<rootDir>/libs/core/inventory',
   ],
 };

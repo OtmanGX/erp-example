@@ -1,13 +1,31 @@
-import { Mat, Product } from './glass.model';
+import { MetaData } from 'libs/core/shared/metaData';
+import { Substance, Product } from './shared.model';
 
 export interface Accessory {
- 
-  id?: number;
-  name:string;
+
+  id?: string;
+  name: string;
   type: string;
-  quota: number ;
-  Mat: Mat;
+  quota: number;
+  substance: Substance;
   product: Product;
 }
 
 
+export interface DetailedAccessory  extends MetaData{
+  id:string
+  name: string;
+  type: string;
+  quota: number;
+  substance: Substance;
+  product: Product;
+}
+
+
+export interface insertedAccessory{
+  name: string;
+  type: string;
+  quota: number;
+  substance: Substance;
+  product: Product;
+}

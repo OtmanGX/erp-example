@@ -1,7 +1,7 @@
-import { Address } from "../models/address.model";
-import { DetailedContact } from "../models/contact.models";
-import { DetailedCustomer } from "../models/customer.models";
-import { DetailedProvider } from "../models/provider.models";
+import { Address } from "../models/shared.models";
+import {  InsertedContact } from "../models/contact.models";
+import {  InsertedCustomer } from "../models/customer.models";
+import {  InsertedProvider } from "../models/provider.models";
 import {
     InsertCustomerMutationVariables,
     InsertContactMutationVariables,
@@ -20,7 +20,7 @@ import {
     }
 }
 
-type objToAdapt = DetailedContact | DetailedCustomer | DetailedProvider;
+type objToAdapt = InsertedContact | InsertedCustomer | InsertedProvider;
 type adaptedObj = InsertContactMutationVariables & InsertCustomerMutationVariables & InsertProviderMutationVariables;
  
 export class DataAdapter<T extends objToAdapt>    {
