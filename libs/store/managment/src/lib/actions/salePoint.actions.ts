@@ -1,4 +1,4 @@
-import { SalePoint } from '@tanglass-erp/core/management';
+import { SalePoint, DetailedSalePoint } from '@tanglass-erp/core/management';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -18,6 +18,26 @@ export const loadSalePointsFailure = createAction(
   props<{ error: any }>()
 );
 
+
+/****************************************************************** */
+/*****LOAD INDIVIDUAL SalePoint ** */
+/****************************************************************** */
+
+export const loadSalePointById = createAction(
+  '[SalePoint Card Component] Load SalePoint By Id',
+  props<{ id: any }>()
+  );
+
+
+export const loadSalePointByIdSuccess = createAction(
+  '[SalePoint Effect] Load SalePoint By Id Success',
+  props<{ salePoint: DetailedSalePoint }>()
+);
+
+export const loadSalePointByIdFailure = createAction(
+  '[SalePoint Effect] Load SalePoint By Id Failure',
+  props<{ error: any }>()
+);
 
 
 
@@ -53,6 +73,23 @@ export const updateSalePointSuccess = createAction(
   props<{ salePoint: SalePoint }>()
 );
 export const updateSalePointFailure = createAction(
+  '[SalePoint Effect] Update SalePoint failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****REMOVE INDIVIDUAL SalePoint ** */
+/****************************************************************** */
+
+export const removeSalePoint = createAction(
+  '[SalePoints Component] Update SalePoint',
+  props<{ salePoint: SalePoint }>()
+);
+export const removeSalePointSuccess = createAction(
+  '[SalePoint Effect] Update SalePoint Success',
+  props<{ salePoint: SalePoint }>()
+);
+export const removeSalePointFailure = createAction(
   '[SalePoint Effect] Update SalePoint failure',
   props<{ error: any }>()
 );

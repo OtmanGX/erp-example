@@ -3,7 +3,7 @@ const SalePointHeaders = [
     cellRendererParams: (params) => (
       {
       link: `/salePoints/${params.value}`,
-      state: {id: params.data.id},
+      state: {id: params?.data?.id},
       })
   },
   { field: 'phone', headerName: 'Téléphone', type: "textColumn"},
@@ -16,7 +16,7 @@ const CompanieHeaders = [
     cellRendererParams: (params) => (
       {
         link: `/companies/${params.value}`,
-        state: {id: params.data.id},
+        state: {id: params?.data?.id},
       })
   },
   { field: 'CNSS', headerName: 'CNSS', type: "textColumn"},
@@ -32,10 +32,10 @@ const UserHeaders = [
   { headerName: 'Nom complet', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `/users/${params.data.username}`,
-        state: {id: params.data.id},
+        link: `/users/${params?.data?.username}`,
+        state: {id: params?.data?.id},
       }),
-    valueGetter: (params) => [params.value, params.data.lastname].join(' ')},
+    valueGetter: (params) => [params.value, params?.data?.lastname].join(' ')},
   { field: 'username', headerName: 'Nom d\'utilisateur', type: "textColumn"},
   { field: 'phone', headerName: 'Téléphone', type: "textColumn"},
 ];

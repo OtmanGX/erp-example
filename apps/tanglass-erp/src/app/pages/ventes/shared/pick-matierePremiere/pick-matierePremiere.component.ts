@@ -329,7 +329,7 @@ export class PickMatierePremiereComponent implements OnInit, OnChanges {
   getAllMatierePremiere(): void {
     this.matierePremiereService.getAll().subscribe({
       next: (matierePremieres) => {
-        this.data = matierePremieres;
+        this.data = [];
       },
     });
   }

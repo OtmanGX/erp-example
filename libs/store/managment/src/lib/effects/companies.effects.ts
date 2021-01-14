@@ -42,6 +42,55 @@ export class CompaniesEffects {
   });
 
 
+  getCompanieById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CompaniesActions.loadCompanieById),
+      mergeMap((action) =>
+        this.companieService.getOneById(action.id).pipe(
+          map((data) =>
+          CompaniesActions.loadCompanieByIdSuccess({companie: data.data.management_Company_by_pk})
+          ),
+          catchError((error) =>
+            of(CompaniesActions.loadCompanieByIdFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  updateCompanie$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CompaniesActions.updateCompanie),
+      mergeMap((action) =>
+        this.companieService.updateOne(action.companie).pipe(
+          map((data) =>
+          CompaniesActions.updateCompanieSuccess({companie: data.data.update_management_Company_by_pk})
+          ),
+          catchError((error) =>
+            of(CompaniesActions.updateCompanieFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  removeCompanie$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CompaniesActions.removeCompanie),
+      mergeMap((action) =>
+        this.companieService.removeOne(action.companie.id).pipe(
+          map((data) =>
+          CompaniesActions.removeCompanieSuccess({companie: data.data.delete_management_Company_by_pk.id})
+          ),
+          catchError((error) =>
+            of(CompaniesActions.removeCompanieFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+
 
 
 

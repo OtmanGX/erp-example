@@ -1,6 +1,6 @@
 <ngx-fiche-card [title]="title" [data]="passedData">
 
-  <div fxLayout="row" style="width: 100%">
+  <div fxLayout="row" style="width: 100%" *ngIf="data$ | async as data">
   <mat-accordion fxFlex.gt-lg="50" fxFlex="80" class="headers-align ml-12">
     <mat-expansion-panel *ngFor="let item of data?.usersProfiles; index as i" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
       <mat-expansion-panel-header>

@@ -1,10 +1,10 @@
-import { Component, Host, HostBinding, Input, OnInit, Optional } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from "@angular/forms";
 import { FieldConfig } from "../../interfaces/field.interface";
 @Component({
   selector: "app-input-select",
   template: `
-<mat-form-field style="width: 90%" [formGroup]="group">
+<mat-form-field style="width: 100%" [formGroup]="group">
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngFor="let option of field.options" [value]="option.key">
       {{option.value}}
@@ -17,7 +17,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
 </ng-container>
 </mat-form-field>
 `,
-  styles: [':host {flex: 0 1 50%}'],
+  styles: [],
 })
 export class InputSelectComponent implements OnInit {
   field: FieldConfig;

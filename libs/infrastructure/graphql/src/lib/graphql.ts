@@ -34,6 +34,19 @@ export type Boolean_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['Boolean']>>;
 };
 
+/** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
+export type Int_Comparison_Exp = {
+  _eq?: Maybe<Scalars['Int']>;
+  _gt?: Maybe<Scalars['Int']>;
+  _gte?: Maybe<Scalars['Int']>;
+  _in?: Maybe<Array<Scalars['Int']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['Int']>;
+  _lte?: Maybe<Scalars['Int']>;
+  _neq?: Maybe<Scalars['Int']>;
+  _nin?: Maybe<Array<Scalars['Int']>>;
+};
+
 export type LoginInput = {
   password: Scalars['String'];
   username: Scalars['String'];
@@ -63,9 +76,9 @@ export type String_Comparison_Exp = {
   _similar?: Maybe<Scalars['String']>;
 };
 
-/** columns and relationships of "contact.Address" */
+/** columns and relationships of "contact.address" */
 export type Contact_Address = {
-  __typename?: 'contact_Address';
+  __typename?: 'contact_address';
   address: Scalars['String'];
   city: Scalars['String'];
   /** An array relationship */
@@ -85,7 +98,7 @@ export type Contact_Address = {
 };
 
 
-/** columns and relationships of "contact.Address" */
+/** columns and relationships of "contact.address" */
 export type Contact_AddressContact_AddressesArgs = {
   distinct_on?: Maybe<Array<Contact_Contact_Address_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -95,7 +108,7 @@ export type Contact_AddressContact_AddressesArgs = {
 };
 
 
-/** columns and relationships of "contact.Address" */
+/** columns and relationships of "contact.address" */
 export type Contact_AddressContact_Addresses_AggregateArgs = {
   distinct_on?: Maybe<Array<Contact_Contact_Address_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -105,7 +118,7 @@ export type Contact_AddressContact_Addresses_AggregateArgs = {
 };
 
 
-/** columns and relationships of "contact.Address" */
+/** columns and relationships of "contact.address" */
 export type Contact_AddressCustomer_AddressesArgs = {
   distinct_on?: Maybe<Array<Contact_Customer_Address_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -115,7 +128,7 @@ export type Contact_AddressCustomer_AddressesArgs = {
 };
 
 
-/** columns and relationships of "contact.Address" */
+/** columns and relationships of "contact.address" */
 export type Contact_AddressCustomer_Addresses_AggregateArgs = {
   distinct_on?: Maybe<Array<Contact_Customer_Address_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -125,7 +138,7 @@ export type Contact_AddressCustomer_Addresses_AggregateArgs = {
 };
 
 
-/** columns and relationships of "contact.Address" */
+/** columns and relationships of "contact.address" */
 export type Contact_AddressProvider_AddressesArgs = {
   distinct_on?: Maybe<Array<Contact_Provider_Address_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -135,7 +148,7 @@ export type Contact_AddressProvider_AddressesArgs = {
 };
 
 
-/** columns and relationships of "contact.Address" */
+/** columns and relationships of "contact.address" */
 export type Contact_AddressProvider_Addresses_AggregateArgs = {
   distinct_on?: Maybe<Array<Contact_Provider_Address_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -144,42 +157,42 @@ export type Contact_AddressProvider_Addresses_AggregateArgs = {
   where?: Maybe<Contact_Provider_Address_Bool_Exp>;
 };
 
-/** aggregated selection of "contact.Address" */
+/** aggregated selection of "contact.address" */
 export type Contact_Address_Aggregate = {
-  __typename?: 'contact_Address_aggregate';
+  __typename?: 'contact_address_aggregate';
   aggregate?: Maybe<Contact_Address_Aggregate_Fields>;
   nodes: Array<Contact_Address>;
 };
 
-/** aggregate fields of "contact.Address" */
+/** aggregate fields of "contact.address" */
 export type Contact_Address_Aggregate_Fields = {
-  __typename?: 'contact_Address_aggregate_fields';
+  __typename?: 'contact_address_aggregate_fields';
   count?: Maybe<Scalars['Int']>;
   max?: Maybe<Contact_Address_Max_Fields>;
   min?: Maybe<Contact_Address_Min_Fields>;
 };
 
 
-/** aggregate fields of "contact.Address" */
+/** aggregate fields of "contact.address" */
 export type Contact_Address_Aggregate_FieldsCountArgs = {
   columns?: Maybe<Array<Contact_Address_Select_Column>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
-/** order by aggregate values of table "contact.Address" */
+/** order by aggregate values of table "contact.address" */
 export type Contact_Address_Aggregate_Order_By = {
   count?: Maybe<Order_By>;
   max?: Maybe<Contact_Address_Max_Order_By>;
   min?: Maybe<Contact_Address_Min_Order_By>;
 };
 
-/** input type for inserting array relation for remote table "contact.Address" */
+/** input type for inserting array relation for remote table "contact.address" */
 export type Contact_Address_Arr_Rel_Insert_Input = {
   data: Array<Contact_Address_Insert_Input>;
   on_conflict?: Maybe<Contact_Address_On_Conflict>;
 };
 
-/** Boolean expression to filter rows from the table "contact.Address". All fields are combined with a logical 'AND'. */
+/** Boolean expression to filter rows from the table "contact.address". All fields are combined with a logical 'AND'. */
 export type Contact_Address_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Contact_Address_Bool_Exp>>>;
   _not?: Maybe<Contact_Address_Bool_Exp>;
@@ -193,13 +206,13 @@ export type Contact_Address_Bool_Exp = {
   zip?: Maybe<String_Comparison_Exp>;
 };
 
-/** unique or primary key constraints on table "contact.Address" */
+/** unique or primary key constraints on table "contact.address" */
 export enum Contact_Address_Constraint {
   /** unique or primary key constraint */
   AddressPkey = 'Address_pkey'
 }
 
-/** input type for inserting data into table "contact.Address" */
+/** input type for inserting data into table "contact.address" */
 export type Contact_Address_Insert_Input = {
   address?: Maybe<Scalars['String']>;
   city?: Maybe<Scalars['String']>;
@@ -212,14 +225,14 @@ export type Contact_Address_Insert_Input = {
 
 /** aggregate max on columns */
 export type Contact_Address_Max_Fields = {
-  __typename?: 'contact_Address_max_fields';
+  __typename?: 'contact_address_max_fields';
   address?: Maybe<Scalars['String']>;
   city?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   zip?: Maybe<Scalars['String']>;
 };
 
-/** order by max() on columns of table "contact.Address" */
+/** order by max() on columns of table "contact.address" */
 export type Contact_Address_Max_Order_By = {
   address?: Maybe<Order_By>;
   city?: Maybe<Order_By>;
@@ -229,14 +242,14 @@ export type Contact_Address_Max_Order_By = {
 
 /** aggregate min on columns */
 export type Contact_Address_Min_Fields = {
-  __typename?: 'contact_Address_min_fields';
+  __typename?: 'contact_address_min_fields';
   address?: Maybe<Scalars['String']>;
   city?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   zip?: Maybe<Scalars['String']>;
 };
 
-/** order by min() on columns of table "contact.Address" */
+/** order by min() on columns of table "contact.address" */
 export type Contact_Address_Min_Order_By = {
   address?: Maybe<Order_By>;
   city?: Maybe<Order_By>;
@@ -244,29 +257,29 @@ export type Contact_Address_Min_Order_By = {
   zip?: Maybe<Order_By>;
 };
 
-/** response of any mutation on the table "contact.Address" */
+/** response of any mutation on the table "contact.address" */
 export type Contact_Address_Mutation_Response = {
-  __typename?: 'contact_Address_mutation_response';
+  __typename?: 'contact_address_mutation_response';
   /** number of affected rows by the mutation */
   affected_rows: Scalars['Int'];
   /** data of the affected rows by the mutation */
   returning: Array<Contact_Address>;
 };
 
-/** input type for inserting object relation for remote table "contact.Address" */
+/** input type for inserting object relation for remote table "contact.address" */
 export type Contact_Address_Obj_Rel_Insert_Input = {
   data: Contact_Address_Insert_Input;
   on_conflict?: Maybe<Contact_Address_On_Conflict>;
 };
 
-/** on conflict condition type for table "contact.Address" */
+/** on conflict condition type for table "contact.address" */
 export type Contact_Address_On_Conflict = {
   constraint: Contact_Address_Constraint;
   update_columns: Array<Contact_Address_Update_Column>;
   where?: Maybe<Contact_Address_Bool_Exp>;
 };
 
-/** ordering options when selecting data from "contact.Address" */
+/** ordering options when selecting data from "contact.address" */
 export type Contact_Address_Order_By = {
   address?: Maybe<Order_By>;
   city?: Maybe<Order_By>;
@@ -277,12 +290,12 @@ export type Contact_Address_Order_By = {
   zip?: Maybe<Order_By>;
 };
 
-/** primary key columns input for table: "contact.Address" */
+/** primary key columns input for table: "contact.address" */
 export type Contact_Address_Pk_Columns_Input = {
   id: Scalars['uuid'];
 };
 
-/** select columns of table "contact.Address" */
+/** select columns of table "contact.address" */
 export enum Contact_Address_Select_Column {
   /** column name */
   Address = 'address',
@@ -294,7 +307,7 @@ export enum Contact_Address_Select_Column {
   Zip = 'zip'
 }
 
-/** input type for updating data in table "contact.Address" */
+/** input type for updating data in table "contact.address" */
 export type Contact_Address_Set_Input = {
   address?: Maybe<Scalars['String']>;
   city?: Maybe<Scalars['String']>;
@@ -302,7 +315,7 @@ export type Contact_Address_Set_Input = {
   zip?: Maybe<Scalars['String']>;
 };
 
-/** update columns of table "contact.Address" */
+/** update columns of table "contact.address" */
 export enum Contact_Address_Update_Column {
   /** column name */
   Address = 'address',
@@ -314,46 +327,68 @@ export enum Contact_Address_Update_Column {
   Zip = 'zip'
 }
 
-/** columns and relationships of "contact.Contact" */
+/** columns and relationships of "contact.contact" */
 export type Contact_Contact = {
-  __typename?: 'contact_Contact';
+  __typename?: 'contact_contact';
   /** An array relationship */
-  addresses: Array<Contact_Contact_Address>;
+  addresses: Array<Contact_Contact_Addresses_View>;
   /** An aggregated array relationship */
-  addresses_aggregate: Contact_Contact_Address_Aggregate;
-  code: Scalars['String'];
+  addresses_aggregate: Contact_Contact_Addresses_View_Aggregate;
+  code?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  contact_addresses: Array<Contact_Contact_Address>;
+  /** An aggregated array relationship */
+  contact_addresses_aggregate: Contact_Contact_Address_Aggregate;
+  /** An array relationship */
+  contact_customers: Array<Contact_Customer_Contact>;
+  /** An aggregated array relationship */
+  contact_customers_aggregate: Contact_Customer_Contact_Aggregate;
+  /** An array relationship */
+  contact_providers: Array<Contact_Provider_Contact>;
+  /** An aggregated array relationship */
+  contact_providers_aggregate: Contact_Provider_Contact_Aggregate;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
   /** An array relationship */
-  customers: Array<Contact_Customer_Contact>;
+  cutomers: Array<Contact_Contact_Customers_View>;
   /** An aggregated array relationship */
-  customers_aggregate: Contact_Customer_Contact_Aggregate;
+  cutomers_aggregate: Contact_Contact_Customers_View_Aggregate;
   id: Scalars['uuid'];
   mail?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   note?: Maybe<Scalars['String']>;
   phone: Scalars['String'];
   /** An array relationship */
-  providers: Array<Contact_Provider_Contact>;
+  providers: Array<Contact_Contact_Providers_View>;
   /** An aggregated array relationship */
-  providers_aggregate: Contact_Provider_Contact_Aggregate;
+  providers_aggregate: Contact_Contact_Providers_View_Aggregate;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
 };
 
 
-/** columns and relationships of "contact.Contact" */
+/** columns and relationships of "contact.contact" */
 export type Contact_ContactAddressesArgs = {
-  distinct_on?: Maybe<Array<Contact_Contact_Address_Select_Column>>;
+  distinct_on?: Maybe<Array<Contact_Contact_Addresses_View_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Contact_Address_Order_By>>;
-  where?: Maybe<Contact_Contact_Address_Bool_Exp>;
+  order_by?: Maybe<Array<Contact_Contact_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Addresses_View_Bool_Exp>;
 };
 
 
-/** columns and relationships of "contact.Contact" */
+/** columns and relationships of "contact.contact" */
 export type Contact_ContactAddresses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Addresses_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.contact" */
+export type Contact_ContactContact_AddressesArgs = {
   distinct_on?: Maybe<Array<Contact_Contact_Address_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -362,8 +397,18 @@ export type Contact_ContactAddresses_AggregateArgs = {
 };
 
 
-/** columns and relationships of "contact.Contact" */
-export type Contact_ContactCustomersArgs = {
+/** columns and relationships of "contact.contact" */
+export type Contact_ContactContact_Addresses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Address_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Address_Order_By>>;
+  where?: Maybe<Contact_Contact_Address_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.contact" */
+export type Contact_ContactContact_CustomersArgs = {
   distinct_on?: Maybe<Array<Contact_Customer_Contact_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -372,8 +417,8 @@ export type Contact_ContactCustomersArgs = {
 };
 
 
-/** columns and relationships of "contact.Contact" */
-export type Contact_ContactCustomers_AggregateArgs = {
+/** columns and relationships of "contact.contact" */
+export type Contact_ContactContact_Customers_AggregateArgs = {
   distinct_on?: Maybe<Array<Contact_Customer_Contact_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -382,946 +427,73 @@ export type Contact_ContactCustomers_AggregateArgs = {
 };
 
 
-/** columns and relationships of "contact.Contact" */
+/** columns and relationships of "contact.contact" */
+export type Contact_ContactContact_ProvidersArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Contact_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Contact_Order_By>>;
+  where?: Maybe<Contact_Provider_Contact_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.contact" */
+export type Contact_ContactContact_Providers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Contact_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Contact_Order_By>>;
+  where?: Maybe<Contact_Provider_Contact_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.contact" */
+export type Contact_ContactCutomersArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Customers_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Customers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Customers_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.contact" */
+export type Contact_ContactCutomers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Customers_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Customers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Customers_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.contact" */
 export type Contact_ContactProvidersArgs = {
-  distinct_on?: Maybe<Array<Contact_Provider_Contact_Select_Column>>;
+  distinct_on?: Maybe<Array<Contact_Contact_Providers_View_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Provider_Contact_Order_By>>;
-  where?: Maybe<Contact_Provider_Contact_Bool_Exp>;
+  order_by?: Maybe<Array<Contact_Contact_Providers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Providers_View_Bool_Exp>;
 };
 
 
-/** columns and relationships of "contact.Contact" */
+/** columns and relationships of "contact.contact" */
 export type Contact_ContactProviders_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Provider_Contact_Select_Column>>;
+  distinct_on?: Maybe<Array<Contact_Contact_Providers_View_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Provider_Contact_Order_By>>;
-  where?: Maybe<Contact_Provider_Contact_Bool_Exp>;
+  order_by?: Maybe<Array<Contact_Contact_Providers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Providers_View_Bool_Exp>;
 };
-
-/** aggregated selection of "contact.Contact" */
-export type Contact_Contact_Aggregate = {
-  __typename?: 'contact_Contact_aggregate';
-  aggregate?: Maybe<Contact_Contact_Aggregate_Fields>;
-  nodes: Array<Contact_Contact>;
-};
-
-/** aggregate fields of "contact.Contact" */
-export type Contact_Contact_Aggregate_Fields = {
-  __typename?: 'contact_Contact_aggregate_fields';
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Contact_Contact_Max_Fields>;
-  min?: Maybe<Contact_Contact_Min_Fields>;
-};
-
-
-/** aggregate fields of "contact.Contact" */
-export type Contact_Contact_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Contact_Contact_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "contact.Contact" */
-export type Contact_Contact_Aggregate_Order_By = {
-  count?: Maybe<Order_By>;
-  max?: Maybe<Contact_Contact_Max_Order_By>;
-  min?: Maybe<Contact_Contact_Min_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "contact.Contact" */
-export type Contact_Contact_Arr_Rel_Insert_Input = {
-  data: Array<Contact_Contact_Insert_Input>;
-  on_conflict?: Maybe<Contact_Contact_On_Conflict>;
-};
-
-/** Boolean expression to filter rows from the table "contact.Contact". All fields are combined with a logical 'AND'. */
-export type Contact_Contact_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Contact_Contact_Bool_Exp>>>;
-  _not?: Maybe<Contact_Contact_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Contact_Contact_Bool_Exp>>>;
-  addresses?: Maybe<Contact_Contact_Address_Bool_Exp>;
-  code?: Maybe<String_Comparison_Exp>;
-  createdAt?: Maybe<Date_Comparison_Exp>;
-  createdBy?: Maybe<Uuid_Comparison_Exp>;
-  customers?: Maybe<Contact_Customer_Contact_Bool_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  mail?: Maybe<String_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-  note?: Maybe<String_Comparison_Exp>;
-  phone?: Maybe<String_Comparison_Exp>;
-  providers?: Maybe<Contact_Provider_Contact_Bool_Exp>;
-  updatedAt?: Maybe<Date_Comparison_Exp>;
-  updatedBy?: Maybe<Uuid_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "contact.Contact" */
-export enum Contact_Contact_Constraint {
-  /** unique or primary key constraint */
-  ContactCodeKey = 'Contact_code_key',
-  /** unique or primary key constraint */
-  ContactPhoneKey = 'Contact_phone_key',
-  /** unique or primary key constraint */
-  ContactPkey = 'Contact_pkey'
-}
-
-/** input type for inserting data into table "contact.Contact" */
-export type Contact_Contact_Insert_Input = {
-  addresses?: Maybe<Contact_Contact_Address_Arr_Rel_Insert_Input>;
-  code?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  customers?: Maybe<Contact_Customer_Contact_Arr_Rel_Insert_Input>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  providers?: Maybe<Contact_Provider_Contact_Arr_Rel_Insert_Input>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-/** aggregate max on columns */
-export type Contact_Contact_Max_Fields = {
-  __typename?: 'contact_Contact_max_fields';
-  code?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-/** order by max() on columns of table "contact.Contact" */
-export type Contact_Contact_Max_Order_By = {
-  code?: Maybe<Order_By>;
-  createdAt?: Maybe<Order_By>;
-  createdBy?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  mail?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  note?: Maybe<Order_By>;
-  phone?: Maybe<Order_By>;
-  updatedAt?: Maybe<Order_By>;
-  updatedBy?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Contact_Contact_Min_Fields = {
-  __typename?: 'contact_Contact_min_fields';
-  code?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-/** order by min() on columns of table "contact.Contact" */
-export type Contact_Contact_Min_Order_By = {
-  code?: Maybe<Order_By>;
-  createdAt?: Maybe<Order_By>;
-  createdBy?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  mail?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  note?: Maybe<Order_By>;
-  phone?: Maybe<Order_By>;
-  updatedAt?: Maybe<Order_By>;
-  updatedBy?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "contact.Contact" */
-export type Contact_Contact_Mutation_Response = {
-  __typename?: 'contact_Contact_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Contact_Contact>;
-};
-
-/** input type for inserting object relation for remote table "contact.Contact" */
-export type Contact_Contact_Obj_Rel_Insert_Input = {
-  data: Contact_Contact_Insert_Input;
-  on_conflict?: Maybe<Contact_Contact_On_Conflict>;
-};
-
-/** on conflict condition type for table "contact.Contact" */
-export type Contact_Contact_On_Conflict = {
-  constraint: Contact_Contact_Constraint;
-  update_columns: Array<Contact_Contact_Update_Column>;
-  where?: Maybe<Contact_Contact_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "contact.Contact" */
-export type Contact_Contact_Order_By = {
-  addresses_aggregate?: Maybe<Contact_Contact_Address_Aggregate_Order_By>;
-  code?: Maybe<Order_By>;
-  createdAt?: Maybe<Order_By>;
-  createdBy?: Maybe<Order_By>;
-  customers_aggregate?: Maybe<Contact_Customer_Contact_Aggregate_Order_By>;
-  id?: Maybe<Order_By>;
-  mail?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  note?: Maybe<Order_By>;
-  phone?: Maybe<Order_By>;
-  providers_aggregate?: Maybe<Contact_Provider_Contact_Aggregate_Order_By>;
-  updatedAt?: Maybe<Order_By>;
-  updatedBy?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "contact.Contact" */
-export type Contact_Contact_Pk_Columns_Input = {
-  id: Scalars['uuid'];
-};
-
-/** select columns of table "contact.Contact" */
-export enum Contact_Contact_Select_Column {
-  /** column name */
-  Code = 'code',
-  /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
-  CreatedBy = 'createdBy',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Mail = 'mail',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Note = 'note',
-  /** column name */
-  Phone = 'phone',
-  /** column name */
-  UpdatedAt = 'updatedAt',
-  /** column name */
-  UpdatedBy = 'updatedBy'
-}
-
-/** input type for updating data in table "contact.Contact" */
-export type Contact_Contact_Set_Input = {
-  code?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-/** update columns of table "contact.Contact" */
-export enum Contact_Contact_Update_Column {
-  /** column name */
-  Code = 'code',
-  /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
-  CreatedBy = 'createdBy',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Mail = 'mail',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Note = 'note',
-  /** column name */
-  Phone = 'phone',
-  /** column name */
-  UpdatedAt = 'updatedAt',
-  /** column name */
-  UpdatedBy = 'updatedBy'
-}
-
-/** columns and relationships of "contact.Customer" */
-export type Contact_Customer = {
-  __typename?: 'contact_Customer';
-  FAX: Scalars['String'];
-  ICE: Scalars['String'];
-  IF: Scalars['String'];
-  /** An array relationship */
-  addresses: Array<Contact_Customer_Address>;
-  /** An aggregated array relationship */
-  addresses_aggregate: Contact_Customer_Address_Aggregate;
-  code?: Maybe<Scalars['String']>;
-  /** An array relationship */
-  contacts: Array<Contact_Customer_Contact>;
-  /** An aggregated array relationship */
-  contacts_aggregate: Contact_Customer_Contact_Aggregate;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id: Scalars['uuid'];
-  mail: Scalars['String'];
-  name: Scalars['String'];
-  note: Scalars['String'];
-  phone: Scalars['String'];
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-  website: Scalars['String'];
-};
-
-
-/** columns and relationships of "contact.Customer" */
-export type Contact_CustomerAddressesArgs = {
-  distinct_on?: Maybe<Array<Contact_Customer_Address_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Customer_Address_Order_By>>;
-  where?: Maybe<Contact_Customer_Address_Bool_Exp>;
-};
-
-
-/** columns and relationships of "contact.Customer" */
-export type Contact_CustomerAddresses_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Customer_Address_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Customer_Address_Order_By>>;
-  where?: Maybe<Contact_Customer_Address_Bool_Exp>;
-};
-
-
-/** columns and relationships of "contact.Customer" */
-export type Contact_CustomerContactsArgs = {
-  distinct_on?: Maybe<Array<Contact_Customer_Contact_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Customer_Contact_Order_By>>;
-  where?: Maybe<Contact_Customer_Contact_Bool_Exp>;
-};
-
-
-/** columns and relationships of "contact.Customer" */
-export type Contact_CustomerContacts_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Customer_Contact_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Customer_Contact_Order_By>>;
-  where?: Maybe<Contact_Customer_Contact_Bool_Exp>;
-};
-
-/** aggregated selection of "contact.Customer" */
-export type Contact_Customer_Aggregate = {
-  __typename?: 'contact_Customer_aggregate';
-  aggregate?: Maybe<Contact_Customer_Aggregate_Fields>;
-  nodes: Array<Contact_Customer>;
-};
-
-/** aggregate fields of "contact.Customer" */
-export type Contact_Customer_Aggregate_Fields = {
-  __typename?: 'contact_Customer_aggregate_fields';
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Contact_Customer_Max_Fields>;
-  min?: Maybe<Contact_Customer_Min_Fields>;
-};
-
-
-/** aggregate fields of "contact.Customer" */
-export type Contact_Customer_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Contact_Customer_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "contact.Customer" */
-export type Contact_Customer_Aggregate_Order_By = {
-  count?: Maybe<Order_By>;
-  max?: Maybe<Contact_Customer_Max_Order_By>;
-  min?: Maybe<Contact_Customer_Min_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "contact.Customer" */
-export type Contact_Customer_Arr_Rel_Insert_Input = {
-  data: Array<Contact_Customer_Insert_Input>;
-  on_conflict?: Maybe<Contact_Customer_On_Conflict>;
-};
-
-/** Boolean expression to filter rows from the table "contact.Customer". All fields are combined with a logical 'AND'. */
-export type Contact_Customer_Bool_Exp = {
-  FAX?: Maybe<String_Comparison_Exp>;
-  ICE?: Maybe<String_Comparison_Exp>;
-  IF?: Maybe<String_Comparison_Exp>;
-  _and?: Maybe<Array<Maybe<Contact_Customer_Bool_Exp>>>;
-  _not?: Maybe<Contact_Customer_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Contact_Customer_Bool_Exp>>>;
-  addresses?: Maybe<Contact_Customer_Address_Bool_Exp>;
-  code?: Maybe<String_Comparison_Exp>;
-  contacts?: Maybe<Contact_Customer_Contact_Bool_Exp>;
-  createdAt?: Maybe<Date_Comparison_Exp>;
-  createdBy?: Maybe<Uuid_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  mail?: Maybe<String_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-  note?: Maybe<String_Comparison_Exp>;
-  phone?: Maybe<String_Comparison_Exp>;
-  updatedAt?: Maybe<Date_Comparison_Exp>;
-  updatedBy?: Maybe<Uuid_Comparison_Exp>;
-  website?: Maybe<String_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "contact.Customer" */
-export enum Contact_Customer_Constraint {
-  /** unique or primary key constraint */
-  CustomerIceKey = 'Customer_ICE_key',
-  /** unique or primary key constraint */
-  CustomerIfKey = 'Customer_IF_key',
-  /** unique or primary key constraint */
-  CustomerCodeKey = 'Customer_code_key',
-  /** unique or primary key constraint */
-  CustomerNameKey = 'Customer_name_key',
-  /** unique or primary key constraint */
-  CustomerPhoneKey = 'Customer_phone_key',
-  /** unique or primary key constraint */
-  CustomerPkey = 'Customer_pkey'
-}
-
-/** input type for inserting data into table "contact.Customer" */
-export type Contact_Customer_Insert_Input = {
-  FAX?: Maybe<Scalars['String']>;
-  ICE?: Maybe<Scalars['String']>;
-  IF?: Maybe<Scalars['String']>;
-  addresses?: Maybe<Contact_Customer_Address_Arr_Rel_Insert_Input>;
-  code?: Maybe<Scalars['String']>;
-  contacts?: Maybe<Contact_Customer_Contact_Arr_Rel_Insert_Input>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-  website?: Maybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type Contact_Customer_Max_Fields = {
-  __typename?: 'contact_Customer_max_fields';
-  FAX?: Maybe<Scalars['String']>;
-  ICE?: Maybe<Scalars['String']>;
-  IF?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-  website?: Maybe<Scalars['String']>;
-};
-
-/** order by max() on columns of table "contact.Customer" */
-export type Contact_Customer_Max_Order_By = {
-  FAX?: Maybe<Order_By>;
-  ICE?: Maybe<Order_By>;
-  IF?: Maybe<Order_By>;
-  code?: Maybe<Order_By>;
-  createdAt?: Maybe<Order_By>;
-  createdBy?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  mail?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  note?: Maybe<Order_By>;
-  phone?: Maybe<Order_By>;
-  updatedAt?: Maybe<Order_By>;
-  updatedBy?: Maybe<Order_By>;
-  website?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Contact_Customer_Min_Fields = {
-  __typename?: 'contact_Customer_min_fields';
-  FAX?: Maybe<Scalars['String']>;
-  ICE?: Maybe<Scalars['String']>;
-  IF?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-  website?: Maybe<Scalars['String']>;
-};
-
-/** order by min() on columns of table "contact.Customer" */
-export type Contact_Customer_Min_Order_By = {
-  FAX?: Maybe<Order_By>;
-  ICE?: Maybe<Order_By>;
-  IF?: Maybe<Order_By>;
-  code?: Maybe<Order_By>;
-  createdAt?: Maybe<Order_By>;
-  createdBy?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  mail?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  note?: Maybe<Order_By>;
-  phone?: Maybe<Order_By>;
-  updatedAt?: Maybe<Order_By>;
-  updatedBy?: Maybe<Order_By>;
-  website?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "contact.Customer" */
-export type Contact_Customer_Mutation_Response = {
-  __typename?: 'contact_Customer_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Contact_Customer>;
-};
-
-/** input type for inserting object relation for remote table "contact.Customer" */
-export type Contact_Customer_Obj_Rel_Insert_Input = {
-  data: Contact_Customer_Insert_Input;
-  on_conflict?: Maybe<Contact_Customer_On_Conflict>;
-};
-
-/** on conflict condition type for table "contact.Customer" */
-export type Contact_Customer_On_Conflict = {
-  constraint: Contact_Customer_Constraint;
-  update_columns: Array<Contact_Customer_Update_Column>;
-  where?: Maybe<Contact_Customer_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "contact.Customer" */
-export type Contact_Customer_Order_By = {
-  FAX?: Maybe<Order_By>;
-  ICE?: Maybe<Order_By>;
-  IF?: Maybe<Order_By>;
-  addresses_aggregate?: Maybe<Contact_Customer_Address_Aggregate_Order_By>;
-  code?: Maybe<Order_By>;
-  contacts_aggregate?: Maybe<Contact_Customer_Contact_Aggregate_Order_By>;
-  createdAt?: Maybe<Order_By>;
-  createdBy?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  mail?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  note?: Maybe<Order_By>;
-  phone?: Maybe<Order_By>;
-  updatedAt?: Maybe<Order_By>;
-  updatedBy?: Maybe<Order_By>;
-  website?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "contact.Customer" */
-export type Contact_Customer_Pk_Columns_Input = {
-  id: Scalars['uuid'];
-};
-
-/** select columns of table "contact.Customer" */
-export enum Contact_Customer_Select_Column {
-  /** column name */
-  Fax = 'FAX',
-  /** column name */
-  Ice = 'ICE',
-  /** column name */
-  If = 'IF',
-  /** column name */
-  Code = 'code',
-  /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
-  CreatedBy = 'createdBy',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Mail = 'mail',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Note = 'note',
-  /** column name */
-  Phone = 'phone',
-  /** column name */
-  UpdatedAt = 'updatedAt',
-  /** column name */
-  UpdatedBy = 'updatedBy',
-  /** column name */
-  Website = 'website'
-}
-
-/** input type for updating data in table "contact.Customer" */
-export type Contact_Customer_Set_Input = {
-  FAX?: Maybe<Scalars['String']>;
-  ICE?: Maybe<Scalars['String']>;
-  IF?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-  website?: Maybe<Scalars['String']>;
-};
-
-/** update columns of table "contact.Customer" */
-export enum Contact_Customer_Update_Column {
-  /** column name */
-  Fax = 'FAX',
-  /** column name */
-  Ice = 'ICE',
-  /** column name */
-  If = 'IF',
-  /** column name */
-  Code = 'code',
-  /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
-  CreatedBy = 'createdBy',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Mail = 'mail',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Note = 'note',
-  /** column name */
-  Phone = 'phone',
-  /** column name */
-  UpdatedAt = 'updatedAt',
-  /** column name */
-  UpdatedBy = 'updatedBy',
-  /** column name */
-  Website = 'website'
-}
-
-/** columns and relationships of "contact.Provider" */
-export type Contact_Provider = {
-  __typename?: 'contact_Provider';
-  /** An array relationship */
-  addresses: Array<Contact_Provider_Address>;
-  /** An aggregated array relationship */
-  addresses_aggregate: Contact_Provider_Address_Aggregate;
-  code: Scalars['String'];
-  /** An array relationship */
-  contacts: Array<Contact_Provider_Contact>;
-  /** An aggregated array relationship */
-  contacts_aggregate: Contact_Provider_Contact_Aggregate;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail: Scalars['String'];
-  name: Scalars['String'];
-  note: Scalars['String'];
-  phone: Scalars['String'];
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-
-/** columns and relationships of "contact.Provider" */
-export type Contact_ProviderAddressesArgs = {
-  distinct_on?: Maybe<Array<Contact_Provider_Address_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Provider_Address_Order_By>>;
-  where?: Maybe<Contact_Provider_Address_Bool_Exp>;
-};
-
-
-/** columns and relationships of "contact.Provider" */
-export type Contact_ProviderAddresses_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Provider_Address_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Provider_Address_Order_By>>;
-  where?: Maybe<Contact_Provider_Address_Bool_Exp>;
-};
-
-
-/** columns and relationships of "contact.Provider" */
-export type Contact_ProviderContactsArgs = {
-  distinct_on?: Maybe<Array<Contact_Provider_Contact_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Provider_Contact_Order_By>>;
-  where?: Maybe<Contact_Provider_Contact_Bool_Exp>;
-};
-
-
-/** columns and relationships of "contact.Provider" */
-export type Contact_ProviderContacts_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Provider_Contact_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Provider_Contact_Order_By>>;
-  where?: Maybe<Contact_Provider_Contact_Bool_Exp>;
-};
-
-/** aggregated selection of "contact.Provider" */
-export type Contact_Provider_Aggregate = {
-  __typename?: 'contact_Provider_aggregate';
-  aggregate?: Maybe<Contact_Provider_Aggregate_Fields>;
-  nodes: Array<Contact_Provider>;
-};
-
-/** aggregate fields of "contact.Provider" */
-export type Contact_Provider_Aggregate_Fields = {
-  __typename?: 'contact_Provider_aggregate_fields';
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Contact_Provider_Max_Fields>;
-  min?: Maybe<Contact_Provider_Min_Fields>;
-};
-
-
-/** aggregate fields of "contact.Provider" */
-export type Contact_Provider_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Contact_Provider_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "contact.Provider" */
-export type Contact_Provider_Aggregate_Order_By = {
-  count?: Maybe<Order_By>;
-  max?: Maybe<Contact_Provider_Max_Order_By>;
-  min?: Maybe<Contact_Provider_Min_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "contact.Provider" */
-export type Contact_Provider_Arr_Rel_Insert_Input = {
-  data: Array<Contact_Provider_Insert_Input>;
-  on_conflict?: Maybe<Contact_Provider_On_Conflict>;
-};
-
-/** Boolean expression to filter rows from the table "contact.Provider". All fields are combined with a logical 'AND'. */
-export type Contact_Provider_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Contact_Provider_Bool_Exp>>>;
-  _not?: Maybe<Contact_Provider_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Contact_Provider_Bool_Exp>>>;
-  addresses?: Maybe<Contact_Provider_Address_Bool_Exp>;
-  code?: Maybe<String_Comparison_Exp>;
-  contacts?: Maybe<Contact_Provider_Contact_Bool_Exp>;
-  createdAt?: Maybe<Date_Comparison_Exp>;
-  createdBy?: Maybe<Uuid_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  mail?: Maybe<String_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-  note?: Maybe<String_Comparison_Exp>;
-  phone?: Maybe<String_Comparison_Exp>;
-  updatedAt?: Maybe<Date_Comparison_Exp>;
-  updatedBy?: Maybe<Uuid_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "contact.Provider" */
-export enum Contact_Provider_Constraint {
-  /** unique or primary key constraint */
-  ProviderCodeKey = 'Provider_code_key',
-  /** unique or primary key constraint */
-  ProviderIdKey = 'Provider_id_key',
-  /** unique or primary key constraint */
-  ProviderNameKey = 'Provider_name_key',
-  /** unique or primary key constraint */
-  ProviderPhoneKey = 'Provider_phone_key'
-}
-
-/** input type for inserting data into table "contact.Provider" */
-export type Contact_Provider_Insert_Input = {
-  addresses?: Maybe<Contact_Provider_Address_Arr_Rel_Insert_Input>;
-  code?: Maybe<Scalars['String']>;
-  contacts?: Maybe<Contact_Provider_Contact_Arr_Rel_Insert_Input>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-/** aggregate max on columns */
-export type Contact_Provider_Max_Fields = {
-  __typename?: 'contact_Provider_max_fields';
-  code?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-/** order by max() on columns of table "contact.Provider" */
-export type Contact_Provider_Max_Order_By = {
-  code?: Maybe<Order_By>;
-  createdAt?: Maybe<Order_By>;
-  createdBy?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  mail?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  note?: Maybe<Order_By>;
-  phone?: Maybe<Order_By>;
-  updatedAt?: Maybe<Order_By>;
-  updatedBy?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Contact_Provider_Min_Fields = {
-  __typename?: 'contact_Provider_min_fields';
-  code?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-/** order by min() on columns of table "contact.Provider" */
-export type Contact_Provider_Min_Order_By = {
-  code?: Maybe<Order_By>;
-  createdAt?: Maybe<Order_By>;
-  createdBy?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  mail?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  note?: Maybe<Order_By>;
-  phone?: Maybe<Order_By>;
-  updatedAt?: Maybe<Order_By>;
-  updatedBy?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "contact.Provider" */
-export type Contact_Provider_Mutation_Response = {
-  __typename?: 'contact_Provider_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Contact_Provider>;
-};
-
-/** input type for inserting object relation for remote table "contact.Provider" */
-export type Contact_Provider_Obj_Rel_Insert_Input = {
-  data: Contact_Provider_Insert_Input;
-  on_conflict?: Maybe<Contact_Provider_On_Conflict>;
-};
-
-/** on conflict condition type for table "contact.Provider" */
-export type Contact_Provider_On_Conflict = {
-  constraint: Contact_Provider_Constraint;
-  update_columns: Array<Contact_Provider_Update_Column>;
-  where?: Maybe<Contact_Provider_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "contact.Provider" */
-export type Contact_Provider_Order_By = {
-  addresses_aggregate?: Maybe<Contact_Provider_Address_Aggregate_Order_By>;
-  code?: Maybe<Order_By>;
-  contacts_aggregate?: Maybe<Contact_Provider_Contact_Aggregate_Order_By>;
-  createdAt?: Maybe<Order_By>;
-  createdBy?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  mail?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  note?: Maybe<Order_By>;
-  phone?: Maybe<Order_By>;
-  updatedAt?: Maybe<Order_By>;
-  updatedBy?: Maybe<Order_By>;
-};
-
-/** select columns of table "contact.Provider" */
-export enum Contact_Provider_Select_Column {
-  /** column name */
-  Code = 'code',
-  /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
-  CreatedBy = 'createdBy',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Mail = 'mail',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Note = 'note',
-  /** column name */
-  Phone = 'phone',
-  /** column name */
-  UpdatedAt = 'updatedAt',
-  /** column name */
-  UpdatedBy = 'updatedBy'
-}
-
-/** input type for updating data in table "contact.Provider" */
-export type Contact_Provider_Set_Input = {
-  code?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['date']>;
-  createdBy?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  mail?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  note?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['date']>;
-  updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-/** update columns of table "contact.Provider" */
-export enum Contact_Provider_Update_Column {
-  /** column name */
-  Code = 'code',
-  /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
-  CreatedBy = 'createdBy',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Mail = 'mail',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Note = 'note',
-  /** column name */
-  Phone = 'phone',
-  /** column name */
-  UpdatedAt = 'updatedAt',
-  /** column name */
-  UpdatedBy = 'updatedBy'
-}
 
 /** columns and relationships of "contact.contact_address" */
 export type Contact_Contact_Address = {
   __typename?: 'contact_contact_address';
   /** An object relationship */
-  Address: Contact_Address;
-  /** An object relationship */
-  Contact: Contact_Contact;
+  address: Contact_Address;
   addressid: Scalars['uuid'];
+  /** An object relationship */
+  contact: Contact_Contact;
   contactid: Scalars['uuid'];
 };
 
@@ -1362,12 +534,12 @@ export type Contact_Contact_Address_Arr_Rel_Insert_Input = {
 
 /** Boolean expression to filter rows from the table "contact.contact_address". All fields are combined with a logical 'AND'. */
 export type Contact_Contact_Address_Bool_Exp = {
-  Address?: Maybe<Contact_Address_Bool_Exp>;
-  Contact?: Maybe<Contact_Contact_Bool_Exp>;
   _and?: Maybe<Array<Maybe<Contact_Contact_Address_Bool_Exp>>>;
   _not?: Maybe<Contact_Contact_Address_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Contact_Contact_Address_Bool_Exp>>>;
+  address?: Maybe<Contact_Address_Bool_Exp>;
   addressid?: Maybe<Uuid_Comparison_Exp>;
+  contact?: Maybe<Contact_Contact_Bool_Exp>;
   contactid?: Maybe<Uuid_Comparison_Exp>;
 };
 
@@ -1379,9 +551,9 @@ export enum Contact_Contact_Address_Constraint {
 
 /** input type for inserting data into table "contact.contact_address" */
 export type Contact_Contact_Address_Insert_Input = {
-  Address?: Maybe<Contact_Address_Obj_Rel_Insert_Input>;
-  Contact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
+  address?: Maybe<Contact_Address_Obj_Rel_Insert_Input>;
   addressid?: Maybe<Scalars['uuid']>;
+  contact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
   contactid?: Maybe<Scalars['uuid']>;
 };
 
@@ -1435,9 +607,9 @@ export type Contact_Contact_Address_On_Conflict = {
 
 /** ordering options when selecting data from "contact.contact_address" */
 export type Contact_Contact_Address_Order_By = {
-  Address?: Maybe<Contact_Address_Order_By>;
-  Contact?: Maybe<Contact_Contact_Order_By>;
+  address?: Maybe<Contact_Address_Order_By>;
   addressid?: Maybe<Order_By>;
+  contact?: Maybe<Contact_Contact_Order_By>;
   contactid?: Maybe<Order_By>;
 };
 
@@ -1469,14 +641,862 @@ export enum Contact_Contact_Address_Update_Column {
   Contactid = 'contactid'
 }
 
+/** columns and relationships of "contact.contact_addresses_view" */
+export type Contact_Contact_Addresses_View = {
+  __typename?: 'contact_contact_addresses_view';
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  contactid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  zip?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "contact.contact_addresses_view" */
+export type Contact_Contact_Addresses_View_Aggregate = {
+  __typename?: 'contact_contact_addresses_view_aggregate';
+  aggregate?: Maybe<Contact_Contact_Addresses_View_Aggregate_Fields>;
+  nodes: Array<Contact_Contact_Addresses_View>;
+};
+
+/** aggregate fields of "contact.contact_addresses_view" */
+export type Contact_Contact_Addresses_View_Aggregate_Fields = {
+  __typename?: 'contact_contact_addresses_view_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Contact_Contact_Addresses_View_Max_Fields>;
+  min?: Maybe<Contact_Contact_Addresses_View_Min_Fields>;
+};
+
+
+/** aggregate fields of "contact.contact_addresses_view" */
+export type Contact_Contact_Addresses_View_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Contact_Contact_Addresses_View_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "contact.contact_addresses_view" */
+export type Contact_Contact_Addresses_View_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Contact_Contact_Addresses_View_Max_Order_By>;
+  min?: Maybe<Contact_Contact_Addresses_View_Min_Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "contact.contact_addresses_view". All fields are combined with a logical 'AND'. */
+export type Contact_Contact_Addresses_View_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Contact_Contact_Addresses_View_Bool_Exp>>>;
+  _not?: Maybe<Contact_Contact_Addresses_View_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Contact_Contact_Addresses_View_Bool_Exp>>>;
+  address?: Maybe<String_Comparison_Exp>;
+  city?: Maybe<String_Comparison_Exp>;
+  contactid?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  zip?: Maybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Contact_Contact_Addresses_View_Max_Fields = {
+  __typename?: 'contact_contact_addresses_view_max_fields';
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  contactid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  zip?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "contact.contact_addresses_view" */
+export type Contact_Contact_Addresses_View_Max_Order_By = {
+  address?: Maybe<Order_By>;
+  city?: Maybe<Order_By>;
+  contactid?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  zip?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Contact_Contact_Addresses_View_Min_Fields = {
+  __typename?: 'contact_contact_addresses_view_min_fields';
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  contactid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  zip?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "contact.contact_addresses_view" */
+export type Contact_Contact_Addresses_View_Min_Order_By = {
+  address?: Maybe<Order_By>;
+  city?: Maybe<Order_By>;
+  contactid?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  zip?: Maybe<Order_By>;
+};
+
+/** ordering options when selecting data from "contact.contact_addresses_view" */
+export type Contact_Contact_Addresses_View_Order_By = {
+  address?: Maybe<Order_By>;
+  city?: Maybe<Order_By>;
+  contactid?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  zip?: Maybe<Order_By>;
+};
+
+/** select columns of table "contact.contact_addresses_view" */
+export enum Contact_Contact_Addresses_View_Select_Column {
+  /** column name */
+  Address = 'address',
+  /** column name */
+  City = 'city',
+  /** column name */
+  Contactid = 'contactid',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Zip = 'zip'
+}
+
+/** aggregated selection of "contact.contact" */
+export type Contact_Contact_Aggregate = {
+  __typename?: 'contact_contact_aggregate';
+  aggregate?: Maybe<Contact_Contact_Aggregate_Fields>;
+  nodes: Array<Contact_Contact>;
+};
+
+/** aggregate fields of "contact.contact" */
+export type Contact_Contact_Aggregate_Fields = {
+  __typename?: 'contact_contact_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Contact_Contact_Max_Fields>;
+  min?: Maybe<Contact_Contact_Min_Fields>;
+};
+
+
+/** aggregate fields of "contact.contact" */
+export type Contact_Contact_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Contact_Contact_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "contact.contact" */
+export type Contact_Contact_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Contact_Contact_Max_Order_By>;
+  min?: Maybe<Contact_Contact_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "contact.contact" */
+export type Contact_Contact_Arr_Rel_Insert_Input = {
+  data: Array<Contact_Contact_Insert_Input>;
+  on_conflict?: Maybe<Contact_Contact_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "contact.contact". All fields are combined with a logical 'AND'. */
+export type Contact_Contact_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Contact_Contact_Bool_Exp>>>;
+  _not?: Maybe<Contact_Contact_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Contact_Contact_Bool_Exp>>>;
+  addresses?: Maybe<Contact_Contact_Addresses_View_Bool_Exp>;
+  code?: Maybe<String_Comparison_Exp>;
+  contact_addresses?: Maybe<Contact_Contact_Address_Bool_Exp>;
+  contact_customers?: Maybe<Contact_Customer_Contact_Bool_Exp>;
+  contact_providers?: Maybe<Contact_Provider_Contact_Bool_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
+  createdBy?: Maybe<Uuid_Comparison_Exp>;
+  cutomers?: Maybe<Contact_Contact_Customers_View_Bool_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  mail?: Maybe<String_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  phone?: Maybe<String_Comparison_Exp>;
+  providers?: Maybe<Contact_Contact_Providers_View_Bool_Exp>;
+  updatedAt?: Maybe<Date_Comparison_Exp>;
+  updatedBy?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "contact.contact" */
+export enum Contact_Contact_Constraint {
+  /** unique or primary key constraint */
+  ContactCodeKey = 'Contact_code_key',
+  /** unique or primary key constraint */
+  ContactPhoneKey = 'Contact_phone_key',
+  /** unique or primary key constraint */
+  ContactPkey = 'Contact_pkey'
+}
+
+/** columns and relationships of "contact.contact_customers_view" */
+export type Contact_Contact_Customers_View = {
+  __typename?: 'contact_contact_customers_view';
+  FAX?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  contactid?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "contact.contact_customers_view" */
+export type Contact_Contact_Customers_View_Aggregate = {
+  __typename?: 'contact_contact_customers_view_aggregate';
+  aggregate?: Maybe<Contact_Contact_Customers_View_Aggregate_Fields>;
+  nodes: Array<Contact_Contact_Customers_View>;
+};
+
+/** aggregate fields of "contact.contact_customers_view" */
+export type Contact_Contact_Customers_View_Aggregate_Fields = {
+  __typename?: 'contact_contact_customers_view_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Contact_Contact_Customers_View_Max_Fields>;
+  min?: Maybe<Contact_Contact_Customers_View_Min_Fields>;
+};
+
+
+/** aggregate fields of "contact.contact_customers_view" */
+export type Contact_Contact_Customers_View_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Contact_Contact_Customers_View_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "contact.contact_customers_view" */
+export type Contact_Contact_Customers_View_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Contact_Contact_Customers_View_Max_Order_By>;
+  min?: Maybe<Contact_Contact_Customers_View_Min_Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "contact.contact_customers_view". All fields are combined with a logical 'AND'. */
+export type Contact_Contact_Customers_View_Bool_Exp = {
+  FAX?: Maybe<String_Comparison_Exp>;
+  ICE?: Maybe<String_Comparison_Exp>;
+  IF?: Maybe<String_Comparison_Exp>;
+  _and?: Maybe<Array<Maybe<Contact_Contact_Customers_View_Bool_Exp>>>;
+  _not?: Maybe<Contact_Contact_Customers_View_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Contact_Contact_Customers_View_Bool_Exp>>>;
+  code?: Maybe<String_Comparison_Exp>;
+  contactid?: Maybe<Uuid_Comparison_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
+  createdBy?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  mail?: Maybe<String_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  phone?: Maybe<String_Comparison_Exp>;
+  updatedAt?: Maybe<Date_Comparison_Exp>;
+  updatedBy?: Maybe<Uuid_Comparison_Exp>;
+  website?: Maybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Contact_Contact_Customers_View_Max_Fields = {
+  __typename?: 'contact_contact_customers_view_max_fields';
+  FAX?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  contactid?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "contact.contact_customers_view" */
+export type Contact_Contact_Customers_View_Max_Order_By = {
+  FAX?: Maybe<Order_By>;
+  ICE?: Maybe<Order_By>;
+  IF?: Maybe<Order_By>;
+  code?: Maybe<Order_By>;
+  contactid?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Contact_Contact_Customers_View_Min_Fields = {
+  __typename?: 'contact_contact_customers_view_min_fields';
+  FAX?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  contactid?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "contact.contact_customers_view" */
+export type Contact_Contact_Customers_View_Min_Order_By = {
+  FAX?: Maybe<Order_By>;
+  ICE?: Maybe<Order_By>;
+  IF?: Maybe<Order_By>;
+  code?: Maybe<Order_By>;
+  contactid?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
+};
+
+/** ordering options when selecting data from "contact.contact_customers_view" */
+export type Contact_Contact_Customers_View_Order_By = {
+  FAX?: Maybe<Order_By>;
+  ICE?: Maybe<Order_By>;
+  IF?: Maybe<Order_By>;
+  code?: Maybe<Order_By>;
+  contactid?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
+};
+
+/** select columns of table "contact.contact_customers_view" */
+export enum Contact_Contact_Customers_View_Select_Column {
+  /** column name */
+  Fax = 'FAX',
+  /** column name */
+  Ice = 'ICE',
+  /** column name */
+  If = 'IF',
+  /** column name */
+  Code = 'code',
+  /** column name */
+  Contactid = 'contactid',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Mail = 'mail',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Phone = 'phone',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy',
+  /** column name */
+  Website = 'website'
+}
+
+/** input type for inserting data into table "contact.contact" */
+export type Contact_Contact_Insert_Input = {
+  code?: Maybe<Scalars['String']>;
+  contact_addresses?: Maybe<Contact_Contact_Address_Arr_Rel_Insert_Input>;
+  contact_customers?: Maybe<Contact_Customer_Contact_Arr_Rel_Insert_Input>;
+  contact_providers?: Maybe<Contact_Provider_Contact_Arr_Rel_Insert_Input>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Contact_Contact_Max_Fields = {
+  __typename?: 'contact_contact_max_fields';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "contact.contact" */
+export type Contact_Contact_Max_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Contact_Contact_Min_Fields = {
+  __typename?: 'contact_contact_min_fields';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "contact.contact" */
+export type Contact_Contact_Min_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "contact.contact" */
+export type Contact_Contact_Mutation_Response = {
+  __typename?: 'contact_contact_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Contact_Contact>;
+};
+
+/** input type for inserting object relation for remote table "contact.contact" */
+export type Contact_Contact_Obj_Rel_Insert_Input = {
+  data: Contact_Contact_Insert_Input;
+  on_conflict?: Maybe<Contact_Contact_On_Conflict>;
+};
+
+/** on conflict condition type for table "contact.contact" */
+export type Contact_Contact_On_Conflict = {
+  constraint: Contact_Contact_Constraint;
+  update_columns: Array<Contact_Contact_Update_Column>;
+  where?: Maybe<Contact_Contact_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "contact.contact" */
+export type Contact_Contact_Order_By = {
+  addresses_aggregate?: Maybe<Contact_Contact_Addresses_View_Aggregate_Order_By>;
+  code?: Maybe<Order_By>;
+  contact_addresses_aggregate?: Maybe<Contact_Contact_Address_Aggregate_Order_By>;
+  contact_customers_aggregate?: Maybe<Contact_Customer_Contact_Aggregate_Order_By>;
+  contact_providers_aggregate?: Maybe<Contact_Provider_Contact_Aggregate_Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  cutomers_aggregate?: Maybe<Contact_Contact_Customers_View_Aggregate_Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  providers_aggregate?: Maybe<Contact_Contact_Providers_View_Aggregate_Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "contact.contact" */
+export type Contact_Contact_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** columns and relationships of "contact.contact_providers_view" */
+export type Contact_Contact_Providers_View = {
+  __typename?: 'contact_contact_providers_view';
+  code?: Maybe<Scalars['String']>;
+  contactid?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregated selection of "contact.contact_providers_view" */
+export type Contact_Contact_Providers_View_Aggregate = {
+  __typename?: 'contact_contact_providers_view_aggregate';
+  aggregate?: Maybe<Contact_Contact_Providers_View_Aggregate_Fields>;
+  nodes: Array<Contact_Contact_Providers_View>;
+};
+
+/** aggregate fields of "contact.contact_providers_view" */
+export type Contact_Contact_Providers_View_Aggregate_Fields = {
+  __typename?: 'contact_contact_providers_view_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Contact_Contact_Providers_View_Max_Fields>;
+  min?: Maybe<Contact_Contact_Providers_View_Min_Fields>;
+};
+
+
+/** aggregate fields of "contact.contact_providers_view" */
+export type Contact_Contact_Providers_View_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Contact_Contact_Providers_View_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "contact.contact_providers_view" */
+export type Contact_Contact_Providers_View_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Contact_Contact_Providers_View_Max_Order_By>;
+  min?: Maybe<Contact_Contact_Providers_View_Min_Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "contact.contact_providers_view". All fields are combined with a logical 'AND'. */
+export type Contact_Contact_Providers_View_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Contact_Contact_Providers_View_Bool_Exp>>>;
+  _not?: Maybe<Contact_Contact_Providers_View_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Contact_Contact_Providers_View_Bool_Exp>>>;
+  code?: Maybe<String_Comparison_Exp>;
+  contactid?: Maybe<Uuid_Comparison_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
+  createdBy?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  mail?: Maybe<String_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  phone?: Maybe<String_Comparison_Exp>;
+  updatedAt?: Maybe<Date_Comparison_Exp>;
+  updatedBy?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Contact_Contact_Providers_View_Max_Fields = {
+  __typename?: 'contact_contact_providers_view_max_fields';
+  code?: Maybe<Scalars['String']>;
+  contactid?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "contact.contact_providers_view" */
+export type Contact_Contact_Providers_View_Max_Order_By = {
+  code?: Maybe<Order_By>;
+  contactid?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Contact_Contact_Providers_View_Min_Fields = {
+  __typename?: 'contact_contact_providers_view_min_fields';
+  code?: Maybe<Scalars['String']>;
+  contactid?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "contact.contact_providers_view" */
+export type Contact_Contact_Providers_View_Min_Order_By = {
+  code?: Maybe<Order_By>;
+  contactid?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** ordering options when selecting data from "contact.contact_providers_view" */
+export type Contact_Contact_Providers_View_Order_By = {
+  code?: Maybe<Order_By>;
+  contactid?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** select columns of table "contact.contact_providers_view" */
+export enum Contact_Contact_Providers_View_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  Contactid = 'contactid',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Mail = 'mail',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Phone = 'phone',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy'
+}
+
+/** select columns of table "contact.contact" */
+export enum Contact_Contact_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Mail = 'mail',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Phone = 'phone',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy'
+}
+
+/** input type for updating data in table "contact.contact" */
+export type Contact_Contact_Set_Input = {
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "contact.contact" */
+export enum Contact_Contact_Update_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Mail = 'mail',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Phone = 'phone',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy'
+}
+
+/** columns and relationships of "contact.customer" */
+export type Contact_Customer = {
+  __typename?: 'contact_customer';
+  FAX?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  addresses: Array<Contact_Customer_Addresses_View>;
+  /** An aggregated array relationship */
+  addresses_aggregate: Contact_Customer_Addresses_View_Aggregate;
+  code?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  contacts: Array<Contact_Customer_Contacts_View>;
+  /** An aggregated array relationship */
+  contacts_aggregate: Contact_Customer_Contacts_View_Aggregate;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  /** An array relationship */
+  customer_addresses: Array<Contact_Customer_Address>;
+  /** An aggregated array relationship */
+  customer_addresses_aggregate: Contact_Customer_Address_Aggregate;
+  /** An array relationship */
+  customer_contacts: Array<Contact_Customer_Contact>;
+  /** An aggregated array relationship */
+  customer_contacts_aggregate: Contact_Customer_Contact_Aggregate;
+  id: Scalars['uuid'];
+  mail?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  note?: Maybe<Scalars['String']>;
+  phone: Scalars['String'];
+  type?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerAddressesArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Addresses_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerAddresses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Addresses_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerContactsArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Contacts_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerContacts_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Contacts_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerCustomer_AddressesArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Address_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Address_Order_By>>;
+  where?: Maybe<Contact_Customer_Address_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerCustomer_Addresses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Address_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Address_Order_By>>;
+  where?: Maybe<Contact_Customer_Address_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerCustomer_ContactsArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Contact_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Contact_Order_By>>;
+  where?: Maybe<Contact_Customer_Contact_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerCustomer_Contacts_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Contact_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Contact_Order_By>>;
+  where?: Maybe<Contact_Customer_Contact_Bool_Exp>;
+};
+
 /** columns and relationships of "contact.customer_address" */
 export type Contact_Customer_Address = {
   __typename?: 'contact_customer_address';
   /** An object relationship */
-  Address: Contact_Address;
-  /** An object relationship */
-  Customer: Contact_Customer;
+  address: Contact_Address;
   addressid: Scalars['uuid'];
+  /** An object relationship */
+  customer: Contact_Customer;
   customerid: Scalars['uuid'];
 };
 
@@ -1517,12 +1537,12 @@ export type Contact_Customer_Address_Arr_Rel_Insert_Input = {
 
 /** Boolean expression to filter rows from the table "contact.customer_address". All fields are combined with a logical 'AND'. */
 export type Contact_Customer_Address_Bool_Exp = {
-  Address?: Maybe<Contact_Address_Bool_Exp>;
-  Customer?: Maybe<Contact_Customer_Bool_Exp>;
   _and?: Maybe<Array<Maybe<Contact_Customer_Address_Bool_Exp>>>;
   _not?: Maybe<Contact_Customer_Address_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Contact_Customer_Address_Bool_Exp>>>;
+  address?: Maybe<Contact_Address_Bool_Exp>;
   addressid?: Maybe<Uuid_Comparison_Exp>;
+  customer?: Maybe<Contact_Customer_Bool_Exp>;
   customerid?: Maybe<Uuid_Comparison_Exp>;
 };
 
@@ -1534,9 +1554,9 @@ export enum Contact_Customer_Address_Constraint {
 
 /** input type for inserting data into table "contact.customer_address" */
 export type Contact_Customer_Address_Insert_Input = {
-  Address?: Maybe<Contact_Address_Obj_Rel_Insert_Input>;
-  Customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
+  address?: Maybe<Contact_Address_Obj_Rel_Insert_Input>;
   addressid?: Maybe<Scalars['uuid']>;
+  customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
   customerid?: Maybe<Scalars['uuid']>;
 };
 
@@ -1590,9 +1610,9 @@ export type Contact_Customer_Address_On_Conflict = {
 
 /** ordering options when selecting data from "contact.customer_address" */
 export type Contact_Customer_Address_Order_By = {
-  Address?: Maybe<Contact_Address_Order_By>;
-  Customer?: Maybe<Contact_Customer_Order_By>;
+  address?: Maybe<Contact_Address_Order_By>;
   addressid?: Maybe<Order_By>;
+  customer?: Maybe<Contact_Customer_Order_By>;
   customerid?: Maybe<Order_By>;
 };
 
@@ -1624,14 +1644,199 @@ export enum Contact_Customer_Address_Update_Column {
   Customerid = 'customerid'
 }
 
+/** columns and relationships of "contact.customer_addresses_view" */
+export type Contact_Customer_Addresses_View = {
+  __typename?: 'contact_customer_addresses_view';
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  customerid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  zip?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "contact.customer_addresses_view" */
+export type Contact_Customer_Addresses_View_Aggregate = {
+  __typename?: 'contact_customer_addresses_view_aggregate';
+  aggregate?: Maybe<Contact_Customer_Addresses_View_Aggregate_Fields>;
+  nodes: Array<Contact_Customer_Addresses_View>;
+};
+
+/** aggregate fields of "contact.customer_addresses_view" */
+export type Contact_Customer_Addresses_View_Aggregate_Fields = {
+  __typename?: 'contact_customer_addresses_view_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Contact_Customer_Addresses_View_Max_Fields>;
+  min?: Maybe<Contact_Customer_Addresses_View_Min_Fields>;
+};
+
+
+/** aggregate fields of "contact.customer_addresses_view" */
+export type Contact_Customer_Addresses_View_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Contact_Customer_Addresses_View_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "contact.customer_addresses_view" */
+export type Contact_Customer_Addresses_View_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Contact_Customer_Addresses_View_Max_Order_By>;
+  min?: Maybe<Contact_Customer_Addresses_View_Min_Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "contact.customer_addresses_view". All fields are combined with a logical 'AND'. */
+export type Contact_Customer_Addresses_View_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Contact_Customer_Addresses_View_Bool_Exp>>>;
+  _not?: Maybe<Contact_Customer_Addresses_View_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Contact_Customer_Addresses_View_Bool_Exp>>>;
+  address?: Maybe<String_Comparison_Exp>;
+  city?: Maybe<String_Comparison_Exp>;
+  customerid?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  zip?: Maybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Contact_Customer_Addresses_View_Max_Fields = {
+  __typename?: 'contact_customer_addresses_view_max_fields';
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  customerid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  zip?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "contact.customer_addresses_view" */
+export type Contact_Customer_Addresses_View_Max_Order_By = {
+  address?: Maybe<Order_By>;
+  city?: Maybe<Order_By>;
+  customerid?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  zip?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Contact_Customer_Addresses_View_Min_Fields = {
+  __typename?: 'contact_customer_addresses_view_min_fields';
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  customerid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  zip?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "contact.customer_addresses_view" */
+export type Contact_Customer_Addresses_View_Min_Order_By = {
+  address?: Maybe<Order_By>;
+  city?: Maybe<Order_By>;
+  customerid?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  zip?: Maybe<Order_By>;
+};
+
+/** ordering options when selecting data from "contact.customer_addresses_view" */
+export type Contact_Customer_Addresses_View_Order_By = {
+  address?: Maybe<Order_By>;
+  city?: Maybe<Order_By>;
+  customerid?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  zip?: Maybe<Order_By>;
+};
+
+/** select columns of table "contact.customer_addresses_view" */
+export enum Contact_Customer_Addresses_View_Select_Column {
+  /** column name */
+  Address = 'address',
+  /** column name */
+  City = 'city',
+  /** column name */
+  Customerid = 'customerid',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Zip = 'zip'
+}
+
+/** aggregated selection of "contact.customer" */
+export type Contact_Customer_Aggregate = {
+  __typename?: 'contact_customer_aggregate';
+  aggregate?: Maybe<Contact_Customer_Aggregate_Fields>;
+  nodes: Array<Contact_Customer>;
+};
+
+/** aggregate fields of "contact.customer" */
+export type Contact_Customer_Aggregate_Fields = {
+  __typename?: 'contact_customer_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Contact_Customer_Max_Fields>;
+  min?: Maybe<Contact_Customer_Min_Fields>;
+};
+
+
+/** aggregate fields of "contact.customer" */
+export type Contact_Customer_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Contact_Customer_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "contact.customer" */
+export type Contact_Customer_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Contact_Customer_Max_Order_By>;
+  min?: Maybe<Contact_Customer_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "contact.customer" */
+export type Contact_Customer_Arr_Rel_Insert_Input = {
+  data: Array<Contact_Customer_Insert_Input>;
+  on_conflict?: Maybe<Contact_Customer_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "contact.customer". All fields are combined with a logical 'AND'. */
+export type Contact_Customer_Bool_Exp = {
+  FAX?: Maybe<String_Comparison_Exp>;
+  ICE?: Maybe<String_Comparison_Exp>;
+  IF?: Maybe<String_Comparison_Exp>;
+  _and?: Maybe<Array<Maybe<Contact_Customer_Bool_Exp>>>;
+  _not?: Maybe<Contact_Customer_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Contact_Customer_Bool_Exp>>>;
+  addresses?: Maybe<Contact_Customer_Addresses_View_Bool_Exp>;
+  code?: Maybe<String_Comparison_Exp>;
+  contacts?: Maybe<Contact_Customer_Contacts_View_Bool_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
+  createdBy?: Maybe<Uuid_Comparison_Exp>;
+  customer_addresses?: Maybe<Contact_Customer_Address_Bool_Exp>;
+  customer_contacts?: Maybe<Contact_Customer_Contact_Bool_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  mail?: Maybe<String_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  phone?: Maybe<String_Comparison_Exp>;
+  type?: Maybe<String_Comparison_Exp>;
+  updatedAt?: Maybe<Date_Comparison_Exp>;
+  updatedBy?: Maybe<Uuid_Comparison_Exp>;
+  website?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "contact.customer" */
+export enum Contact_Customer_Constraint {
+  /** unique or primary key constraint */
+  CustomerCodeKey = 'Customer_code_key',
+  /** unique or primary key constraint */
+  CustomerNameKey = 'Customer_name_key',
+  /** unique or primary key constraint */
+  CustomerPhoneKey = 'Customer_phone_key',
+  /** unique or primary key constraint */
+  CustomerPkey = 'Customer_pkey'
+}
+
 /** columns and relationships of "contact.customer_contact" */
 export type Contact_Customer_Contact = {
   __typename?: 'contact_customer_contact';
   /** An object relationship */
-  Contact: Contact_Contact;
-  /** An object relationship */
-  Customer: Contact_Customer;
+  contact: Contact_Contact;
   contactid: Scalars['uuid'];
+  /** An object relationship */
+  customer: Contact_Customer;
   customerid: Scalars['uuid'];
 };
 
@@ -1672,12 +1877,12 @@ export type Contact_Customer_Contact_Arr_Rel_Insert_Input = {
 
 /** Boolean expression to filter rows from the table "contact.customer_contact". All fields are combined with a logical 'AND'. */
 export type Contact_Customer_Contact_Bool_Exp = {
-  Contact?: Maybe<Contact_Contact_Bool_Exp>;
-  Customer?: Maybe<Contact_Customer_Bool_Exp>;
   _and?: Maybe<Array<Maybe<Contact_Customer_Contact_Bool_Exp>>>;
   _not?: Maybe<Contact_Customer_Contact_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Contact_Customer_Contact_Bool_Exp>>>;
+  contact?: Maybe<Contact_Contact_Bool_Exp>;
   contactid?: Maybe<Uuid_Comparison_Exp>;
+  customer?: Maybe<Contact_Customer_Bool_Exp>;
   customerid?: Maybe<Uuid_Comparison_Exp>;
 };
 
@@ -1689,9 +1894,9 @@ export enum Contact_Customer_Contact_Constraint {
 
 /** input type for inserting data into table "contact.customer_contact" */
 export type Contact_Customer_Contact_Insert_Input = {
-  Contact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
-  Customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
+  contact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
   contactid?: Maybe<Scalars['uuid']>;
+  customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
   customerid?: Maybe<Scalars['uuid']>;
 };
 
@@ -1745,9 +1950,9 @@ export type Contact_Customer_Contact_On_Conflict = {
 
 /** ordering options when selecting data from "contact.customer_contact" */
 export type Contact_Customer_Contact_Order_By = {
-  Contact?: Maybe<Contact_Contact_Order_By>;
-  Customer?: Maybe<Contact_Customer_Order_By>;
+  contact?: Maybe<Contact_Contact_Order_By>;
   contactid?: Maybe<Order_By>;
+  customer?: Maybe<Contact_Customer_Order_By>;
   customerid?: Maybe<Order_By>;
 };
 
@@ -1779,14 +1984,529 @@ export enum Contact_Customer_Contact_Update_Column {
   Customerid = 'customerid'
 }
 
+/** columns and relationships of "contact.customer_contacts_view" */
+export type Contact_Customer_Contacts_View = {
+  __typename?: 'contact_customer_contacts_view';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  customerid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregated selection of "contact.customer_contacts_view" */
+export type Contact_Customer_Contacts_View_Aggregate = {
+  __typename?: 'contact_customer_contacts_view_aggregate';
+  aggregate?: Maybe<Contact_Customer_Contacts_View_Aggregate_Fields>;
+  nodes: Array<Contact_Customer_Contacts_View>;
+};
+
+/** aggregate fields of "contact.customer_contacts_view" */
+export type Contact_Customer_Contacts_View_Aggregate_Fields = {
+  __typename?: 'contact_customer_contacts_view_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Contact_Customer_Contacts_View_Max_Fields>;
+  min?: Maybe<Contact_Customer_Contacts_View_Min_Fields>;
+};
+
+
+/** aggregate fields of "contact.customer_contacts_view" */
+export type Contact_Customer_Contacts_View_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Contact_Customer_Contacts_View_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "contact.customer_contacts_view" */
+export type Contact_Customer_Contacts_View_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Contact_Customer_Contacts_View_Max_Order_By>;
+  min?: Maybe<Contact_Customer_Contacts_View_Min_Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "contact.customer_contacts_view". All fields are combined with a logical 'AND'. */
+export type Contact_Customer_Contacts_View_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Contact_Customer_Contacts_View_Bool_Exp>>>;
+  _not?: Maybe<Contact_Customer_Contacts_View_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Contact_Customer_Contacts_View_Bool_Exp>>>;
+  code?: Maybe<String_Comparison_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
+  createdBy?: Maybe<Uuid_Comparison_Exp>;
+  customerid?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  mail?: Maybe<String_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  phone?: Maybe<String_Comparison_Exp>;
+  updatedAt?: Maybe<Date_Comparison_Exp>;
+  updatedBy?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Contact_Customer_Contacts_View_Max_Fields = {
+  __typename?: 'contact_customer_contacts_view_max_fields';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  customerid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "contact.customer_contacts_view" */
+export type Contact_Customer_Contacts_View_Max_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  customerid?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Contact_Customer_Contacts_View_Min_Fields = {
+  __typename?: 'contact_customer_contacts_view_min_fields';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  customerid?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "contact.customer_contacts_view" */
+export type Contact_Customer_Contacts_View_Min_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  customerid?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** ordering options when selecting data from "contact.customer_contacts_view" */
+export type Contact_Customer_Contacts_View_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  customerid?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** select columns of table "contact.customer_contacts_view" */
+export enum Contact_Customer_Contacts_View_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Customerid = 'customerid',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Mail = 'mail',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Phone = 'phone',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy'
+}
+
+/** input type for inserting data into table "contact.customer" */
+export type Contact_Customer_Insert_Input = {
+  FAX?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  customer_addresses?: Maybe<Contact_Customer_Address_Arr_Rel_Insert_Input>;
+  customer_contacts?: Maybe<Contact_Customer_Contact_Arr_Rel_Insert_Input>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Contact_Customer_Max_Fields = {
+  __typename?: 'contact_customer_max_fields';
+  FAX?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "contact.customer" */
+export type Contact_Customer_Max_Order_By = {
+  FAX?: Maybe<Order_By>;
+  ICE?: Maybe<Order_By>;
+  IF?: Maybe<Order_By>;
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Contact_Customer_Min_Fields = {
+  __typename?: 'contact_customer_min_fields';
+  FAX?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "contact.customer" */
+export type Contact_Customer_Min_Order_By = {
+  FAX?: Maybe<Order_By>;
+  ICE?: Maybe<Order_By>;
+  IF?: Maybe<Order_By>;
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "contact.customer" */
+export type Contact_Customer_Mutation_Response = {
+  __typename?: 'contact_customer_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Contact_Customer>;
+};
+
+/** input type for inserting object relation for remote table "contact.customer" */
+export type Contact_Customer_Obj_Rel_Insert_Input = {
+  data: Contact_Customer_Insert_Input;
+  on_conflict?: Maybe<Contact_Customer_On_Conflict>;
+};
+
+/** on conflict condition type for table "contact.customer" */
+export type Contact_Customer_On_Conflict = {
+  constraint: Contact_Customer_Constraint;
+  update_columns: Array<Contact_Customer_Update_Column>;
+  where?: Maybe<Contact_Customer_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "contact.customer" */
+export type Contact_Customer_Order_By = {
+  FAX?: Maybe<Order_By>;
+  ICE?: Maybe<Order_By>;
+  IF?: Maybe<Order_By>;
+  addresses_aggregate?: Maybe<Contact_Customer_Addresses_View_Aggregate_Order_By>;
+  code?: Maybe<Order_By>;
+  contacts_aggregate?: Maybe<Contact_Customer_Contacts_View_Aggregate_Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  customer_addresses_aggregate?: Maybe<Contact_Customer_Address_Aggregate_Order_By>;
+  customer_contacts_aggregate?: Maybe<Contact_Customer_Contact_Aggregate_Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "contact.customer" */
+export type Contact_Customer_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "contact.customer" */
+export enum Contact_Customer_Select_Column {
+  /** column name */
+  Fax = 'FAX',
+  /** column name */
+  Ice = 'ICE',
+  /** column name */
+  If = 'IF',
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Mail = 'mail',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Phone = 'phone',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy',
+  /** column name */
+  Website = 'website'
+}
+
+/** input type for updating data in table "contact.customer" */
+export type Contact_Customer_Set_Input = {
+  FAX?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "contact.customer" */
+export enum Contact_Customer_Update_Column {
+  /** column name */
+  Fax = 'FAX',
+  /** column name */
+  Ice = 'ICE',
+  /** column name */
+  If = 'IF',
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Mail = 'mail',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Phone = 'phone',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy',
+  /** column name */
+  Website = 'website'
+}
+
+/** columns and relationships of "contact.provider" */
+export type Contact_Provider = {
+  __typename?: 'contact_provider';
+  FAX?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  addresses: Array<Contact_Provider_Addresses_View>;
+  /** An aggregated array relationship */
+  addresses_aggregate: Contact_Provider_Addresses_View_Aggregate;
+  code?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  contacts: Array<Contact_Provider_Contacts_View>;
+  /** An aggregated array relationship */
+  contacts_aggregate: Contact_Provider_Contacts_View_Aggregate;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id: Scalars['uuid'];
+  mail?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  note?: Maybe<Scalars['String']>;
+  phone: Scalars['String'];
+  /** An array relationship */
+  provider_addresses: Array<Contact_Provider_Address>;
+  /** An aggregated array relationship */
+  provider_addresses_aggregate: Contact_Provider_Address_Aggregate;
+  /** An array relationship */
+  provider_contacts: Array<Contact_Provider_Contact>;
+  /** An aggregated array relationship */
+  provider_contacts_aggregate: Contact_Provider_Contact_Aggregate;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "contact.provider" */
+export type Contact_ProviderAddressesArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Addresses_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.provider" */
+export type Contact_ProviderAddresses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Addresses_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.provider" */
+export type Contact_ProviderContactsArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Contacts_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.provider" */
+export type Contact_ProviderContacts_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Contacts_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.provider" */
+export type Contact_ProviderProvider_AddressesArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Address_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Address_Order_By>>;
+  where?: Maybe<Contact_Provider_Address_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.provider" */
+export type Contact_ProviderProvider_Addresses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Address_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Address_Order_By>>;
+  where?: Maybe<Contact_Provider_Address_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.provider" */
+export type Contact_ProviderProvider_ContactsArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Contact_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Contact_Order_By>>;
+  where?: Maybe<Contact_Provider_Contact_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.provider" */
+export type Contact_ProviderProvider_Contacts_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Contact_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Contact_Order_By>>;
+  where?: Maybe<Contact_Provider_Contact_Bool_Exp>;
+};
+
 /** columns and relationships of "contact.provider_address" */
 export type Contact_Provider_Address = {
   __typename?: 'contact_provider_address';
   /** An object relationship */
-  Address: Contact_Address;
-  /** An object relationship */
-  Provider: Contact_Provider;
+  address: Contact_Address;
   addressid: Scalars['uuid'];
+  /** An object relationship */
+  provider: Contact_Provider;
   providerid: Scalars['uuid'];
 };
 
@@ -1827,12 +2547,12 @@ export type Contact_Provider_Address_Arr_Rel_Insert_Input = {
 
 /** Boolean expression to filter rows from the table "contact.provider_address". All fields are combined with a logical 'AND'. */
 export type Contact_Provider_Address_Bool_Exp = {
-  Address?: Maybe<Contact_Address_Bool_Exp>;
-  Provider?: Maybe<Contact_Provider_Bool_Exp>;
   _and?: Maybe<Array<Maybe<Contact_Provider_Address_Bool_Exp>>>;
   _not?: Maybe<Contact_Provider_Address_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Contact_Provider_Address_Bool_Exp>>>;
+  address?: Maybe<Contact_Address_Bool_Exp>;
   addressid?: Maybe<Uuid_Comparison_Exp>;
+  provider?: Maybe<Contact_Provider_Bool_Exp>;
   providerid?: Maybe<Uuid_Comparison_Exp>;
 };
 
@@ -1844,9 +2564,9 @@ export enum Contact_Provider_Address_Constraint {
 
 /** input type for inserting data into table "contact.provider_address" */
 export type Contact_Provider_Address_Insert_Input = {
-  Address?: Maybe<Contact_Address_Obj_Rel_Insert_Input>;
-  Provider?: Maybe<Contact_Provider_Obj_Rel_Insert_Input>;
+  address?: Maybe<Contact_Address_Obj_Rel_Insert_Input>;
   addressid?: Maybe<Scalars['uuid']>;
+  provider?: Maybe<Contact_Provider_Obj_Rel_Insert_Input>;
   providerid?: Maybe<Scalars['uuid']>;
 };
 
@@ -1900,9 +2620,9 @@ export type Contact_Provider_Address_On_Conflict = {
 
 /** ordering options when selecting data from "contact.provider_address" */
 export type Contact_Provider_Address_Order_By = {
-  Address?: Maybe<Contact_Address_Order_By>;
-  Provider?: Maybe<Contact_Provider_Order_By>;
+  address?: Maybe<Contact_Address_Order_By>;
   addressid?: Maybe<Order_By>;
+  provider?: Maybe<Contact_Provider_Order_By>;
   providerid?: Maybe<Order_By>;
 };
 
@@ -1934,14 +2654,198 @@ export enum Contact_Provider_Address_Update_Column {
   Providerid = 'providerid'
 }
 
+/** columns and relationships of "contact.provider_addresses_view" */
+export type Contact_Provider_Addresses_View = {
+  __typename?: 'contact_provider_addresses_view';
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  providerid?: Maybe<Scalars['uuid']>;
+  zip?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "contact.provider_addresses_view" */
+export type Contact_Provider_Addresses_View_Aggregate = {
+  __typename?: 'contact_provider_addresses_view_aggregate';
+  aggregate?: Maybe<Contact_Provider_Addresses_View_Aggregate_Fields>;
+  nodes: Array<Contact_Provider_Addresses_View>;
+};
+
+/** aggregate fields of "contact.provider_addresses_view" */
+export type Contact_Provider_Addresses_View_Aggregate_Fields = {
+  __typename?: 'contact_provider_addresses_view_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Contact_Provider_Addresses_View_Max_Fields>;
+  min?: Maybe<Contact_Provider_Addresses_View_Min_Fields>;
+};
+
+
+/** aggregate fields of "contact.provider_addresses_view" */
+export type Contact_Provider_Addresses_View_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Contact_Provider_Addresses_View_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "contact.provider_addresses_view" */
+export type Contact_Provider_Addresses_View_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Contact_Provider_Addresses_View_Max_Order_By>;
+  min?: Maybe<Contact_Provider_Addresses_View_Min_Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "contact.provider_addresses_view". All fields are combined with a logical 'AND'. */
+export type Contact_Provider_Addresses_View_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Contact_Provider_Addresses_View_Bool_Exp>>>;
+  _not?: Maybe<Contact_Provider_Addresses_View_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Contact_Provider_Addresses_View_Bool_Exp>>>;
+  address?: Maybe<String_Comparison_Exp>;
+  city?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  providerid?: Maybe<Uuid_Comparison_Exp>;
+  zip?: Maybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Contact_Provider_Addresses_View_Max_Fields = {
+  __typename?: 'contact_provider_addresses_view_max_fields';
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  providerid?: Maybe<Scalars['uuid']>;
+  zip?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "contact.provider_addresses_view" */
+export type Contact_Provider_Addresses_View_Max_Order_By = {
+  address?: Maybe<Order_By>;
+  city?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  providerid?: Maybe<Order_By>;
+  zip?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Contact_Provider_Addresses_View_Min_Fields = {
+  __typename?: 'contact_provider_addresses_view_min_fields';
+  address?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  providerid?: Maybe<Scalars['uuid']>;
+  zip?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "contact.provider_addresses_view" */
+export type Contact_Provider_Addresses_View_Min_Order_By = {
+  address?: Maybe<Order_By>;
+  city?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  providerid?: Maybe<Order_By>;
+  zip?: Maybe<Order_By>;
+};
+
+/** ordering options when selecting data from "contact.provider_addresses_view" */
+export type Contact_Provider_Addresses_View_Order_By = {
+  address?: Maybe<Order_By>;
+  city?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  providerid?: Maybe<Order_By>;
+  zip?: Maybe<Order_By>;
+};
+
+/** select columns of table "contact.provider_addresses_view" */
+export enum Contact_Provider_Addresses_View_Select_Column {
+  /** column name */
+  Address = 'address',
+  /** column name */
+  City = 'city',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Providerid = 'providerid',
+  /** column name */
+  Zip = 'zip'
+}
+
+/** aggregated selection of "contact.provider" */
+export type Contact_Provider_Aggregate = {
+  __typename?: 'contact_provider_aggregate';
+  aggregate?: Maybe<Contact_Provider_Aggregate_Fields>;
+  nodes: Array<Contact_Provider>;
+};
+
+/** aggregate fields of "contact.provider" */
+export type Contact_Provider_Aggregate_Fields = {
+  __typename?: 'contact_provider_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Contact_Provider_Max_Fields>;
+  min?: Maybe<Contact_Provider_Min_Fields>;
+};
+
+
+/** aggregate fields of "contact.provider" */
+export type Contact_Provider_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Contact_Provider_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "contact.provider" */
+export type Contact_Provider_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Contact_Provider_Max_Order_By>;
+  min?: Maybe<Contact_Provider_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "contact.provider" */
+export type Contact_Provider_Arr_Rel_Insert_Input = {
+  data: Array<Contact_Provider_Insert_Input>;
+  on_conflict?: Maybe<Contact_Provider_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "contact.provider". All fields are combined with a logical 'AND'. */
+export type Contact_Provider_Bool_Exp = {
+  FAX?: Maybe<String_Comparison_Exp>;
+  _and?: Maybe<Array<Maybe<Contact_Provider_Bool_Exp>>>;
+  _not?: Maybe<Contact_Provider_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Contact_Provider_Bool_Exp>>>;
+  addresses?: Maybe<Contact_Provider_Addresses_View_Bool_Exp>;
+  code?: Maybe<String_Comparison_Exp>;
+  contacts?: Maybe<Contact_Provider_Contacts_View_Bool_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
+  createdBy?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  mail?: Maybe<String_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  phone?: Maybe<String_Comparison_Exp>;
+  provider_addresses?: Maybe<Contact_Provider_Address_Bool_Exp>;
+  provider_contacts?: Maybe<Contact_Provider_Contact_Bool_Exp>;
+  updatedAt?: Maybe<Date_Comparison_Exp>;
+  updatedBy?: Maybe<Uuid_Comparison_Exp>;
+  website?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "contact.provider" */
+export enum Contact_Provider_Constraint {
+  /** unique or primary key constraint */
+  ProviderCodeKey = 'Provider_code_key',
+  /** unique or primary key constraint */
+  ProviderIdKey = 'Provider_id_key',
+  /** unique or primary key constraint */
+  ProviderNameKey = 'Provider_name_key',
+  /** unique or primary key constraint */
+  ProviderPhoneKey = 'Provider_phone_key',
+  /** unique or primary key constraint */
+  ProviderPkey = 'Provider_pkey'
+}
+
 /** columns and relationships of "contact.provider_contact" */
 export type Contact_Provider_Contact = {
   __typename?: 'contact_provider_contact';
   /** An object relationship */
-  Contact: Contact_Contact;
-  /** An object relationship */
-  Provider: Contact_Provider;
+  contact: Contact_Contact;
   contactid: Scalars['uuid'];
+  /** An object relationship */
+  provider: Contact_Provider;
   providerid: Scalars['uuid'];
 };
 
@@ -1982,12 +2886,12 @@ export type Contact_Provider_Contact_Arr_Rel_Insert_Input = {
 
 /** Boolean expression to filter rows from the table "contact.provider_contact". All fields are combined with a logical 'AND'. */
 export type Contact_Provider_Contact_Bool_Exp = {
-  Contact?: Maybe<Contact_Contact_Bool_Exp>;
-  Provider?: Maybe<Contact_Provider_Bool_Exp>;
   _and?: Maybe<Array<Maybe<Contact_Provider_Contact_Bool_Exp>>>;
   _not?: Maybe<Contact_Provider_Contact_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Contact_Provider_Contact_Bool_Exp>>>;
+  contact?: Maybe<Contact_Contact_Bool_Exp>;
   contactid?: Maybe<Uuid_Comparison_Exp>;
+  provider?: Maybe<Contact_Provider_Bool_Exp>;
   providerid?: Maybe<Uuid_Comparison_Exp>;
 };
 
@@ -1999,9 +2903,9 @@ export enum Contact_Provider_Contact_Constraint {
 
 /** input type for inserting data into table "contact.provider_contact" */
 export type Contact_Provider_Contact_Insert_Input = {
-  Contact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
-  Provider?: Maybe<Contact_Provider_Obj_Rel_Insert_Input>;
+  contact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
   contactid?: Maybe<Scalars['uuid']>;
+  provider?: Maybe<Contact_Provider_Obj_Rel_Insert_Input>;
   providerid?: Maybe<Scalars['uuid']>;
 };
 
@@ -2055,9 +2959,9 @@ export type Contact_Provider_Contact_On_Conflict = {
 
 /** ordering options when selecting data from "contact.provider_contact" */
 export type Contact_Provider_Contact_Order_By = {
-  Contact?: Maybe<Contact_Contact_Order_By>;
-  Provider?: Maybe<Contact_Provider_Order_By>;
+  contact?: Maybe<Contact_Contact_Order_By>;
   contactid?: Maybe<Order_By>;
+  provider?: Maybe<Contact_Provider_Order_By>;
   providerid?: Maybe<Order_By>;
 };
 
@@ -2087,6 +2991,375 @@ export enum Contact_Provider_Contact_Update_Column {
   Contactid = 'contactid',
   /** column name */
   Providerid = 'providerid'
+}
+
+/** columns and relationships of "contact.provider_contacts_view" */
+export type Contact_Provider_Contacts_View = {
+  __typename?: 'contact_provider_contacts_view';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  providerid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregated selection of "contact.provider_contacts_view" */
+export type Contact_Provider_Contacts_View_Aggregate = {
+  __typename?: 'contact_provider_contacts_view_aggregate';
+  aggregate?: Maybe<Contact_Provider_Contacts_View_Aggregate_Fields>;
+  nodes: Array<Contact_Provider_Contacts_View>;
+};
+
+/** aggregate fields of "contact.provider_contacts_view" */
+export type Contact_Provider_Contacts_View_Aggregate_Fields = {
+  __typename?: 'contact_provider_contacts_view_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Contact_Provider_Contacts_View_Max_Fields>;
+  min?: Maybe<Contact_Provider_Contacts_View_Min_Fields>;
+};
+
+
+/** aggregate fields of "contact.provider_contacts_view" */
+export type Contact_Provider_Contacts_View_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Contact_Provider_Contacts_View_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "contact.provider_contacts_view" */
+export type Contact_Provider_Contacts_View_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Contact_Provider_Contacts_View_Max_Order_By>;
+  min?: Maybe<Contact_Provider_Contacts_View_Min_Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "contact.provider_contacts_view". All fields are combined with a logical 'AND'. */
+export type Contact_Provider_Contacts_View_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Contact_Provider_Contacts_View_Bool_Exp>>>;
+  _not?: Maybe<Contact_Provider_Contacts_View_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Contact_Provider_Contacts_View_Bool_Exp>>>;
+  code?: Maybe<String_Comparison_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
+  createdBy?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  mail?: Maybe<String_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  phone?: Maybe<String_Comparison_Exp>;
+  providerid?: Maybe<Uuid_Comparison_Exp>;
+  updatedAt?: Maybe<Date_Comparison_Exp>;
+  updatedBy?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Contact_Provider_Contacts_View_Max_Fields = {
+  __typename?: 'contact_provider_contacts_view_max_fields';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  providerid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "contact.provider_contacts_view" */
+export type Contact_Provider_Contacts_View_Max_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  providerid?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Contact_Provider_Contacts_View_Min_Fields = {
+  __typename?: 'contact_provider_contacts_view_min_fields';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  providerid?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "contact.provider_contacts_view" */
+export type Contact_Provider_Contacts_View_Min_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  providerid?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** ordering options when selecting data from "contact.provider_contacts_view" */
+export type Contact_Provider_Contacts_View_Order_By = {
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  providerid?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** select columns of table "contact.provider_contacts_view" */
+export enum Contact_Provider_Contacts_View_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Mail = 'mail',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Phone = 'phone',
+  /** column name */
+  Providerid = 'providerid',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy'
+}
+
+/** input type for inserting data into table "contact.provider" */
+export type Contact_Provider_Insert_Input = {
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  provider_addresses?: Maybe<Contact_Provider_Address_Arr_Rel_Insert_Input>;
+  provider_contacts?: Maybe<Contact_Provider_Contact_Arr_Rel_Insert_Input>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Contact_Provider_Max_Fields = {
+  __typename?: 'contact_provider_max_fields';
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "contact.provider" */
+export type Contact_Provider_Max_Order_By = {
+  FAX?: Maybe<Order_By>;
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Contact_Provider_Min_Fields = {
+  __typename?: 'contact_provider_min_fields';
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "contact.provider" */
+export type Contact_Provider_Min_Order_By = {
+  FAX?: Maybe<Order_By>;
+  code?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "contact.provider" */
+export type Contact_Provider_Mutation_Response = {
+  __typename?: 'contact_provider_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Contact_Provider>;
+};
+
+/** input type for inserting object relation for remote table "contact.provider" */
+export type Contact_Provider_Obj_Rel_Insert_Input = {
+  data: Contact_Provider_Insert_Input;
+  on_conflict?: Maybe<Contact_Provider_On_Conflict>;
+};
+
+/** on conflict condition type for table "contact.provider" */
+export type Contact_Provider_On_Conflict = {
+  constraint: Contact_Provider_Constraint;
+  update_columns: Array<Contact_Provider_Update_Column>;
+  where?: Maybe<Contact_Provider_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "contact.provider" */
+export type Contact_Provider_Order_By = {
+  FAX?: Maybe<Order_By>;
+  addresses_aggregate?: Maybe<Contact_Provider_Addresses_View_Aggregate_Order_By>;
+  code?: Maybe<Order_By>;
+  contacts_aggregate?: Maybe<Contact_Provider_Contacts_View_Aggregate_Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  mail?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  phone?: Maybe<Order_By>;
+  provider_addresses_aggregate?: Maybe<Contact_Provider_Address_Aggregate_Order_By>;
+  provider_contacts_aggregate?: Maybe<Contact_Provider_Contact_Aggregate_Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+  website?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "contact.provider" */
+export type Contact_Provider_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "contact.provider" */
+export enum Contact_Provider_Select_Column {
+  /** column name */
+  Fax = 'FAX',
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Mail = 'mail',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Phone = 'phone',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy',
+  /** column name */
+  Website = 'website'
+}
+
+/** input type for updating data in table "contact.provider" */
+export type Contact_Provider_Set_Input = {
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "contact.provider" */
+export enum Contact_Provider_Update_Column {
+  /** column name */
+  Fax = 'FAX',
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Mail = 'mail',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Phone = 'phone',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy',
+  /** column name */
+  Website = 'website'
 }
 
 
@@ -2727,13 +4000,12 @@ export type Management_UserProfile = {
   createdAt: Scalars['timestamptz'];
   createdBy?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
-  firstname: Scalars['String'];
+  firstname?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   joinUs?: Maybe<Scalars['date']>;
-  lastname: Scalars['String'];
+  lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
-  password: Scalars['String'];
-  phone: Scalars['String'];
+  phone?: Maybe<Scalars['String']>;
   role: Management_User_Role_Enum;
   updatedAt: Scalars['timestamptz'];
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -2794,7 +4066,6 @@ export type Management_UserProfile_Bool_Exp = {
   joinUs?: Maybe<Date_Comparison_Exp>;
   lastname?: Maybe<String_Comparison_Exp>;
   leftUs?: Maybe<Date_Comparison_Exp>;
-  password?: Maybe<String_Comparison_Exp>;
   phone?: Maybe<String_Comparison_Exp>;
   role?: Maybe<Management_User_Role_Enum_Comparison_Exp>;
   updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
@@ -2809,8 +4080,6 @@ export enum Management_UserProfile_Constraint {
   UserProfileCinKey = 'userProfile_CIN_key',
   /** unique or primary key constraint */
   UserProfileEmailKey = 'userProfile_email_key',
-  /** unique or primary key constraint */
-  UserProfilePasswordKey = 'userProfile_password_key',
   /** unique or primary key constraint */
   UserProfilePhoneKey = 'userProfile_phone_key',
   /** unique or primary key constraint */
@@ -2833,7 +4102,6 @@ export type Management_UserProfile_Insert_Input = {
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   role?: Maybe<Management_User_Role_Enum>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
@@ -2855,7 +4123,6 @@ export type Management_UserProfile_Max_Fields = {
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -2874,7 +4141,6 @@ export type Management_UserProfile_Max_Order_By = {
   joinUs?: Maybe<Order_By>;
   lastname?: Maybe<Order_By>;
   leftUs?: Maybe<Order_By>;
-  password?: Maybe<Order_By>;
   phone?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
@@ -2894,7 +4160,6 @@ export type Management_UserProfile_Min_Fields = {
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -2913,7 +4178,6 @@ export type Management_UserProfile_Min_Order_By = {
   joinUs?: Maybe<Order_By>;
   lastname?: Maybe<Order_By>;
   leftUs?: Maybe<Order_By>;
-  password?: Maybe<Order_By>;
   phone?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
@@ -2956,7 +4220,6 @@ export type Management_UserProfile_Order_By = {
   joinUs?: Maybe<Order_By>;
   lastname?: Maybe<Order_By>;
   leftUs?: Maybe<Order_By>;
-  password?: Maybe<Order_By>;
   phone?: Maybe<Order_By>;
   role?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
@@ -2995,8 +4258,6 @@ export enum Management_UserProfile_Select_Column {
   /** column name */
   LeftUs = 'leftUs',
   /** column name */
-  Password = 'password',
-  /** column name */
   Phone = 'phone',
   /** column name */
   Role = 'role',
@@ -3021,7 +4282,6 @@ export type Management_UserProfile_Set_Input = {
   joinUs?: Maybe<Scalars['date']>;
   lastname?: Maybe<Scalars['String']>;
   leftUs?: Maybe<Scalars['date']>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   role?: Maybe<Management_User_Role_Enum>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
@@ -3054,8 +4314,6 @@ export enum Management_UserProfile_Update_Column {
   /** column name */
   LeftUs = 'leftUs',
   /** column name */
-  Password = 'password',
-  /** column name */
   Phone = 'phone',
   /** column name */
   Role = 'role',
@@ -3073,14 +4331,14 @@ export type Management_User_Role = {
   description: Scalars['String'];
   name: Scalars['String'];
   /** An array relationship */
-  user_profiles: Array<Management_UserProfile>;
+  userProfiles: Array<Management_UserProfile>;
   /** An aggregated array relationship */
-  user_profiles_aggregate: Management_UserProfile_Aggregate;
+  userProfiles_aggregate: Management_UserProfile_Aggregate;
 };
 
 
 /** columns and relationships of "management.user_role" */
-export type Management_User_RoleUser_ProfilesArgs = {
+export type Management_User_RoleUserProfilesArgs = {
   distinct_on?: Maybe<Array<Management_UserProfile_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -3090,7 +4348,7 @@ export type Management_User_RoleUser_ProfilesArgs = {
 
 
 /** columns and relationships of "management.user_role" */
-export type Management_User_RoleUser_Profiles_AggregateArgs = {
+export type Management_User_RoleUserProfiles_AggregateArgs = {
   distinct_on?: Maybe<Array<Management_UserProfile_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -3140,7 +4398,7 @@ export type Management_User_Role_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Management_User_Role_Bool_Exp>>>;
   description?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
-  user_profiles?: Maybe<Management_UserProfile_Bool_Exp>;
+  userProfiles?: Maybe<Management_UserProfile_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "management.user_role" */
@@ -3150,10 +4408,8 @@ export enum Management_User_Role_Constraint {
 }
 
 export enum Management_User_Role_Enum {
-  /** admin role */
-  Admin = 'admin',
-  /** empty user */
-  User = 'user'
+  /** admin description */
+  Admin = 'admin'
 }
 
 /** expression to compare columns of type management_user_role_enum. All fields are combined with logical 'AND'. */
@@ -3169,7 +4425,7 @@ export type Management_User_Role_Enum_Comparison_Exp = {
 export type Management_User_Role_Insert_Input = {
   description?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  user_profiles?: Maybe<Management_UserProfile_Arr_Rel_Insert_Input>;
+  userProfiles?: Maybe<Management_UserProfile_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -3224,7 +4480,7 @@ export type Management_User_Role_On_Conflict = {
 export type Management_User_Role_Order_By = {
   description?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  user_profiles_aggregate?: Maybe<Management_UserProfile_Aggregate_Order_By>;
+  userProfiles_aggregate?: Maybe<Management_UserProfile_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: "management.user_role" */
@@ -3257,36 +4513,38 @@ export enum Management_User_Role_Update_Column {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
-  /** delete data from the table: "contact.Address" */
-  delete_contact_Address?: Maybe<Contact_Address_Mutation_Response>;
-  /** delete single row from the table: "contact.Address" */
-  delete_contact_Address_by_pk?: Maybe<Contact_Address>;
-  /** delete data from the table: "contact.Contact" */
-  delete_contact_Contact?: Maybe<Contact_Contact_Mutation_Response>;
-  /** delete single row from the table: "contact.Contact" */
-  delete_contact_Contact_by_pk?: Maybe<Contact_Contact>;
-  /** delete data from the table: "contact.Customer" */
-  delete_contact_Customer?: Maybe<Contact_Customer_Mutation_Response>;
-  /** delete single row from the table: "contact.Customer" */
-  delete_contact_Customer_by_pk?: Maybe<Contact_Customer>;
-  /** delete data from the table: "contact.Provider" */
-  delete_contact_Provider?: Maybe<Contact_Provider_Mutation_Response>;
+  /** delete data from the table: "contact.address" */
+  delete_contact_address?: Maybe<Contact_Address_Mutation_Response>;
+  /** delete single row from the table: "contact.address" */
+  delete_contact_address_by_pk?: Maybe<Contact_Address>;
+  /** delete data from the table: "contact.contact" */
+  delete_contact_contact?: Maybe<Contact_Contact_Mutation_Response>;
   /** delete data from the table: "contact.contact_address" */
   delete_contact_contact_address?: Maybe<Contact_Contact_Address_Mutation_Response>;
   /** delete single row from the table: "contact.contact_address" */
   delete_contact_contact_address_by_pk?: Maybe<Contact_Contact_Address>;
+  /** delete single row from the table: "contact.contact" */
+  delete_contact_contact_by_pk?: Maybe<Contact_Contact>;
+  /** delete data from the table: "contact.customer" */
+  delete_contact_customer?: Maybe<Contact_Customer_Mutation_Response>;
   /** delete data from the table: "contact.customer_address" */
   delete_contact_customer_address?: Maybe<Contact_Customer_Address_Mutation_Response>;
   /** delete single row from the table: "contact.customer_address" */
   delete_contact_customer_address_by_pk?: Maybe<Contact_Customer_Address>;
+  /** delete single row from the table: "contact.customer" */
+  delete_contact_customer_by_pk?: Maybe<Contact_Customer>;
   /** delete data from the table: "contact.customer_contact" */
   delete_contact_customer_contact?: Maybe<Contact_Customer_Contact_Mutation_Response>;
   /** delete single row from the table: "contact.customer_contact" */
   delete_contact_customer_contact_by_pk?: Maybe<Contact_Customer_Contact>;
+  /** delete data from the table: "contact.provider" */
+  delete_contact_provider?: Maybe<Contact_Provider_Mutation_Response>;
   /** delete data from the table: "contact.provider_address" */
   delete_contact_provider_address?: Maybe<Contact_Provider_Address_Mutation_Response>;
   /** delete single row from the table: "contact.provider_address" */
   delete_contact_provider_address_by_pk?: Maybe<Contact_Provider_Address>;
+  /** delete single row from the table: "contact.provider" */
+  delete_contact_provider_by_pk?: Maybe<Contact_Provider>;
   /** delete data from the table: "contact.provider_contact" */
   delete_contact_provider_contact?: Maybe<Contact_Provider_Contact_Mutation_Response>;
   /** delete single row from the table: "contact.provider_contact" */
@@ -3307,30 +4565,32 @@ export type Mutation_Root = {
   delete_management_user_role?: Maybe<Management_User_Role_Mutation_Response>;
   /** delete single row from the table: "management.user_role" */
   delete_management_user_role_by_pk?: Maybe<Management_User_Role>;
-  /** delete data from the table: "product.accessoires" */
-  delete_product_accessoires?: Maybe<Product_Accessoires_Mutation_Response>;
-  /** delete single row from the table: "product.accessoires" */
-  delete_product_accessoires_by_pk?: Maybe<Product_Accessoires>;
-  /** insert data into the table: "contact.Address" */
-  insert_contact_Address?: Maybe<Contact_Address_Mutation_Response>;
-  /** insert a single row into the table: "contact.Address" */
-  insert_contact_Address_one?: Maybe<Contact_Address>;
-  /** insert data into the table: "contact.Contact" */
-  insert_contact_Contact?: Maybe<Contact_Contact_Mutation_Response>;
-  /** insert a single row into the table: "contact.Contact" */
-  insert_contact_Contact_one?: Maybe<Contact_Contact>;
-  /** insert data into the table: "contact.Customer" */
-  insert_contact_Customer?: Maybe<Contact_Customer_Mutation_Response>;
-  /** insert a single row into the table: "contact.Customer" */
-  insert_contact_Customer_one?: Maybe<Contact_Customer>;
-  /** insert data into the table: "contact.Provider" */
-  insert_contact_Provider?: Maybe<Contact_Provider_Mutation_Response>;
-  /** insert a single row into the table: "contact.Provider" */
-  insert_contact_Provider_one?: Maybe<Contact_Provider>;
+  /** delete data from the table: "product.accessory" */
+  delete_product_accessory?: Maybe<Product_Accessory_Mutation_Response>;
+  /** delete single row from the table: "product.accessory" */
+  delete_product_accessory_by_pk?: Maybe<Product_Accessory>;
+  /** delete data from the table: "product.glass" */
+  delete_product_glass?: Maybe<Product_Glass_Mutation_Response>;
+  /** delete single row from the table: "product.glass" */
+  delete_product_glass_by_pk?: Maybe<Product_Glass>;
+  /** delete data from the table: "product.service_glasses" */
+  delete_product_service_glasses?: Maybe<Product_Service_Glasses_Mutation_Response>;
+  /** delete single row from the table: "product.service_glasses" */
+  delete_product_service_glasses_by_pk?: Maybe<Product_Service_Glasses>;
+  /** insert data into the table: "contact.address" */
+  insert_contact_address?: Maybe<Contact_Address_Mutation_Response>;
+  /** insert a single row into the table: "contact.address" */
+  insert_contact_address_one?: Maybe<Contact_Address>;
+  /** insert data into the table: "contact.contact" */
+  insert_contact_contact?: Maybe<Contact_Contact_Mutation_Response>;
   /** insert data into the table: "contact.contact_address" */
   insert_contact_contact_address?: Maybe<Contact_Contact_Address_Mutation_Response>;
   /** insert a single row into the table: "contact.contact_address" */
   insert_contact_contact_address_one?: Maybe<Contact_Contact_Address>;
+  /** insert a single row into the table: "contact.contact" */
+  insert_contact_contact_one?: Maybe<Contact_Contact>;
+  /** insert data into the table: "contact.customer" */
+  insert_contact_customer?: Maybe<Contact_Customer_Mutation_Response>;
   /** insert data into the table: "contact.customer_address" */
   insert_contact_customer_address?: Maybe<Contact_Customer_Address_Mutation_Response>;
   /** insert a single row into the table: "contact.customer_address" */
@@ -3339,6 +4599,10 @@ export type Mutation_Root = {
   insert_contact_customer_contact?: Maybe<Contact_Customer_Contact_Mutation_Response>;
   /** insert a single row into the table: "contact.customer_contact" */
   insert_contact_customer_contact_one?: Maybe<Contact_Customer_Contact>;
+  /** insert a single row into the table: "contact.customer" */
+  insert_contact_customer_one?: Maybe<Contact_Customer>;
+  /** insert data into the table: "contact.provider" */
+  insert_contact_provider?: Maybe<Contact_Provider_Mutation_Response>;
   /** insert data into the table: "contact.provider_address" */
   insert_contact_provider_address?: Maybe<Contact_Provider_Address_Mutation_Response>;
   /** insert a single row into the table: "contact.provider_address" */
@@ -3347,6 +4611,8 @@ export type Mutation_Root = {
   insert_contact_provider_contact?: Maybe<Contact_Provider_Contact_Mutation_Response>;
   /** insert a single row into the table: "contact.provider_contact" */
   insert_contact_provider_contact_one?: Maybe<Contact_Provider_Contact>;
+  /** insert a single row into the table: "contact.provider" */
+  insert_contact_provider_one?: Maybe<Contact_Provider>;
   /** insert data into the table: "management.Company" */
   insert_management_Company?: Maybe<Management_Company_Mutation_Response>;
   /** insert a single row into the table: "management.Company" */
@@ -3363,42 +4629,52 @@ export type Mutation_Root = {
   insert_management_user_role?: Maybe<Management_User_Role_Mutation_Response>;
   /** insert a single row into the table: "management.user_role" */
   insert_management_user_role_one?: Maybe<Management_User_Role>;
-  /** insert data into the table: "product.accessoires" */
-  insert_product_accessoires?: Maybe<Product_Accessoires_Mutation_Response>;
-  /** insert a single row into the table: "product.accessoires" */
-  insert_product_accessoires_one?: Maybe<Product_Accessoires>;
+  /** insert data into the table: "product.accessory" */
+  insert_product_accessory?: Maybe<Product_Accessory_Mutation_Response>;
+  /** insert a single row into the table: "product.accessory" */
+  insert_product_accessory_one?: Maybe<Product_Accessory>;
+  /** insert data into the table: "product.glass" */
+  insert_product_glass?: Maybe<Product_Glass_Mutation_Response>;
+  /** insert a single row into the table: "product.glass" */
+  insert_product_glass_one?: Maybe<Product_Glass>;
+  /** insert data into the table: "product.service_glasses" */
+  insert_product_service_glasses?: Maybe<Product_Service_Glasses_Mutation_Response>;
+  /** insert a single row into the table: "product.service_glasses" */
+  insert_product_service_glasses_one?: Maybe<Product_Service_Glasses>;
   /** perform the action: "login" */
   login?: Maybe<LoginOutput>;
-  /** update data of the table: "contact.Address" */
-  update_contact_Address?: Maybe<Contact_Address_Mutation_Response>;
-  /** update single row of the table: "contact.Address" */
-  update_contact_Address_by_pk?: Maybe<Contact_Address>;
-  /** update data of the table: "contact.Contact" */
-  update_contact_Contact?: Maybe<Contact_Contact_Mutation_Response>;
-  /** update single row of the table: "contact.Contact" */
-  update_contact_Contact_by_pk?: Maybe<Contact_Contact>;
-  /** update data of the table: "contact.Customer" */
-  update_contact_Customer?: Maybe<Contact_Customer_Mutation_Response>;
-  /** update single row of the table: "contact.Customer" */
-  update_contact_Customer_by_pk?: Maybe<Contact_Customer>;
-  /** update data of the table: "contact.Provider" */
-  update_contact_Provider?: Maybe<Contact_Provider_Mutation_Response>;
+  /** update data of the table: "contact.address" */
+  update_contact_address?: Maybe<Contact_Address_Mutation_Response>;
+  /** update single row of the table: "contact.address" */
+  update_contact_address_by_pk?: Maybe<Contact_Address>;
+  /** update data of the table: "contact.contact" */
+  update_contact_contact?: Maybe<Contact_Contact_Mutation_Response>;
   /** update data of the table: "contact.contact_address" */
   update_contact_contact_address?: Maybe<Contact_Contact_Address_Mutation_Response>;
   /** update single row of the table: "contact.contact_address" */
   update_contact_contact_address_by_pk?: Maybe<Contact_Contact_Address>;
+  /** update single row of the table: "contact.contact" */
+  update_contact_contact_by_pk?: Maybe<Contact_Contact>;
+  /** update data of the table: "contact.customer" */
+  update_contact_customer?: Maybe<Contact_Customer_Mutation_Response>;
   /** update data of the table: "contact.customer_address" */
   update_contact_customer_address?: Maybe<Contact_Customer_Address_Mutation_Response>;
   /** update single row of the table: "contact.customer_address" */
   update_contact_customer_address_by_pk?: Maybe<Contact_Customer_Address>;
+  /** update single row of the table: "contact.customer" */
+  update_contact_customer_by_pk?: Maybe<Contact_Customer>;
   /** update data of the table: "contact.customer_contact" */
   update_contact_customer_contact?: Maybe<Contact_Customer_Contact_Mutation_Response>;
   /** update single row of the table: "contact.customer_contact" */
   update_contact_customer_contact_by_pk?: Maybe<Contact_Customer_Contact>;
+  /** update data of the table: "contact.provider" */
+  update_contact_provider?: Maybe<Contact_Provider_Mutation_Response>;
   /** update data of the table: "contact.provider_address" */
   update_contact_provider_address?: Maybe<Contact_Provider_Address_Mutation_Response>;
   /** update single row of the table: "contact.provider_address" */
   update_contact_provider_address_by_pk?: Maybe<Contact_Provider_Address>;
+  /** update single row of the table: "contact.provider" */
+  update_contact_provider_by_pk?: Maybe<Contact_Provider>;
   /** update data of the table: "contact.provider_contact" */
   update_contact_provider_contact?: Maybe<Contact_Provider_Contact_Mutation_Response>;
   /** update single row of the table: "contact.provider_contact" */
@@ -3419,10 +4695,18 @@ export type Mutation_Root = {
   update_management_user_role?: Maybe<Management_User_Role_Mutation_Response>;
   /** update single row of the table: "management.user_role" */
   update_management_user_role_by_pk?: Maybe<Management_User_Role>;
-  /** update data of the table: "product.accessoires" */
-  update_product_accessoires?: Maybe<Product_Accessoires_Mutation_Response>;
-  /** update single row of the table: "product.accessoires" */
-  update_product_accessoires_by_pk?: Maybe<Product_Accessoires>;
+  /** update data of the table: "product.accessory" */
+  update_product_accessory?: Maybe<Product_Accessory_Mutation_Response>;
+  /** update single row of the table: "product.accessory" */
+  update_product_accessory_by_pk?: Maybe<Product_Accessory>;
+  /** update data of the table: "product.glass" */
+  update_product_glass?: Maybe<Product_Glass_Mutation_Response>;
+  /** update single row of the table: "product.glass" */
+  update_product_glass_by_pk?: Maybe<Product_Glass>;
+  /** update data of the table: "product.service_glasses" */
+  update_product_service_glasses?: Maybe<Product_Service_Glasses_Mutation_Response>;
+  /** update single row of the table: "product.service_glasses" */
+  update_product_service_glasses_by_pk?: Maybe<Product_Service_Glasses>;
 };
 
 
@@ -3445,30 +4729,6 @@ export type Mutation_RootDelete_Contact_ContactArgs = {
 
 
 /** mutation root */
-export type Mutation_RootDelete_Contact_Contact_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Contact_CustomerArgs = {
-  where: Contact_Customer_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Contact_Customer_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Contact_ProviderArgs = {
-  where: Contact_Provider_Bool_Exp;
-};
-
-
-/** mutation root */
 export type Mutation_RootDelete_Contact_Contact_AddressArgs = {
   where: Contact_Contact_Address_Bool_Exp;
 };
@@ -3478,6 +4738,18 @@ export type Mutation_RootDelete_Contact_Contact_AddressArgs = {
 export type Mutation_RootDelete_Contact_Contact_Address_By_PkArgs = {
   addressid: Scalars['uuid'];
   contactid: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Contact_Contact_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Contact_CustomerArgs = {
+  where: Contact_Customer_Bool_Exp;
 };
 
 
@@ -3495,6 +4767,12 @@ export type Mutation_RootDelete_Contact_Customer_Address_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Contact_Customer_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Contact_Customer_ContactArgs = {
   where: Contact_Customer_Contact_Bool_Exp;
 };
@@ -3508,6 +4786,12 @@ export type Mutation_RootDelete_Contact_Customer_Contact_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Contact_ProviderArgs = {
+  where: Contact_Provider_Bool_Exp;
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Contact_Provider_AddressArgs = {
   where: Contact_Provider_Address_Bool_Exp;
 };
@@ -3517,6 +4801,12 @@ export type Mutation_RootDelete_Contact_Provider_AddressArgs = {
 export type Mutation_RootDelete_Contact_Provider_Address_By_PkArgs = {
   addressid: Scalars['uuid'];
   providerid: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Contact_Provider_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -3582,14 +4872,40 @@ export type Mutation_RootDelete_Management_User_Role_By_PkArgs = {
 
 
 /** mutation root */
-export type Mutation_RootDelete_Product_AccessoiresArgs = {
-  where: Product_Accessoires_Bool_Exp;
+export type Mutation_RootDelete_Product_AccessoryArgs = {
+  where: Product_Accessory_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Product_Accessoires_By_PkArgs = {
+export type Mutation_RootDelete_Product_Accessory_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_GlassArgs = {
+  where: Product_Glass_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Glass_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Service_GlassesArgs = {
+  where: Product_Service_Glasses_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Service_Glasses_By_PkArgs = {
+  glasseid: Scalars['uuid'];
+  productCode: Scalars['String'];
+  serviceid: Scalars['uuid'];
 };
 
 
@@ -3615,41 +4931,6 @@ export type Mutation_RootInsert_Contact_ContactArgs = {
 
 
 /** mutation root */
-export type Mutation_RootInsert_Contact_Contact_OneArgs = {
-  object: Contact_Contact_Insert_Input;
-  on_conflict?: Maybe<Contact_Contact_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Contact_CustomerArgs = {
-  objects: Array<Contact_Customer_Insert_Input>;
-  on_conflict?: Maybe<Contact_Customer_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Contact_Customer_OneArgs = {
-  object: Contact_Customer_Insert_Input;
-  on_conflict?: Maybe<Contact_Customer_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Contact_ProviderArgs = {
-  objects: Array<Contact_Provider_Insert_Input>;
-  on_conflict?: Maybe<Contact_Provider_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Contact_Provider_OneArgs = {
-  object: Contact_Provider_Insert_Input;
-  on_conflict?: Maybe<Contact_Provider_On_Conflict>;
-};
-
-
-/** mutation root */
 export type Mutation_RootInsert_Contact_Contact_AddressArgs = {
   objects: Array<Contact_Contact_Address_Insert_Input>;
   on_conflict?: Maybe<Contact_Contact_Address_On_Conflict>;
@@ -3660,6 +4941,20 @@ export type Mutation_RootInsert_Contact_Contact_AddressArgs = {
 export type Mutation_RootInsert_Contact_Contact_Address_OneArgs = {
   object: Contact_Contact_Address_Insert_Input;
   on_conflict?: Maybe<Contact_Contact_Address_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Contact_Contact_OneArgs = {
+  object: Contact_Contact_Insert_Input;
+  on_conflict?: Maybe<Contact_Contact_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Contact_CustomerArgs = {
+  objects: Array<Contact_Customer_Insert_Input>;
+  on_conflict?: Maybe<Contact_Customer_On_Conflict>;
 };
 
 
@@ -3692,6 +4987,20 @@ export type Mutation_RootInsert_Contact_Customer_Contact_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Contact_Customer_OneArgs = {
+  object: Contact_Customer_Insert_Input;
+  on_conflict?: Maybe<Contact_Customer_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Contact_ProviderArgs = {
+  objects: Array<Contact_Provider_Insert_Input>;
+  on_conflict?: Maybe<Contact_Provider_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Contact_Provider_AddressArgs = {
   objects: Array<Contact_Provider_Address_Insert_Input>;
   on_conflict?: Maybe<Contact_Provider_Address_On_Conflict>;
@@ -3716,6 +5025,13 @@ export type Mutation_RootInsert_Contact_Provider_ContactArgs = {
 export type Mutation_RootInsert_Contact_Provider_Contact_OneArgs = {
   object: Contact_Provider_Contact_Insert_Input;
   on_conflict?: Maybe<Contact_Provider_Contact_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Contact_Provider_OneArgs = {
+  object: Contact_Provider_Insert_Input;
+  on_conflict?: Maybe<Contact_Provider_On_Conflict>;
 };
 
 
@@ -3776,16 +5092,44 @@ export type Mutation_RootInsert_Management_User_Role_OneArgs = {
 
 
 /** mutation root */
-export type Mutation_RootInsert_Product_AccessoiresArgs = {
-  objects: Array<Product_Accessoires_Insert_Input>;
-  on_conflict?: Maybe<Product_Accessoires_On_Conflict>;
+export type Mutation_RootInsert_Product_AccessoryArgs = {
+  objects: Array<Product_Accessory_Insert_Input>;
+  on_conflict?: Maybe<Product_Accessory_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Product_Accessoires_OneArgs = {
-  object: Product_Accessoires_Insert_Input;
-  on_conflict?: Maybe<Product_Accessoires_On_Conflict>;
+export type Mutation_RootInsert_Product_Accessory_OneArgs = {
+  object: Product_Accessory_Insert_Input;
+  on_conflict?: Maybe<Product_Accessory_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_GlassArgs = {
+  objects: Array<Product_Glass_Insert_Input>;
+  on_conflict?: Maybe<Product_Glass_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Glass_OneArgs = {
+  object: Product_Glass_Insert_Input;
+  on_conflict?: Maybe<Product_Glass_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Service_GlassesArgs = {
+  objects: Array<Product_Service_Glasses_Insert_Input>;
+  on_conflict?: Maybe<Product_Service_Glasses_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Service_Glasses_OneArgs = {
+  object: Product_Service_Glasses_Insert_Input;
+  on_conflict?: Maybe<Product_Service_Glasses_On_Conflict>;
 };
 
 
@@ -3817,34 +5161,6 @@ export type Mutation_RootUpdate_Contact_ContactArgs = {
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Contact_Contact_By_PkArgs = {
-  _set?: Maybe<Contact_Contact_Set_Input>;
-  pk_columns: Contact_Contact_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Contact_CustomerArgs = {
-  _set?: Maybe<Contact_Customer_Set_Input>;
-  where: Contact_Customer_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Contact_Customer_By_PkArgs = {
-  _set?: Maybe<Contact_Customer_Set_Input>;
-  pk_columns: Contact_Customer_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Contact_ProviderArgs = {
-  _set?: Maybe<Contact_Provider_Set_Input>;
-  where: Contact_Provider_Bool_Exp;
-};
-
-
-/** mutation root */
 export type Mutation_RootUpdate_Contact_Contact_AddressArgs = {
   _set?: Maybe<Contact_Contact_Address_Set_Input>;
   where: Contact_Contact_Address_Bool_Exp;
@@ -3855,6 +5171,20 @@ export type Mutation_RootUpdate_Contact_Contact_AddressArgs = {
 export type Mutation_RootUpdate_Contact_Contact_Address_By_PkArgs = {
   _set?: Maybe<Contact_Contact_Address_Set_Input>;
   pk_columns: Contact_Contact_Address_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Contact_Contact_By_PkArgs = {
+  _set?: Maybe<Contact_Contact_Set_Input>;
+  pk_columns: Contact_Contact_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Contact_CustomerArgs = {
+  _set?: Maybe<Contact_Customer_Set_Input>;
+  where: Contact_Customer_Bool_Exp;
 };
 
 
@@ -3873,6 +5203,13 @@ export type Mutation_RootUpdate_Contact_Customer_Address_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Contact_Customer_By_PkArgs = {
+  _set?: Maybe<Contact_Customer_Set_Input>;
+  pk_columns: Contact_Customer_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Contact_Customer_ContactArgs = {
   _set?: Maybe<Contact_Customer_Contact_Set_Input>;
   where: Contact_Customer_Contact_Bool_Exp;
@@ -3887,6 +5224,13 @@ export type Mutation_RootUpdate_Contact_Customer_Contact_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Contact_ProviderArgs = {
+  _set?: Maybe<Contact_Provider_Set_Input>;
+  where: Contact_Provider_Bool_Exp;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Contact_Provider_AddressArgs = {
   _set?: Maybe<Contact_Provider_Address_Set_Input>;
   where: Contact_Provider_Address_Bool_Exp;
@@ -3897,6 +5241,13 @@ export type Mutation_RootUpdate_Contact_Provider_AddressArgs = {
 export type Mutation_RootUpdate_Contact_Provider_Address_By_PkArgs = {
   _set?: Maybe<Contact_Provider_Address_Set_Input>;
   pk_columns: Contact_Provider_Address_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Contact_Provider_By_PkArgs = {
+  _set?: Maybe<Contact_Provider_Set_Input>;
+  pk_columns: Contact_Provider_Pk_Columns_Input;
 };
 
 
@@ -3971,18 +5322,48 @@ export type Mutation_RootUpdate_Management_User_Role_By_PkArgs = {
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Product_AccessoiresArgs = {
-  _inc?: Maybe<Product_Accessoires_Inc_Input>;
-  _set?: Maybe<Product_Accessoires_Set_Input>;
-  where: Product_Accessoires_Bool_Exp;
+export type Mutation_RootUpdate_Product_AccessoryArgs = {
+  _inc?: Maybe<Product_Accessory_Inc_Input>;
+  _set?: Maybe<Product_Accessory_Set_Input>;
+  where: Product_Accessory_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Product_Accessoires_By_PkArgs = {
-  _inc?: Maybe<Product_Accessoires_Inc_Input>;
-  _set?: Maybe<Product_Accessoires_Set_Input>;
-  pk_columns: Product_Accessoires_Pk_Columns_Input;
+export type Mutation_RootUpdate_Product_Accessory_By_PkArgs = {
+  _inc?: Maybe<Product_Accessory_Inc_Input>;
+  _set?: Maybe<Product_Accessory_Set_Input>;
+  pk_columns: Product_Accessory_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_GlassArgs = {
+  _inc?: Maybe<Product_Glass_Inc_Input>;
+  _set?: Maybe<Product_Glass_Set_Input>;
+  where: Product_Glass_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Glass_By_PkArgs = {
+  _inc?: Maybe<Product_Glass_Inc_Input>;
+  _set?: Maybe<Product_Glass_Set_Input>;
+  pk_columns: Product_Glass_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Service_GlassesArgs = {
+  _set?: Maybe<Product_Service_Glasses_Set_Input>;
+  where: Product_Service_Glasses_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Service_Glasses_By_PkArgs = {
+  _set?: Maybe<Product_Service_Glasses_Set_Input>;
+  pk_columns: Product_Service_Glasses_Pk_Columns_Input;
 };
 
 
@@ -4015,9 +5396,9 @@ export enum Order_By {
   DescNullsLast = 'desc_nulls_last'
 }
 
-/** columns and relationships of "product.accessoires" */
-export type Product_Accessoires = {
-  __typename?: 'product_accessoires';
+/** columns and relationships of "product.accessory" */
+export type Product_Accessory = {
+  __typename?: 'product_accessory';
   createdAt: Scalars['timestamptz'];
   createdBy: Scalars['uuid'];
   /** An object relationship */
@@ -4030,73 +5411,73 @@ export type Product_Accessoires = {
   updatedByUser: Management_UserProfile;
 };
 
-/** aggregated selection of "product.accessoires" */
-export type Product_Accessoires_Aggregate = {
-  __typename?: 'product_accessoires_aggregate';
-  aggregate?: Maybe<Product_Accessoires_Aggregate_Fields>;
-  nodes: Array<Product_Accessoires>;
+/** aggregated selection of "product.accessory" */
+export type Product_Accessory_Aggregate = {
+  __typename?: 'product_accessory_aggregate';
+  aggregate?: Maybe<Product_Accessory_Aggregate_Fields>;
+  nodes: Array<Product_Accessory>;
 };
 
-/** aggregate fields of "product.accessoires" */
-export type Product_Accessoires_Aggregate_Fields = {
-  __typename?: 'product_accessoires_aggregate_fields';
-  avg?: Maybe<Product_Accessoires_Avg_Fields>;
+/** aggregate fields of "product.accessory" */
+export type Product_Accessory_Aggregate_Fields = {
+  __typename?: 'product_accessory_aggregate_fields';
+  avg?: Maybe<Product_Accessory_Avg_Fields>;
   count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Product_Accessoires_Max_Fields>;
-  min?: Maybe<Product_Accessoires_Min_Fields>;
-  stddev?: Maybe<Product_Accessoires_Stddev_Fields>;
-  stddev_pop?: Maybe<Product_Accessoires_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Product_Accessoires_Stddev_Samp_Fields>;
-  sum?: Maybe<Product_Accessoires_Sum_Fields>;
-  var_pop?: Maybe<Product_Accessoires_Var_Pop_Fields>;
-  var_samp?: Maybe<Product_Accessoires_Var_Samp_Fields>;
-  variance?: Maybe<Product_Accessoires_Variance_Fields>;
+  max?: Maybe<Product_Accessory_Max_Fields>;
+  min?: Maybe<Product_Accessory_Min_Fields>;
+  stddev?: Maybe<Product_Accessory_Stddev_Fields>;
+  stddev_pop?: Maybe<Product_Accessory_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Product_Accessory_Stddev_Samp_Fields>;
+  sum?: Maybe<Product_Accessory_Sum_Fields>;
+  var_pop?: Maybe<Product_Accessory_Var_Pop_Fields>;
+  var_samp?: Maybe<Product_Accessory_Var_Samp_Fields>;
+  variance?: Maybe<Product_Accessory_Variance_Fields>;
 };
 
 
-/** aggregate fields of "product.accessoires" */
-export type Product_Accessoires_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Product_Accessoires_Select_Column>>;
+/** aggregate fields of "product.accessory" */
+export type Product_Accessory_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Accessory_Select_Column>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
-/** order by aggregate values of table "product.accessoires" */
-export type Product_Accessoires_Aggregate_Order_By = {
-  avg?: Maybe<Product_Accessoires_Avg_Order_By>;
+/** order by aggregate values of table "product.accessory" */
+export type Product_Accessory_Aggregate_Order_By = {
+  avg?: Maybe<Product_Accessory_Avg_Order_By>;
   count?: Maybe<Order_By>;
-  max?: Maybe<Product_Accessoires_Max_Order_By>;
-  min?: Maybe<Product_Accessoires_Min_Order_By>;
-  stddev?: Maybe<Product_Accessoires_Stddev_Order_By>;
-  stddev_pop?: Maybe<Product_Accessoires_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Product_Accessoires_Stddev_Samp_Order_By>;
-  sum?: Maybe<Product_Accessoires_Sum_Order_By>;
-  var_pop?: Maybe<Product_Accessoires_Var_Pop_Order_By>;
-  var_samp?: Maybe<Product_Accessoires_Var_Samp_Order_By>;
-  variance?: Maybe<Product_Accessoires_Variance_Order_By>;
+  max?: Maybe<Product_Accessory_Max_Order_By>;
+  min?: Maybe<Product_Accessory_Min_Order_By>;
+  stddev?: Maybe<Product_Accessory_Stddev_Order_By>;
+  stddev_pop?: Maybe<Product_Accessory_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Product_Accessory_Stddev_Samp_Order_By>;
+  sum?: Maybe<Product_Accessory_Sum_Order_By>;
+  var_pop?: Maybe<Product_Accessory_Var_Pop_Order_By>;
+  var_samp?: Maybe<Product_Accessory_Var_Samp_Order_By>;
+  variance?: Maybe<Product_Accessory_Variance_Order_By>;
 };
 
-/** input type for inserting array relation for remote table "product.accessoires" */
-export type Product_Accessoires_Arr_Rel_Insert_Input = {
-  data: Array<Product_Accessoires_Insert_Input>;
-  on_conflict?: Maybe<Product_Accessoires_On_Conflict>;
+/** input type for inserting array relation for remote table "product.accessory" */
+export type Product_Accessory_Arr_Rel_Insert_Input = {
+  data: Array<Product_Accessory_Insert_Input>;
+  on_conflict?: Maybe<Product_Accessory_On_Conflict>;
 };
 
 /** aggregate avg on columns */
-export type Product_Accessoires_Avg_Fields = {
-  __typename?: 'product_accessoires_avg_fields';
+export type Product_Accessory_Avg_Fields = {
+  __typename?: 'product_accessory_avg_fields';
   quota?: Maybe<Scalars['Float']>;
 };
 
-/** order by avg() on columns of table "product.accessoires" */
-export type Product_Accessoires_Avg_Order_By = {
+/** order by avg() on columns of table "product.accessory" */
+export type Product_Accessory_Avg_Order_By = {
   quota?: Maybe<Order_By>;
 };
 
-/** Boolean expression to filter rows from the table "product.accessoires". All fields are combined with a logical 'AND'. */
-export type Product_Accessoires_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Product_Accessoires_Bool_Exp>>>;
-  _not?: Maybe<Product_Accessoires_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Product_Accessoires_Bool_Exp>>>;
+/** Boolean expression to filter rows from the table "product.accessory". All fields are combined with a logical 'AND'. */
+export type Product_Accessory_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_Accessory_Bool_Exp>>>;
+  _not?: Maybe<Product_Accessory_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Accessory_Bool_Exp>>>;
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
   createdBy?: Maybe<Uuid_Comparison_Exp>;
   createdByUser?: Maybe<Management_UserProfile_Bool_Exp>;
@@ -4107,21 +5488,21 @@ export type Product_Accessoires_Bool_Exp = {
   updatedByUser?: Maybe<Management_UserProfile_Bool_Exp>;
 };
 
-/** unique or primary key constraints on table "product.accessoires" */
-export enum Product_Accessoires_Constraint {
+/** unique or primary key constraints on table "product.accessory" */
+export enum Product_Accessory_Constraint {
   /** unique or primary key constraint */
   AccessoiresCreatedByKey = 'accessoires_createdBy_key',
   /** unique or primary key constraint */
   AccessoiresPkey = 'accessoires_pkey'
 }
 
-/** input type for incrementing integer column in table "product.accessoires" */
-export type Product_Accessoires_Inc_Input = {
+/** input type for incrementing integer column in table "product.accessory" */
+export type Product_Accessory_Inc_Input = {
   quota?: Maybe<Scalars['numeric']>;
 };
 
-/** input type for inserting data into table "product.accessoires" */
-export type Product_Accessoires_Insert_Input = {
+/** input type for inserting data into table "product.accessory" */
+export type Product_Accessory_Insert_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   createdBy?: Maybe<Scalars['uuid']>;
   createdByUser?: Maybe<Management_UserProfile_Obj_Rel_Insert_Input>;
@@ -4133,8 +5514,8 @@ export type Product_Accessoires_Insert_Input = {
 };
 
 /** aggregate max on columns */
-export type Product_Accessoires_Max_Fields = {
-  __typename?: 'product_accessoires_max_fields';
+export type Product_Accessory_Max_Fields = {
+  __typename?: 'product_accessory_max_fields';
   createdAt?: Maybe<Scalars['timestamptz']>;
   createdBy?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
@@ -4143,8 +5524,8 @@ export type Product_Accessoires_Max_Fields = {
   updatedBy?: Maybe<Scalars['uuid']>;
 };
 
-/** order by max() on columns of table "product.accessoires" */
-export type Product_Accessoires_Max_Order_By = {
+/** order by max() on columns of table "product.accessory" */
+export type Product_Accessory_Max_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -4154,8 +5535,8 @@ export type Product_Accessoires_Max_Order_By = {
 };
 
 /** aggregate min on columns */
-export type Product_Accessoires_Min_Fields = {
-  __typename?: 'product_accessoires_min_fields';
+export type Product_Accessory_Min_Fields = {
+  __typename?: 'product_accessory_min_fields';
   createdAt?: Maybe<Scalars['timestamptz']>;
   createdBy?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
@@ -4164,8 +5545,8 @@ export type Product_Accessoires_Min_Fields = {
   updatedBy?: Maybe<Scalars['uuid']>;
 };
 
-/** order by min() on columns of table "product.accessoires" */
-export type Product_Accessoires_Min_Order_By = {
+/** order by min() on columns of table "product.accessory" */
+export type Product_Accessory_Min_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -4174,30 +5555,30 @@ export type Product_Accessoires_Min_Order_By = {
   updatedBy?: Maybe<Order_By>;
 };
 
-/** response of any mutation on the table "product.accessoires" */
-export type Product_Accessoires_Mutation_Response = {
-  __typename?: 'product_accessoires_mutation_response';
+/** response of any mutation on the table "product.accessory" */
+export type Product_Accessory_Mutation_Response = {
+  __typename?: 'product_accessory_mutation_response';
   /** number of affected rows by the mutation */
   affected_rows: Scalars['Int'];
   /** data of the affected rows by the mutation */
-  returning: Array<Product_Accessoires>;
+  returning: Array<Product_Accessory>;
 };
 
-/** input type for inserting object relation for remote table "product.accessoires" */
-export type Product_Accessoires_Obj_Rel_Insert_Input = {
-  data: Product_Accessoires_Insert_Input;
-  on_conflict?: Maybe<Product_Accessoires_On_Conflict>;
+/** input type for inserting object relation for remote table "product.accessory" */
+export type Product_Accessory_Obj_Rel_Insert_Input = {
+  data: Product_Accessory_Insert_Input;
+  on_conflict?: Maybe<Product_Accessory_On_Conflict>;
 };
 
-/** on conflict condition type for table "product.accessoires" */
-export type Product_Accessoires_On_Conflict = {
-  constraint: Product_Accessoires_Constraint;
-  update_columns: Array<Product_Accessoires_Update_Column>;
-  where?: Maybe<Product_Accessoires_Bool_Exp>;
+/** on conflict condition type for table "product.accessory" */
+export type Product_Accessory_On_Conflict = {
+  constraint: Product_Accessory_Constraint;
+  update_columns: Array<Product_Accessory_Update_Column>;
+  where?: Maybe<Product_Accessory_Bool_Exp>;
 };
 
-/** ordering options when selecting data from "product.accessoires" */
-export type Product_Accessoires_Order_By = {
+/** ordering options when selecting data from "product.accessory" */
+export type Product_Accessory_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   createdByUser?: Maybe<Management_UserProfile_Order_By>;
@@ -4208,13 +5589,13 @@ export type Product_Accessoires_Order_By = {
   updatedByUser?: Maybe<Management_UserProfile_Order_By>;
 };
 
-/** primary key columns input for table: "product.accessoires" */
-export type Product_Accessoires_Pk_Columns_Input = {
+/** primary key columns input for table: "product.accessory" */
+export type Product_Accessory_Pk_Columns_Input = {
   id: Scalars['uuid'];
 };
 
-/** select columns of table "product.accessoires" */
-export enum Product_Accessoires_Select_Column {
+/** select columns of table "product.accessory" */
+export enum Product_Accessory_Select_Column {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -4229,8 +5610,8 @@ export enum Product_Accessoires_Select_Column {
   UpdatedBy = 'updatedBy'
 }
 
-/** input type for updating data in table "product.accessoires" */
-export type Product_Accessoires_Set_Input = {
+/** input type for updating data in table "product.accessory" */
+export type Product_Accessory_Set_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   createdBy?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
@@ -4240,51 +5621,51 @@ export type Product_Accessoires_Set_Input = {
 };
 
 /** aggregate stddev on columns */
-export type Product_Accessoires_Stddev_Fields = {
-  __typename?: 'product_accessoires_stddev_fields';
+export type Product_Accessory_Stddev_Fields = {
+  __typename?: 'product_accessory_stddev_fields';
   quota?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev() on columns of table "product.accessoires" */
-export type Product_Accessoires_Stddev_Order_By = {
+/** order by stddev() on columns of table "product.accessory" */
+export type Product_Accessory_Stddev_Order_By = {
   quota?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
-export type Product_Accessoires_Stddev_Pop_Fields = {
-  __typename?: 'product_accessoires_stddev_pop_fields';
+export type Product_Accessory_Stddev_Pop_Fields = {
+  __typename?: 'product_accessory_stddev_pop_fields';
   quota?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev_pop() on columns of table "product.accessoires" */
-export type Product_Accessoires_Stddev_Pop_Order_By = {
+/** order by stddev_pop() on columns of table "product.accessory" */
+export type Product_Accessory_Stddev_Pop_Order_By = {
   quota?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
-export type Product_Accessoires_Stddev_Samp_Fields = {
-  __typename?: 'product_accessoires_stddev_samp_fields';
+export type Product_Accessory_Stddev_Samp_Fields = {
+  __typename?: 'product_accessory_stddev_samp_fields';
   quota?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev_samp() on columns of table "product.accessoires" */
-export type Product_Accessoires_Stddev_Samp_Order_By = {
+/** order by stddev_samp() on columns of table "product.accessory" */
+export type Product_Accessory_Stddev_Samp_Order_By = {
   quota?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
-export type Product_Accessoires_Sum_Fields = {
-  __typename?: 'product_accessoires_sum_fields';
+export type Product_Accessory_Sum_Fields = {
+  __typename?: 'product_accessory_sum_fields';
   quota?: Maybe<Scalars['numeric']>;
 };
 
-/** order by sum() on columns of table "product.accessoires" */
-export type Product_Accessoires_Sum_Order_By = {
+/** order by sum() on columns of table "product.accessory" */
+export type Product_Accessory_Sum_Order_By = {
   quota?: Maybe<Order_By>;
 };
 
-/** update columns of table "product.accessoires" */
-export enum Product_Accessoires_Update_Column {
+/** update columns of table "product.accessory" */
+export enum Product_Accessory_Update_Column {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -4300,93 +5681,673 @@ export enum Product_Accessoires_Update_Column {
 }
 
 /** aggregate var_pop on columns */
-export type Product_Accessoires_Var_Pop_Fields = {
-  __typename?: 'product_accessoires_var_pop_fields';
+export type Product_Accessory_Var_Pop_Fields = {
+  __typename?: 'product_accessory_var_pop_fields';
   quota?: Maybe<Scalars['Float']>;
 };
 
-/** order by var_pop() on columns of table "product.accessoires" */
-export type Product_Accessoires_Var_Pop_Order_By = {
+/** order by var_pop() on columns of table "product.accessory" */
+export type Product_Accessory_Var_Pop_Order_By = {
   quota?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
-export type Product_Accessoires_Var_Samp_Fields = {
-  __typename?: 'product_accessoires_var_samp_fields';
+export type Product_Accessory_Var_Samp_Fields = {
+  __typename?: 'product_accessory_var_samp_fields';
   quota?: Maybe<Scalars['Float']>;
 };
 
-/** order by var_samp() on columns of table "product.accessoires" */
-export type Product_Accessoires_Var_Samp_Order_By = {
+/** order by var_samp() on columns of table "product.accessory" */
+export type Product_Accessory_Var_Samp_Order_By = {
   quota?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
-export type Product_Accessoires_Variance_Fields = {
-  __typename?: 'product_accessoires_variance_fields';
+export type Product_Accessory_Variance_Fields = {
+  __typename?: 'product_accessory_variance_fields';
   quota?: Maybe<Scalars['Float']>;
 };
 
-/** order by variance() on columns of table "product.accessoires" */
-export type Product_Accessoires_Variance_Order_By = {
+/** order by variance() on columns of table "product.accessory" */
+export type Product_Accessory_Variance_Order_By = {
   quota?: Maybe<Order_By>;
 };
+
+/** columns and relationships of "product.glass" */
+export type Product_Glass = {
+  __typename?: 'product_glass';
+  color: Scalars['String'];
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id: Scalars['uuid'];
+  matid: Scalars['uuid'];
+  productCode: Scalars['String'];
+  /** An array relationship */
+  service_glasses: Array<Product_Service_Glasses>;
+  /** An aggregated array relationship */
+  service_glasses_aggregate: Product_Service_Glasses_Aggregate;
+  thickness: Scalars['Int'];
+  type: Scalars['String'];
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+
+/** columns and relationships of "product.glass" */
+export type Product_GlassService_GlassesArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Glasses_Order_By>>;
+  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.glass" */
+export type Product_GlassService_Glasses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Glasses_Order_By>>;
+  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+/** aggregated selection of "product.glass" */
+export type Product_Glass_Aggregate = {
+  __typename?: 'product_glass_aggregate';
+  aggregate?: Maybe<Product_Glass_Aggregate_Fields>;
+  nodes: Array<Product_Glass>;
+};
+
+/** aggregate fields of "product.glass" */
+export type Product_Glass_Aggregate_Fields = {
+  __typename?: 'product_glass_aggregate_fields';
+  avg?: Maybe<Product_Glass_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_Glass_Max_Fields>;
+  min?: Maybe<Product_Glass_Min_Fields>;
+  stddev?: Maybe<Product_Glass_Stddev_Fields>;
+  stddev_pop?: Maybe<Product_Glass_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Product_Glass_Stddev_Samp_Fields>;
+  sum?: Maybe<Product_Glass_Sum_Fields>;
+  var_pop?: Maybe<Product_Glass_Var_Pop_Fields>;
+  var_samp?: Maybe<Product_Glass_Var_Samp_Fields>;
+  variance?: Maybe<Product_Glass_Variance_Fields>;
+};
+
+
+/** aggregate fields of "product.glass" */
+export type Product_Glass_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Glass_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.glass" */
+export type Product_Glass_Aggregate_Order_By = {
+  avg?: Maybe<Product_Glass_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_Glass_Max_Order_By>;
+  min?: Maybe<Product_Glass_Min_Order_By>;
+  stddev?: Maybe<Product_Glass_Stddev_Order_By>;
+  stddev_pop?: Maybe<Product_Glass_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Product_Glass_Stddev_Samp_Order_By>;
+  sum?: Maybe<Product_Glass_Sum_Order_By>;
+  var_pop?: Maybe<Product_Glass_Var_Pop_Order_By>;
+  var_samp?: Maybe<Product_Glass_Var_Samp_Order_By>;
+  variance?: Maybe<Product_Glass_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.glass" */
+export type Product_Glass_Arr_Rel_Insert_Input = {
+  data: Array<Product_Glass_Insert_Input>;
+  on_conflict?: Maybe<Product_Glass_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Product_Glass_Avg_Fields = {
+  __typename?: 'product_glass_avg_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "product.glass" */
+export type Product_Glass_Avg_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "product.glass". All fields are combined with a logical 'AND'. */
+export type Product_Glass_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_Glass_Bool_Exp>>>;
+  _not?: Maybe<Product_Glass_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Glass_Bool_Exp>>>;
+  color?: Maybe<String_Comparison_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
+  createdBy?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  matid?: Maybe<Uuid_Comparison_Exp>;
+  productCode?: Maybe<String_Comparison_Exp>;
+  service_glasses?: Maybe<Product_Service_Glasses_Bool_Exp>;
+  thickness?: Maybe<Int_Comparison_Exp>;
+  type?: Maybe<String_Comparison_Exp>;
+  updatedAt?: Maybe<Date_Comparison_Exp>;
+  updatedBy?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "product.glass" */
+export enum Product_Glass_Constraint {
+  /** unique or primary key constraint */
+  GlassPkey = 'glass_pkey',
+  /** unique or primary key constraint */
+  GlassProductCodeKey = 'glass_productCode_key'
+}
+
+/** input type for incrementing integer column in table "product.glass" */
+export type Product_Glass_Inc_Input = {
+  thickness?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "product.glass" */
+export type Product_Glass_Insert_Input = {
+  color?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  matid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+  service_glasses?: Maybe<Product_Service_Glasses_Arr_Rel_Insert_Input>;
+  thickness?: Maybe<Scalars['Int']>;
+  type?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Product_Glass_Max_Fields = {
+  __typename?: 'product_glass_max_fields';
+  color?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  matid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+  thickness?: Maybe<Scalars['Int']>;
+  type?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "product.glass" */
+export type Product_Glass_Max_Order_By = {
+  color?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  matid?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
+  thickness?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_Glass_Min_Fields = {
+  __typename?: 'product_glass_min_fields';
+  color?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  matid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+  thickness?: Maybe<Scalars['Int']>;
+  type?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "product.glass" */
+export type Product_Glass_Min_Order_By = {
+  color?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  matid?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
+  thickness?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.glass" */
+export type Product_Glass_Mutation_Response = {
+  __typename?: 'product_glass_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_Glass>;
+};
+
+/** input type for inserting object relation for remote table "product.glass" */
+export type Product_Glass_Obj_Rel_Insert_Input = {
+  data: Product_Glass_Insert_Input;
+  on_conflict?: Maybe<Product_Glass_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.glass" */
+export type Product_Glass_On_Conflict = {
+  constraint: Product_Glass_Constraint;
+  update_columns: Array<Product_Glass_Update_Column>;
+  where?: Maybe<Product_Glass_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.glass" */
+export type Product_Glass_Order_By = {
+  color?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  createdBy?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  matid?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
+  service_glasses_aggregate?: Maybe<Product_Service_Glasses_Aggregate_Order_By>;
+  thickness?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+  updatedBy?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.glass" */
+export type Product_Glass_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "product.glass" */
+export enum Product_Glass_Select_Column {
+  /** column name */
+  Color = 'color',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Matid = 'matid',
+  /** column name */
+  ProductCode = 'productCode',
+  /** column name */
+  Thickness = 'thickness',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy'
+}
+
+/** input type for updating data in table "product.glass" */
+export type Product_Glass_Set_Input = {
+  color?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['date']>;
+  createdBy?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  matid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+  thickness?: Maybe<Scalars['Int']>;
+  type?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['date']>;
+  updatedBy?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate stddev on columns */
+export type Product_Glass_Stddev_Fields = {
+  __typename?: 'product_glass_stddev_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "product.glass" */
+export type Product_Glass_Stddev_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Product_Glass_Stddev_Pop_Fields = {
+  __typename?: 'product_glass_stddev_pop_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "product.glass" */
+export type Product_Glass_Stddev_Pop_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Product_Glass_Stddev_Samp_Fields = {
+  __typename?: 'product_glass_stddev_samp_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "product.glass" */
+export type Product_Glass_Stddev_Samp_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Product_Glass_Sum_Fields = {
+  __typename?: 'product_glass_sum_fields';
+  thickness?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "product.glass" */
+export type Product_Glass_Sum_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** update columns of table "product.glass" */
+export enum Product_Glass_Update_Column {
+  /** column name */
+  Color = 'color',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  CreatedBy = 'createdBy',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Matid = 'matid',
+  /** column name */
+  ProductCode = 'productCode',
+  /** column name */
+  Thickness = 'thickness',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UpdatedBy = 'updatedBy'
+}
+
+/** aggregate var_pop on columns */
+export type Product_Glass_Var_Pop_Fields = {
+  __typename?: 'product_glass_var_pop_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "product.glass" */
+export type Product_Glass_Var_Pop_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Product_Glass_Var_Samp_Fields = {
+  __typename?: 'product_glass_var_samp_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "product.glass" */
+export type Product_Glass_Var_Samp_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Product_Glass_Variance_Fields = {
+  __typename?: 'product_glass_variance_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "product.glass" */
+export type Product_Glass_Variance_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "product.service_glasses" */
+export type Product_Service_Glasses = {
+  __typename?: 'product_service_glasses';
+  /** An object relationship */
+  glass: Product_Glass;
+  glasseid: Scalars['uuid'];
+  productCode: Scalars['String'];
+  serviceid: Scalars['uuid'];
+};
+
+/** aggregated selection of "product.service_glasses" */
+export type Product_Service_Glasses_Aggregate = {
+  __typename?: 'product_service_glasses_aggregate';
+  aggregate?: Maybe<Product_Service_Glasses_Aggregate_Fields>;
+  nodes: Array<Product_Service_Glasses>;
+};
+
+/** aggregate fields of "product.service_glasses" */
+export type Product_Service_Glasses_Aggregate_Fields = {
+  __typename?: 'product_service_glasses_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_Service_Glasses_Max_Fields>;
+  min?: Maybe<Product_Service_Glasses_Min_Fields>;
+};
+
+
+/** aggregate fields of "product.service_glasses" */
+export type Product_Service_Glasses_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.service_glasses" */
+export type Product_Service_Glasses_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_Service_Glasses_Max_Order_By>;
+  min?: Maybe<Product_Service_Glasses_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.service_glasses" */
+export type Product_Service_Glasses_Arr_Rel_Insert_Input = {
+  data: Array<Product_Service_Glasses_Insert_Input>;
+  on_conflict?: Maybe<Product_Service_Glasses_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "product.service_glasses". All fields are combined with a logical 'AND'. */
+export type Product_Service_Glasses_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_Service_Glasses_Bool_Exp>>>;
+  _not?: Maybe<Product_Service_Glasses_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Service_Glasses_Bool_Exp>>>;
+  glass?: Maybe<Product_Glass_Bool_Exp>;
+  glasseid?: Maybe<Uuid_Comparison_Exp>;
+  productCode?: Maybe<String_Comparison_Exp>;
+  serviceid?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "product.service_glasses" */
+export enum Product_Service_Glasses_Constraint {
+  /** unique or primary key constraint */
+  ServiceGlassesPkey = 'service_glasses_pkey'
+}
+
+/** input type for inserting data into table "product.service_glasses" */
+export type Product_Service_Glasses_Insert_Input = {
+  glass?: Maybe<Product_Glass_Obj_Rel_Insert_Input>;
+  glasseid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Product_Service_Glasses_Max_Fields = {
+  __typename?: 'product_service_glasses_max_fields';
+  glasseid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "product.service_glasses" */
+export type Product_Service_Glasses_Max_Order_By = {
+  glasseid?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
+  serviceid?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_Service_Glasses_Min_Fields = {
+  __typename?: 'product_service_glasses_min_fields';
+  glasseid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "product.service_glasses" */
+export type Product_Service_Glasses_Min_Order_By = {
+  glasseid?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
+  serviceid?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.service_glasses" */
+export type Product_Service_Glasses_Mutation_Response = {
+  __typename?: 'product_service_glasses_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_Service_Glasses>;
+};
+
+/** input type for inserting object relation for remote table "product.service_glasses" */
+export type Product_Service_Glasses_Obj_Rel_Insert_Input = {
+  data: Product_Service_Glasses_Insert_Input;
+  on_conflict?: Maybe<Product_Service_Glasses_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.service_glasses" */
+export type Product_Service_Glasses_On_Conflict = {
+  constraint: Product_Service_Glasses_Constraint;
+  update_columns: Array<Product_Service_Glasses_Update_Column>;
+  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.service_glasses" */
+export type Product_Service_Glasses_Order_By = {
+  glass?: Maybe<Product_Glass_Order_By>;
+  glasseid?: Maybe<Order_By>;
+  productCode?: Maybe<Order_By>;
+  serviceid?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.service_glasses" */
+export type Product_Service_Glasses_Pk_Columns_Input = {
+  glasseid: Scalars['uuid'];
+  productCode: Scalars['String'];
+  serviceid: Scalars['uuid'];
+};
+
+/** select columns of table "product.service_glasses" */
+export enum Product_Service_Glasses_Select_Column {
+  /** column name */
+  Glasseid = 'glasseid',
+  /** column name */
+  ProductCode = 'productCode',
+  /** column name */
+  Serviceid = 'serviceid'
+}
+
+/** input type for updating data in table "product.service_glasses" */
+export type Product_Service_Glasses_Set_Input = {
+  glasseid?: Maybe<Scalars['uuid']>;
+  productCode?: Maybe<Scalars['String']>;
+  serviceid?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "product.service_glasses" */
+export enum Product_Service_Glasses_Update_Column {
+  /** column name */
+  Glasseid = 'glasseid',
+  /** column name */
+  ProductCode = 'productCode',
+  /** column name */
+  Serviceid = 'serviceid'
+}
 
 /** query root */
 export type Query_Root = {
   __typename?: 'query_root';
-  /** fetch data from the table: "contact.Address" */
-  contact_Address: Array<Contact_Address>;
-  /** fetch aggregated fields from the table: "contact.Address" */
-  contact_Address_aggregate: Contact_Address_Aggregate;
-  /** fetch data from the table: "contact.Address" using primary key columns */
-  contact_Address_by_pk?: Maybe<Contact_Address>;
-  /** fetch data from the table: "contact.Contact" */
-  contact_Contact: Array<Contact_Contact>;
-  /** fetch aggregated fields from the table: "contact.Contact" */
-  contact_Contact_aggregate: Contact_Contact_Aggregate;
-  /** fetch data from the table: "contact.Contact" using primary key columns */
-  contact_Contact_by_pk?: Maybe<Contact_Contact>;
-  /** fetch data from the table: "contact.Customer" */
-  contact_Customer: Array<Contact_Customer>;
-  /** fetch aggregated fields from the table: "contact.Customer" */
-  contact_Customer_aggregate: Contact_Customer_Aggregate;
-  /** fetch data from the table: "contact.Customer" using primary key columns */
-  contact_Customer_by_pk?: Maybe<Contact_Customer>;
-  /** fetch data from the table: "contact.Provider" */
-  contact_Provider: Array<Contact_Provider>;
-  /** fetch aggregated fields from the table: "contact.Provider" */
-  contact_Provider_aggregate: Contact_Provider_Aggregate;
+  /** fetch data from the table: "contact.address" */
+  contact_address: Array<Contact_Address>;
+  /** fetch aggregated fields from the table: "contact.address" */
+  contact_address_aggregate: Contact_Address_Aggregate;
+  /** fetch data from the table: "contact.address" using primary key columns */
+  contact_address_by_pk?: Maybe<Contact_Address>;
+  /** fetch data from the table: "contact.contact" */
+  contact_contact: Array<Contact_Contact>;
   /** fetch data from the table: "contact.contact_address" */
   contact_contact_address: Array<Contact_Contact_Address>;
   /** fetch aggregated fields from the table: "contact.contact_address" */
   contact_contact_address_aggregate: Contact_Contact_Address_Aggregate;
   /** fetch data from the table: "contact.contact_address" using primary key columns */
   contact_contact_address_by_pk?: Maybe<Contact_Contact_Address>;
+  /** fetch data from the table: "contact.contact_addresses_view" */
+  contact_contact_addresses_view: Array<Contact_Contact_Addresses_View>;
+  /** fetch aggregated fields from the table: "contact.contact_addresses_view" */
+  contact_contact_addresses_view_aggregate: Contact_Contact_Addresses_View_Aggregate;
+  /** fetch aggregated fields from the table: "contact.contact" */
+  contact_contact_aggregate: Contact_Contact_Aggregate;
+  /** fetch data from the table: "contact.contact" using primary key columns */
+  contact_contact_by_pk?: Maybe<Contact_Contact>;
+  /** fetch data from the table: "contact.contact_customers_view" */
+  contact_contact_customers_view: Array<Contact_Contact_Customers_View>;
+  /** fetch aggregated fields from the table: "contact.contact_customers_view" */
+  contact_contact_customers_view_aggregate: Contact_Contact_Customers_View_Aggregate;
+  /** fetch data from the table: "contact.contact_providers_view" */
+  contact_contact_providers_view: Array<Contact_Contact_Providers_View>;
+  /** fetch aggregated fields from the table: "contact.contact_providers_view" */
+  contact_contact_providers_view_aggregate: Contact_Contact_Providers_View_Aggregate;
+  /** fetch data from the table: "contact.customer" */
+  contact_customer: Array<Contact_Customer>;
   /** fetch data from the table: "contact.customer_address" */
   contact_customer_address: Array<Contact_Customer_Address>;
   /** fetch aggregated fields from the table: "contact.customer_address" */
   contact_customer_address_aggregate: Contact_Customer_Address_Aggregate;
   /** fetch data from the table: "contact.customer_address" using primary key columns */
   contact_customer_address_by_pk?: Maybe<Contact_Customer_Address>;
+  /** fetch data from the table: "contact.customer_addresses_view" */
+  contact_customer_addresses_view: Array<Contact_Customer_Addresses_View>;
+  /** fetch aggregated fields from the table: "contact.customer_addresses_view" */
+  contact_customer_addresses_view_aggregate: Contact_Customer_Addresses_View_Aggregate;
+  /** fetch aggregated fields from the table: "contact.customer" */
+  contact_customer_aggregate: Contact_Customer_Aggregate;
+  /** fetch data from the table: "contact.customer" using primary key columns */
+  contact_customer_by_pk?: Maybe<Contact_Customer>;
   /** fetch data from the table: "contact.customer_contact" */
   contact_customer_contact: Array<Contact_Customer_Contact>;
   /** fetch aggregated fields from the table: "contact.customer_contact" */
   contact_customer_contact_aggregate: Contact_Customer_Contact_Aggregate;
   /** fetch data from the table: "contact.customer_contact" using primary key columns */
   contact_customer_contact_by_pk?: Maybe<Contact_Customer_Contact>;
+  /** fetch data from the table: "contact.customer_contacts_view" */
+  contact_customer_contacts_view: Array<Contact_Customer_Contacts_View>;
+  /** fetch aggregated fields from the table: "contact.customer_contacts_view" */
+  contact_customer_contacts_view_aggregate: Contact_Customer_Contacts_View_Aggregate;
+  /** fetch data from the table: "contact.provider" */
+  contact_provider: Array<Contact_Provider>;
   /** fetch data from the table: "contact.provider_address" */
   contact_provider_address: Array<Contact_Provider_Address>;
   /** fetch aggregated fields from the table: "contact.provider_address" */
   contact_provider_address_aggregate: Contact_Provider_Address_Aggregate;
   /** fetch data from the table: "contact.provider_address" using primary key columns */
   contact_provider_address_by_pk?: Maybe<Contact_Provider_Address>;
+  /** fetch data from the table: "contact.provider_addresses_view" */
+  contact_provider_addresses_view: Array<Contact_Provider_Addresses_View>;
+  /** fetch aggregated fields from the table: "contact.provider_addresses_view" */
+  contact_provider_addresses_view_aggregate: Contact_Provider_Addresses_View_Aggregate;
+  /** fetch aggregated fields from the table: "contact.provider" */
+  contact_provider_aggregate: Contact_Provider_Aggregate;
+  /** fetch data from the table: "contact.provider" using primary key columns */
+  contact_provider_by_pk?: Maybe<Contact_Provider>;
   /** fetch data from the table: "contact.provider_contact" */
   contact_provider_contact: Array<Contact_Provider_Contact>;
   /** fetch aggregated fields from the table: "contact.provider_contact" */
   contact_provider_contact_aggregate: Contact_Provider_Contact_Aggregate;
   /** fetch data from the table: "contact.provider_contact" using primary key columns */
   contact_provider_contact_by_pk?: Maybe<Contact_Provider_Contact>;
+  /** fetch data from the table: "contact.provider_contacts_view" */
+  contact_provider_contacts_view: Array<Contact_Provider_Contacts_View>;
+  /** fetch aggregated fields from the table: "contact.provider_contacts_view" */
+  contact_provider_contacts_view_aggregate: Contact_Provider_Contacts_View_Aggregate;
   /** fetch data from the table: "management.Company" */
   management_Company: Array<Management_Company>;
   /** fetch aggregated fields from the table: "management.Company" */
@@ -4411,12 +6372,24 @@ export type Query_Root = {
   management_user_role_aggregate: Management_User_Role_Aggregate;
   /** fetch data from the table: "management.user_role" using primary key columns */
   management_user_role_by_pk?: Maybe<Management_User_Role>;
-  /** fetch data from the table: "product.accessoires" */
-  product_accessoires: Array<Product_Accessoires>;
-  /** fetch aggregated fields from the table: "product.accessoires" */
-  product_accessoires_aggregate: Product_Accessoires_Aggregate;
-  /** fetch data from the table: "product.accessoires" using primary key columns */
-  product_accessoires_by_pk?: Maybe<Product_Accessoires>;
+  /** fetch data from the table: "product.accessory" */
+  product_accessory: Array<Product_Accessory>;
+  /** fetch aggregated fields from the table: "product.accessory" */
+  product_accessory_aggregate: Product_Accessory_Aggregate;
+  /** fetch data from the table: "product.accessory" using primary key columns */
+  product_accessory_by_pk?: Maybe<Product_Accessory>;
+  /** fetch data from the table: "product.glass" */
+  product_glass: Array<Product_Glass>;
+  /** fetch aggregated fields from the table: "product.glass" */
+  product_glass_aggregate: Product_Glass_Aggregate;
+  /** fetch data from the table: "product.glass" using primary key columns */
+  product_glass_by_pk?: Maybe<Product_Glass>;
+  /** fetch data from the table: "product.service_glasses" */
+  product_service_glasses: Array<Product_Service_Glasses>;
+  /** fetch aggregated fields from the table: "product.service_glasses" */
+  product_service_glasses_aggregate: Product_Service_Glasses_Aggregate;
+  /** fetch data from the table: "product.service_glasses" using primary key columns */
+  product_service_glasses_by_pk?: Maybe<Product_Service_Glasses>;
 };
 
 
@@ -4457,68 +6430,6 @@ export type Query_RootContact_ContactArgs = {
 
 
 /** query root */
-export type Query_RootContact_Contact_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Contact_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Contact_Order_By>>;
-  where?: Maybe<Contact_Contact_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootContact_Contact_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** query root */
-export type Query_RootContact_CustomerArgs = {
-  distinct_on?: Maybe<Array<Contact_Customer_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Customer_Order_By>>;
-  where?: Maybe<Contact_Customer_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootContact_Customer_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Customer_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Customer_Order_By>>;
-  where?: Maybe<Contact_Customer_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootContact_Customer_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** query root */
-export type Query_RootContact_ProviderArgs = {
-  distinct_on?: Maybe<Array<Contact_Provider_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Provider_Order_By>>;
-  where?: Maybe<Contact_Provider_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootContact_Provider_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Provider_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Provider_Order_By>>;
-  where?: Maybe<Contact_Provider_Bool_Exp>;
-};
-
-
-/** query root */
 export type Query_RootContact_Contact_AddressArgs = {
   distinct_on?: Maybe<Array<Contact_Contact_Address_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -4542,6 +6453,92 @@ export type Query_RootContact_Contact_Address_AggregateArgs = {
 export type Query_RootContact_Contact_Address_By_PkArgs = {
   addressid: Scalars['uuid'];
   contactid: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootContact_Contact_Addresses_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Addresses_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Contact_Addresses_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Addresses_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Contact_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Order_By>>;
+  where?: Maybe<Contact_Contact_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Contact_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootContact_Contact_Customers_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Customers_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Customers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Customers_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Contact_Customers_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Customers_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Customers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Customers_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Contact_Providers_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Providers_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Providers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Providers_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Contact_Providers_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Providers_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Providers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Providers_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_CustomerArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Order_By>>;
+  where?: Maybe<Contact_Customer_Bool_Exp>;
 };
 
 
@@ -4573,6 +6570,42 @@ export type Query_RootContact_Customer_Address_By_PkArgs = {
 
 
 /** query root */
+export type Query_RootContact_Customer_Addresses_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Addresses_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Customer_Addresses_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Addresses_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Customer_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Order_By>>;
+  where?: Maybe<Contact_Customer_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Customer_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** query root */
 export type Query_RootContact_Customer_ContactArgs = {
   distinct_on?: Maybe<Array<Contact_Customer_Contact_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -4596,6 +6629,36 @@ export type Query_RootContact_Customer_Contact_AggregateArgs = {
 export type Query_RootContact_Customer_Contact_By_PkArgs = {
   contactid: Scalars['uuid'];
   customerid: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootContact_Customer_Contacts_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Contacts_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Customer_Contacts_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Contacts_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_ProviderArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Order_By>>;
+  where?: Maybe<Contact_Provider_Bool_Exp>;
 };
 
 
@@ -4627,6 +6690,42 @@ export type Query_RootContact_Provider_Address_By_PkArgs = {
 
 
 /** query root */
+export type Query_RootContact_Provider_Addresses_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Addresses_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Provider_Addresses_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Addresses_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Provider_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Order_By>>;
+  where?: Maybe<Contact_Provider_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Provider_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** query root */
 export type Query_RootContact_Provider_ContactArgs = {
   distinct_on?: Maybe<Array<Contact_Provider_Contact_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -4650,6 +6749,26 @@ export type Query_RootContact_Provider_Contact_AggregateArgs = {
 export type Query_RootContact_Provider_Contact_By_PkArgs = {
   contactid: Scalars['uuid'];
   providerid: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootContact_Provider_Contacts_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Contacts_View_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContact_Provider_Contacts_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Contacts_View_Bool_Exp>;
 };
 
 
@@ -4758,85 +6877,169 @@ export type Query_RootManagement_User_Role_By_PkArgs = {
 
 
 /** query root */
-export type Query_RootProduct_AccessoiresArgs = {
-  distinct_on?: Maybe<Array<Product_Accessoires_Select_Column>>;
+export type Query_RootProduct_AccessoryArgs = {
+  distinct_on?: Maybe<Array<Product_Accessory_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_Accessoires_Order_By>>;
-  where?: Maybe<Product_Accessoires_Bool_Exp>;
+  order_by?: Maybe<Array<Product_Accessory_Order_By>>;
+  where?: Maybe<Product_Accessory_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootProduct_Accessoires_AggregateArgs = {
-  distinct_on?: Maybe<Array<Product_Accessoires_Select_Column>>;
+export type Query_RootProduct_Accessory_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Accessory_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_Accessoires_Order_By>>;
-  where?: Maybe<Product_Accessoires_Bool_Exp>;
+  order_by?: Maybe<Array<Product_Accessory_Order_By>>;
+  where?: Maybe<Product_Accessory_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootProduct_Accessoires_By_PkArgs = {
+export type Query_RootProduct_Accessory_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootProduct_GlassArgs = {
+  distinct_on?: Maybe<Array<Product_Glass_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Glass_Order_By>>;
+  where?: Maybe<Product_Glass_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Glass_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Glass_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Glass_Order_By>>;
+  where?: Maybe<Product_Glass_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Glass_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootProduct_Service_GlassesArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Glasses_Order_By>>;
+  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Service_Glasses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Glasses_Order_By>>;
+  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Service_Glasses_By_PkArgs = {
+  glasseid: Scalars['uuid'];
+  productCode: Scalars['String'];
+  serviceid: Scalars['uuid'];
 };
 
 /** subscription root */
 export type Subscription_Root = {
   __typename?: 'subscription_root';
-  /** fetch data from the table: "contact.Address" */
-  contact_Address: Array<Contact_Address>;
-  /** fetch aggregated fields from the table: "contact.Address" */
-  contact_Address_aggregate: Contact_Address_Aggregate;
-  /** fetch data from the table: "contact.Address" using primary key columns */
-  contact_Address_by_pk?: Maybe<Contact_Address>;
-  /** fetch data from the table: "contact.Contact" */
-  contact_Contact: Array<Contact_Contact>;
-  /** fetch aggregated fields from the table: "contact.Contact" */
-  contact_Contact_aggregate: Contact_Contact_Aggregate;
-  /** fetch data from the table: "contact.Contact" using primary key columns */
-  contact_Contact_by_pk?: Maybe<Contact_Contact>;
-  /** fetch data from the table: "contact.Customer" */
-  contact_Customer: Array<Contact_Customer>;
-  /** fetch aggregated fields from the table: "contact.Customer" */
-  contact_Customer_aggregate: Contact_Customer_Aggregate;
-  /** fetch data from the table: "contact.Customer" using primary key columns */
-  contact_Customer_by_pk?: Maybe<Contact_Customer>;
-  /** fetch data from the table: "contact.Provider" */
-  contact_Provider: Array<Contact_Provider>;
-  /** fetch aggregated fields from the table: "contact.Provider" */
-  contact_Provider_aggregate: Contact_Provider_Aggregate;
+  /** fetch data from the table: "contact.address" */
+  contact_address: Array<Contact_Address>;
+  /** fetch aggregated fields from the table: "contact.address" */
+  contact_address_aggregate: Contact_Address_Aggregate;
+  /** fetch data from the table: "contact.address" using primary key columns */
+  contact_address_by_pk?: Maybe<Contact_Address>;
+  /** fetch data from the table: "contact.contact" */
+  contact_contact: Array<Contact_Contact>;
   /** fetch data from the table: "contact.contact_address" */
   contact_contact_address: Array<Contact_Contact_Address>;
   /** fetch aggregated fields from the table: "contact.contact_address" */
   contact_contact_address_aggregate: Contact_Contact_Address_Aggregate;
   /** fetch data from the table: "contact.contact_address" using primary key columns */
   contact_contact_address_by_pk?: Maybe<Contact_Contact_Address>;
+  /** fetch data from the table: "contact.contact_addresses_view" */
+  contact_contact_addresses_view: Array<Contact_Contact_Addresses_View>;
+  /** fetch aggregated fields from the table: "contact.contact_addresses_view" */
+  contact_contact_addresses_view_aggregate: Contact_Contact_Addresses_View_Aggregate;
+  /** fetch aggregated fields from the table: "contact.contact" */
+  contact_contact_aggregate: Contact_Contact_Aggregate;
+  /** fetch data from the table: "contact.contact" using primary key columns */
+  contact_contact_by_pk?: Maybe<Contact_Contact>;
+  /** fetch data from the table: "contact.contact_customers_view" */
+  contact_contact_customers_view: Array<Contact_Contact_Customers_View>;
+  /** fetch aggregated fields from the table: "contact.contact_customers_view" */
+  contact_contact_customers_view_aggregate: Contact_Contact_Customers_View_Aggregate;
+  /** fetch data from the table: "contact.contact_providers_view" */
+  contact_contact_providers_view: Array<Contact_Contact_Providers_View>;
+  /** fetch aggregated fields from the table: "contact.contact_providers_view" */
+  contact_contact_providers_view_aggregate: Contact_Contact_Providers_View_Aggregate;
+  /** fetch data from the table: "contact.customer" */
+  contact_customer: Array<Contact_Customer>;
   /** fetch data from the table: "contact.customer_address" */
   contact_customer_address: Array<Contact_Customer_Address>;
   /** fetch aggregated fields from the table: "contact.customer_address" */
   contact_customer_address_aggregate: Contact_Customer_Address_Aggregate;
   /** fetch data from the table: "contact.customer_address" using primary key columns */
   contact_customer_address_by_pk?: Maybe<Contact_Customer_Address>;
+  /** fetch data from the table: "contact.customer_addresses_view" */
+  contact_customer_addresses_view: Array<Contact_Customer_Addresses_View>;
+  /** fetch aggregated fields from the table: "contact.customer_addresses_view" */
+  contact_customer_addresses_view_aggregate: Contact_Customer_Addresses_View_Aggregate;
+  /** fetch aggregated fields from the table: "contact.customer" */
+  contact_customer_aggregate: Contact_Customer_Aggregate;
+  /** fetch data from the table: "contact.customer" using primary key columns */
+  contact_customer_by_pk?: Maybe<Contact_Customer>;
   /** fetch data from the table: "contact.customer_contact" */
   contact_customer_contact: Array<Contact_Customer_Contact>;
   /** fetch aggregated fields from the table: "contact.customer_contact" */
   contact_customer_contact_aggregate: Contact_Customer_Contact_Aggregate;
   /** fetch data from the table: "contact.customer_contact" using primary key columns */
   contact_customer_contact_by_pk?: Maybe<Contact_Customer_Contact>;
+  /** fetch data from the table: "contact.customer_contacts_view" */
+  contact_customer_contacts_view: Array<Contact_Customer_Contacts_View>;
+  /** fetch aggregated fields from the table: "contact.customer_contacts_view" */
+  contact_customer_contacts_view_aggregate: Contact_Customer_Contacts_View_Aggregate;
+  /** fetch data from the table: "contact.provider" */
+  contact_provider: Array<Contact_Provider>;
   /** fetch data from the table: "contact.provider_address" */
   contact_provider_address: Array<Contact_Provider_Address>;
   /** fetch aggregated fields from the table: "contact.provider_address" */
   contact_provider_address_aggregate: Contact_Provider_Address_Aggregate;
   /** fetch data from the table: "contact.provider_address" using primary key columns */
   contact_provider_address_by_pk?: Maybe<Contact_Provider_Address>;
+  /** fetch data from the table: "contact.provider_addresses_view" */
+  contact_provider_addresses_view: Array<Contact_Provider_Addresses_View>;
+  /** fetch aggregated fields from the table: "contact.provider_addresses_view" */
+  contact_provider_addresses_view_aggregate: Contact_Provider_Addresses_View_Aggregate;
+  /** fetch aggregated fields from the table: "contact.provider" */
+  contact_provider_aggregate: Contact_Provider_Aggregate;
+  /** fetch data from the table: "contact.provider" using primary key columns */
+  contact_provider_by_pk?: Maybe<Contact_Provider>;
   /** fetch data from the table: "contact.provider_contact" */
   contact_provider_contact: Array<Contact_Provider_Contact>;
   /** fetch aggregated fields from the table: "contact.provider_contact" */
   contact_provider_contact_aggregate: Contact_Provider_Contact_Aggregate;
   /** fetch data from the table: "contact.provider_contact" using primary key columns */
   contact_provider_contact_by_pk?: Maybe<Contact_Provider_Contact>;
+  /** fetch data from the table: "contact.provider_contacts_view" */
+  contact_provider_contacts_view: Array<Contact_Provider_Contacts_View>;
+  /** fetch aggregated fields from the table: "contact.provider_contacts_view" */
+  contact_provider_contacts_view_aggregate: Contact_Provider_Contacts_View_Aggregate;
   /** fetch data from the table: "management.Company" */
   management_Company: Array<Management_Company>;
   /** fetch aggregated fields from the table: "management.Company" */
@@ -4861,12 +7064,24 @@ export type Subscription_Root = {
   management_user_role_aggregate: Management_User_Role_Aggregate;
   /** fetch data from the table: "management.user_role" using primary key columns */
   management_user_role_by_pk?: Maybe<Management_User_Role>;
-  /** fetch data from the table: "product.accessoires" */
-  product_accessoires: Array<Product_Accessoires>;
-  /** fetch aggregated fields from the table: "product.accessoires" */
-  product_accessoires_aggregate: Product_Accessoires_Aggregate;
-  /** fetch data from the table: "product.accessoires" using primary key columns */
-  product_accessoires_by_pk?: Maybe<Product_Accessoires>;
+  /** fetch data from the table: "product.accessory" */
+  product_accessory: Array<Product_Accessory>;
+  /** fetch aggregated fields from the table: "product.accessory" */
+  product_accessory_aggregate: Product_Accessory_Aggregate;
+  /** fetch data from the table: "product.accessory" using primary key columns */
+  product_accessory_by_pk?: Maybe<Product_Accessory>;
+  /** fetch data from the table: "product.glass" */
+  product_glass: Array<Product_Glass>;
+  /** fetch aggregated fields from the table: "product.glass" */
+  product_glass_aggregate: Product_Glass_Aggregate;
+  /** fetch data from the table: "product.glass" using primary key columns */
+  product_glass_by_pk?: Maybe<Product_Glass>;
+  /** fetch data from the table: "product.service_glasses" */
+  product_service_glasses: Array<Product_Service_Glasses>;
+  /** fetch aggregated fields from the table: "product.service_glasses" */
+  product_service_glasses_aggregate: Product_Service_Glasses_Aggregate;
+  /** fetch data from the table: "product.service_glasses" using primary key columns */
+  product_service_glasses_by_pk?: Maybe<Product_Service_Glasses>;
 };
 
 
@@ -4907,68 +7122,6 @@ export type Subscription_RootContact_ContactArgs = {
 
 
 /** subscription root */
-export type Subscription_RootContact_Contact_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Contact_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Contact_Order_By>>;
-  where?: Maybe<Contact_Contact_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootContact_Contact_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** subscription root */
-export type Subscription_RootContact_CustomerArgs = {
-  distinct_on?: Maybe<Array<Contact_Customer_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Customer_Order_By>>;
-  where?: Maybe<Contact_Customer_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootContact_Customer_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Customer_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Customer_Order_By>>;
-  where?: Maybe<Contact_Customer_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootContact_Customer_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** subscription root */
-export type Subscription_RootContact_ProviderArgs = {
-  distinct_on?: Maybe<Array<Contact_Provider_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Provider_Order_By>>;
-  where?: Maybe<Contact_Provider_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootContact_Provider_AggregateArgs = {
-  distinct_on?: Maybe<Array<Contact_Provider_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Contact_Provider_Order_By>>;
-  where?: Maybe<Contact_Provider_Bool_Exp>;
-};
-
-
-/** subscription root */
 export type Subscription_RootContact_Contact_AddressArgs = {
   distinct_on?: Maybe<Array<Contact_Contact_Address_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -4992,6 +7145,92 @@ export type Subscription_RootContact_Contact_Address_AggregateArgs = {
 export type Subscription_RootContact_Contact_Address_By_PkArgs = {
   addressid: Scalars['uuid'];
   contactid: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Contact_Addresses_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Addresses_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Contact_Addresses_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Addresses_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Contact_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Order_By>>;
+  where?: Maybe<Contact_Contact_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Contact_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Contact_Customers_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Customers_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Customers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Customers_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Contact_Customers_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Customers_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Customers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Customers_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Contact_Providers_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Providers_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Providers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Providers_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Contact_Providers_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Contact_Providers_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Contact_Providers_View_Order_By>>;
+  where?: Maybe<Contact_Contact_Providers_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_CustomerArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Order_By>>;
+  where?: Maybe<Contact_Customer_Bool_Exp>;
 };
 
 
@@ -5023,6 +7262,42 @@ export type Subscription_RootContact_Customer_Address_By_PkArgs = {
 
 
 /** subscription root */
+export type Subscription_RootContact_Customer_Addresses_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Addresses_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Customer_Addresses_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Addresses_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Customer_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Order_By>>;
+  where?: Maybe<Contact_Customer_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Customer_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
 export type Subscription_RootContact_Customer_ContactArgs = {
   distinct_on?: Maybe<Array<Contact_Customer_Contact_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -5046,6 +7321,36 @@ export type Subscription_RootContact_Customer_Contact_AggregateArgs = {
 export type Subscription_RootContact_Customer_Contact_By_PkArgs = {
   contactid: Scalars['uuid'];
   customerid: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Customer_Contacts_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Contacts_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Customer_Contacts_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Customer_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Customer_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Customer_Contacts_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_ProviderArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Order_By>>;
+  where?: Maybe<Contact_Provider_Bool_Exp>;
 };
 
 
@@ -5077,6 +7382,42 @@ export type Subscription_RootContact_Provider_Address_By_PkArgs = {
 
 
 /** subscription root */
+export type Subscription_RootContact_Provider_Addresses_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Addresses_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Provider_Addresses_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Addresses_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Addresses_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Addresses_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Provider_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Order_By>>;
+  where?: Maybe<Contact_Provider_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Provider_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
 export type Subscription_RootContact_Provider_ContactArgs = {
   distinct_on?: Maybe<Array<Contact_Provider_Contact_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -5100,6 +7441,26 @@ export type Subscription_RootContact_Provider_Contact_AggregateArgs = {
 export type Subscription_RootContact_Provider_Contact_By_PkArgs = {
   contactid: Scalars['uuid'];
   providerid: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Provider_Contacts_ViewArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Contacts_View_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContact_Provider_Contacts_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Contact_Provider_Contacts_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Contact_Provider_Contacts_View_Order_By>>;
+  where?: Maybe<Contact_Provider_Contacts_View_Bool_Exp>;
 };
 
 
@@ -5208,28 +7569,82 @@ export type Subscription_RootManagement_User_Role_By_PkArgs = {
 
 
 /** subscription root */
-export type Subscription_RootProduct_AccessoiresArgs = {
-  distinct_on?: Maybe<Array<Product_Accessoires_Select_Column>>;
+export type Subscription_RootProduct_AccessoryArgs = {
+  distinct_on?: Maybe<Array<Product_Accessory_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_Accessoires_Order_By>>;
-  where?: Maybe<Product_Accessoires_Bool_Exp>;
+  order_by?: Maybe<Array<Product_Accessory_Order_By>>;
+  where?: Maybe<Product_Accessory_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootProduct_Accessoires_AggregateArgs = {
-  distinct_on?: Maybe<Array<Product_Accessoires_Select_Column>>;
+export type Subscription_RootProduct_Accessory_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Accessory_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_Accessoires_Order_By>>;
-  where?: Maybe<Product_Accessoires_Bool_Exp>;
+  order_by?: Maybe<Array<Product_Accessory_Order_By>>;
+  where?: Maybe<Product_Accessory_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootProduct_Accessoires_By_PkArgs = {
+export type Subscription_RootProduct_Accessory_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_GlassArgs = {
+  distinct_on?: Maybe<Array<Product_Glass_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Glass_Order_By>>;
+  where?: Maybe<Product_Glass_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Glass_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Glass_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Glass_Order_By>>;
+  where?: Maybe<Product_Glass_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Glass_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Service_GlassesArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Glasses_Order_By>>;
+  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Service_Glasses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Service_Glasses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Service_Glasses_Order_By>>;
+  where?: Maybe<Product_Service_Glasses_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Service_Glasses_By_PkArgs = {
+  glasseid: Scalars['uuid'];
+  productCode: Scalars['String'];
+  serviceid: Scalars['uuid'];
 };
 
 
@@ -5260,31 +7675,164 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type DeleteContactMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'name'>
+  )> }
+);
+
+export type DeleteCustomerMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteCustomerMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_customer_by_pk?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'name'>
+  )> }
+);
+
+export type DeleteProviderMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteProviderMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_provider_by_pk?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'name'>
+  )> }
+);
+
+export type InsertContactMutationVariables = Exact<{
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  addresses?: Array<Contact_Contact_Address_Insert_Input>;
+}>;
+
+
+export type InsertContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_contact_one?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
+  )> }
+);
+
 export type InsertCustomerMutationVariables = Exact<{
   FAX?: Maybe<Scalars['String']>;
-  ICE?: Maybe<Scalars['String']>;
-  IF?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
   mail?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   website?: Maybe<Scalars['String']>;
   addresses?: Array<Contact_Customer_Address_Insert_Input>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
 }>;
 
 
 export type InsertCustomerMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_contact_Customer_one?: Maybe<(
-    { __typename?: 'contact_Customer' }
-    & Pick<Contact_Customer, 'id' | 'FAX' | 'ICE' | 'IF' | 'website' | 'phone' | 'note' | 'name' | 'mail'>
-    & { addresses: Array<(
-      { __typename?: 'contact_customer_address' }
-      & { Address: (
-        { __typename?: 'contact_Address' }
-        & Pick<Contact_Address, 'city' | 'address' | 'zip'>
-      ) }
-    )> }
+  & { insert_contact_customer_one?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
+  )> }
+);
+
+export type InsertProviderMutationVariables = Exact<{
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  data?: Array<Contact_Provider_Address_Insert_Input>;
+}>;
+
+
+export type InsertProviderMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_provider_one?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
+  )> }
+);
+
+export type UpdateContactMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_contact_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
+  )> }
+);
+
+export type UpdateCustomerMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  ICE?: Maybe<Scalars['String']>;
+  IF?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateCustomerMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_contact_customer_by_pk?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
+  )> }
+);
+
+export type UpdateProviderMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  FAX?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
+  mail?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateProviderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_contact_provider_by_pk?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
   )> }
 );
 
@@ -5293,8 +7841,8 @@ export type GetAllContactsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAllContactsQuery = (
   { __typename?: 'query_root' }
-  & { contact_Contact: Array<(
-    { __typename?: 'contact_Contact' }
+  & { contact_contact: Array<(
+    { __typename?: 'contact_contact' }
     & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
   )> }
 );
@@ -5304,9 +7852,9 @@ export type GetAllCustomersQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAllCustomersQuery = (
   { __typename?: 'query_root' }
-  & { contact_Customer: Array<(
-    { __typename?: 'contact_Customer' }
-    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone'>
+  & { contact_customer: Array<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
   )> }
 );
 
@@ -5315,8 +7863,8 @@ export type GetAllProvidersQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAllProvidersQuery = (
   { __typename?: 'query_root' }
-  & { contact_Provider: Array<(
-    { __typename?: 'contact_Provider' }
+  & { contact_provider: Array<(
+    { __typename?: 'contact_provider' }
     & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
   )> }
 );
@@ -5328,21 +7876,58 @@ export type GetContactByIdQueryVariables = Exact<{
 
 export type GetContactByIdQuery = (
   { __typename?: 'query_root' }
-  & { contact_Contact_by_pk?: Maybe<(
-    { __typename?: 'contact_Contact' }
-    & Pick<Contact_Contact, 'code' | 'createdAt' | 'createdBy' | 'id' | 'mail' | 'name' | 'note' | 'phone' | 'updatedAt' | 'updatedBy'>
-    & { customers: Array<(
-      { __typename?: 'contact_customer_contact' }
-      & { Customer: (
-        { __typename?: 'contact_Customer' }
-        & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'note' | 'phone'>
-      ) }
+  & { contact_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'phone' | 'note' | 'createdAt' | 'createdBy' | 'updatedBy' | 'updatedAt'>
+    & { addresses: Array<(
+      { __typename?: 'contact_contact_addresses_view' }
+      & Pick<Contact_Contact_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
+    )>, cutomers: Array<(
+      { __typename?: 'contact_contact_customers_view' }
+      & Pick<Contact_Contact_Customers_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
+    )>, providers: Array<(
+      { __typename?: 'contact_contact_providers_view' }
+      & Pick<Contact_Contact_Providers_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
+    )> }
+  )> }
+);
+
+export type GetCustomerByIdQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetCustomerByIdQuery = (
+  { __typename?: 'query_root' }
+  & { contact_customer_by_pk?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'note' | 'website' | 'FAX' | 'type' | 'createdAt' | 'createdBy' | 'updatedBy' | 'updatedAt'>
+    & { addresses: Array<(
+      { __typename?: 'contact_customer_addresses_view' }
+      & Pick<Contact_Customer_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
+    )>, contacts: Array<(
+      { __typename?: 'contact_customer_contacts_view' }
+      & Pick<Contact_Customer_Contacts_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
+    )> }
+  )> }
+);
+
+export type GetProviderByIdQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetProviderByIdQuery = (
+  { __typename?: 'query_root' }
+  & { contact_provider_by_pk?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail' | 'FAX' | 'website' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy'>
+    & { contacts: Array<(
+      { __typename?: 'contact_provider_contacts_view' }
+      & Pick<Contact_Provider_Contacts_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
     )>, addresses: Array<(
-      { __typename?: 'contact_contact_address' }
-      & { Address: (
-        { __typename?: 'contact_Address' }
-        & Pick<Contact_Address, 'address' | 'city' | 'id' | 'zip'>
-      ) }
+      { __typename?: 'contact_provider_addresses_view' }
+      & Pick<Contact_Provider_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
     )> }
   )> }
 );
@@ -5427,14 +8012,13 @@ export type InsertSalePointMutation = (
 export type InsertUserMutationVariables = Exact<{
   CIN?: Maybe<Scalars['String']>;
   active?: Maybe<Scalars['Boolean']>;
+  SalesPointsid?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
-  firstname: Scalars['String'];
-  lastname: Scalars['String'];
-  password?: Maybe<Scalars['String']>;
+  firstname?: Maybe<Scalars['String']>;
+  lastname?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
-  username: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
+  username?: Maybe<Scalars['String']>;
+  role?: Maybe<Management_User_Role_Enum>;
 }>;
 
 
@@ -5501,7 +8085,6 @@ export type UpdateUserMutationVariables = Exact<{
   email?: Maybe<Scalars['String']>;
   firstname?: Maybe<Scalars['String']>;
   lastname?: Maybe<Scalars['String']>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
   role?: Maybe<Management_User_Role_Enum>;
@@ -5564,49 +8147,49 @@ export type GetAllUsersQuery = (
 );
 
 export type GetCompanyByIdQueryVariables = Exact<{
-  _id: Scalars['uuid'];
+  id: Scalars['uuid'];
 }>;
 
 
 export type GetCompanyByIdQuery = (
   { __typename?: 'query_root' }
-  & { management_Company: Array<(
+  & { management_Company_by_pk?: Maybe<(
     { __typename?: 'management_Company' }
     & Pick<Management_Company, 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email' | 'name' | 'phone' | 'website' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'id'>
   )> }
 );
 
 export type GetSalePointByIdQueryVariables = Exact<{
-  _id: Scalars['uuid'];
+  id: Scalars['uuid'];
 }>;
 
 
 export type GetSalePointByIdQuery = (
   { __typename?: 'query_root' }
-  & { management_SalesPoint: Array<(
+  & { management_SalesPoint_by_pk?: Maybe<(
     { __typename?: 'management_SalesPoint' }
-    & Pick<Management_SalesPoint, 'address' | 'email' | 'fax' | 'id' | 'name' | 'phone' | 'createdBy' | 'updatedBy' | 'createdAt' | 'updatedAt'>
+    & Pick<Management_SalesPoint, 'id' | 'address' | 'email' | 'fax' | 'name' | 'phone' | 'createdBy' | 'updatedBy' | 'createdAt' | 'updatedAt'>
     & { usersProfiles: Array<(
       { __typename?: 'management_userProfile' }
-      & Pick<Management_UserProfile, 'firstname' | 'id' | 'lastname' | 'phone' | 'username' | 'active'>
+      & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone' | 'username'>
       & { user_role: (
         { __typename?: 'management_user_role' }
-        & Pick<Management_User_Role, 'name'>
+        & Pick<Management_User_Role, 'name' | 'description'>
       ) }
     )> }
   )> }
 );
 
 export type GetUserByIdQueryVariables = Exact<{
-  _id?: Maybe<Scalars['uuid']>;
+  id: Scalars['uuid'];
 }>;
 
 
 export type GetUserByIdQuery = (
   { __typename?: 'query_root' }
-  & { management_userProfile: Array<(
+  & { management_userProfile_by_pk?: Maybe<(
     { __typename?: 'management_userProfile' }
-    & Pick<Management_UserProfile, 'CIN' | 'active' | 'createdAt' | 'createdBy' | 'email' | 'firstname' | 'id' | 'joinUs' | 'lastname' | 'leftUs' | 'phone' | 'password' | 'role' | 'updatedAt' | 'updatedBy' | 'username' | 'SalesPointsid'>
+    & Pick<Management_UserProfile, 'CIN' | 'active' | 'createdAt' | 'createdBy' | 'email' | 'firstname' | 'id' | 'joinUs' | 'lastname' | 'leftUs' | 'phone' | 'role' | 'updatedAt' | 'updatedBy' | 'username' | 'SalesPointsid'>
     & { user_role: (
       { __typename?: 'management_user_role' }
       & Pick<Management_User_Role, 'description' | 'name'>
@@ -5617,27 +8200,101 @@ export type GetUserByIdQuery = (
   )> }
 );
 
-export const InsertCustomerDocument = gql`
-    mutation insertCustomer($FAX: String = "", $ICE: String = "", $IF: String = "", $mail: String = "", $name: String = "", $note: String = "", $phone: String = "", $website: String = "", $addresses: [contact_customer_address_insert_input!]! = {Address: {data: {address: "", city: "", zip: ""}}}) {
-  insert_contact_Customer_one(
-    object: {FAX: $FAX, ICE: $ICE, IF: $IF, addresses: {data: $addresses}, mail: $mail, name: $name, note: $note, phone: $phone, website: $website}
+export const DeleteContactDocument = gql`
+    mutation DeleteContact($id: uuid!) {
+  delete_contact_contact_by_pk(id: $id) {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteContactGQL extends Apollo.Mutation<DeleteContactMutation, DeleteContactMutationVariables> {
+    document = DeleteContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteCustomerDocument = gql`
+    mutation DeleteCustomer($id: uuid!) {
+  delete_contact_customer_by_pk(id: $id) {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteCustomerGQL extends Apollo.Mutation<DeleteCustomerMutation, DeleteCustomerMutationVariables> {
+    document = DeleteCustomerDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteProviderDocument = gql`
+    mutation DeleteProvider($id: uuid!) {
+  delete_contact_provider_by_pk(id: $id) {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteProviderGQL extends Apollo.Mutation<DeleteProviderMutation, DeleteProviderMutationVariables> {
+    document = DeleteProviderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertContactDocument = gql`
+    mutation InsertContact($code: String, $mail: String, $name: String, $note: String, $phone: String, $addresses: [contact_contact_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}}) {
+  insert_contact_contact_one(
+    object: {code: $code, mail: $mail, name: $name, note: $note, phone: $phone, contact_addresses: {data: $addresses}}
   ) {
     id
-    FAX
+    code
+    mail
+    name
+    note
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertContactGQL extends Apollo.Mutation<InsertContactMutation, InsertContactMutationVariables> {
+    document = InsertContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertCustomerDocument = gql`
+    mutation InsertCustomer($FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $addresses: [contact_customer_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}}, $ICE: String, $IF: String, $type: String) {
+  insert_contact_customer_one(
+    object: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, customer_addresses: {data: $addresses}, ICE: $ICE, IF: $IF, type: $type}
+  ) {
+    id
     ICE
     IF
-    website
-    phone
-    note
-    name
+    code
     mail
-    addresses {
-      Address {
-        city
-        address
-        zip
-      }
-    }
+    name
+    phone
+    type
   }
 }
     `;
@@ -5652,9 +8309,114 @@ export const InsertCustomerDocument = gql`
       super(apollo);
     }
   }
+export const InsertProviderDocument = gql`
+    mutation InsertProvider($FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $data: [contact_provider_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}}) {
+  insert_contact_provider_one(
+    object: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, provider_addresses: {data: $data}}
+  ) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertProviderGQL extends Apollo.Mutation<InsertProviderMutation, InsertProviderMutationVariables> {
+    document = InsertProviderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateContactDocument = gql`
+    mutation updateContact($id: uuid!, $code: String, $mail: String, $name: String, $note: String, $phone: String) {
+  update_contact_contact_by_pk(
+    pk_columns: {id: $id}
+    _set: {code: $code, mail: $mail, name: $name, note: $note, phone: $phone}
+  ) {
+    id
+    code
+    mail
+    name
+    note
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateContactGQL extends Apollo.Mutation<UpdateContactMutation, UpdateContactMutationVariables> {
+    document = UpdateContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateCustomerDocument = gql`
+    mutation updateCustomer($id: uuid!, $FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $ICE: String, $IF: String, $type: String) {
+  update_contact_customer_by_pk(
+    pk_columns: {id: $id}
+    _set: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, ICE: $ICE, IF: $IF, type: $type}
+  ) {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    type
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateCustomerGQL extends Apollo.Mutation<UpdateCustomerMutation, UpdateCustomerMutationVariables> {
+    document = UpdateCustomerDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateProviderDocument = gql`
+    mutation updateProvider($id: uuid!, $FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String) {
+  update_contact_provider_by_pk(
+    pk_columns: {id: $id}
+    _set: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website}
+  ) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateProviderGQL extends Apollo.Mutation<UpdateProviderMutation, UpdateProviderMutationVariables> {
+    document = UpdateProviderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAllContactsDocument = gql`
     query GetAllContacts {
-  contact_Contact {
+  contact_contact {
     id
     code
     mail
@@ -5677,7 +8439,7 @@ export const GetAllContactsDocument = gql`
   }
 export const GetAllCustomersDocument = gql`
     query GetAllCustomers {
-  contact_Customer {
+  contact_customer {
     id
     ICE
     IF
@@ -5685,6 +8447,7 @@ export const GetAllCustomersDocument = gql`
     mail
     name
     phone
+    type
   }
 }
     `;
@@ -5701,7 +8464,7 @@ export const GetAllCustomersDocument = gql`
   }
 export const GetAllProvidersDocument = gql`
     query GetAllProviders {
-  contact_Provider {
+  contact_provider {
     id
     code
     name
@@ -5724,34 +8487,39 @@ export const GetAllProvidersDocument = gql`
   }
 export const GetContactByIdDocument = gql`
     query GetContactById($id: uuid!) {
-  contact_Contact_by_pk(id: $id) {
-    code
-    createdAt
-    createdBy
+  contact_contact_by_pk(id: $id) {
     id
+    code
     mail
     name
-    note
     phone
-    updatedAt
-    updatedBy
-    customers {
-      Customer {
-        code
-        id
-        name
-        note
-        phone
-      }
-    }
+    note
     addresses {
-      Address {
-        address
-        city
-        id
-        zip
-      }
+      id
+      address
+      city
+      zip
     }
+    cutomers {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    providers {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    createdAt
+    createdBy
+    updatedBy
+    updatedAt
   }
 }
     `;
@@ -5761,6 +8529,95 @@ export const GetContactByIdDocument = gql`
   })
   export class GetContactByIdGQL extends Apollo.Query<GetContactByIdQuery, GetContactByIdQueryVariables> {
     document = GetContactByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetCustomerByIdDocument = gql`
+    query GetCustomerById($id: uuid!) {
+  contact_customer_by_pk(id: $id) {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    note
+    website
+    FAX
+    type
+    addresses {
+      id
+      address
+      city
+      zip
+    }
+    contacts {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    createdAt
+    createdBy
+    updatedBy
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCustomerByIdGQL extends Apollo.Query<GetCustomerByIdQuery, GetCustomerByIdQueryVariables> {
+    document = GetCustomerByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetProviderByIdDocument = gql`
+    query GetProviderById($id: uuid!) {
+  contact_provider_by_pk(id: $id) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+    FAX
+    website
+    contacts {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    addresses {
+      id
+      address
+      city
+      zip
+    }
+    createdAt
+    createdBy
+    updatedAt
+    updatedBy
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetProviderByIdGQL extends Apollo.Query<GetProviderByIdQuery, GetProviderByIdQueryVariables> {
+    document = GetProviderByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -5877,9 +8734,9 @@ export const InsertSalePointDocument = gql`
     }
   }
 export const InsertUserDocument = gql`
-    mutation InsertUser($CIN: String, $active: Boolean = true, $email: String, $firstname: String!, $lastname: String!, $password: String, $phone: String, $username: String!, $name: String = "", $description: String = "") {
+    mutation InsertUser($CIN: String, $active: Boolean = true, $SalesPointsid: uuid, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = admin) {
   insert_management_userProfile_one(
-    object: {CIN: $CIN, active: $active, email: $email, firstname: $firstname, lastname: $lastname, password: $password, phone: $phone, username: $username, user_role: {data: {description: $description, name: $name}}}
+    object: {CIN: $CIN, active: $active, SalesPointsid: $SalesPointsid, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}
   ) {
     id
     active
@@ -5966,10 +8823,10 @@ export const UpdateSalePointDocument = gql`
     }
   }
 export const UpdateUserDocument = gql`
-    mutation UpdateUser($id: uuid!, $CIN: String, $SalesPointsid: uuid, $active: Boolean = true, $email: String, $firstname: String, $lastname: String, $password: String, $phone: String, $username: String, $role: management_user_role_enum = admin) {
+    mutation UpdateUser($id: uuid!, $CIN: String, $SalesPointsid: uuid, $active: Boolean = true, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = admin) {
   update_management_userProfile_by_pk(
     pk_columns: {id: $id}
-    _set: {CIN: $CIN, SalesPointsid: $SalesPointsid, active: $active, email: $email, firstname: $firstname, lastname: $lastname, password: $password, phone: $phone, username: $username, role: $role}
+    _set: {CIN: $CIN, SalesPointsid: $SalesPointsid, active: $active, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}
   ) {
     id
     active
@@ -6082,8 +8939,8 @@ export const GetAllUsersDocument = gql`
     }
   }
 export const GetCompanyByIdDocument = gql`
-    query GetCompanyById($_id: uuid!) {
-  management_Company(where: {id: {_eq: $_id}}) {
+    query GetCompanyById($id: uuid!) {
+  management_Company_by_pk(id: $id) {
     CNSS
     ICE
     IF
@@ -6113,27 +8970,28 @@ export const GetCompanyByIdDocument = gql`
     }
   }
 export const GetSalePointByIdDocument = gql`
-    query GetSalePointById($_id: uuid!) {
-  management_SalesPoint(where: {id: {_eq: $_id}}) {
+    query GetSalePointById($id: uuid!) {
+  management_SalesPoint_by_pk(id: $id) {
+    id
     address
     email
     fax
-    id
     name
     phone
-    createdBy
-    updatedBy
     usersProfiles {
-      firstname
       id
+      active
+      firstname
       lastname
       phone
       username
       user_role {
         name
+        description
       }
-      active
     }
+    createdBy
+    updatedBy
     createdAt
     updatedAt
   }
@@ -6151,8 +9009,8 @@ export const GetSalePointByIdDocument = gql`
     }
   }
 export const GetUserByIdDocument = gql`
-    query getUserById($_id: uuid) {
-  management_userProfile(where: {id: {_eq: $_id}}) {
+    query getUserById($id: uuid!) {
+  management_userProfile_by_pk(id: $id) {
     CIN
     active
     createdAt
@@ -6164,7 +9022,6 @@ export const GetUserByIdDocument = gql`
     lastname
     leftUs
     phone
-    password
     role
     updatedAt
     updatedBy

@@ -1,64 +1,30 @@
-import { Glasse } from './glasse.model';
-import { Consumable } from './consommable.model';
-import { DateFields } from '@tanglass-erp/core/shared';
+import { Glass, Product } from './glass.model';
+import { Consumable } from './consummable.model';
 import { optionalServiceParam } from './service_params';
 
-@DateFields
-export class Service {
-  public static columnDefs (prefix = '') {
-    if (prefix.length) prefix += '.';
-    return [
-      { field: prefix + 'name', headerName: 'Nom', type: "textColumn" },
-      { field: prefix + 'defaultPriceUnit', headerName: 'Unité de prix par défault' },
-    ]
-  }
+export interface Service {
+
   id?: string;
-  name:string='';
-  defaultPriceUnit:string='';
-  params: optionalServiceParam[] = [];
+  name:string;
+  params: optionalServiceParam[] ;
 
-  constructor(name?: string, defaultPriceUnit?: string, params?: optionalServiceParam[]) {
-    this.name = name;
-    this.defaultPriceUnit = defaultPriceUnit;
-    this.params = params;
-  }
 }
 
 
-export class ServiceGlasse {
-  public static columnDefs () {
-    return [
-      {
-        headerName: 'Service Glasse', children: [
-          { field: 'labelFactory', headerName: 'Etiquette d\'usine', type: "textColumn" },
-        ]
-      },
-      { headerName: 'Service', children: Service.columnDefs('service') },
-      { headerName: 'Verre', children: Glasse.columnDefs('glasse') },
-    ]
-  }
+
+export interface ServiceGlass{
   id? : string;
-  glasse : Glasse;
+  glasse : Glass;
   service: Service;
-  labelFactory: string = '';
+  labelFactory: string ;
+  product:Product
 }
 
-
-export class ServiceConsumable {
-  public static columnDefs (prefix = '') {
-    if (prefix.length) prefix += '.';
-    return [
-      {
-      headerName: 'service Consommable',
-        children: [{ field: prefix + 'quota', headerName: 'Nom', type: "numberColumn" }]
-      },
-      {
-        headerName: 'Service', children: Service.columnDefs('service')
-      }
-    ]
-  }
+export interface ServiceConsumable {
+ 
   id? : string;
-  quota: number = 0;
+  quota: number ;
   consumable : Consumable;
   service: Service;
+  
 }

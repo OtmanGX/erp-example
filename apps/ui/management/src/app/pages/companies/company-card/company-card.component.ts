@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
+import * as CompanieActions from '@TanglassStore/management/lib/actions/companies.actions';
+import * as CompanieSelectors from '@TanglassStore/management/lib/selectors/companies.selectors';
 import { AppState } from '@tanglass-erp/store/app';
+import { Store } from '@ngrx/store';
+
 import { Location } from '@angular/common';
 
 @Component({
@@ -13,24 +15,28 @@ export class CompanyCardComponent implements OnInit {
   title = "Profile d'utilisateur";
   id: string;
   step = null;
-  data: any;
+  data =  this.store.select(CompanieSelectors.getSelectedCompanie);
   passedData: any;
   constructor(private store: Store<AppState>,
               private location: Location) {
-      this.id = (<any>location.getState()).id;
-      this.passedData = [
-        {label: 'Nom', value: this.data?.name},
-        {label: 'CNSS', value: this.data?.CNSS},
-        {label: 'ICE', value: this.data?.ICE},
-        {label: 'IF', value: this.data?.IF},
-        {label: 'RC', value: this.data?.RC},
-        {label: 'E-mail', value: this.data?.email},
-        {label: 'Téléphone', value: this.data?.phone},
-        {label: 'Site web', value: this.data?.website},
-      ];
+      this.id = (<any>this.location.getState()).id;
   }
 
   ngOnInit(): void {
+    this.store.dispatch(CompanieActions.loadCompanieById({id: this.id}));
+    this.data.subscribe(data => {
+      this.passedData = [
+        {label: 'Nom', value: data?.name},
+        {label: 'CNSS', value: data?.CNSS},
+        {label: 'ICE', value: data?.ICE},
+        {label: 'IF', value: data?.IF},
+        {label: 'RC', value: data?.RC},
+        {label: 'E-mail', value: data?.email},
+        {label: 'Téléphone', value: data?.phone},
+        {label: 'Site web', value: data?.website},
+      ];
+    })
   }
 
 }
+

@@ -1,8 +1,6 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
+import { domain, clientId, audience, apiUri } from '../auth_config.json';
+
+
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
@@ -10,4 +8,13 @@
 
 export const environment = {
   production: false,
+  auth: {
+    domain,
+    clientId,
+    audience,
+    redirectUri: window.location.origin,
+  },
+  httpInterceptor: {
+    allowedList: apiUri.map(elem => `${elem}/*`),
+  },
 };

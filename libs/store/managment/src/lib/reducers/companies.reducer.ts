@@ -2,12 +2,13 @@ import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as CompaniesActions from '../actions/companies.actions';
-import { Companie } from '@tanglass-erp/core/management';
+import { Companie, DetailedCompanie } from '@tanglass-erp/core/management';
 
 export const COMPANIE_FEATURE_KEY = 'companies';
 
 
 export interface State extends EntityState<Companie> {
+  selectedCompanie: DetailedCompanie
   loaded: boolean; // has the Companie list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -22,6 +23,7 @@ Companie
 
 export const initialState: State = companieAdapter.getInitialState({
   // set initial required properties
+  selectedCompanie: null,
   loaded: false,
   error: null,
 });
@@ -35,15 +37,29 @@ const companieReducer = createReducer<State>(
          loaded: true
         })
   ),
+  on( CompaniesActions.loadCompanieByIdSuccess,
+    (state, action)  => (
+      {
+        ...state,
+        error: null,
+        selectedCompanie: action.companie,
+      }
+    )
+),
   on(CompaniesActions.addCompanieSuccess,
     (state, action) => companieAdapter.addOne(action.companie, state)
   ),
   on(CompaniesActions.updateCompanieSuccess, (state, action) =>
      companieAdapter.upsertOne(action.companie, state)
   ),
+  on(CompaniesActions.removeCompanieSuccess, (state, action) =>
+     companieAdapter.removeOne(action.companie.id, state)
+  ),
   on(CompaniesActions.loadCompaniesFailure,
      CompaniesActions.updateCompanieFailure,
      CompaniesActions.addCompanieFailure,
+     CompaniesActions.loadCompanieByIdFailure,
+     CompaniesActions.removeCompanieFailure,
      (state, { error }) => ({
     ...state,
     error,

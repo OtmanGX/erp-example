@@ -13,6 +13,7 @@ import { ProviderComponent } from './pages/provider/provider.component';
 import { ProviderCardComponent } from './pages/provider/provider-card/provider-card.component';
 import { PopProviderComponent } from './pages/provider/pop-provider/pop-provider.component';
 import { PopAddressComponent } from './pages/pop-address/pop-address.component';
+import { StoreContactModule } from '@TanglassStore/contact/index'
 
 
 const routes: Routes = [
@@ -64,7 +65,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MainAgGridModule
+    MainAgGridModule,
+    StoreContactModule
   ]
 })
 export class ContactModule { }

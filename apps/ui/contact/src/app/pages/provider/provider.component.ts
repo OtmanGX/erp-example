@@ -7,6 +7,9 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { PopProviderComponent } from './pop-provider/pop-provider.component';
 import { ProviderHeaders } from '../../utils/grid-headers';
 
+import * as ProviderActions from '@TanglassStore/contact/lib/actions/provider.actions';
+import * as ProviderSelectors from '@TanglassStore/contact/lib/selectors/provider.selectors';
+
 
 @Component({
   selector: 'tanglass-erp-provider',
@@ -18,7 +21,7 @@ export class ProviderComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$: any;
+  data$ = this.store.select(ProviderSelectors.getAllProviders);
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {
     this.setColumnDefs();
@@ -29,6 +32,7 @@ export class ProviderComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(ProviderActions.loadProviders());
   }
 
   openDialog(action, data = {}) {
@@ -46,6 +50,7 @@ export class ProviderComponent implements GridView {
           // Main Informations Form
           // Adresses Form
           // Contacts Form
+          this.store.dispatch(ProviderActions.addProvider({provider: result}))
         } else {}
       }
     });

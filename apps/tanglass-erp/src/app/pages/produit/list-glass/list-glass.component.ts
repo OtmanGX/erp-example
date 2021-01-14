@@ -27,8 +27,14 @@ export class ListGlassComponent implements OnInit {
   }
   getMp() {
     this.matierePremiereService.getAll().subscribe({
-      next: (Mp) =>
-        (this.dataMat_premiere = Mp) && this.source.load(this.dataMat_premiere),
+      next: (Mp) => {
+        try {
+          this.dataMat_premiere = [];
+          this.source.load(this.dataMat_premiere);
+        } catch (error) {
+          console.log(error);
+        }
+      }
     });
   }
   settings = {

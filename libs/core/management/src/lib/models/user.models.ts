@@ -5,9 +5,9 @@ import { MetaData } from '@tanglass-erp/core/shared';
 export interface User {
   id: string;
   active: boolean;
-  firstname: string;
-  lastname: string;
-  phone: string;
+  firstname?: string;
+  lastname?: string;
+  phone?: string;
   username: string;
   user_role: UserRole;
   SalesPoint?: SalePointForUser;
@@ -18,13 +18,12 @@ export interface DetailedUser extends MetaData {
   CIN?: string;
   active: boolean;
   email?: string;
-  firstname: string;
+  firstname?: string;
   id: string;
   joinUs?: Date;
-  lastname: string;
+  lastname?: string;
   leftUs?: Date;
-  phone: string;
-  password: string;
+  phone?: string;
   SalesPointsid?: string;
   username: string;
   user_role: UserRole;
@@ -35,9 +34,9 @@ export interface DetailedUser extends MetaData {
 export interface UsersProfileForSalePoint {
   id: string;
   active: boolean;
-  firstname: string;
-  lastname: string;
-  phone: string;
+  firstname?: string;
+  lastname?: string;
+  phone?: string;
   username: string;
   user_role: UserRole;
 }
@@ -46,6 +45,6 @@ export interface UsersProfileForSalePoint {
 
 interface UserRole {
   name: string;
-  description: string;
+  description?: string;
 }
 

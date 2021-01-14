@@ -2,11 +2,12 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as SalePointActions from '../actions/salePoint.actions';
-import { SalePoint } from '@tanglass-erp/core/management';
+import { SalePoint, DetailedSalePoint } from '@tanglass-erp/core/management';
 
 export const SALE_POINT_FEATURE_KEY = 'sale-points';
 
 export interface State extends EntityState<SalePoint> {
+  selectedSalePoint: DetailedSalePoint,
   loaded: boolean; // has the Companie list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -18,15 +19,16 @@ SalePoint
 
 export const initialState: State = salePointAdapter.getInitialState({
   // set initial required properties
+  selectedSalePoint: null,
   loaded: false,
   error: null,
 });
 
 const salePointReducer = createReducer(
   initialState,
-  on(SalePointActions.loadSalePoints, (state) => ({
+  on(SalePointActions.loadSalePointByIdSuccess, (state, action) => ({
     ...state,
-    loaded: false,
+    selectedSalePoint: action.salePoint,
     error: null,
   })),
   on(SalePointActions.loadSalePointsSuccess,
@@ -39,9 +41,14 @@ const salePointReducer = createReducer(
   on(SalePointActions.updateSalePointSuccess, (state, action) =>
   salePointAdapter.upsertOne(action.salePoint, state)
   ),
+  on(SalePointActions.removeSalePointSuccess, (state, action) =>
+  salePointAdapter.removeOne(action.salePoint.id, state)
+  ),
   on(SalePointActions.addSalePointFailure,
      SalePointActions.loadSalePointsFailure,
      SalePointActions.updateSalePointFailure,
+     SalePointActions.loadSalePointByIdFailure,
+     SalePointActions.removeSalePointFailure,
      (state, { error }) => ({
     ...state,
     error,

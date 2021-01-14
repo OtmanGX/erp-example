@@ -11,7 +11,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { reducers } from '@tanglass-erp/store/app'
+import { reducers } from '@tanglass-erp/store/app';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +38,20 @@ import { reducers } from '@tanglass-erp/store/app'
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot(),
+    AuthModule.forRoot({
+      ...env.auth,
+      httpInterceptor: {
+        ...env.httpInterceptor,
+      },
+    }),
   ],
   bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
+  ]
 })
 export class AppModule {}
