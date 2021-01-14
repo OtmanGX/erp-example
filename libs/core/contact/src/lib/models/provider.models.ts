@@ -1,6 +1,5 @@
 import { MetaData } from "libs/core/shared/metaData";
 import { Address,PartialContact } from "./shared.models";
-import { Contact } from "./contact.models";
 
 
 // used for  providers grid table display

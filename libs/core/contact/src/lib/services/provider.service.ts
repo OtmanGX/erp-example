@@ -45,12 +45,13 @@ export class ProviderService {
 
   insertOne(createdOne:InsertedProvider) {
 
-    let addedValue:InsertProviderMutationVariables=new DataAdapter<InsertedProvider>(createdOne);
+    let addedValue:InsertProviderMutationVariables=new DataAdapter(createdOne);
     return this.insertOneGQL.mutate(addedValue)
 
   
   }
   updateOne(updatedOne:UpdateProviderMutationVariables ) {
+
     return this.updateOneGQL.mutate(updatedOne)
   }
 
