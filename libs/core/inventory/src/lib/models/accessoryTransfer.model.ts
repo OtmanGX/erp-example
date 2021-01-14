@@ -20,7 +20,7 @@ export interface  DetailedAccessoryTransfer extends MetaData{
 
 }
 
-export interface  InsertededAccessoryTransfer {
+export interface  InsertedAccessoryTransfer {
     quatity:number;
     transferDate:Date;
 

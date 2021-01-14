@@ -1,6 +1,7 @@
 import { MetaData } from "@tanglass-erp/core/shared";
 import { Accessory } from "@tanglass-erp/core/product";
 import {Warehouse  } from "./warehouse.model";
+import { AccessoryTransfer } from "./accessoryTransfer.model";
 
 export interface AccessoryTransferOrder{
     id:string;
@@ -9,7 +10,7 @@ export interface AccessoryTransferOrder{
     toWarehouse:string;
     quantity:number;
     status:string;
-    accessoryTransfer:AccessoryTransferOrder[];
+    accessoryTransfer:AccessoryTransfer[];
 
 }
 
@@ -22,7 +23,7 @@ export interface DetailedAccessoryTransferOrder extends MetaData{
     orderDate:Date;
     deadlineDate:Date;
     status:string; // confirmed/ delivered /closed/suspended enum transferStatus
-    accessoryTransfer:AccessoryTransferOrder[];
+    accessoryTransfer:AccessoryTransfer[];
 
 }
 
