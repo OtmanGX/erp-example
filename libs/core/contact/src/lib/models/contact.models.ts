@@ -1,23 +1,39 @@
 import { MetaData } from "libs/core/shared/metaData";
-import { Address } from "./address.model";
+import { Address,PartialContact } from "./shared.models";
+import { Mixin } from 'ts-mixer';
+
+
+
+
 export interface Contact{
-    id?:string;
-    code?:string;
+    id:string;
     mail?:string;
-    name?:string;
+    code?:string;
+    name:string;
     note?:string;
-    phone?:string;
+    phone:string;
 }
 
 export interface DetailedContact extends MetaData{
-    id?:string;
-    code?:string;
+    id:string;
     mail?:string;
+    code?:string;
     name:string;
     note?:string;
     phone:string;
     addresses?:Address[];
-    customers?:Contact[];
-    provider?:Contact[];
+    customers?:PartialContact[];
+    provider?:PartialContact[];
+}
+
+export interface InsertedContact {
+    mail?:string;
+    name:string;
+    code?:string;
+    note?:string;
+    phone:string;
+    addresses?:Address[];
+    customers?:PartialContact[];
+    provider?:PartialContact[];
 }
 

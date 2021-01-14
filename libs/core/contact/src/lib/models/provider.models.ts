@@ -1,26 +1,44 @@
 import { MetaData } from "libs/core/shared/metaData";
-import { Address } from "./address.model";
+import { Address,PartialContact } from "./shared.models";
 import { Contact } from "./contact.models";
 
+
+// used for  providers grid table display
+
 export interface Provider{
-    id?:string;
+    id:string;
     name:string;
     note?:string;
+    code?:string;
     phone:string;
     mail?:string;
 
 }
-
+// used for get by id (provider card ) and editing option  
 export interface DetailedProvider extends MetaData{
-    id?:string;
-    code?:string;
+    id:string;
     name:string;
     note?:string;
     phone:string;
+    code?:string;
     mail?:string;
     FAX?:string;
     website?:string;
     addresses?:Address[];
-    contacts?:Contact[];
+    contacts?:PartialContact[];
     
+}
+
+// used for inserting new provider
+
+export interface InsertedProvider {
+    name:string;
+    note?:string;
+    phone:string;
+    mail?:string;
+    code?:string;
+    FAX?:string;
+    website?:string;
+    addresses?:Address[];
+    contacts?:PartialContact[];
 }

@@ -85,6 +85,9 @@
     },
     "store-contact": {
       "tags": []
+    },
+    "core-inventory": {
+      "tags": []
     }
   }
 }

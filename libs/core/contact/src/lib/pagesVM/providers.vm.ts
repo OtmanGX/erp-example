@@ -1,5 +1,5 @@
 import { Provider, DetailedProvider } from "../models/provider.models";
-import { Contact } from "../models/contact.models";
+import { PartialContact } from "../models/shared.models";
 //list of Providers
 export interface ProvidersVM {
     providers:Provider[];
@@ -20,7 +20,7 @@ export interface DetailedProviderVM{
 
 export interface ProviderCreationVM{
 
-    contacts:Contact[];
+    contacts:PartialContact[];
     loading:boolean;
     error?:string;
     

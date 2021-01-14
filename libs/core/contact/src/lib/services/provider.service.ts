@@ -11,7 +11,7 @@ import {
 
 } from '@tanglass-erp/infrastructure/graphql';
 import { DataAdapter } from "../utils/addressesAdapter";
-import { Provider,DetailedProvider } from "../models/provider.models";
+import { Provider,DetailedProvider, InsertedProvider } from "../models/provider.models";
 @Injectable({
   providedIn: 'root'
 })
@@ -43,9 +43,9 @@ export class ProviderService {
     return this.getByIdGQL.fetch({ id })
   }
 
-  insertOne(createdOne:DetailedProvider) {
+  insertOne(createdOne:InsertedProvider) {
 
-    let addedValue:InsertProviderMutationVariables=new DataAdapter<DetailedProvider>(createdOne);
+    let addedValue:InsertProviderMutationVariables=new DataAdapter<InsertedProvider>(createdOne);
     return this.insertOneGQL.mutate(addedValue)
 
   

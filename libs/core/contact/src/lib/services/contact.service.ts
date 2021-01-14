@@ -10,7 +10,10 @@ import {
   UpdateContactMutationVariables,
   Contact_Contact
 } from '@tanglass-erp/infrastructure/graphql';
-import { Contact ,DetailedContact} from '../models/contact.models';
+import { Contact ,DetailedContact, InsertedContact} from '../models/contact.models';
+import { InsertedProvider } from '../models/provider.models';
+import { DataAdapter } from '../utils/addressesAdapter';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -39,8 +42,10 @@ export class ContactService {
     return this.getByIdGQL.fetch({ id })
   }
  
-  insertOne(createdOne: InsertContactMutationVariables) {
-    return this.insertOneGQL.mutate(createdOne)
+  insertOne(createdOne: InsertedContact) {
+    let addedValue: InsertContactMutationVariables = new DataAdapter<InsertedContact>(createdOne);
+
+    return this.insertOneGQL.mutate(addedValue)
 
   }
   updateOne(updatedOne: UpdateContactMutationVariables) {
