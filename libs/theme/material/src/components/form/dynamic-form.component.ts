@@ -20,7 +20,10 @@ import { Groupfield } from '../../interfaces/groupfield.interface';
   <form fxFlexFill="" style="min-width: 100%;width: 100%" class="" [formGroup]="form" (submit)="onSubmit($event)">
 
     <div *ngFor="let g of groups">
-      <div *ngIf="g.headerVisible" class="mat-h1">{{g.label}}</div>
+      <div mat-subheader fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="start center" *ngIf="g.headerVisible" class="mat-h1">
+        <span>{{g.label}}</span>
+        <mat-divider style="border-top-color: #fcc02e" fxFlex="100"></mat-divider>
+      </div>
       <div class="pl-20" fxLayoutGap="20px grid" fxLayout="row wrap" fxLayoutAlign="space-between center">
       <ng-container *ngFor="let field of g.fields;" dynamicField [field]="field" [group]="form.controls[g.name]">
       </ng-container>
