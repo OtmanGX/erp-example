@@ -2,7 +2,7 @@
 
   <div fxLayout="row">
     <div class="spacer"></div>
-    <button mat-fab class="bg-white">
+    <button mat-fab class="bg-white" matTooltip="Modifier" (click)="openDialog('provider', data)">
       <mat-icon fontSet="fas" fontIcon="fa-pen"></mat-icon>
     </button>
   </div>
@@ -10,7 +10,7 @@
   </ngx-list-item>
 
   <div fxLayout="column" style="width: 80%">
-    <mat-accordion class="example-headers-align ml-12">
+    <mat-accordion class="headers-align ml-12">
       <mat-expansion-panel *ngFor="let item of data?.contacts; index as i" [expanded]="stepContact === i"
                            (opened)="setStepContact(i)" hideToggle>
         <mat-expansion-panel-header>
@@ -33,8 +33,8 @@
 
     </mat-accordion>
     <div class="ml-12">
-      <button mat-icon-button color="primary">
-        <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
+      <button mat-button color="primary" (click)="openDialog('contact')">
+        <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>&nbsp;&nbsp; Ajouter
       </button>
     </div>
   </div>
@@ -43,7 +43,7 @@
   </ngx-list-item>
 
   <div fxLayout="column" style="width: 80%">
-    <mat-accordion class="example-headers-align ml-12">
+    <mat-accordion class="headers-align ml-12">
       <mat-expansion-panel *ngFor="let item of data?.addresses; index as i" [expanded]="stepAddress === i"
                            (opened)="setStepAddress(i)" hideToggle>
         <mat-expansion-panel-header>
@@ -65,8 +65,8 @@
       </mat-expansion-panel>
     </mat-accordion>
     <div class="ml-12">
-      <button mat-icon-button color="primary">
-        <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
+      <button mat-button color="primary" (click)="openDialog('address')">
+        <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>&nbsp;&nbsp; Ajouter
       </button>
     </div>
   </div>
