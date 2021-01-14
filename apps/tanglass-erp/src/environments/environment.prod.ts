@@ -1,4 +1,4 @@
-import { apiUri, audience, clientId, domain } from '../../auth_config.json';
+import { apiUri, audience, clientId, domain } from '../auth_config.json';
 
 /**
  * @license

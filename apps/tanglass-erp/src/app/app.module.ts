@@ -16,6 +16,7 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
