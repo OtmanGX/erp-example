@@ -18,6 +18,7 @@ const regConfigProvider = (data?) => [
   {type: "input", name: "mail", label: "E-mail", inputType: "text", value: data?.mail},
   {type: "input", name: "phone", label: "Téléphone", inputType: "text", value: data?.phone},
   {type: "input", name: "note", label: "Note", inputType: "text", value: data?.note},
+  {type: "select", name: "contacts", label: "Contacts", inputType: "text", value: data?.contacts},
 ];
 
 const regConfigContact = (data?) => [
@@ -30,6 +31,16 @@ const regConfigContact = (data?) => [
   {type: "input", name: "phone", label: "Téléphone", inputType: "tel", value: data?.phone},
   {type: "input", name: "note", label: "Note", inputType: "text", value: data?.note},
 ];
+
+const regConfigContactDetailed = (data?) => [
+  {name: 'contact', label: 'Information Générales', fields: regConfigContact(data), headerVisible: true },
+  {name: 'affectation', label: 'Affectation', headerVisible: true, fields: [
+      {type: "select", name: "customers", label: "Clients", inputType: "text", value: data?.customers, multiple: true},
+      {type: "select", name: "provider", label: "Clients", inputType: "text", value: data?.provider, multiple: true},
+    ]
+  }
+  ];
+
 
 const regCustomerConfig = (data?) => [
   {type: "input", name: "name", label: "Nom", inputType: "text", value: data?.name},
@@ -48,12 +59,14 @@ const regCustomerConfig = (data?) => [
   {type: "input", name: "note", label: "Note", inputType: "text", value: data?.note},
   {type: "input", name: "website", label: "Site web", inputType: "text", value: data?.website},
   {type: "input", name: "Fax", label: "Fax", inputType: "text", value: data?.Fax},
-];
+  {type: "select", name: "contacts", label: "Contacts", inputType: "text", value: data?.contacts},
 
+];
 
 export {
   regConfigAddresses,
   regConfigProvider,
   regConfigContact,
+  regConfigContactDetailed,
   regCustomerConfig
 };

@@ -46,6 +46,13 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit {
     this.newAddress(); this.newContact();
   }
 
+  buildForm(): void {
+    this.regConfig = regConfigProvider(this.data);
+    const contacts = this.regConfig.find(elem => elem.name === 'contacts');
+    // contacts['options'] = this.contacts$.pipe(map(item => item.map(obj => ({key: obj.id, value: obj.name}));
+
+  }
+
   ngAfterViewInit() {
     this.providerForm = this.dynamicForms.find(
       component => component.name === 'main');
@@ -54,10 +61,6 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit {
     this.dynamicForms.changes.subscribe(value => {
       this.assignAllForms();
     });
-  }
-
-  buildForm(): void {
-    this.regConfig = regConfigProvider(this.data);
   }
 
   assignAllForms() {
