@@ -1,5 +1,5 @@
-query getUserById($id: uuid!) {
-  management_userProfile_by_pk(id: $id)  {
+query getUserById($id: String!) {
+  management_userProfile_by_pk(id: $id) {
     CIN
     active
     createdAt
@@ -11,7 +11,6 @@ query getUserById($id: uuid!) {
     lastname
     leftUs
     phone
-    
     role
     updatedAt
     updatedBy
