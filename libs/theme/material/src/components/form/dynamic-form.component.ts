@@ -46,6 +46,7 @@ import { Groupfield } from '../../interfaces/groupfield.interface';
   styles: []
 })
 export class DynamicFormComponent implements OnInit {
+  @Input() name: string;
   @Input() fields: FieldConfig[] = [];
   @Input() groups: Groupfield[] = [];
   @Input() withActions: boolean = true;

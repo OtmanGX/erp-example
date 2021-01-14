@@ -13,7 +13,7 @@ export class ServiceComponent implements OnInit {
     '$',
     [{param: 'Diamètre'}, {param: 'Longueur'}]);
 
-  constructor(private route:ActivatedRoute) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {

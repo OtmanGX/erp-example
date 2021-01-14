@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FieldConfig, FormDialog } from '@tanglass-erp/material';
+import { FormDialog, Groupfield } from '@tanglass-erp/material';
+import { regConfigContactDetailed } from '../../../utils/forms';
 
 @Component({
   selector: 'ngx-pop-contact',
@@ -9,7 +10,8 @@ import { FieldConfig, FormDialog } from '@tanglass-erp/material';
 })
 export class PopContactComponent extends FormDialog {
 
-  regConfig: FieldConfig[];
+  regConfig: Groupfield[];
+  title = "Ajouter un contact";
 
   constructor(
     public dialogRef: MatDialogRef<PopContactComponent>,
@@ -17,25 +19,12 @@ export class PopContactComponent extends FormDialog {
   ) {
     super(dialogRef, data);
   }
-  ngOnInit(): void {
-    this.buildForm();
-  }
 
   buildForm(): void {
-    this.regConfig = [
-      {type: "input", name: "code", label: "Code", inputType: "text", value: this.data.code,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", name: "name", label: "Nom", inputType: "text", value: this.data.name,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", name: "mail", label: "E-mail", inputType: "text", value: this.data.mail},
-      {type: "input", name: "note", label: "Note", inputType: "text", value: this.data.note},
-      {type: "input", name: "phone", label: "Téléphone", inputType: "text", value: this.data.phone},
-    ];
+    this.regConfig = regConfigContactDetailed(this.data);
+    const providers = this.regConfig[1].fields.find(elem => elem.name === 'provider');
+    const customers = this.regConfig[1].fields.find(elem => elem.name === 'customer');
+    // providers['options'] = this.providers$.pipe(map(item => item.map(obj => ({key: obj.id, value: obj.name}));
+    // customers['options'] = this.customers$.pipe(map(item => item.map(obj => ({key: obj.id, value: obj.name}));
   }
 }
