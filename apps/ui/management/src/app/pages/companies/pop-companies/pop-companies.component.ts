@@ -11,15 +11,11 @@ export class PopCompaniesComponent extends FormDialog {
 
   regConfig: FieldConfig[];
 
-
   constructor(
     public dialogRef: MatDialogRef<PopCompaniesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     super(dialogRef, data);
-  }
-
-  ngOnInit() {
   }
 
   buildForm(): void {

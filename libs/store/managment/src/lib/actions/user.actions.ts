@@ -86,7 +86,7 @@ export const removeUser = createAction(
 );
 export const removeUserSuccess = createAction(
   '[User Effect] Update User Success',
-  props<{ user: User }>()
+  props<{ user: any }>()
 );
 export const removeUserFailure = createAction(
   '[User Effect] Update User failure',

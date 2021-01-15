@@ -2,8 +2,8 @@
 
   <div fxLayout="row">
     <div class="spacer"></div>
-    <button mat-fab class="bg-white" matTooltip="Modifier" (click)="openDialog('provider', data)">
-      <mat-icon fontSet="fas" fontIcon="fa-pen"></mat-icon>
+    <button mat-fab matTooltip="Modifier" (click)="openDialog('provider', data)">
+      <mat-icon fontSet="fas" class="text-white" fontIcon="fa-pen"></mat-icon>
     </button>
   </div>
   <ngx-list-item [data]="otherData[0]">
