@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { AppState } from '@tanglass-erp/store/app';
 
 @Component({
   selector: 'ngx-warehouse-glasse-card',
@@ -13,11 +15,27 @@ export class WarehouseGlasseCardComponent implements OnInit {
   step = null;
   data: any;
   passedData: any;
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(value => {
-      this.id = value.id;
+  warehouseData: any;
+  glassData: any;
+  constructor(private location: Location,
+             private store: Store<AppState>) {
+
+    this.id = (<any>location.getState()).id;
+    this.data.subscribe( data => {
       this.passedData = [
-        {label: 'Nom', value: this.data?.name},
+        {label: 'Quantité', value: data?.quantity},
+      ];
+
+      this.glassData = [
+        {label: 'Type', value: data?.glass?.type},
+        {label: 'Color', value: data?.glass?.color},
+        {label: 'Epaisseur', value: data?.glass?.thickness},
+      ];
+
+      this.warehouseData = [
+        {label: 'Type', value: data?.type},
+        {label: 'Société', value: data?.company?.name},
+        {label: 'Point de vente', value: data?.salePoint?.name},
       ];
     });
   }

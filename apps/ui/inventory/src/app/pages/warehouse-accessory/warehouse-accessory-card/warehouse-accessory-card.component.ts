@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { AppState } from '@tanglass-erp/store/app';
 
 @Component({
   selector: 'ngx-warehouse-accessory-card',
@@ -13,11 +15,27 @@ export class WarehouseAccessoryCardComponent implements OnInit {
   step = null;
   data: any;
   passedData: any;
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(value => {
-      this.id = value.id;
+  accessoryData: any;
+  warehouseData: any;
+  constructor(private location: Location,
+              private store: Store<AppState>) {
+
+    this.id = (<any>location.getState()).id;
+    this.data.subscribe( data => {
       this.passedData = [
-        {label: 'Nom', value: this.data?.name},
+        {label: 'Quantité', value: data?.quantity},
+      ];
+
+      this.accessoryData = [
+        {label: 'Nom', value: data?.accessory?.name},
+        {label: 'Type', value: data?.accessory?.type},
+        {label: 'Quota', value: data?.accessory?.quota},
+      ];
+
+      this.warehouseData = [
+        {label: 'Type', value: data?.type},
+        {label: 'Société', value: data?.company?.name},
+        {label: 'Point de vente', value: data?.salePoint?.name},
       ];
     });
   }

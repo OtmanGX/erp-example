@@ -11,7 +11,7 @@ export interface Consumable {
   type:string;  // row material or consumable (enum consoCategory)
   label: string;
   Substance: Substance;
-  product?: Product
+  product?: Product;
 
 }
 
