@@ -20,12 +20,28 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
 $primary: map-get($app-theme, primary);
 $accent: map-get($app-theme, accent);
+$success: map-get($app-theme, success);
 
 :root {
   --color-primary: #{mat-color($app-primary)};
   --color-accent: #{mat-color($app-accent)};
   --color-warn: #{mat-color($app-warn)};
   --color-success: #{mat-color($app-success)};
+  .mat-color-primary {
+    color: var(--color-primary);
+  }
+
+  .mat-color-accent {
+    color: var(--color-accent);
+  }
+
+  .mat-color-success {
+    color: var(--color-primary);
+  }
+
+  .mat-color-success {
+    color: var(--color-primary);
+  }
 }
 
 

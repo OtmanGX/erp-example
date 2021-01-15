@@ -49,8 +49,4 @@ export class PopSalePointsComponent extends FormDialog {
       },
     ];
   }
-
-  ngOnInit(): void {
-
-  }
 }

@@ -17,14 +17,15 @@ import { Groupfield } from '../../interfaces/groupfield.interface';
   exportAs: "dynamicForm",
   selector: "dynamic-form",
   template: `
-  <form fxFlexFill="" style="min-width: 100%;width: 100%" class="" [formGroup]="form" (submit)="onSubmit($event)">
+  <form fxFlexFill="" style="min-width: 100%;width: 100%" [formGroup]="form" (submit)="onSubmit($event)">
 
     <div *ngFor="let g of groups">
-      <div mat-subheader fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="start center" *ngIf="g.headerVisible" class="mat-h1">
-        <span>{{g.label}}</span>
-        <mat-divider style="border-top-color: #fcc02e" fxFlex="100"></mat-divider>
+      <div mat-subheader *ngIf="g.headerVisible" fxLayout="row" fxLayoutGap="16px"
+           fxLayoutAlign="space-between center" class="mat-h3 p-16">
+        <span fxFlex="" class="text-nowrap font-weight-bold">{{g.label}}</span>
+        <mat-divider fxFlex="100"></mat-divider>
       </div>
-      <div class="pl-20" fxLayoutGap="20px grid" fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <div class="pl-28" fxFlexFill="" fxLayoutGap="20px grid" fxLayout="row wrap" fxLayoutAlign="space-between center">
       <ng-container *ngFor="let field of g.fields;" dynamicField [field]="field" [group]="form.controls[g.name]">
       </ng-container>
         </div>

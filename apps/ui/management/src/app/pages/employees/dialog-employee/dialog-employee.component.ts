@@ -25,6 +25,7 @@ export class DialogEmployeeComponent extends FormDialog {
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.store.dispatch(SalePointActions.loadSalePoints());
   }
 
