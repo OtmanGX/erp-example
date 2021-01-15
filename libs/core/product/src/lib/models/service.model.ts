@@ -1,5 +1,4 @@
 import { Glass } from './glass.model';
-import { Consumable } from './consumable.model';
 import { optionalServiceParam } from './service_params';
 import {  Product } from './shared.model';
 import { MetaData } from "@tanglass-erp/core/shared";
@@ -19,10 +18,10 @@ export interface DetailedService extends MetaData {
   name: string;
   params: optionalServiceParam[];
   services:ServiceGlass[];
-  
+
 }
 
-// 
+//
 export interface ServiceGlass {
   id?: string;
   glass: Glass;

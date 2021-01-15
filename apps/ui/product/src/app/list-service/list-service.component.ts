@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Service } from '@tanglass-erp/core/product';
 import { MatDialog } from '@angular/material/dialog';
 import { PopServiceComponent } from './pop-service/pop-service.component';
+import { Operations } from '@tanglass-erp/ag-grid';
 
 @Component({
   selector: 'ngx-list-service',
@@ -11,14 +11,14 @@ import { PopServiceComponent } from './pop-service/pop-service.component';
 })
 export class ListServiceComponent implements OnInit {
 
-  data$: Observable<Service[]>;
+  data$: Observable<any>;
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
 
-  openDialog(action = 'add', data = new Service()) {
+  openDialog(action, data= {}) {
     const dialogRef = this.dialog.open(PopServiceComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
@@ -28,7 +28,7 @@ export class ListServiceComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Store action dispatching
-        if (action === 'add') {
+        if (action === Operations.add) {
         } else {}
       }
     });

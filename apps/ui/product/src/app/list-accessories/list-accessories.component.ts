@@ -2,10 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
-import { GridView } from '@tanglass-erp/ag-grid';
+import { GridView, Operations } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import { PopAccessoriesComponent } from './pop-accessories/pop-accessories.component';
-import { Accessory } from '@tanglass-erp/core/product';
+import { AccessoryHeaders } from '../utils/grid-headers';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { Accessory } from '@tanglass-erp/core/product';
 })
 export class ListAccessoriesComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$: Observable<Accessory[]>;
+  data$: Observable<any>;
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
@@ -27,26 +27,20 @@ export class ListAccessoriesComponent implements GridView {
   }
 
   ngOnInit(): void {
-    this.getMp();
   }
 
   ngAfterViewInit(): void {
     this.agGrid = this.mainGrid.agGrid;
   }
 
-  getMp() {
-    // this.data$ = this.matierePremiereService.getAll();
-  }
-
   eventTriggering(event: any) {
     // Store Action Dispatching
-    console.log(event);
     switch (event.action) {
-      case 'add':
-      case 'edit':
-        this.openDialog(event.data, event.action);
+      case Operations.add:
+      case Operations.update:
+        this.openDialog(event.action, event.data);
         break;
-      case 'delete':
+      case Operations.delete:
         break;
       // ...
     }
@@ -54,13 +48,13 @@ export class ListAccessoriesComponent implements GridView {
 
   setColumnDefs() {
     this.columnDefs = [
-      ...Accessory.columnDefs(),
+      ...AccessoryHeaders,
       { field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }
 
 
-  openDialog(data = {}, action = 'add') {
+  openDialog(action, data = {}) {
     const dialogRef = this.dialog.open(PopAccessoriesComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
@@ -70,7 +64,7 @@ export class ListAccessoriesComponent implements GridView {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Store action dispatching
-        if (action === 'add') {
+        if (action === Operations.add) {
 
         } else {} // Update
       }

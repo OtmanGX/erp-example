@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
-import { GridView } from '@tanglass-erp/ag-grid';
+import { GridView, Operations } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import {
   PopServiceConsumableComponent,
 } from './pop-service-glasse/pop-service-consumable.component';
-import { ServiceConsumable } from '@tanglass-erp/core/product';
+import { ServiceConsumableHeaders } from '../utils/grid-headers';
 
 
 @Component({
@@ -15,9 +15,9 @@ import { ServiceConsumable } from '@tanglass-erp/core/product';
   templateUrl: './list-service-consumable.component.html',
   styleUrls: ['./list-service-consumable.component.scss'],
 })
-export class ListServiceConsumableComponent implements OnInit, GridView {
+export class ListServiceConsumableComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$: Observable<ServiceConsumable[]>;
+  data$: Observable<any>;
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
@@ -29,26 +29,20 @@ export class ListServiceConsumableComponent implements OnInit, GridView {
   }
 
   ngOnInit(): void {
-    this.getMp();
   }
 
   ngAfterViewInit(): void {
     this.agGrid = this.mainGrid.agGrid;
   }
 
-  getMp() {
-    // this.data$ = this.matierePremiereService.getAll();
-  }
-
   eventTriggering(event: any) {
     // Store Action Dispatching
-    console.log(event);
     switch (event.action) {
-      case 'add':
-      case 'edit':
-        this.openDialog(event.data, event.action);
+      case Operations.add:
+      case Operations.update:
+        this.openDialog(event.action, event.data);
         break;
-      case 'delete':
+      case Operations.delete:
         break;
       // ...
     }
@@ -56,13 +50,13 @@ export class ListServiceConsumableComponent implements OnInit, GridView {
 
   setColumnDefs() {
     this.columnDefs = [
-      ...ServiceConsumable.columnDefs(),
+      ...ServiceConsumableHeaders,
       { field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }
 
 
-  openDialog(data = {}, action = 'add') {
+  openDialog(action, data = {}) {
     const dialogRef = this.dialog.open(PopServiceConsumableComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
@@ -72,8 +66,7 @@ export class ListServiceConsumableComponent implements OnInit, GridView {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Store action dispatching
-        if (action === 'add') {
-
+        if (action === Operations.add) {
         } else {} // Update
       }
     });

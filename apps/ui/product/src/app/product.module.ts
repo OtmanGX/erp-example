@@ -14,7 +14,7 @@ import { PopServiceGlasseComponent } from './list-service-glasse/pop-service-gla
 import { ListServiceGlasseComponent } from './list-service-glasse/list-service-glasse.component';
 import { ListServiceConsumableComponent } from './list-service-consumable/list-service-consumable.component';
 import { PopServiceConsumableComponent } from './list-service-consumable/pop-service-glasse/pop-service-consumable.component';
-import { ServiceComponent } from './service/service.component';
+import { ServiceComponent } from './list-service/service/service.component';
 
 ;
 
