@@ -1,4 +1,4 @@
-mutation updateContact($id: uuid!, $code: String, $mail: String, $name: String, $note: String, $phone: String, ) {
+mutation updateContact($id: uuid!, $code: String, $mail: String, $name: String, $note: String, $phone: String) {
   update_contact_contact_by_pk(pk_columns: {id: $id}, _set: { code: $code, mail: $mail, name: $name, note: $note, phone: $phone,}) {
     id
     code
@@ -6,5 +6,11 @@ mutation updateContact($id: uuid!, $code: String, $mail: String, $name: String, 
     name
     note
     phone
+ 
+  }
+}
+mutation updateContactAddresses($contactAddresses: [contact_contact_address_insert_input!]! = [{contactid: "", address: {data: {address: "", city: "", zip: ""}}}]) {
+  insert_contact_contact_address(objects: $contactAddresses) {
+    affected_rows
   }
 }

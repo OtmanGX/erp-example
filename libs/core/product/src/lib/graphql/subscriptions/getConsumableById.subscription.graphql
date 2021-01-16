@@ -1,0 +1,23 @@
+subscription MySubscription($id: uuid!) {
+  product_consumable_by_pk(id: $id) {
+    category
+    createdAt
+    createdBy
+    id
+    product {
+      code
+      label
+      price
+      priceMax
+      priceMin
+      product_companies {
+        Company {
+          name
+          id
+        }
+      }
+    }
+    updatedAt
+    updatedBy
+  }
+}

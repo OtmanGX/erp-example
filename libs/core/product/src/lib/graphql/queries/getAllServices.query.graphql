@@ -1,0 +1,17 @@
+query GetAllServices {
+  product_service_glasses {
+    product {
+      code
+      label
+      price
+      priceMax
+      priceMin
+      product_companies {
+        Company {
+          id
+          name
+        }
+      }
+    }
+  }
+}

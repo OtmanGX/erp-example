@@ -1,0 +1,21 @@
+query GetAllGlasses {
+  product_glass {
+    id
+    color
+    thickness
+    type
+    product {
+      code
+      label
+      price
+      priceMax
+      priceMin
+      product_companies {
+        Company {
+          id
+          name
+        }
+      }
+    }
+  }
+}
