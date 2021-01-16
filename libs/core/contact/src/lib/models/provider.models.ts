@@ -1,4 +1,5 @@
 import { MetaData } from "libs/core/shared/metaData";
+import { InsertedContact } from "./contact.models";
 import { Address,PartialContact } from "./shared.models";
 
 
@@ -39,5 +40,5 @@ export interface InsertedProvider {
     FAX?:string;
     website?:string;
     addresses?:Address[];
-    contacts?:PartialContact[];
+    contacts?:InsertedContact[];
 }

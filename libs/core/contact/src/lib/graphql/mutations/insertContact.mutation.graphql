@@ -1,11 +1,17 @@
-mutation InsertContact( $code: String, $mail: String, $name: String, $note: String, $phone: String,  $addresses: [contact_contact_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}}) {
-  insert_contact_contact_one(object: { code: $code, mail: $mail, name: $name, note: $note, phone: $phone,  contact_addresses: {data: $addresses}, }) {
+mutation InsertContact($code: String, $mail: String, $name: String, $note: String, $phone: String, $addresses: [contact_contact_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}}, $customers: [contact_customer_contact_insert_input!]! = {customer: {data: {name: "", phone: "", code: ""}}}) {
+  insert_contact_contact_one(object: {code: $code, mail: $mail, name: $name, note: $note, phone: $phone, contact_addresses: {data: $addresses}, contact_customers: {data: $customers}}) {
     id
     code
     mail
     name
     note
     phone
-    
+    addresses {
+      id
+      address
+      city
+      zip
+    }
+
   }
 }

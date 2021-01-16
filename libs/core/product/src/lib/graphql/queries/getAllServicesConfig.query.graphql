@@ -1,0 +1,11 @@
+query GetAllServiceconfig{
+  product_service {
+    labelFactory
+    name
+    id
+    optionalServiceParams {
+      id
+      param
+    }
+  }
+}

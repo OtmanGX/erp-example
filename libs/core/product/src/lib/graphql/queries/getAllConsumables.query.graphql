@@ -1,0 +1,18 @@
+query GetAllConsumables {
+  product_consumable {
+    category
+    product {
+      code
+      label
+      price
+      priceMax
+      priceMin
+      product_companies {
+        Company {
+          id
+          name
+        }
+      }
+    }
+  }
+}

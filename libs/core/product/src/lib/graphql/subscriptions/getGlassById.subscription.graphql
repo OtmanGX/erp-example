@@ -1,0 +1,25 @@
+subscription getGlassById($id: uuid!) {
+  product_glass_by_pk(id: $id) {
+    color
+    createdBy
+    createdAt
+    id
+    product {
+      code
+      label
+      price
+      priceMax
+      priceMin
+      product_companies {
+        Company {
+          name
+          id
+        }
+      }
+    }
+    thickness
+    type
+    updatedAt
+    updatedBy
+  }
+}
