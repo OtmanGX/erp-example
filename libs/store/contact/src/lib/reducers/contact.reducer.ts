@@ -47,7 +47,7 @@ const ContactReducer = createReducer<State>(
     )
 ),
   on(ContactsActions.addContactSuccess,
-    (state, action) => contactAdapter.addOne(action.Contact, state)
+    (state, action) => contactAdapter.addOne(action.contact, state)
   ),
   on(ContactsActions.updateContactSuccess, (state, action) =>
      contactAdapter.upsertOne(action.contact, state)

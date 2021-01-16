@@ -20,6 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Components
 import { SelectComponent } from '../components/form/select.component';
@@ -45,9 +46,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
 
 
+
 export const MATERIAL_MODULES = [
   FlexLayoutModule,
   MatInputModule,
+  MatSnackBarModule,
   MatCardModule,
   MatButtonModule,
   MatSidenavModule,

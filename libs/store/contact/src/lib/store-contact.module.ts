@@ -8,6 +8,8 @@ import { ContactsEffects } from './effects/contact.effects';
 import { CustomersEffects } from './effects/customer.effects';
 import { ProvidersEffects } from './effects/provider.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { AlertEffects } from './effects/alert.effects';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -27,8 +29,10 @@ import { EffectsModule } from '@ngrx/effects';
     EffectsModule.forFeature([
       ContactsEffects,
       CustomersEffects,
-      ProvidersEffects
-    ])
+      ProvidersEffects,
+      AlertEffects
+    ]),
+    ToastrModule.forRoot(),
   ],
 })
 export class StoreContactModule {}
