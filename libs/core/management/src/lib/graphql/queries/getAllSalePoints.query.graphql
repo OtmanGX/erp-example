@@ -1,5 +1,5 @@
 query GetAllSalesPoints {
-  management_SalesPoint {
+  management_salesPoint {
     address
     email
     fax

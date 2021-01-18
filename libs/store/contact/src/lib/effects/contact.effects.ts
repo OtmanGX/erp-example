@@ -31,7 +31,7 @@ export class ContactsEffects {
       mergeMap((action) =>
         this.contactService.insertOne(action.contact).pipe(
           map((data) =>
-          ContactsActions.addContactSuccess({Contact: data.data.insert_contact_contact_one})
+          ContactsActions.addContactSuccess({contact: data.data.insert_contact_contact_one})
           ),
           catchError((error) =>
             of(ContactsActions.addContactFailure({ error }))

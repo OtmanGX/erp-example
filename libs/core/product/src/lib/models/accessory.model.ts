@@ -4,28 +4,25 @@ import { Substance, Product } from './shared.model';
 export interface Accessory {
 
   id?: string;
-  name: string;
-  type: string;
-  quota: number;
-  substance: Substance;
+  category: string;// enum for affecting types (accessory/apparent)
+  quota?: number;
+  substance?: Substance;
   product: Product;
 }
 
 
 export interface DetailedAccessory  extends MetaData{
   id:string
-  name: string;
   type: string;
-  quota: number;
-  substance: Substance;
+  quota?: number;
+  substance?: Substance;
   product: Product;
 }
 
 
 export interface insertedAccessory{
-  name: string;
   type: string;
-  quota: number;
-  substance: Substance;
+  quota?: number;
+  substance?: Substance;
   product: Product;
 }

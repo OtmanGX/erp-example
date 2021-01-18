@@ -1,40 +1,40 @@
-import { Glass } from './glass.model';
 import { Consumable } from './consumable.model';
-import { optionalServiceParam } from './service_params';
+import { OptionalServiceParam,OptionalServiceParamValue } from './service_params';
 import {  Product } from './shared.model';
 import { MetaData } from "@tanglass-erp/core/shared";
 // services collection
 
-export interface Service {
+export interface ServiceConfig {
 
-  id?: string;
+  id: string;
   name: string;
-  params: optionalServiceParam[];
+  params?: OptionalServiceParam[];
+  labelFactory: string;
 
 }
 
-export interface DetailedService extends MetaData {
+export interface DetailedServiceConfig extends MetaData {
 
-  id?: string;
+  id: string;
   name: string;
-  params: optionalServiceParam[];
-  services:ServiceGlass[];
-  
+  params?: OptionalServiceParam[];
+  services?:Service[];
+  labelFactory: string;
+
 }
 
 // 
-export interface ServiceGlass {
-  id?: string;
-  glass: Glass;
-  service: Service;
-  labelFactory: string;
-  product: Product
+export interface Service {
+  id: string;
+  serviceCollection: ServiceConfig;
+  product: Product;
+  optionalParamValues?:OptionalServiceParamValue[];
 }
 
-export interface DetailedServiceGlass extends MetaData{
-  id?: string;
-  glass: Glass;
-  service: Service;
-  labelFactory: string;
-  product: Product
+export interface DetailedService extends MetaData{
+  id: string;
+  serviceCollection: ServiceConfig;
+  product: Product;
+  paramValues?:OptionalServiceParamValue[];
+
 }
