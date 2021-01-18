@@ -15,7 +15,7 @@ export class CompaniesEffects {
       mergeMap((action) =>
         this.companieService.getAll().pipe(
           map((data) =>
-          CompaniesActions.loadCompaniesSuccess({companies: data.data.management_Company})
+          CompaniesActions.loadCompaniesSuccess({companies: data.data.management_company})
           ),
           catchError((error) =>
             of(CompaniesActions.loadCompaniesFailure({ error }))
@@ -31,7 +31,7 @@ export class CompaniesEffects {
       mergeMap((action) =>
         this.companieService.insertOne(action.companie).pipe(
           map((data) =>
-          CompaniesActions.addCompanieSuccess({companie: data.data.insert_management_Company_one})
+          CompaniesActions.addCompanieSuccess({companie: data.data.insert_management_company_one})
           ),
           catchError((error) =>
             of(CompaniesActions.addCompanieFailure({ error }))
@@ -48,7 +48,7 @@ export class CompaniesEffects {
       mergeMap((action) =>
         this.companieService.getOneById(action.id).pipe(
           map((data) =>
-          CompaniesActions.loadCompanieByIdSuccess({companie: data.data.management_Company_by_pk})
+          CompaniesActions.loadCompanieByIdSuccess({companie: data.data.management_company_by_pk})
           ),
           catchError((error) =>
             of(CompaniesActions.loadCompanieByIdFailure({ error }))
@@ -64,7 +64,7 @@ export class CompaniesEffects {
       mergeMap((action) =>
         this.companieService.updateOne(action.companie).pipe(
           map((data) =>
-          CompaniesActions.updateCompanieSuccess({companie: data.data.update_management_Company_by_pk})
+          CompaniesActions.updateCompanieSuccess({companie: data.data.update_management_company_by_pk})
           ),
           catchError((error) =>
             of(CompaniesActions.updateCompanieFailure({ error }))
@@ -80,7 +80,7 @@ export class CompaniesEffects {
       mergeMap((action) =>
         this.companieService.removeOne(action.companie.id).pipe(
           map((data) =>
-          CompaniesActions.removeCompanieSuccess({companie: data.data.delete_management_Company_by_pk.id})
+          CompaniesActions.removeCompanieSuccess({companie: data.data.delete_management_company_by_pk.id})
           ),
           catchError((error) =>
             of(CompaniesActions.removeCompanieFailure({ error }))

@@ -15,7 +15,7 @@ export class SalePointEffects {
       mergeMap((action) =>
         this.salePointService.getAll().pipe(
           map((data) =>
-            SalePointActions.loadSalePointsSuccess({salePoints: data.data.management_SalesPoint})
+            SalePointActions.loadSalePointsSuccess({salePoints: data.data.management_salesPoint})
           ),
           catchError((error) =>
             of(SalePointActions.loadSalePointsFailure({ error }))
@@ -32,7 +32,7 @@ export class SalePointEffects {
       mergeMap((action) =>
         this.salePointService.insertOne(action.salePoint).pipe(
           map((data) =>
-            SalePointActions.addSalePointSuccess({salePoint: data.data.insert_management_SalesPoint_one})
+            SalePointActions.addSalePointSuccess({salePoint: data.data.insert_management_salesPoint_one})
           ),
           catchError((error) =>
             of(SalePointActions.addSalePointFailure({ error }))
@@ -48,7 +48,7 @@ export class SalePointEffects {
       mergeMap((action) =>
         this.salePointService.getOneById(action.id).pipe(
           map((data) =>
-            SalePointActions.loadSalePointByIdSuccess({salePoint: data.data.management_SalesPoint_by_pk})
+            SalePointActions.loadSalePointByIdSuccess({salePoint: data.data.management_salesPoint_by_pk})
           ),
           catchError((error) =>
             of(SalePointActions.loadSalePointByIdFailure({ error }))
@@ -64,7 +64,7 @@ export class SalePointEffects {
       mergeMap((action) =>
         this.salePointService.updateOne(action.salePoint).pipe(
           map((data) =>
-            SalePointActions.updateSalePointSuccess({salePoint: data.data.update_management_SalesPoint_by_pk})
+            SalePointActions.updateSalePointSuccess({salePoint: data.data.update_management_salesPoint_by_pk})
           ),
           catchError((error) =>
             of(SalePointActions.updateSalePointFailure({ error }))
@@ -81,7 +81,7 @@ export class SalePointEffects {
       mergeMap((action) =>
         this.salePointService.removeOne(action.salePoint.id).pipe(
           map((data) =>
-            SalePointActions.removeSalePointSuccess({salePoint: data.data.delete_management_SalesPoint_by_pk.id})
+            SalePointActions.removeSalePointSuccess({salePoint: data.data.delete_management_salesPoint_by_pk.id})
           ),
           catchError((error) =>
             of(SalePointActions.removeSalePointFailure({ error }))

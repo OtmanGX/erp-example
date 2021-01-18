@@ -9,6 +9,8 @@ import * as fromSalePoints from './reducers/sale-point-reducer';
 import * as fromUsers from './reducers/users.reducer';
 import { SalePointEffects } from './effects/sale-point.effects';
 import { CoreManagementModule } from '@tanglass-erp/core/management'
+import { AlertEffects } from './effects/alert.effects';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -35,8 +37,10 @@ import { CoreManagementModule } from '@tanglass-erp/core/management'
     EffectsModule.forFeature([
       CompaniesEffects,
       SalePointEffects,
-      UsersEffects
+      UsersEffects,
+      AlertEffects
     ]),
+    ToastrModule.forRoot(),
   ],
 })
 export class ManagementStateModule {}
