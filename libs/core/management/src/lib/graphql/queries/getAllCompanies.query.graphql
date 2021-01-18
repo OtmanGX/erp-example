@@ -1,5 +1,5 @@
 query GetAllCompanies {
-  management_Company {
+  management_company {
     id
     CNSS
     ICE

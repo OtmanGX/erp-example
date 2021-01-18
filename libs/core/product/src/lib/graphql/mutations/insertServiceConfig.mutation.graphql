@@ -1,0 +1,11 @@
+mutation InsertServiceConfig($labelFactory: String, $name: String, $param: [product_optionalServiceParam_insert_input!]! = {param: ""}) {
+  insert_product_serviceConfig_one(object: {labelFactory: $labelFactory, name: $name, optionalServiceParams: {data: $param}}) {
+    labelFactory
+    name
+    id
+    optionalServiceParams {
+      param
+      id
+    }
+  }
+}

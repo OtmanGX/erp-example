@@ -1,16 +1,15 @@
 query GetAllServices {
-  product_service_glasses {
+  product_service {
     product {
       code
       label
+      unit
       price
       priceMax
       priceMin
-      product_companies {
-        Company {
-          id
-          name
-        }
+      companies {
+        name
+        id
       }
     }
   }
