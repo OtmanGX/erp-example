@@ -1,5 +1,5 @@
-query GetAllServiceconfig{
-  product_service {
+query GetAllServiceConfig {
+  product_serviceConfig {
     labelFactory
     name
     id
@@ -7,5 +7,7 @@ query GetAllServiceconfig{
       id
       param
     }
+   
   }
 }
+

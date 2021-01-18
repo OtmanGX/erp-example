@@ -1,4 +1,4 @@
-subscription MySubscription($id: uuid!) {
+subscription GetConsumableById($id: uuid!) {
   product_consumable_by_pk(id: $id) {
     category
     createdAt
@@ -7,6 +7,7 @@ subscription MySubscription($id: uuid!) {
     product {
       code
       label
+      unit
       price
       priceMax
       priceMin

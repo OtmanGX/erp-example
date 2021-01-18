@@ -1,6 +1,6 @@
 
 query GetSalePointById($id: uuid!) {
-  management_SalesPoint_by_pk(id: $id) {
+  management_salesPoint_by_pk(id: $id) {
     id
     address
     email

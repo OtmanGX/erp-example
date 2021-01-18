@@ -3,8 +3,10 @@ subscription GetAccessoryById($id: uuid!) {
     createdAt
     createdBy
     id
+    category
     product {
       code
+      unit
       label
       price
       priceMax

@@ -7,6 +7,7 @@ subscription getGlassById($id: uuid!) {
     product {
       code
       label
+      unit
       price
       priceMax
       priceMin

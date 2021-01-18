@@ -1,10 +1,10 @@
-export interface optionalServiceParam {
+export interface OptionalServiceParam {
   id?: string;
   serviceID?: string;
   param: string;
 }
 
-export interface optionalServiceParamValue {
-  serviceGlassID?: string;
+export interface OptionalServiceParamValue {
+  serviceID?: string;
   values: any;
 }
