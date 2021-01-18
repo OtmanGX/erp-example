@@ -16,15 +16,18 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     StoreModule.forFeature(
       ContactReducer.CONTACT_FEATURE_KEY,
-      ContactReducer.reducer
+      ContactReducer.reducer,
+
     ),
     StoreModule.forFeature(
       CustomerReducer.CUSTOMER_FEATURE_KEY,
-      CustomerReducer.reducer
+      CustomerReducer.reducer,
+
     ),
     StoreModule.forFeature(
       ProviderReducer.PROVIDER_FEATURE_KEY,
-      ProviderReducer.reducer
+      ProviderReducer.reducer,
+
     ),
     EffectsModule.forFeature([
       ContactsEffects,
