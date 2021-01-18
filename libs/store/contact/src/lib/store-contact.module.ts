@@ -8,7 +8,7 @@ import { ContactsEffects } from './effects/contact.effects';
 import { CustomersEffects } from './effects/customer.effects';
 import { ProvidersEffects } from './effects/provider.effects';
 import { EffectsModule } from '@ngrx/effects';
-import { AlertEffects } from './effects/alert.effects';
+import { contactAlertEffects } from './effects/alert.effects';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -33,7 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
       ContactsEffects,
       CustomersEffects,
       ProvidersEffects,
-      AlertEffects
+      contactAlertEffects
     ]),
     ToastrModule.forRoot(),
   ],

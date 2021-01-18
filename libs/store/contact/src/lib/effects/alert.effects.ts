@@ -13,7 +13,7 @@ const OPTIONS = {
  }
 
 @Injectable()
-export class AlertEffects {
+export class contactAlertEffects {
 
   unableToLoadContacts$ = createEffect(
     () =>
