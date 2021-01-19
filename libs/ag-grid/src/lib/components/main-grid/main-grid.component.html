@@ -20,7 +20,7 @@
    <mat-form-field style="font-size: 12px" appearance="outline" floatLabel="never">
       <mat-label>Mot de recherche</mat-label>
       <input #searchInput placeholder="Mot de recherche" (input)="search(searchInput.value)" matInput type="search">
-      <button style="display: inline;" mat-icon-button [hidden]="searchInput.value===''" matSuffix (click)="searchInput.value=''; resetSearch()" [attr.aria-label]="'cancel Search'" [attr.aria-pressed]="hide">
+      <button *ngIf="searchInput.value!==''" style="display: inline;" mat-icon-button matSuffix (click)="searchInput.value=''; resetSearch()" [attr.aria-label]="'cancel Search'" [attr.aria-pressed]="hide">
         <mat-icon fontSet="fas" fontIcon="fa-times"></mat-icon>
       </button>
       <button style="display: inline;" mat-icon-button matSuffix color="primary" matTooltip="Chercher" (click)="search(searchInput.value)">
