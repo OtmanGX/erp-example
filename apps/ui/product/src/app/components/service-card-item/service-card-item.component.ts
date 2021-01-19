@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ngx-service-card-item',
@@ -6,15 +6,6 @@ import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./service-card-item.component.scss']
 })
 export class ServiceCardItemComponent implements OnInit {
-  active: boolean;
-  @HostBinding('style.cursor') cursor = "pointer";
-  @HostListener("mouseenter") mouseEnter() {
-    this.active = true;
-  }
-
-  @HostListener("mouseleave") mouseLeave() {
-    this.active = false;
-  }
   constructor() {
   }
 

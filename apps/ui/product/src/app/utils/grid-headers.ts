@@ -75,13 +75,7 @@ const AccessoryHeaders = [
 ];
 
 const ServiceHeaders = [
-  { field: 'name', headerName: 'Nom', type: "linkColumn",
-    cellRendererParams: (params) => (
-      {
-        link: `/listServices/${params.value}`,
-        state: { id: params?.data?.id },
-      })
-  },
+  { field: 'name', headerName: 'Nom', type: "textColumn" },
   { field: 'params', headerName: 'Paramètres', type: "textColumn"},
 ];
 

@@ -17,6 +17,48 @@ import { PopServiceConsumableComponent } from './pages/list-service-consumable/p
 import { ServiceComponent } from './pages/list-service/service-card/service.component';
 import { ServiceCardItemComponent } from './components/service-card-item/service-card-item.component';
 import { AccessoryCardComponent } from './pages/list-accessories/accessory-card/accessory-card.component';
+import { HighlightDirectiveDirective } from './directives/highlight-directive.directive';
+import { GlassCardComponent } from './pages/list-glasse/glass-card/glass-card.component';
+import { ConsumableCardComponent } from './pages/list-consumable/consumable-card/consumable-card.component';
+import { ServiceGlassCardComponent } from './pages/list-service-glasse/service-glass-card/service-glass-card.component';
+
+
+const popUps = [
+  PopConsumableComponent,
+  PopAccessoriesComponent,
+  PopGlasseComponent,
+  PopServiceComponent,
+  PopServiceConsumableComponent,
+  PopServiceGlasseComponent,
+];
+
+
+const pages = [
+  ProductComponent,
+  ListGlasseComponent,
+  ListConsumableComponent,
+  ListAccessoriesComponent,
+  ListServiceComponent,
+  ListServiceGlasseComponent,
+  ListServiceConsumableComponent,
+];
+
+const cardPages = [
+  ServiceComponent,
+  AccessoryCardComponent,
+  GlassCardComponent,
+  ConsumableCardComponent,
+  ServiceGlassCardComponent
+];
+
+const otherComponents = [
+  ServiceCardItemComponent,
+];
+
+const directives = [
+  HighlightDirectiveDirective
+];
+
 
 const routes: Routes = [
   { path: '', component: ProductComponent,
@@ -31,8 +73,16 @@ const routes: Routes = [
       component: ListGlasseComponent ,
     },
     {
+      path: 'ListVerre/:id',
+      component: GlassCardComponent ,
+    },
+    {
       path: 'listConsommables',
       component: ListConsumableComponent,
+    },
+    {
+      path: 'listConsommables/:id',
+      component: ConsumableCardComponent,
     },
     {
       path: 'listAccessoires',
@@ -47,37 +97,30 @@ const routes: Routes = [
       component: ListServiceComponent,
     },
     {
+      path: 'service/:id',
+      component: ServiceComponent,
+    },
+    {
       path: 'listServicesVerres',
       component: ListServiceGlasseComponent,
     },
     {
-      path: 'listServicesConsommable',
-      component: ListServiceConsumableComponent,
+      path: 'listServicesVerres/:id',
+      component: ServiceGlassCardComponent,
     },
     {
-      path: 'service/:id',
-      component: ServiceComponent,
-    },
+      path: 'listServicesConsommable',
+      component: ListServiceConsumableComponent,
+    }
   ]},
 ];
 @NgModule({
   declarations: [
-    ProductComponent,
-    ListGlasseComponent,
-    PopGlasseComponent,
-    ListConsumableComponent,
-    PopConsumableComponent,
-    ListAccessoriesComponent,
-    PopAccessoriesComponent,
-    ListServiceComponent,
-    PopServiceComponent,
-    ListServiceGlasseComponent,
-    PopServiceGlasseComponent,
-    ListServiceConsumableComponent,
-    PopServiceConsumableComponent,
-    ServiceComponent,
-    ServiceCardItemComponent,
-    AccessoryCardComponent
+    ...pages,
+    ...cardPages,
+    ...otherComponents,
+    ...directives,
+    ...popUps
   ],
   imports: [
     RouterModule.forChild(routes),
