@@ -1,7 +1,7 @@
 
 
 mutation InsertSalePoint($address: String!, $email: String, $name: String!, $phone: String!, $fax: String,) {
-  insert_management_SalesPoint_one(object: {address: $address, email: $email, name: $name, phone: $phone, fax: $fax}) {
+  insert_management_salesPoint_one(object: {address: $address, email: $email, name: $name, phone: $phone, fax: $fax}) {
     id
     address
     email

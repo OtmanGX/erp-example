@@ -1,5 +1,5 @@
 query GetCompanyById($id: uuid! ) {
-  management_Company_by_pk (id: $id) {
+  management_company_by_pk (id: $id) {
     CNSS
     ICE
     IF
