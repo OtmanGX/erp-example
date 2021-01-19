@@ -23,12 +23,6 @@ export class SalePointService {
     private updateOneGQL: UpdateSalePointGQL,
     private deleteOneGQL: DeleteSalePointGQL,
   ) {
-    /** 
-    this.getOneById('b135bd5f-98c6-4be8-a49b-92572e711738').subscribe(obj => { let data: DetailedSalePoint = obj.data.management_SalesPoint_by_pk; console.log(obj.data.management_SalesPoint_by_pk) });
-    this.getAll().subscribe(obj =>{let data: SalePoint[]=obj.data.management_SalesPoint;console.log(obj.data.management_SalesPoint)} );
-    this.insertOne({address:"testeeewdrs",name:"nsrtg",phone:"phonerdt"}).subscribe(obj =>{let data: SalePoint=obj.data.insert_management_SalesPoint_one;console.log(obj.data.insert_management_SalesPoint_one)} );
-    this.updateOne({id:"b135bd5f-98c6-4be8-a49b-92572e711738",address:"testuee",name:"teghnste",phone:"phone"}).subscribe(obj =>{let data: SalePoint=obj.data.update_management_SalesPoint_by_pk;console.log(obj.data.update_management_SalesPoint_by_pk)} );
-*/
    }
 
   getAll(){
@@ -37,7 +31,7 @@ export class SalePointService {
   getOneById(id: string,){
     return  this.getByIdGQL.fetch({id})
   }
-  
+
   insertOne(createdOne:InsertSalePointMutationVariables){
    return  this.insertOneGQL.mutate(createdOne)
   }

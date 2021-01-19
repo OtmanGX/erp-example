@@ -5,34 +5,26 @@ import { MetaData } from 'libs/core/shared/metaData';
 
 
 export interface Consumable {
-
-  id?: number;
-  code: string;
-  type:string;  // row material or consumable (enum consoCategory)
-  label: string;
-  Substance: Substance;
-  product?: Product;
-
+  id: string;
+  category:string;  // row material or consumable (enum consoCategory)
+  Substance?: Substance;
+  product: Product
 }
 
 
 export interface DetailedConsumable extends MetaData{
 
-  id?: number;
-  code: string;
-  type:string;  // row material or consumable (enum consoCategory)
-  label: string;
-  Substance: Substance;
-  product?: Product
+  id: string;
+  category:string;  // row material or consumable (enum consoCategory)
+  Substance?: Substance;
+  product: Product
 
 }
 
 export interface InsertedConsumable extends MetaData{
-  code: string;
-  type:string;  // row material or consumable (enum consoCategory)
-  label: string;
-  Substance: Substance;
-  product?: Product
+  category:string;  // row material or consumable (enum consoCategory)
+  Substance?: Substance;
+  product: Product
 }
 
 

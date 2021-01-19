@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from '@tanglass-erp/store/app';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { ContactModule } from './contact.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     BrowserAnimationsModule,
     InfrastructureGraphqlModule,
+    ContactModule,
     StoreModule.forRoot(reducers, {}),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot(),

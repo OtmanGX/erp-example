@@ -8,27 +8,34 @@ import { ContactsEffects } from './effects/contact.effects';
 import { CustomersEffects } from './effects/customer.effects';
 import { ProvidersEffects } from './effects/provider.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { contactAlertEffects } from './effects/alert.effects';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
     CommonModule,
     StoreModule.forFeature(
       ContactReducer.CONTACT_FEATURE_KEY,
-      ContactReducer.reducer
+      ContactReducer.reducer,
+
     ),
     StoreModule.forFeature(
       CustomerReducer.CUSTOMER_FEATURE_KEY,
-      CustomerReducer.reducer
+      CustomerReducer.reducer,
+
     ),
     StoreModule.forFeature(
       ProviderReducer.PROVIDER_FEATURE_KEY,
-      ProviderReducer.reducer
+      ProviderReducer.reducer,
+
     ),
     EffectsModule.forFeature([
       ContactsEffects,
       CustomersEffects,
-      ProvidersEffects
-    ])
+      ProvidersEffects,
+      contactAlertEffects
+    ]),
+    ToastrModule.forRoot(),
   ],
 })
 export class StoreContactModule {}

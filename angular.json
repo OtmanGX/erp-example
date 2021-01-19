@@ -283,7 +283,13 @@
             "styles": [
               "apps/ui/management/src/styles.scss",
               "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
-              "libs/theme/tanglass-theme/src/styles/styles.scss"
+              "libs/theme/tanglass-theme/src/styles/styles.scss",
+              "node_modules/ionicons/scss/ionicons.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "node_modules/socicon/css/socicon.css",
+              "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/pace-js/pace.min.js",
@@ -1231,7 +1237,8 @@
               "apps/ui/contact/src/styles.scss",
               "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
-              "libs/theme/tanglass-theme/src/styles/styles.scss"
+              "libs/theme/tanglass-theme/src/styles/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": ["node_modules/chart.js/dist/Chart.min.js"]
           },

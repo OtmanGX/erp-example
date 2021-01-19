@@ -51,7 +51,7 @@ export const addContact = createAction(
 
 export const addContactSuccess = createAction(
   '[Contact Effect] Add Contact Success',
-  props<{ Contact: Contact }>()
+  props<{ contact: Contact }>()
 );
 
 export const addContactFailure = createAction(

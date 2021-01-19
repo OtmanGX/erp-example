@@ -1,18 +1,23 @@
 export interface Product {
 
-    id?: number;
+    id?: string;
     code: string;
-    category: string;
     label: string;
     unit: string;
     price: number;
-    price_min: number;
-    price_max: number;
-    companies: string[];
+    price_min?: number;
+    price_max?: number;
+    companies: Company[];
   }
   
   
   export interface Substance {
-    id?: number;
+    id?: string;
     type: string;
+    cost?:number;
+  }
+
+  export interface Company{
+    id?:string,
+    name?:string
   }

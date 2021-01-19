@@ -18,6 +18,11 @@ export class PopCompaniesComponent extends FormDialog {
     super(dialogRef, data);
   }
 
+
+  ngOnInit() {
+    this.buildForm();
+  }
+
   buildForm(): void {
     this.regConfig = [
       {type: "input", label: "Nom", inputType: "text", name: "name", value: this.data.name,
