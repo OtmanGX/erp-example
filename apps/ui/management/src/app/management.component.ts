@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./management.component.scss']
 })
 export class ManagementComponent implements OnInit {
-
+  data = [
+    {label: 'name', value: 'OthmanGX'},
+    {label: 'tags', value: ['gx', 'dx', 'fx'], type: 'view'},
+    {label: 'companies', value: ['mi', 'na', 'ha'], type: 'view'},
+  ];
   constructor() { }
 
   ngOnInit(): void {
