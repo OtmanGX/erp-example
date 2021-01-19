@@ -11,6 +11,7 @@ import {
   
 } from '@tanglass-erp/infrastructure/graphql';
 import {  DetailedContact, InsertedContact } from '../models/contact.models';
+import { ContactAddress } from '../models/shared.models';
 import {  dataAdapter,adaptAddress } from '../utils/dataAdapter';
 
 @Injectable({
@@ -32,7 +33,7 @@ export class ContactService {
     this.insertOne({phone:"phone",name:"name"}).subscribe(obj =>{let data: Contact=obj.data.insert_contact_contact_one;console.log(obj.data.insert_contact_contact_one)} );
     this.updateOne({id:"ee196a6a-9291-4932-b067-64d976cc5a20",phone:"phoneUpdate",name:"nameupdate"}).subscribe(obj =>{let data: Contact=obj.data.update_contact_contact_by_pk;console.log(obj.data.update_contact_contact_by_pk)} );
     */
- 
+
   }
 
   getAll() {
@@ -53,6 +54,14 @@ export class ContactService {
     let addresses=adaptAddress(updatedOne.addresses)
     updatedValue ={...updatedOne,...{addresses}}
     return this.updateOneGQL.mutate(updatedValue)
+  }
+
+
+  updateCustomers(){
+    
+  }
+  updateProviders(){
+    
   }
   removeOne(id: string) {
     return this.deleteOneGQL.mutate({ id })

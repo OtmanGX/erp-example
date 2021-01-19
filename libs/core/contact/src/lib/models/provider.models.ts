@@ -1,5 +1,5 @@
 import { MetaData } from "libs/core/shared/metaData";
-import { InsertedContact } from "./contact.models";
+import { AffectedContact, InsertedContact } from "./contact.models";
 import { Address,PartialContact } from "./shared.models";
 
 
@@ -15,30 +15,28 @@ export interface Provider{
 
 }
 // used for get by id (provider card ) and editing option  
-export interface DetailedProvider extends MetaData{
+export interface DetailedProvider extends InsertedProvider{
     id:string;
-    name:string;
-    note?:string;
-    phone:string;
-    code?:string;
-    mail?:string;
-    FAX?:string;
-    website?:string;
-    addresses?:Address[];
-    contacts?:PartialContact[];
+
     
 }
 
 // used for inserting new provider
 
-export interface InsertedProvider {
-    name:string;
+export interface InsertedProvider extends MetaData{
+    name?:string;
     note?:string;
-    phone:string;
+    phone?:string;
     mail?:string;
     code?:string;
     FAX?:string;
     website?:string;
     addresses?:Address[];
     contacts?:InsertedContact[];
+    affectedContacts?:AffectedContact[];
+}
+
+
+export interface AffectedProvider{
+    providerid?:string
 }

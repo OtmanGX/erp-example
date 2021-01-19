@@ -1,4 +1,8 @@
-mutation InsertService($serviceConfigid: uuid, $product: product_product_insert_input! = {code: "", label: "",unit: m2, price: 1.5, priceMax: 1.5, priceMin: 1.5, product_companies: {data: {companyid: ""}}}, $paramValues: [product_optionalServiceParamValues_insert_input!]! = {values: ""}) {
+mutation InsertService($serviceConfigid: uuid,
+ $product: product_product_insert_input! = {code: "", label: "",unit: m2, price: 1.5, priceMax: 1.5,
+  priceMin: 1.5, product_companies: {data: {companyid: ""}}},
+   $paramValues: [product_optionalServiceParamValues_insert_input!]! = []) 
+   {
   insert_product_service_one(object: {serviceConfigid: $serviceConfigid, product: {data: $product}, optionalServiceParamValues: {data: $paramValues}}, on_conflict: {constraint: service_pkey1, update_columns: serviceConfigid}) {
     product {
       code
