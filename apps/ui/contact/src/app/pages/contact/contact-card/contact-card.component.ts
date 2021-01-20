@@ -32,7 +32,7 @@ export class ContactCardComponent implements OnInit {
         {label: 'E-mail', value: data?.mail},
         {label: 'Téléphone', value: data?.phone},
       ];
-    })
+    });
   }
 
 }

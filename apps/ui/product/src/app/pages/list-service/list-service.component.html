@@ -1,0 +1,12 @@
+
+<div fxLayout="row" class="mt-8" fxLayoutGap="15px" fxLayoutAlign="center">
+  <ngx-service-card-item fxFlex.lg="0 1 15" fxFlex.md="0 1 25" fxFlex.sm="0 1 50"
+                         [routerLink]="['/service', item?.name]"
+                         [state]="item?.id" *ngFor="let item of [1,2,3]">
+  </ngx-service-card-item>
+</div>
+
+
+<button class="fab-button" (click)="openDialog('add')" mat-fab color="primary">
+  <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
+</button>
