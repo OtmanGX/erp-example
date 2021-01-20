@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import {
   GetAllGlassesGQL,
-
+  GetGlassByIdGQL,
+  InsertGlassGQL,
+  InsertGlassMutationVariables,
 
 } from '@tanglass-erp/infrastructure/graphql';
-import { Glass } from "../models/glass.model";
+import { Glass,DetailedGlass } from "../models/glass.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +16,23 @@ export class GlassService {
 
   constructor(
     private getAllGQL: GetAllGlassesGQL,
+    private getByIdGQL: GetGlassByIdGQL,
+    private insertOneGQL: InsertGlassGQL,
 
   ) {
-    let data: Glass[]
-    this.getAll().subscribe(o => data = o.data.product_glass)
-
+ 
   }
-
-
 
   getAll() {
     return this.getAllGQL.watch().valueChanges
+  }
+
+  getOneById(id: string) {
+    return this.getByIdGQL.subscribe({ id })
+  }
+
+  insertOne(createdOne: InsertGlassMutationVariables) {
+    return this.insertOneGQL.mutate(createdOne)
   }
 
 }

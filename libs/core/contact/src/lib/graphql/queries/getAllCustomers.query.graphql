@@ -10,3 +10,4 @@ query GetAllCustomers {
     type
   }
 }
+

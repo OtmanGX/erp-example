@@ -11,11 +11,9 @@ subscription getGlassById($id: uuid!) {
       price
       priceMax
       priceMin
-      product_companies {
-        Company {
-          name
-          id
-        }
+     companies {
+        name
+        id
       }
     }
     thickness

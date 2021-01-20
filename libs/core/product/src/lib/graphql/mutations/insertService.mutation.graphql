@@ -10,11 +10,9 @@ mutation InsertService($serviceConfigid: uuid,
       price
       priceMax
       priceMin
-      product_companies {
-        Company {
-          id
-          name
-        }
+  companies {
+        name
+        id
       }
     }
   }

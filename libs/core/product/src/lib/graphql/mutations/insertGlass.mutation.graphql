@@ -9,14 +9,13 @@ mutation InsertGlass($color: String , $thickness: Int, $type: String,
     product {
       code
       label
+      unit
       price
       priceMax
       priceMin
-      product_companies {
-        Company {
-          id
-          name
-        }
+    companies {
+        name
+        id
       }
     }
   }
