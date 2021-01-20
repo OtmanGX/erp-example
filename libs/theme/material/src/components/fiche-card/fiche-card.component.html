@@ -6,8 +6,10 @@
       <h4 style="text-align: center">{{title}}</h4>
     </mat-card>
   </div>
+  <ng-content select="[top]"></ng-content>
   <mat-card-content class="card-content">
-    <ngx-list-item [data]="data" [gap]="gap"></ngx-list-item>
+    <ngx-list-item [data]="data" [gap]="gap">
+    </ngx-list-item>
     <ng-content></ng-content>
   </mat-card-content>
 </mat-card>

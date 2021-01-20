@@ -3,7 +3,7 @@ import {
   Component,
   ContentChildren,
   Input,
-  QueryList,
+  QueryList
 } from '@angular/core';
 import { CardItem } from '../../interfaces/card-item';
 import { TypeTemplateDirective } from '../../directives/type-template';
@@ -24,7 +24,7 @@ export class ListItemComponent implements AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    this.templates = {};
+    this.templates = new Object();
     this.typeTemplateDirectives.forEach(item => {
       this.templates[item.typeTemplate] = item.templateRef;
     });
