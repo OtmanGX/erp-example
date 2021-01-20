@@ -1,41 +1,33 @@
 import {
   AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
-  Component, ContentChild,
+  Component,
   ContentChildren,
-  ElementRef,
   Input,
-  OnInit,
-  QueryList, TemplateRef, ViewChild,
-  ViewContainerRef,
-  ViewRef
+  QueryList,
 } from '@angular/core';
 import { CardItem } from '../../interfaces/card-item';
+import { TypeTemplateDirective } from '../../directives/type-template';
 
 @Component({
   selector: 'ngx-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss']
 })
-export class ListItemComponent implements OnInit, AfterViewInit, AfterContentInit {
+export class ListItemComponent implements AfterContentInit {
   @Input() data: Array<CardItem>;
   @Input() gap = "50px";
-  @ContentChild(TemplateRef) templateVariable: TemplateRef<any>;
+  @ContentChildren(TypeTemplateDirective)
+    private typeTemplateDirectives: QueryList<TypeTemplateDirective>;
+  private templates: any;
+
   constructor() {
   }
 
-  ngOnInit(): void {
-    // this.viewContainer.insert(this.allViews[0]);
-  }
-
-  ngAfterViewInit(): void {
-  }
-
   ngAfterContentInit(): void {
-    console.log(this.templateVariable);
-    console.log(this.templateVariable.elementRef);
-
+    this.templates = {};
+    this.typeTemplateDirectives.forEach(item => {
+      this.templates[item.typeTemplate] = item.templateRef;
+    });
   }
 
 }
