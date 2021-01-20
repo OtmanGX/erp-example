@@ -28,7 +28,6 @@ export interface DetailedGlass extends MetaData{
 
 export interface InsertedGlass {
 
-  id?: string;
   type?: string;
   color?: string;
   thickness: number;

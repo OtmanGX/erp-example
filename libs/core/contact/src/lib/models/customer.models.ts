@@ -1,5 +1,5 @@
 import { MetaData } from "@tanglass-erp/core/shared";
-import { InsertedContact } from "./contact.models";
+import { AffectedContact, InsertedContact } from "./contact.models";
 import { Address ,PartialContact} from "./shared.models";
 
 export interface Customer {
@@ -11,39 +11,33 @@ export interface Customer {
     name: string;
     phone: string;
     type?:string;
-
 }
 
-export interface DetailedCustomer extends MetaData {
+export interface DetailedCustomer extends InsertedCustomer {
     id: string;
+}
+
+export interface InsertedCustomer extends MetaData{
     ICE?: string;
     IF?: string;
     mail?: string;
+    name?: string;
     code?:string;
-    name: string;
-    phone: string;
+    phone?: string;
     note?: string;
     website?: string;
     FAX?: string;
-    type?:string;
-    contacts?:PartialContact[];
+    type?:string;//individual or company
+    contacts?:InsertedContact[];
+    affectedContacts?:AffectedContact[];
     addresses?:Address[];
 }
 
-export interface InsertedCustomer {
-    ICE?: string;
-    IF?: string;
-    mail?: string;
-    name: string;
-    code?:string;
-    phone: string;
-    note?: string;
-    website?: string;
-    FAX?: string;
-    type?:string;
-    contacts?:InsertedContact[];
-    addresses?:Address[];
+
+export interface AffectedCustomer{
+    customerid?:string
 }
+
 
 
 

@@ -13,4 +13,19 @@ export interface Address {
     zip?: string;
 }
 
+export interface ContactAddress{
 
+    contactid?:string,
+    providerid?:string,
+    customerid?:string,
+    addresses:Address[],
+}
+
+export interface AddressDB {
+    contactid?:string;
+    customerid?:string;
+    providerid?:string;
+    address: {
+        data: Address
+    }
+}

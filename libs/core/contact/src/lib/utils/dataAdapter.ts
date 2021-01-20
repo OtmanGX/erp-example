@@ -1,7 +1,7 @@
-import { Address, PartialContact } from "../models/shared.models";
-import { DetailedContact, InsertedContact } from "../models/contact.models";
-import { DetailedCustomer, InsertedCustomer } from "../models/customer.models";
-import { DetailedProvider, InsertedProvider } from "../models/provider.models";
+import { Address ,AddressDB} from "../models/shared.models";
+import { InsertedContact } from "../models/contact.models";
+import { AffectedCustomer, InsertedCustomer } from "../models/customer.models";
+import { AffectedProvider, InsertedProvider } from "../models/provider.models";
 import {
     InsertCustomerMutationVariables,
     InsertContactMutationVariables,
@@ -9,11 +9,7 @@ import {
 } from "@tanglass-erp/infrastructure/graphql";
 
 
-interface AddressDB {
-    address: {
-        data:Address
-    }
-}
+
 interface InsertedContactDB {
     contact: {
         data: InsertedContact
@@ -30,36 +26,40 @@ interface InsertedProviderDB {
     }
 }
 
-interface baseModel{
-    id:string;
+export interface AffectedContact {
+    contactid?: string
 }
 
-type objToAdapt = InsertedProvider &InsertedCustomer&InsertedContact;
+type objToAdapt = InsertedProvider & InsertedCustomer & InsertedContact;
 type adaptedObj = InsertContactMutationVariables & InsertCustomerMutationVariables & InsertProviderMutationVariables;
 
 
-export function dataAdapter(obj: objToAdapt) {
+export function dataAdapter(obj: objToAdapt): adaptedObj {
     let addresses: AddressDB[];
-    let contacts: InsertedContactDB[];
-    let customers:InsertedCustomerDB[];
-    let providers:InsertedProviderDB[];
-
+    let contacts: Array<InsertedContactDB | AffectedContact>;
+    let customers: Array<InsertedCustomerDB | AffectedCustomer>;
+    let providers: Array<InsertedProviderDB | AffectedProvider>;
+    let oldContacts = obj.contacts;
+    let oldCustomers = obj.customers;
+    let oldProviders = obj.providers
     if (obj.addresses) {
         addresses = adaptAddress(obj.addresses)
     }
-    if (obj.contacts) {
-        contacts = adaptContact(obj.contacts)
+    if (oldContacts) {
+        contacts = { ...obj.affectedContacts, ...adaptContact(oldContacts) };
+        delete obj.affectedContacts
 
     }
-    if (obj.customers) {
-        customers = adaptCustomer(obj.customers)
+    if (oldCustomers) {
+        customers = [...obj.affectedCustomers, ...adaptCustomer(oldCustomers)];
+        delete obj.affectedCustomers
 
     }
-    if (obj.provider) {
-        providers= adaptProvider(obj.provider)
-
+    if (oldProviders) {
+        providers = { ...obj.affectedProviders, ...adaptProvider(oldProviders) }
+        delete obj.affectedProviders
     }
-  return {...obj,addresses,contacts,customers,providers}
+    return { ...obj, addresses, contacts, customers, providers }
 }
 
 export function adaptAddress(address: Address[]): AddressDB[] {
@@ -74,8 +74,6 @@ export function adaptAddress(address: Address[]): AddressDB[] {
     return addresses
 
 }
-
-
 
 export function adaptContact(data: InsertedContact[]): InsertedContactDB[] {
     let contacts = data.map((contact) =>
@@ -117,20 +115,3 @@ export function adaptProvider(data: InsertedProvider[]): InsertedProviderDB[] {
 }
 
 
-
-export class DataAdapter<T extends objToAdapt>{
-    constructor(obj: T) {
-
-        let addresses = obj.addresses.map((address) =>
-        ({
-            address:
-            {
-                data: address
-            }
-        })
-        )
-        if (obj) {
-            Object.assign(this, { addresses }, obj);
-        }
-    }
-}

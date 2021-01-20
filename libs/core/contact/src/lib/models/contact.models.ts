@@ -1,7 +1,7 @@
 import { MetaData } from "libs/core/shared/metaData";
-import { InsertedCustomer } from "./customer.models";
-import { InsertedProvider } from "./provider.models";
-import { Address,PartialContact } from "./shared.models";
+import { InsertedCustomer,AffectedCustomer } from "./customer.models";
+import { InsertedProvider,AffectedProvider} from "./provider.models";
+import { Address } from "./shared.models";
 
 
 
@@ -15,26 +15,25 @@ export interface Contact{
     phone:string;
 }
 
-export interface DetailedContact extends MetaData{
+export interface DetailedContact extends InsertedContact{
     id:string;
-    mail?:string;
-    code?:string;
-    name:string;
-    note?:string;
-    phone:string;
-    addresses?:Address[];
-    customers?:PartialContact[];
-    provider?:PartialContact[];
+
 }
 
-export interface InsertedContact {
+export interface InsertedContact extends MetaData {
     mail?:string;
-    name:string;
+    name?:string;
     code?:string;
     note?:string;
-    phone:string;
+    phone?:string;
     addresses?:Address[];
     customers?:InsertedCustomer[];
-    provider?:InsertedProvider[];
+    providers?:InsertedProvider[];
+    affectedCustomers?:AffectedCustomer[];
+    affectedProviders?:AffectedProvider[];
 }
 
+
+export interface AffectedContact{
+    contactid?:string
+}

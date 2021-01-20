@@ -25,9 +25,9 @@ export interface DetailedServiceConfig extends MetaData {
 
 // 
 export interface Service {
-  id: string;
-  serviceCollection: ServiceConfig;
-  product: Product;
+  id?: string;
+  serviceCollection?: ServiceConfig;
+  product?: Product;
   optionalParamValues?:OptionalServiceParamValue[];
 }
 
