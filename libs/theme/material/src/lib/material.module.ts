@@ -47,10 +47,11 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { TextareaComponent } from '../components/form/textarea.component';
 import { HeaderComponent } from '../components/form/header.component';
 import { ListItemComponent } from '../components/list-item/list-item.component';
+import { TypeTemplateDirective } from '../directives/type-template';
 
 
 
-export const MATERIAL_MODULES = [
+const MATERIAL_MODULES = [
   FlexLayoutModule,
   MatInputModule,
   MatSnackBarModule,
@@ -80,14 +81,14 @@ export const MATERIAL_MODULES = [
   MatStepperModule
 ];
 
-export const OTHER_MODULES = [
+const OTHER_MODULES = [
   CommonModule,
   ReactiveFormsModule,
   FormsModule,
   NgxMatTagInputModule,
 ];
 
-export const COMPONENTS = [
+const COMPONENTS = [
   InputComponent,
   InputSelectComponent,
   ButtonComponent,
@@ -100,8 +101,13 @@ export const COMPONENTS = [
   HeaderComponent
   ];
 
-export const OTHER_COMPONENTS = [
+const DIRECTIVES = [
+  TypeTemplateDirective,
   DynamicFieldDirective,
+
+];
+
+const OTHER_COMPONENTS = [
   DynamicFormComponent,
   DialogBodyComponent,
   FicheCardComponent,
@@ -110,9 +116,9 @@ export const OTHER_COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, ...OTHER_COMPONENTS],
+  declarations: [...COMPONENTS, ...OTHER_COMPONENTS, ...DIRECTIVES],
   imports: [...OTHER_MODULES, ...MATERIAL_MODULES],
-  exports: [...OTHER_MODULES, ...MATERIAL_MODULES, ...COMPONENTS, ...OTHER_COMPONENTS],
+  exports: [...OTHER_MODULES, ...MATERIAL_MODULES, ...COMPONENTS, ...OTHER_COMPONENTS, ...DIRECTIVES],
   entryComponents: COMPONENTS,
 })
 export class MaterialModule {}
