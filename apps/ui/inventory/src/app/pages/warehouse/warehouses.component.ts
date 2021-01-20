@@ -2,9 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
-import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
+import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PopWarehouseComponent } from '@TanglassUi/inventory/pages/warehouse/pop-warehouse/pop-warehouse.component';
+import { WarehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class WarehousesComponent implements GridView {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Store action dispatching
-        if (action === 'add') {
+        if (action === Operations.add) {
         } else {}
       }
     });
@@ -48,13 +49,12 @@ export class WarehousesComponent implements GridView {
 
   eventTriggering(event) {
     // Store Action Dispatching
-    console.log(event);
     switch (event.action) {
-      case 'add':
-      case 'edit':
+      case Operations.add:
+      case Operations.update:
         this.openDialog(event.action, event.data);
         break;
-      case 'delete':
+      case Operations.delete:
         break;
       // ...
     }
@@ -62,7 +62,8 @@ export class WarehousesComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-  { field: 'id', headerName: 'Action', type: "editColumn"},
+      ...WarehouseHeaders,
+      { field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }
 

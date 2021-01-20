@@ -5,7 +5,6 @@ import { MetaData } from 'libs/core/shared/metaData';
 
 
 export interface Consumable {
-
   id: string;
   category:string;  // row material or consumable (enum consoCategory)
   Substance?: Substance;

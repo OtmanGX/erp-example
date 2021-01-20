@@ -11,7 +11,6 @@ export interface AccessoryTransferOrder{
     quantity:number;
     status:string;
     accessoryTransfer:AccessoryTransfer[];
-
 }
 
 export interface DetailedAccessoryTransferOrder extends MetaData{
