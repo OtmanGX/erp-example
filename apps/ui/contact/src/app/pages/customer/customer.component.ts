@@ -54,7 +54,6 @@ export class CustomerComponent implements GridView {
 
   eventTriggering(event) {
     // Store Action Dispatching
-    console.log(event);
     switch (event.action) {
       case Operations.add:
       case Operations.update:

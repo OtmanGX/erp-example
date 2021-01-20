@@ -95,13 +95,18 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit {
     this.contacts = this.contacts.filter(item => item !== contact);
   }
 
+  flattenForm() {
+    return Object.assign(
+      {},
+      this.providerForm.form.value,
+      this.addressFormGroup.value,
+      this.contactFormGroup.value
+      );
+  }
+
   submitAll() {
     this.closePopup();
-    this.submit([
-      this.providerForm.form.value,
-      this.addressFormArray.value,
-      this.contactFormArray.value
-    ]);
+    this.submit(this.flattenForm());
   }
 }
 
