@@ -1,5 +1,5 @@
 import { MetaData } from '@tanglass-erp/core/shared';
-import { Substance, Product } from './shared.model';
+import { Substance, Product,InsertedProduct } from './shared.model';
 
 import { Service } from "./service.model";
 
@@ -31,6 +31,6 @@ export interface InsertedGlass {
   type?: string;
   color?: string;
   thickness: number;
-  product: Product;
+  product: InsertedProduct;
   substance?: Substance;
 }

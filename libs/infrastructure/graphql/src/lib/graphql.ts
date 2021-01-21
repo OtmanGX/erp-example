@@ -14,6 +14,7 @@ export type Scalars = {
   Float: number;
   date: any;
   json: any;
+  jsonb: any;
   numeric: any;
   timestamptz: any;
   uuid: any;
@@ -3403,6 +3404,30 @@ export type Json_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['json']>>;
 };
 
+
+/** expression to compare columns of type jsonb. All fields are combined with logical 'AND'. */
+export type Jsonb_Comparison_Exp = {
+  /** is the column contained in the given json value */
+  _contained_in?: Maybe<Scalars['jsonb']>;
+  /** does the column contain the given json value at the top level */
+  _contains?: Maybe<Scalars['jsonb']>;
+  _eq?: Maybe<Scalars['jsonb']>;
+  _gt?: Maybe<Scalars['jsonb']>;
+  _gte?: Maybe<Scalars['jsonb']>;
+  /** does the string exist as a top-level key in the column */
+  _has_key?: Maybe<Scalars['String']>;
+  /** do all of these strings exist as top-level keys in the column */
+  _has_keys_all?: Maybe<Array<Scalars['String']>>;
+  /** do any of these strings exist as top-level keys in the column */
+  _has_keys_any?: Maybe<Array<Scalars['String']>>;
+  _in?: Maybe<Array<Scalars['jsonb']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['jsonb']>;
+  _lte?: Maybe<Scalars['jsonb']>;
+  _neq?: Maybe<Scalars['jsonb']>;
+  _nin?: Maybe<Array<Scalars['jsonb']>>;
+};
+
 /** columns and relationships of "management.company" */
 export type Management_Company = {
   __typename?: 'management_company';
@@ -4580,6 +4605,10 @@ export type Mutation_Root = {
   delete_product_accessory_by_pk?: Maybe<Product_Accessory>;
   /** delete data from the table: "product.consumable" */
   delete_product_consumable?: Maybe<Product_Consumable_Mutation_Response>;
+  /** delete data from the table: "product.consumableCategory" */
+  delete_product_consumableCategory?: Maybe<Product_ConsumableCategory_Mutation_Response>;
+  /** delete single row from the table: "product.consumableCategory" */
+  delete_product_consumableCategory_by_pk?: Maybe<Product_ConsumableCategory>;
   /** delete single row from the table: "product.consumable" */
   delete_product_consumable_by_pk?: Maybe<Product_Consumable>;
   /** delete data from the table: "product.glass" */
@@ -4612,8 +4641,6 @@ export type Mutation_Root = {
   delete_product_serviceConfig?: Maybe<Product_ServiceConfig_Mutation_Response>;
   /** delete single row from the table: "product.serviceConfig" */
   delete_product_serviceConfig_by_pk?: Maybe<Product_ServiceConfig>;
-  /** delete single row from the table: "product.service" */
-  delete_product_service_by_pk?: Maybe<Product_Service>;
   /** delete data from the table: "product.service_consumable" */
   delete_product_service_consumable?: Maybe<Product_Service_Consumable_Mutation_Response>;
   /** delete single row from the table: "product.service_consumable" */
@@ -4704,6 +4731,10 @@ export type Mutation_Root = {
   insert_product_accessory_one?: Maybe<Product_Accessory>;
   /** insert data into the table: "product.consumable" */
   insert_product_consumable?: Maybe<Product_Consumable_Mutation_Response>;
+  /** insert data into the table: "product.consumableCategory" */
+  insert_product_consumableCategory?: Maybe<Product_ConsumableCategory_Mutation_Response>;
+  /** insert a single row into the table: "product.consumableCategory" */
+  insert_product_consumableCategory_one?: Maybe<Product_ConsumableCategory>;
   /** insert a single row into the table: "product.consumable" */
   insert_product_consumable_one?: Maybe<Product_Consumable>;
   /** insert data into the table: "product.glass" */
@@ -4830,6 +4861,10 @@ export type Mutation_Root = {
   update_product_accessory_by_pk?: Maybe<Product_Accessory>;
   /** update data of the table: "product.consumable" */
   update_product_consumable?: Maybe<Product_Consumable_Mutation_Response>;
+  /** update data of the table: "product.consumableCategory" */
+  update_product_consumableCategory?: Maybe<Product_ConsumableCategory_Mutation_Response>;
+  /** update single row of the table: "product.consumableCategory" */
+  update_product_consumableCategory_by_pk?: Maybe<Product_ConsumableCategory>;
   /** update single row of the table: "product.consumable" */
   update_product_consumable_by_pk?: Maybe<Product_Consumable>;
   /** update data of the table: "product.glass" */
@@ -4862,8 +4897,6 @@ export type Mutation_Root = {
   update_product_serviceConfig?: Maybe<Product_ServiceConfig_Mutation_Response>;
   /** update single row of the table: "product.serviceConfig" */
   update_product_serviceConfig_by_pk?: Maybe<Product_ServiceConfig>;
-  /** update single row of the table: "product.service" */
-  update_product_service_by_pk?: Maybe<Product_Service>;
   /** update data of the table: "product.service_consumable" */
   update_product_service_consumable?: Maybe<Product_Service_Consumable_Mutation_Response>;
   /** update single row of the table: "product.service_consumable" */
@@ -5087,6 +5120,18 @@ export type Mutation_RootDelete_Product_ConsumableArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Product_ConsumableCategoryArgs = {
+  where: Product_ConsumableCategory_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_ConsumableCategory_By_PkArgs = {
+  category: Scalars['String'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Product_Consumable_By_PkArgs = {
   id: Scalars['uuid'];
 };
@@ -5180,12 +5225,6 @@ export type Mutation_RootDelete_Product_ServiceConfigArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Product_ServiceConfig_By_PkArgs = {
   id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Product_Service_By_PkArgs = {
-  serviceConfigid: Scalars['uuid'];
 };
 
 
@@ -5489,6 +5528,20 @@ export type Mutation_RootInsert_Product_Accessory_OneArgs = {
 export type Mutation_RootInsert_Product_ConsumableArgs = {
   objects: Array<Product_Consumable_Insert_Input>;
   on_conflict?: Maybe<Product_Consumable_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_ConsumableCategoryArgs = {
+  objects: Array<Product_ConsumableCategory_Insert_Input>;
+  on_conflict?: Maybe<Product_ConsumableCategory_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_ConsumableCategory_OneArgs = {
+  object: Product_ConsumableCategory_Insert_Input;
+  on_conflict?: Maybe<Product_ConsumableCategory_On_Conflict>;
 };
 
 
@@ -5935,6 +5988,20 @@ export type Mutation_RootUpdate_Product_ConsumableArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Product_ConsumableCategoryArgs = {
+  _set?: Maybe<Product_ConsumableCategory_Set_Input>;
+  where: Product_ConsumableCategory_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_ConsumableCategory_By_PkArgs = {
+  _set?: Maybe<Product_ConsumableCategory_Set_Input>;
+  pk_columns: Product_ConsumableCategory_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Product_Consumable_By_PkArgs = {
   _set?: Maybe<Product_Consumable_Set_Input>;
   pk_columns: Product_Consumable_Pk_Columns_Input;
@@ -5959,6 +6026,11 @@ export type Mutation_RootUpdate_Product_Glass_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Product_OptionalServiceParamArgs = {
+  _append?: Maybe<Product_OptionalServiceParam_Append_Input>;
+  _delete_at_path?: Maybe<Product_OptionalServiceParam_Delete_At_Path_Input>;
+  _delete_elem?: Maybe<Product_OptionalServiceParam_Delete_Elem_Input>;
+  _delete_key?: Maybe<Product_OptionalServiceParam_Delete_Key_Input>;
+  _prepend?: Maybe<Product_OptionalServiceParam_Prepend_Input>;
   _set?: Maybe<Product_OptionalServiceParam_Set_Input>;
   where: Product_OptionalServiceParam_Bool_Exp;
 };
@@ -5980,6 +6052,11 @@ export type Mutation_RootUpdate_Product_OptionalServiceParamValues_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Product_OptionalServiceParam_By_PkArgs = {
+  _append?: Maybe<Product_OptionalServiceParam_Append_Input>;
+  _delete_at_path?: Maybe<Product_OptionalServiceParam_Delete_At_Path_Input>;
+  _delete_elem?: Maybe<Product_OptionalServiceParam_Delete_Elem_Input>;
+  _delete_key?: Maybe<Product_OptionalServiceParam_Delete_Key_Input>;
+  _prepend?: Maybe<Product_OptionalServiceParam_Prepend_Input>;
   _set?: Maybe<Product_OptionalServiceParam_Set_Input>;
   pk_columns: Product_OptionalServiceParam_Pk_Columns_Input;
 };
@@ -6047,13 +6124,6 @@ export type Mutation_RootUpdate_Product_ServiceConfigArgs = {
 export type Mutation_RootUpdate_Product_ServiceConfig_By_PkArgs = {
   _set?: Maybe<Product_ServiceConfig_Set_Input>;
   pk_columns: Product_ServiceConfig_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Product_Service_By_PkArgs = {
-  _set?: Maybe<Product_Service_Set_Input>;
-  pk_columns: Product_Service_Pk_Columns_Input;
 };
 
 
@@ -6714,7 +6784,9 @@ export type Product_Accessory_Variance_Order_By = {
 /** columns and relationships of "product.consumable" */
 export type Product_Consumable = {
   __typename?: 'product_consumable';
-  category: Scalars['String'];
+  category: Product_ConsumableCategory_Enum;
+  /** An object relationship */
+  consumableCategory: Product_ConsumableCategory;
   createdAt: Scalars['date'];
   createdBy?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
@@ -6751,6 +6823,191 @@ export type Product_ConsumableService_Consumables_AggregateArgs = {
   order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
   where?: Maybe<Product_Service_Consumable_Bool_Exp>;
 };
+
+/** columns and relationships of "product.consumableCategory" */
+export type Product_ConsumableCategory = {
+  __typename?: 'product_consumableCategory';
+  category: Scalars['String'];
+  /** An array relationship */
+  consumables: Array<Product_Consumable>;
+  /** An aggregated array relationship */
+  consumables_aggregate: Product_Consumable_Aggregate;
+  description: Scalars['String'];
+};
+
+
+/** columns and relationships of "product.consumableCategory" */
+export type Product_ConsumableCategoryConsumablesArgs = {
+  distinct_on?: Maybe<Array<Product_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Consumable_Order_By>>;
+  where?: Maybe<Product_Consumable_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.consumableCategory" */
+export type Product_ConsumableCategoryConsumables_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Consumable_Order_By>>;
+  where?: Maybe<Product_Consumable_Bool_Exp>;
+};
+
+/** aggregated selection of "product.consumableCategory" */
+export type Product_ConsumableCategory_Aggregate = {
+  __typename?: 'product_consumableCategory_aggregate';
+  aggregate?: Maybe<Product_ConsumableCategory_Aggregate_Fields>;
+  nodes: Array<Product_ConsumableCategory>;
+};
+
+/** aggregate fields of "product.consumableCategory" */
+export type Product_ConsumableCategory_Aggregate_Fields = {
+  __typename?: 'product_consumableCategory_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_ConsumableCategory_Max_Fields>;
+  min?: Maybe<Product_ConsumableCategory_Min_Fields>;
+};
+
+
+/** aggregate fields of "product.consumableCategory" */
+export type Product_ConsumableCategory_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_ConsumableCategory_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.consumableCategory" */
+export type Product_ConsumableCategory_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_ConsumableCategory_Max_Order_By>;
+  min?: Maybe<Product_ConsumableCategory_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.consumableCategory" */
+export type Product_ConsumableCategory_Arr_Rel_Insert_Input = {
+  data: Array<Product_ConsumableCategory_Insert_Input>;
+  on_conflict?: Maybe<Product_ConsumableCategory_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "product.consumableCategory". All fields are combined with a logical 'AND'. */
+export type Product_ConsumableCategory_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_ConsumableCategory_Bool_Exp>>>;
+  _not?: Maybe<Product_ConsumableCategory_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_ConsumableCategory_Bool_Exp>>>;
+  category?: Maybe<String_Comparison_Exp>;
+  consumables?: Maybe<Product_Consumable_Bool_Exp>;
+  description?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "product.consumableCategory" */
+export enum Product_ConsumableCategory_Constraint {
+  /** unique or primary key constraint */
+  ConsumableCategoryPkey = 'consumableCategory_pkey'
+}
+
+export enum Product_ConsumableCategory_Enum {
+  /** Consommable */
+  Consommable = 'Consommable'
+}
+
+/** expression to compare columns of type product_consumableCategory_enum. All fields are combined with logical 'AND'. */
+export type Product_ConsumableCategory_Enum_Comparison_Exp = {
+  _eq?: Maybe<Product_ConsumableCategory_Enum>;
+  _in?: Maybe<Array<Product_ConsumableCategory_Enum>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _neq?: Maybe<Product_ConsumableCategory_Enum>;
+  _nin?: Maybe<Array<Product_ConsumableCategory_Enum>>;
+};
+
+/** input type for inserting data into table "product.consumableCategory" */
+export type Product_ConsumableCategory_Insert_Input = {
+  category?: Maybe<Scalars['String']>;
+  consumables?: Maybe<Product_Consumable_Arr_Rel_Insert_Input>;
+  description?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Product_ConsumableCategory_Max_Fields = {
+  __typename?: 'product_consumableCategory_max_fields';
+  category?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "product.consumableCategory" */
+export type Product_ConsumableCategory_Max_Order_By = {
+  category?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_ConsumableCategory_Min_Fields = {
+  __typename?: 'product_consumableCategory_min_fields';
+  category?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "product.consumableCategory" */
+export type Product_ConsumableCategory_Min_Order_By = {
+  category?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.consumableCategory" */
+export type Product_ConsumableCategory_Mutation_Response = {
+  __typename?: 'product_consumableCategory_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_ConsumableCategory>;
+};
+
+/** input type for inserting object relation for remote table "product.consumableCategory" */
+export type Product_ConsumableCategory_Obj_Rel_Insert_Input = {
+  data: Product_ConsumableCategory_Insert_Input;
+  on_conflict?: Maybe<Product_ConsumableCategory_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.consumableCategory" */
+export type Product_ConsumableCategory_On_Conflict = {
+  constraint: Product_ConsumableCategory_Constraint;
+  update_columns: Array<Product_ConsumableCategory_Update_Column>;
+  where?: Maybe<Product_ConsumableCategory_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.consumableCategory" */
+export type Product_ConsumableCategory_Order_By = {
+  category?: Maybe<Order_By>;
+  consumables_aggregate?: Maybe<Product_Consumable_Aggregate_Order_By>;
+  description?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.consumableCategory" */
+export type Product_ConsumableCategory_Pk_Columns_Input = {
+  category: Scalars['String'];
+};
+
+/** select columns of table "product.consumableCategory" */
+export enum Product_ConsumableCategory_Select_Column {
+  /** column name */
+  Category = 'category',
+  /** column name */
+  Description = 'description'
+}
+
+/** input type for updating data in table "product.consumableCategory" */
+export type Product_ConsumableCategory_Set_Input = {
+  category?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "product.consumableCategory" */
+export enum Product_ConsumableCategory_Update_Column {
+  /** column name */
+  Category = 'category',
+  /** column name */
+  Description = 'description'
+}
 
 /** aggregated selection of "product.consumable" */
 export type Product_Consumable_Aggregate = {
@@ -6792,7 +7049,8 @@ export type Product_Consumable_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Product_Consumable_Bool_Exp>>>;
   _not?: Maybe<Product_Consumable_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Product_Consumable_Bool_Exp>>>;
-  category?: Maybe<String_Comparison_Exp>;
+  category?: Maybe<Product_ConsumableCategory_Enum_Comparison_Exp>;
+  consumableCategory?: Maybe<Product_ConsumableCategory_Bool_Exp>;
   createdAt?: Maybe<Date_Comparison_Exp>;
   createdBy?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
@@ -6817,7 +7075,8 @@ export enum Product_Consumable_Constraint {
 
 /** input type for inserting data into table "product.consumable" */
 export type Product_Consumable_Insert_Input = {
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Product_ConsumableCategory_Enum>;
+  consumableCategory?: Maybe<Product_ConsumableCategory_Obj_Rel_Insert_Input>;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
@@ -6833,7 +7092,6 @@ export type Product_Consumable_Insert_Input = {
 /** aggregate max on columns */
 export type Product_Consumable_Max_Fields = {
   __typename?: 'product_consumable_max_fields';
-  category?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
@@ -6845,7 +7103,6 @@ export type Product_Consumable_Max_Fields = {
 
 /** order by max() on columns of table "product.consumable" */
 export type Product_Consumable_Max_Order_By = {
-  category?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -6858,7 +7115,6 @@ export type Product_Consumable_Max_Order_By = {
 /** aggregate min on columns */
 export type Product_Consumable_Min_Fields = {
   __typename?: 'product_consumable_min_fields';
-  category?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
@@ -6870,7 +7126,6 @@ export type Product_Consumable_Min_Fields = {
 
 /** order by min() on columns of table "product.consumable" */
 export type Product_Consumable_Min_Order_By = {
-  category?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -6905,6 +7160,7 @@ export type Product_Consumable_On_Conflict = {
 /** ordering options when selecting data from "product.consumable" */
 export type Product_Consumable_Order_By = {
   category?: Maybe<Order_By>;
+  consumableCategory?: Maybe<Product_ConsumableCategory_Order_By>;
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -6944,7 +7200,7 @@ export enum Product_Consumable_Select_Column {
 
 /** input type for updating data in table "product.consumable" */
 export type Product_Consumable_Set_Input = {
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Product_ConsumableCategory_Enum>;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
@@ -7349,17 +7605,23 @@ export type Product_Glass_Variance_Order_By = {
 export type Product_OptionalServiceParam = {
   __typename?: 'product_optionalServiceParam';
   id: Scalars['uuid'];
-  param: Scalars['String'];
+  param?: Maybe<Scalars['jsonb']>;
   /** An object relationship */
   serviceConfig: Product_ServiceConfig;
   serviceid: Scalars['uuid'];
+};
+
+
+/** columns and relationships of "product.optionalServiceParam" */
+export type Product_OptionalServiceParamParamArgs = {
+  path?: Maybe<Scalars['String']>;
 };
 
 /** columns and relationships of "product.optionalServiceParamValues" */
 export type Product_OptionalServiceParamValues = {
   __typename?: 'product_optionalServiceParamValues';
   /** An object relationship */
-  service: Product_Service;
+  service?: Maybe<Product_Service>;
   serviceServiceConfigid: Scalars['uuid'];
   values: Scalars['String'];
 };
@@ -7533,6 +7795,11 @@ export type Product_OptionalServiceParam_Aggregate_Order_By = {
   min?: Maybe<Product_OptionalServiceParam_Min_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Product_OptionalServiceParam_Append_Input = {
+  param?: Maybe<Scalars['jsonb']>;
+};
+
 /** input type for inserting array relation for remote table "product.optionalServiceParam" */
 export type Product_OptionalServiceParam_Arr_Rel_Insert_Input = {
   data: Array<Product_OptionalServiceParam_Insert_Input>;
@@ -7545,7 +7812,7 @@ export type Product_OptionalServiceParam_Bool_Exp = {
   _not?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Product_OptionalServiceParam_Bool_Exp>>>;
   id?: Maybe<Uuid_Comparison_Exp>;
-  param?: Maybe<String_Comparison_Exp>;
+  param?: Maybe<Jsonb_Comparison_Exp>;
   serviceConfig?: Maybe<Product_ServiceConfig_Bool_Exp>;
   serviceid?: Maybe<Uuid_Comparison_Exp>;
 };
@@ -7556,10 +7823,25 @@ export enum Product_OptionalServiceParam_Constraint {
   OptionalServiceParamPkey = 'optionalServiceParam_pkey'
 }
 
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Product_OptionalServiceParam_Delete_At_Path_Input = {
+  param?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Product_OptionalServiceParam_Delete_Elem_Input = {
+  param?: Maybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Product_OptionalServiceParam_Delete_Key_Input = {
+  param?: Maybe<Scalars['String']>;
+};
+
 /** input type for inserting data into table "product.optionalServiceParam" */
 export type Product_OptionalServiceParam_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
-  param?: Maybe<Scalars['String']>;
+  param?: Maybe<Scalars['jsonb']>;
   serviceConfig?: Maybe<Product_ServiceConfig_Obj_Rel_Insert_Input>;
   serviceid?: Maybe<Scalars['uuid']>;
 };
@@ -7568,14 +7850,12 @@ export type Product_OptionalServiceParam_Insert_Input = {
 export type Product_OptionalServiceParam_Max_Fields = {
   __typename?: 'product_optionalServiceParam_max_fields';
   id?: Maybe<Scalars['uuid']>;
-  param?: Maybe<Scalars['String']>;
   serviceid?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "product.optionalServiceParam" */
 export type Product_OptionalServiceParam_Max_Order_By = {
   id?: Maybe<Order_By>;
-  param?: Maybe<Order_By>;
   serviceid?: Maybe<Order_By>;
 };
 
@@ -7583,14 +7863,12 @@ export type Product_OptionalServiceParam_Max_Order_By = {
 export type Product_OptionalServiceParam_Min_Fields = {
   __typename?: 'product_optionalServiceParam_min_fields';
   id?: Maybe<Scalars['uuid']>;
-  param?: Maybe<Scalars['String']>;
   serviceid?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "product.optionalServiceParam" */
 export type Product_OptionalServiceParam_Min_Order_By = {
   id?: Maybe<Order_By>;
-  param?: Maybe<Order_By>;
   serviceid?: Maybe<Order_By>;
 };
 
@@ -7629,6 +7907,11 @@ export type Product_OptionalServiceParam_Pk_Columns_Input = {
   id: Scalars['uuid'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Product_OptionalServiceParam_Prepend_Input = {
+  param?: Maybe<Scalars['jsonb']>;
+};
+
 /** select columns of table "product.optionalServiceParam" */
 export enum Product_OptionalServiceParam_Select_Column {
   /** column name */
@@ -7642,7 +7925,7 @@ export enum Product_OptionalServiceParam_Select_Column {
 /** input type for updating data in table "product.optionalServiceParam" */
 export type Product_OptionalServiceParam_Set_Input = {
   id?: Maybe<Scalars['uuid']>;
-  param?: Maybe<Scalars['String']>;
+  param?: Maybe<Scalars['jsonb']>;
   serviceid?: Maybe<Scalars['uuid']>;
 };
 
@@ -7680,6 +7963,8 @@ export type Product_Product = {
   product_companies_aggregate: Product_Product_Companies_Aggregate;
   /** An object relationship */
   product_unit: Product_Product_Unit;
+  /** An object relationship */
+  service?: Maybe<Product_Service>;
   unit: Product_Product_Unit_Enum;
 };
 
@@ -7805,6 +8090,7 @@ export type Product_Product_Bool_Exp = {
   priceMin?: Maybe<Float_Comparison_Exp>;
   product_companies?: Maybe<Product_Product_Companies_Bool_Exp>;
   product_unit?: Maybe<Product_Product_Unit_Bool_Exp>;
+  service?: Maybe<Product_Service_Bool_Exp>;
   unit?: Maybe<Product_Product_Unit_Enum_Comparison_Exp>;
 };
 
@@ -8190,6 +8476,7 @@ export type Product_Product_Insert_Input = {
   priceMin?: Maybe<Scalars['Float']>;
   product_companies?: Maybe<Product_Product_Companies_Arr_Rel_Insert_Input>;
   product_unit?: Maybe<Product_Product_Unit_Obj_Rel_Insert_Input>;
+  service?: Maybe<Product_Service_Obj_Rel_Insert_Input>;
   unit?: Maybe<Product_Product_Unit_Enum>;
 };
 
@@ -8266,6 +8553,7 @@ export type Product_Product_Order_By = {
   priceMin?: Maybe<Order_By>;
   product_companies_aggregate?: Maybe<Product_Product_Companies_Aggregate_Order_By>;
   product_unit?: Maybe<Product_Product_Unit_Order_By>;
+  service?: Maybe<Product_Service_Order_By>;
   unit?: Maybe<Order_By>;
 };
 
@@ -8610,20 +8898,20 @@ export type Product_Product_Variance_Order_By = {
 export type Product_Service = {
   __typename?: 'product_service';
   /** An array relationship */
-  optionalServiceParamValues: Array<Product_OptionalServiceParamValues>;
+  paramsValues: Array<Product_OptionalServiceParamValues>;
   /** An aggregated array relationship */
-  optionalServiceParamValues_aggregate: Product_OptionalServiceParamValues_Aggregate;
+  paramsValues_aggregate: Product_OptionalServiceParamValues_Aggregate;
   /** An object relationship */
   product: Product_Product;
   productcode: Scalars['String'];
   /** An object relationship */
-  serviceConfig: Product_ServiceConfig;
+  serviceConfig?: Maybe<Product_ServiceConfig>;
   serviceConfigid: Scalars['uuid'];
 };
 
 
 /** columns and relationships of "product.service" */
-export type Product_ServiceOptionalServiceParamValuesArgs = {
+export type Product_ServiceParamsValuesArgs = {
   distinct_on?: Maybe<Array<Product_OptionalServiceParamValues_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -8633,7 +8921,7 @@ export type Product_ServiceOptionalServiceParamValuesArgs = {
 
 
 /** columns and relationships of "product.service" */
-export type Product_ServiceOptionalServiceParamValues_AggregateArgs = {
+export type Product_ServiceParamsValues_AggregateArgs = {
   distinct_on?: Maybe<Array<Product_OptionalServiceParamValues_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -8971,7 +9259,7 @@ export type Product_Service_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Product_Service_Bool_Exp>>>;
   _not?: Maybe<Product_Service_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Product_Service_Bool_Exp>>>;
-  optionalServiceParamValues?: Maybe<Product_OptionalServiceParamValues_Bool_Exp>;
+  paramsValues?: Maybe<Product_OptionalServiceParamValues_Bool_Exp>;
   product?: Maybe<Product_Product_Bool_Exp>;
   productcode?: Maybe<String_Comparison_Exp>;
   serviceConfig?: Maybe<Product_ServiceConfig_Bool_Exp>;
@@ -8980,8 +9268,6 @@ export type Product_Service_Bool_Exp = {
 
 /** unique or primary key constraints on table "product.service" */
 export enum Product_Service_Constraint {
-  /** unique or primary key constraint */
-  ServicePkey1 = 'service_pkey1',
   /** unique or primary key constraint */
   ServiceProductCodeKey = 'service_productCode_key'
 }
@@ -9265,7 +9551,7 @@ export type Product_Service_Consumable_Variance_Order_By = {
 
 /** input type for inserting data into table "product.service" */
 export type Product_Service_Insert_Input = {
-  optionalServiceParamValues?: Maybe<Product_OptionalServiceParamValues_Arr_Rel_Insert_Input>;
+  paramsValues?: Maybe<Product_OptionalServiceParamValues_Arr_Rel_Insert_Input>;
   product?: Maybe<Product_Product_Obj_Rel_Insert_Input>;
   productcode?: Maybe<Scalars['String']>;
   serviceConfig?: Maybe<Product_ServiceConfig_Obj_Rel_Insert_Input>;
@@ -9322,16 +9608,11 @@ export type Product_Service_On_Conflict = {
 
 /** ordering options when selecting data from "product.service" */
 export type Product_Service_Order_By = {
-  optionalServiceParamValues_aggregate?: Maybe<Product_OptionalServiceParamValues_Aggregate_Order_By>;
+  paramsValues_aggregate?: Maybe<Product_OptionalServiceParamValues_Aggregate_Order_By>;
   product?: Maybe<Product_Product_Order_By>;
   productcode?: Maybe<Order_By>;
   serviceConfig?: Maybe<Product_ServiceConfig_Order_By>;
   serviceConfigid?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "product.service" */
-export type Product_Service_Pk_Columns_Input = {
-  serviceConfigid: Scalars['uuid'];
 };
 
 /** select columns of table "product.service" */
@@ -9760,6 +10041,12 @@ export type Query_Root = {
   product_accessory_by_pk?: Maybe<Product_Accessory>;
   /** fetch data from the table: "product.consumable" */
   product_consumable: Array<Product_Consumable>;
+  /** fetch data from the table: "product.consumableCategory" */
+  product_consumableCategory: Array<Product_ConsumableCategory>;
+  /** fetch aggregated fields from the table: "product.consumableCategory" */
+  product_consumableCategory_aggregate: Product_ConsumableCategory_Aggregate;
+  /** fetch data from the table: "product.consumableCategory" using primary key columns */
+  product_consumableCategory_by_pk?: Maybe<Product_ConsumableCategory>;
   /** fetch aggregated fields from the table: "product.consumable" */
   product_consumable_aggregate: Product_Consumable_Aggregate;
   /** fetch data from the table: "product.consumable" using primary key columns */
@@ -9814,8 +10101,6 @@ export type Query_Root = {
   product_serviceConfig_by_pk?: Maybe<Product_ServiceConfig>;
   /** fetch aggregated fields from the table: "product.service" */
   product_service_aggregate: Product_Service_Aggregate;
-  /** fetch data from the table: "product.service" using primary key columns */
-  product_service_by_pk?: Maybe<Product_Service>;
   /** fetch data from the table: "product.service_consumable" */
   product_service_consumable: Array<Product_Service_Consumable>;
   /** fetch aggregated fields from the table: "product.service_consumable" */
@@ -10407,6 +10692,32 @@ export type Query_RootProduct_ConsumableArgs = {
 
 
 /** query root */
+export type Query_RootProduct_ConsumableCategoryArgs = {
+  distinct_on?: Maybe<Array<Product_ConsumableCategory_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_ConsumableCategory_Order_By>>;
+  where?: Maybe<Product_ConsumableCategory_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_ConsumableCategory_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_ConsumableCategory_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_ConsumableCategory_Order_By>>;
+  where?: Maybe<Product_ConsumableCategory_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_ConsumableCategory_By_PkArgs = {
+  category: Scalars['String'];
+};
+
+
+/** query root */
 export type Query_RootProduct_Consumable_AggregateArgs = {
   distinct_on?: Maybe<Array<Product_Consumable_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -10642,12 +10953,6 @@ export type Query_RootProduct_Service_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Product_Service_Order_By>>;
   where?: Maybe<Product_Service_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootProduct_Service_By_PkArgs = {
-  serviceConfigid: Scalars['uuid'];
 };
 
 
@@ -12373,6 +12678,12 @@ export type Subscription_Root = {
   product_accessory_by_pk?: Maybe<Product_Accessory>;
   /** fetch data from the table: "product.consumable" */
   product_consumable: Array<Product_Consumable>;
+  /** fetch data from the table: "product.consumableCategory" */
+  product_consumableCategory: Array<Product_ConsumableCategory>;
+  /** fetch aggregated fields from the table: "product.consumableCategory" */
+  product_consumableCategory_aggregate: Product_ConsumableCategory_Aggregate;
+  /** fetch data from the table: "product.consumableCategory" using primary key columns */
+  product_consumableCategory_by_pk?: Maybe<Product_ConsumableCategory>;
   /** fetch aggregated fields from the table: "product.consumable" */
   product_consumable_aggregate: Product_Consumable_Aggregate;
   /** fetch data from the table: "product.consumable" using primary key columns */
@@ -12427,8 +12738,6 @@ export type Subscription_Root = {
   product_serviceConfig_by_pk?: Maybe<Product_ServiceConfig>;
   /** fetch aggregated fields from the table: "product.service" */
   product_service_aggregate: Product_Service_Aggregate;
-  /** fetch data from the table: "product.service" using primary key columns */
-  product_service_by_pk?: Maybe<Product_Service>;
   /** fetch data from the table: "product.service_consumable" */
   product_service_consumable: Array<Product_Service_Consumable>;
   /** fetch aggregated fields from the table: "product.service_consumable" */
@@ -13020,6 +13329,32 @@ export type Subscription_RootProduct_ConsumableArgs = {
 
 
 /** subscription root */
+export type Subscription_RootProduct_ConsumableCategoryArgs = {
+  distinct_on?: Maybe<Array<Product_ConsumableCategory_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_ConsumableCategory_Order_By>>;
+  where?: Maybe<Product_ConsumableCategory_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_ConsumableCategory_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_ConsumableCategory_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_ConsumableCategory_Order_By>>;
+  where?: Maybe<Product_ConsumableCategory_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_ConsumableCategory_By_PkArgs = {
+  category: Scalars['String'];
+};
+
+
+/** subscription root */
 export type Subscription_RootProduct_Consumable_AggregateArgs = {
   distinct_on?: Maybe<Array<Product_Consumable_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -13255,12 +13590,6 @@ export type Subscription_RootProduct_Service_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Product_Service_Order_By>>;
   where?: Maybe<Product_Service_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootProduct_Service_By_PkArgs = {
-  serviceConfigid: Scalars['uuid'];
 };
 
 
@@ -13501,22 +13830,6 @@ export type DeleteCustomerMutation = (
   )> }
 );
 
-export type DeleteManyCustomersMutationVariables = Exact<{
-  ids?: Maybe<Array<Scalars['uuid']>>;
-}>;
-
-
-export type DeleteManyCustomersMutation = (
-  { __typename?: 'mutation_root' }
-  & { delete_contact_customer?: Maybe<(
-    { __typename?: 'contact_customer_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'id'>
-    )> }
-  )> }
-);
-
 export type DeleteManyContactsMutationVariables = Exact<{
   ids?: Maybe<Array<Scalars['uuid']>>;
 }>;
@@ -13529,6 +13842,22 @@ export type DeleteManyContactsMutation = (
     & { returning: Array<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'id'>
+    )> }
+  )> }
+);
+
+export type DeleteManyCustomersMutationVariables = Exact<{
+  ids: Array<Scalars['uuid']>;
+}>;
+
+
+export type DeleteManyCustomersMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_customer?: Maybe<(
+    { __typename?: 'contact_customer_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'id'>
     )> }
   )> }
 );
@@ -14065,6 +14394,32 @@ export type GetUserByIdQuery = (
   )> }
 );
 
+export type DeleteManyMutationVariables = Exact<{
+  codes?: Maybe<Array<Scalars['String']>>;
+}>;
+
+
+export type DeleteManyMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_product_product?: Maybe<(
+    { __typename?: 'product_product_mutation_response' }
+    & Pick<Product_Product_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type DeleteOneMutationVariables = Exact<{
+  code: Scalars['String'];
+}>;
+
+
+export type DeleteOneMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_product_product_by_pk?: Maybe<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code'>
+  )> }
+);
+
 export type InsertAccessoryMutationVariables = Exact<{
   product?: Product_Product_Insert_Input;
   quota?: Maybe<Scalars['numeric']>;
@@ -14090,7 +14445,7 @@ export type InsertAccessoryMutation = (
 
 export type InsertConsumableMutationVariables = Exact<{
   product?: Product_Product_Insert_Input;
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Product_ConsumableCategory_Enum>;
 }>;
 
 
@@ -14135,9 +14490,9 @@ export type InsertGlassMutation = (
 );
 
 export type InsertServiceMutationVariables = Exact<{
+  ParamValues?: Array<Product_OptionalServiceParamValues_Insert_Input>;
   serviceConfigid?: Maybe<Scalars['uuid']>;
   product?: Product_Product_Insert_Input;
-  paramValues?: Array<Product_OptionalServiceParamValues_Insert_Input>;
 }>;
 
 
@@ -14147,10 +14502,10 @@ export type InsertServiceMutation = (
     { __typename?: 'product_service' }
     & { product: (
       { __typename?: 'product_product' }
-      & Pick<Product_Product, 'code' | 'label' | 'price' | 'priceMax' | 'priceMin'>
+      & Pick<Product_Product, 'code' | 'label' | 'price' | 'priceMax' | 'priceMin' | 'unit'>
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
-        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+        & Pick<Product_Product_Companies_View, 'id' | 'name'>
       )> }
     ) }
   )> }
@@ -14390,26 +14745,6 @@ export const DeleteCustomerDocument = gql`
       super(apollo);
     }
   }
-export const DeleteManyCustomersDocument = gql`
-    mutation DeleteManyCustomers($ids: [uuid!]) {
-  delete_contact_customer(where: {id: {_in: $ids}}) {
-    returning {
-      id
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class DeleteManyCustomersGQL extends Apollo.Mutation<DeleteManyCustomersMutation, DeleteManyCustomersMutationVariables> {
-    document = DeleteManyCustomersDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const DeleteManyContactsDocument = gql`
     mutation DeleteManyContacts($ids: [uuid!]) {
   delete_contact_contact(where: {id: {_in: $ids}}) {
@@ -14425,6 +14760,26 @@ export const DeleteManyContactsDocument = gql`
   })
   export class DeleteManyContactsGQL extends Apollo.Mutation<DeleteManyContactsMutation, DeleteManyContactsMutationVariables> {
     document = DeleteManyContactsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyCustomersDocument = gql`
+    mutation DeleteManyCustomers($ids: [uuid!]!) {
+  delete_contact_customer(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyCustomersGQL extends Apollo.Mutation<DeleteManyCustomersMutation, DeleteManyCustomersMutationVariables> {
+    document = DeleteManyCustomersDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -15280,6 +15635,42 @@ export const GetUserByIdDocument = gql`
       super(apollo);
     }
   }
+export const DeleteManyDocument = gql`
+    mutation DeleteMany($codes: [String!]) {
+  delete_product_product(where: {code: {_in: $codes}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyGQL extends Apollo.Mutation<DeleteManyMutation, DeleteManyMutationVariables> {
+    document = DeleteManyDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteOneDocument = gql`
+    mutation DeleteOne($code: String!) {
+  delete_product_product_by_pk(code: $code) {
+    code
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteOneGQL extends Apollo.Mutation<DeleteOneMutation, DeleteOneMutationVariables> {
+    document = DeleteOneDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertAccessoryDocument = gql`
     mutation InsertAccessory($product: product_product_insert_input! = {code: "", label: "", unit: m2, price: 1.5, priceMax: 1.5, product_companies: {data: {companyid: ""}}, priceMin: 1.5}, $quota: numeric, $category: product_accessoryTypes_enum = ACCESSOIRE) {
   insert_product_accessory_one(
@@ -15315,7 +15706,7 @@ export const InsertAccessoryDocument = gql`
     }
   }
 export const InsertConsumableDocument = gql`
-    mutation InsertConsumable($product: product_product_insert_input! = {code: "", label: "", unit: m2, price: 1.5, priceMax: 1.5, product_companies: {data: {companyid: ""}}, priceMin: 1.5}, $category: String) {
+    mutation InsertConsumable($product: product_product_insert_input! = {code: "", label: "", unit: m2, price: 1.5, priceMax: 1.5, product_companies: {data: {companyid: ""}}, priceMin: 1.5}, $category: product_consumableCategory_enum) {
   insert_product_consumable_one(
     object: {product: {data: $product}, category: $category}
   ) {
@@ -15383,10 +15774,9 @@ export const InsertGlassDocument = gql`
     }
   }
 export const InsertServiceDocument = gql`
-    mutation InsertService($serviceConfigid: uuid, $product: product_product_insert_input! = {code: "", label: "", unit: m2, price: 1.5, priceMax: 1.5, priceMin: 1.5, product_companies: {data: {companyid: ""}}}, $paramValues: [product_optionalServiceParamValues_insert_input!]! = []) {
+    mutation InsertService($ParamValues: [product_optionalServiceParamValues_insert_input!]! = [], $serviceConfigid: uuid, $product: product_product_insert_input! = {code: "", label: "", price: 1.5, priceMax: 1.5, priceMin: 1.5, unit: m2}) {
   insert_product_service_one(
-    object: {serviceConfigid: $serviceConfigid, product: {data: $product}, optionalServiceParamValues: {data: $paramValues}}
-    on_conflict: {constraint: service_pkey1, update_columns: serviceConfigid}
+    object: {paramsValues: {data: $ParamValues}, serviceConfigid: $serviceConfigid, product: {data: $product}}
   ) {
     product {
       code
@@ -15394,9 +15784,10 @@ export const InsertServiceDocument = gql`
       price
       priceMax
       priceMin
+      unit
       companies {
-        name
         id
+        name
       }
     }
   }

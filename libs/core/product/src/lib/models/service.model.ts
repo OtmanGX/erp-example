@@ -1,6 +1,6 @@
 import { Consumable } from './consumable.model';
 import { OptionalServiceParam,OptionalServiceParamValue } from './service_params';
-import {  Product } from './shared.model';
+import {  Product,InsertedProduct } from './shared.model';
 import { MetaData } from "@tanglass-erp/core/shared";
 // services collection
 
@@ -23,6 +23,15 @@ export interface DetailedServiceConfig extends MetaData {
 
 }
 
+export interface InsertedServiceConfig extends MetaData {
+
+  name: string;
+  params?: OptionalServiceParam[];
+  services?:Service[];
+  labelFactory: string;
+
+}
+
 // 
 export interface Service {
   id?: string;
@@ -35,6 +44,16 @@ export interface DetailedService extends MetaData{
   id: string;
   serviceCollection: ServiceConfig;
   product: Product;
+  paramValues?:OptionalServiceParamValue[];
+
+}
+
+
+
+export interface InsertedService extends MetaData{
+  id: string;
+  serviceCollection: ServiceConfig;
+  product: InsertedProduct;
   paramValues?:OptionalServiceParamValue[];
 
 }

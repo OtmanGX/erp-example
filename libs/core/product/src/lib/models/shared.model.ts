@@ -1,16 +1,32 @@
+import {
+  Product_Product_Insert_Input,
+  Product_Product_Unit_Enum,
+  Product_AccessoryTypes_Enum
+} from '@tanglass-erp/infrastructure/graphql';
+
 export interface Product {
 
     id?: string;
     code: string;
     label: string;
-    unit: string;
+    unit: Product_Product_Unit_Enum;
     price: number;
-    price_min?: number;
-    price_max?: number;
+    priceMin?: number;
+    priceMax?: number;
     companies: Company[];
   }
-  
-  
+
+  export interface InsertedProduct{
+    
+    id?: string;
+    code: string;
+    label: string;
+    unit: Product_Product_Unit_Enum;
+    price: number;
+    priceMin?: number;
+    priceMax?: number;
+    product_companies: AffectedCompany;
+  }
   export interface Substance {
     id?: string;
     type: string;
@@ -21,3 +37,10 @@ export interface Product {
     id?:string,
     name?:string
   }
+
+  interface AffectedCompany{
+    data:[ 
+      {companyid: string}
+    ]}
+
+  

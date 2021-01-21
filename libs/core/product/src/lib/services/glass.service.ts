@@ -3,10 +3,10 @@ import {
   GetAllGlassesGQL,
   GetGlassByIdGQL,
   InsertGlassGQL,
-  InsertGlassMutationVariables,
-
+  DeleteOneGQL,
+  DeleteManyGQL
 } from '@tanglass-erp/infrastructure/graphql';
-import { Glass,DetailedGlass } from "../models/glass.model";
+import { Glass,DetailedGlass, InsertedGlass } from "../models/glass.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class GlassService {
     private getAllGQL: GetAllGlassesGQL,
     private getByIdGQL: GetGlassByIdGQL,
     private insertOneGQL: InsertGlassGQL,
-
+    private deleteOneGQL: DeleteOneGQL,
+    private deleteMany:DeleteManyGQL
   ) {
  
   }
@@ -31,8 +32,16 @@ export class GlassService {
     return this.getByIdGQL.subscribe({ id })
   }
 
-  insertOne(createdOne: InsertGlassMutationVariables) {
+  insertOne(createdOne: InsertedGlass) {
     return this.insertOneGQL.mutate(createdOne)
+  }
+
+  removeOne(code: string) {
+    return this.deleteOneGQL.mutate({ code })
+  }
+
+  removeMany(codes: string[]) {
+    return this.deleteMany.mutate({codes})
   }
 
 }
