@@ -12,7 +12,7 @@ import {
 } from '@tanglass-erp/infrastructure/graphql';
 
 
-import {  DetailedContact, InsertedContact } from '../models/contact.models';
+import {  Contact, DetailedContact, InsertedContact } from '../models/contact.models';
 import { ContactAddress } from '../models/shared.models';
 import {  dataAdapter,adaptAddress } from '../utils/dataAdapter';
 
@@ -34,7 +34,6 @@ export class ContactService {
     /** 
     this.getOneById('ee196a6a-9291-4932-b067-64d976cc5a20').subscribe(obj => { let data: DetailedContact = obj.data.contact_contact_by_pk; console.log(obj.data.contact_contact_by_pk) });
     this.getAll().subscribe(obj =>{let data: Contact[]=obj.data.contact_contact;console.log(obj.data.contact_contact)} );
-    this.insertOne({phone:"phone",name:"name"}).subscribe(obj =>{let data: Contact=obj.data.insert_contact_contact_one;console.log(obj.data.insert_contact_contact_one)} );
     this.updateOne({id:"ee196a6a-9291-4932-b067-64d976cc5a20",phone:"phoneUpdate",name:"nameupdate"}).subscribe(obj =>{let data: Contact=obj.data.update_contact_contact_by_pk;console.log(obj.data.update_contact_contact_by_pk)} );
     */
 
