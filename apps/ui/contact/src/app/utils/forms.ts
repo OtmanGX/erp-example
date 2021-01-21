@@ -17,8 +17,8 @@ const regConfigProvider = (data?) => [
   },
   {type: "input", name: "mail", label: "E-mail", inputType: "text", value: data?.mail},
   {type: "input", name: "phone", label: "Téléphone", inputType: "text", value: data?.phone},
-  {type: "input", name: "note", label: "Note", inputType: "text", value: data?.note},
-  {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts},
+  {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
+  {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? []},
 ];
 
 const regConfigContact = (data?) => [
@@ -29,16 +29,16 @@ const regConfigContact = (data?) => [
   {type: "input", name: "name", label: "Nom", inputType: "text", value: data?.name},
   {type: "input", name: "mail", label: "E-mail", inputType: "email", value: data?.mail},
   {type: "input", name: "phone", label: "Téléphone", inputType: "tel", value: data?.phone},
-  {type: "input", name: "note", label: "Note", inputType: "text", value: data?.note},
+  {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
 ];
 
-const regConfigContactDetailed = (data?) => [
+const regConfigContactDetailed = (data?, customers = [], providers = []) => [
   { name: 'contact', label: 'Information Générales', fields: regConfigContact(data), headerVisible: true },
   { name: 'affectation', label: 'Affectation', headerVisible: true, fields: [
       { type: "select", name: "customers", label: "Clients", inputType: "text",
-        value: data?.customers, multiple: true },
+        value: data?.customers, multiple: true, options: customers },
       { type: "select", name: "provider", label: "Fournisseurs",
-        inputType: "text", value: data?.provider, multiple: true },
+        inputType: "text", value: data?.provider, multiple: true, options: providers },
     ]
   }
   ];
@@ -58,10 +58,10 @@ const regCustomerConfig = (data?) => [
   },
   {type: "input", name: "phone", label: "Téléphone", inputType: "text", value: data?.phone},
   {type: "input", name: "mail", label: "E-mail", inputType: "text", value: data?.mail},
-  {type: "input", name: "note", label: "Note", inputType: "text", value: data?.note},
+  {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
   {type: "input", name: "website", label: "Site web", inputType: "text", value: data?.website},
   {type: "input", name: "Fax", label: "Fax", inputType: "text", value: data?.Fax},
-  {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts},
+  {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? []},
 
 ];
 

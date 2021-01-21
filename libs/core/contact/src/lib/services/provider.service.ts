@@ -27,11 +27,13 @@ export class ProviderService {
 
 
 
-  ) { 
+  ) {
+    // this.insertOne({phone:"phone",name:"name"})
+    //   .subscribe(obj => {let data: Provider = obj.data.insert_contact_provider_one;
+    //   console.log(obj.data.insert_contact_provider_one)} );
     /**
     this.getOneById('ca6c4a90-dac3-46f0-945c-26ace051f52e').subscribe(obj => { let data: DetailedProvider = obj.data.contact_provider_by_pk; console.log(obj.data.contact_provider_by_pk) });
     this.getAll().subscribe(obj =>{let data: Provider[]=obj.data.contact_provider;console.log(obj.data.contact_provider)} );
-    this.insertOne({phone:"phone",name:"name"}).subscribe(obj =>{let data: Provider=obj.data.insert_contact_provider_one;console.log(obj.data.insert_contact_provider_one)} );
     this.updateOne({id:"ca6c4a90-dac3-46f0-945c-26ace051f52e",phone:"phoneUpdate",name:"nameupdate"}).subscribe(obj =>{let data: Provider=obj.data.update_contact_provider_by_pk;console.log(obj.data.update_contact_provider_by_pk)} );
  */
   }
@@ -51,7 +53,7 @@ export class ProviderService {
 
     return this.insertOneGQL.mutate(addedValue)
 
-  
+
   }
   updateOne(updatedOne:DetailedProvider ) {
     let updatedValue: UpdateProviderMutationVariables;

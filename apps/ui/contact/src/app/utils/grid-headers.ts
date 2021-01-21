@@ -1,5 +1,11 @@
 const ContactHeaders = [
-  { field: 'code', headerName: 'Code', type: "textColumn" },
+  { field: 'code', headerName: 'Code', type: "linkColumn",
+    cellRendererParams: (params) => (
+    {
+      link: `/contact/${params.value}`,
+      state: {id: params?.data?.id},
+    })
+  },
   { field: 'name', headerName: 'Name', type: "textColumn" },
   { field: 'phone', headerName: 'Téléphone', type: "textColumn"},
   { field: 'note', headerName: 'Note', type: "textColumn"},
@@ -8,7 +14,13 @@ const ContactHeaders = [
 
 
 const CustomerHeaders = [
-  { field: 'code', headerName: 'Code', type: "textColumn" },
+  { field: 'code', headerName: 'Code', type: "linkColumn",
+    cellRendererParams: (params) => (
+      {
+        link: `/customer/${params.value}`,
+        state: {id: params?.data?.id},
+      })
+  },
   { field: 'name', headerName: 'Name', type: "textColumn" },
   { field: 'ICE', headerName: 'ICE', type: "textColumn" },
   { field: 'IF', headerName: 'IF', type: "textColumn" },
@@ -17,7 +29,13 @@ const CustomerHeaders = [
 ];
 
 const ProviderHeaders = [
-  { field: 'name', headerName: 'Name', type: "textColumn" },
+  { field: 'name', headerName: 'Name', type: "linkColumn",
+    cellRendererParams: (params) => (
+      {
+        link: `/provider/${params.value}`,
+        state: {id: params?.data?.id},
+      })
+  },
   { field: 'note', headerName: 'Note', type: "textColumn" },
   { field: 'mail', headerName: 'E-mail', type: "textColumn"},
   { field: 'phone', headerName: 'Téléphone', type: "textColumn"},
