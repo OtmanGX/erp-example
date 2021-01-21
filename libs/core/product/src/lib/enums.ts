@@ -1,12 +1,3 @@
-export enum consumableCategoryDirection{
-    consumable='Consommable',
-    rowSubstance='Matière Première',
-}
-
-export enum accessoryCategoryDirection{
-    accessory='Accessoire',
-    apparent='Systéme Apparent',
-}
 
 export enum unitDirection{
 

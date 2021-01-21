@@ -3,11 +3,11 @@ import {
   GetAllConsumablesGQL,
   InsertConsumableGQL,
   GetConsumableByIdGQL,
-  InsertConsumableMutationVariables
-
-
+  DeleteOneGQL,
+  DeleteManyGQL
 } from '@tanglass-erp/infrastructure/graphql';
-import { Consumable,DetailedConsumable } from "../models/consumable.model";
+import {  InsertedConsumable } from "../models/consumable.model";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,9 +18,10 @@ export class ConsumableService {
     private getAllGQL: GetAllConsumablesGQL,
     private getByIdGQL: GetConsumableByIdGQL,
     private insertOneGQL: InsertConsumableGQL,
+    private deleteOneGQL: DeleteOneGQL,
+    private deleteMany:DeleteManyGQL
   ) {
-    
-  }
+ }
 
   getAll() {
     return this.getAllGQL.watch().valueChanges
@@ -30,7 +31,14 @@ export class ConsumableService {
     return this.getByIdGQL.subscribe({ id })
   }
 
-  insertOne(createdOne: InsertConsumableMutationVariables) {
+  insertOne(createdOne: InsertedConsumable) {
     return this.insertOneGQL.mutate(createdOne)
+  }
+  removeOne(code: string) {
+    return this.deleteOneGQL.mutate({ code })
+  }
+
+  removeMany(codes: string[]) {
+    return this.deleteMany.mutate({codes})
   }
 }
