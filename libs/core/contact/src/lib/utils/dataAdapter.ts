@@ -39,25 +39,27 @@ export function dataAdapter(obj: objToAdapt): adaptedObj {
     let contacts: Array<InsertedContactDB | AffectedContact>;
     let customers: Array<InsertedCustomerDB | AffectedCustomer>;
     let providers: Array<InsertedProviderDB | AffectedProvider>;
-    let oldContacts = obj.contacts;
-    let oldCustomers = obj.customers;
     let oldProviders = obj.providers
     if (obj.addresses) {
         addresses = adaptAddress(obj.addresses)
     }
-    if (oldContacts) {
-        contacts = { ...obj.affectedContacts, ...adaptContact(oldContacts) };
-        delete obj.affectedContacts
 
+    if (obj.contacts||obj.affectedContacts) {
+        console.log('hello')
+       contacts= [...obj.affectedContacts,...adaptContact(obj.contacts)]; 
+       delete obj.affectedContacts
     }
-    if (oldCustomers) {
-        customers = [...obj.affectedCustomers, ...adaptCustomer(oldCustomers)];
+
+    if (obj.customers||obj.affectedCustomers) {
+        customers = [...obj.affectedCustomers, ...adaptCustomer(obj.customers)];
         delete obj.affectedCustomers
 
     }
-    if (oldProviders) {
-        providers = { ...obj.affectedProviders, ...adaptProvider(oldProviders) }
+
+    if (obj.providers||obj.affectedProviders) {
+        providers = [ ...obj.affectedProviders, ...adaptProvider(obj.providers) ];
         delete obj.affectedProviders
+
     }
     return { ...obj, addresses, contacts, customers, providers }
 }
@@ -72,7 +74,6 @@ export function adaptAddress(address: Address[]): AddressDB[] {
     })
     )
     return addresses
-
 }
 
 export function adaptContact(data: InsertedContact[]): InsertedContactDB[] {
