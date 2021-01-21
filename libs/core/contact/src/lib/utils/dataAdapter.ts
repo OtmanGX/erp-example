@@ -45,7 +45,6 @@ export function dataAdapter(obj: objToAdapt): adaptedObj {
     }
 
     if (obj.contacts||obj.affectedContacts) {
-        console.log('hello')
        contacts= [...obj.affectedContacts,...adaptContact(obj.contacts)]; 
        delete obj.affectedContacts
     }
