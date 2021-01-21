@@ -1,4 +1,4 @@
-mutation DeleteManyCustomers($ids: [uuid!]) {
+mutation DeleteManyCustomers($ids: [uuid!]!) {
   delete_contact_customer(where: {id: {_in: $ids}}) {
     returning {
       id

@@ -1,5 +1,10 @@
 import { MetaData } from 'libs/core/shared/metaData';
-import { Substance, Product } from './shared.model';
+import { Substance, Product, InsertedProduct } from './shared.model';
+import {
+  Product_Product_Insert_Input,
+  Product_Product_Unit_Enum,
+  Product_AccessoryTypes_Enum
+} from '@tanglass-erp/infrastructure/graphql';
 
 //for displaying the accessory grid
 export interface Accessory {
@@ -24,8 +29,8 @@ export interface DetailedAccessory  extends MetaData{
 //for inserting an accessory
 
 export interface insertedAccessory{
-  category: string;
+  category: Product_AccessoryTypes_Enum;
   quota?: number;
   substance?: Substance;
-  product: Product;
+  product: InsertedProduct;
 }

@@ -3,11 +3,10 @@ import {
   GetAllServiceConfigGQL,
   InsertServiceConfigGQL,
   GetServiceConfigByIdGQL,
-InsertServiceConfigMutationVariables
 
 
 } from '@tanglass-erp/infrastructure/graphql';
-import { ServiceConfig,DetailedServiceConfig } from "../models/service.model";
+import { ServiceConfig,DetailedServiceConfig, InsertedServiceConfig } from "../models/service.model";
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +31,7 @@ export class ServicesConfigService {
     return this.getByIdGQL.subscribe({ id })
   }
 
-  insertOne(createdOne: InsertServiceConfigMutationVariables) {
+  insertOne(createdOne: InsertedServiceConfig) {
     return this.insertOneGQL.mutate(createdOne)
   }
 }
