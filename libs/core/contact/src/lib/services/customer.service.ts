@@ -8,6 +8,7 @@ import {
   InsertCustomerMutationVariables,
   UpdateCustomerMutationVariables,
   Contact_Customer_Address_Insert_Input,
+  DeleteManyCustomersGQL
 
 } from '@tanglass-erp/infrastructure/graphql';
 import { Customer, DetailedCustomer, InsertedCustomer } from '../models/customer.models';
@@ -24,7 +25,9 @@ export class CustomerService {
     private getByIdGQL: GetCustomerByIdGQL,
     private deleteOneGQL: DeleteCustomerGQL,
     private insertOneGQL: InsertCustomerGQL,
-    private updateOneGQL: UpdateCustomerGQL) {
+    private updateOneGQL: UpdateCustomerGQL,
+    private deleteMany:DeleteManyCustomersGQL
+    ) {
 /** 
     this.getOneById('ca6c4a90-dac3-46f0-945c-26ace051f52e').subscribe(obj => { let data: DetailedCustomer = obj.data.contact_customer_by_pk; console.log(obj.data.contact_customer_by_pk) });
     this.getAll().subscribe(obj => { let data: Customer[] = obj.data.contact_customer; console.log(obj.data.contact_customer) });
@@ -67,5 +70,10 @@ export class CustomerService {
   }
   removeOne(id: string) {
     return this.deleteOneGQL.mutate({ id })
+  }
+
+  
+  removeMany(ids: string[]) {
+    return this.deleteMany.mutate({ids})
   }
 }

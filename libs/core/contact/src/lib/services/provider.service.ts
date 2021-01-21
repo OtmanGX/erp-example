@@ -7,8 +7,8 @@ import {
   DeleteProviderGQL,
   InsertProviderMutationVariables,
   UpdateProviderMutationVariables,
-  InsertProviderMutation
-
+  InsertProviderMutation,
+  DeleteManyProvidersGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { Provider,DetailedProvider, InsertedProvider } from "../models/provider.models";
 import { adaptAddress, dataAdapter } from '../utils/dataAdapter';
@@ -24,7 +24,7 @@ export class ProviderService {
     private insertOneGQL: InsertProviderGQL,
     private updateOneGQL: UpdateProviderGQL,
     private deleteOneGQL: DeleteProviderGQL,
-
+    private deleteMany:DeleteManyProvidersGQL
 
 
   ) { 
@@ -63,6 +63,10 @@ export class ProviderService {
 
   removeOne(id: string) {
     return this.deleteOneGQL.mutate({ id })
+  }
+
+  removeMany(ids: string[]) {
+    return this.deleteMany.mutate({ids})
   }
 
 }
