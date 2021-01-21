@@ -13501,6 +13501,54 @@ export type DeleteCustomerMutation = (
   )> }
 );
 
+export type DeleteManyCustomersMutationVariables = Exact<{
+  ids?: Maybe<Array<Scalars['uuid']>>;
+}>;
+
+
+export type DeleteManyCustomersMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_customer?: Maybe<(
+    { __typename?: 'contact_customer_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'id'>
+    )> }
+  )> }
+);
+
+export type DeleteManyContactsMutationVariables = Exact<{
+  ids?: Maybe<Array<Scalars['uuid']>>;
+}>;
+
+
+export type DeleteManyContactsMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_contact?: Maybe<(
+    { __typename?: 'contact_contact_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'id'>
+    )> }
+  )> }
+);
+
+export type DeleteManyProvidersMutationVariables = Exact<{
+  ids?: Maybe<Array<Scalars['uuid']>>;
+}>;
+
+
+export type DeleteManyProvidersMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_provider?: Maybe<(
+    { __typename?: 'contact_provider_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_provider' }
+      & Pick<Contact_Provider, 'id'>
+    )> }
+  )> }
+);
+
 export type DeleteProviderMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -14337,6 +14385,66 @@ export const DeleteCustomerDocument = gql`
   })
   export class DeleteCustomerGQL extends Apollo.Mutation<DeleteCustomerMutation, DeleteCustomerMutationVariables> {
     document = DeleteCustomerDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyCustomersDocument = gql`
+    mutation DeleteManyCustomers($ids: [uuid!]) {
+  delete_contact_customer(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyCustomersGQL extends Apollo.Mutation<DeleteManyCustomersMutation, DeleteManyCustomersMutationVariables> {
+    document = DeleteManyCustomersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyContactsDocument = gql`
+    mutation DeleteManyContacts($ids: [uuid!]) {
+  delete_contact_contact(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyContactsGQL extends Apollo.Mutation<DeleteManyContactsMutation, DeleteManyContactsMutationVariables> {
+    document = DeleteManyContactsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyProvidersDocument = gql`
+    mutation DeleteManyProviders($ids: [uuid!]) {
+  delete_contact_provider(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyProvidersGQL extends Apollo.Mutation<DeleteManyProvidersMutation, DeleteManyProvidersMutationVariables> {
+    document = DeleteManyProvidersDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

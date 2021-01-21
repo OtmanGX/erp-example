@@ -8,6 +8,7 @@ import {
   InsertContactGQL,
   InsertContactMutationVariables,
   UpdateContactMutationVariables,
+  DeleteManyContactsGQL
   
 } from '@tanglass-erp/infrastructure/graphql';
 
@@ -28,7 +29,8 @@ export class ContactService {
     private getByIdGQL: GetContactByIdGQL,
     private deleteOneGQL: DeleteContactGQL,
     private insertOneGQL: InsertContactGQL,
-    private updateOneGQL: UpdateContactGQL
+    private updateOneGQL: UpdateContactGQL,
+    private deleteMany:DeleteManyContactsGQL
 
   ) {
     /** 
@@ -69,6 +71,11 @@ export class ContactService {
   removeOne(id: string) {
     return this.deleteOneGQL.mutate({ id })
   }
+
+  removeMany(ids: string[]) {
+    return this.deleteMany.mutate({ids})
+  }
+
 
 
 
