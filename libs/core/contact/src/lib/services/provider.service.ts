@@ -8,9 +8,11 @@ import {
   InsertProviderMutationVariables,
   UpdateProviderMutationVariables,
   InsertProviderMutation,
-  DeleteManyProvidersGQL
+  DeleteManyProvidersGQL,
+  AddProviderAddressesGQL,
+
 } from '@tanglass-erp/infrastructure/graphql';
-import { Provider,DetailedProvider, InsertedProvider } from "../models/provider.models";
+import { InsertAddressesProvider,DetailedProvider, InsertedProvider } from "../models/provider.models";
 import { adaptAddress, dataAdapter } from '../utils/dataAdapter';
 
 @Injectable({
@@ -24,7 +26,8 @@ export class ProviderService {
     private insertOneGQL: InsertProviderGQL,
     private updateOneGQL: UpdateProviderGQL,
     private deleteOneGQL: DeleteProviderGQL,
-    private deleteMany:DeleteManyProvidersGQL
+    private deleteMany:DeleteManyProvidersGQL,
+    private addProviderAddressesGQL:AddProviderAddressesGQL
 
 
   ) { 
@@ -56,9 +59,7 @@ export class ProviderService {
   
   }
   updateOne(updatedOne:DetailedProvider ) {
-    let updatedValue: UpdateProviderMutationVariables;
-    updatedValue ={...updatedOne,...adaptAddress(updatedOne.addresses)}
-    return this.updateOneGQL.mutate(updatedValue)
+    return this.updateOneGQL.mutate(updatedOne)
   }
 
   removeOne(id: string) {
@@ -68,5 +69,20 @@ export class ProviderService {
   removeMany(ids: string[]) {
     return this.deleteMany.mutate({ids})
   }
+  //new methods
 
+  addAddresses(value:InsertAddressesProvider){
+    return this.addProviderAddressesGQL.mutate(value)
+  }
+
+  addContacts(){
+    
+  }
+
+
+  affectContacts(){
+
+  }
+
+  
 }

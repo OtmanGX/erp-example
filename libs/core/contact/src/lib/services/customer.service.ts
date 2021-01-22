@@ -8,10 +8,11 @@ import {
   InsertCustomerMutationVariables,
   UpdateCustomerMutationVariables,
   Contact_Customer_Address_Insert_Input,
-  DeleteManyCustomersGQL
+  DeleteManyCustomersGQL,
+  AddCustomerAddressesGQL
 
 } from '@tanglass-erp/infrastructure/graphql';
-import { Customer, DetailedCustomer, InsertedCustomer } from '../models/customer.models';
+import { InsertAddressesCustomer, DetailedCustomer, InsertedCustomer } from '../models/customer.models';
 import { DetailedCustomerVM } from '../pagesVM/customers.vm';
 import { adaptAddress, dataAdapter } from '../utils/dataAdapter';
 
@@ -26,7 +27,9 @@ export class CustomerService {
     private deleteOneGQL: DeleteCustomerGQL,
     private insertOneGQL: InsertCustomerGQL,
     private updateOneGQL: UpdateCustomerGQL,
-    private deleteMany:DeleteManyCustomersGQL
+    private deleteMany:DeleteManyCustomersGQL,
+    private addCustomerAddressesGQL:AddCustomerAddressesGQL
+
     ) {
 /** 
     this.getOneById('ca6c4a90-dac3-46f0-945c-26ace051f52e').subscribe(obj => { let data: DetailedCustomer = obj.data.contact_customer_by_pk; console.log(obj.data.contact_customer_by_pk) });
@@ -63,11 +66,12 @@ export class CustomerService {
     addedValue= dataAdapter(createdOne);
     return this.insertOneGQL.mutate(addedValue)
   }
+
   updateOne(updatedOne: DetailedCustomer) {
-    let updatedValue: UpdateCustomerMutationVariables;
-    updatedValue ={...updatedOne,...adaptAddress(updatedOne.addresses)}
-    return this.updateOneGQL.mutate(updatedValue)
+    return this.updateOneGQL.mutate(updatedOne)
   }
+  
+
   removeOne(id: string) {
     return this.deleteOneGQL.mutate({ id })
   }
@@ -76,4 +80,17 @@ export class CustomerService {
   removeMany(ids: string[]) {
     return this.deleteMany.mutate({ids})
   }
+
+  //new methods
+  
+  addAddresses(value:InsertAddressesCustomer){
+    return this.addCustomerAddressesGQL.mutate(value)
+  }
+  addContacts(){
+    
+  }
+  affectContacts(){
+
+  }
+
 }

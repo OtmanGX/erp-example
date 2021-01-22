@@ -1,0 +1,8 @@
+mutation AddProviderAddresses($addresses: [contact_provider_address_insert_input!]! = 
+  {address: {data: {address: "", city: "", zip: ""}}, providerid: ""}) {
+  insert_contact_provider_address(objects: $addresses) {
+    returning {
+      addressid
+    }
+  }
+}

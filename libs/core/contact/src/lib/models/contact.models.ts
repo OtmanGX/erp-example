@@ -37,3 +37,21 @@ export interface InsertedContact extends MetaData {
 export interface AffectedContact{
     contactid?:string
 }
+
+
+export interface InsertAddressesContact{
+    addresses:addressContact[]
+}
+
+export interface addressContact{
+    contactid: string,
+    address:
+     {data:
+         {
+         address:string,
+         city:string,
+          zip: string
+        }
+     }
+}
+

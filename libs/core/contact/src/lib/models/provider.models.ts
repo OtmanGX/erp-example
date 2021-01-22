@@ -40,3 +40,22 @@ export interface InsertedProvider extends MetaData{
 export interface AffectedProvider{
     providerid?:string
 }
+
+
+
+export interface InsertAddressesProvider{
+    addresses:addressProvider[]
+}
+
+
+export interface addressProvider{
+    providerid: string,
+    address:
+     {data:
+         {
+         address:string,
+         city:string,
+          zip: string
+        }
+     }
+}

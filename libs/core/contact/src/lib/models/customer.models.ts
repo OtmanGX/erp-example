@@ -40,6 +40,22 @@ export interface AffectedCustomer{
 
 
 
+export interface InsertAddressesCustomer{
+    addresses:addressCustomer[]
+}
+
+export interface addressCustomer{
+    customerid: string,
+    address:
+     {data:
+         {
+         address:string,
+         city:string,
+          zip: string
+        }
+     }
+}
+
 
 
 
