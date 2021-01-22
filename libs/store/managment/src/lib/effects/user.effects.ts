@@ -12,7 +12,7 @@ export class UsersEffects {
   loadUsers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UsersActions.loadUsers),
-      mergeMap((action) =>
+      mergeMap( () =>
         this.userService.getAll().pipe(
           map((data) =>
           UsersActions.loadUsersSuccess({users: data.data.management_userProfile})
@@ -80,9 +80,9 @@ export class UsersEffects {
     return this.actions$.pipe(
       ofType(UsersActions.removeUser),
       mergeMap((action) =>
-        this.userService.removeOne(action.user.id).pipe(
+        this.userService.removeOne(action.userId).pipe(
           map((data) =>
-          UsersActions.removeUserSuccess({user: data.data.delete_management_userProfile_by_pk.id})
+          UsersActions.removeUserSuccess({userId: data.data.delete_management_userProfile_by_pk.id})
           ),
           catchError((error) =>
             of(UsersActions.removeUserFailure({ error }))

@@ -79,9 +79,9 @@ export class SalePointEffects {
     return this.actions$.pipe(
       ofType(SalePointActions.removeSalePoint),
       mergeMap((action) =>
-        this.salePointService.removeOne(action.salePoint.id).pipe(
+        this.salePointService.removeOne(action.salePointId).pipe(
           map((data) =>
-            SalePointActions.removeSalePointSuccess({salePoint: data.data.delete_management_salesPoint_by_pk.id})
+            SalePointActions.removeSalePointSuccess({salePointId: data.data.delete_management_salesPoint_by_pk.id})
           ),
           catchError((error) =>
             of(SalePointActions.removeSalePointFailure({ error }))

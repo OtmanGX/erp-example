@@ -12,7 +12,7 @@ export class CompaniesEffects {
   loadCompanies$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CompaniesActions.loadCompanies),
-      mergeMap((action) =>
+      mergeMap( () =>
         this.companieService.getAll().pipe(
           map((data) =>
           CompaniesActions.loadCompaniesSuccess({companies: data.data.management_company})
@@ -78,9 +78,9 @@ export class CompaniesEffects {
     return this.actions$.pipe(
       ofType(CompaniesActions.removeCompanie),
       mergeMap((action) =>
-        this.companieService.removeOne(action.companie.id).pipe(
+        this.companieService.removeOne(action.companieId).pipe(
           map((data) =>
-          CompaniesActions.removeCompanieSuccess({companie: data.data.delete_management_company_by_pk.id})
+            CompaniesActions.removeCompanieSuccess({companieId: data.data.delete_management_company_by_pk.id})
           ),
           catchError((error) =>
             of(CompaniesActions.removeCompanieFailure({ error }))

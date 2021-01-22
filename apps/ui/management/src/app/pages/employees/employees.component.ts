@@ -49,20 +49,27 @@ export class EmployeesComponent implements GridView {
           this.store.dispatch(
             UserActions.addUser({user: result})
           );
-        else {} // Update
+        else if( action === Operations.update) {
+          result['id'] = data['id'];
+          this.store.dispatch(
+            UserActions.updateUser({user: result})
+          );
+        } // Update
       }
     });
   }
 
   eventTriggering(event) {
     // Store Action Dispatching
-    console.log(event);
     switch (event.action) {
       case Operations.add:
       case Operations.update:
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.store.dispatch(
+          UserActions.removeUser({userId: event.data[0].id})
+        );
         break;
       // ...
     }

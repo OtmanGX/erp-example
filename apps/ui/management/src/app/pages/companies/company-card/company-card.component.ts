@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./company.component.scss']
 })
 export class CompanyCardComponent implements OnInit {
-  title = "Profile d'utilisateur";
+  title = "Profile d'une société";
   id: string;
   step = null;
   data =  this.store.select(CompanieSelectors.getSelectedCompanie);

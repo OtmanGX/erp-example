@@ -42,7 +42,7 @@ const userReducer = createReducer(
     userAdapter.upsertOne(action.user, state)
   ),
   on(UserActions.removeUserSuccess, (state, action) =>
-    userAdapter.removeOne(action.user.id, state)
+    userAdapter.removeOne(action.userId, state)
   ),
   on(UserActions.addUserFailure,
      UserActions.loadUsersFailure,

@@ -175,8 +175,64 @@ export class AlertEffects {
   unableToUpdateSalePoint$ = createEffect(
     () =>
       this.actions.pipe(
-        ofType(fromSalepointActions.addSalePointFailure),
+        ofType(fromSalepointActions.updateSalePointFailure),
         tap((action) => this.toastr.error( action.error,'SalePoint update failed', OPTIONS ))
+      ),
+      {dispatch: false}
+  )
+
+  companieDeleted$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(fromCompaniesActions.removeCompanieSuccess),
+        tap( () =>this.toastr.success( 'The companie has been succesfully deleted', 'Delete succeded', OPTIONS))
+      ),
+      {dispatch: false}
+
+  )
+
+  salePointDeleted = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(fromSalepointActions.removeSalePointSuccess),
+        tap( () => this.toastr.success('The sale-point has been succesfully deleted', 'Delete succeded', OPTIONS))
+      ),
+      {dispatch: false}
+
+  )
+
+  userDeleted$ = createEffect(
+    () =>
+    this.actions.pipe(
+      ofType(fromUserActions.removeUserSuccess),
+      tap( () => this.toastr.success('The user has been succesfully deleted', 'Delete succeded', OPTIONS))
+    ),
+    {dispatch: false}
+  )
+
+  unableToDeleteCompanie$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(fromCompaniesActions.removeCompanieFailure),
+        tap((action) => this.toastr.error( action.error,'Companie delete failed', OPTIONS ))
+      ),
+      {dispatch: false}
+  )
+
+  unableToDeleteUser$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(fromUserActions.removeUserFailure),
+        tap((action) => this.toastr.error( action.error,'User delete failed', OPTIONS ))
+      ),
+      {dispatch: false}
+  )
+
+  unableToDeleteSalePoint$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(fromSalepointActions.removeSalePointFailure),
+        tap((action) => this.toastr.error( action.error,'SalePoint delete failed', OPTIONS ))
       ),
       {dispatch: false}
   )

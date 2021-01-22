@@ -82,14 +82,14 @@ export const updateSalePointFailure = createAction(
 /****************************************************************** */
 
 export const removeSalePoint = createAction(
-  '[SalePoints Component] Update SalePoint',
-  props<{ salePoint: SalePoint }>()
+  '[SalePoints Component] Delete SalePoint',
+  props<{ salePointId: any }>()
 );
 export const removeSalePointSuccess = createAction(
-  '[SalePoint Effect] Update SalePoint Success',
-  props<{ salePoint: SalePoint }>()
+  '[SalePoint Effect] Delete SalePoint Success',
+  props<{ salePointId: any }>()
 );
 export const removeSalePointFailure = createAction(
-  '[SalePoint Effect] Update SalePoint failure',
+  '[SalePoint Effect] Delete SalePoint failure',
   props<{ error: any }>()
 );

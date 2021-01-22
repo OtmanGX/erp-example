@@ -81,14 +81,14 @@ export const updateCompanieFailure = createAction(
 /****************************************************************** */
 
 export const removeCompanie = createAction(
-  '[Companies Component] Update Companie',
-  props<{ companie: Companie }>()
+  '[Companies Component] Delete Companie',
+  props<{ companieId: any }>()
 );
 export const removeCompanieSuccess = createAction(
-  '[Companie Effect] Update Companie Success',
-  props<{ companie: Companie }>()
+  '[Companie Effect] Delete Companie Success',
+  props<{ companieId: any }>()
 );
 export const removeCompanieFailure = createAction(
-  '[Companie Effect] Update Companie failure',
+  '[Companie Effect] Delete Companie failure',
   props<{ error: any }>()
 );

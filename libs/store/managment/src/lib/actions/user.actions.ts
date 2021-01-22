@@ -81,14 +81,14 @@ export const updateUserFailure = createAction(
 /****************************************************************** */
 
 export const removeUser = createAction(
-  '[Users Component] Update User',
-  props<{ user: User }>()
+  '[Users Component] Delete User',
+  props<{ userId: any }>()
 );
 export const removeUserSuccess = createAction(
-  '[User Effect] Update User Success',
-  props<{ user: any }>()
+  '[User Effect] Delete User Success',
+  props<{ userId: any }>()
 );
 export const removeUserFailure = createAction(
-  '[User Effect] Update User failure',
+  '[User Effect] Delete User failure',
   props<{ error: any }>()
 );

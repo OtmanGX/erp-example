@@ -53,7 +53,7 @@ const companieReducer = createReducer<State>(
      companieAdapter.upsertOne(action.companie, state)
   ),
   on(CompaniesActions.removeCompanieSuccess, (state, action) =>
-     companieAdapter.removeOne(action.companie.id, state)
+     companieAdapter.removeOne(action.companieId, state)
   ),
   on(CompaniesActions.loadCompaniesFailure,
      CompaniesActions.updateCompanieFailure,

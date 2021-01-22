@@ -45,22 +45,24 @@ export class CompaniesComponent implements GridView {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (action === Operations.add) {
-          console.log(result);
           this.store.dispatch(CompanieActions.addCompanie({ companie: result }));
-        } else {}
+        } else if( action === Operations.update) {
+          result['id'] = data['id'];
+          this.store.dispatch(CompanieActions.updateCompanie({ companie: result }));
+        }
       }
     });
   }
 
   eventTriggering(event) {
     // Store Action Dispatching
-    console.log(event);
     switch (event.action) {
       case Operations.add:
       case Operations.update:
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.store.dispatch(CompanieActions.removeCompanie({ companieId: event.data[0].id }));
         break;
       // ...
     }

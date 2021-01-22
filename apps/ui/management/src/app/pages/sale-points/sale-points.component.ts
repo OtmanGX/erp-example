@@ -47,7 +47,9 @@ export class SalePointsComponent implements GridView {
         // Store action dispatching
         if (action === Operations.add) {
           this.store.dispatch(SalePointActions.addSalePoint({ salePoint: result }));
-        } else {
+        } else if (action === Operations.update) {
+          result['id'] = data['id'];
+          this.store.dispatch(SalePointActions.updateSalePoint({ salePoint: result }));
         }
       }
     });
@@ -55,13 +57,13 @@ export class SalePointsComponent implements GridView {
 
   eventTriggering(event) {
     // Store Action Dispatching
-    console.log(event);
     switch (event.action) {
       case Operations.add:
       case Operations.update:
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.store.dispatch(SalePointActions.removeSalePoint({ salePointId: event.data[0].id }));
         break;
       // ...
     }

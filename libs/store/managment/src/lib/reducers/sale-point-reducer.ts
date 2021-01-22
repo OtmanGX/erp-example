@@ -42,7 +42,7 @@ const salePointReducer = createReducer(
   salePointAdapter.upsertOne(action.salePoint, state)
   ),
   on(SalePointActions.removeSalePointSuccess, (state, action) =>
-  salePointAdapter.removeOne(action.salePoint.id, state)
+  salePointAdapter.removeOne(action.salePointId, state)
   ),
   on(SalePointActions.addSalePointFailure,
      SalePointActions.loadSalePointsFailure,
