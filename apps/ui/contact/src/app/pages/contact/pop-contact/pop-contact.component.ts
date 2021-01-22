@@ -5,9 +5,9 @@ import { regConfigContactDetailed } from '../../../utils/forms';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { combineLatest, concat, forkJoin, merge, of } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import * as ProviderSelectors from '@TanglassStore/contact/lib/selectors/provider.selectors';
-import { combineAll, map, mergeAll, mergeMap, take, takeUntil, takeWhile } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import * as ProviderActions from '@TanglassStore/contact/lib/actions/provider.actions';
 
@@ -29,7 +29,6 @@ export class PopContactComponent extends FormDialog {
     super(dialogRef, data);
   }
 
-
   ngOnInit() {
     this.store.dispatch(ProviderActions.loadProviders());
     this.store.dispatch(CustomerActions.loadCustomers());
@@ -37,34 +36,20 @@ export class PopContactComponent extends FormDialog {
   }
 
   buildForm(): void {
-    const customers = [];
-    const providers = [];
     const source = combineLatest([
-        this.store.select(CustomerSelectors.getAllCustomers),
-        this.store.select(ProviderSelectors.getAllProviders)
+        this.store.select(ProviderSelectors.getAllProviders),
+        this.store.select(CustomerSelectors.getAllCustomers)
       ]
       );
     source.pipe(
       map(res => ({customers: res[0], providers: res[1]})),
-      take(2)
+      take(4)
     ).subscribe(value => {
-      console.log('providers', value.providers);
-      console.log('customers', value.providers);
-    });
-
-    // source.subscribe(value => {
-    //   console.log('fetch', value);
-    // });
-    // forkJoin([
-    //   this.store.select(CustomerSelectors.getAllCustomers),
-    //   this.store.select(ProviderSelectors.getAllProviders)
-    // ]).subscribe(value => {
-    //   console.log('done');
-    //   this.regConfig = regConfigContactDetailed(this.data, value[0], value[1]);
-    // }, error => console.log(error));
-    // this.store.select(CustomerSelectors.getAllCustomers).subscribe(value => {
-    //   const customers = value.map(elem => ({key: elem.id, value: elem.name}));
-    //   this.regConfig = regConfigContactDetailed(this.data, customers);
-    // });
+      this.regConfig = regConfigContactDetailed(
+        this.data,
+        value.customers.map(elem => ({key: elem.id, value: elem.name})),
+        value.providers.map(elem => ({key: elem.id, value: elem.name})));
+     }
+    );
   }
 }

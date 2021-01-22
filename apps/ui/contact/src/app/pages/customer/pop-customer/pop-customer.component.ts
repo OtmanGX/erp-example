@@ -8,7 +8,12 @@ import {
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
 import { FormGroup, FormArray } from '@angular/forms';
-import { regConfigAddresses, regConfigContact, regCustomerConfig } from '../../../utils/forms';
+import { regConfigAddresses, regConfigContact, regConfigProvider, regCustomerConfig } from '../../../utils/forms';
+import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
+import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
+import { take } from 'rxjs/operators';
+import { AppState } from '@tanglass-erp/store/app';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-pop-customer',
@@ -36,7 +41,8 @@ export class PopCustomerComponent extends FormDialog implements AfterViewInit {
   constructor(
     public dialogRef: MatDialogRef<PopCustomerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private store: Store<AppState>
   ) {
     super(dialogRef, data);
     this.addressFormGroup = new FormGroup({addresses: new FormArray([])});
@@ -45,14 +51,18 @@ export class PopCustomerComponent extends FormDialog implements AfterViewInit {
   }
 
   buildForm(): void {
-    this.regConfig = regCustomerConfig(this.data);
-    const contacts = this.regConfig.find(elem => elem.name === 'contacts');
-    // contacts['options'] = this.contacts$.pipe(map(item => item.map(obj => ({key: obj.id, value: obj.name}));
+    this.store.dispatch(ContactActions.loadContacts());
+    this.store.select(ContactSelectors.getAllContacts)
+      .pipe(take(2))
+      .subscribe(value => {
+        const contacts = value.map(elem => ({key: elem.id, value: elem.name}));
+        this.regConfig = regCustomerConfig(this.data, contacts);
+      });
   }
 
   ngAfterViewInit() {
-    this.customerForm = this.dynamicForms.find(
-      component => component.name === 'main');
+    this.customerForm = this.dynamicForms
+      .find(component => component.name === 'main');
     this.cdr.detectChanges();
     this.assignAllForms();
     this.dynamicForms.changes.subscribe(value => {

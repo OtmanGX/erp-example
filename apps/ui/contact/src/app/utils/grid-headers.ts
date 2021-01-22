@@ -2,7 +2,7 @@ const ContactHeaders = [
   { field: 'code', headerName: 'Code', type: "linkColumn",
     cellRendererParams: (params) => (
     {
-      link: `/contact/${params.value}`,
+      link: `/contact/${params.data.name}`,
       state: {id: params?.data?.id},
     })
   },
@@ -14,14 +14,14 @@ const ContactHeaders = [
 
 
 const CustomerHeaders = [
-  { field: 'code', headerName: 'Code', type: "linkColumn",
+  { field: 'code', headerName: 'Code', type: "textColumn"
+  },
+  { field: 'name', headerName: 'Name', type: "linkColumn",
     cellRendererParams: (params) => (
       {
         link: `/customer/${params.value}`,
         state: {id: params?.data?.id},
-      })
-  },
-  { field: 'name', headerName: 'Name', type: "textColumn" },
+      }) },
   { field: 'ICE', headerName: 'ICE', type: "textColumn" },
   { field: 'IF', headerName: 'IF', type: "textColumn" },
   { field: 'mail', headerName: 'E-mail', type: "textColumn"},

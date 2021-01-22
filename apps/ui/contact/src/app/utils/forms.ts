@@ -9,7 +9,7 @@ const regConfigAddresses = (data?) => [
   {type: "input", name: "zip", label: "Code postal", inputType: "text", value: data?.zip},
 ];
 
-const regConfigProvider = (data?) => [
+const regConfigProvider = (data?, contacts = []) => [
   {type: "input", name: "name", label: "Nom", inputType: "text", value: data?.name,
     validations: [
       FormDialog.REQUIRED
@@ -18,7 +18,8 @@ const regConfigProvider = (data?) => [
   {type: "input", name: "mail", label: "E-mail", inputType: "text", value: data?.mail},
   {type: "input", name: "phone", label: "Téléphone", inputType: "text", value: data?.phone},
   {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
-  {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? []},
+  {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? [],
+   options: contacts},
 ];
 
 const regConfigContact = (data?) => [
@@ -44,7 +45,7 @@ const regConfigContactDetailed = (data?, customers = [], providers = []) => [
   ];
 
 
-const regCustomerConfig = (data?) => [
+const regCustomerConfig = (data?, contacts = []) => [
   {type: "input", name: "name", label: "Nom", inputType: "text", value: data?.name},
   {type: "input", label: "ICE", inputType: "text", name: "ICE", value: data?.ICE,
     validations: [
@@ -61,7 +62,8 @@ const regCustomerConfig = (data?) => [
   {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
   {type: "input", name: "website", label: "Site web", inputType: "text", value: data?.website},
   {type: "input", name: "Fax", label: "Fax", inputType: "text", value: data?.Fax},
-  {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? []},
+  {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? [],
+    options: contacts},
 
 ];
 
