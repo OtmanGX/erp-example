@@ -16,9 +16,3 @@ export interface DetailedServiceVM{
 }
 
 
-//service  creation 
-export interface CreationServiceVM{
-    serviceConfigs:ServiceConfig[];
-    loading:boolean;
-    error?:string;
-}
