@@ -47,7 +47,6 @@ export class PopCustomerComponent extends FormDialog implements AfterViewInit {
     super(dialogRef, data);
     this.addressFormGroup = new FormGroup({addresses: new FormArray([])});
     this.contactFormGroup = new FormGroup({contacts: new FormArray([])});
-    this.newAddress(); this.newContact();
   }
 
   buildForm(): void {

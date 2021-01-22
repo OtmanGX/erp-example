@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
-import { regConfigAddresses } from '../../utils/forms';
+import { regConfigAddresses } from '../../../utils/forms';
 
 @Component({
   selector: 'ngx-pop-contact',

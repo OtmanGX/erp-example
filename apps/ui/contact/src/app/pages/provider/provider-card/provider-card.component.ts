@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { PopAddressComponent } from '../../pop-address/pop-address.component';
-import { PopContactComponent } from '../../contact/pop-contact/pop-contact.component';
 import { PopProviderComponent } from '../pop-provider/pop-provider.component';
+import { getSelectedProvider } from '@TanglassStore/contact/lib/selectors/provider.selectors';
+import { loadProviderById } from '@TanglassStore/contact/lib/actions/provider.actions';
+import { Subscription } from 'rxjs';
+import { PopAddressComponent } from '../../components/pop-address/pop-address.component';
+import { PopShortContactComponent } from '../../contact/pop-short-contact/pop-short-contact.component';
 
 const componentMapper = {
-  address: PopContactComponent,
-  contact: PopContactComponent,
+  address: PopAddressComponent,
+  contact: PopShortContactComponent,
   provider: PopProviderComponent
 };
 
@@ -18,17 +21,33 @@ const componentMapper = {
   templateUrl: './provider-card.component.html',
   styleUrls: ['./provider-card.component.scss']
 })
-export class ProviderCardComponent implements OnInit {
+export class ProviderCardComponent implements OnInit, OnDestroy {
   title = "Fournisseur";
   gap = "50px";
   id: string;
   stepContact = null;
   stepAddress = null;
+  data$ = this.store.select(getSelectedProvider);
   data: any;
+  dataSubscription: Subscription;
   passedData: any;
-  contactPassedData: any;
-  addressPassedData: any;
-  otherData: any;
+
+  contactPassedData = (contact) => [
+    {label: 'Code', value: contact?.code},
+    {label: 'Nom', value: contact?.name},
+    {label: 'E-mail', value: contact?.mail},
+    {label: 'Téléphone', value: contact?.phone},
+    {label: 'Note', value: contact?.note},
+  ];
+  addressPassedData = (address) => [
+    {label: 'Adresse', value: address?.address},
+    {label: 'Ville', value: address?.city},
+    {label: 'Code Postal', value: address?.zip},
+  ];
+  otherData = [
+    [{label: 'Contacts', value: null}],
+    [{label: 'Adresses', value: null}],
+  ];
 
   constructor(
     private store: Store<AppState>,
@@ -36,34 +55,19 @@ export class ProviderCardComponent implements OnInit {
     private location: Location
   ) {
     this.id = (<any>location.getState()).id;
-    this.data = {name: 'test'};
-    this.data.contacts = [{name: 'test'}, {name: 'test'}, {name: 'test'}, ];
-    this.data.addresses = [{city: 'test'}, {city: 'test'}, {city: 'test'}, ];
-    this.passedData = [
-      {label: 'Nom', value: this.data?.name},
-      {label: 'Note', value: this.data?.note},
-      {label: 'Téléphone', value: this.data?.phone},
-      {label: 'E-mail', value: this.data?.mail},
-    ];
-    this.contactPassedData = (contact) => [
-      {label: 'Code', value: contact?.code},
-      {label: 'Nom', value: contact?.name},
-      {label: 'E-mail', value: contact?.mail},
-      {label: 'Téléphone', value: contact?.phone},
-      {label: 'Note', value: contact?.note},
-    ];
-    this.addressPassedData = (address) => [
-      {label: 'Adresse', value: address?.address},
-      {label: 'Ville', value: address?.city},
-      {label: 'Code Postal', value: address?.zip},
-    ];
-    this.otherData = [
-      [{label: 'Contacts', value: null}],
-      [{label: 'Adresses', value: null}],
-    ];
   }
 
   ngOnInit(): void {
+    this.store.dispatch(loadProviderById({id: this.id}));
+    this.dataSubscription = this.data$.subscribe(value => {
+      this.data = value;
+      this.passedData = [
+        {label: 'Nom', value: this.data?.name},
+        {label: 'Note', value: this.data?.note},
+        {label: 'Téléphone', value: this.data?.phone},
+        {label: 'E-mail', value: this.data?.mail},
+      ];
+    })
   }
 
   openDialog(model, data = {}) {
@@ -121,5 +125,9 @@ export class ProviderCardComponent implements OnInit {
   }
 
   deleteAdresse(id) {
+  }
+
+  ngOnDestroy(): void {
+    this.dataSubscription.unsubscribe();
   }
 }
