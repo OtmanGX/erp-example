@@ -43,19 +43,3 @@ export interface AffectedProvider{
 
 
 
-export interface InsertAddressesProvider{
-    addresses:addressProvider[]
-}
-
-
-export interface addressProvider{
-    providerid: string,
-    address:
-     {data:
-         {
-         address:string,
-         city:string,
-          zip: string
-        }
-     }
-}

@@ -1,8 +1,0 @@
-mutation AddContactAddresses($addresses: [contact_contact_address_insert_input!]! =
-  {contactid: "", address: {data: {address: "", city: "", zip: ""}}}) {
-  insert_contact_contact_address(objects: $addresses) {
-    returning {
-      addressid
-    }
-  }
-}

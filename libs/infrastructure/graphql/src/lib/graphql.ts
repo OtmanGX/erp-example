@@ -13804,51 +13804,122 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
-export type AddContactAddressesMutationVariables = Exact<{
-  addresses?: Array<Contact_Contact_Address_Insert_Input>;
+export type AddContactAddressMutationVariables = Exact<{
+  address: Contact_Address_Insert_Input;
+  id?: Maybe<Scalars['uuid']>;
 }>;
 
 
-export type AddContactAddressesMutation = (
+export type AddContactAddressMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_contact_contact_address?: Maybe<(
-    { __typename?: 'contact_contact_address_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_contact_address' }
-      & Pick<Contact_Contact_Address, 'addressid'>
-    )> }
+  & { insert_contact_contact_address_one?: Maybe<(
+    { __typename?: 'contact_contact_address' }
+    & { address: (
+      { __typename?: 'contact_address' }
+      & Pick<Contact_Address, 'address' | 'city' | 'id' | 'zip'>
+    ) }
   )> }
 );
 
-export type AddCustomerAddressesMutationVariables = Exact<{
-  addresses?: Array<Contact_Customer_Address_Insert_Input>;
+export type AddCustomerAddressMutationVariables = Exact<{
+  address: Contact_Address_Insert_Input;
+  id?: Maybe<Scalars['uuid']>;
 }>;
 
 
-export type AddCustomerAddressesMutation = (
+export type AddCustomerAddressMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_contact_customer_address?: Maybe<(
-    { __typename?: 'contact_customer_address_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_customer_address' }
-      & Pick<Contact_Customer_Address, 'addressid'>
-    )> }
+  & { insert_contact_customer_address_one?: Maybe<(
+    { __typename?: 'contact_customer_address' }
+    & { address: (
+      { __typename?: 'contact_address' }
+      & Pick<Contact_Address, 'address' | 'city' | 'id' | 'zip'>
+    ) }
   )> }
 );
 
-export type AddProviderAddressesMutationVariables = Exact<{
-  addresses?: Array<Contact_Provider_Address_Insert_Input>;
+export type AddCustomerContactMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  contact: Contact_Contact_Insert_Input;
 }>;
 
 
-export type AddProviderAddressesMutation = (
+export type AddCustomerContactMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_contact_provider_address?: Maybe<(
-    { __typename?: 'contact_provider_address_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'contact_provider_address' }
-      & Pick<Contact_Provider_Address, 'addressid'>
-    )> }
+  & { insert_contact_customer_contact_one?: Maybe<(
+    { __typename?: 'contact_customer_contact' }
+    & { contact: (
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'mail' | 'name' | 'note' | 'phone' | 'id'>
+    ) }
+  )> }
+);
+
+export type AddProviderAddressMutationVariables = Exact<{
+  address: Contact_Address_Insert_Input;
+  id?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type AddProviderAddressMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_provider_address_one?: Maybe<(
+    { __typename?: 'contact_provider_address' }
+    & { address: (
+      { __typename?: 'contact_address' }
+      & Pick<Contact_Address, 'address' | 'city' | 'id' | 'zip'>
+    ) }
+  )> }
+);
+
+export type AddProviderContactMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  contact: Contact_Contact_Insert_Input;
+}>;
+
+
+export type AddProviderContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_provider_contact_one?: Maybe<(
+    { __typename?: 'contact_provider_contact' }
+    & { contact: (
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'mail' | 'name' | 'note' | 'phone' | 'id'>
+    ) }
+  )> }
+);
+
+export type AffectCustomerContactMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  contactid: Scalars['uuid'];
+}>;
+
+
+export type AffectCustomerContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_customer_contact_one?: Maybe<(
+    { __typename?: 'contact_customer_contact' }
+    & { contact: (
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'id' | 'mail' | 'name' | 'note' | 'phone'>
+    ) }
+  )> }
+);
+
+export type AffectProviderContactMutationVariables = Exact<{
+  id?: Maybe<Scalars['uuid']>;
+  contactid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type AffectProviderContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_provider_contact_one?: Maybe<(
+    { __typename?: 'contact_provider_contact' }
+    & { contact: (
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'id' | 'mail' | 'name' | 'note' | 'phone'>
+    ) }
   )> }
 );
 
@@ -14755,11 +14826,16 @@ export type GetServiceConfigByIdSubscription = (
   )> }
 );
 
-export const AddContactAddressesDocument = gql`
-    mutation AddContactAddresses($addresses: [contact_contact_address_insert_input!]! = {contactid: "", address: {data: {address: "", city: "", zip: ""}}}) {
-  insert_contact_contact_address(objects: $addresses) {
-    returning {
-      addressid
+export const AddContactAddressDocument = gql`
+    mutation AddContactAddress($address: contact_address_insert_input!, $id: uuid) {
+  insert_contact_contact_address_one(
+    object: {address: {data: $address}, contactid: $id}
+  ) {
+    address {
+      address
+      city
+      id
+      zip
     }
   }
 }
@@ -14768,18 +14844,23 @@ export const AddContactAddressesDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class AddContactAddressesGQL extends Apollo.Mutation<AddContactAddressesMutation, AddContactAddressesMutationVariables> {
-    document = AddContactAddressesDocument;
+  export class AddContactAddressGQL extends Apollo.Mutation<AddContactAddressMutation, AddContactAddressMutationVariables> {
+    document = AddContactAddressDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const AddCustomerAddressesDocument = gql`
-    mutation AddCustomerAddresses($addresses: [contact_customer_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}, customerid: ""}) {
-  insert_contact_customer_address(objects: $addresses) {
-    returning {
-      addressid
+export const AddCustomerAddressDocument = gql`
+    mutation AddCustomerAddress($address: contact_address_insert_input!, $id: uuid) {
+  insert_contact_customer_address_one(
+    object: {address: {data: $address}, customerid: $id}
+  ) {
+    address {
+      address
+      city
+      id
+      zip
     }
   }
 }
@@ -14788,18 +14869,25 @@ export const AddCustomerAddressesDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class AddCustomerAddressesGQL extends Apollo.Mutation<AddCustomerAddressesMutation, AddCustomerAddressesMutationVariables> {
-    document = AddCustomerAddressesDocument;
+  export class AddCustomerAddressGQL extends Apollo.Mutation<AddCustomerAddressMutation, AddCustomerAddressMutationVariables> {
+    document = AddCustomerAddressDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const AddProviderAddressesDocument = gql`
-    mutation AddProviderAddresses($addresses: [contact_provider_address_insert_input!]! = {address: {data: {address: "", city: "", zip: ""}}, providerid: ""}) {
-  insert_contact_provider_address(objects: $addresses) {
-    returning {
-      addressid
+export const AddCustomerContactDocument = gql`
+    mutation AddCustomerContact($id: uuid!, $contact: contact_contact_insert_input!) {
+  insert_contact_customer_contact_one(
+    object: {customerid: $id, contact: {data: $contact}}
+  ) {
+    contact {
+      code
+      mail
+      name
+      note
+      phone
+      id
     }
   }
 }
@@ -14808,8 +14896,114 @@ export const AddProviderAddressesDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class AddProviderAddressesGQL extends Apollo.Mutation<AddProviderAddressesMutation, AddProviderAddressesMutationVariables> {
-    document = AddProviderAddressesDocument;
+  export class AddCustomerContactGQL extends Apollo.Mutation<AddCustomerContactMutation, AddCustomerContactMutationVariables> {
+    document = AddCustomerContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddProviderAddressDocument = gql`
+    mutation AddProviderAddress($address: contact_address_insert_input!, $id: uuid) {
+  insert_contact_provider_address_one(
+    object: {address: {data: $address}, providerid: $id}
+  ) {
+    address {
+      address
+      city
+      id
+      zip
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddProviderAddressGQL extends Apollo.Mutation<AddProviderAddressMutation, AddProviderAddressMutationVariables> {
+    document = AddProviderAddressDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddProviderContactDocument = gql`
+    mutation AddProviderContact($id: uuid!, $contact: contact_contact_insert_input!) {
+  insert_contact_provider_contact_one(
+    object: {providerid: $id, contact: {data: $contact}}
+  ) {
+    contact {
+      code
+      mail
+      name
+      note
+      phone
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddProviderContactGQL extends Apollo.Mutation<AddProviderContactMutation, AddProviderContactMutationVariables> {
+    document = AddProviderContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AffectCustomerContactDocument = gql`
+    mutation AffectCustomerContact($id: uuid!, $contactid: uuid!) {
+  insert_contact_customer_contact_one(
+    object: {customerid: $id, contactid: $contactid}
+  ) {
+    contact {
+      code
+      id
+      mail
+      name
+      note
+      phone
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AffectCustomerContactGQL extends Apollo.Mutation<AffectCustomerContactMutation, AffectCustomerContactMutationVariables> {
+    document = AffectCustomerContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AffectProviderContactDocument = gql`
+    mutation AffectProviderContact($id: uuid = null, $contactid: uuid = "") {
+  insert_contact_provider_contact_one(
+    object: {providerid: $id, contactid: $contactid}
+  ) {
+    contact {
+      code
+      id
+      mail
+      name
+      note
+      phone
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AffectProviderContactGQL extends Apollo.Mutation<AffectProviderContactMutation, AffectProviderContactMutationVariables> {
+    document = AffectProviderContactDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

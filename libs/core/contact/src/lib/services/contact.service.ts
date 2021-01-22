@@ -9,14 +9,14 @@ import {
   InsertContactMutationVariables,
   UpdateContactMutationVariables,
   DeleteManyContactsGQL,
-  AddContactAddressesGQL,
-  
+  AddContactAddressGQL,
+  Contact_Contact_Address_Insert_Input
 } from '@tanglass-erp/infrastructure/graphql';
 
 
-import {  InsertAddressesContact, Contact, DetailedContact, InsertedContact } from '../models/contact.models';
-import { ContactAddress } from '../models/shared.models';
-import {  dataAdapter,adaptAddress } from '../utils/dataAdapter';
+import {  DetailedContact, InsertedContact } from '../models/contact.models';
+import { InsertAddressContact } from '../models/shared.models';
+import {  dataAdapter } from '../utils/dataAdapter';
 
 
 
@@ -32,7 +32,7 @@ export class ContactService {
     private insertOneGQL: InsertContactGQL,
     private updateOneGQL: UpdateContactGQL,
     private deleteMany:DeleteManyContactsGQL,
-    private addContactAddressesGQL:AddContactAddressesGQL
+    private addContactAddressGQL:AddContactAddressGQL
 
   ) {
     /** 
@@ -70,8 +70,8 @@ export class ContactService {
 
   //new methods
 
-   addAddresses(value:InsertAddressesContact){
-     return this.addContactAddressesGQL.mutate(value)
+   addAddress(value:InsertAddressContact){
+     return this.addContactAddressGQL.mutate(value)
    }
 
 

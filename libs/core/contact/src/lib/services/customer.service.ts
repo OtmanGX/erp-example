@@ -6,16 +6,15 @@ import {
   UpdateCustomerGQL,
   InsertCustomerGQL,
   InsertCustomerMutationVariables,
-  UpdateCustomerMutationVariables,
-  Contact_Customer_Address_Insert_Input,
   DeleteManyCustomersGQL,
-  AddCustomerAddressesGQL
+  AddCustomerAddressGQL,
+  AddCustomerContactGQL,
+  AffectCustomerContactGQL,
 
 } from '@tanglass-erp/infrastructure/graphql';
-import { InsertAddressesCustomer, DetailedCustomer, InsertedCustomer } from '../models/customer.models';
-import { DetailedCustomerVM } from '../pagesVM/customers.vm';
-import { adaptAddress, dataAdapter } from '../utils/dataAdapter';
-
+import {  DetailedCustomer, InsertedCustomer } from '../models/customer.models';
+import {  dataAdapter } from '../utils/dataAdapter';
+import { InsertAddressContact ,InsertContact,AffectContact} from "../models/shared.models";
 @Injectable({
   providedIn: 'root'
 })
@@ -28,7 +27,9 @@ export class CustomerService {
     private insertOneGQL: InsertCustomerGQL,
     private updateOneGQL: UpdateCustomerGQL,
     private deleteMany:DeleteManyCustomersGQL,
-    private addCustomerAddressesGQL:AddCustomerAddressesGQL
+    private addCustomerAddressGQL:AddCustomerAddressGQL,
+    private addCustomerContact:AddCustomerContactGQL,
+    private affectCustomerContact:AffectCustomerContactGQL
 
     ) {
 /** 
@@ -83,13 +84,15 @@ export class CustomerService {
 
   //new methods
   
-  addAddresses(value:InsertAddressesCustomer){
-    return this.addCustomerAddressesGQL.mutate(value)
+  addAddress(value:InsertAddressContact){
+    return this.addCustomerAddressGQL.mutate(value)
   }
-  addContacts(){
-    
+  addContact(value:InsertContact){
+    this.addCustomerContact.mutate(value)
   }
-  affectContacts(){
+
+  affectContact(value:AffectContact){
+    this.affectCustomerContact.mutate(value)
 
   }
 
