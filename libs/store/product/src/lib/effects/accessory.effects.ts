@@ -12,7 +12,7 @@ export class AccessoryEffects {
   loadAccessories$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AccessoriesActions.loadAccessories),
-      mergeMap((action) =>
+      mergeMap(() =>
         this.accessorieservice.getAll().pipe(
           map((data) =>
           AccessoriesActions.loadAccessoriesSuccess({accessories: data.data.product_accessory})
