@@ -12,8 +12,9 @@ import { PopContactComponent } from './pages/contact/pop-contact/pop-contact.com
 import { ProviderComponent } from './pages/provider/provider.component';
 import { ProviderCardComponent } from './pages/provider/provider-card/provider-card.component';
 import { PopProviderComponent } from './pages/provider/pop-provider/pop-provider.component';
-import { PopAddressComponent } from './pages/pop-address/pop-address.component';
+import { PopAddressComponent } from './pages/components/pop-address/pop-address.component';
 import { StoreContactModule } from '@TanglassStore/contact/index'
+import { PopShortContactComponent } from './pages/contact/pop-short-contact/pop-short-contact.component';
 
 
 const routes: Routes = [
@@ -57,10 +58,11 @@ const routes: Routes = [
     ContactComponent,
     ContactCardComponent,
     PopContactComponent,
+    PopShortContactComponent,
     ProviderComponent,
     ProviderCardComponent,
     PopProviderComponent,
-    PopAddressComponent
+    PopAddressComponent,
   ],
   imports: [
     CommonModule,

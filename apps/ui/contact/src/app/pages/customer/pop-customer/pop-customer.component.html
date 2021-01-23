@@ -15,7 +15,9 @@
     <mat-step [stepControl]="addressFormGroup" [editable]="true">
       <ng-template matStepLabel>Les adresses</ng-template>
       <mat-accordion class="accordion-headers mb-12">
-
+        <button class="mb-8" mat-button color="accent" (click)="newAddress()">
+          <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon> &nbsp;Ajouter
+        </button>
         <mat-expansion-panel *ngFor="let addresse of addresses; index as i"
                              class="example-headers-align"
                              hideToggle>
@@ -33,7 +35,7 @@
                         [withActions]="false">
           </dynamic-form>
           <mat-action-row>
-            <button [disabled]="addresses.length === 1" mat-button color="warn" (click)="deleteAddress(addresse)">Supprimer</button>
+            <button mat-button color="warn" (click)="deleteAddress(addresse)">Supprimer</button>
             <button mat-button color="primary" (click)="newAddress()">Ajouter</button>
           </mat-action-row>
         </mat-expansion-panel>
@@ -47,8 +49,11 @@
     <!--   Contacts Form Step-->
     <mat-step [stepControl]="contactFormGroup" [editable]="true">
       <ng-template matStepLabel>Les contacts</ng-template>
-      <mat-accordion class="accordion-headers mb-12">
+      <button class="mb-8" mat-button color="accent" (click)="newContact()">
+        <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon> &nbsp;Ajouter
+      </button>
 
+      <mat-accordion class="accordion-headers mb-12">
         <mat-expansion-panel *ngFor="let contact of contacts; index as i"
                              class="example-headers-align"
                              hideToggle>
@@ -67,8 +72,7 @@
                         [withActions]="false">
           </dynamic-form>
           <mat-action-row>
-            <button [disabled]="contacts.length === 1"
-                    mat-button color="warn" (click)="deleteContact(contact)">
+            <button mat-button color="warn" (click)="deleteContact(contact)">
               Supprimer
             </button>
             <button mat-button color="primary" (click)="newContact()">Ajouter</button>

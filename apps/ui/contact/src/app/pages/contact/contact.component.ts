@@ -45,7 +45,7 @@ export class ContactComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-          this.store.dispatch(ContactActions.addContact({contact: result}))
+          this.store.dispatch(ContactActions.addContact({contact: result}));
         } else {}
       }
     });
@@ -53,7 +53,6 @@ export class ContactComponent implements GridView {
 
   eventTriggering(event) {
     // Store Action Dispatching
-    console.log(event);
     switch (event.action) {
       case Operations.add:
       case Operations.update:

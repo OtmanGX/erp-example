@@ -46,11 +46,7 @@ export class ProviderComponent implements GridView {
       if (result) {
         console.log(result);
         if (action === Operations.add) {
-          // It will return 3 forms
-          // Main Informations Form
-          // Adresses Form
-          // Contacts Form
-          this.store.dispatch(ProviderActions.addProvider({provider: result}))
+          this.store.dispatch(ProviderActions.addProvider({provider: result}));
         } else {}
       }
     });
@@ -58,7 +54,6 @@ export class ProviderComponent implements GridView {
 
   eventTriggering(event) {
     // Store Action Dispatching
-    console.log(event);
     switch (event.action) {
       case Operations.add:
       case Operations.update:
