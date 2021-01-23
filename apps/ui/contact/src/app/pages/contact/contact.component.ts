@@ -47,7 +47,6 @@ export class ContactComponent implements GridView {
         // Store action dispatching
         if (action === Operations.add) {
           const insertedContact = this.contactAdapter(result.contact, result.affectation);
-          console.log(insertedContact.affectedCustomers)
           this.store.dispatch(ContactActions.addContact({contact: insertedContact}));
         } else {}
       }
