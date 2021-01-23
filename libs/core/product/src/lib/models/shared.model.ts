@@ -41,6 +41,7 @@ export interface Product {
   interface AffectedCompany{
     data:[ 
       {companyid: string}
-    ]}
+    ]
+  }
 
   

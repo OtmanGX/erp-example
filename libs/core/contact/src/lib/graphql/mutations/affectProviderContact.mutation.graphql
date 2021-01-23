@@ -1,0 +1,12 @@
+mutation AffectProviderContact( $id: uuid = null, $contactid: uuid = "") {
+  insert_contact_provider_contact_one(object: {providerid: $id, contactid: $contactid}) {
+    contact {
+      code
+      id
+      mail
+      name
+      note
+      phone
+    }
+  }
+}

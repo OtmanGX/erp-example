@@ -26,7 +26,7 @@ export interface DetailedServiceConfig extends MetaData {
 export interface InsertedServiceConfig extends MetaData {
 
   name: string;
-  params?: OptionalServiceParam[];
+  param?: OptionalServiceParam[];
   services?:Service[];
   labelFactory: string;
 
@@ -35,14 +35,14 @@ export interface InsertedServiceConfig extends MetaData {
 // 
 export interface Service {
   id?: string;
-  serviceCollection?: ServiceConfig;
+  serviceConfig?: ServiceConfig;
   product?: Product;
   optionalParamValues?:OptionalServiceParamValue[];
 }
 
 export interface DetailedService extends MetaData{
   id: string;
-  serviceCollection: ServiceConfig;
+  serviceConfig: ServiceConfig;
   product: Product;
   paramValues?:OptionalServiceParamValue[];
 
@@ -51,9 +51,9 @@ export interface DetailedService extends MetaData{
 
 
 export interface InsertedService extends MetaData{
-  id: string;
-  serviceCollection: ServiceConfig;
+  serviceConfigid: string;
   product: InsertedProduct;
   paramValues?:OptionalServiceParamValue[];
 
 }
+
