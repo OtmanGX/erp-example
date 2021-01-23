@@ -58,10 +58,11 @@ export class ContactComponent implements GridView {
     const insertedContact: InsertedContact = {
       ...contact,
     }
-    insertedContact.affectedCustomers = affectation.customers;
-    insertedContact.affectedProviders = affectation.provider;
+    insertedContact.affectedCustomers = affectation.customers||[];
+    insertedContact.affectedProviders = affectation.provider||[];
     insertedContact.customers = [];
     insertedContact.providers = [];
+    console.log(insertedContact)
     return insertedContact
   }
 

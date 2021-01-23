@@ -29,7 +29,7 @@ export interface InsertedCustomer extends MetaData{
     FAX?: string;
     type?:string;//individual or company
     contacts?:InsertedContact[];
-    affectedContacts?:AffectedContact[];
+    affectedContacts?:string[];
     addresses?:Address[];
 }
 
