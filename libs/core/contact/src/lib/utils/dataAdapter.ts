@@ -45,7 +45,7 @@ export function dataAdapter(obj: objToAdapt): adaptedObj {
     }
 
     if (obj.contacts||obj.affectedContacts) {
-       contacts= [...obj.affectedContacts,...adaptContact(obj.contacts)]; 
+       contacts= [...obj.affectedContacts,...adaptContact(obj.contacts)];
        delete obj.affectedContacts
     }
 

@@ -6,14 +6,14 @@ import {
   UpdateContactGQL,
   InsertContactGQL,
   InsertContactMutationVariables,
-  UpdateContactMutationVariables,
-  DeleteManyContactsGQL
-
+  DeleteManyContactsGQL,
+  AddContactAddressGQL,
 } from '@tanglass-erp/infrastructure/graphql';
 
 
-import {   DetailedContact, InsertedContact } from '../models/contact.models';
-import {  dataAdapter,adaptAddress } from '../utils/dataAdapter';
+import {  DetailedContact, InsertedContact } from '../models/contact.models';
+import { InsertAddressContact } from '../models/shared.models';
+import {  dataAdapter } from '../utils/dataAdapter';
 
 
 
@@ -28,7 +28,8 @@ export class ContactService {
     private deleteOneGQL: DeleteContactGQL,
     private insertOneGQL: InsertContactGQL,
     private updateOneGQL: UpdateContactGQL,
-    private deleteMany:DeleteManyContactsGQL
+    private deleteMany:DeleteManyContactsGQL,
+    private addContactAddressGQL:AddContactAddressGQL
 
   ) {
 
@@ -48,19 +49,9 @@ export class ContactService {
     return this.insertOneGQL.mutate(addedValue)
   }
   updateOne(updatedOne: DetailedContact) {
-    let updatedValue: UpdateContactMutationVariables;
-    let addresses=adaptAddress(updatedOne.addresses)
-    updatedValue ={...updatedOne,...{addresses}}
-    return this.updateOneGQL.mutate(updatedValue)
+    return this.updateOneGQL.mutate(updatedOne)
   }
 
-
-  updateCustomers(){
-
-  }
-  updateProviders(){
-
-  }
   removeOne(id: string) {
     return this.deleteOneGQL.mutate({ id })
   }
@@ -69,6 +60,11 @@ export class ContactService {
     return this.deleteMany.mutate({ids})
   }
 
+  //new methods
+
+   addAddress(value:InsertAddressContact){
+     return this.addContactAddressGQL.mutate(value)
+   }
 
 
 

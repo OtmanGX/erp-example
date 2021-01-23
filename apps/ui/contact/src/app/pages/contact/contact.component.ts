@@ -8,6 +8,7 @@ import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PopContactComponent } from './pop-contact/pop-contact.component';
 import { ContactHeaders } from '../../utils/grid-headers';
+import { InsertedContact, Contact } from '@TanglassStore/contact/index';
 
 
 @Component({
@@ -45,15 +46,27 @@ export class ContactComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-          this.store.dispatch(ContactActions.addContact({contact: result}))
+          const insertedContact = this.contactAdapter(result.contact, result.affectation);
+          console.log(insertedContact.affectedCustomers)
+          this.store.dispatch(ContactActions.addContact({contact: insertedContact}));
         } else {}
       }
     });
   }
 
+  contactAdapter(contact : Contact, affectation) {
+    const insertedContact: InsertedContact = {
+      ...contact,
+    }
+    insertedContact.affectedCustomers = affectation.customers;
+    insertedContact.affectedProviders = affectation.provider;
+    insertedContact.customers = [];
+    insertedContact.providers = [];
+    return insertedContact
+  }
+
   eventTriggering(event) {
     // Store Action Dispatching
-    console.log(event);
     switch (event.action) {
       case Operations.add:
       case Operations.update:

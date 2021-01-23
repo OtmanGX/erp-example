@@ -1,0 +1,12 @@
+mutation AffectCustomerContact( $id: uuid !, $contactid: uuid !) {
+  insert_contact_customer_contact_one(object: {customerid: $id, contactid: $contactid}) {
+    contact {
+      code
+      id
+      mail
+      name
+      note
+      phone
+    }
+  }
+}

@@ -40,3 +40,6 @@ export interface InsertedProvider extends MetaData{
 export interface AffectedProvider{
     providerid?:string
 }
+
+
+

@@ -2,7 +2,7 @@
   <div fxLayout="row">
     <div class="spacer"></div>
     <button mat-fab class="bg-white" matTooltip="Modifier" (click)="openDialog('customer', data)">
-      <mat-icon fontSet="fas" fontIcon="fa-pen"></mat-icon>
+      <mat-icon fontSet="fas" class="text-white" fontIcon="fa-pen"></mat-icon>
     </button>
   </div>
   <ngx-list-item [data]="otherData[0]">
@@ -32,7 +32,7 @@
 
     </mat-accordion>
     <div class="ml-12">
-      <button mat-button color="primary" (click)="openDialog('contact')">
+      <button mat-button color="accent" (click)="openDialog('contact')">
         <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>&nbsp;&nbsp; Ajouter
       </button>
     </div>
@@ -64,7 +64,7 @@
       </mat-expansion-panel>
     </mat-accordion>
     <div class="ml-12">
-      <button mat-button color="primary" (click)="openDialog('address')">
+      <button mat-button color="accent" (click)="openDialog('address')">
         <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>&nbsp;&nbsp; Ajouter
       </button>
     </div>

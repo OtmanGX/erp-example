@@ -2,6 +2,7 @@ export * from './lib/store-contact.module';
 export {
   Address,
   Contact,
+  InsertedContact,
   Customer,
   DetailedContact,
   DetailedCustomer,

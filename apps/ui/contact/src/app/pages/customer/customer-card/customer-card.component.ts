@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { PopContactComponent } from '../../contact/pop-contact/pop-contact.component';
 import { PopCustomerComponent } from '../pop-customer/pop-customer.component';
+import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
+import { getSelectedCustomer } from '@TanglassStore/contact/lib/selectors/customer.selectors';
+import { Subscription } from 'rxjs';
+import { PopShortContactComponent } from '../../contact/pop-short-contact/pop-short-contact.component';
+import { PopAddressComponent } from '../../components/pop-address/pop-address.component';
 
 
 const componentMapper = {
-  address: PopContactComponent,
-  contact: PopContactComponent,
+  address: PopAddressComponent,
+  contact: PopShortContactComponent,
   customer: PopCustomerComponent
 };
 
@@ -18,17 +22,34 @@ const componentMapper = {
   templateUrl: './customer-card.component.html',
   styleUrls: ['./customer-card.component.scss']
 })
-export class CustomerCardComponent implements OnInit {
+export class CustomerCardComponent implements OnInit, OnDestroy {
   title = "Client";
   gap = "50px";
   id: string;
   stepContact = null;
   stepAddress = null;
+  data$ = this.store.select(getSelectedCustomer);
   data: any;
+  dataSubscription: Subscription;
   passedData: any;
-  contactPassedData: any;
-  addressPassedData: any;
-  otherData: any;
+
+
+  contactPassedData = (contact) => [
+    {label: 'Code', value: contact?.code},
+    {label: 'Nom', value: contact?.name},
+    {label: 'E-mail', value: contact?.mail},
+    {label: 'Téléphone', value: contact?.phone},
+    {label: 'Note', value: contact?.note},
+  ];
+  addressPassedData = (address) => [
+    {label: 'Adresse', value: address?.address},
+    {label: 'Ville', value: address?.city},
+    {label: 'Code Postal', value: address?.zip},
+  ];
+  otherData = [
+    [{label: 'Contacts', value: null}],
+    [{label: 'Adresses', value: null}],
+  ];
 
   constructor(
     private store: Store<AppState>,
@@ -36,39 +57,24 @@ export class CustomerCardComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.id = (<any>location.getState()).id;
-    this.data = {name: 'test'};
-    this.data.contacts = [{name: 'test'}, {name: 'test'}, {name: 'test'}, ];
-    this.data.addresses = [{city: 'test'}, {city: 'test'}, {city: 'test'}, ];
-    this.passedData = [
-      {label: 'Nom', value: this.data?.name},
-      {label: 'Code', value: this.data?.code},
-      {label: 'ICE', value: this.data?.ICE},
-      {label: 'IF', value: this.data?.IF},
-      {label: 'E-mail', value: this.data?.mail},
-      {label: 'Téléphone', value: this.data?.phone},
-      {label: 'Note', value: this.data?.note},
-      {label: 'FAX', value: this.data?.FAX},
-      {label: 'Site web', value: this.data?.website},
-    ];
-    this.contactPassedData = (contact) => [
-      {label: 'Code', value: contact?.code},
-      {label: 'Nom', value: contact?.name},
-      {label: 'E-mail', value: contact?.mail},
-      {label: 'Téléphone', value: contact?.phone},
-      {label: 'Note', value: contact?.note},
-    ];
-    this.addressPassedData = (address) => [
-      {label: 'Adresse', value: address?.address},
-      {label: 'Ville', value: address?.city},
-      {label: 'Code Postal', value: address?.zip},
-    ];
-    this.otherData = [
-      [{label: 'Contacts', value: null}],
-      [{label: 'Adresses', value: null}],
-    ];
   }
 
   ngOnInit(): void {
+    this.store.dispatch(CustomerActions.loadCustomerById({id: this.id}));
+    this.dataSubscription = this.data$.subscribe(value => {
+      this.data = value;
+      this.passedData = [
+        {label: 'Nom', value: value?.name},
+        {label: 'Code', value: value?.code},
+        {label: 'ICE', value: value?.ICE},
+        {label: 'IF', value: value?.IF},
+        {label: 'E-mail', value: value?.mail},
+        {label: 'Téléphone', value: value?.phone},
+        {label: 'Note', value: value?.note},
+        {label: 'FAX', value: value?.FAX},
+        {label: 'Site web', value: value?.website},
+      ];
+    });
   }
 
   openDialog(model, data = {}) {
@@ -126,6 +132,10 @@ export class CustomerCardComponent implements OnInit {
   }
 
   deleteAdresse(id) {
+  }
+
+  ngOnDestroy(): void {
+    this.dataSubscription.unsubscribe();
   }
 
 }
