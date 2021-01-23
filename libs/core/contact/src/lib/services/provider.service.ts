@@ -10,11 +10,12 @@ import {
   AddProviderAddressGQL,
   AddProviderContactGQL,
   AffectProviderContactGQL,
+  DeleteProviderAddressGQL
 
 } from '@tanglass-erp/infrastructure/graphql';
 import { DetailedProvider, InsertedProvider } from "../models/provider.models";
 import { dataAdapter } from '../utils/dataAdapter';
-import { InsertAddressContact,InsertContact,AffectContact} from "../models/shared.models";
+import { InsertAddressContact,InsertContact,AffectContact,DeleteAddress} from "../models/shared.models";
 @Injectable({
   providedIn: 'root'
 })
@@ -29,7 +30,8 @@ export class ProviderService {
     private deleteMany:DeleteManyProvidersGQL,
     private addProviderAddressGQL:AddProviderAddressGQL,
     private addProviderContact:AddProviderContactGQL,
-    private affectProviderContact:AffectProviderContactGQL
+    private affectProviderContact:AffectProviderContactGQL,
+    private deleteProviderAddress:DeleteProviderAddressGQL,
 
   ) {
 
@@ -63,7 +65,7 @@ export class ProviderService {
   removeMany(ids: string[]) {
     return this.deleteMany.mutate({ids})
   }
-  //new methods
+  //new methods for add/delete a provider addresses and add/affect contact to provider
 
   addAddress(value:InsertAddressContact){
     return this.addProviderAddressGQL.mutate(value)
@@ -79,5 +81,8 @@ export class ProviderService {
     this.affectProviderContact.mutate(value)
   }
 
-
+  deleteAddress(value:DeleteAddress){
+    this.deleteProviderAddress.mutate(value)
+  }
+  
 }

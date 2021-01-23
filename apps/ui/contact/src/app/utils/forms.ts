@@ -61,7 +61,7 @@ const regCustomerConfig = (data?, contacts = []) => [
   {type: "input", name: "mail", label: "E-mail", inputType: "text", value: data?.mail},
   {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
   {type: "input", name: "website", label: "Site web", inputType: "text", value: data?.website},
-  {type: "input", name: "Fax", label: "Fax", inputType: "text", value: data?.Fax},
+  {type: "input", name: "FAX", label: "FAX", inputType: "text", value: data?.FAX},
   {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? [],
     options: contacts},
 

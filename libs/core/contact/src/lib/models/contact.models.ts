@@ -29,8 +29,8 @@ export interface InsertedContact extends MetaData {
     addresses?: Address[];
     customers?: InsertedCustomer[];
     providers?: InsertedProvider[];
-    affectedCustomers?: AffectedCustomer[];
-    affectedProviders?: AffectedProvider[];
+    affectedCustomers?: string[];
+    affectedProviders?: string[];
 }
 
 

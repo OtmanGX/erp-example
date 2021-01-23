@@ -42,13 +42,13 @@ export class PopContactComponent extends FormDialog {
       ]
       );
     source.pipe(
-      map(res => ({customers: res[0], providers: res[1]})),
+      map(res => ({providers: res[0],customers: res[1] })),
       take(4)
     ).subscribe(value => {
       this.regConfig = regConfigContactDetailed(
         this.data,
-        value.customers.map(elem => ({key: {customerid: elem.id}, value: elem.name})),
-        value.providers.map(elem => ({key: {providerid: elem.id}, value: elem.name})));
+        value.customers.map(elem => ({key: elem.id, value: elem.name})),
+        value.providers.map(elem => ({key: elem.id, value: elem.name})));
      }
     );
   }

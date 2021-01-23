@@ -33,7 +33,7 @@ export interface InsertedProvider extends MetaData{
     website?:string;
     addresses?:Address[];
     contacts?:InsertedContact[];
-    affectedContacts?:AffectedContact[];
+    affectedContacts?:string[];
 }
 
 
