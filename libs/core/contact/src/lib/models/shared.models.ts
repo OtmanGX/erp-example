@@ -52,3 +52,10 @@ export interface AffectContact {
     contactid: string
     
 }
+
+// for deleting  an existing  address from a contact/customer/provider
+
+export interface DeleteAddress{
+    id:string;
+    addressid:string;
+}
