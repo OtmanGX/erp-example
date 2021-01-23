@@ -1,4 +1,4 @@
-import { Contact, DetailedContact } from '@tanglass-erp/core/contact';
+import { Contact, DetailedContact, InsertedContact } from '@tanglass-erp/core/contact';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -46,7 +46,7 @@ export const loadContactByIdFailure = createAction(
 
 export const addContact = createAction(
   '[Contacts Component] Add Contact',
-  props<{ contact: Contact }>()
+  props<{ contact: InsertedContact }>()
 );
 
 export const addContactSuccess = createAction(
@@ -65,7 +65,7 @@ export const addContactFailure = createAction(
 
 export const updateContact = createAction(
   '[Contacts Component] Update Contact',
-  props<{ contact: Contact }>()
+  props<{ contact: DetailedContact }>()
 );
 export const updateContactSuccess = createAction(
   '[Contact Effect] Update Contact Success',
@@ -81,14 +81,14 @@ export const updateContactFailure = createAction(
 /****************************************************************** */
 
 export const removeContact = createAction(
-  '[Contacts Component] Update Contact',
-  props<{ contact: Contact }>()
+  '[Contacts Component] Delete Contact',
+  props<{ contactId: any }>()
 );
 export const removeContactSuccess = createAction(
-  '[Contact Effect] Update Contact Success',
-  props<{ contact: Contact }>()
+  '[Contact Effect] Delete Contact Success',
+  props<{ contactId: any }>()
 );
 export const removeContactFailure = createAction(
-  '[Contact Effect] Update Contact failure',
+  '[Contact Effect] Delete Contact failure',
   props<{ error: any }>()
 );

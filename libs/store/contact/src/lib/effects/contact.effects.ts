@@ -12,7 +12,7 @@ export class ContactsEffects {
   loadContacts$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ContactsActions.loadContacts),
-      mergeMap((action) =>
+      mergeMap( () =>
         this.contactService.getAll().pipe(
           map((data) =>
           ContactsActions.loadContactsSuccess({contacts: data.data.contact_contact})
@@ -78,9 +78,9 @@ export class ContactsEffects {
     return this.actions$.pipe(
       ofType(ContactsActions.removeContact),
       mergeMap((action) =>
-        this.contactService.removeOne(action.contact.id).pipe(
+        this.contactService.removeOne(action.contactId).pipe(
           map((data) =>
-          ContactsActions.removeContactSuccess({contact: data.data.delete_contact_contact_by_pk.id})
+          ContactsActions.removeContactSuccess({contactId: data.data.delete_contact_contact_by_pk.id})
           ),
           catchError((error) =>
             of(ContactsActions.removeContactFailure({ error }))
@@ -89,10 +89,6 @@ export class ContactsEffects {
       )
     )
   });
-
-
-
-
 
   constructor(private actions$: Actions,
               private contactService: ContactService) {}

@@ -12,7 +12,7 @@ export class CustomersEffects {
   loadCustomers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CustomersActions.loadCustomers),
-      mergeMap((action) =>
+      mergeMap( () =>
         this.customerService.getAll().pipe(
           map((data) =>
           CustomersActions.loadCustomersSuccess({customers: data.data.contact_customer})
