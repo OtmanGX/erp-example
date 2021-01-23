@@ -4649,6 +4649,10 @@ export type Mutation_Root = {
   delete_product_substance?: Maybe<Product_Substance_Mutation_Response>;
   /** delete single row from the table: "product.substance" */
   delete_product_substance_by_pk?: Maybe<Product_Substance>;
+  /** delete data from the table: "product.substance_category" */
+  delete_product_substance_category?: Maybe<Product_Substance_Category_Mutation_Response>;
+  /** delete single row from the table: "product.substance_category" */
+  delete_product_substance_category_by_pk?: Maybe<Product_Substance_Category>;
   /** delete data from the table: "stock.item_tranfer" */
   delete_stock_item_tranfer?: Maybe<Stock_Item_Tranfer_Mutation_Response>;
   /** delete single row from the table: "stock.item_tranfer" */
@@ -4775,6 +4779,10 @@ export type Mutation_Root = {
   insert_product_service_one?: Maybe<Product_Service>;
   /** insert data into the table: "product.substance" */
   insert_product_substance?: Maybe<Product_Substance_Mutation_Response>;
+  /** insert data into the table: "product.substance_category" */
+  insert_product_substance_category?: Maybe<Product_Substance_Category_Mutation_Response>;
+  /** insert a single row into the table: "product.substance_category" */
+  insert_product_substance_category_one?: Maybe<Product_Substance_Category>;
   /** insert a single row into the table: "product.substance" */
   insert_product_substance_one?: Maybe<Product_Substance>;
   /** insert data into the table: "stock.item_tranfer" */
@@ -4905,6 +4913,10 @@ export type Mutation_Root = {
   update_product_substance?: Maybe<Product_Substance_Mutation_Response>;
   /** update single row of the table: "product.substance" */
   update_product_substance_by_pk?: Maybe<Product_Substance>;
+  /** update data of the table: "product.substance_category" */
+  update_product_substance_category?: Maybe<Product_Substance_Category_Mutation_Response>;
+  /** update single row of the table: "product.substance_category" */
+  update_product_substance_category_by_pk?: Maybe<Product_Substance_Category>;
   /** update data of the table: "stock.item_tranfer" */
   update_stock_item_tranfer?: Maybe<Stock_Item_Tranfer_Mutation_Response>;
   /** update single row of the table: "stock.item_tranfer" */
@@ -5250,6 +5262,18 @@ export type Mutation_RootDelete_Product_SubstanceArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Product_Substance_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Substance_CategoryArgs = {
+  where: Product_Substance_Category_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Substance_Category_By_PkArgs = {
+  category: Scalars['String'];
 };
 
 
@@ -5682,6 +5706,20 @@ export type Mutation_RootInsert_Product_Service_OneArgs = {
 export type Mutation_RootInsert_Product_SubstanceArgs = {
   objects: Array<Product_Substance_Insert_Input>;
   on_conflict?: Maybe<Product_Substance_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Substance_CategoryArgs = {
+  objects: Array<Product_Substance_Category_Insert_Input>;
+  on_conflict?: Maybe<Product_Substance_Category_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Substance_Category_OneArgs = {
+  object: Product_Substance_Category_Insert_Input;
+  on_conflict?: Maybe<Product_Substance_Category_On_Conflict>;
 };
 
 
@@ -6156,6 +6194,20 @@ export type Mutation_RootUpdate_Product_Substance_By_PkArgs = {
   _inc?: Maybe<Product_Substance_Inc_Input>;
   _set?: Maybe<Product_Substance_Set_Input>;
   pk_columns: Product_Substance_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Substance_CategoryArgs = {
+  _set?: Maybe<Product_Substance_Category_Set_Input>;
+  where: Product_Substance_Category_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Substance_Category_By_PkArgs = {
+  _set?: Maybe<Product_Substance_Category_Set_Input>;
+  pk_columns: Product_Substance_Category_Pk_Columns_Input;
 };
 
 
@@ -9726,6 +9778,150 @@ export type Product_Substance_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
 };
 
+/** columns and relationships of "product.substance_category" */
+export type Product_Substance_Category = {
+  __typename?: 'product_substance_category';
+  category: Scalars['String'];
+  description: Scalars['String'];
+};
+
+/** aggregated selection of "product.substance_category" */
+export type Product_Substance_Category_Aggregate = {
+  __typename?: 'product_substance_category_aggregate';
+  aggregate?: Maybe<Product_Substance_Category_Aggregate_Fields>;
+  nodes: Array<Product_Substance_Category>;
+};
+
+/** aggregate fields of "product.substance_category" */
+export type Product_Substance_Category_Aggregate_Fields = {
+  __typename?: 'product_substance_category_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_Substance_Category_Max_Fields>;
+  min?: Maybe<Product_Substance_Category_Min_Fields>;
+};
+
+
+/** aggregate fields of "product.substance_category" */
+export type Product_Substance_Category_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Substance_Category_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.substance_category" */
+export type Product_Substance_Category_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_Substance_Category_Max_Order_By>;
+  min?: Maybe<Product_Substance_Category_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.substance_category" */
+export type Product_Substance_Category_Arr_Rel_Insert_Input = {
+  data: Array<Product_Substance_Category_Insert_Input>;
+  on_conflict?: Maybe<Product_Substance_Category_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "product.substance_category". All fields are combined with a logical 'AND'. */
+export type Product_Substance_Category_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_Substance_Category_Bool_Exp>>>;
+  _not?: Maybe<Product_Substance_Category_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Substance_Category_Bool_Exp>>>;
+  category?: Maybe<String_Comparison_Exp>;
+  description?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "product.substance_category" */
+export enum Product_Substance_Category_Constraint {
+  /** unique or primary key constraint */
+  SubstanceCategoryPkey = 'substance_category_pkey'
+}
+
+/** input type for inserting data into table "product.substance_category" */
+export type Product_Substance_Category_Insert_Input = {
+  category?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Product_Substance_Category_Max_Fields = {
+  __typename?: 'product_substance_category_max_fields';
+  category?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "product.substance_category" */
+export type Product_Substance_Category_Max_Order_By = {
+  category?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_Substance_Category_Min_Fields = {
+  __typename?: 'product_substance_category_min_fields';
+  category?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "product.substance_category" */
+export type Product_Substance_Category_Min_Order_By = {
+  category?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.substance_category" */
+export type Product_Substance_Category_Mutation_Response = {
+  __typename?: 'product_substance_category_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_Substance_Category>;
+};
+
+/** input type for inserting object relation for remote table "product.substance_category" */
+export type Product_Substance_Category_Obj_Rel_Insert_Input = {
+  data: Product_Substance_Category_Insert_Input;
+  on_conflict?: Maybe<Product_Substance_Category_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.substance_category" */
+export type Product_Substance_Category_On_Conflict = {
+  constraint: Product_Substance_Category_Constraint;
+  update_columns: Array<Product_Substance_Category_Update_Column>;
+  where?: Maybe<Product_Substance_Category_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.substance_category" */
+export type Product_Substance_Category_Order_By = {
+  category?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.substance_category" */
+export type Product_Substance_Category_Pk_Columns_Input = {
+  category: Scalars['String'];
+};
+
+/** select columns of table "product.substance_category" */
+export enum Product_Substance_Category_Select_Column {
+  /** column name */
+  Category = 'category',
+  /** column name */
+  Description = 'description'
+}
+
+/** input type for updating data in table "product.substance_category" */
+export type Product_Substance_Category_Set_Input = {
+  category?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "product.substance_category" */
+export enum Product_Substance_Category_Update_Column {
+  /** column name */
+  Category = 'category',
+  /** column name */
+  Description = 'description'
+}
+
 /** unique or primary key constraints on table "product.substance" */
 export enum Product_Substance_Constraint {
   /** unique or primary key constraint */
@@ -10113,6 +10309,12 @@ export type Query_Root = {
   product_substance_aggregate: Product_Substance_Aggregate;
   /** fetch data from the table: "product.substance" using primary key columns */
   product_substance_by_pk?: Maybe<Product_Substance>;
+  /** fetch data from the table: "product.substance_category" */
+  product_substance_category: Array<Product_Substance_Category>;
+  /** fetch aggregated fields from the table: "product.substance_category" */
+  product_substance_category_aggregate: Product_Substance_Category_Aggregate;
+  /** fetch data from the table: "product.substance_category" using primary key columns */
+  product_substance_category_by_pk?: Maybe<Product_Substance_Category>;
   /** fetch data from the table: "stock.item_tranfer" */
   stock_item_tranfer: Array<Stock_Item_Tranfer>;
   /** fetch aggregated fields from the table: "stock.item_tranfer" */
@@ -11006,6 +11208,32 @@ export type Query_RootProduct_Substance_AggregateArgs = {
 /** query root */
 export type Query_RootProduct_Substance_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootProduct_Substance_CategoryArgs = {
+  distinct_on?: Maybe<Array<Product_Substance_Category_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Substance_Category_Order_By>>;
+  where?: Maybe<Product_Substance_Category_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Substance_Category_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Substance_Category_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Substance_Category_Order_By>>;
+  where?: Maybe<Product_Substance_Category_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Substance_Category_By_PkArgs = {
+  category: Scalars['String'];
 };
 
 
@@ -12750,6 +12978,12 @@ export type Subscription_Root = {
   product_substance_aggregate: Product_Substance_Aggregate;
   /** fetch data from the table: "product.substance" using primary key columns */
   product_substance_by_pk?: Maybe<Product_Substance>;
+  /** fetch data from the table: "product.substance_category" */
+  product_substance_category: Array<Product_Substance_Category>;
+  /** fetch aggregated fields from the table: "product.substance_category" */
+  product_substance_category_aggregate: Product_Substance_Category_Aggregate;
+  /** fetch data from the table: "product.substance_category" using primary key columns */
+  product_substance_category_by_pk?: Maybe<Product_Substance_Category>;
   /** fetch data from the table: "stock.item_tranfer" */
   stock_item_tranfer: Array<Stock_Item_Tranfer>;
   /** fetch aggregated fields from the table: "stock.item_tranfer" */
@@ -13647,6 +13881,32 @@ export type Subscription_RootProduct_Substance_By_PkArgs = {
 
 
 /** subscription root */
+export type Subscription_RootProduct_Substance_CategoryArgs = {
+  distinct_on?: Maybe<Array<Product_Substance_Category_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Substance_Category_Order_By>>;
+  where?: Maybe<Product_Substance_Category_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Substance_Category_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Substance_Category_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Substance_Category_Order_By>>;
+  where?: Maybe<Product_Substance_Category_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Substance_Category_By_PkArgs = {
+  category: Scalars['String'];
+};
+
+
+/** subscription root */
 export type Subscription_RootStock_Item_TranferArgs = {
   distinct_on?: Maybe<Array<Stock_Item_Tranfer_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -13936,6 +14196,20 @@ export type DeleteContactMutation = (
   )> }
 );
 
+export type DeleteContactAddressMutationVariables = Exact<{
+  addressid: Scalars['uuid'];
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteContactAddressMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_contact_address_by_pk?: Maybe<(
+    { __typename?: 'contact_contact_address' }
+    & Pick<Contact_Contact_Address, 'addressid' | 'contactid'>
+  )> }
+);
+
 export type DeleteCustomerMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -13946,6 +14220,20 @@ export type DeleteCustomerMutation = (
   & { delete_contact_customer_by_pk?: Maybe<(
     { __typename?: 'contact_customer' }
     & Pick<Contact_Customer, 'id' | 'name'>
+  )> }
+);
+
+export type DeleteCustomerAddressMutationVariables = Exact<{
+  addressid: Scalars['uuid'];
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteCustomerAddressMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_customer_address_by_pk?: Maybe<(
+    { __typename?: 'contact_customer_address' }
+    & Pick<Contact_Customer_Address, 'addressid' | 'customerid'>
   )> }
 );
 
@@ -14007,6 +14295,20 @@ export type DeleteProviderMutation = (
   & { delete_contact_provider_by_pk?: Maybe<(
     { __typename?: 'contact_provider' }
     & Pick<Contact_Provider, 'id' | 'name'>
+  )> }
+);
+
+export type DeleteProviderAddressMutationVariables = Exact<{
+  addressid: Scalars['uuid'];
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteProviderAddressMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_provider_address_by_pk?: Maybe<(
+    { __typename?: 'contact_provider_address' }
+    & Pick<Contact_Provider_Address, 'addressid' | 'providerid'>
   )> }
 );
 
@@ -15028,6 +15330,25 @@ export const DeleteContactDocument = gql`
       super(apollo);
     }
   }
+export const DeleteContactAddressDocument = gql`
+    mutation DeleteContactAddress($addressid: uuid!, $id: uuid!) {
+  delete_contact_contact_address_by_pk(addressid: $addressid, contactid: $id) {
+    addressid
+    contactid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteContactAddressGQL extends Apollo.Mutation<DeleteContactAddressMutation, DeleteContactAddressMutationVariables> {
+    document = DeleteContactAddressDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const DeleteCustomerDocument = gql`
     mutation DeleteCustomer($id: uuid!) {
   delete_contact_customer_by_pk(id: $id) {
@@ -15042,6 +15363,25 @@ export const DeleteCustomerDocument = gql`
   })
   export class DeleteCustomerGQL extends Apollo.Mutation<DeleteCustomerMutation, DeleteCustomerMutationVariables> {
     document = DeleteCustomerDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteCustomerAddressDocument = gql`
+    mutation DeleteCustomerAddress($addressid: uuid!, $id: uuid!) {
+  delete_contact_customer_address_by_pk(addressid: $addressid, customerid: $id) {
+    addressid
+    customerid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteCustomerAddressGQL extends Apollo.Mutation<DeleteCustomerAddressMutation, DeleteCustomerAddressMutationVariables> {
+    document = DeleteCustomerAddressDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -15121,6 +15461,25 @@ export const DeleteProviderDocument = gql`
   })
   export class DeleteProviderGQL extends Apollo.Mutation<DeleteProviderMutation, DeleteProviderMutationVariables> {
     document = DeleteProviderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteProviderAddressDocument = gql`
+    mutation DeleteProviderAddress($addressid: uuid!, $id: uuid!) {
+  delete_contact_provider_address_by_pk(addressid: $addressid, providerid: $id) {
+    addressid
+    providerid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteProviderAddressGQL extends Apollo.Mutation<DeleteProviderAddressMutation, DeleteProviderAddressMutationVariables> {
+    document = DeleteProviderAddressDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
