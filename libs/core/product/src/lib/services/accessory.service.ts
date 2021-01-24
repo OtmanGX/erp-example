@@ -35,14 +35,14 @@ product: {code: "access",label: "accessory",
 price: 150,priceMax: 130,priceMin: 120,
 unit: Product_Product_Unit_Enum.M2,
 product_companies: 
-{data:[ {companyid: "3fe4e491-9f79-4bb8-affb-a3d1c4c097b4"}]}
+{data:[ {companyid:"3fe4e491-9f79-4bb8-affb-a3d1c4c097b4" },
+        {companyid:"27024dd5-335c-43ee-9da4-22a49303db67" }]}
 }
 }
 ).subscribe(obj=>console.log(obj.data.insert_product_accessory_one))
 
 
  */
-
 
   }
 

@@ -54091,7 +54091,7 @@
         "description": "columns and relationships of \"product.service\"",
         "fields": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": null,
             "args": [
               {
@@ -54109,180 +54109,6 @@
               "kind": "SCALAR",
               "name": "jsonb",
               "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "paramsValues",
-            "description": "An array relationship",
-            "args": [
-              {
-                "name": "distinct_on",
-                "description": "distinct select on columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "product_optionalServiceParamValues_select_column",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "limit",
-                "description": "limit the number of rows returned",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "order_by",
-                "description": "sort the rows by one or more columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "product_optionalServiceParamValues_order_by",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "where",
-                "description": "filter the rows returned",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "product_optionalServiceParamValues_bool_exp",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "product_optionalServiceParamValues",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "paramsValues_aggregate",
-            "description": "An aggregated array relationship",
-            "args": [
-              {
-                "name": "distinct_on",
-                "description": "distinct select on columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "product_optionalServiceParamValues_select_column",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "limit",
-                "description": "limit the number of rows returned",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "order_by",
-                "description": "sort the rows by one or more columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "product_optionalServiceParamValues_order_by",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "where",
-                "description": "filter the rows returned",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "product_optionalServiceParamValues_bool_exp",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "product_optionalServiceParamValues_aggregate",
-                "ofType": null
-              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -54424,180 +54250,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "optionalServiceParams",
-            "description": "An array relationship",
-            "args": [
-              {
-                "name": "distinct_on",
-                "description": "distinct select on columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "product_optionalServiceParam_select_column",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "limit",
-                "description": "limit the number of rows returned",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "order_by",
-                "description": "sort the rows by one or more columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "product_optionalServiceParam_order_by",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "where",
-                "description": "filter the rows returned",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "product_optionalServiceParam_bool_exp",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "product_optionalServiceParam",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "optionalServiceParams_aggregate",
-            "description": "An aggregated array relationship",
-            "args": [
-              {
-                "name": "distinct_on",
-                "description": "distinct select on columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "product_optionalServiceParam_select_column",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "limit",
-                "description": "limit the number of rows returned",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "order_by",
-                "description": "sort the rows by one or more columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "product_optionalServiceParam_order_by",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "where",
-                "description": "filter the rows returned",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "product_optionalServiceParam_bool_exp",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "product_optionalServiceParam_aggregate",
                 "ofType": null
               }
             },
@@ -55328,16 +54980,6 @@
             "defaultValue": null
           },
           {
-            "name": "optionalServiceParams",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "product_optionalServiceParam_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "params",
             "description": null,
             "type": {
@@ -55400,6 +55042,12 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
+          {
+            "name": "serviceConfig_name_key",
+            "description": "unique or primary key constraint",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "service_pkey",
             "description": "unique or primary key constraint",
@@ -55528,16 +55176,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "optionalServiceParams",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "product_optionalServiceParam_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -56149,16 +55787,6 @@
             "defaultValue": null
           },
           {
-            "name": "optionalServiceParams_aggregate",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "product_optionalServiceParam_aggregate_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "params",
             "description": null,
             "type": {
@@ -56639,7 +56267,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -56741,21 +56369,11 @@
             "defaultValue": null
           },
           {
-            "name": "params",
+            "name": "paramValues",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "jsonb_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "paramsValues",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "product_optionalServiceParamValues_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -58371,7 +57989,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -58396,7 +58014,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -58417,7 +58035,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -58438,21 +58056,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "jsonb",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "paramsValues",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "product_optionalServiceParamValues_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -58784,21 +58392,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": null,
             "type": {
               "kind": "ENUM",
               "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "paramsValues_aggregate",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "product_optionalServiceParamValues_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -58855,7 +58453,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -58878,7 +58476,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -58905,7 +58503,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -58948,7 +58546,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "params",
+            "name": "paramValues",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null

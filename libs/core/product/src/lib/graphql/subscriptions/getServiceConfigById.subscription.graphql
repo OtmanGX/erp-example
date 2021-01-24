@@ -3,6 +3,7 @@ subscription GetServiceConfigById($id: uuid!) {
     id
     labelFactory
     name
+    params
     services(where: {serviceConfigid: {_eq: $id}}) {
       product {
         code

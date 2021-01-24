@@ -8991,11 +8991,7 @@ export type Product_Product_Variance_Order_By = {
 /** columns and relationships of "product.service" */
 export type Product_Service = {
   __typename?: 'product_service';
-  params?: Maybe<Scalars['jsonb']>;
-  /** An array relationship */
-  paramsValues: Array<Product_OptionalServiceParamValues>;
-  /** An aggregated array relationship */
-  paramsValues_aggregate: Product_OptionalServiceParamValues_Aggregate;
+  paramValues?: Maybe<Scalars['jsonb']>;
   /** An object relationship */
   product: Product_Product;
   productcode: Scalars['String'];
@@ -9006,28 +9002,8 @@ export type Product_Service = {
 
 
 /** columns and relationships of "product.service" */
-export type Product_ServiceParamsArgs = {
+export type Product_ServiceParamValuesArgs = {
   path?: Maybe<Scalars['String']>;
-};
-
-
-/** columns and relationships of "product.service" */
-export type Product_ServiceParamsValuesArgs = {
-  distinct_on?: Maybe<Array<Product_OptionalServiceParamValues_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_OptionalServiceParamValues_Order_By>>;
-  where?: Maybe<Product_OptionalServiceParamValues_Bool_Exp>;
-};
-
-
-/** columns and relationships of "product.service" */
-export type Product_ServiceParamsValues_AggregateArgs = {
-  distinct_on?: Maybe<Array<Product_OptionalServiceParamValues_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_OptionalServiceParamValues_Order_By>>;
-  where?: Maybe<Product_OptionalServiceParamValues_Bool_Exp>;
 };
 
 /** columns and relationships of "product.serviceConfig" */
@@ -9038,10 +9014,6 @@ export type Product_ServiceConfig = {
   id: Scalars['uuid'];
   labelFactory: Scalars['String'];
   name: Scalars['String'];
-  /** An array relationship */
-  optionalServiceParams: Array<Product_OptionalServiceParam>;
-  /** An aggregated array relationship */
-  optionalServiceParams_aggregate: Product_OptionalServiceParam_Aggregate;
   params?: Maybe<Scalars['jsonb']>;
   /** An array relationship */
   service_consumables: Array<Product_Service_Consumable>;
@@ -9053,26 +9025,6 @@ export type Product_ServiceConfig = {
   services_aggregate: Product_Service_Aggregate;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
-};
-
-
-/** columns and relationships of "product.serviceConfig" */
-export type Product_ServiceConfigOptionalServiceParamsArgs = {
-  distinct_on?: Maybe<Array<Product_OptionalServiceParam_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_OptionalServiceParam_Order_By>>;
-  where?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
-};
-
-
-/** columns and relationships of "product.serviceConfig" */
-export type Product_ServiceConfigOptionalServiceParams_AggregateArgs = {
-  distinct_on?: Maybe<Array<Product_OptionalServiceParam_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_OptionalServiceParam_Order_By>>;
-  where?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
 };
 
 
@@ -9171,7 +9123,6 @@ export type Product_ServiceConfig_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
   labelFactory?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
-  optionalServiceParams?: Maybe<Product_OptionalServiceParam_Bool_Exp>;
   params?: Maybe<Jsonb_Comparison_Exp>;
   service_consumables?: Maybe<Product_Service_Consumable_Bool_Exp>;
   services?: Maybe<Product_Service_Bool_Exp>;
@@ -9181,6 +9132,8 @@ export type Product_ServiceConfig_Bool_Exp = {
 
 /** unique or primary key constraints on table "product.serviceConfig" */
 export enum Product_ServiceConfig_Constraint {
+  /** unique or primary key constraint */
+  ServiceConfigNameKey = 'serviceConfig_name_key',
   /** unique or primary key constraint */
   ServicePkey = 'service_pkey'
 }
@@ -9207,7 +9160,6 @@ export type Product_ServiceConfig_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
   labelFactory?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  optionalServiceParams?: Maybe<Product_OptionalServiceParam_Arr_Rel_Insert_Input>;
   params?: Maybe<Scalars['jsonb']>;
   service_consumables?: Maybe<Product_Service_Consumable_Arr_Rel_Insert_Input>;
   services?: Maybe<Product_Service_Arr_Rel_Insert_Input>;
@@ -9290,7 +9242,6 @@ export type Product_ServiceConfig_Order_By = {
   id?: Maybe<Order_By>;
   labelFactory?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  optionalServiceParams_aggregate?: Maybe<Product_OptionalServiceParam_Aggregate_Order_By>;
   params?: Maybe<Order_By>;
   service_consumables_aggregate?: Maybe<Product_Service_Consumable_Aggregate_Order_By>;
   services_aggregate?: Maybe<Product_Service_Aggregate_Order_By>;
@@ -9391,7 +9342,7 @@ export type Product_Service_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Product_Service_Append_Input = {
-  params?: Maybe<Scalars['jsonb']>;
+  paramValues?: Maybe<Scalars['jsonb']>;
 };
 
 /** input type for inserting array relation for remote table "product.service" */
@@ -9405,8 +9356,7 @@ export type Product_Service_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Product_Service_Bool_Exp>>>;
   _not?: Maybe<Product_Service_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Product_Service_Bool_Exp>>>;
-  params?: Maybe<Jsonb_Comparison_Exp>;
-  paramsValues?: Maybe<Product_OptionalServiceParamValues_Bool_Exp>;
+  paramValues?: Maybe<Jsonb_Comparison_Exp>;
   product?: Maybe<Product_Product_Bool_Exp>;
   productcode?: Maybe<String_Comparison_Exp>;
   serviceConfig?: Maybe<Product_ServiceConfig_Bool_Exp>;
@@ -9698,23 +9648,22 @@ export type Product_Service_Consumable_Variance_Order_By = {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Product_Service_Delete_At_Path_Input = {
-  params?: Maybe<Array<Maybe<Scalars['String']>>>;
+  paramValues?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Product_Service_Delete_Elem_Input = {
-  params?: Maybe<Scalars['Int']>;
+  paramValues?: Maybe<Scalars['Int']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Product_Service_Delete_Key_Input = {
-  params?: Maybe<Scalars['String']>;
+  paramValues?: Maybe<Scalars['String']>;
 };
 
 /** input type for inserting data into table "product.service" */
 export type Product_Service_Insert_Input = {
-  params?: Maybe<Scalars['jsonb']>;
-  paramsValues?: Maybe<Product_OptionalServiceParamValues_Arr_Rel_Insert_Input>;
+  paramValues?: Maybe<Scalars['jsonb']>;
   product?: Maybe<Product_Product_Obj_Rel_Insert_Input>;
   productcode?: Maybe<Scalars['String']>;
   serviceConfig?: Maybe<Product_ServiceConfig_Obj_Rel_Insert_Input>;
@@ -9771,8 +9720,7 @@ export type Product_Service_On_Conflict = {
 
 /** ordering options when selecting data from "product.service" */
 export type Product_Service_Order_By = {
-  params?: Maybe<Order_By>;
-  paramsValues_aggregate?: Maybe<Product_OptionalServiceParamValues_Aggregate_Order_By>;
+  paramValues?: Maybe<Order_By>;
   product?: Maybe<Product_Product_Order_By>;
   productcode?: Maybe<Order_By>;
   serviceConfig?: Maybe<Product_ServiceConfig_Order_By>;
@@ -9781,13 +9729,13 @@ export type Product_Service_Order_By = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Product_Service_Prepend_Input = {
-  params?: Maybe<Scalars['jsonb']>;
+  paramValues?: Maybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "product.service" */
 export enum Product_Service_Select_Column {
   /** column name */
-  Params = 'params',
+  ParamValues = 'paramValues',
   /** column name */
   Productcode = 'productcode',
   /** column name */
@@ -9796,7 +9744,7 @@ export enum Product_Service_Select_Column {
 
 /** input type for updating data in table "product.service" */
 export type Product_Service_Set_Input = {
-  params?: Maybe<Scalars['jsonb']>;
+  paramValues?: Maybe<Scalars['jsonb']>;
   productcode?: Maybe<Scalars['String']>;
   serviceConfigid?: Maybe<Scalars['uuid']>;
 };
@@ -9804,7 +9752,7 @@ export type Product_Service_Set_Input = {
 /** update columns of table "product.service" */
 export enum Product_Service_Update_Column {
   /** column name */
-  Params = 'params',
+  ParamValues = 'paramValues',
   /** column name */
   Productcode = 'productcode',
   /** column name */
@@ -15109,9 +15057,9 @@ export type InsertGlassMutation = (
 );
 
 export type InsertServiceMutationVariables = Exact<{
-  ParamValues?: Array<Product_OptionalServiceParamValues_Insert_Input>;
   serviceConfigid?: Maybe<Scalars['uuid']>;
   product: Product_Product_Insert_Input;
+  paramValues?: Maybe<Scalars['jsonb']>;
 }>;
 
 
@@ -15133,7 +15081,7 @@ export type InsertServiceMutation = (
 export type InsertServiceConfigMutationVariables = Exact<{
   labelFactory?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  param?: Array<Product_OptionalServiceParam_Insert_Input>;
+  params?: Maybe<Scalars['jsonb']>;
 }>;
 
 
@@ -15141,11 +15089,7 @@ export type InsertServiceConfigMutation = (
   { __typename?: 'mutation_root' }
   & { insert_product_serviceConfig_one?: Maybe<(
     { __typename?: 'product_serviceConfig' }
-    & Pick<Product_ServiceConfig, 'labelFactory' | 'name' | 'id'>
-    & { optionalServiceParams: Array<(
-      { __typename?: 'product_optionalServiceParam' }
-      & Pick<Product_OptionalServiceParam, 'param' | 'id'>
-    )> }
+    & Pick<Product_ServiceConfig, 'labelFactory' | 'name' | 'id' | 'params'>
   )> }
 );
 
@@ -15231,11 +15175,7 @@ export type GetAllServiceConfigQuery = (
   { __typename?: 'query_root' }
   & { product_serviceConfig: Array<(
     { __typename?: 'product_serviceConfig' }
-    & Pick<Product_ServiceConfig, 'labelFactory' | 'name' | 'id'>
-    & { optionalServiceParams: Array<(
-      { __typename?: 'product_optionalServiceParam' }
-      & Pick<Product_OptionalServiceParam, 'id' | 'param'>
-    )> }
+    & Pick<Product_ServiceConfig, 'labelFactory' | 'name' | 'id' | 'params'>
   )> }
 );
 
@@ -15311,7 +15251,7 @@ export type GetServiceConfigByIdSubscription = (
   { __typename?: 'subscription_root' }
   & { product_serviceConfig_by_pk?: Maybe<(
     { __typename?: 'product_serviceConfig' }
-    & Pick<Product_ServiceConfig, 'id' | 'labelFactory' | 'name'>
+    & Pick<Product_ServiceConfig, 'id' | 'labelFactory' | 'name' | 'params'>
     & { services: Array<(
       { __typename?: 'product_service' }
       & { product: (
@@ -16633,9 +16573,9 @@ export const InsertGlassDocument = gql`
     }
   }
 export const InsertServiceDocument = gql`
-    mutation InsertService($ParamValues: [product_optionalServiceParamValues_insert_input!]! = [], $serviceConfigid: uuid, $product: product_product_insert_input!) {
+    mutation InsertService($serviceConfigid: uuid, $product: product_product_insert_input!, $paramValues: jsonb) {
   insert_product_service_one(
-    object: {paramsValues: {data: $ParamValues}, serviceConfigid: $serviceConfigid, product: {data: $product}}
+    object: {serviceConfigid: $serviceConfigid, product: {data: $product}, paramValues: $paramValues}
   ) {
     product {
       code
@@ -16664,17 +16604,14 @@ export const InsertServiceDocument = gql`
     }
   }
 export const InsertServiceConfigDocument = gql`
-    mutation InsertServiceConfig($labelFactory: String, $name: String, $param: [product_optionalServiceParam_insert_input!]! = []) {
+    mutation InsertServiceConfig($labelFactory: String, $name: String, $params: jsonb) {
   insert_product_serviceConfig_one(
-    object: {labelFactory: $labelFactory, name: $name, optionalServiceParams: {data: $param}}
+    object: {labelFactory: $labelFactory, name: $name, params: $params}
   ) {
     labelFactory
     name
     id
-    optionalServiceParams {
-      param
-      id
-    }
+    params
   }
 }
     `;
@@ -16820,10 +16757,7 @@ export const GetAllServiceConfigDocument = gql`
     labelFactory
     name
     id
-    optionalServiceParams {
-      id
-      param
-    }
+    params
   }
 }
     `;
@@ -16952,6 +16886,7 @@ export const GetServiceConfigByIdDocument = gql`
     id
     labelFactory
     name
+    params
     services(where: {serviceConfigid: {_eq: $id}}) {
       product {
         code

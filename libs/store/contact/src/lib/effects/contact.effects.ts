@@ -5,7 +5,6 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as ContactsActions from '../actions/contact.actions';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ServicesConfigService } from '@tanglass-erp/core/product';
 
 @Injectable()
 export class ContactsEffects {
@@ -92,12 +91,5 @@ export class ContactsEffects {
   });
 
   constructor(private actions$: Actions,
-              private contactService: ContactService,
-              ser:ServicesConfigService) {
-                ser.insertOne({
-                  labelFactory:"TRMP",
-                  name:"trempage",
-                  params:"{ep:number}"
-                }).subscribe(obj=>obj.data.insert_product_serviceConfig_one)
-              }
+              private contactService: ContactService) { }
 }

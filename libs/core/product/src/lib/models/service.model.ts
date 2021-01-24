@@ -38,14 +38,14 @@ export interface Service {
   id?: string;
   serviceConfig?: ServiceConfig;
   product?: Product;
-  optionalParamValues?:OptionalServiceParamValue[];
+  paramValues?:string;
 }
 
 export interface DetailedService extends MetaData{
   id: string;
   serviceConfig: ServiceConfig;
   product: Product;
-  paramValues?:OptionalServiceParamValue[];
+  paramValues?:string;
 
 }
 
@@ -54,7 +54,7 @@ export interface DetailedService extends MetaData{
 export interface InsertedService extends MetaData{
   serviceConfigid: string;
   product: InsertedProduct;
-  paramValues?:OptionalServiceParamValue[];
+  paramValues?:string;
 
 }
 
