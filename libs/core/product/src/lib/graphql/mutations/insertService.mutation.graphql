@@ -1,8 +1,7 @@
 mutation InsertService($ParamValues: 
   [product_optionalServiceParamValues_insert_input!]! =[],
   $serviceConfigid: uuid,
-  $product: product_product_insert_input!= 
-  {code: "", label: "", price: 1.5, priceMax: 1.5, priceMin: 1.5, unit: m2}) {
+  $product: product_product_insert_input!) {
   insert_product_service_one(object: {paramsValues:
     {data: $ParamValues}, serviceConfigid: $serviceConfigid,
     product: {data: $product}}) {

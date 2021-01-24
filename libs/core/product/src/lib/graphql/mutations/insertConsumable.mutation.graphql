@@ -1,5 +1,10 @@
-mutation InsertConsumable($product: product_product_insert_input! = {code: "", label: "", unit: m2, price: 1.5, priceMax: 1.5, product_companies: {data: {companyid: ""}}, priceMin: 1.5}, $category: product_consumableCategory_enum) {
-  insert_product_consumable_one(object: {product: {data: $product}, category: $category}) {
+mutation InsertConsumable($product: product_product_insert_input! ,
+  $category: product_consumableCategory_enum,
+  $subsctance: product_substance_insert_input! = 
+  {cost: 1.5, type: consumable}) {
+  insert_product_consumable_one(object: {product: 
+    {data: $product}, category: $category, substance:
+    {data: $subsctance}}) {
     id
     product {
       code

@@ -1,9 +1,10 @@
 mutation InsertGlass($color: String , $thickness: Int, $type: String,
- $product: product_product_insert_input! =
-  {code: "",unit: m2 ,label: "", price: 1.5, priceMax: 1.5,
-  product_companies: {data: {companyid: ""}}, priceMin: 1.5}) {
+   $subsctance: product_substance_insert_input! = 
+  {cost: 1.5, type: consumable}
+ $product: product_product_insert_input!) {
   insert_product_glass_one(object: 
-  {color: $color, thickness: $thickness, type: $type, product: {data: $product}}) {
+  {color: $color, thickness: $thickness, type: $type, product: {data: $product}
+  substance:{data: $subsctance}}) {
     color
     id
     thickness

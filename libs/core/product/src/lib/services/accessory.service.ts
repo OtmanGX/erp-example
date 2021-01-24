@@ -7,7 +7,11 @@ import {
   DeleteManyGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import {  insertedAccessory } from "../models/accessory.model";
-
+import {
+  Product_Product_Unit_Enum,
+  Product_AccessoryTypes_Enum,
+  Product_ConsumableCategory_Enum
+} from "@tanglass-erp/infrastructure/graphql";
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +42,8 @@ product_companies:
 
 
  */
+
+
   }
 
   getAll() {
