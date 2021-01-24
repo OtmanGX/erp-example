@@ -36,12 +36,12 @@ import { Groupfield } from '../../interfaces/groupfield.interface';
     </ng-container>
   </div>
 
+    <ng-content></ng-content>
 
     <div *ngIf="withActions" class="mt-12" fxLayout="row" fxLayoutAlign="center center"  mat-dialog-actions>
       <button matTooltip="Confirmer" mat-raised-button color="primary" type="submit">Confirmer</button>
       <button matTooltip="Annuler" mat-raised-button color="warn" type="button" (click)="close.emit()">Annuler</button>
     </div>
-    <ng-content></ng-content>
   </form>
   `,
   styles: []

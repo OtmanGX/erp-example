@@ -120,21 +120,23 @@ const regConfigService = (data?) => [
           FormDialog.REQUIRED
         ]
       },
-      {type: "input", label: "Unité de prix par défaut", inputType: "text", name: "defaultPriceUnit",
-        value: data?.name,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
+      // {type: "input", label: "Unité de prix par défaut", inputType: "text", name: "defaultPriceUnit",
+      //   value: data?.name,
+      //   validations: [
+      //     FormDialog.REQUIRED
+      //   ]
+      // },
+      {type: "input", label: "Etiquette d\'usine", inputType: "text", name: "labelFactory",
+        value: data?.labelFactory, validations: [FormDialog.REQUIRED]},
     ]
   },
   {
     name: "params",
-    label: "Params",
-    headerVisible: false,
+    label: "Paramètres",
+    headerVisible: true,
     fields: [
-      {type: "inputTag", label: "Paramètres", name: "params", value: data?.params ?? [],
-        options: []}
+      // {type: "inputTag", label: "Paramètres", name: "params", value: data?.params ?? [],
+      //   options: []}
     ]
   },
 ];
