@@ -19,7 +19,7 @@ const regConfigProvider = (data?, contacts = []) => [
   {type: "input", name: "phone", label: "Téléphone", inputType: "text", value: data?.phone},
   {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
   {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? [],
-   options: contacts},
+  multiple: true,options: contacts},
 ];
 
 const regConfigContact = (data?) => [
@@ -63,7 +63,7 @@ const regCustomerConfig = (data?, contacts = []) => [
   {type: "input", name: "website", label: "Site web", inputType: "text", value: data?.website},
   {type: "input", name: "FAX", label: "FAX", inputType: "text", value: data?.FAX},
   {type: "select", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? [],
-    options: contacts},
+  multiple: true, options: contacts},
 
 ];
 

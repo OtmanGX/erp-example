@@ -3,10 +3,7 @@ query GetAllServiceConfig {
     labelFactory
     name
     id
-    optionalServiceParams {
-      id
-      param
-    }
+    params
    
   }
 }

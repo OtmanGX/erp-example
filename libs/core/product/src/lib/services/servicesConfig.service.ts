@@ -25,7 +25,6 @@ export class ServicesConfigService {
     this.getAll().subscribe(obj =>{let data: ServiceConfig[]=obj.data.product_serviceConfig;
       console.log(obj.data.product_serviceConfig)} );
   */
-
  }
 
   getAll() {
@@ -43,4 +42,5 @@ export class ServicesConfigService {
   addOneItem(createdOne: InsertedService) {
     return this.insertOneItemGQL.mutate(createdOne)
   }
+
 }
