@@ -1,11 +1,11 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
-import { regConfService } from '../../../utils/forms';
+import { regConfService } from '../../../../utils/forms';
+import * as CompanieActions from '@TanglassStore/management/lib/actions/companies.actions';
 import * as CompanieSelectors from '@TanglassStore/management/lib/selectors/companies.selectors';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import * as CompanieActions from '@TanglassStore/management/lib/actions/companies.actions';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './pop-service.component.html',
   styleUrls: ['./pop-service.component.scss'],
 })
-export class PopServiceComponent extends FormDialog implements OnDestroy{
+export class PopServiceComponent extends FormDialog implements OnDestroy {
   title = "Ajouter une service";
   regConfig: Groupfield[] | any;
   companiesSubscription: Subscription;
@@ -30,9 +30,10 @@ export class PopServiceComponent extends FormDialog implements OnDestroy{
 
   buildForm() {
     this.store.dispatch(CompanieActions.loadCompanies());
-    this.regConfig = regConfService(this.data, []);
+    // const dataParams = JSON.parse(this.data.params);
+    this.regConfig = regConfService(this.data.service, []);
     // this.companiesSubscription = this.companies$.subscribe(value => {
-    //   this.regConfig = regConfService(this.data, []);
+    //   this.regConfig = regConfService(this.data.service, value, dataParams);
     // });
   }
 

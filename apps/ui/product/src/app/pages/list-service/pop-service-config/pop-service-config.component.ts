@@ -31,7 +31,7 @@ export class PopServiceConfigComponent extends FormDialog implements AfterViewIn
         .filter(component => component.name === 'param')
         .map((dynamicForm: DynamicFormComponent) => dynamicForm.form);
       while (this.paramFormArray.length) {
-        this.paramFormArray.removeAt(0);
+        this.paramFormArray.shift();
       }
       forms.forEach(form => this.paramFormArray.push(form));
     });
@@ -53,7 +53,6 @@ export class PopServiceConfigComponent extends FormDialog implements AfterViewIn
     if (this.paramFormArray.valid) {
       const serviceForm = value.service;
       serviceForm.params = JSON.stringify(this.paramFormArray.value);
-      console.log(serviceForm);
       this.dialogRef.close(serviceForm);
     } else {
       this.paramFormArray.controls.forEach(elem => {

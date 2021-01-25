@@ -8,14 +8,14 @@ import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { ServiceHeaders } from '../../../utils/grid-headers';
-import { PopServiceComponent } from '../pop-service/pop-service.component';
+import { PopServiceComponent } from './pop-service/pop-service.component';
 
 @Component({
-  selector: 'ngx-service',
-  templateUrl: './service.component.html',
-  styleUrls: ['./service.component.scss']
+  selector: 'ngx-service-card',
+  templateUrl: './service-card.component.html',
+  styleUrls: ['./service-card.component.scss']
 })
-export class ServiceComponent implements OnInit, GridView {
+export class ServiceCardComponent implements OnInit, GridView {
   // AgGrid
   @ViewChild(MainGridComponent) mainGrid;
   agGrid: AgGridAngular;
@@ -69,11 +69,13 @@ export class ServiceComponent implements OnInit, GridView {
       }
     }
 
-  openDialog?(action: any, data: any) {
+  openDialog(action: any, data: any) {
+    const params = this.data?.params ?? '[]'; // params to parse and extract
+    const dataToPass = {service: data, params: params};
       const dialogRef = this.dialog.open(PopServiceComponent, {
         width: '1000px',
         panelClass: 'panel-dialog',
-        data: data
+        data: dataToPass,
       });
 
       dialogRef.afterClosed().subscribe(result => {

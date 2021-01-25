@@ -13,7 +13,7 @@ import { PopServiceGlasseComponent } from './pages/list-service-glasse/pop-servi
 import { ListServiceGlasseComponent } from './pages/list-service-glasse/list-service-glasse.component';
 import { ListServiceConsumableComponent } from './pages/list-service-consumable/list-service-consumable.component';
 import { PopServiceConsumableComponent } from './pages/list-service-consumable/pop-service-glasse/pop-service-consumable.component';
-import { ServiceComponent } from './pages/list-service/service-card/service.component';
+import { ServiceCardComponent } from './pages/list-service/service-card/service-card.component';
 import { ServiceCardItemComponent } from './components/service-card-item/service-card-item.component';
 import { AccessoryCardComponent } from './pages/list-accessories/accessory-card/accessory-card.component';
 import { HighlightDirectiveDirective } from './directives/highlight-directive.directive';
@@ -21,7 +21,7 @@ import { GlassCardComponent } from './pages/list-glasse/glass-card/glass-card.co
 import { ConsumableCardComponent } from './pages/list-consumable/consumable-card/consumable-card.component';
 import { ServiceGlassCardComponent } from './pages/list-service-glasse/service-glass-card/service-glass-card.component';
 import { PopServiceConfigComponent } from './pages/list-service/pop-service-config/pop-service-config.component';
-import { PopServiceComponent } from './pages/list-service/pop-service/pop-service.component';
+import { PopServiceComponent } from './pages/list-service/service-card/pop-service/pop-service.component';
 
 
 const popUps = [
@@ -46,7 +46,7 @@ const pages = [
 ];
 
 const cardPages = [
-  ServiceComponent,
+  ServiceCardComponent,
   AccessoryCardComponent,
   GlassCardComponent,
   ConsumableCardComponent,
@@ -100,7 +100,7 @@ const routes: Routes = [
     },
     {
       path: 'service/:id',
-      component: ServiceComponent,
+      component: ServiceCardComponent,
     },
     {
       path: 'listServicesVerres',
