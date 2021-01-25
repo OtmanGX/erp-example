@@ -22990,6 +22990,180 @@
             "deprecationReason": null
           },
           {
+            "name": "product_companies",
+            "description": "An array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "product_product_companies_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "product_product_companies_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "product_product_companies_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "product_product_companies",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "product_companies_aggregate",
+            "description": "An aggregated array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "product_product_companies_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "product_product_companies_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "product_product_companies_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "product_product_companies_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "updatedAt",
             "description": null,
             "args": [],
@@ -23013,6 +23187,180 @@
               "kind": "SCALAR",
               "name": "uuid",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "warehouses",
+            "description": "An array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_warehouse_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_warehouse_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_warehouse_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "stock_warehouse",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "warehouses_aggregate",
+            "description": "An aggregated array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_warehouse_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_warehouse_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_warehouse_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_warehouse_aggregate",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -23397,6 +23745,16 @@
             "defaultValue": null
           },
           {
+            "name": "product_companies",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "product_product_companies_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "updatedAt",
             "description": null,
             "type": {
@@ -23412,6 +23770,16 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "uuid_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "warehouses",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_warehouse_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -23595,6 +23963,16 @@
             "defaultValue": null
           },
           {
+            "name": "product_companies",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "product_product_companies_arr_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "updatedAt",
             "description": null,
             "type": {
@@ -23610,6 +23988,16 @@
             "type": {
               "kind": "SCALAR",
               "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "warehouses",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_warehouse_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -24549,6 +24937,16 @@
             "defaultValue": null
           },
           {
+            "name": "product_companies_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "product_product_companies_aggregate_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "updatedAt",
             "description": null,
             "type": {
@@ -24564,6 +24962,16 @@
             "type": {
               "kind": "ENUM",
               "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "warehouses_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_warehouse_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -31969,6 +32377,60 @@
             "deprecationReason": null
           },
           {
+            "name": "delete_stock_transfer_status",
+            "description": "delete data from the table: \"stock.transfer_status\"",
+            "args": [
+              {
+                "name": "where",
+                "description": "filter the rows which have to be deleted",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "stock_transfer_status_bool_exp",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "delete_stock_transfer_status_by_pk",
+            "description": "delete single row from the table: \"stock.transfer_status\"",
+            "args": [
+              {
+                "name": "key",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "delete_stock_warehouse",
             "description": "delete data from the table: \"stock.warehouse\"",
             "args": [
@@ -32023,8 +32485,8 @@
             "deprecationReason": null
           },
           {
-            "name": "delete_stock_warehouse_subsctance",
-            "description": "delete data from the table: \"stock.warehouse_subsctance\"",
+            "name": "delete_stock_warehouse_substance",
+            "description": "delete data from the table: \"stock.warehouse_substance\"",
             "args": [
               {
                 "name": "where",
@@ -32034,7 +32496,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "stock_warehouse_subsctance_bool_exp",
+                    "name": "stock_warehouse_substance_bool_exp",
                     "ofType": null
                   }
                 },
@@ -32043,18 +32505,18 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_mutation_response",
+              "name": "stock_warehouse_substance_mutation_response",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "delete_stock_warehouse_subsctance_by_pk",
-            "description": "delete single row from the table: \"stock.warehouse_subsctance\"",
+            "name": "delete_stock_warehouse_substance_by_pk",
+            "description": "delete single row from the table: \"stock.warehouse_substance\"",
             "args": [
               {
-                "name": "subsctanceid",
+                "name": "substanceid",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -32084,7 +32546,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance",
+              "name": "stock_warehouse_substance",
               "ofType": null
             },
             "isDeprecated": false,
@@ -34633,6 +35095,88 @@
             "deprecationReason": null
           },
           {
+            "name": "insert_stock_transfer_status",
+            "description": "insert data into the table: \"stock.transfer_status\"",
+            "args": [
+              {
+                "name": "objects",
+                "description": "the rows to be inserted",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "INPUT_OBJECT",
+                        "name": "stock_transfer_status_insert_input",
+                        "ofType": null
+                      }
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "on_conflict",
+                "description": "on conflict condition",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_transfer_status_on_conflict",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "insert_stock_transfer_status_one",
+            "description": "insert a single row into the table: \"stock.transfer_status\"",
+            "args": [
+              {
+                "name": "object",
+                "description": "the row to be inserted",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "stock_transfer_status_insert_input",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "on_conflict",
+                "description": "on conflict condition",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_transfer_status_on_conflict",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "insert_stock_warehouse",
             "description": "insert data into the table: \"stock.warehouse\"",
             "args": [
@@ -34715,8 +35259,8 @@
             "deprecationReason": null
           },
           {
-            "name": "insert_stock_warehouse_subsctance",
-            "description": "insert data into the table: \"stock.warehouse_subsctance\"",
+            "name": "insert_stock_warehouse_substance",
+            "description": "insert data into the table: \"stock.warehouse_substance\"",
             "args": [
               {
                 "name": "objects",
@@ -34732,7 +35276,7 @@
                       "name": null,
                       "ofType": {
                         "kind": "INPUT_OBJECT",
-                        "name": "stock_warehouse_subsctance_insert_input",
+                        "name": "stock_warehouse_substance_insert_input",
                         "ofType": null
                       }
                     }
@@ -34745,7 +35289,7 @@
                 "description": "on conflict condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_on_conflict",
+                  "name": "stock_warehouse_substance_on_conflict",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -34753,15 +35297,15 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_mutation_response",
+              "name": "stock_warehouse_substance_mutation_response",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "insert_stock_warehouse_subsctance_one",
-            "description": "insert a single row into the table: \"stock.warehouse_subsctance\"",
+            "name": "insert_stock_warehouse_substance_one",
+            "description": "insert a single row into the table: \"stock.warehouse_substance\"",
             "args": [
               {
                 "name": "object",
@@ -34771,7 +35315,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "stock_warehouse_subsctance_insert_input",
+                    "name": "stock_warehouse_substance_insert_input",
                     "ofType": null
                   }
                 },
@@ -34782,7 +35326,7 @@
                 "description": "on conflict condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_on_conflict",
+                  "name": "stock_warehouse_substance_on_conflict",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -34790,7 +35334,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance",
+              "name": "stock_warehouse_substance",
               "ofType": null
             },
             "isDeprecated": false,
@@ -37571,6 +38115,80 @@
             "deprecationReason": null
           },
           {
+            "name": "update_stock_transfer_status",
+            "description": "update data of the table: \"stock.transfer_status\"",
+            "args": [
+              {
+                "name": "_set",
+                "description": "sets the columns of the filtered rows to the given values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_transfer_status_set_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows which have to be updated",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "stock_transfer_status_bool_exp",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "update_stock_transfer_status_by_pk",
+            "description": "update single row of the table: \"stock.transfer_status\"",
+            "args": [
+              {
+                "name": "_set",
+                "description": "sets the columns of the filtered rows to the given values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_transfer_status_set_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "pk_columns",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "stock_transfer_status_pk_columns_input",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "update_stock_warehouse",
             "description": "update data of the table: \"stock.warehouse\"",
             "args": [
@@ -37645,15 +38263,15 @@
             "deprecationReason": null
           },
           {
-            "name": "update_stock_warehouse_subsctance",
-            "description": "update data of the table: \"stock.warehouse_subsctance\"",
+            "name": "update_stock_warehouse_substance",
+            "description": "update data of the table: \"stock.warehouse_substance\"",
             "args": [
               {
                 "name": "_inc",
                 "description": "increments the integer columns with given value of the filtered values",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_inc_input",
+                  "name": "stock_warehouse_substance_inc_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -37663,7 +38281,7 @@
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_set_input",
+                  "name": "stock_warehouse_substance_set_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -37676,7 +38294,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "stock_warehouse_subsctance_bool_exp",
+                    "name": "stock_warehouse_substance_bool_exp",
                     "ofType": null
                   }
                 },
@@ -37685,22 +38303,22 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_mutation_response",
+              "name": "stock_warehouse_substance_mutation_response",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "update_stock_warehouse_subsctance_by_pk",
-            "description": "update single row of the table: \"stock.warehouse_subsctance\"",
+            "name": "update_stock_warehouse_substance_by_pk",
+            "description": "update single row of the table: \"stock.warehouse_substance\"",
             "args": [
               {
                 "name": "_inc",
                 "description": "increments the integer columns with given value of the filtered values",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_inc_input",
+                  "name": "stock_warehouse_substance_inc_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -37710,7 +38328,7 @@
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_set_input",
+                  "name": "stock_warehouse_substance_set_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -37723,7 +38341,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "stock_warehouse_subsctance_pk_columns_input",
+                    "name": "stock_warehouse_substance_pk_columns_input",
                     "ofType": null
                   }
                 },
@@ -37732,7 +38350,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance",
+              "name": "stock_warehouse_substance",
               "ofType": null
             },
             "isDeprecated": false,
@@ -38044,9 +38662,13 @@
             "description": "An object relationship",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "product_substance",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "product_substance",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -38056,9 +38678,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -41271,9 +41897,13 @@
             "description": "An object relationship",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "product_substance",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "product_substance",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -41283,9 +41913,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -43903,9 +44537,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -53230,8 +53868,26 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "Kg",
+            "description": "Kilogramme",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ML",
+            "description": "Metre linéaire",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "m2",
             "description": "Mettre Carré",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "unit",
+            "description": "par unité",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -58668,7 +59324,7 @@
             "deprecationReason": null
           },
           {
-            "name": "warehouse_subsctances",
+            "name": "warehouse_substances",
             "description": "An array relationship",
             "args": [
               {
@@ -58682,7 +59338,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_warehouse_subsctance_select_column",
+                      "name": "stock_warehouse_substance_select_column",
                       "ofType": null
                     }
                   }
@@ -58720,7 +59376,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_warehouse_subsctance_order_by",
+                      "name": "stock_warehouse_substance_order_by",
                       "ofType": null
                     }
                   }
@@ -58732,7 +59388,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_bool_exp",
+                  "name": "stock_warehouse_substance_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -58749,7 +59405,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "stock_warehouse_subsctance",
+                    "name": "stock_warehouse_substance",
                     "ofType": null
                   }
                 }
@@ -58759,7 +59415,7 @@
             "deprecationReason": null
           },
           {
-            "name": "warehouse_subsctances_aggregate",
+            "name": "warehouse_substances_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -58773,7 +59429,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_warehouse_subsctance_select_column",
+                      "name": "stock_warehouse_substance_select_column",
                       "ofType": null
                     }
                   }
@@ -58811,7 +59467,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_warehouse_subsctance_order_by",
+                      "name": "stock_warehouse_substance_order_by",
                       "ofType": null
                     }
                   }
@@ -58823,7 +59479,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_bool_exp",
+                  "name": "stock_warehouse_substance_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -58834,7 +59490,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "stock_warehouse_subsctance_aggregate",
+                "name": "stock_warehouse_substance_aggregate",
                 "ofType": null
               }
             },
@@ -59389,11 +60045,11 @@
             "defaultValue": null
           },
           {
-            "name": "warehouse_subsctances",
+            "name": "warehouse_substances",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_bool_exp",
+              "name": "stock_warehouse_substance_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -59518,11 +60174,11 @@
             "defaultValue": null
           },
           {
-            "name": "warehouse_subsctances",
+            "name": "warehouse_substances",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_arr_rel_insert_input",
+              "name": "stock_warehouse_substance_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -59884,11 +60540,11 @@
             "defaultValue": null
           },
           {
-            "name": "warehouse_subsctances_aggregate",
+            "name": "warehouse_substances_aggregate",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_aggregate_order_by",
+              "name": "stock_warehouse_substance_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -69115,6 +69771,207 @@
             "deprecationReason": null
           },
           {
+            "name": "stock_transfer_status",
+            "description": "fetch data from the table: \"stock.transfer_status\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_transfer_status_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_transfer_status_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_transfer_status_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "stock_transfer_status",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stock_transfer_status_aggregate",
+            "description": "fetch aggregated fields from the table: \"stock.transfer_status\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_transfer_status_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_transfer_status_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_transfer_status_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_transfer_status_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stock_transfer_status_by_pk",
+            "description": "fetch data from the table: \"stock.transfer_status\" using primary key columns",
+            "args": [
+              {
+                "name": "key",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "stock_warehouse",
             "description": "fetch data from the table: \"stock.warehouse\"",
             "args": [
@@ -69316,8 +70173,8 @@
             "deprecationReason": null
           },
           {
-            "name": "stock_warehouse_subsctance",
-            "description": "fetch data from the table: \"stock.warehouse_subsctance\"",
+            "name": "stock_warehouse_substance",
+            "description": "fetch data from the table: \"stock.warehouse_substance\"",
             "args": [
               {
                 "name": "distinct_on",
@@ -69330,7 +70187,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_warehouse_subsctance_select_column",
+                      "name": "stock_warehouse_substance_select_column",
                       "ofType": null
                     }
                   }
@@ -69368,7 +70225,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_warehouse_subsctance_order_by",
+                      "name": "stock_warehouse_substance_order_by",
                       "ofType": null
                     }
                   }
@@ -69380,7 +70237,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_bool_exp",
+                  "name": "stock_warehouse_substance_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -69397,7 +70254,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "stock_warehouse_subsctance",
+                    "name": "stock_warehouse_substance",
                     "ofType": null
                   }
                 }
@@ -69407,8 +70264,8 @@
             "deprecationReason": null
           },
           {
-            "name": "stock_warehouse_subsctance_aggregate",
-            "description": "fetch aggregated fields from the table: \"stock.warehouse_subsctance\"",
+            "name": "stock_warehouse_substance_aggregate",
+            "description": "fetch aggregated fields from the table: \"stock.warehouse_substance\"",
             "args": [
               {
                 "name": "distinct_on",
@@ -69421,7 +70278,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_warehouse_subsctance_select_column",
+                      "name": "stock_warehouse_substance_select_column",
                       "ofType": null
                     }
                   }
@@ -69459,7 +70316,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_warehouse_subsctance_order_by",
+                      "name": "stock_warehouse_substance_order_by",
                       "ofType": null
                     }
                   }
@@ -69471,7 +70328,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_bool_exp",
+                  "name": "stock_warehouse_substance_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -69482,7 +70339,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "stock_warehouse_subsctance_aggregate",
+                "name": "stock_warehouse_substance_aggregate",
                 "ofType": null
               }
             },
@@ -69490,11 +70347,11 @@
             "deprecationReason": null
           },
           {
-            "name": "stock_warehouse_subsctance_by_pk",
-            "description": "fetch data from the table: \"stock.warehouse_subsctance\" using primary key columns",
+            "name": "stock_warehouse_substance_by_pk",
+            "description": "fetch data from the table: \"stock.warehouse_substance\" using primary key columns",
             "args": [
               {
-                "name": "subsctanceid",
+                "name": "substanceid",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -69524,7 +70381,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance",
+              "name": "stock_warehouse_substance",
               "ofType": null
             },
             "isDeprecated": false,
@@ -69562,9 +70419,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -69578,7 +70439,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "uuid",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -69586,7 +70447,23 @@
             "deprecationReason": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "tranfer_order_item",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_tranfer_order_item",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transfer_order_itemid",
             "description": null,
             "args": [],
             "type": {
@@ -70103,13 +70980,23 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "uuid_comparison_exp",
+              "name": "String_comparison_exp",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "tranfer_order_item",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_tranfer_order_item_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "transfer_order_itemid",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -70192,13 +71079,23 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "uuid",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "tranfer_order_item",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_tranfer_order_item_obj_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "transfer_order_itemid",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -70247,14 +71144,14 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "uuid",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "transfer_order_itemid",
             "description": null,
             "args": [],
             "type": {
@@ -70308,7 +71205,7 @@
             "defaultValue": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "transfer_order_itemid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -70357,14 +71254,14 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "uuid",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "transfer_order_itemid",
             "description": null,
             "args": [],
             "type": {
@@ -70418,7 +71315,7 @@
             "defaultValue": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "transfer_order_itemid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -70612,7 +71509,17 @@
             "defaultValue": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "tranfer_order_item",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_tranfer_order_item_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "transfer_order_itemid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -70678,7 +71585,7 @@
             "deprecationReason": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "transfer_order_itemid",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -70717,13 +71624,13 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "uuid",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "transfer_order_itemid",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -70940,7 +71847,7 @@
             "deprecationReason": null
           },
           {
-            "name": "transfer_orderid",
+            "name": "transfer_order_itemid",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -71086,22 +71993,6 @@
         "description": "columns and relationships of \"stock.tranfer_order_item\"",
         "fields": [
           {
-            "name": "fromwarehouseid",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "uuid",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
             "description": null,
             "args": [],
@@ -71118,13 +72009,191 @@
             "deprecationReason": null
           },
           {
+            "name": "item_tranfers",
+            "description": "An array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_item_tranfer_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_item_tranfer_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_item_tranfer_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "stock_item_tranfer",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "item_tranfers_aggregate",
+            "description": "An aggregated array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_item_tranfer_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_item_tranfer_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_item_tranfer_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_item_tranfer_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "quantity",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -71146,31 +72215,23 @@
             "deprecationReason": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "substance",
             "description": "An object relationship",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "product_substance",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "product_substance",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": null,
             "args": [],
             "type": {
@@ -71190,9 +72251,13 @@
             "description": "An object relationship",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "stock_transfer_order",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_transfer_order",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -71202,39 +72267,11 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "warehouse",
-            "description": "An object relationship",
-            "args": [],
-            "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "stock_warehouse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "warehouseByFromwarehouseid",
-            "description": "An object relationship",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "stock_warehouse",
+                "kind": "SCALAR",
+                "name": "uuid",
                 "ofType": null
               }
             },
@@ -71719,7 +72756,7 @@
             "defaultValue": null
           },
           {
-            "name": "fromwarehouseid",
+            "name": "id",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -71729,11 +72766,11 @@
             "defaultValue": null
           },
           {
-            "name": "id",
+            "name": "item_tranfers",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "uuid_comparison_exp",
+              "name": "stock_item_tranfer_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -71759,16 +72796,6 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "uuid_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "substance",
             "description": null,
             "type": {
@@ -71779,7 +72806,7 @@
             "defaultValue": null
           },
           {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -71804,26 +72831,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "uuid_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "warehouse",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "warehouseByFromwarehouseid",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -71878,7 +72885,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "fromwarehouseid",
+            "name": "id",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -71888,11 +72895,11 @@
             "defaultValue": null
           },
           {
-            "name": "id",
+            "name": "item_tranfers",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
+              "kind": "INPUT_OBJECT",
+              "name": "stock_item_tranfer_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -71918,16 +72925,6 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "substance",
             "description": null,
             "type": {
@@ -71938,7 +72935,7 @@
             "defaultValue": null
           },
           {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -71966,26 +72963,6 @@
               "ofType": null
             },
             "defaultValue": null
-          },
-          {
-            "name": "warehouse",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_obj_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "warehouseByFromwarehouseid",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_obj_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -71997,18 +72974,6 @@
         "name": "stock_tranfer_order_item_max_fields",
         "description": "aggregate max on columns",
         "fields": [
-          {
-            "name": "fromwarehouseid",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -72046,19 +73011,7 @@
             "deprecationReason": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": null,
             "args": [],
             "type": {
@@ -72094,16 +73047,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "fromwarehouseid",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "id",
             "description": null,
             "type": {
@@ -72134,17 +73077,7 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -72173,18 +73106,6 @@
         "name": "stock_tranfer_order_item_min_fields",
         "description": "aggregate min on columns",
         "fields": [
-          {
-            "name": "fromwarehouseid",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -72222,19 +73143,7 @@
             "deprecationReason": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": null,
             "args": [],
             "type": {
@@ -72270,16 +73179,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "fromwarehouseid",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "id",
             "description": null,
             "type": {
@@ -72310,17 +73209,7 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -72494,7 +73383,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "fromwarehouseid",
+            "name": "id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -72504,11 +73393,11 @@
             "defaultValue": null
           },
           {
-            "name": "id",
+            "name": "item_tranfers_aggregate",
             "description": null,
             "type": {
-              "kind": "ENUM",
-              "name": "order_by",
+              "kind": "INPUT_OBJECT",
+              "name": "stock_item_tranfer_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -72534,16 +73423,6 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "substance",
             "description": null,
             "type": {
@@ -72554,7 +73433,7 @@
             "defaultValue": null
           },
           {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -72579,26 +73458,6 @@
             "type": {
               "kind": "ENUM",
               "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "warehouse",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "warehouseByFromwarehouseid",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -72642,12 +73501,6 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "fromwarehouseid",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
             "description": "column name",
             "isDeprecated": false,
@@ -72666,13 +73519,7 @@
             "deprecationReason": null
           },
           {
-            "name": "subsctanceid",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -72692,16 +73539,6 @@
         "description": "input type for updating data in table \"stock.tranfer_order_item\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "fromwarehouseid",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
           {
             "name": "id",
             "description": null,
@@ -72733,17 +73570,7 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -72952,12 +73779,6 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "fromwarehouseid",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
             "description": "column name",
             "isDeprecated": false,
@@ -72976,13 +73797,7 @@
             "deprecationReason": null
           },
           {
-            "name": "subsctanceid",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "towarehouseid",
+            "name": "substanceid",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -73154,13 +73969,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -73198,6 +74009,38 @@
             "deprecationReason": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fromwarehouse",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_warehouse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
             "description": null,
             "args": [],
@@ -73207,6 +74050,244 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "uuid",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toWarehouseid",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "towarehouse",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_warehouse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tranfer_order_items",
+            "description": "An array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_tranfer_order_item_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_tranfer_order_item_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_tranfer_order_item_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "stock_tranfer_order_item",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tranfer_order_items_aggregate",
+            "description": "An aggregated array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_tranfer_order_item_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_tranfer_order_item_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_tranfer_order_item_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_tranfer_order_item_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transfer_status",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_transfer_status",
                 "ofType": null
               }
             },
@@ -73234,13 +74315,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -73543,11 +74620,81 @@
             "defaultValue": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "uuid_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "fromwarehouse",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_warehouse_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "id",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "uuid_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "toWarehouseid",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "uuid_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "towarehouse",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_warehouse_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "tranfer_order_items",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_tranfer_order_item_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "transfer_status",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_status_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -73641,11 +74788,81 @@
             "defaultValue": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "fromwarehouse",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_warehouse_obj_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "id",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "toWarehouseid",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "towarehouse",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_warehouse_obj_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "tranfer_order_items",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_tranfer_order_item_arr_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "transfer_status",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_status_obj_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -73729,7 +74946,43 @@
             "deprecationReason": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toWarehouseid",
             "description": null,
             "args": [],
             "type": {
@@ -73817,7 +75070,37 @@
             "defaultValue": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "toWarehouseid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -73905,7 +75188,43 @@
             "deprecationReason": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toWarehouseid",
             "description": null,
             "args": [],
             "type": {
@@ -73993,7 +75312,37 @@
             "defaultValue": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "toWarehouseid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -74217,11 +75566,81 @@
             "defaultValue": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "fromwarehouse",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_warehouse_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "id",
             "description": null,
             "type": {
               "kind": "ENUM",
               "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "toWarehouseid",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "towarehouse",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_warehouse_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "tranfer_order_items_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_tranfer_order_item_aggregate_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "transfer_status",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_status_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -74309,7 +75728,25 @@
             "deprecationReason": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toWarehouseid",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -74376,7 +75813,37 @@
             "defaultValue": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "toWarehouseid",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -74443,7 +75910,25 @@
             "deprecationReason": null
           },
           {
+            "name": "fromWarehouseid",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toWarehouseid",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -74456,6 +75941,991 @@
           },
           {
             "name": "updatedBy",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "stock_transfer_status",
+        "description": "columns and relationships of \"stock.transfer_status\"",
+        "fields": [
+          {
+            "name": "key",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transfer_orders",
+            "description": "An array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_transfer_order_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_transfer_order_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_transfer_order_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "stock_transfer_order",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transfer_orders_aggregate",
+            "description": "An aggregated array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_transfer_order_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_transfer_order_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_transfer_order_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_transfer_order_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "stock_transfer_status_aggregate",
+        "description": "aggregated selection of \"stock.transfer_status\"",
+        "fields": [
+          {
+            "name": "aggregate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status_aggregate_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "stock_transfer_status",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "stock_transfer_status_aggregate_fields",
+        "description": "aggregate fields of \"stock.transfer_status\"",
+        "fields": [
+          {
+            "name": "count",
+            "description": null,
+            "args": [
+              {
+                "name": "columns",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_transfer_status_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "distinct",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "max",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status_max_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "min",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status_min_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_aggregate_order_by",
+        "description": "order by aggregate values of table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "max",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_status_max_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "min",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_status_min_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_arr_rel_insert_input",
+        "description": "input type for inserting array relation for remote table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "data",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "stock_transfer_status_insert_input",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "on_conflict",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_status_on_conflict",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_bool_exp",
+        "description": "Boolean expression to filter rows from the table \"stock.transfer_status\". All fields are combined with a logical 'AND'.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_and",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "stock_transfer_status_bool_exp",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_status_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_or",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "stock_transfer_status_bool_exp",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "key",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "transfer_orders",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_order_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "stock_transfer_status_constraint",
+        "description": "unique or primary key constraints on table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "transfer_status_pkey",
+            "description": "unique or primary key constraint",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "transfer_status_status_key",
+            "description": "unique or primary key constraint",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_insert_input",
+        "description": "input type for inserting data into table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "key",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "transfer_orders",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_order_arr_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "stock_transfer_status_max_fields",
+        "description": "aggregate max on columns",
+        "fields": [
+          {
+            "name": "key",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_max_order_by",
+        "description": "order by max() on columns of table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "key",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "stock_transfer_status_min_fields",
+        "description": "aggregate min on columns",
+        "fields": [
+          {
+            "name": "key",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_min_order_by",
+        "description": "order by min() on columns of table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "key",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "stock_transfer_status_mutation_response",
+        "description": "response of any mutation on the table \"stock.transfer_status\"",
+        "fields": [
+          {
+            "name": "affected_rows",
+            "description": "number of affected rows by the mutation",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "returning",
+            "description": "data of the affected rows by the mutation",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "stock_transfer_status",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_obj_rel_insert_input",
+        "description": "input type for inserting object relation for remote table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "data",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "stock_transfer_status_insert_input",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "on_conflict",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_status_on_conflict",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_on_conflict",
+        "description": "on conflict condition type for table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "constraint",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "stock_transfer_status_constraint",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "update_columns",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "stock_transfer_status_update_column",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "where",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_status_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_order_by",
+        "description": "ordering options when selecting data from \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "key",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "transfer_orders_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "stock_transfer_order_aggregate_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_pk_columns_input",
+        "description": "primary key columns input for table: \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "key",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "stock_transfer_status_select_column",
+        "description": "select columns of table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "key",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "stock_transfer_status_set_input",
+        "description": "input type for updating data in table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "key",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "stock_transfer_status_update_column",
+        "description": "update columns of table \"stock.transfer_status\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "key",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -74549,17 +77019,29 @@
             "deprecationReason": null
           },
           {
-            "name": "salesPoint",
-            "description": "An object relationship",
+            "name": "name",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "management_salesPoint",
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "salesPoint",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "management_salesPoint",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -74569,19 +77051,15 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "uuid",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "tranferOrderItemsByTowarehouseid",
+            "name": "transferOrdersFromWarehouse",
             "description": "An array relationship",
             "args": [
               {
@@ -74595,7 +77073,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_tranfer_order_item_select_column",
+                      "name": "stock_transfer_order_select_column",
                       "ofType": null
                     }
                   }
@@ -74633,7 +77111,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_tranfer_order_item_order_by",
+                      "name": "stock_transfer_order_order_by",
                       "ofType": null
                     }
                   }
@@ -74645,7 +77123,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_tranfer_order_item_bool_exp",
+                  "name": "stock_transfer_order_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -74662,7 +77140,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "stock_tranfer_order_item",
+                    "name": "stock_transfer_order",
                     "ofType": null
                   }
                 }
@@ -74672,7 +77150,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tranferOrderItemsByTowarehouseid_aggregate",
+            "name": "transferOrdersFromWarehouse_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -74686,7 +77164,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_tranfer_order_item_select_column",
+                      "name": "stock_transfer_order_select_column",
                       "ofType": null
                     }
                   }
@@ -74724,7 +77202,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_tranfer_order_item_order_by",
+                      "name": "stock_transfer_order_order_by",
                       "ofType": null
                     }
                   }
@@ -74736,7 +77214,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_tranfer_order_item_bool_exp",
+                  "name": "stock_transfer_order_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -74747,7 +77225,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "stock_tranfer_order_item_aggregate",
+                "name": "stock_transfer_order_aggregate",
                 "ofType": null
               }
             },
@@ -74755,7 +77233,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tranfer_order_items",
+            "name": "transferOrdersToWarehouse",
             "description": "An array relationship",
             "args": [
               {
@@ -74769,7 +77247,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_tranfer_order_item_select_column",
+                      "name": "stock_transfer_order_select_column",
                       "ofType": null
                     }
                   }
@@ -74807,7 +77285,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_tranfer_order_item_order_by",
+                      "name": "stock_transfer_order_order_by",
                       "ofType": null
                     }
                   }
@@ -74819,7 +77297,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_tranfer_order_item_bool_exp",
+                  "name": "stock_transfer_order_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -74836,7 +77314,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "stock_tranfer_order_item",
+                    "name": "stock_transfer_order",
                     "ofType": null
                   }
                 }
@@ -74846,7 +77324,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tranfer_order_items_aggregate",
+            "name": "transferOrdersToWarehouse_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -74860,7 +77338,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_tranfer_order_item_select_column",
+                      "name": "stock_transfer_order_select_column",
                       "ofType": null
                     }
                   }
@@ -74898,7 +77376,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_tranfer_order_item_order_by",
+                      "name": "stock_transfer_order_order_by",
                       "ofType": null
                     }
                   }
@@ -74910,7 +77388,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_tranfer_order_item_bool_exp",
+                  "name": "stock_transfer_order_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -74921,7 +77399,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "stock_tranfer_order_item_aggregate",
+                "name": "stock_transfer_order_aggregate",
                 "ofType": null
               }
             },
@@ -74991,7 +77469,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_warehouse_subsctance_select_column",
+                      "name": "stock_warehouse_substance_select_column",
                       "ofType": null
                     }
                   }
@@ -75029,7 +77507,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_warehouse_subsctance_order_by",
+                      "name": "stock_warehouse_substance_order_by",
                       "ofType": null
                     }
                   }
@@ -75041,7 +77519,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_bool_exp",
+                  "name": "stock_warehouse_substance_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -75058,7 +77536,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "stock_warehouse_subsctance",
+                    "name": "stock_warehouse_substance",
                     "ofType": null
                   }
                 }
@@ -75082,7 +77560,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_warehouse_subsctance_select_column",
+                      "name": "stock_warehouse_substance_select_column",
                       "ofType": null
                     }
                   }
@@ -75120,7 +77598,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_warehouse_subsctance_order_by",
+                      "name": "stock_warehouse_substance_order_by",
                       "ofType": null
                     }
                   }
@@ -75132,7 +77610,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_bool_exp",
+                  "name": "stock_warehouse_substance_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -75143,7 +77621,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "stock_warehouse_subsctance_aggregate",
+                "name": "stock_warehouse_substance_aggregate",
                 "ofType": null
               }
             },
@@ -75458,6 +77936,16 @@
             "defaultValue": null
           },
           {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "salesPoint",
             "description": null,
             "type": {
@@ -75478,21 +77966,21 @@
             "defaultValue": null
           },
           {
-            "name": "tranferOrderItemsByTowarehouseid",
+            "name": "transferOrdersFromWarehouse",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_tranfer_order_item_bool_exp",
+              "name": "stock_transfer_order_bool_exp",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "tranfer_order_items",
+            "name": "transferOrdersToWarehouse",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_tranfer_order_item_bool_exp",
+              "name": "stock_transfer_order_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -75532,7 +78020,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_bool_exp",
+              "name": "stock_warehouse_substance_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -75550,6 +78038,12 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
+          {
+            "name": "warehouse_name_key",
+            "description": "unique or primary key constraint",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "warehouse_pkey",
             "description": "unique or primary key constraint",
@@ -75616,6 +78110,16 @@
             "defaultValue": null
           },
           {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "salesPoint",
             "description": null,
             "type": {
@@ -75636,21 +78140,21 @@
             "defaultValue": null
           },
           {
-            "name": "tranferOrderItemsByTowarehouseid",
+            "name": "transferOrdersFromWarehouse",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_tranfer_order_item_arr_rel_insert_input",
+              "name": "stock_transfer_order_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "tranfer_order_items",
+            "name": "transferOrdersToWarehouse",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_tranfer_order_item_arr_rel_insert_input",
+              "name": "stock_transfer_order_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -75690,7 +78194,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_arr_rel_insert_input",
+              "name": "stock_warehouse_substance_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null
@@ -75748,6 +78252,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -75845,6 +78361,16 @@
           },
           {
             "name": "id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "name",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -75952,6 +78478,18 @@
             "deprecationReason": null
           },
           {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "salesPointid",
             "description": null,
             "args": [],
@@ -76043,6 +78581,16 @@
           },
           {
             "name": "id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "name",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -76296,6 +78844,16 @@
             "defaultValue": null
           },
           {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "salesPoint",
             "description": null,
             "type": {
@@ -76316,21 +78874,21 @@
             "defaultValue": null
           },
           {
-            "name": "tranferOrderItemsByTowarehouseid_aggregate",
+            "name": "transferOrdersFromWarehouse_aggregate",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_tranfer_order_item_aggregate_order_by",
+              "name": "stock_transfer_order_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "tranfer_order_items_aggregate",
+            "name": "transferOrdersToWarehouse_aggregate",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_tranfer_order_item_aggregate_order_by",
+              "name": "stock_transfer_order_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76370,7 +78928,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_aggregate_order_by",
+              "name": "stock_warehouse_substance_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76433,6 +78991,12 @@
           },
           {
             "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -76511,6 +79075,16 @@
             "defaultValue": null
           },
           {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "salesPointid",
             "description": null,
             "type": {
@@ -76557,8 +79131,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance",
-        "description": "columns and relationships of \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance",
+        "description": "columns and relationships of \"stock.warehouse_substance\"",
         "fields": [
           {
             "name": "quantity",
@@ -76577,22 +79151,6 @@
             "deprecationReason": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "uuid",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "substance",
             "description": "An object relationship",
             "args": [],
@@ -76602,6 +79160,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "product_substance",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "substanceid",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
                 "ofType": null
               }
             },
@@ -76648,8 +79222,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_aggregate",
-        "description": "aggregated selection of \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_aggregate",
+        "description": "aggregated selection of \"stock.warehouse_substance\"",
         "fields": [
           {
             "name": "aggregate",
@@ -76657,7 +79231,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_aggregate_fields",
+              "name": "stock_warehouse_substance_aggregate_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76678,7 +79252,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "stock_warehouse_subsctance",
+                    "name": "stock_warehouse_substance",
                     "ofType": null
                   }
                 }
@@ -76695,8 +79269,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_aggregate_fields",
-        "description": "aggregate fields of \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_aggregate_fields",
+        "description": "aggregate fields of \"stock.warehouse_substance\"",
         "fields": [
           {
             "name": "avg",
@@ -76704,7 +79278,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_avg_fields",
+              "name": "stock_warehouse_substance_avg_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76725,7 +79299,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_warehouse_subsctance_select_column",
+                      "name": "stock_warehouse_substance_select_column",
                       "ofType": null
                     }
                   }
@@ -76757,7 +79331,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_max_fields",
+              "name": "stock_warehouse_substance_max_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76769,7 +79343,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_min_fields",
+              "name": "stock_warehouse_substance_min_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76781,7 +79355,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_stddev_fields",
+              "name": "stock_warehouse_substance_stddev_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76793,7 +79367,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_stddev_pop_fields",
+              "name": "stock_warehouse_substance_stddev_pop_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76805,7 +79379,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_stddev_samp_fields",
+              "name": "stock_warehouse_substance_stddev_samp_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76817,7 +79391,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_sum_fields",
+              "name": "stock_warehouse_substance_sum_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76829,7 +79403,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_var_pop_fields",
+              "name": "stock_warehouse_substance_var_pop_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76841,7 +79415,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_var_samp_fields",
+              "name": "stock_warehouse_substance_var_samp_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76853,7 +79427,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance_variance_fields",
+              "name": "stock_warehouse_substance_variance_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -76867,8 +79441,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_aggregate_order_by",
-        "description": "order by aggregate values of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_aggregate_order_by",
+        "description": "order by aggregate values of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -76876,7 +79450,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_avg_order_by",
+              "name": "stock_warehouse_substance_avg_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76896,7 +79470,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_max_order_by",
+              "name": "stock_warehouse_substance_max_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76906,7 +79480,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_min_order_by",
+              "name": "stock_warehouse_substance_min_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76916,7 +79490,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_stddev_order_by",
+              "name": "stock_warehouse_substance_stddev_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76926,7 +79500,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_stddev_pop_order_by",
+              "name": "stock_warehouse_substance_stddev_pop_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76936,7 +79510,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_stddev_samp_order_by",
+              "name": "stock_warehouse_substance_stddev_samp_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76946,7 +79520,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_sum_order_by",
+              "name": "stock_warehouse_substance_sum_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76956,7 +79530,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_var_pop_order_by",
+              "name": "stock_warehouse_substance_var_pop_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76966,7 +79540,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_var_samp_order_by",
+              "name": "stock_warehouse_substance_var_samp_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76976,7 +79550,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_variance_order_by",
+              "name": "stock_warehouse_substance_variance_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -76988,8 +79562,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_arr_rel_insert_input",
-        "description": "input type for inserting array relation for remote table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_arr_rel_insert_input",
+        "description": "input type for inserting array relation for remote table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77006,7 +79580,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "stock_warehouse_subsctance_insert_input",
+                    "name": "stock_warehouse_substance_insert_input",
                     "ofType": null
                   }
                 }
@@ -77019,7 +79593,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_on_conflict",
+              "name": "stock_warehouse_substance_on_conflict",
               "ofType": null
             },
             "defaultValue": null
@@ -77031,7 +79605,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_avg_fields",
+        "name": "stock_warehouse_substance_avg_fields",
         "description": "aggregate avg on columns",
         "fields": [
           {
@@ -77054,8 +79628,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_avg_order_by",
-        "description": "order by avg() on columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_avg_order_by",
+        "description": "order by avg() on columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77075,8 +79649,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_bool_exp",
-        "description": "Boolean expression to filter rows from the table \"stock.warehouse_subsctance\". All fields are combined with a logical 'AND'.",
+        "name": "stock_warehouse_substance_bool_exp",
+        "description": "Boolean expression to filter rows from the table \"stock.warehouse_substance\". All fields are combined with a logical 'AND'.",
         "fields": null,
         "inputFields": [
           {
@@ -77087,7 +79661,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "stock_warehouse_subsctance_bool_exp",
+                "name": "stock_warehouse_substance_bool_exp",
                 "ofType": null
               }
             },
@@ -77098,7 +79672,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_bool_exp",
+              "name": "stock_warehouse_substance_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -77111,7 +79685,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "stock_warehouse_subsctance_bool_exp",
+                "name": "stock_warehouse_substance_bool_exp",
                 "ofType": null
               }
             },
@@ -77128,21 +79702,21 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "uuid_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "substance",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "product_substance_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "substanceid",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "uuid_comparison_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -77174,8 +79748,8 @@
       },
       {
         "kind": "ENUM",
-        "name": "stock_warehouse_subsctance_constraint",
-        "description": "unique or primary key constraints on table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_constraint",
+        "description": "unique or primary key constraints on table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -77191,8 +79765,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_inc_input",
-        "description": "input type for incrementing integer column in table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_inc_input",
+        "description": "input type for incrementing integer column in table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77212,8 +79786,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_insert_input",
-        "description": "input type for inserting data into table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_insert_input",
+        "description": "input type for inserting data into table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77227,21 +79801,21 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "uuid",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "substance",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "product_substance_obj_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "substanceid",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
               "ofType": null
             },
             "defaultValue": null
@@ -77273,7 +79847,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_max_fields",
+        "name": "stock_warehouse_substance_max_fields",
         "description": "aggregate max on columns",
         "fields": [
           {
@@ -77289,7 +79863,7 @@
             "deprecationReason": null
           },
           {
-            "name": "subsctanceid",
+            "name": "substanceid",
             "description": null,
             "args": [],
             "type": {
@@ -77320,8 +79894,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_max_order_by",
-        "description": "order by max() on columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_max_order_by",
+        "description": "order by max() on columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77335,7 +79909,7 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
+            "name": "substanceid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -77361,7 +79935,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_min_fields",
+        "name": "stock_warehouse_substance_min_fields",
         "description": "aggregate min on columns",
         "fields": [
           {
@@ -77377,7 +79951,7 @@
             "deprecationReason": null
           },
           {
-            "name": "subsctanceid",
+            "name": "substanceid",
             "description": null,
             "args": [],
             "type": {
@@ -77408,8 +79982,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_min_order_by",
-        "description": "order by min() on columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_min_order_by",
+        "description": "order by min() on columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77423,7 +79997,7 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
+            "name": "substanceid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -77449,8 +80023,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_mutation_response",
-        "description": "response of any mutation on the table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_mutation_response",
+        "description": "response of any mutation on the table \"stock.warehouse_substance\"",
         "fields": [
           {
             "name": "affected_rows",
@@ -77483,7 +80057,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "stock_warehouse_subsctance",
+                    "name": "stock_warehouse_substance",
                     "ofType": null
                   }
                 }
@@ -77500,8 +80074,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_obj_rel_insert_input",
-        "description": "input type for inserting object relation for remote table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_obj_rel_insert_input",
+        "description": "input type for inserting object relation for remote table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77512,7 +80086,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "stock_warehouse_subsctance_insert_input",
+                "name": "stock_warehouse_substance_insert_input",
                 "ofType": null
               }
             },
@@ -77523,7 +80097,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_on_conflict",
+              "name": "stock_warehouse_substance_on_conflict",
               "ofType": null
             },
             "defaultValue": null
@@ -77535,8 +80109,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_on_conflict",
-        "description": "on conflict condition type for table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_on_conflict",
+        "description": "on conflict condition type for table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77547,7 +80121,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "stock_warehouse_subsctance_constraint",
+                "name": "stock_warehouse_substance_constraint",
                 "ofType": null
               }
             },
@@ -77567,7 +80141,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "stock_warehouse_subsctance_update_column",
+                    "name": "stock_warehouse_substance_update_column",
                     "ofType": null
                   }
                 }
@@ -77580,7 +80154,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "stock_warehouse_subsctance_bool_exp",
+              "name": "stock_warehouse_substance_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -77592,22 +80166,12 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_order_by",
-        "description": "ordering options when selecting data from \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_order_by",
+        "description": "ordering options when selecting data from \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
             "name": "quantity",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "subsctanceid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -77622,6 +80186,16 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "product_substance_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "substanceid",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -77653,12 +80227,12 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_pk_columns_input",
-        "description": "primary key columns input for table: \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_pk_columns_input",
+        "description": "primary key columns input for table: \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
-            "name": "subsctanceid",
+            "name": "substanceid",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -77692,8 +80266,8 @@
       },
       {
         "kind": "ENUM",
-        "name": "stock_warehouse_subsctance_select_column",
-        "description": "select columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_select_column",
+        "description": "select columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -77705,7 +80279,7 @@
             "deprecationReason": null
           },
           {
-            "name": "subsctanceid",
+            "name": "substanceid",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -77721,8 +80295,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_set_input",
-        "description": "input type for updating data in table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_set_input",
+        "description": "input type for updating data in table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77736,7 +80310,7 @@
             "defaultValue": null
           },
           {
-            "name": "subsctanceid",
+            "name": "substanceid",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -77762,7 +80336,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_stddev_fields",
+        "name": "stock_warehouse_substance_stddev_fields",
         "description": "aggregate stddev on columns",
         "fields": [
           {
@@ -77785,8 +80359,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_stddev_order_by",
-        "description": "order by stddev() on columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_stddev_order_by",
+        "description": "order by stddev() on columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77806,7 +80380,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_stddev_pop_fields",
+        "name": "stock_warehouse_substance_stddev_pop_fields",
         "description": "aggregate stddev_pop on columns",
         "fields": [
           {
@@ -77829,8 +80403,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_stddev_pop_order_by",
-        "description": "order by stddev_pop() on columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_stddev_pop_order_by",
+        "description": "order by stddev_pop() on columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77850,7 +80424,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_stddev_samp_fields",
+        "name": "stock_warehouse_substance_stddev_samp_fields",
         "description": "aggregate stddev_samp on columns",
         "fields": [
           {
@@ -77873,8 +80447,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_stddev_samp_order_by",
-        "description": "order by stddev_samp() on columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_stddev_samp_order_by",
+        "description": "order by stddev_samp() on columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77894,7 +80468,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_sum_fields",
+        "name": "stock_warehouse_substance_sum_fields",
         "description": "aggregate sum on columns",
         "fields": [
           {
@@ -77917,8 +80491,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_sum_order_by",
-        "description": "order by sum() on columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_sum_order_by",
+        "description": "order by sum() on columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -77938,8 +80512,8 @@
       },
       {
         "kind": "ENUM",
-        "name": "stock_warehouse_subsctance_update_column",
-        "description": "update columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_update_column",
+        "description": "update columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -77951,7 +80525,7 @@
             "deprecationReason": null
           },
           {
-            "name": "subsctanceid",
+            "name": "substanceid",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -77967,7 +80541,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_var_pop_fields",
+        "name": "stock_warehouse_substance_var_pop_fields",
         "description": "aggregate var_pop on columns",
         "fields": [
           {
@@ -77990,8 +80564,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_var_pop_order_by",
-        "description": "order by var_pop() on columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_var_pop_order_by",
+        "description": "order by var_pop() on columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -78011,7 +80585,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_var_samp_fields",
+        "name": "stock_warehouse_substance_var_samp_fields",
         "description": "aggregate var_samp on columns",
         "fields": [
           {
@@ -78034,8 +80608,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_var_samp_order_by",
-        "description": "order by var_samp() on columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_var_samp_order_by",
+        "description": "order by var_samp() on columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -78055,7 +80629,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "stock_warehouse_subsctance_variance_fields",
+        "name": "stock_warehouse_substance_variance_fields",
         "description": "aggregate variance on columns",
         "fields": [
           {
@@ -78078,8 +80652,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "stock_warehouse_subsctance_variance_order_by",
-        "description": "order by variance() on columns of table \"stock.warehouse_subsctance\"",
+        "name": "stock_warehouse_substance_variance_order_by",
+        "description": "order by variance() on columns of table \"stock.warehouse_substance\"",
         "fields": null,
         "inputFields": [
           {
@@ -78125,6 +80699,12 @@
           },
           {
             "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -85856,6 +88436,207 @@
             "deprecationReason": null
           },
           {
+            "name": "stock_transfer_status",
+            "description": "fetch data from the table: \"stock.transfer_status\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_transfer_status_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_transfer_status_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_transfer_status_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "stock_transfer_status",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stock_transfer_status_aggregate",
+            "description": "fetch aggregated fields from the table: \"stock.transfer_status\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "stock_transfer_status_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "stock_transfer_status_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "stock_transfer_status_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "stock_transfer_status_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stock_transfer_status_by_pk",
+            "description": "fetch data from the table: \"stock.transfer_status\" using primary key columns",
+            "args": [
+              {
+                "name": "key",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "stock_transfer_status",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "stock_warehouse",
             "description": "fetch data from the table: \"stock.warehouse\"",
             "args": [
@@ -86057,8 +88838,8 @@
             "deprecationReason": null
           },
           {
-            "name": "stock_warehouse_subsctance",
-            "description": "fetch data from the table: \"stock.warehouse_subsctance\"",
+            "name": "stock_warehouse_substance",
+            "description": "fetch data from the table: \"stock.warehouse_substance\"",
             "args": [
               {
                 "name": "distinct_on",
@@ -86071,7 +88852,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_warehouse_subsctance_select_column",
+                      "name": "stock_warehouse_substance_select_column",
                       "ofType": null
                     }
                   }
@@ -86109,7 +88890,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_warehouse_subsctance_order_by",
+                      "name": "stock_warehouse_substance_order_by",
                       "ofType": null
                     }
                   }
@@ -86121,7 +88902,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_bool_exp",
+                  "name": "stock_warehouse_substance_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -86138,7 +88919,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "stock_warehouse_subsctance",
+                    "name": "stock_warehouse_substance",
                     "ofType": null
                   }
                 }
@@ -86148,8 +88929,8 @@
             "deprecationReason": null
           },
           {
-            "name": "stock_warehouse_subsctance_aggregate",
-            "description": "fetch aggregated fields from the table: \"stock.warehouse_subsctance\"",
+            "name": "stock_warehouse_substance_aggregate",
+            "description": "fetch aggregated fields from the table: \"stock.warehouse_substance\"",
             "args": [
               {
                 "name": "distinct_on",
@@ -86162,7 +88943,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "stock_warehouse_subsctance_select_column",
+                      "name": "stock_warehouse_substance_select_column",
                       "ofType": null
                     }
                   }
@@ -86200,7 +88981,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "stock_warehouse_subsctance_order_by",
+                      "name": "stock_warehouse_substance_order_by",
                       "ofType": null
                     }
                   }
@@ -86212,7 +88993,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "stock_warehouse_subsctance_bool_exp",
+                  "name": "stock_warehouse_substance_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -86223,7 +89004,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "stock_warehouse_subsctance_aggregate",
+                "name": "stock_warehouse_substance_aggregate",
                 "ofType": null
               }
             },
@@ -86231,11 +89012,11 @@
             "deprecationReason": null
           },
           {
-            "name": "stock_warehouse_subsctance_by_pk",
-            "description": "fetch data from the table: \"stock.warehouse_subsctance\" using primary key columns",
+            "name": "stock_warehouse_substance_by_pk",
+            "description": "fetch data from the table: \"stock.warehouse_substance\" using primary key columns",
             "args": [
               {
-                "name": "subsctanceid",
+                "name": "substanceid",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -86265,7 +89046,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "stock_warehouse_subsctance",
+              "name": "stock_warehouse_substance",
               "ofType": null
             },
             "isDeprecated": false,

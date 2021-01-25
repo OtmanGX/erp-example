@@ -1,26 +1,32 @@
 import { MetaData } from "libs/core/shared/metaData";
 import { SalePoint } from "@tanglass-erp/core/management";
 
-
+import { Management_CompanyFragmentFragment ,Management_SalesPointFragmentFragment} from "@tanglass-erp/infrastructure/graphql";
 export interface Warehouse{
     id:string;
-    type:string; //usine or salePoint
-    company:string;
-    salePoint:string;
+    name:string;
+    type?:string; //usine or salePoint
+    company:PartialData;
+    salesPoint?:PartialData;
     
 }
 
 
 export interface DetailedWarehouse extends MetaData{
     id:string;
-    type:string; 
-    company:string;
-    salePoint:SalePoint;
+    type?:string; 
+    company:PartialData;
+    salePoint:PartialData;
 }
 
 
 export interface InsertedWarehouse {
     type:string; 
-    company:string;
-    salePoint:SalePoint;
+    companyid:string;
+    salePointid:string;
+}
+
+export interface PartialData{
+    name:string;
+    id:string;
 }

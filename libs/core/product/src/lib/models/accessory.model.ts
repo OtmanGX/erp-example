@@ -10,10 +10,10 @@ import {
 export interface Accessory {
 
   id?: string;
-  category: string;// enum for affecting types (accessory/apparent)
+  category?: string;// enum for affecting types (accessory/apparent)
   quota?: number;
   substance?: Substance;
-  product: Product;
+  product?: Product;
 }
 
 
