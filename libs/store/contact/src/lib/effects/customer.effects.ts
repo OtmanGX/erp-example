@@ -25,6 +25,22 @@ export class CustomersEffects {
     )
   });
 
+  loadCustomerById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CustomersActions.loadCustomerById),
+      mergeMap( (action) =>
+        this.customerService.getOneById(action.id).pipe(
+          map((data) =>
+          CustomersActions.loadCustomerByIdSuccess({customer: data.data.contact_customer_by_pk})
+          ),
+          catchError((error) =>
+            of(CustomersActions.loadCustomerByIdFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
   insertCustomer$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CustomersActions.addCustomer),

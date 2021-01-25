@@ -44,10 +44,12 @@ export class CustomerComponent implements GridView {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Store action dispatching
-        console.log(result);
         if (action === Operations.add) {
           this.store.dispatch(CustomerActions.addCustomer({customer: result}));
-        } else {}
+        } else if (action === Operations.update) {
+          console.log(result);
+          this.store.dispatch(CustomerActions.updateCustomer({customer: result}));
+        }
       }
     });
   }

@@ -11,6 +11,7 @@ import { map, take } from 'rxjs/operators';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import * as ProviderActions from '@TanglassStore/contact/lib/actions/provider.actions';
 
+
 @Component({
   selector: 'ngx-pop-contact',
   templateUrl: './pop-contact.component.html',
@@ -38,8 +39,7 @@ export class PopContactComponent extends FormDialog {
   buildForm(): void {
     const source = combineLatest([
         this.store.select(ProviderSelectors.getAllProviders),
-        this.store.select(CustomerSelectors.getAllCustomers)
-      ]
+        this.store.select(CustomerSelectors.getAllCustomers)      ]
       );
     source.pipe(
       map(res => ({providers: res[0],customers: res[1] })),

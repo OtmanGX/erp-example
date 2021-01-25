@@ -81,14 +81,14 @@ export const updateCustomerFailure = createAction(
 /****************************************************************** */
 
 export const removeCustomer = createAction(
-  '[Customers Component] Update Customer',
+  '[Customers Component] Delete Customer',
   props<{ customer: Customer }>()
 );
 export const removeCustomerSuccess = createAction(
-  '[Customer Effect] Update Customer Success',
+  '[Customer Effect] Delete Customer Success',
   props<{ customer: Customer }>()
 );
 export const removeCustomerFailure = createAction(
-  '[Customer Effect] Update Customer failure',
+  '[Customer Effect] Delete Customer failure',
   props<{ error: any }>()
 );

@@ -48,7 +48,10 @@ export class ContactComponent implements GridView {
         if (action === Operations.add) {
           const insertedContact = this.contactAdapter(result.contact, result.affectation);
           this.store.dispatch(ContactActions.addContact({contact: insertedContact}));
-        } else {}
+        } else if (action === Operations.update) {
+          result.contact['id'] = data['id'];
+          this.store.dispatch(ContactActions.updateContact({contact: result.contact}));
+        }
       }
     });
   }
@@ -61,18 +64,17 @@ export class ContactComponent implements GridView {
     insertedContact.affectedProviders = affectation.provider||[];
     insertedContact.customers = [];
     insertedContact.providers = [];
-    console.log(insertedContact)
     return insertedContact
   }
 
   eventTriggering(event) {
     // Store Action Dispatching
     switch (event.action) {
-      case Operations.add:
       case Operations.update:
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.store.dispatch(ContactActions.removeContact({contactId: event.data[0].id}));
         break;
       // ...
     }
