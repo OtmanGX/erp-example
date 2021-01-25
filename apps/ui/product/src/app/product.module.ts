@@ -9,7 +9,6 @@ import { PopConsumableComponent } from './pages/list-consumable/pop-consumable/p
 import { ListAccessoriesComponent } from './pages/list-accessories/list-accessories.component';
 import { PopAccessoriesComponent } from './pages/list-accessories/pop-accessories/pop-accessories.component';
 import { ListServiceComponent } from './pages/list-service/list-service.component';
-import { PopServiceComponent } from './pages/list-service/pop-service/pop-service.component';
 import { PopServiceGlasseComponent } from './pages/list-service-glasse/pop-service-glasse/pop-service-glasse.component';
 import { ListServiceGlasseComponent } from './pages/list-service-glasse/list-service-glasse.component';
 import { ListServiceConsumableComponent } from './pages/list-service-consumable/list-service-consumable.component';
@@ -21,15 +20,18 @@ import { HighlightDirectiveDirective } from './directives/highlight-directive.di
 import { GlassCardComponent } from './pages/list-glasse/glass-card/glass-card.component';
 import { ConsumableCardComponent } from './pages/list-consumable/consumable-card/consumable-card.component';
 import { ServiceGlassCardComponent } from './pages/list-service-glasse/service-glass-card/service-glass-card.component';
+import { PopServiceConfigComponent } from './pages/list-service/pop-service-config/pop-service-config.component';
+import { PopServiceComponent } from './pages/list-service/pop-service/pop-service.component';
 
 
 const popUps = [
   PopConsumableComponent,
   PopAccessoriesComponent,
   PopGlasseComponent,
-  PopServiceComponent,
+  PopServiceConfigComponent,
   PopServiceConsumableComponent,
   PopServiceGlasseComponent,
+  PopServiceComponent
 ];
 
 

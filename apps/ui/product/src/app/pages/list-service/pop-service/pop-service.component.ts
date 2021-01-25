@@ -1,74 +1,45 @@
-import { Component, OnInit, Inject, ChangeDetectorRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DynamicFormComponent, FormDialog, Groupfield } from '@tanglass-erp/material';
-import { regConfigService } from '../../../utils/forms';
-import { FormArray, FormGroup } from '@angular/forms';
-import { stringify } from 'querystring';
-
-const regParamForm = [
-  {type: "input", label: "Nom", inputType: "text", name: "name", value: null,
-    validations: [FormDialog.REQUIRED]
-  },
-  {type: "select", label: "Type", inputType: "text", name: "type", value: null,
-    options: [{key: 'texte', value: 'texte'}, {key: 'nombre', value: 'nombre'}, {key: 'liste', value: 'liste'}],
-    validations: [FormDialog.REQUIRED]
-  },
-];
+import { FormDialog } from '@tanglass-erp/material';
+import { regConfService } from '../../../utils/forms';
+import { FormGroup } from '@angular/forms';
+import * as CompanieSelectors from '@TanglassStore/management/lib/selectors/companies.selectors';
+import { Store } from '@ngrx/store';
+import { AppState } from '@tanglass-erp/store/app';
+import * as CompanieActions from '@TanglassStore/management/lib/actions/companies.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'ngx-pop-glass',
+  selector: 'ngx-pop-service-config',
   templateUrl: './pop-service.component.html',
   styleUrls: ['./pop-service.component.scss'],
 })
-export class PopServiceComponent extends FormDialog implements AfterViewInit {
+export class PopServiceComponent extends FormDialog implements OnDestroy{
   title = "Ajouter une service";
-  regConfig: Groupfield[];
+  regConfig: any;
+  companiesSubscription: Subscription;
+  companies$ = this.store.select(CompanieSelectors.getAllCompanies);
   params = [];
-  paramFormArray;
-  @ViewChildren(DynamicFormComponent) dynamicForms: QueryList<DynamicFormComponent>;
 
   constructor(
     public dialogRef: MatDialogRef<PopServiceComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cdr: ChangeDetectorRef,
+    private store: Store<AppState>
   ) {
     super(dialogRef, data);
-    this.paramFormArray = new FormArray([]);
-  }
-
-  ngAfterViewInit(): void {
-    this.dynamicForms.changes.subscribe(() => {
-      const forms = this.dynamicForms
-        .filter(component => component.name === 'param')
-        .map((dynamicForm: DynamicFormComponent) => dynamicForm.form);
-      forms.forEach(form => this.paramFormArray.push(form));
-    });
   }
 
   buildForm() {
-    this.regConfig = regConfigService(this.data);
-  }
-
-  newParam() {
-    this.params.push(Object.assign([], regParamForm));
-  }
-
-  deleteParam(param) {
-    this.params = this.params.filter(elem => elem !== param);
+    this.store.dispatch(CompanieActions.loadCompanies());
+    this.regConfig = regConfService(this.data, []);
+    // this.companiesSubscription = this.companies$.subscribe(value => {
+    //   this.regConfig = regConfService(this.data, []);
+    // });
   }
 
   submit(value: any) {
-    if (this.paramFormArray.valid) {
-      const serviceForm = value.service;
-      serviceForm.params = JSON.stringify(this.paramFormArray.value);
-      console.log(serviceForm);
-      this.dialogRef.close(serviceForm);
-    } else {
-      this.paramFormArray.controls.forEach(elem => {
-        this.markFormGroupTouched(elem);
-      });
+    this.dialogRef.close(value);
     }
-  }
 
   /**
    * Marks all controls in a form group as touched
@@ -82,5 +53,9 @@ export class PopServiceComponent extends FormDialog implements AfterViewInit {
         this.markFormGroupTouched(control);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    // this.companiesSubscription.unsubscribe();
   }
 }

@@ -75,8 +75,15 @@ const AccessoryHeaders = [
 ];
 
 const ServiceHeaders = [
-  { field: 'name', headerName: 'Nom', type: "textColumn" },
-  { field: 'params', headerName: 'Paramètres', type: "textColumn"},
+  {
+    headerName: 'Produit',
+    children: ProductHeaders
+  },
+  {
+    headerName: 'Paramètres',
+    children: [
+    ]
+  }
 ];
 
 
