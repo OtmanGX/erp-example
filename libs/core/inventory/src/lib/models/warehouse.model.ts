@@ -1,7 +1,6 @@
 import { MetaData } from "libs/core/shared/metaData";
 import { SalePoint } from "@tanglass-erp/core/management";
 
-import { Management_CompanyFragmentFragment ,Management_SalesPointFragmentFragment} from "@tanglass-erp/infrastructure/graphql";
 export interface Warehouse{
     id:string;
     name:string;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   GetAllAccessoriesStockGQL,
-  
+
 } from '@tanglass-erp/infrastructure/graphql';
 import * as fromWAccessory from "../models/accessoryWarehouse.model";
 @Injectable({
@@ -14,7 +14,8 @@ export class WarehouseAccessoryService {
 
   ) {
     let data: fromWAccessory.AccessoryWarehouse[]
-    this.getAll().subscribe(o=>data=o.data.stock_warehouse_substance)   }
+    this.getAll().subscribe(o => data = o.data.stock_warehouse_substance)
+  }
 
   getAll() {
     return this.getAllGQL.watch().valueChanges
