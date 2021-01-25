@@ -13,6 +13,27 @@
         <span *ngSwitchCase="'view'">
           <ng-template [ngTemplateOutlet]="templates[item.label]"></ng-template>
         </span>
+
+        <span *ngSwitchCase="'link'">
+          <mat-icon fontSet="fas" color="primary" fontIcon="fa-link"></mat-icon>
+          <a [href]="'https://'+item?.value">
+            {{item?.value}}
+          </a>
+        </span>
+
+        <span *ngSwitchCase="'phone'">
+          <mat-icon fontSet="fas" color="primary" fontIcon="fa-phone"></mat-icon>
+          <a [href]="'tel:'+item?.value">
+            {{item?.value}}
+          </a>
+        </span>
+
+        <span *ngSwitchCase="'mail'">
+          <mat-icon color="primary" fontSet="fas" fontIcon="fa-at"></mat-icon>
+          <a [href]="'mailto:'+item?.value">
+            {{item?.value}}
+          </a>
+        </span>
         <span *ngSwitchDefault>{{item?.value}}</span>
       </span>
     </div>
