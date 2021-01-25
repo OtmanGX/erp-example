@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoint.actions';
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
+import { takeWhile } from 'rxjs/operators';
 @Component({
   selector: 'ngx-sale-point-card',
   templateUrl: './sale-point-card.component.html',
@@ -16,6 +17,7 @@ export class SalePointCardComponent implements OnInit {
   id: string;
   step = null;
   data$ = this.store.select(SalePointSelectors.getSelectedSalePoint);
+  data;
   passedData: any;
 
   constructor(
@@ -27,15 +29,16 @@ export class SalePointCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(SalePointActions.loadSalePointById({id: this.id}));
-    this.data$.subscribe( data => {
+    this.data$.pipe(takeWhile(value => !value?.id, true)).subscribe( data => {
+      this.data = data;
       this.passedData = [
         {label: 'Nom', value: data?.name},
         {label: 'Adresse', value: data?.address},
         {label: 'E-mail', value: data?.email},
         {label: 'Téléphone', value: data?.phone},
-        {label: 'Les profiles d\'utilisateurs', value: ''},
+        {label: 'Les profiles d\'utilisateurs', code: 'profiles', type: 'view'},
       ];
-    })
+    });
   }
 
   // Steps
