@@ -15,7 +15,7 @@ import {
 } from '@tanglass-erp/infrastructure/graphql';
 import {  DetailedCustomer, InsertedCustomer,Customer } from '../models/customer.models';
 import {  dataAdapter } from '../utils/dataAdapter';
-import { InsertAddressContact ,InsertContact,AffectContact,DeleteAddress} from "../models/shared.models";
+import { InsertAddressContact, InsertContact, AffectContactCustomer,DeleteAddress} from "../models/shared.models";
 @Injectable({
   providedIn: 'root'
 })
@@ -93,9 +93,8 @@ this.updateOne({id:"67740a6b-2e68-4bf6-a6cb-ea81442ac43a",code:"code",name:"nouv
     return this.addCustomerContact.mutate(value)
   }
 
-  affectContact(value:AffectContact){
-    return this.affectCustomerContact.mutate(value)
-
+  affectContact(value:AffectContactCustomer[]){
+    return  this.affectCustomerContact.mutate({affectedContacts:value})
   }
   deleteAddress(value:DeleteAddress){
     return this.deleteCustomerAddress.mutate(value)

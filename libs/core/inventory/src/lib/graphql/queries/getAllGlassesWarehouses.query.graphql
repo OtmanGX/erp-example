@@ -1,0 +1,28 @@
+query GetAllGlassesStock($type: product_substance_type_enum_comparison_exp = {_eq: glass}) {
+  stock_warehouse_substance(where: {substance: {type: $type}}) {
+    quantity
+   
+    warehouse {
+      ...stock_warehouseFragment
+    }
+    substance {
+      ...product_substanceGlassFragment
+    }
+  }
+}
+
+fragment product_substanceGlassFragment on product_substance {
+  glass {
+    id
+    type 
+    color
+    thickness
+     product {
+      ...product_productFragment
+    }
+  }
+}
+
+
+
+

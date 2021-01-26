@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { PopServiceComponent } from './pop-service/pop-service.component';
 import { Operations } from '@tanglass-erp/ag-grid';
+import { PopServiceConfigComponent } from './pop-service-config/pop-service-config.component';
 
 @Component({
   selector: 'ngx-list-service',
@@ -19,7 +19,7 @@ export class ListServiceComponent implements OnInit {
 
 
   openDialog(action, data= {}) {
-    const dialogRef = this.dialog.open(PopServiceComponent, {
+    const dialogRef = this.dialog.open(PopServiceConfigComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
       data: data

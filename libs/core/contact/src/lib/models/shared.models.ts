@@ -45,14 +45,21 @@ export interface InsertAddressContact {
     address: Address
 
 }
-// for affecting an existing  contact to a customer/provider
+// for affecting an existing  contact to a customer
 
-export interface AffectContact {
-    id: string,
+export interface AffectContactCustomer {
+    
+    customerid: string,
     contactid: string
     
 }
+// for affecting an existing  contact to a provider
 
+export interface AffectContactProvider {
+    providerid: string,
+    contactid: string
+    
+}
 // for deleting  an existing  address from a contact/customer/provider
 
 export interface DeleteAddress{

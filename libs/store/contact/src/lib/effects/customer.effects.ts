@@ -114,7 +114,7 @@ export class CustomersEffects {
       mergeMap((action) =>
         this.customerService.affectContact(action.contact).pipe(
           map((data) =>
-          CustomersActions.affectContactToCustomerSuccess({contact: data.data.insert_contact_customer_contact_one})
+          CustomersActions.affectContactToCustomerSuccess({contact: data.data.insert_contact_customer_contact})
           ),
           catchError((error) =>
             of(CustomersActions.affectContactToCustomerFailure({ error }))

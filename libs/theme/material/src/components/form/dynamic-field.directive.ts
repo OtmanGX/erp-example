@@ -18,6 +18,7 @@ import { InputSelectComponent } from './input-select.component';
 import { TagInputComponent } from './tag-input.component';
 import { TextareaComponent } from './textarea.component';
 import { HeaderComponent } from './header.component';
+import { SelectSearchComponent } from './select-search.component';
 
 const componentMapper = {
   input: InputComponent,
@@ -26,6 +27,7 @@ const componentMapper = {
   textarea: TextareaComponent,
   button: ButtonComponent,
   select: SelectComponent,
+  selectSearch: SelectSearchComponent,
   date: DateComponent,
   radiobutton: RadiobuttonComponent,
   checkbox: CheckboxComponent,

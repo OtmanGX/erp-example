@@ -1,4 +1,4 @@
-import { DetailedProvider, Provider, InsertContact, InsertAddressContact, DeleteAddress, AffectContact } from '@tanglass-erp/core/contact';
+import { DetailedProvider, Provider, InsertContact, InsertAddressContact, DeleteAddress, AffectContactProvider } from '@tanglass-erp/core/contact';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -134,7 +134,7 @@ export const addContactToProviderFailure = createAction(
 
 export const affectContactToProvider = createAction(
   '[Provider card Component] affect Contact To Provider',
-  props<{ contact: AffectContact }>()
+  props<{ contact: AffectContactProvider[] }>()
 );
 export const affectContactToProviderSuccess = createAction(
   '[Provider Effect] affect Contact To Provider Success',

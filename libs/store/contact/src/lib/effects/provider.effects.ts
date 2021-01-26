@@ -97,7 +97,7 @@ export class ProvidersEffects {
       mergeMap((action) =>
         this.providerService.affectContact(action.contact).pipe(
           map((data) =>
-          ProvidersActions.affectContactToProviderSuccess({contact: data.data.insert_contact_provider_contact_one})
+          ProvidersActions.affectContactToProviderSuccess({contact: data.data.insert_contact_provider_contact})
           ),
           catchError((error) =>
             of(ProvidersActions.affectContactToProviderFailure({ error }))

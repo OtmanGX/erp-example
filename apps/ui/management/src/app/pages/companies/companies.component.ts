@@ -46,7 +46,7 @@ export class CompaniesComponent implements GridView {
       if (result) {
         if (action === Operations.add) {
           this.store.dispatch(CompanieActions.addCompanie({ companie: result }));
-        } else if( action === Operations.update) {
+        } else if ( action === Operations.update) {
           result['id'] = data['id'];
           this.store.dispatch(CompanieActions.updateCompanie({ companie: result }));
         }

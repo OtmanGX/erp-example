@@ -12,7 +12,7 @@ import { of } from 'rxjs';
 export class AccessoryCardComponent implements OnInit {
   title = "Accessoire";
   id: string;
-  data: any = of(null);
+  data$: any = of(null);
   passedData: any;
 
   constructor(private store: Store<AppState>,
@@ -22,7 +22,7 @@ export class AccessoryCardComponent implements OnInit {
 
   ngOnInit(): void {
     // this.store.dispatch();
-    this.data.subscribe(value => {
+    this.data$.subscribe(value => {
       this.passedData = [
         {label: 'Nom', value: value?.name},
         {label: 'Type', value: value?.type},
@@ -30,7 +30,7 @@ export class AccessoryCardComponent implements OnInit {
         {label: 'Prix', value: value?.product?.price},
         {label: 'Prix min', value: value?.product?.price_min},
         {label: 'Prix max', value: value?.product?.price_max},
-        {label: 'Sociétés', value: value?.product?.companies},
+        {label: 'Sociétés', value: value?.product?.companies, type: 'chips'},
       ];
     });
   }

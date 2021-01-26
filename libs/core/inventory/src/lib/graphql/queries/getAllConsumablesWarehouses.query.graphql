@@ -1,0 +1,24 @@
+query GetAllConsumablesStock {
+  stock_warehouse_substance(where: {substance: {type: {_eq: consumable}}}) {
+    quantity
+  
+    warehouse {
+      ...stock_warehouseFragment
+    }
+    substance {
+      ...product_substanceConsumableFragment
+    }
+  }
+}
+
+fragment product_substanceConsumableFragment on product_substance {
+  consomable {
+    id
+    category
+     product {
+      ...product_productFragment
+    }
+  }
+}
+
+

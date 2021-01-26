@@ -1,30 +1,37 @@
 import { MetaData } from "libs/core/shared/metaData";
-import { AccessoryTransferOrder } from "./accessoryTransrefOrder.model";
+import { TransferOrder } from "./transrefOrder.model";
 
-export interface AccessoryTransfer{
+//for the transfers grid
+
+export interface Transfer{
     id:string;
     quatity:number;
     transferDate:Date;
 
     status:string; // confirmed/ delivered /closed/suspended transferStatus
-    tansferOrder:AccessoryTransferOrder;
+    tansferOrder:TransferOrder;
 }
 
-export interface  DetailedAccessoryTransfer extends MetaData{
+
+//for getting a transfer details 
+export interface  DetailedTransfer extends MetaData{
     id:string;
     quatity:number;
     transferDate:Date;
 
     status:string; // confirmed/ delivered /closed/suspended transferStatus
-    tansferOrder:AccessoryTransferOrder;
+    tansferOrder:TransferOrder;
 
 }
 
-export interface  InsertedAccessoryTransfer {
+
+//for inserting  a transfer  
+
+export interface  InsertedTransfer {
     quatity:number;
     transferDate:Date;
 
     status:string; // confirmed/ delivered /closed/suspended transferStatus
-    tansferOrder:AccessoryTransferOrder;
+    tansferOrder:TransferOrder;
 
 }

@@ -1,5 +1,6 @@
-<mat-toolbar class="pt-8" *ngIf="withToolbar">
-  <div>
+<div class="main">
+  <mat-toolbar class="" *ngIf="withToolbar">
+    <div>
     <span *ngIf="withCrud">
       <button (click)="triggerAction(operations.add)" mat-icon-button matTooltip="Ajouter"  color="primary" aria-label="Example icon-button with a menu">
       <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
@@ -10,14 +11,14 @@
     <mat-divider class="mx-3" vertical style="height:auto; display: inline"></mat-divider>
     </span>
 
-    <button (click)="openBottomSheet()" class="excel" mat-icon-button matTooltip="Exporter">
-      <mat-icon fontSet="fas" fontIcon="fa-file-excel"></mat-icon>
-    </button>
+      <button (click)="openBottomSheet()" class="excel" mat-icon-button matTooltip="Exporter">
+        <mat-icon fontSet="fas" fontIcon="fa-file-excel"></mat-icon>
+      </button>
     </div>
 
-  <div class="spacer">
-  </div>
-   <mat-form-field style="font-size: 12px" appearance="outline" floatLabel="never">
+    <div class="spacer">
+    </div>
+    <mat-form-field style="font-size: 12px" appearance="outline" class="mt-8" floatLabel="never">
       <mat-label>Mot de recherche</mat-label>
       <input #searchInput placeholder="Mot de recherche" (input)="search(searchInput.value)" matInput type="search">
       <button *ngIf="searchInput.value!==''" style="display: inline;" mat-icon-button matSuffix (click)="searchInput.value=''; resetSearch()" [attr.aria-label]="'cancel Search'" [attr.aria-pressed]="hide">
@@ -28,24 +29,25 @@
       </button>
     </mat-form-field>
 
-</mat-toolbar>
-<ag-grid-angular
-  #agGrid
-  style="width: 100%; height: 400px;"
-  [gridOptions]="gridOptions"
-  [defaultColDef]="defaultColDef"
-  class="ag-theme-alpine"
-  [rowData]="rowData | async"
-  [columnTypes]="columnTypes"
-  [columnDefs]="columnDefs"
-  [context]="context"
-  [autoGroupColumnDef]="autoGroupColumnDef"
-  [sideBar]="sideBar"
-  [groupSelectsChildren]="true"
-  [statusBar]="statusBar"
-  localeText="AG_GRID_LOCALE_FR"
-  (gridReady)="onGridReady($event)"
-  rowGroupPanelShow="always"
-  rowSelection="multiple"
->
-</ag-grid-angular>
+  </mat-toolbar>
+  <ag-grid-angular
+    #agGrid
+    style="width: 100%; height: 400px;"
+    [gridOptions]="gridOptions"
+    [defaultColDef]="defaultColDef"
+    [class]="theme"
+    [rowData]="rowData | async"
+    [columnTypes]="columnTypes"
+    [columnDefs]="columnDefs"
+    [context]="context"
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [sideBar]="sideBar"
+    [groupSelectsChildren]="true"
+    [statusBar]="statusBar"
+    localeText="AG_GRID_LOCALE_FR"
+    (gridReady)="onGridReady($event)"
+    rowGroupPanelShow="always"
+    rowSelection="multiple"
+  >
+  </ag-grid-angular>
+</div>
