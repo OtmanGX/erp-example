@@ -1,6 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
+import { regConfigCompany } from '@TanglassUi/management/utils/forms';
+import { Store } from '@ngrx/store';
+import { AppState } from '@tanglass-erp/store/app';
+import * as CompanieActions from '@TanglassStore/management/lib/actions/companies.actions';
+import * as CompanieSelectors from '@TanglassStore/management/lib/selectors/companies.selectors';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-pop-companies',
@@ -14,59 +20,20 @@ export class PopCompaniesComponent extends FormDialog {
   constructor(
     public dialogRef: MatDialogRef<PopCompaniesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private store: Store<AppState>,
   ) {
     super(dialogRef, data);
   }
 
-
-  ngOnInit() {
-    this.buildForm();
-  }
-
   buildForm(): void {
-    this.regConfig = [
-      {type: "input", label: "Nom", inputType: "text", name: "name", value: this.data.name,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", label: "ICE", inputType: "text", name: "ICE", value: this.data.ICE,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", label: "IF", inputType: "text", name: "IF", value: this.data.IF,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", label: "RC", inputType: "text", name: "RC", value: this.data.RC,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", label: "CNSS", inputType: "text", name: "CNSS", value: this.data.CNSS,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", label: "Adresse", inputType: "text", name: "address", value: this.data.address,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", label: "Téléphone", inputType: "text", name: "phone", value: this.data.phone,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", label: "E-mail", inputType: "text", name: "email", value: this.data.email,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {type: "input", label: "Site web", inputType: "text", name: "website", value: this.data.website},
-    ];
+    this.regConfig = regConfigCompany(this.data);
+    if (!!this.data?.id) {
+      this.store.dispatch(CompanieActions.loadCompanieById({id: this.data.id}));
+      this.store.select(CompanieSelectors.getSelectedCompanie)
+        .pipe(take(1)).subscribe(value => {
+          this.regConfig = regConfigCompany(value);
+      });
+    }
   }
 
 }
