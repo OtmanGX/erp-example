@@ -13,7 +13,7 @@ export interface Product {
   price: number;
   priceMin?: number;
   priceMax?: number;
-  companies: Company[];
+  companies?: Company[];
 }
 
 export interface InsertedProduct {

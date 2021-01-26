@@ -1,0 +1,57 @@
+subscription GetTransferById($id: uuid!) {
+  stock_transfer_order_by_pk(id: $id) {
+    createdAt
+    createdBy
+    date
+    deadline
+    fromwarehouse {
+      ...stock_warehouseForTransferFragment
+    }
+    id
+    status
+    towarehouse {
+      ...stock_warehouseForTransferFragment
+    }
+    tranfer_order_items {
+      id
+      quantity
+      status
+      item_tranfers {
+        ...stock_item_tranferFragment
+      }
+      substance {
+        ...product_substanceFragment
+      }
+    }
+    updatedAt
+    updatedBy
+  }
+}
+
+fragment product_substanceFragment on product_substance {
+  glass {
+    product {
+      code
+      label
+    }
+  }
+  accessory {
+    product {
+      code
+      label
+    }
+  }
+}
+
+fragment stock_item_tranferFragment on stock_item_tranfer {
+  quantity
+  id
+  status
+}
+
+fragment stock_warehouseForTransferFragment on stock_warehouse {
+  name
+  id
+}
+
+
