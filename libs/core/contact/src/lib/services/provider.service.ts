@@ -15,7 +15,7 @@ import {
 } from '@tanglass-erp/infrastructure/graphql';
 import { DetailedProvider, InsertedProvider } from "../models/provider.models";
 import { dataAdapter } from '../utils/dataAdapter';
-import { InsertAddressContact,InsertContact,AffectContact,DeleteAddress} from "../models/shared.models";
+import { InsertAddressContact,InsertContact,AffectContactProvider,DeleteAddress} from "../models/shared.models";
 @Injectable({
   providedIn: 'root'
 })
@@ -85,8 +85,8 @@ export class ProviderService {
   }
 
 
-  affectContact(value:AffectContact){
-    this.affectProviderContact.mutate(value)
+  affectContact(value:AffectContactProvider[]){
+    this.affectProviderContact.mutate({affectedContacts:value})
   }
 
   deleteAddress(value:DeleteAddress){

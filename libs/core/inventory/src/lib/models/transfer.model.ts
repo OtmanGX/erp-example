@@ -1,6 +1,8 @@
 import { MetaData } from "libs/core/shared/metaData";
 import { TransferOrder } from "./transrefOrder.model";
 
+//for the transfers grid
+
 export interface Transfer{
     id:string;
     quatity:number;
@@ -10,6 +12,8 @@ export interface Transfer{
     tansferOrder:TransferOrder;
 }
 
+
+//for getting a transfer details 
 export interface  DetailedTransfer extends MetaData{
     id:string;
     quatity:number;
@@ -19,6 +23,9 @@ export interface  DetailedTransfer extends MetaData{
     tansferOrder:TransferOrder;
 
 }
+
+
+//for inserting  a transfer  
 
 export interface  InsertedTransfer {
     quatity:number;

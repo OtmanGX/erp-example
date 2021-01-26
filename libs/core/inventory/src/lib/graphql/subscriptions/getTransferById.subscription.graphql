@@ -1,4 +1,4 @@
-subscription GetTransferById($id: uuid!) {
+subscription GetTransferById($id: Int!) {
   stock_transfer_order_by_pk(id: $id) {
     createdAt
     createdBy
