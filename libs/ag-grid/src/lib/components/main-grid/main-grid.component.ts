@@ -27,6 +27,7 @@ export class MainGridComponent {
   @Input() columnId = 'id';
   @Input() withToolbar: boolean = true;
   @Input() withCrud: boolean = true;
+  @Input() theme = "ag-theme-alpine";
   @Output() triggerEvent = new EventEmitter<{action: string, data?: any}>();
   private gridApi: any;
   private gridColumnApi: any;
