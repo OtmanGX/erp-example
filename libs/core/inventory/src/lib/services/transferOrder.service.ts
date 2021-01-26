@@ -1,24 +1,31 @@
 import { Injectable } from '@angular/core';
 import {
-  GetAllTransfersGQL,
+  GetAllTransfersOrdersGQL,
+  GetTransferByIdGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import * as fromTransfer from "../models/transrefOrder.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class TransferService {
+export class TransferOrderService {
 
   constructor(    
-    private getAllGQL: GetAllTransfersGQL,
+    private getAllGQL: GetAllTransfersOrdersGQL,
+    private getTransferByIdGQL: GetTransferByIdGQL,
+
 
     ) {
       let data: fromTransfer.TransferOrder[]
       this.getAll().subscribe(o => data = o.data.stock_transfer_order)
-    
+    let transferOrder:fromTransfer.DetailedTransferOrder
+    this.getOneById(1).subscribe(o => transferOrder = o.data.stock_transfer_order_by_pk)
      }
   
     getAll() {
       return this.getAllGQL.watch().valueChanges
+    }
+    getOneById(id: number){
+      return this.getTransferByIdGQL.subscribe({id})
     }
 }

@@ -1,5 +1,4 @@
 import { Accessory } from "@tanglass-erp/core/product";
-import { Transfer, DetailedTransfer } from "../models/transfer.model";
 import { Warehouse,DetailedWarehouse } from "../models/warehouse.model";
 
 

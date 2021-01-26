@@ -1,37 +1,34 @@
 import { MetaData } from "libs/core/shared/metaData";
 import { TransferOrder } from "./transrefOrder.model";
 
-//for the transfers grid
+//for the transfer ordered item data 
 
-export interface Transfer{
+export interface OrderItem {
     id:string;
-    quatity:number;
-    transferDate:Date;
+    quantity:number;
+    status:string;//pending or delivered
+    substance:ItemTransfer;
+    item_tranfers:Transfered[]
+}
+//for the quantity of  items  that are transfered
 
-    status:string; // confirmed/ delivered /closed/suspended transferStatus
-    tansferOrder:TransferOrder;
+export interface Transfered{
+    quantity:number;
+    id:string;
+    status:string// ready or out
+}
+//for the type and data  of  substances  to transfer
+
+export interface ItemTransfer{
+  glass?:ProductTransfer
+  accessory?:ProductTransfer
 }
 
 
-//for getting a transfer details 
-export interface  DetailedTransfer extends MetaData{
-    id:string;
-    quatity:number;
-    transferDate:Date;
 
-    status:string; // confirmed/ delivered /closed/suspended transferStatus
-    tansferOrder:TransferOrder;
-
-}
-
-
-//for inserting  a transfer  
-
-export interface  InsertedTransfer {
-    quatity:number;
-    transferDate:Date;
-
-    status:string; // confirmed/ delivered /closed/suspended transferStatus
-    tansferOrder:TransferOrder;
-
+export interface ProductTransfer{
+    product:{
+        code:string;
+        label:string;
+    }
 }
