@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  Inject,
+  Inject, OnDestroy,
   QueryList, ViewChildren
 } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -13,19 +13,24 @@ import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.acti
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
+import { getSelectedCustomer } from '@TanglassStore/contact/lib/selectors/customer.selectors';
+import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
+import { takeWhile } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ngx-pop-customer',
   templateUrl: './pop-customer.component.html',
   styleUrls: ['./pop-customer.component.scss'],
 })
-export class PopCustomerComponent extends FormDialog implements AfterViewInit {
+export class PopCustomerComponent extends FormDialog implements AfterViewInit, OnDestroy {
 
   title = "Ajouter un client";
   regConfig: FieldConfig[];
   addressFormGroup: FormGroup;
   contactFormGroup: FormGroup;
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
+  selectedSubscription: Subscription;
   addresses = [];
   contacts = [];
   customerForm: DynamicFormComponent;
@@ -50,8 +55,19 @@ export class PopCustomerComponent extends FormDialog implements AfterViewInit {
   }
 
   buildForm(): void {
-    this.store.dispatch(ContactActions.loadContacts());
     this.regConfig = regCustomerConfig(this.data, this.contacts$);
+    if (this.data?.id) {
+      this.store.dispatch(CustomerActions.loadCustomerById({id: this.data.id}));
+      this.selectedSubscription = this.store.select(getSelectedCustomer)
+        .subscribe(value => {
+          if (value?.id === this.data.id) {
+            const obj: any = Object.assign({}, value);
+            obj.contacts = obj.contacts.map((elem ) => elem.id);
+            this.regConfig = regCustomerConfig(obj, this.contacts$);
+          }
+        });
+    }
+    this.store.dispatch(ContactActions.loadContacts());
   }
 
   ngAfterViewInit() {
@@ -108,5 +124,9 @@ export class PopCustomerComponent extends FormDialog implements AfterViewInit {
   submitAll() {
     this.closePopup();
     this.submit(this.flattenForm());
+  }
+
+  ngOnDestroy(): void {
+    this.selectedSubscription && this.selectedSubscription.unsubscribe();
   }
 }

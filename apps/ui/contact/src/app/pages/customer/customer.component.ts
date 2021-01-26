@@ -47,8 +47,10 @@ export class CustomerComponent implements GridView {
         if (action === Operations.add) {
           this.store.dispatch(CustomerActions.addCustomer({customer: result}));
         } else if (action === Operations.update) {
-          console.log(result);
-          this.store.dispatch(CustomerActions.updateCustomer({customer: result}));
+          const {contacts, ...obj} = result;
+          console.log(obj);
+          console.log('contacts', contacts);
+          this.store.dispatch(CustomerActions.updateCustomer({customer: obj}));
         }
       }
     });

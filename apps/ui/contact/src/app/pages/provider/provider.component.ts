@@ -44,10 +44,11 @@ export class ProviderComponent implements GridView {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         if (action === Operations.add) {
           this.store.dispatch(ProviderActions.addProvider({provider: result}));
-        } else {}
+        } else if (action === Operations.update) {
+          const {contacts, ...obj} = result;
+        }
       }
     });
   }

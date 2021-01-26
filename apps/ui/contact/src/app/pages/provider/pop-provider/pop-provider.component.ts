@@ -2,20 +2,21 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  Inject,
+  Inject, OnDestroy,
   QueryList, ViewChildren
 } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
 import { FormGroup, FormArray } from '@angular/forms';
-import { regConfigAddresses, regConfigContact, regConfigProvider } from '../../../utils/forms';
+import { regConfigAddresses, regConfigContact, regConfigProvider, regCustomerConfig } from '../../../utils/forms';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
 import { getSelectedProvider } from '@TanglassStore/contact/lib/selectors/provider.selectors';
-import { take } from 'rxjs/operators';
+import { take, takeLast, takeUntil } from 'rxjs/operators';
 import { loadProviderById } from '@TanglassStore/contact/lib/actions/provider.actions';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -23,13 +24,14 @@ import { loadProviderById } from '@TanglassStore/contact/lib/actions/provider.ac
   templateUrl: './pop-provider.component.html',
   styleUrls: ['./pop-provider.component.scss'],
 })
-export class PopProviderComponent extends FormDialog implements AfterViewInit {
+export class PopProviderComponent extends FormDialog implements AfterViewInit, OnDestroy {
 
   title = "Ajouter un fournisseur";
   regConfig: FieldConfig[];
   addressFormGroup: FormGroup;
   contactFormGroup: FormGroup;
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
+  selectedSubscription: Subscription;
   addresses = [];
   contacts = [];
   providerForm: DynamicFormComponent;
@@ -55,14 +57,19 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit {
   }
 
   buildForm(): void {
-    this.store.dispatch(ContactActions.loadContacts());
-    this.store.dispatch(loadProviderById({id: this.data.id}));
     this.regConfig = regConfigProvider(this.data, this.contacts$);
-    this.store.select(getSelectedProvider)
-      .pipe(take(1))
-      .subscribe(value => {
-        this.regConfig = regConfigProvider(value, this.contacts$);
-      });
+    if (this.data?.id) {
+      this.store.dispatch(loadProviderById({id: this.data.id}));
+      this.selectedSubscription = this.store.select(getSelectedProvider)
+        .subscribe(value => {
+          if (value) {
+            const obj: any = {...value};
+            obj.contacts = obj.contacts.map((elem ) => elem.id);
+            this.regConfig = regCustomerConfig(obj, this.contacts$);
+          }
+        });
+    }
+    this.store.dispatch(ContactActions.loadContacts());
   }
 
   ngAfterViewInit() {
@@ -119,6 +126,10 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit {
   submitAll() {
     this.closePopup();
     this.submit(this.flattenForm());
+  }
+
+  ngOnDestroy(): void {
+    this.selectedSubscription && this.selectedSubscription.unsubscribe();
   }
 }
 

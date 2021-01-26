@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { Location } from '@angular/common';
@@ -20,11 +20,14 @@ const componentMapper = {
 @Component({
   selector: 'ngx-customer-card',
   templateUrl: './customer-card.component.html',
-  styleUrls: ['./customer-card.component.scss']
+  styleUrls: ['./customer-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerCardComponent implements OnInit, OnDestroy {
   title = "Client";
   gap = "50px";
+  showMessage = 'afficher';
+  hideMessage = 'cacher';
   id: string;
   stepContact = null;
   stepAddress = null;
@@ -33,51 +36,51 @@ export class CustomerCardComponent implements OnInit, OnDestroy {
   dataSubscription: Subscription;
   passedData: any;
 
-
   contactPassedData = (contact) => [
     {label: 'Code', value: contact?.code},
     {label: 'Nom', value: contact?.name},
-    {label: 'E-mail', value: contact?.mail},
-    {label: 'Téléphone', value: contact?.phone},
+    {label: 'E-mail', value: contact?.mail, type: 'mail'},
+    {label: 'Téléphone', value: contact?.phone, type: 'phone'},
     {label: 'Note', value: contact?.note},
-  ];
+  ]
   addressPassedData = (address) => [
     {label: 'Adresse', value: address?.address},
     {label: 'Ville', value: address?.city},
     {label: 'Code Postal', value: address?.zip},
-  ];
-  otherData = [
-    [{label: 'Contacts', value: null}],
-    [{label: 'Adresses', value: null}],
-  ];
+  ]
 
   constructor(
     private store: Store<AppState>,
     private location: Location,
     public dialog: MatDialog,
+    private cdRef: ChangeDetectorRef,
   ) {
     this.id = (<any>location.getState()).id;
   }
 
   ngOnInit(): void {
     this.store.dispatch(CustomerActions.loadCustomerById({id: this.id}));
-    this.dataSubscription = this.data$.subscribe(value => {
+    this.dataSubscription = this.data$
+      .subscribe(value => {
       this.data = value;
       this.passedData = [
         {label: 'Nom', value: value?.name},
         {label: 'Code', value: value?.code},
         {label: 'ICE', value: value?.ICE},
         {label: 'IF', value: value?.IF},
-        {label: 'E-mail', value: value?.mail},
-        {label: 'Téléphone', value: value?.phone},
+        {label: 'E-mail', value: value?.mail, type: 'mail'},
+        {label: 'Téléphone', value: value?.phone, type: 'phone'},
         {label: 'Note', value: value?.note},
         {label: 'FAX', value: value?.FAX},
-        {label: 'Site web', value: value?.website},
+        {label: 'Site web', value: value?.website, type: 'link'},
+        // {label: 'Contacts', type: 'view', code: 'contacts'},
+        // {label: 'Adresses', type: 'view', code: 'addresses'},
       ];
+        this.cdRef.detectChanges();
     });
   }
 
-  openDialog(model, data = {}) {
+  async openDialog(model, data = {}) {
     const component = componentMapper[model];
     const dialogRef = this.dialog.open(component, {
       width: '1000px',

@@ -18,8 +18,11 @@ const regConfigProvider = (data?, contacts: any = []) => [
   {type: "input", name: "mail", label: "E-mail", inputType: "text", value: data?.mail},
   {type: "input", name: "phone", label: "Téléphone", inputType: "text", value: data?.phone},
   {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
-  {type: "selectSearch", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? [],
-   options: contacts, multiple: true},
+  {type: "selectSearch", name: "affectedContacts", label: "Contacts", inputType: "text",
+    value: data?.contacts ?? [],
+    filterFields: ['name', 'phone'],
+    fieldsToShow: ['name', 'phone'],
+    options: contacts, multiple: true},
 ];
 
 const regConfigContact = (data?) => [
@@ -62,7 +65,10 @@ const regCustomerConfig = (data?, contacts: any = []) => [
   {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
   {type: "input", name: "website", label: "Site web", inputType: "text", value: data?.website},
   {type: "input", name: "Fax", label: "Fax", inputType: "text", value: data?.Fax},
-  {type: "selectSearch", name: "affectedContacts", label: "Contacts", inputType: "text", value: data?.contacts ?? [],
+  {type: "selectSearch", name: !data?.id ? "affectedContacts" : "contacts",
+    label: "Contacts", inputType: "text", value: data?.contacts ?? [],
+    filterFields: ['name', 'phone'],
+    fieldsToShow: ['name', 'phone'],
     options: contacts, multiple: true},
 ];
 

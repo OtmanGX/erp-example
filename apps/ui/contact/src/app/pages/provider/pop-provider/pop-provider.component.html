@@ -1,5 +1,5 @@
 <ngx-dialog-body [title]="title">
-  <mat-horizontal-stepper linear #stepper *ngIf="!data.name; else editForm">
+  <mat-horizontal-stepper linear #stepper *ngIf="!data.id; else editForm">
     <!--   Main Form Step-->
     <mat-step [stepControl]="providerForm?.form" [editable]="true">
       <ng-template matStepLabel>Informations générales</ng-template>
