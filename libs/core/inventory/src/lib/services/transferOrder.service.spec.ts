@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TransferService } from './transfer.service';
+import { TransferOrderService } from './transferOrder.service';
 
 describe('TransferService', () => {
-  let service: TransferService;
+  let service: TransferOrderService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TransferService);
+    service = TestBed.inject(TransferOrderService);
   });
 
   it('should be created', () => {

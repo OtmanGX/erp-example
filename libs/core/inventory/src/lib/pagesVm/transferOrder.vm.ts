@@ -1,4 +1,4 @@
-import { Accessory } from "@tanglass-erp/core/product";
+import { Accessory, Glass } from "@tanglass-erp/core/product";
 import { Substance } from "libs/core/product/src/lib/models/shared.model";
 import {TransferOrder, DetailedTransferOrder } from "../models/transrefOrder.model";
 import { Warehouse } from "../models/warehouse.model";
@@ -23,7 +23,8 @@ export interface DetailedTransferOrderVM{
 // transfer order creation
 export interface creationTransferOrderVM{
     warehouses:Warehouse[];
-    subsctances:Substance[];
+    glasses:Glass[];
+    accessories:Accessory[];
     loading:boolean;
     error?:string;
 }

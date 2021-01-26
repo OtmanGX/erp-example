@@ -1,4 +1,4 @@
-query GetAllTransfers {
+query GetAllTransfersOrders {
   stock_transfer_order {
     date
     deadline

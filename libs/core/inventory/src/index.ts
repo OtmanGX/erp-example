@@ -11,5 +11,5 @@ export * from './lib/enums';
 export * from './lib/services/warehouse-accessory.service';
 export * from './lib/services/warehouse-consumable.service'
 export * from './lib/services/warehouse-glass.service';
-export * from './lib/services/transfer.service';
+export * from './lib/services/transferOrder.service';
 export * from './lib/services/warehouse.service';
