@@ -53,7 +53,7 @@ const CustomerReducer = createReducer<State>(
      customerAdapter.upsertOne(action.customer, state)
   ),
   on(CustomersActions.removeCustomerSuccess, (state, action) =>
-     customerAdapter.removeOne(action.customer.id, state)
+     customerAdapter.removeOne(action.customerId, state)
   ),
   on(CustomersActions.loadCustomersFailure,
      CustomersActions.updateCustomerFailure,

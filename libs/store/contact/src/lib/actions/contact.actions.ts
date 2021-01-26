@@ -1,4 +1,5 @@
-import { Contact, DetailedContact, InsertedContact } from '@tanglass-erp/core/contact';
+import { Contact, DetailedContact, InsertedContact,
+   InsertAddressContact, DeleteAddress, Address } from '@tanglass-erp/core/contact';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -90,5 +91,39 @@ export const removeContactSuccess = createAction(
 );
 export const removeContactFailure = createAction(
   '[Contact Effect] Delete Contact failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****ADD ADRESS TO CONTACT ** */
+/****************************************************************** */
+
+export const addAdressToContact = createAction(
+  '[Contact  card Component] Add Adress To Contact ',
+  props<{ address: InsertAddressContact }>()
+);
+export const addAdressToContactSuccess = createAction(
+  '[Contact  Effect] Add Adress To Contact  Success',
+  props<{ address: any }>()
+);
+export const addAdressToContactFailure = createAction(
+  '[Contact  Effect] Add Adress To Contact  failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****REMOVE ADRESS FROM CONTACT ** */
+/****************************************************************** */
+
+export const removeAdressFromContact = createAction(
+  '[Contact  card Component] remove Adress From Contact ',
+  props<{ address: DeleteAddress }>()
+);
+export const removeAdressFromContactSuccess = createAction(
+  '[Contact  Effect] remove Adress From Contact Success',
+  props<{ address: any }>()
+);
+export const removeAdressFromContactFailure = createAction(
+  '[Contact  Effect] remove Adress To Contact failure',
   props<{ error: any }>()
 );

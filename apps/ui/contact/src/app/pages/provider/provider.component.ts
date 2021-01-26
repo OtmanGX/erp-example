@@ -47,7 +47,10 @@ export class ProviderComponent implements GridView {
         console.log(result);
         if (action === Operations.add) {
           this.store.dispatch(ProviderActions.addProvider({provider: result}));
-        } else {}
+        } else {
+          result['id'] = data['id'];
+          this.store.dispatch(ProviderActions.updateProvider({provider: result}))
+        }
       }
     });
   }
@@ -60,6 +63,7 @@ export class ProviderComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.store.dispatch(ProviderActions.removeProvider({providerId: event.data[0].id}));
         break;
       // ...
     }

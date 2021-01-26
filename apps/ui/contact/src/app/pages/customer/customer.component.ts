@@ -47,7 +47,7 @@ export class CustomerComponent implements GridView {
         if (action === Operations.add) {
           this.store.dispatch(CustomerActions.addCustomer({customer: result}));
         } else if (action === Operations.update) {
-          console.log(result);
+          result['id'] = data['id'];
           this.store.dispatch(CustomerActions.updateCustomer({customer: result}));
         }
       }
@@ -62,6 +62,7 @@ export class CustomerComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.store.dispatch(CustomerActions.removeCustomer({customerId: event.data[0].id}));
         break;
       // ...
     }

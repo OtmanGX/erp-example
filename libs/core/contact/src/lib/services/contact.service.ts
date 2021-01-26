@@ -64,14 +64,14 @@ export class ContactService {
     return this.deleteMany.mutate({ids})
   }
 
-  //new methods for add/delete a contact addresses 
+  //new methods for add/delete a contact addresses
 
    addAddress(value:InsertAddressContact){
      return this.addContactAddressGQL.mutate(value)
    }
 
    deleteAddress(value:DeleteAddress){
-       this.deleteContactAddress.mutate(value)
+      return this.deleteContactAddress.mutate(value)
    }
 
 

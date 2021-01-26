@@ -1,4 +1,4 @@
-import { Customer, DetailedCustomer } from '@tanglass-erp/core/contact';
+import { Customer, DetailedCustomer, InsertAddressContact, InsertContact, AffectContact, DeleteAddress } from '@tanglass-erp/core/contact';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -82,13 +82,82 @@ export const updateCustomerFailure = createAction(
 
 export const removeCustomer = createAction(
   '[Customers Component] Delete Customer',
-  props<{ customer: Customer }>()
+  props<{ customerId: any }>()
 );
 export const removeCustomerSuccess = createAction(
   '[Customer Effect] Delete Customer Success',
-  props<{ customer: Customer }>()
+  props<{ customerId: any }>()
 );
 export const removeCustomerFailure = createAction(
   '[Customer Effect] Delete Customer failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****ADD ADRESS TO CUSTOMER ** */
+/****************************************************************** */
+
+export const addAdressToCustomer = createAction(
+  '[Customer card Component] Add Adress To Customer',
+  props<{ address: InsertAddressContact }>()
+);
+export const addAdressToCustomerSuccess = createAction(
+  '[Customer Effect] Add Adress To Customer Success',
+  props<{ address: any }>()
+);
+export const addAdressToCustomerFailure = createAction(
+  '[Customer Effect] Add Adress To Customer failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****ADD ADRESS TO CUSTOMER ** */
+/****************************************************************** */
+
+export const addContactToCustomer = createAction(
+  '[Customer card Component] Add Contact To Customer',
+  props<{ contact: InsertContact }>()
+);
+export const addContactToCustomerSuccess = createAction(
+  '[Customer Effect] Add Contact To Customer Success',
+  props<{ contact: any }>()
+);
+export const addContactToCustomerFailure = createAction(
+  '[Customer Effect] Add Contact To Customer failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****AFFECT ADRESS TO CUSTOMER ** */
+/****************************************************************** */
+
+export const affectContactToCustomer = createAction(
+  '[Customer card Component] affect Contact To Customer',
+  props<{ contact: AffectContact }>()
+);
+export const affectContactToCustomerSuccess = createAction(
+  '[Customer Effect] affect Contact To Customer Success',
+  props<{ contact: any }>()
+);
+export const affectContactToCustomerFailure = createAction(
+  '[Customer Effect] affect Contact To Customer failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****REMOVE ADRESS FROM CUSTOMER ** */
+/****************************************************************** */
+
+export const removeAdressFromCustomer = createAction(
+  '[Customer card Component] remove Adress from Customer',
+  props<{ adress: DeleteAddress }>()
+);
+export const removeAdressFromCustomerSuccess = createAction(
+  '[Customer Effect] remove Adress from Customer Success',
+  props<{ adress: any }>()
+);
+export const removeAdressFromCustomerFailure = createAction(
+  '[Customer Effect] remove Adress from Customer failure',
   props<{ error: any }>()
 );

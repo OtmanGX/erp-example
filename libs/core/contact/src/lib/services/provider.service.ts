@@ -72,17 +72,17 @@ export class ProviderService {
   }
 
   addContact(value:InsertContact){
-    this.addProviderContact.mutate(value)
+    return this.addProviderContact.mutate(value)
 
   }
 
 
   affectContact(value:AffectContact){
-    this.affectProviderContact.mutate(value)
+    return this.affectProviderContact.mutate(value)
   }
 
   deleteAddress(value:DeleteAddress){
-    this.deleteProviderAddress.mutate(value)
+    return this.deleteProviderAddress.mutate(value)
   }
-  
+
 }
