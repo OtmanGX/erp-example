@@ -8,10 +8,9 @@ import {
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
 import { FormGroup, FormArray } from '@angular/forms';
-import { regConfigAddresses, regConfigContact, regConfigProvider, regCustomerConfig } from '../../../utils/forms';
+import { regConfigAddresses, regConfigContact, regCustomerConfig } from '../../../utils/forms';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
-import { take } from 'rxjs/operators';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 
@@ -26,6 +25,7 @@ export class PopCustomerComponent extends FormDialog implements AfterViewInit {
   regConfig: FieldConfig[];
   addressFormGroup: FormGroup;
   contactFormGroup: FormGroup;
+  contacts$ = this.store.select(ContactSelectors.getAllContacts);
   addresses = [];
   contacts = [];
   customerForm: DynamicFormComponent;
@@ -51,12 +51,7 @@ export class PopCustomerComponent extends FormDialog implements AfterViewInit {
 
   buildForm(): void {
     this.store.dispatch(ContactActions.loadContacts());
-    this.store.select(ContactSelectors.getAllContacts)
-      .pipe(take(2))
-      .subscribe(value => {
-        const contacts = value.map(elem => ({key: elem.id, value: elem.name}));
-        this.regConfig = regCustomerConfig(this.data, contacts);
-      });
+    this.regConfig = regCustomerConfig(this.data, this.contacts$);
   }
 
   ngAfterViewInit() {

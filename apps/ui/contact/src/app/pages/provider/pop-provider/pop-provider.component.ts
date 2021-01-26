@@ -13,7 +13,9 @@ import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.acti
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
+import { getSelectedProvider } from '@TanglassStore/contact/lib/selectors/provider.selectors';
 import { take } from 'rxjs/operators';
+import { loadProviderById } from '@TanglassStore/contact/lib/actions/provider.actions';
 
 
 @Component({
@@ -27,6 +29,7 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit {
   regConfig: FieldConfig[];
   addressFormGroup: FormGroup;
   contactFormGroup: FormGroup;
+  contacts$ = this.store.select(ContactSelectors.getAllContacts);
   addresses = [];
   contacts = [];
   providerForm: DynamicFormComponent;
@@ -49,17 +52,17 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit {
     super(dialogRef, data);
     this.addressFormGroup = new FormGroup({addresses: new FormArray([])});
     this.contactFormGroup = new FormGroup({contacts: new FormArray([])});
-    // this.newAddress(); this.newContact();
   }
 
   buildForm(): void {
     this.store.dispatch(ContactActions.loadContacts());
-    this.store.select(ContactSelectors.getAllContacts)
-      .pipe(take(2))
+    this.store.dispatch(loadProviderById({id: this.data.id}));
+    this.regConfig = regConfigProvider(this.data, this.contacts$);
+    this.store.select(getSelectedProvider)
+      .pipe(take(1))
       .subscribe(value => {
-        const contacts = value.map(elem => ({key: elem.id, value: elem.name}));
-        this.regConfig = regConfigProvider(this.data, contacts);
-    });
+        this.regConfig = regConfigProvider(value, this.contacts$);
+      });
   }
 
   ngAfterViewInit() {
