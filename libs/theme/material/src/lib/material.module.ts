@@ -49,6 +49,8 @@ import { HeaderComponent } from '../components/form/header.component';
 import { ListItemComponent } from '../components/list-item/list-item.component';
 import { TypeTemplateDirective } from '../directives/type-template';
 
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { SelectSearchComponent } from '../components/form/select-search.component';
 
 
 const MATERIAL_MODULES = [
@@ -78,7 +80,8 @@ const MATERIAL_MODULES = [
   MatAutocompleteModule,
   MatChipsModule,
   MatExpansionModule,
-  MatStepperModule
+  MatStepperModule,
+  NgxMatSelectSearchModule
 ];
 
 const OTHER_MODULES = [
@@ -93,6 +96,7 @@ const COMPONENTS = [
   InputSelectComponent,
   ButtonComponent,
   SelectComponent,
+  SelectSearchComponent,
   DateComponent,
   RadiobuttonComponent,
   TagInputComponent,
