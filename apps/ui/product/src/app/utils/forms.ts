@@ -1,4 +1,24 @@
-import { FormDialog } from '@tanglass-erp/material';
+import { FieldConfig, FormDialog } from '@tanglass-erp/material';
+import { paramOptions } from './enum';
+
+export interface ParamField {
+  name: string;
+  type: string;
+}
+
+
+function getParams(params) {
+  const equivalence = new Map([
+    [paramOptions.TEXT, {type: "input", inputType: "text"}],
+    [paramOptions.NUMBER, {type: "input", inputType: "number"}],
+    [paramOptions.LIST, {type: "inputTag", inputType: "text"}],
+  ]);
+
+  const value = params.map(elem => <FieldConfig>
+    ({...equivalence.get(elem.type), label: elem.name, name: "name", value: null})
+  );
+  return value;
+}
 
 const regConfigProduct = (data?, listCompanies = []) => [
   {type: "input", label: "Code", inputType: "text", name: "code", value: data?.product?.code,
@@ -109,7 +129,7 @@ const regConfigGlass = (data?, listCompanies = []) => [
 ];
 
 
-const regConfigService = (data?) => [
+const regConfigServiceConfig = (data?) => [
   {
     name: "service",
     label: "Service",
@@ -120,22 +140,40 @@ const regConfigService = (data?) => [
           FormDialog.REQUIRED
         ]
       },
-      {type: "input", label: "Unité de prix par défaut", inputType: "text", name: "defaultPriceUnit",
-        value: data?.name,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
+      {type: "input", label: "Etiquette d\'usine", inputType: "text", name: "labelFactory",
+        value: data?.labelFactory, validations: [FormDialog.REQUIRED]},
     ]
   },
   {
     name: "params",
-    label: "Params",
-    headerVisible: false,
-    fields: [
-      {type: "inputTag", label: "Paramètres", name: "params", value: data?.params ?? [],
-        options: []}
-    ]
+    label: "Paramètres",
+    headerVisible: true,
+    fields: []
+  },
+];
+
+const regConfService = (data?, listCompanies = [], params?: ParamField[]) => [
+  {
+    name: "product",
+    label: "Produit",
+    headerVisible: true,
+    fields: regConfigProduct(data?.product, listCompanies)
+  },
+  {
+    name: "optionalParamValues",
+    label: "Paramètres",
+    headerVisible: true,
+    fields: params ? getParams(params) : []
+  }
+];
+
+const regParamForm = [
+  {type: "input", label: "Nom", inputType: "text", name: "name", value: null,
+    validations: [FormDialog.REQUIRED]
+  },
+  {type: "select", label: "Type", inputType: "text", name: "type", value: null,
+    options: Object.values(paramOptions).map(elem => ({key: elem, value: elem})),
+    validations: [FormDialog.REQUIRED]
   },
 ];
 
@@ -163,7 +201,9 @@ export {
   regConfigAccessory,
   regConfigConsumable,
   regConfigGlass,
-  regConfigService,
+  regConfigServiceConfig,
+  regConfService,
+  regParamForm,
   regConfigServiceConsumable,
   regConfigServiceGlass
 };
