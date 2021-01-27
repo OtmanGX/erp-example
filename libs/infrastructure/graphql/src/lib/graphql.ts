@@ -14300,7 +14300,7 @@ export type Stock_Warehouse = {
   company: Management_Company;
   companyid: Scalars['uuid'];
   createdAt: Scalars['date'];
-  createdBy: Scalars['String'];
+  createdBy?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   name: Scalars['String'];
   /** An object relationship */
@@ -14314,9 +14314,8 @@ export type Stock_Warehouse = {
   transferOrdersToWarehouse: Array<Stock_Transfer_Order>;
   /** An aggregated array relationship */
   transferOrdersToWarehouse_aggregate: Stock_Transfer_Order_Aggregate;
-  type: Scalars['String'];
   updatedAt: Scalars['date'];
-  updatedBy: Scalars['String'];
+  updatedBy?: Maybe<Scalars['String']>;
   /** An array relationship */
   warehouse_subsctances: Array<Stock_Warehouse_Substance>;
   /** An aggregated array relationship */
@@ -14433,7 +14432,6 @@ export type Stock_Warehouse_Bool_Exp = {
   salesPointid?: Maybe<Uuid_Comparison_Exp>;
   transferOrdersFromWarehouse?: Maybe<Stock_Transfer_Order_Bool_Exp>;
   transferOrdersToWarehouse?: Maybe<Stock_Transfer_Order_Bool_Exp>;
-  type?: Maybe<String_Comparison_Exp>;
   updatedAt?: Maybe<Date_Comparison_Exp>;
   updatedBy?: Maybe<String_Comparison_Exp>;
   warehouse_subsctances?: Maybe<Stock_Warehouse_Substance_Bool_Exp>;
@@ -14459,7 +14457,6 @@ export type Stock_Warehouse_Insert_Input = {
   salesPointid?: Maybe<Scalars['uuid']>;
   transferOrdersFromWarehouse?: Maybe<Stock_Transfer_Order_Arr_Rel_Insert_Input>;
   transferOrdersToWarehouse?: Maybe<Stock_Transfer_Order_Arr_Rel_Insert_Input>;
-  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['String']>;
   warehouse_subsctances?: Maybe<Stock_Warehouse_Substance_Arr_Rel_Insert_Input>;
@@ -14474,7 +14471,6 @@ export type Stock_Warehouse_Max_Fields = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   salesPointid?: Maybe<Scalars['uuid']>;
-  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['String']>;
 };
@@ -14487,7 +14483,6 @@ export type Stock_Warehouse_Max_Order_By = {
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   salesPointid?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
 };
@@ -14501,7 +14496,6 @@ export type Stock_Warehouse_Min_Fields = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   salesPointid?: Maybe<Scalars['uuid']>;
-  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['String']>;
 };
@@ -14514,7 +14508,6 @@ export type Stock_Warehouse_Min_Order_By = {
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   salesPointid?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
 };
@@ -14553,7 +14546,6 @@ export type Stock_Warehouse_Order_By = {
   salesPointid?: Maybe<Order_By>;
   transferOrdersFromWarehouse_aggregate?: Maybe<Stock_Transfer_Order_Aggregate_Order_By>;
   transferOrdersToWarehouse_aggregate?: Maybe<Stock_Transfer_Order_Aggregate_Order_By>;
-  type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
   warehouse_subsctances_aggregate?: Maybe<Stock_Warehouse_Substance_Aggregate_Order_By>;
@@ -14579,8 +14571,6 @@ export enum Stock_Warehouse_Select_Column {
   /** column name */
   SalesPointid = 'salesPointid',
   /** column name */
-  Type = 'type',
-  /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
   UpdatedBy = 'updatedBy'
@@ -14594,7 +14584,6 @@ export type Stock_Warehouse_Set_Input = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   salesPointid?: Maybe<Scalars['uuid']>;
-  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['String']>;
 };
@@ -14890,8 +14879,6 @@ export enum Stock_Warehouse_Update_Column {
   Name = 'name',
   /** column name */
   SalesPointid = 'salesPointid',
-  /** column name */
-  Type = 'type',
   /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
@@ -16834,6 +16821,28 @@ export type GetProviderByIdQuery = (
   )> }
 );
 
+export type InsertWarehouseMutationVariables = Exact<{
+  companyid: Scalars['uuid'];
+  name: Scalars['String'];
+  salesPointid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type InsertWarehouseMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_stock_warehouse_one?: Maybe<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'name' | 'id' | 'createdBy' | 'createdAt'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), salesPoint?: Maybe<(
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'id'>
+    )> }
+  )> }
+);
+
 export type GetAllAccessoriesStockQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -16960,7 +16969,7 @@ export type GetAllWarehousesQuery = (
   { __typename?: 'query_root' }
   & { stock_warehouse: Array<(
     { __typename?: 'stock_warehouse' }
-    & Pick<Stock_Warehouse, 'id' | 'name' | 'type'>
+    & Pick<Stock_Warehouse, 'id' | 'name'>
     & { company: (
       { __typename?: 'management_company' }
       & Management_CompanyFragmentFragment
@@ -18437,6 +18446,37 @@ export const GetProviderByIdDocument = gql`
       super(apollo);
     }
   }
+export const InsertWarehouseDocument = gql`
+    mutation InsertWarehouse($companyid: uuid!, $name: String!, $salesPointid: uuid) {
+  insert_stock_warehouse_one(
+    object: {companyid: $companyid, name: $name, salesPointid: $salesPointid}
+  ) {
+    name
+    id
+    createdBy
+    createdAt
+    company {
+      name
+      id
+    }
+    salesPoint {
+      name
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertWarehouseGQL extends Apollo.Mutation<InsertWarehouseMutation, InsertWarehouseMutationVariables> {
+    document = InsertWarehouseDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAllAccessoriesStockDocument = gql`
     query GetAllAccessoriesStock {
   stock_warehouse_substance(where: {substance: {type: {_eq: accessory}}}) {
@@ -18568,7 +18608,6 @@ export const GetAllWarehousesDocument = gql`
   stock_warehouse {
     id
     name
-    type
     company {
       ...management_companyFragment
     }

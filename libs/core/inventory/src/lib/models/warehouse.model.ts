@@ -5,24 +5,16 @@ import { PartialData } from "./shared.models";
 export interface Warehouse{
     id:string;
     name:string;
-    type?:string; //usine or salePoint
     company:PartialData;
     salesPoint?:PartialData;
-    
 }
 
 
-export interface DetailedWarehouse extends MetaData{
-    id:string;
-    type?:string; 
-    company:PartialData;
-    salePoint:PartialData;
-}
 
 
 export interface InsertedWarehouse {
-    type:string; 
     companyid:string;
+    name:string;
     salePointid:string;
 }
 
