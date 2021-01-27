@@ -88,6 +88,9 @@
     },
     "core-inventory": {
       "tags": []
+    },
+    "store-inventory": {
+      "tags": []
     }
   }
 }

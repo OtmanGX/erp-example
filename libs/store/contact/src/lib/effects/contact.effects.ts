@@ -5,6 +5,7 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as ContactsActions from '../actions/contact.actions';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { TransferOrderService } from '@tanglass-erp/core/inventory';
 
 @Injectable()
 export class ContactsEffects {
@@ -124,5 +125,8 @@ export class ContactsEffects {
   });
 
   constructor(private actions$: Actions,
-              private contactService: ContactService) {}
+              private contactService: ContactService,
+              private ser:TransferOrderService) {
+                
+              }
 }

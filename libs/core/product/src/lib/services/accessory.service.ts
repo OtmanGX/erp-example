@@ -51,7 +51,7 @@ this.getOneById("eb6c4f62-a1ec-401e-a206-1274353a6245").subscribe(o=>console.log
   }
 
   getOneById(id: string) {
-    return this.getByIdGQL.subscribe({ id })
+    return this.getByIdGQL.fetch({ id })
   }
 
   insertOne(createdOne: insertedAccessory) {

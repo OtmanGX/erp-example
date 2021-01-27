@@ -17,11 +17,11 @@ export class TransferOrderService {
 
 
     ) {
-      /** 
+      
       let data
       let transferOrder:fromTransfer.DetailedTransferOrder
-       this.getOneById(1).subscribe(o => console.log(o.data.stock_transfer_order_by_pk.tranfer_order_items) )
-      */
+       this.getOneById(1).subscribe(o => console.log(flattenObj(o.data.stock_transfer_order_by_pk)))
+      
       }
   
     getAll() {
@@ -29,6 +29,6 @@ export class TransferOrderService {
     }
     
     getOneById(id: number){
-      return this.getTransferByIdGQL.subscribe({id})
+      return this.getTransferByIdGQL.fetch({id})
     }
 }

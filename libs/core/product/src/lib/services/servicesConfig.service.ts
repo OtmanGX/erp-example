@@ -32,7 +32,7 @@ export class ServicesConfigService {
   }
 
   getOneById(id: string) {
-    return this.getByIdGQL.subscribe({ id })
+    return this.getByIdGQL.fetch({ id })
   }
 
   insertOne(createdOne: InsertedServiceConfig) {
