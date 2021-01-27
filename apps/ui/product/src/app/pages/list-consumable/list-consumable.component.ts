@@ -6,7 +6,11 @@ import { GridView, Operations } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import { PopConsumableComponent } from './pop-consumable/pop-consumable.component';
 import { ConsumableHeaders } from '../../utils/grid-headers';
-
+import { Consumable } from "@tanglass-erp/core/product";
+import { Store } from '@ngrx/store';
+import { AppState } from '@tanglass-erp/store/app';
+import * as ConsumableActions from '@TanglassStore/product/lib/actions/consumable.actions';
+import * as ConsumableSelectors from '@TanglassStore/product/lib/selectors/consumable.selectors';
 
 @Component({
   selector: 'ngx-list-consumable',
@@ -15,13 +19,15 @@ import { ConsumableHeaders } from '../../utils/grid-headers';
 })
 export class ListConsumableComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$: Observable<any>;
+  data$: Observable<Consumable[]>=this.store.select(ConsumableSelectors.getAllConsumables);;
+
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
 
   constructor(
     private dialog: MatDialog,
+    private store: Store<AppState>
   ) {
     this.setColumnDefs();
   }

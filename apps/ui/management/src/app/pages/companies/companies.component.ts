@@ -23,7 +23,9 @@ export class CompaniesComponent implements GridView {
   data$ = this.store.select(CompanieSelectors.getAllCompanies);
   @ViewChild(MainGridComponent) mainGrid;
 
-  constructor(public dialog: MatDialog, private store: Store<AppState> ) {
+  constructor(
+    public dialog: MatDialog, 
+    private store: Store<AppState> ) {
     this.setColumnDefs();
   }
 
