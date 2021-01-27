@@ -1,4 +1,4 @@
-subscription GetTransferById($id: Int!) {
+query GetTransferById($id: Int!) {
   stock_transfer_order_by_pk(id: $id) {
     createdAt
     createdBy
@@ -12,7 +12,7 @@ subscription GetTransferById($id: Int!) {
     towarehouse {
       ...stock_warehouseForTransferFragment
     }
-    tranfer_order_items {
+      order_items {
       id
       quantity
       status

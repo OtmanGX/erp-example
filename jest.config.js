@@ -20,5 +20,6 @@ module.exports = {
     '<rootDir>/apps/ui/contact',
     '<rootDir>/libs/store/contact',
     '<rootDir>/libs/core/inventory',
+    '<rootDir>/libs/store/inventory',
   ],
 };

@@ -4715,6 +4715,10 @@ export type Mutation_Root = {
   delete_stock_item_transfer_status?: Maybe<Stock_Item_Transfer_Status_Mutation_Response>;
   /** delete single row from the table: "stock.item_transfer_status" */
   delete_stock_item_transfer_status_by_pk?: Maybe<Stock_Item_Transfer_Status>;
+  /** delete data from the table: "stock.order_item" */
+  delete_stock_order_item?: Maybe<Stock_Order_Item_Mutation_Response>;
+  /** delete single row from the table: "stock.order_item" */
+  delete_stock_order_item_by_pk?: Maybe<Stock_Order_Item>;
   /** delete data from the table: "stock.order_item_status" */
   delete_stock_order_item_status?: Maybe<Stock_Order_Item_Status_Mutation_Response>;
   /** delete single row from the table: "stock.order_item_status" */
@@ -4723,10 +4727,6 @@ export type Mutation_Root = {
   delete_stock_transfer_order?: Maybe<Stock_Transfer_Order_Mutation_Response>;
   /** delete single row from the table: "stock.transfer_order" */
   delete_stock_transfer_order_by_pk?: Maybe<Stock_Transfer_Order>;
-  /** delete data from the table: "stock.transfer_order_item" */
-  delete_stock_transfer_order_item?: Maybe<Stock_Transfer_Order_Item_Mutation_Response>;
-  /** delete single row from the table: "stock.transfer_order_item" */
-  delete_stock_transfer_order_item_by_pk?: Maybe<Stock_Transfer_Order_Item>;
   /** delete data from the table: "stock.transfer_order_status" */
   delete_stock_transfer_order_status?: Maybe<Stock_Transfer_Order_Status_Mutation_Response>;
   /** delete single row from the table: "stock.transfer_order_status" */
@@ -4859,16 +4859,16 @@ export type Mutation_Root = {
   insert_stock_item_transfer_status?: Maybe<Stock_Item_Transfer_Status_Mutation_Response>;
   /** insert a single row into the table: "stock.item_transfer_status" */
   insert_stock_item_transfer_status_one?: Maybe<Stock_Item_Transfer_Status>;
+  /** insert data into the table: "stock.order_item" */
+  insert_stock_order_item?: Maybe<Stock_Order_Item_Mutation_Response>;
+  /** insert a single row into the table: "stock.order_item" */
+  insert_stock_order_item_one?: Maybe<Stock_Order_Item>;
   /** insert data into the table: "stock.order_item_status" */
   insert_stock_order_item_status?: Maybe<Stock_Order_Item_Status_Mutation_Response>;
   /** insert a single row into the table: "stock.order_item_status" */
   insert_stock_order_item_status_one?: Maybe<Stock_Order_Item_Status>;
   /** insert data into the table: "stock.transfer_order" */
   insert_stock_transfer_order?: Maybe<Stock_Transfer_Order_Mutation_Response>;
-  /** insert data into the table: "stock.transfer_order_item" */
-  insert_stock_transfer_order_item?: Maybe<Stock_Transfer_Order_Item_Mutation_Response>;
-  /** insert a single row into the table: "stock.transfer_order_item" */
-  insert_stock_transfer_order_item_one?: Maybe<Stock_Transfer_Order_Item>;
   /** insert a single row into the table: "stock.transfer_order" */
   insert_stock_transfer_order_one?: Maybe<Stock_Transfer_Order>;
   /** insert data into the table: "stock.transfer_order_status" */
@@ -5003,6 +5003,10 @@ export type Mutation_Root = {
   update_stock_item_transfer_status?: Maybe<Stock_Item_Transfer_Status_Mutation_Response>;
   /** update single row of the table: "stock.item_transfer_status" */
   update_stock_item_transfer_status_by_pk?: Maybe<Stock_Item_Transfer_Status>;
+  /** update data of the table: "stock.order_item" */
+  update_stock_order_item?: Maybe<Stock_Order_Item_Mutation_Response>;
+  /** update single row of the table: "stock.order_item" */
+  update_stock_order_item_by_pk?: Maybe<Stock_Order_Item>;
   /** update data of the table: "stock.order_item_status" */
   update_stock_order_item_status?: Maybe<Stock_Order_Item_Status_Mutation_Response>;
   /** update single row of the table: "stock.order_item_status" */
@@ -5011,10 +5015,6 @@ export type Mutation_Root = {
   update_stock_transfer_order?: Maybe<Stock_Transfer_Order_Mutation_Response>;
   /** update single row of the table: "stock.transfer_order" */
   update_stock_transfer_order_by_pk?: Maybe<Stock_Transfer_Order>;
-  /** update data of the table: "stock.transfer_order_item" */
-  update_stock_transfer_order_item?: Maybe<Stock_Transfer_Order_Item_Mutation_Response>;
-  /** update single row of the table: "stock.transfer_order_item" */
-  update_stock_transfer_order_item_by_pk?: Maybe<Stock_Transfer_Order_Item>;
   /** update data of the table: "stock.transfer_order_status" */
   update_stock_transfer_order_status?: Maybe<Stock_Transfer_Order_Status_Mutation_Response>;
   /** update single row of the table: "stock.transfer_order_status" */
@@ -5392,6 +5392,18 @@ export type Mutation_RootDelete_Stock_Item_Transfer_Status_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Stock_Order_ItemArgs = {
+  where: Stock_Order_Item_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Stock_Order_Item_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Stock_Order_Item_StatusArgs = {
   where: Stock_Order_Item_Status_Bool_Exp;
 };
@@ -5412,18 +5424,6 @@ export type Mutation_RootDelete_Stock_Transfer_OrderArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Stock_Transfer_Order_By_PkArgs = {
   id: Scalars['Int'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Stock_Transfer_Order_ItemArgs = {
-  where: Stock_Transfer_Order_Item_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Stock_Transfer_Order_Item_By_PkArgs = {
-  id: Scalars['uuid'];
 };
 
 
@@ -5885,6 +5885,20 @@ export type Mutation_RootInsert_Stock_Item_Transfer_Status_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Stock_Order_ItemArgs = {
+  objects: Array<Stock_Order_Item_Insert_Input>;
+  on_conflict?: Maybe<Stock_Order_Item_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Stock_Order_Item_OneArgs = {
+  object: Stock_Order_Item_Insert_Input;
+  on_conflict?: Maybe<Stock_Order_Item_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Stock_Order_Item_StatusArgs = {
   objects: Array<Stock_Order_Item_Status_Insert_Input>;
   on_conflict?: Maybe<Stock_Order_Item_Status_On_Conflict>;
@@ -5902,20 +5916,6 @@ export type Mutation_RootInsert_Stock_Order_Item_Status_OneArgs = {
 export type Mutation_RootInsert_Stock_Transfer_OrderArgs = {
   objects: Array<Stock_Transfer_Order_Insert_Input>;
   on_conflict?: Maybe<Stock_Transfer_Order_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Stock_Transfer_Order_ItemArgs = {
-  objects: Array<Stock_Transfer_Order_Item_Insert_Input>;
-  on_conflict?: Maybe<Stock_Transfer_Order_Item_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Stock_Transfer_Order_Item_OneArgs = {
-  object: Stock_Transfer_Order_Item_Insert_Input;
-  on_conflict?: Maybe<Stock_Transfer_Order_Item_On_Conflict>;
 };
 
 
@@ -6435,6 +6435,22 @@ export type Mutation_RootUpdate_Stock_Item_Transfer_Status_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Stock_Order_ItemArgs = {
+  _inc?: Maybe<Stock_Order_Item_Inc_Input>;
+  _set?: Maybe<Stock_Order_Item_Set_Input>;
+  where: Stock_Order_Item_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Stock_Order_Item_By_PkArgs = {
+  _inc?: Maybe<Stock_Order_Item_Inc_Input>;
+  _set?: Maybe<Stock_Order_Item_Set_Input>;
+  pk_columns: Stock_Order_Item_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Stock_Order_Item_StatusArgs = {
   _set?: Maybe<Stock_Order_Item_Status_Set_Input>;
   where: Stock_Order_Item_Status_Bool_Exp;
@@ -6461,22 +6477,6 @@ export type Mutation_RootUpdate_Stock_Transfer_Order_By_PkArgs = {
   _inc?: Maybe<Stock_Transfer_Order_Inc_Input>;
   _set?: Maybe<Stock_Transfer_Order_Set_Input>;
   pk_columns: Stock_Transfer_Order_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Stock_Transfer_Order_ItemArgs = {
-  _inc?: Maybe<Stock_Transfer_Order_Item_Inc_Input>;
-  _set?: Maybe<Stock_Transfer_Order_Item_Set_Input>;
-  where: Stock_Transfer_Order_Item_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Stock_Transfer_Order_Item_By_PkArgs = {
-  _inc?: Maybe<Stock_Transfer_Order_Item_Inc_Input>;
-  _set?: Maybe<Stock_Transfer_Order_Item_Set_Input>;
-  pk_columns: Stock_Transfer_Order_Item_Pk_Columns_Input;
 };
 
 
@@ -10795,9 +10795,9 @@ export type Product_Substance = {
   /** An object relationship */
   substance_type: Product_Substance_Type;
   /** An array relationship */
-  transfer_order_items: Array<Stock_Transfer_Order_Item>;
+  transfer_order_items: Array<Stock_Order_Item>;
   /** An aggregated array relationship */
-  transfer_order_items_aggregate: Stock_Transfer_Order_Item_Aggregate;
+  transfer_order_items_aggregate: Stock_Order_Item_Aggregate;
   type: Product_Substance_Type_Enum;
   /** An array relationship */
   warehouse_substances: Array<Stock_Warehouse_Substance>;
@@ -10808,21 +10808,21 @@ export type Product_Substance = {
 
 /** columns and relationships of "product.substance" */
 export type Product_SubstanceTransfer_Order_ItemsArgs = {
-  distinct_on?: Maybe<Array<Stock_Transfer_Order_Item_Select_Column>>;
+  distinct_on?: Maybe<Array<Stock_Order_Item_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Stock_Transfer_Order_Item_Order_By>>;
-  where?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
+  order_by?: Maybe<Array<Stock_Order_Item_Order_By>>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
 };
 
 
 /** columns and relationships of "product.substance" */
 export type Product_SubstanceTransfer_Order_Items_AggregateArgs = {
-  distinct_on?: Maybe<Array<Stock_Transfer_Order_Item_Select_Column>>;
+  distinct_on?: Maybe<Array<Stock_Order_Item_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Stock_Transfer_Order_Item_Order_By>>;
-  where?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
+  order_by?: Maybe<Array<Stock_Order_Item_Order_By>>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
 };
 
 
@@ -10921,7 +10921,7 @@ export type Product_Substance_Bool_Exp = {
   productConsumable?: Maybe<Product_Product_Consumable_View_Bool_Exp>;
   productGlass?: Maybe<Product_Product_Glass_View_Bool_Exp>;
   substance_type?: Maybe<Product_Substance_Type_Bool_Exp>;
-  transfer_order_items?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
+  transfer_order_items?: Maybe<Stock_Order_Item_Bool_Exp>;
   type?: Maybe<Product_Substance_Type_Enum_Comparison_Exp>;
   warehouse_substances?: Maybe<Stock_Warehouse_Substance_Bool_Exp>;
 };
@@ -10945,7 +10945,7 @@ export type Product_Substance_Insert_Input = {
   glass?: Maybe<Product_Glass_Obj_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
   substance_type?: Maybe<Product_Substance_Type_Obj_Rel_Insert_Input>;
-  transfer_order_items?: Maybe<Stock_Transfer_Order_Item_Arr_Rel_Insert_Input>;
+  transfer_order_items?: Maybe<Stock_Order_Item_Arr_Rel_Insert_Input>;
   type?: Maybe<Product_Substance_Type_Enum>;
   warehouse_substances?: Maybe<Stock_Warehouse_Substance_Arr_Rel_Insert_Input>;
 };
@@ -11009,7 +11009,7 @@ export type Product_Substance_Order_By = {
   productConsumable?: Maybe<Product_Product_Consumable_View_Order_By>;
   productGlass?: Maybe<Product_Product_Glass_View_Order_By>;
   substance_type?: Maybe<Product_Substance_Type_Order_By>;
-  transfer_order_items_aggregate?: Maybe<Stock_Transfer_Order_Item_Aggregate_Order_By>;
+  transfer_order_items_aggregate?: Maybe<Stock_Order_Item_Aggregate_Order_By>;
   type?: Maybe<Order_By>;
   warehouse_substances_aggregate?: Maybe<Stock_Warehouse_Substance_Aggregate_Order_By>;
 };
@@ -11537,6 +11537,12 @@ export type Query_Root = {
   stock_item_transfer_status_aggregate: Stock_Item_Transfer_Status_Aggregate;
   /** fetch data from the table: "stock.item_transfer_status" using primary key columns */
   stock_item_transfer_status_by_pk?: Maybe<Stock_Item_Transfer_Status>;
+  /** fetch data from the table: "stock.order_item" */
+  stock_order_item: Array<Stock_Order_Item>;
+  /** fetch aggregated fields from the table: "stock.order_item" */
+  stock_order_item_aggregate: Stock_Order_Item_Aggregate;
+  /** fetch data from the table: "stock.order_item" using primary key columns */
+  stock_order_item_by_pk?: Maybe<Stock_Order_Item>;
   /** fetch data from the table: "stock.order_item_status" */
   stock_order_item_status: Array<Stock_Order_Item_Status>;
   /** fetch aggregated fields from the table: "stock.order_item_status" */
@@ -11549,12 +11555,6 @@ export type Query_Root = {
   stock_transfer_order_aggregate: Stock_Transfer_Order_Aggregate;
   /** fetch data from the table: "stock.transfer_order" using primary key columns */
   stock_transfer_order_by_pk?: Maybe<Stock_Transfer_Order>;
-  /** fetch data from the table: "stock.transfer_order_item" */
-  stock_transfer_order_item: Array<Stock_Transfer_Order_Item>;
-  /** fetch aggregated fields from the table: "stock.transfer_order_item" */
-  stock_transfer_order_item_aggregate: Stock_Transfer_Order_Item_Aggregate;
-  /** fetch data from the table: "stock.transfer_order_item" using primary key columns */
-  stock_transfer_order_item_by_pk?: Maybe<Stock_Transfer_Order_Item>;
   /** fetch data from the table: "stock.transfer_order_status" */
   stock_transfer_order_status: Array<Stock_Transfer_Order_Status>;
   /** fetch aggregated fields from the table: "stock.transfer_order_status" */
@@ -12578,6 +12578,32 @@ export type Query_RootStock_Item_Transfer_Status_By_PkArgs = {
 
 
 /** query root */
+export type Query_RootStock_Order_ItemArgs = {
+  distinct_on?: Maybe<Array<Stock_Order_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Stock_Order_Item_Order_By>>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootStock_Order_Item_AggregateArgs = {
+  distinct_on?: Maybe<Array<Stock_Order_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Stock_Order_Item_Order_By>>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootStock_Order_Item_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** query root */
 export type Query_RootStock_Order_Item_StatusArgs = {
   distinct_on?: Maybe<Array<Stock_Order_Item_Status_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -12626,32 +12652,6 @@ export type Query_RootStock_Transfer_Order_AggregateArgs = {
 /** query root */
 export type Query_RootStock_Transfer_Order_By_PkArgs = {
   id: Scalars['Int'];
-};
-
-
-/** query root */
-export type Query_RootStock_Transfer_Order_ItemArgs = {
-  distinct_on?: Maybe<Array<Stock_Transfer_Order_Item_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Stock_Transfer_Order_Item_Order_By>>;
-  where?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootStock_Transfer_Order_Item_AggregateArgs = {
-  distinct_on?: Maybe<Array<Stock_Transfer_Order_Item_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Stock_Transfer_Order_Item_Order_By>>;
-  where?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootStock_Transfer_Order_Item_By_PkArgs = {
-  id: Scalars['uuid'];
 };
 
 
@@ -12737,11 +12737,13 @@ export type Query_RootStock_Warehouse_Substance_By_PkArgs = {
 export type Stock_Item_Tranfer = {
   __typename?: 'stock_item_tranfer';
   id: Scalars['uuid'];
+  /** An object relationship */
+  item_transfer_status?: Maybe<Stock_Item_Transfer_Status>;
+  order_itemid: Scalars['uuid'];
   quantity: Scalars['Float'];
   status?: Maybe<Scalars['String']>;
   /** An object relationship */
-  tranfer_order_item: Stock_Transfer_Order_Item;
-  transfer_order_itemid: Scalars['uuid'];
+  tranfer_order_item: Stock_Order_Item;
 };
 
 /** aggregated selection of "stock.item_tranfer" */
@@ -12812,10 +12814,11 @@ export type Stock_Item_Tranfer_Bool_Exp = {
   _not?: Maybe<Stock_Item_Tranfer_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Stock_Item_Tranfer_Bool_Exp>>>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  item_transfer_status?: Maybe<Stock_Item_Transfer_Status_Bool_Exp>;
+  order_itemid?: Maybe<Uuid_Comparison_Exp>;
   quantity?: Maybe<Float_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
-  tranfer_order_item?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
-  transfer_order_itemid?: Maybe<Uuid_Comparison_Exp>;
+  tranfer_order_item?: Maybe<Stock_Order_Item_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "stock.item_tranfer" */
@@ -12832,44 +12835,45 @@ export type Stock_Item_Tranfer_Inc_Input = {
 /** input type for inserting data into table "stock.item_tranfer" */
 export type Stock_Item_Tranfer_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
+  item_transfer_status?: Maybe<Stock_Item_Transfer_Status_Obj_Rel_Insert_Input>;
+  order_itemid?: Maybe<Scalars['uuid']>;
   quantity?: Maybe<Scalars['Float']>;
   status?: Maybe<Scalars['String']>;
-  tranfer_order_item?: Maybe<Stock_Transfer_Order_Item_Obj_Rel_Insert_Input>;
-  transfer_order_itemid?: Maybe<Scalars['uuid']>;
+  tranfer_order_item?: Maybe<Stock_Order_Item_Obj_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
 export type Stock_Item_Tranfer_Max_Fields = {
   __typename?: 'stock_item_tranfer_max_fields';
   id?: Maybe<Scalars['uuid']>;
+  order_itemid?: Maybe<Scalars['uuid']>;
   quantity?: Maybe<Scalars['Float']>;
   status?: Maybe<Scalars['String']>;
-  transfer_order_itemid?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "stock.item_tranfer" */
 export type Stock_Item_Tranfer_Max_Order_By = {
   id?: Maybe<Order_By>;
+  order_itemid?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
-  transfer_order_itemid?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Stock_Item_Tranfer_Min_Fields = {
   __typename?: 'stock_item_tranfer_min_fields';
   id?: Maybe<Scalars['uuid']>;
+  order_itemid?: Maybe<Scalars['uuid']>;
   quantity?: Maybe<Scalars['Float']>;
   status?: Maybe<Scalars['String']>;
-  transfer_order_itemid?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "stock.item_tranfer" */
 export type Stock_Item_Tranfer_Min_Order_By = {
   id?: Maybe<Order_By>;
+  order_itemid?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
-  transfer_order_itemid?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "stock.item_tranfer" */
@@ -12897,10 +12901,11 @@ export type Stock_Item_Tranfer_On_Conflict = {
 /** ordering options when selecting data from "stock.item_tranfer" */
 export type Stock_Item_Tranfer_Order_By = {
   id?: Maybe<Order_By>;
+  item_transfer_status?: Maybe<Stock_Item_Transfer_Status_Order_By>;
+  order_itemid?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
-  tranfer_order_item?: Maybe<Stock_Transfer_Order_Item_Order_By>;
-  transfer_order_itemid?: Maybe<Order_By>;
+  tranfer_order_item?: Maybe<Stock_Order_Item_Order_By>;
 };
 
 /** primary key columns input for table: "stock.item_tranfer" */
@@ -12913,19 +12918,19 @@ export enum Stock_Item_Tranfer_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  OrderItemid = 'order_itemid',
+  /** column name */
   Quantity = 'quantity',
   /** column name */
-  Status = 'status',
-  /** column name */
-  TransferOrderItemid = 'transfer_order_itemid'
+  Status = 'status'
 }
 
 /** input type for updating data in table "stock.item_tranfer" */
 export type Stock_Item_Tranfer_Set_Input = {
   id?: Maybe<Scalars['uuid']>;
+  order_itemid?: Maybe<Scalars['uuid']>;
   quantity?: Maybe<Scalars['Float']>;
   status?: Maybe<Scalars['String']>;
-  transfer_order_itemid?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate stddev on columns */
@@ -12977,11 +12982,11 @@ export enum Stock_Item_Tranfer_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  OrderItemid = 'order_itemid',
+  /** column name */
   Quantity = 'quantity',
   /** column name */
-  Status = 'status',
-  /** column name */
-  TransferOrderItemid = 'transfer_order_itemid'
+  Status = 'status'
 }
 
 /** aggregate var_pop on columns */
@@ -13020,8 +13025,32 @@ export type Stock_Item_Tranfer_Variance_Order_By = {
 /** columns and relationships of "stock.item_transfer_status" */
 export type Stock_Item_Transfer_Status = {
   __typename?: 'stock_item_transfer_status';
+  /** An array relationship */
+  item_tranfers: Array<Stock_Item_Tranfer>;
+  /** An aggregated array relationship */
+  item_tranfers_aggregate: Stock_Item_Tranfer_Aggregate;
   key: Scalars['String'];
   status: Scalars['String'];
+};
+
+
+/** columns and relationships of "stock.item_transfer_status" */
+export type Stock_Item_Transfer_StatusItem_TranfersArgs = {
+  distinct_on?: Maybe<Array<Stock_Item_Tranfer_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Stock_Item_Tranfer_Order_By>>;
+  where?: Maybe<Stock_Item_Tranfer_Bool_Exp>;
+};
+
+
+/** columns and relationships of "stock.item_transfer_status" */
+export type Stock_Item_Transfer_StatusItem_Tranfers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Stock_Item_Tranfer_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Stock_Item_Tranfer_Order_By>>;
+  where?: Maybe<Stock_Item_Tranfer_Bool_Exp>;
 };
 
 /** aggregated selection of "stock.item_transfer_status" */
@@ -13064,6 +13093,7 @@ export type Stock_Item_Transfer_Status_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Stock_Item_Transfer_Status_Bool_Exp>>>;
   _not?: Maybe<Stock_Item_Transfer_Status_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Stock_Item_Transfer_Status_Bool_Exp>>>;
+  item_tranfers?: Maybe<Stock_Item_Tranfer_Bool_Exp>;
   key?: Maybe<String_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
 };
@@ -13078,6 +13108,7 @@ export enum Stock_Item_Transfer_Status_Constraint {
 
 /** input type for inserting data into table "stock.item_transfer_status" */
 export type Stock_Item_Transfer_Status_Insert_Input = {
+  item_tranfers?: Maybe<Stock_Item_Tranfer_Arr_Rel_Insert_Input>;
   key?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
 };
@@ -13132,6 +13163,7 @@ export type Stock_Item_Transfer_Status_On_Conflict = {
 
 /** ordering options when selecting data from "stock.item_transfer_status" */
 export type Stock_Item_Transfer_Status_Order_By = {
+  item_tranfers_aggregate?: Maybe<Stock_Item_Tranfer_Aggregate_Order_By>;
   key?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
 };
@@ -13163,11 +13195,281 @@ export enum Stock_Item_Transfer_Status_Update_Column {
   Status = 'status'
 }
 
+/** columns and relationships of "stock.order_item" */
+export type Stock_Order_Item = {
+  __typename?: 'stock_order_item';
+  id: Scalars['uuid'];
+  /** An array relationship */
+  item_tranfers: Array<Stock_Item_Tranfer>;
+  /** An aggregated array relationship */
+  item_tranfers_aggregate: Stock_Item_Tranfer_Aggregate;
+  /** An object relationship */
+  order_item_status: Stock_Order_Item_Status;
+  quantity: Scalars['Float'];
+  status: Scalars['String'];
+  /** An object relationship */
+  substance: Product_Substance;
+  substanceid: Scalars['uuid'];
+  /** An object relationship */
+  transfer_order: Stock_Transfer_Order;
+  transfer_orderid: Scalars['Int'];
+};
+
+
+/** columns and relationships of "stock.order_item" */
+export type Stock_Order_ItemItem_TranfersArgs = {
+  distinct_on?: Maybe<Array<Stock_Item_Tranfer_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Stock_Item_Tranfer_Order_By>>;
+  where?: Maybe<Stock_Item_Tranfer_Bool_Exp>;
+};
+
+
+/** columns and relationships of "stock.order_item" */
+export type Stock_Order_ItemItem_Tranfers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Stock_Item_Tranfer_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Stock_Item_Tranfer_Order_By>>;
+  where?: Maybe<Stock_Item_Tranfer_Bool_Exp>;
+};
+
+/** aggregated selection of "stock.order_item" */
+export type Stock_Order_Item_Aggregate = {
+  __typename?: 'stock_order_item_aggregate';
+  aggregate?: Maybe<Stock_Order_Item_Aggregate_Fields>;
+  nodes: Array<Stock_Order_Item>;
+};
+
+/** aggregate fields of "stock.order_item" */
+export type Stock_Order_Item_Aggregate_Fields = {
+  __typename?: 'stock_order_item_aggregate_fields';
+  avg?: Maybe<Stock_Order_Item_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Stock_Order_Item_Max_Fields>;
+  min?: Maybe<Stock_Order_Item_Min_Fields>;
+  stddev?: Maybe<Stock_Order_Item_Stddev_Fields>;
+  stddev_pop?: Maybe<Stock_Order_Item_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Stock_Order_Item_Stddev_Samp_Fields>;
+  sum?: Maybe<Stock_Order_Item_Sum_Fields>;
+  var_pop?: Maybe<Stock_Order_Item_Var_Pop_Fields>;
+  var_samp?: Maybe<Stock_Order_Item_Var_Samp_Fields>;
+  variance?: Maybe<Stock_Order_Item_Variance_Fields>;
+};
+
+
+/** aggregate fields of "stock.order_item" */
+export type Stock_Order_Item_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Stock_Order_Item_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "stock.order_item" */
+export type Stock_Order_Item_Aggregate_Order_By = {
+  avg?: Maybe<Stock_Order_Item_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Stock_Order_Item_Max_Order_By>;
+  min?: Maybe<Stock_Order_Item_Min_Order_By>;
+  stddev?: Maybe<Stock_Order_Item_Stddev_Order_By>;
+  stddev_pop?: Maybe<Stock_Order_Item_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Stock_Order_Item_Stddev_Samp_Order_By>;
+  sum?: Maybe<Stock_Order_Item_Sum_Order_By>;
+  var_pop?: Maybe<Stock_Order_Item_Var_Pop_Order_By>;
+  var_samp?: Maybe<Stock_Order_Item_Var_Samp_Order_By>;
+  variance?: Maybe<Stock_Order_Item_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "stock.order_item" */
+export type Stock_Order_Item_Arr_Rel_Insert_Input = {
+  data: Array<Stock_Order_Item_Insert_Input>;
+  on_conflict?: Maybe<Stock_Order_Item_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Stock_Order_Item_Avg_Fields = {
+  __typename?: 'stock_order_item_avg_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  transfer_orderid?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "stock.order_item" */
+export type Stock_Order_Item_Avg_Order_By = {
+  quantity?: Maybe<Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "stock.order_item". All fields are combined with a logical 'AND'. */
+export type Stock_Order_Item_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Stock_Order_Item_Bool_Exp>>>;
+  _not?: Maybe<Stock_Order_Item_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Stock_Order_Item_Bool_Exp>>>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  item_tranfers?: Maybe<Stock_Item_Tranfer_Bool_Exp>;
+  order_item_status?: Maybe<Stock_Order_Item_Status_Bool_Exp>;
+  quantity?: Maybe<Float_Comparison_Exp>;
+  status?: Maybe<String_Comparison_Exp>;
+  substance?: Maybe<Product_Substance_Bool_Exp>;
+  substanceid?: Maybe<Uuid_Comparison_Exp>;
+  transfer_order?: Maybe<Stock_Transfer_Order_Bool_Exp>;
+  transfer_orderid?: Maybe<Int_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "stock.order_item" */
+export enum Stock_Order_Item_Constraint {
+  /** unique or primary key constraint */
+  AccessoryTranferOrderPkey = 'accessoryTranferOrder_pkey'
+}
+
+/** input type for incrementing integer column in table "stock.order_item" */
+export type Stock_Order_Item_Inc_Input = {
+  quantity?: Maybe<Scalars['Float']>;
+  transfer_orderid?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "stock.order_item" */
+export type Stock_Order_Item_Insert_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  item_tranfers?: Maybe<Stock_Item_Tranfer_Arr_Rel_Insert_Input>;
+  order_item_status?: Maybe<Stock_Order_Item_Status_Obj_Rel_Insert_Input>;
+  quantity?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+  substance?: Maybe<Product_Substance_Obj_Rel_Insert_Input>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  transfer_order?: Maybe<Stock_Transfer_Order_Obj_Rel_Insert_Input>;
+  transfer_orderid?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate max on columns */
+export type Stock_Order_Item_Max_Fields = {
+  __typename?: 'stock_order_item_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  quantity?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  transfer_orderid?: Maybe<Scalars['Int']>;
+};
+
+/** order by max() on columns of table "stock.order_item" */
+export type Stock_Order_Item_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  quantity?: Maybe<Order_By>;
+  status?: Maybe<Order_By>;
+  substanceid?: Maybe<Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Stock_Order_Item_Min_Fields = {
+  __typename?: 'stock_order_item_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  quantity?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  transfer_orderid?: Maybe<Scalars['Int']>;
+};
+
+/** order by min() on columns of table "stock.order_item" */
+export type Stock_Order_Item_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  quantity?: Maybe<Order_By>;
+  status?: Maybe<Order_By>;
+  substanceid?: Maybe<Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "stock.order_item" */
+export type Stock_Order_Item_Mutation_Response = {
+  __typename?: 'stock_order_item_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Stock_Order_Item>;
+};
+
+/** input type for inserting object relation for remote table "stock.order_item" */
+export type Stock_Order_Item_Obj_Rel_Insert_Input = {
+  data: Stock_Order_Item_Insert_Input;
+  on_conflict?: Maybe<Stock_Order_Item_On_Conflict>;
+};
+
+/** on conflict condition type for table "stock.order_item" */
+export type Stock_Order_Item_On_Conflict = {
+  constraint: Stock_Order_Item_Constraint;
+  update_columns: Array<Stock_Order_Item_Update_Column>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "stock.order_item" */
+export type Stock_Order_Item_Order_By = {
+  id?: Maybe<Order_By>;
+  item_tranfers_aggregate?: Maybe<Stock_Item_Tranfer_Aggregate_Order_By>;
+  order_item_status?: Maybe<Stock_Order_Item_Status_Order_By>;
+  quantity?: Maybe<Order_By>;
+  status?: Maybe<Order_By>;
+  substance?: Maybe<Product_Substance_Order_By>;
+  substanceid?: Maybe<Order_By>;
+  transfer_order?: Maybe<Stock_Transfer_Order_Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "stock.order_item" */
+export type Stock_Order_Item_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "stock.order_item" */
+export enum Stock_Order_Item_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Quantity = 'quantity',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  Substanceid = 'substanceid',
+  /** column name */
+  TransferOrderid = 'transfer_orderid'
+}
+
+/** input type for updating data in table "stock.order_item" */
+export type Stock_Order_Item_Set_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  quantity?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  transfer_orderid?: Maybe<Scalars['Int']>;
+};
+
 /** columns and relationships of "stock.order_item_status" */
 export type Stock_Order_Item_Status = {
   __typename?: 'stock_order_item_status';
   key: Scalars['String'];
+  /** An array relationship */
+  order_items: Array<Stock_Order_Item>;
+  /** An aggregated array relationship */
+  order_items_aggregate: Stock_Order_Item_Aggregate;
   status: Scalars['String'];
+};
+
+
+/** columns and relationships of "stock.order_item_status" */
+export type Stock_Order_Item_StatusOrder_ItemsArgs = {
+  distinct_on?: Maybe<Array<Stock_Order_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Stock_Order_Item_Order_By>>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
+};
+
+
+/** columns and relationships of "stock.order_item_status" */
+export type Stock_Order_Item_StatusOrder_Items_AggregateArgs = {
+  distinct_on?: Maybe<Array<Stock_Order_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Stock_Order_Item_Order_By>>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
 };
 
 /** aggregated selection of "stock.order_item_status" */
@@ -13211,6 +13513,7 @@ export type Stock_Order_Item_Status_Bool_Exp = {
   _not?: Maybe<Stock_Order_Item_Status_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Stock_Order_Item_Status_Bool_Exp>>>;
   key?: Maybe<String_Comparison_Exp>;
+  order_items?: Maybe<Stock_Order_Item_Bool_Exp>;
   status?: Maybe<String_Comparison_Exp>;
 };
 
@@ -13225,6 +13528,7 @@ export enum Stock_Order_Item_Status_Constraint {
 /** input type for inserting data into table "stock.order_item_status" */
 export type Stock_Order_Item_Status_Insert_Input = {
   key?: Maybe<Scalars['String']>;
+  order_items?: Maybe<Stock_Order_Item_Arr_Rel_Insert_Input>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -13279,6 +13583,7 @@ export type Stock_Order_Item_Status_On_Conflict = {
 /** ordering options when selecting data from "stock.order_item_status" */
 export type Stock_Order_Item_Status_Order_By = {
   key?: Maybe<Order_By>;
+  order_items_aggregate?: Maybe<Stock_Order_Item_Aggregate_Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -13309,6 +13614,111 @@ export enum Stock_Order_Item_Status_Update_Column {
   Status = 'status'
 }
 
+/** aggregate stddev on columns */
+export type Stock_Order_Item_Stddev_Fields = {
+  __typename?: 'stock_order_item_stddev_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  transfer_orderid?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "stock.order_item" */
+export type Stock_Order_Item_Stddev_Order_By = {
+  quantity?: Maybe<Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Stock_Order_Item_Stddev_Pop_Fields = {
+  __typename?: 'stock_order_item_stddev_pop_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  transfer_orderid?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "stock.order_item" */
+export type Stock_Order_Item_Stddev_Pop_Order_By = {
+  quantity?: Maybe<Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Stock_Order_Item_Stddev_Samp_Fields = {
+  __typename?: 'stock_order_item_stddev_samp_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  transfer_orderid?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "stock.order_item" */
+export type Stock_Order_Item_Stddev_Samp_Order_By = {
+  quantity?: Maybe<Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Stock_Order_Item_Sum_Fields = {
+  __typename?: 'stock_order_item_sum_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  transfer_orderid?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "stock.order_item" */
+export type Stock_Order_Item_Sum_Order_By = {
+  quantity?: Maybe<Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
+/** update columns of table "stock.order_item" */
+export enum Stock_Order_Item_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Quantity = 'quantity',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  Substanceid = 'substanceid',
+  /** column name */
+  TransferOrderid = 'transfer_orderid'
+}
+
+/** aggregate var_pop on columns */
+export type Stock_Order_Item_Var_Pop_Fields = {
+  __typename?: 'stock_order_item_var_pop_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  transfer_orderid?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "stock.order_item" */
+export type Stock_Order_Item_Var_Pop_Order_By = {
+  quantity?: Maybe<Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Stock_Order_Item_Var_Samp_Fields = {
+  __typename?: 'stock_order_item_var_samp_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  transfer_orderid?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "stock.order_item" */
+export type Stock_Order_Item_Var_Samp_Order_By = {
+  quantity?: Maybe<Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Stock_Order_Item_Variance_Fields = {
+  __typename?: 'stock_order_item_variance_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  transfer_orderid?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "stock.order_item" */
+export type Stock_Order_Item_Variance_Order_By = {
+  quantity?: Maybe<Order_By>;
+  transfer_orderid?: Maybe<Order_By>;
+};
+
 /** columns and relationships of "stock.transfer_order" */
 export type Stock_Transfer_Order = {
   __typename?: 'stock_transfer_order';
@@ -13320,14 +13730,14 @@ export type Stock_Transfer_Order = {
   /** An object relationship */
   fromwarehouse: Stock_Warehouse;
   id: Scalars['Int'];
+  /** An array relationship */
+  order_items: Array<Stock_Order_Item>;
+  /** An aggregated array relationship */
+  order_items_aggregate: Stock_Order_Item_Aggregate;
   status: Scalars['String'];
   toWarehouseid: Scalars['uuid'];
   /** An object relationship */
   towarehouse: Stock_Warehouse;
-  /** An array relationship */
-  tranfer_order_items: Array<Stock_Transfer_Order_Item>;
-  /** An aggregated array relationship */
-  tranfer_order_items_aggregate: Stock_Transfer_Order_Item_Aggregate;
   /** An object relationship */
   transfer_status: Stock_Transfer_Order_Status;
   updatedAt: Scalars['date'];
@@ -13336,22 +13746,22 @@ export type Stock_Transfer_Order = {
 
 
 /** columns and relationships of "stock.transfer_order" */
-export type Stock_Transfer_OrderTranfer_Order_ItemsArgs = {
-  distinct_on?: Maybe<Array<Stock_Transfer_Order_Item_Select_Column>>;
+export type Stock_Transfer_OrderOrder_ItemsArgs = {
+  distinct_on?: Maybe<Array<Stock_Order_Item_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Stock_Transfer_Order_Item_Order_By>>;
-  where?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
+  order_by?: Maybe<Array<Stock_Order_Item_Order_By>>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
 };
 
 
 /** columns and relationships of "stock.transfer_order" */
-export type Stock_Transfer_OrderTranfer_Order_Items_AggregateArgs = {
-  distinct_on?: Maybe<Array<Stock_Transfer_Order_Item_Select_Column>>;
+export type Stock_Transfer_OrderOrder_Items_AggregateArgs = {
+  distinct_on?: Maybe<Array<Stock_Order_Item_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Stock_Transfer_Order_Item_Order_By>>;
-  where?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
+  order_by?: Maybe<Array<Stock_Order_Item_Order_By>>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
 };
 
 /** aggregated selection of "stock.transfer_order" */
@@ -13428,10 +13838,10 @@ export type Stock_Transfer_Order_Bool_Exp = {
   fromWarehouseid?: Maybe<Uuid_Comparison_Exp>;
   fromwarehouse?: Maybe<Stock_Warehouse_Bool_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
+  order_items?: Maybe<Stock_Order_Item_Bool_Exp>;
   status?: Maybe<String_Comparison_Exp>;
   toWarehouseid?: Maybe<Uuid_Comparison_Exp>;
   towarehouse?: Maybe<Stock_Warehouse_Bool_Exp>;
-  tranfer_order_items?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
   transfer_status?: Maybe<Stock_Transfer_Order_Status_Bool_Exp>;
   updatedAt?: Maybe<Date_Comparison_Exp>;
   updatedBy?: Maybe<String_Comparison_Exp>;
@@ -13459,359 +13869,13 @@ export type Stock_Transfer_Order_Insert_Input = {
   fromWarehouseid?: Maybe<Scalars['uuid']>;
   fromwarehouse?: Maybe<Stock_Warehouse_Obj_Rel_Insert_Input>;
   id?: Maybe<Scalars['Int']>;
+  order_items?: Maybe<Stock_Order_Item_Arr_Rel_Insert_Input>;
   status?: Maybe<Scalars['String']>;
   toWarehouseid?: Maybe<Scalars['uuid']>;
   towarehouse?: Maybe<Stock_Warehouse_Obj_Rel_Insert_Input>;
-  tranfer_order_items?: Maybe<Stock_Transfer_Order_Item_Arr_Rel_Insert_Input>;
   transfer_status?: Maybe<Stock_Transfer_Order_Status_Obj_Rel_Insert_Input>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['String']>;
-};
-
-/** columns and relationships of "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item = {
-  __typename?: 'stock_transfer_order_item';
-  id: Scalars['uuid'];
-  /** An array relationship */
-  item_tranfers: Array<Stock_Item_Tranfer>;
-  /** An aggregated array relationship */
-  item_tranfers_aggregate: Stock_Item_Tranfer_Aggregate;
-  quantity: Scalars['Float'];
-  status: Scalars['String'];
-  /** An object relationship */
-  substance: Product_Substance;
-  substanceid: Scalars['uuid'];
-  /** An object relationship */
-  transfer_order: Stock_Transfer_Order;
-  transfer_orderid: Scalars['Int'];
-};
-
-
-/** columns and relationships of "stock.transfer_order_item" */
-export type Stock_Transfer_Order_ItemItem_TranfersArgs = {
-  distinct_on?: Maybe<Array<Stock_Item_Tranfer_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Stock_Item_Tranfer_Order_By>>;
-  where?: Maybe<Stock_Item_Tranfer_Bool_Exp>;
-};
-
-
-/** columns and relationships of "stock.transfer_order_item" */
-export type Stock_Transfer_Order_ItemItem_Tranfers_AggregateArgs = {
-  distinct_on?: Maybe<Array<Stock_Item_Tranfer_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Stock_Item_Tranfer_Order_By>>;
-  where?: Maybe<Stock_Item_Tranfer_Bool_Exp>;
-};
-
-/** aggregated selection of "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Aggregate = {
-  __typename?: 'stock_transfer_order_item_aggregate';
-  aggregate?: Maybe<Stock_Transfer_Order_Item_Aggregate_Fields>;
-  nodes: Array<Stock_Transfer_Order_Item>;
-};
-
-/** aggregate fields of "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Aggregate_Fields = {
-  __typename?: 'stock_transfer_order_item_aggregate_fields';
-  avg?: Maybe<Stock_Transfer_Order_Item_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Stock_Transfer_Order_Item_Max_Fields>;
-  min?: Maybe<Stock_Transfer_Order_Item_Min_Fields>;
-  stddev?: Maybe<Stock_Transfer_Order_Item_Stddev_Fields>;
-  stddev_pop?: Maybe<Stock_Transfer_Order_Item_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Stock_Transfer_Order_Item_Stddev_Samp_Fields>;
-  sum?: Maybe<Stock_Transfer_Order_Item_Sum_Fields>;
-  var_pop?: Maybe<Stock_Transfer_Order_Item_Var_Pop_Fields>;
-  var_samp?: Maybe<Stock_Transfer_Order_Item_Var_Samp_Fields>;
-  variance?: Maybe<Stock_Transfer_Order_Item_Variance_Fields>;
-};
-
-
-/** aggregate fields of "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Stock_Transfer_Order_Item_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Aggregate_Order_By = {
-  avg?: Maybe<Stock_Transfer_Order_Item_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<Stock_Transfer_Order_Item_Max_Order_By>;
-  min?: Maybe<Stock_Transfer_Order_Item_Min_Order_By>;
-  stddev?: Maybe<Stock_Transfer_Order_Item_Stddev_Order_By>;
-  stddev_pop?: Maybe<Stock_Transfer_Order_Item_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Stock_Transfer_Order_Item_Stddev_Samp_Order_By>;
-  sum?: Maybe<Stock_Transfer_Order_Item_Sum_Order_By>;
-  var_pop?: Maybe<Stock_Transfer_Order_Item_Var_Pop_Order_By>;
-  var_samp?: Maybe<Stock_Transfer_Order_Item_Var_Samp_Order_By>;
-  variance?: Maybe<Stock_Transfer_Order_Item_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Arr_Rel_Insert_Input = {
-  data: Array<Stock_Transfer_Order_Item_Insert_Input>;
-  on_conflict?: Maybe<Stock_Transfer_Order_Item_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type Stock_Transfer_Order_Item_Avg_Fields = {
-  __typename?: 'stock_transfer_order_item_avg_fields';
-  quantity?: Maybe<Scalars['Float']>;
-  transfer_orderid?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Avg_Order_By = {
-  quantity?: Maybe<Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "stock.transfer_order_item". All fields are combined with a logical 'AND'. */
-export type Stock_Transfer_Order_Item_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Stock_Transfer_Order_Item_Bool_Exp>>>;
-  _not?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Stock_Transfer_Order_Item_Bool_Exp>>>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  item_tranfers?: Maybe<Stock_Item_Tranfer_Bool_Exp>;
-  quantity?: Maybe<Float_Comparison_Exp>;
-  status?: Maybe<String_Comparison_Exp>;
-  substance?: Maybe<Product_Substance_Bool_Exp>;
-  substanceid?: Maybe<Uuid_Comparison_Exp>;
-  transfer_order?: Maybe<Stock_Transfer_Order_Bool_Exp>;
-  transfer_orderid?: Maybe<Int_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "stock.transfer_order_item" */
-export enum Stock_Transfer_Order_Item_Constraint {
-  /** unique or primary key constraint */
-  AccessoryTranferOrderPkey = 'accessoryTranferOrder_pkey'
-}
-
-/** input type for incrementing integer column in table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Inc_Input = {
-  quantity?: Maybe<Scalars['Float']>;
-  transfer_orderid?: Maybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Insert_Input = {
-  id?: Maybe<Scalars['uuid']>;
-  item_tranfers?: Maybe<Stock_Item_Tranfer_Arr_Rel_Insert_Input>;
-  quantity?: Maybe<Scalars['Float']>;
-  status?: Maybe<Scalars['String']>;
-  substance?: Maybe<Product_Substance_Obj_Rel_Insert_Input>;
-  substanceid?: Maybe<Scalars['uuid']>;
-  transfer_order?: Maybe<Stock_Transfer_Order_Obj_Rel_Insert_Input>;
-  transfer_orderid?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate max on columns */
-export type Stock_Transfer_Order_Item_Max_Fields = {
-  __typename?: 'stock_transfer_order_item_max_fields';
-  id?: Maybe<Scalars['uuid']>;
-  quantity?: Maybe<Scalars['Float']>;
-  status?: Maybe<Scalars['String']>;
-  substanceid?: Maybe<Scalars['uuid']>;
-  transfer_orderid?: Maybe<Scalars['Int']>;
-};
-
-/** order by max() on columns of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Max_Order_By = {
-  id?: Maybe<Order_By>;
-  quantity?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
-  substanceid?: Maybe<Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Stock_Transfer_Order_Item_Min_Fields = {
-  __typename?: 'stock_transfer_order_item_min_fields';
-  id?: Maybe<Scalars['uuid']>;
-  quantity?: Maybe<Scalars['Float']>;
-  status?: Maybe<Scalars['String']>;
-  substanceid?: Maybe<Scalars['uuid']>;
-  transfer_orderid?: Maybe<Scalars['Int']>;
-};
-
-/** order by min() on columns of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Min_Order_By = {
-  id?: Maybe<Order_By>;
-  quantity?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
-  substanceid?: Maybe<Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Mutation_Response = {
-  __typename?: 'stock_transfer_order_item_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Stock_Transfer_Order_Item>;
-};
-
-/** input type for inserting object relation for remote table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Obj_Rel_Insert_Input = {
-  data: Stock_Transfer_Order_Item_Insert_Input;
-  on_conflict?: Maybe<Stock_Transfer_Order_Item_On_Conflict>;
-};
-
-/** on conflict condition type for table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_On_Conflict = {
-  constraint: Stock_Transfer_Order_Item_Constraint;
-  update_columns: Array<Stock_Transfer_Order_Item_Update_Column>;
-  where?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Order_By = {
-  id?: Maybe<Order_By>;
-  item_tranfers_aggregate?: Maybe<Stock_Item_Tranfer_Aggregate_Order_By>;
-  quantity?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
-  substance?: Maybe<Product_Substance_Order_By>;
-  substanceid?: Maybe<Order_By>;
-  transfer_order?: Maybe<Stock_Transfer_Order_Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Pk_Columns_Input = {
-  id: Scalars['uuid'];
-};
-
-/** select columns of table "stock.transfer_order_item" */
-export enum Stock_Transfer_Order_Item_Select_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Quantity = 'quantity',
-  /** column name */
-  Status = 'status',
-  /** column name */
-  Substanceid = 'substanceid',
-  /** column name */
-  TransferOrderid = 'transfer_orderid'
-}
-
-/** input type for updating data in table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Set_Input = {
-  id?: Maybe<Scalars['uuid']>;
-  quantity?: Maybe<Scalars['Float']>;
-  status?: Maybe<Scalars['String']>;
-  substanceid?: Maybe<Scalars['uuid']>;
-  transfer_orderid?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate stddev on columns */
-export type Stock_Transfer_Order_Item_Stddev_Fields = {
-  __typename?: 'stock_transfer_order_item_stddev_fields';
-  quantity?: Maybe<Scalars['Float']>;
-  transfer_orderid?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Stddev_Order_By = {
-  quantity?: Maybe<Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Stock_Transfer_Order_Item_Stddev_Pop_Fields = {
-  __typename?: 'stock_transfer_order_item_stddev_pop_fields';
-  quantity?: Maybe<Scalars['Float']>;
-  transfer_orderid?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Stddev_Pop_Order_By = {
-  quantity?: Maybe<Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Stock_Transfer_Order_Item_Stddev_Samp_Fields = {
-  __typename?: 'stock_transfer_order_item_stddev_samp_fields';
-  quantity?: Maybe<Scalars['Float']>;
-  transfer_orderid?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Stddev_Samp_Order_By = {
-  quantity?: Maybe<Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Stock_Transfer_Order_Item_Sum_Fields = {
-  __typename?: 'stock_transfer_order_item_sum_fields';
-  quantity?: Maybe<Scalars['Float']>;
-  transfer_orderid?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Sum_Order_By = {
-  quantity?: Maybe<Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
-};
-
-/** update columns of table "stock.transfer_order_item" */
-export enum Stock_Transfer_Order_Item_Update_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Quantity = 'quantity',
-  /** column name */
-  Status = 'status',
-  /** column name */
-  Substanceid = 'substanceid',
-  /** column name */
-  TransferOrderid = 'transfer_orderid'
-}
-
-/** aggregate var_pop on columns */
-export type Stock_Transfer_Order_Item_Var_Pop_Fields = {
-  __typename?: 'stock_transfer_order_item_var_pop_fields';
-  quantity?: Maybe<Scalars['Float']>;
-  transfer_orderid?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Var_Pop_Order_By = {
-  quantity?: Maybe<Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Stock_Transfer_Order_Item_Var_Samp_Fields = {
-  __typename?: 'stock_transfer_order_item_var_samp_fields';
-  quantity?: Maybe<Scalars['Float']>;
-  transfer_orderid?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Var_Samp_Order_By = {
-  quantity?: Maybe<Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Stock_Transfer_Order_Item_Variance_Fields = {
-  __typename?: 'stock_transfer_order_item_variance_fields';
-  quantity?: Maybe<Scalars['Float']>;
-  transfer_orderid?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "stock.transfer_order_item" */
-export type Stock_Transfer_Order_Item_Variance_Order_By = {
-  quantity?: Maybe<Order_By>;
-  transfer_orderid?: Maybe<Order_By>;
 };
 
 /** aggregate max on columns */
@@ -13903,10 +13967,10 @@ export type Stock_Transfer_Order_Order_By = {
   fromWarehouseid?: Maybe<Order_By>;
   fromwarehouse?: Maybe<Stock_Warehouse_Order_By>;
   id?: Maybe<Order_By>;
+  order_items_aggregate?: Maybe<Stock_Order_Item_Aggregate_Order_By>;
   status?: Maybe<Order_By>;
   toWarehouseid?: Maybe<Order_By>;
   towarehouse?: Maybe<Stock_Warehouse_Order_By>;
-  tranfer_order_items_aggregate?: Maybe<Stock_Transfer_Order_Item_Aggregate_Order_By>;
   transfer_status?: Maybe<Stock_Transfer_Order_Status_Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
@@ -14236,7 +14300,7 @@ export type Stock_Warehouse = {
   company: Management_Company;
   companyid: Scalars['uuid'];
   createdAt: Scalars['date'];
-  createdBy: Scalars['String'];
+  createdBy?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   name: Scalars['String'];
   /** An object relationship */
@@ -14250,9 +14314,8 @@ export type Stock_Warehouse = {
   transferOrdersToWarehouse: Array<Stock_Transfer_Order>;
   /** An aggregated array relationship */
   transferOrdersToWarehouse_aggregate: Stock_Transfer_Order_Aggregate;
-  type: Scalars['String'];
   updatedAt: Scalars['date'];
-  updatedBy: Scalars['String'];
+  updatedBy?: Maybe<Scalars['String']>;
   /** An array relationship */
   warehouse_subsctances: Array<Stock_Warehouse_Substance>;
   /** An aggregated array relationship */
@@ -14369,7 +14432,6 @@ export type Stock_Warehouse_Bool_Exp = {
   salesPointid?: Maybe<Uuid_Comparison_Exp>;
   transferOrdersFromWarehouse?: Maybe<Stock_Transfer_Order_Bool_Exp>;
   transferOrdersToWarehouse?: Maybe<Stock_Transfer_Order_Bool_Exp>;
-  type?: Maybe<String_Comparison_Exp>;
   updatedAt?: Maybe<Date_Comparison_Exp>;
   updatedBy?: Maybe<String_Comparison_Exp>;
   warehouse_subsctances?: Maybe<Stock_Warehouse_Substance_Bool_Exp>;
@@ -14395,7 +14457,6 @@ export type Stock_Warehouse_Insert_Input = {
   salesPointid?: Maybe<Scalars['uuid']>;
   transferOrdersFromWarehouse?: Maybe<Stock_Transfer_Order_Arr_Rel_Insert_Input>;
   transferOrdersToWarehouse?: Maybe<Stock_Transfer_Order_Arr_Rel_Insert_Input>;
-  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['String']>;
   warehouse_subsctances?: Maybe<Stock_Warehouse_Substance_Arr_Rel_Insert_Input>;
@@ -14410,7 +14471,6 @@ export type Stock_Warehouse_Max_Fields = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   salesPointid?: Maybe<Scalars['uuid']>;
-  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['String']>;
 };
@@ -14423,7 +14483,6 @@ export type Stock_Warehouse_Max_Order_By = {
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   salesPointid?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
 };
@@ -14437,7 +14496,6 @@ export type Stock_Warehouse_Min_Fields = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   salesPointid?: Maybe<Scalars['uuid']>;
-  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['String']>;
 };
@@ -14450,7 +14508,6 @@ export type Stock_Warehouse_Min_Order_By = {
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   salesPointid?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
 };
@@ -14489,7 +14546,6 @@ export type Stock_Warehouse_Order_By = {
   salesPointid?: Maybe<Order_By>;
   transferOrdersFromWarehouse_aggregate?: Maybe<Stock_Transfer_Order_Aggregate_Order_By>;
   transferOrdersToWarehouse_aggregate?: Maybe<Stock_Transfer_Order_Aggregate_Order_By>;
-  type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
   warehouse_subsctances_aggregate?: Maybe<Stock_Warehouse_Substance_Aggregate_Order_By>;
@@ -14515,8 +14571,6 @@ export enum Stock_Warehouse_Select_Column {
   /** column name */
   SalesPointid = 'salesPointid',
   /** column name */
-  Type = 'type',
-  /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
   UpdatedBy = 'updatedBy'
@@ -14530,7 +14584,6 @@ export type Stock_Warehouse_Set_Input = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   salesPointid?: Maybe<Scalars['uuid']>;
-  type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['String']>;
 };
@@ -14827,8 +14880,6 @@ export enum Stock_Warehouse_Update_Column {
   /** column name */
   SalesPointid = 'salesPointid',
   /** column name */
-  Type = 'type',
-  /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
   UpdatedBy = 'updatedBy'
@@ -15059,6 +15110,12 @@ export type Subscription_Root = {
   stock_item_transfer_status_aggregate: Stock_Item_Transfer_Status_Aggregate;
   /** fetch data from the table: "stock.item_transfer_status" using primary key columns */
   stock_item_transfer_status_by_pk?: Maybe<Stock_Item_Transfer_Status>;
+  /** fetch data from the table: "stock.order_item" */
+  stock_order_item: Array<Stock_Order_Item>;
+  /** fetch aggregated fields from the table: "stock.order_item" */
+  stock_order_item_aggregate: Stock_Order_Item_Aggregate;
+  /** fetch data from the table: "stock.order_item" using primary key columns */
+  stock_order_item_by_pk?: Maybe<Stock_Order_Item>;
   /** fetch data from the table: "stock.order_item_status" */
   stock_order_item_status: Array<Stock_Order_Item_Status>;
   /** fetch aggregated fields from the table: "stock.order_item_status" */
@@ -15071,12 +15128,6 @@ export type Subscription_Root = {
   stock_transfer_order_aggregate: Stock_Transfer_Order_Aggregate;
   /** fetch data from the table: "stock.transfer_order" using primary key columns */
   stock_transfer_order_by_pk?: Maybe<Stock_Transfer_Order>;
-  /** fetch data from the table: "stock.transfer_order_item" */
-  stock_transfer_order_item: Array<Stock_Transfer_Order_Item>;
-  /** fetch aggregated fields from the table: "stock.transfer_order_item" */
-  stock_transfer_order_item_aggregate: Stock_Transfer_Order_Item_Aggregate;
-  /** fetch data from the table: "stock.transfer_order_item" using primary key columns */
-  stock_transfer_order_item_by_pk?: Maybe<Stock_Transfer_Order_Item>;
   /** fetch data from the table: "stock.transfer_order_status" */
   stock_transfer_order_status: Array<Stock_Transfer_Order_Status>;
   /** fetch aggregated fields from the table: "stock.transfer_order_status" */
@@ -16100,6 +16151,32 @@ export type Subscription_RootStock_Item_Transfer_Status_By_PkArgs = {
 
 
 /** subscription root */
+export type Subscription_RootStock_Order_ItemArgs = {
+  distinct_on?: Maybe<Array<Stock_Order_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Stock_Order_Item_Order_By>>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootStock_Order_Item_AggregateArgs = {
+  distinct_on?: Maybe<Array<Stock_Order_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Stock_Order_Item_Order_By>>;
+  where?: Maybe<Stock_Order_Item_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootStock_Order_Item_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
 export type Subscription_RootStock_Order_Item_StatusArgs = {
   distinct_on?: Maybe<Array<Stock_Order_Item_Status_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -16148,32 +16225,6 @@ export type Subscription_RootStock_Transfer_Order_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootStock_Transfer_Order_By_PkArgs = {
   id: Scalars['Int'];
-};
-
-
-/** subscription root */
-export type Subscription_RootStock_Transfer_Order_ItemArgs = {
-  distinct_on?: Maybe<Array<Stock_Transfer_Order_Item_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Stock_Transfer_Order_Item_Order_By>>;
-  where?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootStock_Transfer_Order_Item_AggregateArgs = {
-  distinct_on?: Maybe<Array<Stock_Transfer_Order_Item_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Stock_Transfer_Order_Item_Order_By>>;
-  where?: Maybe<Stock_Transfer_Order_Item_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootStock_Transfer_Order_Item_By_PkArgs = {
-  id: Scalars['uuid'];
 };
 
 
@@ -16770,6 +16821,28 @@ export type GetProviderByIdQuery = (
   )> }
 );
 
+export type InsertWarehouseMutationVariables = Exact<{
+  companyid: Scalars['uuid'];
+  name: Scalars['String'];
+  salesPointid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type InsertWarehouseMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_stock_warehouse_one?: Maybe<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'name' | 'id' | 'createdBy' | 'createdAt'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), salesPoint?: Maybe<(
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'id'>
+    )> }
+  )> }
+);
+
 export type GetAllAccessoriesStockQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -16896,7 +16969,7 @@ export type GetAllWarehousesQuery = (
   { __typename?: 'query_root' }
   & { stock_warehouse: Array<(
     { __typename?: 'stock_warehouse' }
-    & Pick<Stock_Warehouse, 'id' | 'name' | 'type'>
+    & Pick<Stock_Warehouse, 'id' | 'name'>
     & { company: (
       { __typename?: 'management_company' }
       & Management_CompanyFragmentFragment
@@ -16917,18 +16990,13 @@ export type Management_CompanyFragmentFragment = (
   & Pick<Management_Company, 'name' | 'id'>
 );
 
-export type Product_ProductFragmentFragment = (
-  { __typename?: 'product_product' }
-  & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price'>
-);
-
-export type GetTransferByIdSubscriptionVariables = Exact<{
+export type GetTransferByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetTransferByIdSubscription = (
-  { __typename?: 'subscription_root' }
+export type GetTransferByIdQuery = (
+  { __typename?: 'query_root' }
   & { stock_transfer_order_by_pk?: Maybe<(
     { __typename?: 'stock_transfer_order' }
     & Pick<Stock_Transfer_Order, 'createdAt' | 'createdBy' | 'date' | 'deadline' | 'id' | 'status' | 'updatedAt' | 'updatedBy'>
@@ -16938,9 +17006,9 @@ export type GetTransferByIdSubscription = (
     ), towarehouse: (
       { __typename?: 'stock_warehouse' }
       & Stock_WarehouseForTransferFragmentFragment
-    ), tranfer_order_items: Array<(
-      { __typename?: 'stock_transfer_order_item' }
-      & Pick<Stock_Transfer_Order_Item, 'id' | 'quantity' | 'status'>
+    ), order_items: Array<(
+      { __typename?: 'stock_order_item' }
+      & Pick<Stock_Order_Item, 'id' | 'quantity' | 'status'>
       & { item_tranfers: Array<(
         { __typename?: 'stock_item_tranfer' }
         & Stock_Item_TranferFragmentFragment
@@ -16971,6 +17039,11 @@ export type Stock_Item_TranferFragmentFragment = (
 export type Stock_WarehouseForTransferFragmentFragment = (
   { __typename?: 'stock_warehouse' }
   & Pick<Stock_Warehouse, 'name' | 'id'>
+);
+
+export type Product_ProductFragmentFragment = (
+  { __typename?: 'product_product' }
+  & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price'>
 );
 
 export type DeleteCompanyMutationVariables = Exact<{
@@ -17376,6 +17449,27 @@ export type InsertServiceConfigMutation = (
   )> }
 );
 
+export type GetAccessoryByIdQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetAccessoryByIdQuery = (
+  { __typename?: 'query_root' }
+  & { product_accessory_by_pk?: Maybe<(
+    { __typename?: 'product_accessory' }
+    & Pick<Product_Accessory, 'createdAt' | 'createdBy' | 'id' | 'category' | 'quota' | 'updatedAt' | 'updatedBy'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'unit' | 'label' | 'price' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
+
 export type GetAllAccessoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -17462,34 +17556,13 @@ export type GetAllServiceConfigQuery = (
   )> }
 );
 
-export type GetAccessoryByIdSubscriptionVariables = Exact<{
+export type GetConsumableByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetAccessoryByIdSubscription = (
-  { __typename?: 'subscription_root' }
-  & { product_accessory_by_pk?: Maybe<(
-    { __typename?: 'product_accessory' }
-    & Pick<Product_Accessory, 'createdAt' | 'createdBy' | 'id' | 'category' | 'quota' | 'updatedAt' | 'updatedBy'>
-    & { product: (
-      { __typename?: 'product_product' }
-      & Pick<Product_Product, 'code' | 'unit' | 'label' | 'price' | 'priceMax' | 'priceMin'>
-      & { companies: Array<(
-        { __typename?: 'product_product_companies_view' }
-        & Pick<Product_Product_Companies_View, 'name' | 'id'>
-      )> }
-    ) }
-  )> }
-);
-
-export type GetConsumableByIdSubscriptionVariables = Exact<{
-  id: Scalars['uuid'];
-}>;
-
-
-export type GetConsumableByIdSubscription = (
-  { __typename?: 'subscription_root' }
+export type GetConsumableByIdQuery = (
+  { __typename?: 'query_root' }
   & { product_consumable_by_pk?: Maybe<(
     { __typename?: 'product_consumable' }
     & Pick<Product_Consumable, 'category' | 'createdAt' | 'createdBy' | 'id' | 'updatedAt' | 'updatedBy'>
@@ -17504,13 +17577,13 @@ export type GetConsumableByIdSubscription = (
   )> }
 );
 
-export type GetGlassByIdSubscriptionVariables = Exact<{
+export type GetGlassByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetGlassByIdSubscription = (
-  { __typename?: 'subscription_root' }
+export type GetGlassByIdQuery = (
+  { __typename?: 'query_root' }
   & { product_glass_by_pk?: Maybe<(
     { __typename?: 'product_glass' }
     & Pick<Product_Glass, 'color' | 'createdBy' | 'createdAt' | 'id' | 'thickness' | 'type' | 'updatedAt' | 'updatedBy'>
@@ -17525,13 +17598,13 @@ export type GetGlassByIdSubscription = (
   )> }
 );
 
-export type GetServiceConfigByIdSubscriptionVariables = Exact<{
+export type GetServiceConfigByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetServiceConfigByIdSubscription = (
-  { __typename?: 'subscription_root' }
+export type GetServiceConfigByIdQuery = (
+  { __typename?: 'query_root' }
   & { product_serviceConfig_by_pk?: Maybe<(
     { __typename?: 'product_serviceConfig' }
     & Pick<Product_ServiceConfig, 'id' | 'labelFactory' | 'name' | 'params'>
@@ -17599,14 +17672,6 @@ export const Management_CompanyFragmentFragmentDoc = gql`
   id
 }
     `;
-export const Product_ProductFragmentFragmentDoc = gql`
-    fragment product_productFragment on product_product {
-  code
-  label
-  unit
-  price
-}
-    `;
 export const Product_SubstanceFragmentFragmentDoc = gql`
     fragment product_substanceFragment on product_substance {
   productGlass {
@@ -17630,6 +17695,14 @@ export const Stock_WarehouseForTransferFragmentFragmentDoc = gql`
     fragment stock_warehouseForTransferFragment on stock_warehouse {
   name
   id
+}
+    `;
+export const Product_ProductFragmentFragmentDoc = gql`
+    fragment product_productFragment on product_product {
+  code
+  label
+  unit
+  price
 }
     `;
 export const AddContactAddressDocument = gql`
@@ -18373,6 +18446,37 @@ export const GetProviderByIdDocument = gql`
       super(apollo);
     }
   }
+export const InsertWarehouseDocument = gql`
+    mutation InsertWarehouse($companyid: uuid!, $name: String!, $salesPointid: uuid) {
+  insert_stock_warehouse_one(
+    object: {companyid: $companyid, name: $name, salesPointid: $salesPointid}
+  ) {
+    name
+    id
+    createdBy
+    createdAt
+    company {
+      name
+      id
+    }
+    salesPoint {
+      name
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertWarehouseGQL extends Apollo.Mutation<InsertWarehouseMutation, InsertWarehouseMutationVariables> {
+    document = InsertWarehouseDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAllAccessoriesStockDocument = gql`
     query GetAllAccessoriesStock {
   stock_warehouse_substance(where: {substance: {type: {_eq: accessory}}}) {
@@ -18504,7 +18608,6 @@ export const GetAllWarehousesDocument = gql`
   stock_warehouse {
     id
     name
-    type
     company {
       ...management_companyFragment
     }
@@ -18527,7 +18630,7 @@ ${Management_SalesPointFragmentFragmentDoc}`;
     }
   }
 export const GetTransferByIdDocument = gql`
-    subscription GetTransferById($id: Int!) {
+    query GetTransferById($id: Int!) {
   stock_transfer_order_by_pk(id: $id) {
     createdAt
     createdBy
@@ -18541,7 +18644,7 @@ export const GetTransferByIdDocument = gql`
     towarehouse {
       ...stock_warehouseForTransferFragment
     }
-    tranfer_order_items {
+    order_items {
       id
       quantity
       status
@@ -18563,7 +18666,7 @@ ${Product_SubstanceFragmentFragmentDoc}`;
   @Injectable({
     providedIn: 'root'
   })
-  export class GetTransferByIdGQL extends Apollo.Subscription<GetTransferByIdSubscription, GetTransferByIdSubscriptionVariables> {
+  export class GetTransferByIdGQL extends Apollo.Query<GetTransferByIdQuery, GetTransferByIdQueryVariables> {
     document = GetTransferByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
@@ -19189,6 +19292,42 @@ export const InsertServiceConfigDocument = gql`
       super(apollo);
     }
   }
+export const GetAccessoryByIdDocument = gql`
+    query GetAccessoryById($id: uuid!) {
+  product_accessory_by_pk(id: $id) {
+    createdAt
+    createdBy
+    id
+    category
+    product {
+      code
+      unit
+      label
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+    quota
+    updatedAt
+    updatedBy
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAccessoryByIdGQL extends Apollo.Query<GetAccessoryByIdQuery, GetAccessoryByIdQueryVariables> {
+    document = GetAccessoryByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAllAccessoriesDocument = gql`
     query GetAllAccessories {
   product_accessory {
@@ -19335,44 +19474,8 @@ export const GetAllServiceConfigDocument = gql`
       super(apollo);
     }
   }
-export const GetAccessoryByIdDocument = gql`
-    subscription GetAccessoryById($id: uuid!) {
-  product_accessory_by_pk(id: $id) {
-    createdAt
-    createdBy
-    id
-    category
-    product {
-      code
-      unit
-      label
-      price
-      priceMax
-      priceMin
-      companies {
-        name
-        id
-      }
-    }
-    quota
-    updatedAt
-    updatedBy
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class GetAccessoryByIdGQL extends Apollo.Subscription<GetAccessoryByIdSubscription, GetAccessoryByIdSubscriptionVariables> {
-    document = GetAccessoryByIdDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const GetConsumableByIdDocument = gql`
-    subscription GetConsumableById($id: uuid!) {
+    query GetConsumableById($id: uuid!) {
   product_consumable_by_pk(id: $id) {
     category
     createdAt
@@ -19399,7 +19502,7 @@ export const GetConsumableByIdDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class GetConsumableByIdGQL extends Apollo.Subscription<GetConsumableByIdSubscription, GetConsumableByIdSubscriptionVariables> {
+  export class GetConsumableByIdGQL extends Apollo.Query<GetConsumableByIdQuery, GetConsumableByIdQueryVariables> {
     document = GetConsumableByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
@@ -19407,7 +19510,7 @@ export const GetConsumableByIdDocument = gql`
     }
   }
 export const GetGlassByIdDocument = gql`
-    subscription getGlassById($id: uuid!) {
+    query getGlassById($id: uuid!) {
   product_glass_by_pk(id: $id) {
     color
     createdBy
@@ -19436,7 +19539,7 @@ export const GetGlassByIdDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class GetGlassByIdGQL extends Apollo.Subscription<GetGlassByIdSubscription, GetGlassByIdSubscriptionVariables> {
+  export class GetGlassByIdGQL extends Apollo.Query<GetGlassByIdQuery, GetGlassByIdQueryVariables> {
     document = GetGlassByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
@@ -19444,7 +19547,7 @@ export const GetGlassByIdDocument = gql`
     }
   }
 export const GetServiceConfigByIdDocument = gql`
-    subscription GetServiceConfigById($id: uuid!) {
+    query GetServiceConfigById($id: uuid!) {
   product_serviceConfig_by_pk(id: $id) {
     id
     labelFactory
@@ -19471,7 +19574,7 @@ export const GetServiceConfigByIdDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class GetServiceConfigByIdGQL extends Apollo.Subscription<GetServiceConfigByIdSubscription, GetServiceConfigByIdSubscriptionVariables> {
+  export class GetServiceConfigByIdGQL extends Apollo.Query<GetServiceConfigByIdQuery, GetServiceConfigByIdQueryVariables> {
     document = GetServiceConfigByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
