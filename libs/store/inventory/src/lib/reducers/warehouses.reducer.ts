@@ -29,13 +29,8 @@ export const initialState: State = warehousesAdapter.getInitialState({
 const warehousesReducer = createReducer(
   initialState,
   // Load
-  on(WarehousesActions.loadWarehouses, (state) => ({
-    ...state,
-    loaded: false,
-    error: null,
-  })),
-  on(WarehousesActions.loadWarehousesSuccess, (state, { warehouses }) =>
-    warehousesAdapter.setAll(warehouses, { ...state, loaded: true })
+  on(WarehousesActions.loadWarehousesSuccess, (state, action) =>
+    warehousesAdapter.setAll(action.warehouses, { ...state, loaded: true })
   ),
   // Add
   on(WarehousesActions.addWarehouseSuccess, (state, action) =>

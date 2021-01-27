@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PopWarehouseComponent } from '@TanglassUi/inventory/pages/warehouse/pop-warehouse/pop-warehouse.component';
-import { WarehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
+import { warehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
 import { WarehousesFacade } from '@tanglass-erp/store/inventory';
 
 
@@ -62,8 +62,8 @@ export class WarehousesComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-      ...WarehouseHeaders,
-      { field: 'id', headerName: 'Action', type: "editColumn"},
+      ...warehouseHeaders,
+      {field: 'id', headerName: 'Action', type: "editColumn"}
     ];
   }
 

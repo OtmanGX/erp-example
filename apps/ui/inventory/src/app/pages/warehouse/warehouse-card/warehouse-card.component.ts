@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { Observable } from 'rxjs';
-import { Warehouse } from '@tanglass-erp/core/inventory';
+import { Warehouse } from '@TanglassStore/inventory/index';
 
 @Component({
   selector: 'ngx-sale-point-card',
