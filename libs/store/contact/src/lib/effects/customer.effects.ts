@@ -79,9 +79,9 @@ export class CustomersEffects {
     return this.actions$.pipe(
       ofType(CustomersActions.removeCustomer),
       mergeMap((action) =>
-        this.customerService.removeOne(action.customer.id).pipe(
+        this.customerService.removeOne(action.customerId).pipe(
           map((data) =>
-          CustomersActions.removeCustomerSuccess({customer: data.data.delete_contact_customer_by_pk.id})
+          CustomersActions.removeCustomerSuccess({customerId: data.data.delete_contact_customer_by_pk.id})
           ),
           catchError((error) =>
             of(CustomersActions.removeCustomerFailure({ error }))
@@ -91,8 +91,70 @@ export class CustomersEffects {
     )
   });
 
+  addContactToCustomer$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CustomersActions.addContactToCustomer),
+      mergeMap((action) =>
+        this.customerService.addContact(action.contact).pipe(
+          map((data) =>
+          CustomersActions.addContactToCustomerSuccess({contact: data.data.insert_contact_customer_contact_one})
+          ),
+          catchError((error) =>
+            of(CustomersActions.addContactToCustomerFailure({ error }))
+          )
+        )
+      )
+    )
+  });
 
 
+  affectContactToCustomer$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CustomersActions.affectContactToCustomer),
+      mergeMap((action) =>
+        this.customerService.affectContact(action.contact).pipe(
+          map((data) =>
+          CustomersActions.affectContactToCustomerSuccess({contact: data.data.insert_contact_customer_contact})
+          ),
+          catchError((error) =>
+            of(CustomersActions.affectContactToCustomerFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  addAdressToCustomer$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CustomersActions.addAdressToCustomer),
+      mergeMap((action) =>
+        this.customerService.addAddress(action.address).pipe(
+          map((data) =>
+          CustomersActions.addAdressToCustomerSuccess({address: data.data.insert_contact_customer_address_one})
+          ),
+          catchError((error) =>
+            of(CustomersActions.addAdressToCustomerFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  removeAdressToCustomer$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CustomersActions.removeAdressFromCustomer),
+      mergeMap((action) =>
+        this.customerService.deleteAddress(action.adress).pipe(
+          map((data) =>
+          CustomersActions.removeAdressFromCustomerSuccess({adress: data.data.delete_contact_customer_address_by_pk})
+          ),
+          catchError((error) =>
+            of(CustomersActions.removeAdressFromCustomerFailure({ error }))
+          )
+        )
+      )
+    )
+  });
 
 
   constructor(private actions$: Actions,

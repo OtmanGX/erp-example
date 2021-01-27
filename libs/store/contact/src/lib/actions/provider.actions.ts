@@ -1,4 +1,4 @@
-import { DetailedProvider, Provider } from '@tanglass-erp/core/contact';
+import { DetailedProvider, Provider, InsertContact, InsertAddressContact, DeleteAddress, AffectContactProvider } from '@tanglass-erp/core/contact';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -82,13 +82,82 @@ export const updateProviderFailure = createAction(
 
 export const removeProvider = createAction(
   '[Providers Component] Update Provider',
-  props<{ provider: Provider }>()
+  props<{ providerId: any }>()
 );
 export const removeProviderSuccess = createAction(
   '[Provider Effect] Update Provider Success',
-  props<{ provider: Provider }>()
+  props<{ providerId: any }>()
 );
 export const removeProviderFailure = createAction(
   '[Provider Effect] Update Provider failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****ADD ADRESS TO Provider ** */
+/****************************************************************** */
+
+export const addAdressToProvider = createAction(
+  '[Provider card Component] Add Adress To Provider',
+  props<{ adress: InsertAddressContact }>()
+);
+export const addAdressToProviderSuccess = createAction(
+  '[Provider Effect] Add Adress To Provider Success',
+  props<{ adress: any }>()
+);
+export const addAdressToProviderFailure = createAction(
+  '[Provider Effect] Add Adress To Provider failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****ADD ADRESS TO Provider ** */
+/****************************************************************** */
+
+export const addContactToProvider = createAction(
+  '[Provider card Component] Add Contact To Provider',
+  props<{ contact: InsertContact }>()
+);
+export const addContactToProviderSuccess = createAction(
+  '[Provider Effect] Add Contact To Provider Success',
+  props<{ contact: any }>()
+);
+export const addContactToProviderFailure = createAction(
+  '[Provider Effect] Add Contact To Provider failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****AFFECT ADRESS TO Provider ** */
+/****************************************************************** */
+
+export const affectContactToProvider = createAction(
+  '[Provider card Component] affect Contact To Provider',
+  props<{ contact: AffectContactProvider[] }>()
+);
+export const affectContactToProviderSuccess = createAction(
+  '[Provider Effect] affect Contact To Provider Success',
+  props<{ contact: any }>()
+);
+export const affectContactToProviderFailure = createAction(
+  '[Provider Effect] affect Contact To Provider failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****REMOVE ADRESS FROM Provider ** */
+/****************************************************************** */
+
+export const removeAdressFromProvider = createAction(
+  '[Provider card Component] remove Adress from Provider',
+  props<{ adress: DeleteAddress }>()
+);
+export const removeAdressFromProviderSuccess = createAction(
+  '[Provider Effect] remove Adress from Provider Success',
+  props<{ adress: any }>()
+);
+export const removeAdressFromProviderFailure = createAction(
+  '[Provider Effect] remove Adress from Provider failure',
   props<{ error: any }>()
 );

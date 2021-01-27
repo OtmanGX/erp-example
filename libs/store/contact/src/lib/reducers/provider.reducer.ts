@@ -53,7 +53,7 @@ const ProviderReducer = createReducer<State>(
     providerAdapter.upsertOne(action.provider, state)
   ),
   on(ProvidersActions.removeProviderSuccess, (state, action) =>
-    providerAdapter.removeOne(action.provider.id, state)
+    providerAdapter.removeOne(action.providerId, state)
   ),
   on(ProvidersActions.loadProvidersFailure,
      ProvidersActions.updateProviderFailure,

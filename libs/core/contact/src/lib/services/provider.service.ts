@@ -33,7 +33,7 @@ export class ProviderService {
     private affectProviderContact:AffectProviderContactGQL,
     private deleteProviderAddress:DeleteProviderAddressGQL,
 
-  ) { 
+  ) {
     /**
     this.getOneById('ca6c4a90-dac3-46f0-945c-26ace051f52e').subscribe(obj => { let data: DetailedProvider = obj.data.contact_provider_by_pk; console.log(obj.data.contact_provider_by_pk) });
     this.getAll().subscribe(obj =>{let data: Provider[]=obj.data.contact_provider;console.log(obj.data.contact_provider)} );
@@ -43,7 +43,7 @@ export class ProviderService {
 
   }
 
-  
+
 
 
   getAll() {
@@ -80,17 +80,17 @@ export class ProviderService {
   }
 
   addContact(value:InsertContact){
-    this.addProviderContact.mutate(value)
+    return this.addProviderContact.mutate(value)
 
   }
 
 
   affectContact(value:AffectContactProvider[]){
-    this.affectProviderContact.mutate({affectedContacts:value})
+    return this.affectProviderContact.mutate({affectedContacts:value})
   }
 
   deleteAddress(value:DeleteAddress){
-    this.deleteProviderAddress.mutate(value)
+    return this.deleteProviderAddress.mutate(value)
   }
-  
+
 }

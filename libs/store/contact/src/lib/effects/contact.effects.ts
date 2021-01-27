@@ -90,6 +90,39 @@ export class ContactsEffects {
     )
   });
 
+
+  addAddressToContact$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ContactsActions.addAdressToContact),
+      mergeMap((action) =>
+        this.contactService.addAddress(action.address).pipe(
+          map((data) =>
+            ContactsActions.addAdressToContactSuccess({address: data.data.insert_contact_contact_address_one})
+          ),
+          catchError((error) =>
+            of(ContactsActions.addAdressToContactFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  removeAddressFromContact$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ContactsActions.removeAdressFromContact),
+      mergeMap((action) =>
+        this.contactService.deleteAddress(action.address).pipe(
+          map((data) =>
+            ContactsActions.removeAdressFromContactSuccess({address: data.data.delete_contact_contact_address_by_pk})
+          ),
+          catchError((error) =>
+            of(ContactsActions.removeAdressFromContactFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
   constructor(private actions$: Actions,
               private contactService: ContactService) { }
 }
