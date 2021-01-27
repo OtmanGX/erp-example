@@ -1396,6 +1396,36 @@
           "style": "scss"
         }
       }
+    },
+    "store-inventory": {
+      "projectType": "library",
+      "root": "libs/store/inventory",
+      "sourceRoot": "libs/store/inventory/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/inventory/tsconfig.lib.json",
+              "libs/store/inventory/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/inventory/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/inventory/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "defaultProject": "tanglass-erp",
