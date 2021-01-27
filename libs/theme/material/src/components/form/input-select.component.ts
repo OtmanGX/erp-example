@@ -4,7 +4,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
 @Component({
   selector: "app-input-select",
   template: `
-<mat-form-field style="width: 100%" [formGroup]="group">
+<mat-form-field style="width: 100%" [formGroup]="group" [hintLabel]="field.hint">
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngFor="let option of field.options" [value]="option.key">
       {{option.value}}

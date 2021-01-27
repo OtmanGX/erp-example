@@ -15,7 +15,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 @Component({
   selector: "app-tag-input",
   template: `
-    <mat-form-field style="width: 100%" [formGroup]="group">
+    <mat-form-field style="width: 100%" [formGroup]="group" [hintLabel]="field.hint">
       <mat-label>{{field.label}}</mat-label>
       <mat-chip-list #chipList>
         <mat-chip (removed)="remove(item)" *ngFor="let item of field.value" [removable]="true" [selectable]="true">
