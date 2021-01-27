@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { Location } from '@angular/common';
@@ -19,11 +19,14 @@ const componentMapper = {
 @Component({
   selector: 'ngx-provider-card',
   templateUrl: './provider-card.component.html',
-  styleUrls: ['./provider-card.component.scss']
+  styleUrls: ['./provider-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProviderCardComponent implements OnInit, OnDestroy {
   title = "Fournisseur";
   gap = "50px";
+  showMessage = 'afficher';
+  hideMessage = 'cacher';
   id: string;
   stepContact = null;
   stepAddress = null;
@@ -35,24 +38,21 @@ export class ProviderCardComponent implements OnInit, OnDestroy {
   contactPassedData = (contact) => [
     {label: 'Code', value: contact?.code},
     {label: 'Nom', value: contact?.name},
-    {label: 'E-mail', value: contact?.mail},
-    {label: 'Téléphone', value: contact?.phone},
+    {label: 'E-mail', value: contact?.mail, type: 'mail'},
+    {label: 'Téléphone', value: contact?.phone, type: 'phone'},
     {label: 'Note', value: contact?.note},
-  ];
+  ]
   addressPassedData = (address) => [
     {label: 'Adresse', value: address?.address},
     {label: 'Ville', value: address?.city},
     {label: 'Code Postal', value: address?.zip},
-  ];
-  otherData = [
-    [{label: 'Contacts', value: null}],
-    [{label: 'Adresses', value: null}],
-  ];
+  ]
 
   constructor(
     private store: Store<AppState>,
     public dialog: MatDialog,
-    private location: Location
+    private location: Location,
+    private cdRef: ChangeDetectorRef,
   ) {
     this.id = (<any>location.getState()).id;
   }
@@ -64,10 +64,11 @@ export class ProviderCardComponent implements OnInit, OnDestroy {
       this.passedData = [
         {label: 'Nom', value: this.data?.name},
         {label: 'Note', value: this.data?.note},
-        {label: 'Téléphone', value: this.data?.phone},
-        {label: 'E-mail', value: this.data?.mail},
+        {label: 'Téléphone', value: this.data?.phone, type: 'phone'},
+        {label: 'E-mail', value: this.data?.mail, type: 'mail'},
       ];
-    })
+      this.cdRef.detectChanges();
+    });
   }
 
   openDialog(model, data = {}) {

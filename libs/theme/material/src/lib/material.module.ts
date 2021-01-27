@@ -51,6 +51,7 @@ import { TypeTemplateDirective } from '../directives/type-template';
 
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { SelectSearchComponent } from '../components/form/select-search.component';
+import { OptionItemDirective } from '../directives/option-item';
 
 
 const MATERIAL_MODULES = [
@@ -108,7 +109,7 @@ const COMPONENTS = [
 const DIRECTIVES = [
   TypeTemplateDirective,
   DynamicFieldDirective,
-
+  OptionItemDirective
 ];
 
 const OTHER_COMPONENTS = [

@@ -1,45 +1,45 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FieldConfig } from "../../interfaces/field.interface";
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { MatSelect } from '@angular/material/select';
-import { take, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: "app-select",
   template: `
-<mat-form-field style="width: 100%" class="demo-full-width margin-top" [formGroup]="group">
-<mat-select [multiple]="field.multiple"
-            [placeholder]="field.label"
-            [formControlName]="field.name"
-            #multiSelect>
-  <mat-option>
-   <ngx-mat-select-search
-     [formControl]="filterCtrl"
-     placeholderLabel="Cherche..."
-     noEntriesFoundLabel="'Aucune correspondance trouvée '">
-     <mat-icon ngxMatSelectSearchClear fontSet="fas" fontIcon="fa-times"></mat-icon>
-   </ngx-mat-select-search>
- </mat-option>
-  <mat-option *ngFor="let item of filteredDataMulti | async" [value]="item.id">
-    <span *ngFor="let field of field.fieldsToShow; last as last">&nbsp;
-      {{item[field]}} <ng-container *ngIf="!last">|</ng-container>
+    <mat-form-field style="width: 100%" class="demo-full-width margin-top" [formGroup]="group">
+      <mat-select [multiple]="field.multiple"
+                  [placeholder]="field.label"
+                  [formControlName]="field.name"
+                  [(value)]="field.value"
+                  #multiSelect>
+        <mat-option>
+          <ngx-mat-select-search
+            [formControl]="filterCtrl"
+            placeholderLabel="Cherche..."
+            noEntriesFoundLabel="'Aucune correspondance trouvée '">
+            <mat-icon ngxMatSelectSearchClear fontSet="fas" fontIcon="fa-times"></mat-icon>
+          </ngx-mat-select-search>
+        </mat-option>
+        <mat-option *ngFor="let item of filteredDataMulti$ | async" [value]="item.id">
+    <span optionItem *ngIf="field" [options]="field?.fieldsToShow" [item]="item">&nbsp;
     </span>
-  </mat-option>
-</mat-select>
-</mat-form-field>
-`,
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  `,
   styles: [],
 })
 export class SelectSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   field: FieldConfig;
   group: FormGroup;
   public filterCtrl: FormControl = new FormControl();
-  public filteredDataMulti: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
+  public filteredDataMulti$: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
   @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
 
-  constructor() {
+  constructor(private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -54,15 +54,18 @@ export class SelectSearchComponent implements OnInit, AfterViewInit, OnDestroy {
         this.filterMulti();
       });
     if (this.field.options instanceof Observable) {
-      this.field.options.subscribe(value => {
+      this.field.options
+        .pipe(takeUntil(this._onDestroy))
+        .subscribe(value => {
         this.field.options = value;
-        this.filteredDataMulti.next(this.field.options.slice());
+        this.filteredDataMulti$.next(this.field.options.slice());
       });
-    } else this.filteredDataMulti.next(this.field.options.slice());
+    } else this.filteredDataMulti$.next(this.field.options.slice());
+
   }
 
   ngAfterViewInit(): void {
-    // this.setInitialValue();
+    this.setInitialValue();
   }
 
   ngOnDestroy() {
@@ -74,13 +77,13 @@ export class SelectSearchComponent implements OnInit, AfterViewInit, OnDestroy {
     // get the search keyword
     let search = this.filterCtrl.value;
     if (!search) {
-      this.filteredDataMulti.next(this.field.options.slice());
+      this.filteredDataMulti$.next(this.field.options.slice());
       return;
     } else {
       search = search.toLowerCase();
     }
     // filter the banks
-    this.filteredDataMulti.next(
+    this.filteredDataMulti$.next(
       this.field.options.filter(elem => {
         for (const field of this.field.filterFields)
           if (elem[field].toLowerCase().indexOf(search) > -1) return true;
@@ -90,10 +93,12 @@ export class SelectSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private setInitialValue() {
-    this.filteredDataMulti
-      .pipe(take(1), takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.multiSelect.compareWith = (a: any, b: any) => a && b && a.id === b.id;
-      });
+    this.group.get(this.field.name).setValue(this.field.value);
+    this.cdRef.detectChanges();
+    // this.filteredDataMulti$
+    //   .pipe(take(1), takeUntil(this._onDestroy))
+    //   .subscribe(() => {
+    //     this.multiSelect.compareWith = (a: any, b: any) => a && b && a.id === b.id;
+    //   });
   }
 }
