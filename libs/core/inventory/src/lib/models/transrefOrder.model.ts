@@ -1,7 +1,8 @@
 import { MetaData } from "@tanglass-erp/core/shared";
-import {PartialData, Warehouse  } from "./warehouse.model";
+import { Warehouse  } from "./warehouse.model";
 import { OrderItem } from "./transfer.model";
 import { Substance } from "libs/core/product/src/lib/models/shared.model";
+import { PartialData } from "./shared.models";
 
 export interface TransferOrder{
     id:number;

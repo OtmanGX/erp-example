@@ -5,21 +5,27 @@ query GetAllAccessoriesStock {
       ...stock_warehouseFragment
     }
     substance {
-      ...product_substanceAccessoryFragment
+      productAccessory {
+        ...product_product_accessory_viewFragment
+      }
+      accessory {
+        category
+        id
+      }
     }
   }
 }
 
-fragment product_substanceAccessoryFragment on product_substance {
-  accessory {
-    id
-    category
-    product {
-      ...product_productFragment
-    }
-  }
-}
 
+
+
+
+fragment product_product_accessory_viewFragment on product_product_accessory_view {
+  code
+  label
+  price
+  unit
+}
 
 
 

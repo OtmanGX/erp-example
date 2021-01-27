@@ -1,5 +1,6 @@
 import { MetaData } from "libs/core/shared/metaData";
 import { SalePoint } from "@tanglass-erp/core/management";
+import { PartialData } from "./shared.models";
 
 export interface Warehouse{
     id:string;
@@ -25,7 +26,3 @@ export interface InsertedWarehouse {
     salePointid:string;
 }
 
-export interface PartialData{
-    name:string;
-    id:string;
-}

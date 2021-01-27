@@ -15,7 +15,7 @@ import {
 } from '@tanglass-erp/infrastructure/graphql';
 import {  DetailedCustomer, InsertedCustomer,Customer } from '../models/customer.models';
 import {  dataAdapter } from '../utils/dataAdapter';
-import { InsertAddressContact ,InsertContact,AffectContactCustomer,DeleteAddress} from "../models/shared.models";
+import { InsertAddressContact ,InsertContact,AffectContactCustomer,DeleteAddress,Address} from "../models/shared.models";
 @Injectable({
   providedIn: 'root'
 })
@@ -54,7 +54,7 @@ export class CustomerService {
 this.updateOne({id:"67740a6b-2e68-4bf6-a6cb-ea81442ac43a",code:"code",name:"nouveau",phone:"4554514"}).subscribe(obj=>console.log(obj.data.update_contact_customer_by_pk))
 
     */
-
+  
   }
 
   getAll() {
