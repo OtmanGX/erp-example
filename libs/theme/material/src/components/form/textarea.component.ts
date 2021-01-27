@@ -4,7 +4,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
 @Component({
   selector: "app-textarea",
   template: `
-<mat-form-field style="width: 100%" [formGroup]="group">
+<mat-form-field style="width: 100%" [formGroup]="group" [hintLabel]="field.hint">
   <mat-label>{{field.label}}</mat-label>
   <textarea matInput [formControlName]="field.name" [type]="field.inputType"></textarea>
 <ng-container *ngFor="let validation of field.validations;" ngProjectAs="mat-error">
