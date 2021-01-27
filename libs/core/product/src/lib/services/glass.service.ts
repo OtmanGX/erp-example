@@ -29,7 +29,7 @@ export class GlassService {
   }
 
   getOneById(id: string) {
-    return this.getByIdGQL.subscribe({ id })
+    return this.getByIdGQL.fetch({ id })
   }
 
   insertOne(createdOne: InsertedGlass) {

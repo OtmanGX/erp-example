@@ -8,13 +8,10 @@ import { WarehouseCardComponent } from './pages/warehouse/warehouse-card/warehou
 import { PopWarehouseComponent } from './pages/warehouse/pop-warehouse/pop-warehouse.component';
 import { WarehouseConsumableComponent } from './pages/warehouse-consumable/warehouse-consumable.component';
 import { WarehouseConsumableCardComponent } from './pages/warehouse-consumable/warehouse-consumable-card/warehouse-consumable-card.component';
-import { PopWarehouseConsumableComponent } from './pages/warehouse-consumable/pop-warehouse-consumable/pop-warehouse-consumable.component';
 import { WarehouseAccessoryComponent } from './pages/warehouse-accessory/warehouse-accessory.component';
 import { WarehouseAccessoryCardComponent } from './pages/warehouse-accessory/warehouse-accessory-card/warehouse-accessory-card.component';
-import { PopWarehouseAccessoryComponent } from './pages/warehouse-accessory/pop-warehouse-accessory/pop-warehouse-accessory.component';
 import { WarehouseGlasseComponent } from './pages/warehouse-glasse/warehouse-glasse.component';
 import { WarehouseGlasseCardComponent } from './pages/warehouse-glasse/warehouse-glasse-card/warehouse-glasse-card.component';
-import { PopWarehouseGlasseComponent } from './pages/warehouse-glasse/pop-warehouse-glasse/pop-warehouse-glasse.component';
 
 
 const routes: Routes = [
@@ -64,13 +61,10 @@ const routes: Routes = [
     PopWarehouseComponent,
     WarehouseConsumableComponent,
     WarehouseConsumableCardComponent,
-    PopWarehouseConsumableComponent,
     WarehouseAccessoryComponent,
     WarehouseAccessoryCardComponent,
-    PopWarehouseAccessoryComponent,
     WarehouseGlasseComponent,
     WarehouseGlasseCardComponent,
-    PopWarehouseGlasseComponent,
   ],
   imports: [
     CommonModule,

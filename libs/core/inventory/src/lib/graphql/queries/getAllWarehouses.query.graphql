@@ -2,7 +2,6 @@ query GetAllWarehouses {
   stock_warehouse {
     id
     name
-    type
     company {
       ...management_companyFragment
     }

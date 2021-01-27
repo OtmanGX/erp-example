@@ -1,22 +1,21 @@
-subscription GetAccessoryById($id: uuid!) {
-  product_accessory_by_pk(id: $id) {
+query GetConsumableById($id: uuid!) {
+  product_consumable_by_pk(id: $id) {
+    category
     createdAt
     createdBy
     id
-    category
     product {
       code
-      unit
       label
+      unit
       price
       priceMax
       priceMin
-      companies {
+     companies {
         name
         id
       }
     }
-    quota
     updatedAt
     updatedBy
   }

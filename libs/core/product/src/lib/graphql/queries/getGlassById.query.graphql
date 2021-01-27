@@ -1,4 +1,4 @@
-subscription getGlassById($id: uuid!) {
+query getGlassById($id: uuid!) {
   product_glass_by_pk(id: $id) {
     color
     createdBy

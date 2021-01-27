@@ -7,7 +7,8 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: "app-select",
   template: `
-    <mat-form-field style="width: 100%" class="demo-full-width margin-top" [formGroup]="group">
+    <mat-form-field style="width: 100%" class="demo-full-width margin-top"
+                    [formGroup]="group" [hintLabel]="field.hint">
       <mat-select [multiple]="field.multiple"
                   [placeholder]="field.label"
                   [formControlName]="field.name"
