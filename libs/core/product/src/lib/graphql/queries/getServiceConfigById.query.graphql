@@ -1,4 +1,4 @@
-subscription GetServiceConfigById($id: uuid!) {
+query GetServiceConfigById($id: uuid!) {
   product_serviceConfig_by_pk(id: $id) {
     id
     labelFactory

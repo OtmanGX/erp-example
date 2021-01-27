@@ -16917,18 +16917,13 @@ export type Management_CompanyFragmentFragment = (
   & Pick<Management_Company, 'name' | 'id'>
 );
 
-export type Product_ProductFragmentFragment = (
-  { __typename?: 'product_product' }
-  & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price'>
-);
-
-export type GetTransferByIdSubscriptionVariables = Exact<{
+export type GetTransferByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetTransferByIdSubscription = (
-  { __typename?: 'subscription_root' }
+export type GetTransferByIdQuery = (
+  { __typename?: 'query_root' }
   & { stock_transfer_order_by_pk?: Maybe<(
     { __typename?: 'stock_transfer_order' }
     & Pick<Stock_Transfer_Order, 'createdAt' | 'createdBy' | 'date' | 'deadline' | 'id' | 'status' | 'updatedAt' | 'updatedBy'>
@@ -16971,6 +16966,11 @@ export type Stock_Item_TranferFragmentFragment = (
 export type Stock_WarehouseForTransferFragmentFragment = (
   { __typename?: 'stock_warehouse' }
   & Pick<Stock_Warehouse, 'name' | 'id'>
+);
+
+export type Product_ProductFragmentFragment = (
+  { __typename?: 'product_product' }
+  & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price'>
 );
 
 export type DeleteCompanyMutationVariables = Exact<{
@@ -17376,6 +17376,27 @@ export type InsertServiceConfigMutation = (
   )> }
 );
 
+export type GetAccessoryByIdQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetAccessoryByIdQuery = (
+  { __typename?: 'query_root' }
+  & { product_accessory_by_pk?: Maybe<(
+    { __typename?: 'product_accessory' }
+    & Pick<Product_Accessory, 'createdAt' | 'createdBy' | 'id' | 'category' | 'quota' | 'updatedAt' | 'updatedBy'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'unit' | 'label' | 'price' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
+
 export type GetAllAccessoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -17462,34 +17483,13 @@ export type GetAllServiceConfigQuery = (
   )> }
 );
 
-export type GetAccessoryByIdSubscriptionVariables = Exact<{
+export type GetConsumableByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetAccessoryByIdSubscription = (
-  { __typename?: 'subscription_root' }
-  & { product_accessory_by_pk?: Maybe<(
-    { __typename?: 'product_accessory' }
-    & Pick<Product_Accessory, 'createdAt' | 'createdBy' | 'id' | 'category' | 'quota' | 'updatedAt' | 'updatedBy'>
-    & { product: (
-      { __typename?: 'product_product' }
-      & Pick<Product_Product, 'code' | 'unit' | 'label' | 'price' | 'priceMax' | 'priceMin'>
-      & { companies: Array<(
-        { __typename?: 'product_product_companies_view' }
-        & Pick<Product_Product_Companies_View, 'name' | 'id'>
-      )> }
-    ) }
-  )> }
-);
-
-export type GetConsumableByIdSubscriptionVariables = Exact<{
-  id: Scalars['uuid'];
-}>;
-
-
-export type GetConsumableByIdSubscription = (
-  { __typename?: 'subscription_root' }
+export type GetConsumableByIdQuery = (
+  { __typename?: 'query_root' }
   & { product_consumable_by_pk?: Maybe<(
     { __typename?: 'product_consumable' }
     & Pick<Product_Consumable, 'category' | 'createdAt' | 'createdBy' | 'id' | 'updatedAt' | 'updatedBy'>
@@ -17504,13 +17504,13 @@ export type GetConsumableByIdSubscription = (
   )> }
 );
 
-export type GetGlassByIdSubscriptionVariables = Exact<{
+export type GetGlassByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetGlassByIdSubscription = (
-  { __typename?: 'subscription_root' }
+export type GetGlassByIdQuery = (
+  { __typename?: 'query_root' }
   & { product_glass_by_pk?: Maybe<(
     { __typename?: 'product_glass' }
     & Pick<Product_Glass, 'color' | 'createdBy' | 'createdAt' | 'id' | 'thickness' | 'type' | 'updatedAt' | 'updatedBy'>
@@ -17525,13 +17525,13 @@ export type GetGlassByIdSubscription = (
   )> }
 );
 
-export type GetServiceConfigByIdSubscriptionVariables = Exact<{
+export type GetServiceConfigByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetServiceConfigByIdSubscription = (
-  { __typename?: 'subscription_root' }
+export type GetServiceConfigByIdQuery = (
+  { __typename?: 'query_root' }
   & { product_serviceConfig_by_pk?: Maybe<(
     { __typename?: 'product_serviceConfig' }
     & Pick<Product_ServiceConfig, 'id' | 'labelFactory' | 'name' | 'params'>
@@ -17599,14 +17599,6 @@ export const Management_CompanyFragmentFragmentDoc = gql`
   id
 }
     `;
-export const Product_ProductFragmentFragmentDoc = gql`
-    fragment product_productFragment on product_product {
-  code
-  label
-  unit
-  price
-}
-    `;
 export const Product_SubstanceFragmentFragmentDoc = gql`
     fragment product_substanceFragment on product_substance {
   productGlass {
@@ -17630,6 +17622,14 @@ export const Stock_WarehouseForTransferFragmentFragmentDoc = gql`
     fragment stock_warehouseForTransferFragment on stock_warehouse {
   name
   id
+}
+    `;
+export const Product_ProductFragmentFragmentDoc = gql`
+    fragment product_productFragment on product_product {
+  code
+  label
+  unit
+  price
 }
     `;
 export const AddContactAddressDocument = gql`
@@ -18527,7 +18527,7 @@ ${Management_SalesPointFragmentFragmentDoc}`;
     }
   }
 export const GetTransferByIdDocument = gql`
-    subscription GetTransferById($id: Int!) {
+    query GetTransferById($id: Int!) {
   stock_transfer_order_by_pk(id: $id) {
     createdAt
     createdBy
@@ -18563,7 +18563,7 @@ ${Product_SubstanceFragmentFragmentDoc}`;
   @Injectable({
     providedIn: 'root'
   })
-  export class GetTransferByIdGQL extends Apollo.Subscription<GetTransferByIdSubscription, GetTransferByIdSubscriptionVariables> {
+  export class GetTransferByIdGQL extends Apollo.Query<GetTransferByIdQuery, GetTransferByIdQueryVariables> {
     document = GetTransferByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
@@ -19189,6 +19189,42 @@ export const InsertServiceConfigDocument = gql`
       super(apollo);
     }
   }
+export const GetAccessoryByIdDocument = gql`
+    query GetAccessoryById($id: uuid!) {
+  product_accessory_by_pk(id: $id) {
+    createdAt
+    createdBy
+    id
+    category
+    product {
+      code
+      unit
+      label
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+    quota
+    updatedAt
+    updatedBy
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAccessoryByIdGQL extends Apollo.Query<GetAccessoryByIdQuery, GetAccessoryByIdQueryVariables> {
+    document = GetAccessoryByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAllAccessoriesDocument = gql`
     query GetAllAccessories {
   product_accessory {
@@ -19335,44 +19371,8 @@ export const GetAllServiceConfigDocument = gql`
       super(apollo);
     }
   }
-export const GetAccessoryByIdDocument = gql`
-    subscription GetAccessoryById($id: uuid!) {
-  product_accessory_by_pk(id: $id) {
-    createdAt
-    createdBy
-    id
-    category
-    product {
-      code
-      unit
-      label
-      price
-      priceMax
-      priceMin
-      companies {
-        name
-        id
-      }
-    }
-    quota
-    updatedAt
-    updatedBy
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class GetAccessoryByIdGQL extends Apollo.Subscription<GetAccessoryByIdSubscription, GetAccessoryByIdSubscriptionVariables> {
-    document = GetAccessoryByIdDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const GetConsumableByIdDocument = gql`
-    subscription GetConsumableById($id: uuid!) {
+    query GetConsumableById($id: uuid!) {
   product_consumable_by_pk(id: $id) {
     category
     createdAt
@@ -19399,7 +19399,7 @@ export const GetConsumableByIdDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class GetConsumableByIdGQL extends Apollo.Subscription<GetConsumableByIdSubscription, GetConsumableByIdSubscriptionVariables> {
+  export class GetConsumableByIdGQL extends Apollo.Query<GetConsumableByIdQuery, GetConsumableByIdQueryVariables> {
     document = GetConsumableByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
@@ -19407,7 +19407,7 @@ export const GetConsumableByIdDocument = gql`
     }
   }
 export const GetGlassByIdDocument = gql`
-    subscription getGlassById($id: uuid!) {
+    query getGlassById($id: uuid!) {
   product_glass_by_pk(id: $id) {
     color
     createdBy
@@ -19436,7 +19436,7 @@ export const GetGlassByIdDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class GetGlassByIdGQL extends Apollo.Subscription<GetGlassByIdSubscription, GetGlassByIdSubscriptionVariables> {
+  export class GetGlassByIdGQL extends Apollo.Query<GetGlassByIdQuery, GetGlassByIdQueryVariables> {
     document = GetGlassByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
@@ -19444,7 +19444,7 @@ export const GetGlassByIdDocument = gql`
     }
   }
 export const GetServiceConfigByIdDocument = gql`
-    subscription GetServiceConfigById($id: uuid!) {
+    query GetServiceConfigById($id: uuid!) {
   product_serviceConfig_by_pk(id: $id) {
     id
     labelFactory
@@ -19471,7 +19471,7 @@ export const GetServiceConfigByIdDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class GetServiceConfigByIdGQL extends Apollo.Subscription<GetServiceConfigByIdSubscription, GetServiceConfigByIdSubscriptionVariables> {
+  export class GetServiceConfigByIdGQL extends Apollo.Query<GetServiceConfigByIdQuery, GetServiceConfigByIdQueryVariables> {
     document = GetServiceConfigByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
