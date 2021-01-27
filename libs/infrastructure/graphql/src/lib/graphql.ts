@@ -16783,21 +16783,20 @@ export type GetAllAccessoriesStockQuery = (
       & Stock_WarehouseFragmentFragment
     ), substance: (
       { __typename?: 'product_substance' }
-      & Product_SubstanceAccessoryFragmentFragment
+      & { productAccessory?: Maybe<(
+        { __typename?: 'product_product_accessory_view' }
+        & Product_Product_Accessory_ViewFragmentFragment
+      )>, accessory?: Maybe<(
+        { __typename?: 'product_accessory' }
+        & Pick<Product_Accessory, 'category' | 'id'>
+      )> }
     ) }
   )> }
 );
 
-export type Product_SubstanceAccessoryFragmentFragment = (
-  { __typename?: 'product_substance' }
-  & { accessory?: Maybe<(
-    { __typename?: 'product_accessory' }
-    & Pick<Product_Accessory, 'id' | 'category'>
-    & { product: (
-      { __typename?: 'product_product' }
-      & Product_ProductFragmentFragment
-    ) }
-  )> }
+export type Product_Product_Accessory_ViewFragmentFragment = (
+  { __typename?: 'product_product_accessory_view' }
+  & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
 );
 
 export type GetAllConsumablesStockQueryVariables = Exact<{ [key: string]: never; }>;
@@ -16813,21 +16812,20 @@ export type GetAllConsumablesStockQuery = (
       & Stock_WarehouseFragmentFragment
     ), substance: (
       { __typename?: 'product_substance' }
-      & Product_SubstanceConsumableFragmentFragment
+      & { productConsumable?: Maybe<(
+        { __typename?: 'product_product_consumable_view' }
+        & Product_Product_Consumable_ViewFragmentFragment
+      )>, consomable?: Maybe<(
+        { __typename?: 'product_consumable' }
+        & Pick<Product_Consumable, 'category' | 'id'>
+      )> }
     ) }
   )> }
 );
 
-export type Product_SubstanceConsumableFragmentFragment = (
-  { __typename?: 'product_substance' }
-  & { consomable?: Maybe<(
-    { __typename?: 'product_consumable' }
-    & Pick<Product_Consumable, 'id' | 'category'>
-    & { product: (
-      { __typename?: 'product_product' }
-      & Product_ProductFragmentFragment
-    ) }
-  )> }
+export type Product_Product_Consumable_ViewFragmentFragment = (
+  { __typename?: 'product_product_consumable_view' }
+  & Pick<Product_Product_Consumable_View, 'code' | 'label' | 'price' | 'unit'>
 );
 
 export type GetAllGlassesStockQueryVariables = Exact<{
@@ -16845,21 +16843,32 @@ export type GetAllGlassesStockQuery = (
       & Stock_WarehouseFragmentFragment
     ), substance: (
       { __typename?: 'product_substance' }
-      & Product_SubstanceGlassFragmentFragment
+      & { productGlass?: Maybe<(
+        { __typename?: 'product_product_glass_view' }
+        & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
+      )>, glass?: Maybe<(
+        { __typename?: 'product_glass' }
+        & Pick<Product_Glass, 'thickness' | 'type' | 'color' | 'id'>
+      )> }
     ) }
   )> }
 );
 
-export type Product_SubstanceGlassFragmentFragment = (
-  { __typename?: 'product_substance' }
-  & { glass?: Maybe<(
-    { __typename?: 'product_glass' }
-    & Pick<Product_Glass, 'id' | 'type' | 'color' | 'thickness'>
-    & { product: (
-      { __typename?: 'product_product' }
-      & Product_ProductFragmentFragment
-    ) }
+export type Stock_WarehouseFragmentFragment = (
+  { __typename?: 'stock_warehouse' }
+  & Pick<Stock_Warehouse, 'name' | 'id'>
+  & { company: (
+    { __typename?: 'management_company' }
+    & Pick<Management_Company, 'name' | 'id'>
+  ), salesPoint?: Maybe<(
+    { __typename?: 'management_salesPoint' }
+    & Pick<Management_SalesPoint, 'name' | 'id'>
   )> }
+);
+
+export type Product_ProductGlassFragmentFragment = (
+  { __typename?: 'product_product_accessory_view' }
+  & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
 );
 
 export type GetAllTransfersOrdersQueryVariables = Exact<{ [key: string]: never; }>;
@@ -16908,18 +16917,6 @@ export type Management_CompanyFragmentFragment = (
   & Pick<Management_Company, 'name' | 'id'>
 );
 
-export type Stock_WarehouseFragmentFragment = (
-  { __typename?: 'stock_warehouse' }
-  & Pick<Stock_Warehouse, 'name' | 'id'>
-  & { company: (
-    { __typename?: 'management_company' }
-    & Pick<Management_Company, 'name' | 'id'>
-  ), salesPoint?: Maybe<(
-    { __typename?: 'management_salesPoint' }
-    & Pick<Management_SalesPoint, 'name' | 'id'>
-  )> }
-);
-
 export type Product_ProductFragmentFragment = (
   { __typename?: 'product_product' }
   & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price'>
@@ -16957,18 +16954,12 @@ export type GetTransferByIdSubscription = (
 
 export type Product_SubstanceFragmentFragment = (
   { __typename?: 'product_substance' }
-  & { glass?: Maybe<(
-    { __typename?: 'product_glass' }
-    & { product: (
-      { __typename?: 'product_product' }
-      & Pick<Product_Product, 'code' | 'label'>
-    ) }
-  )>, accessory?: Maybe<(
-    { __typename?: 'product_accessory' }
-    & { product: (
-      { __typename?: 'product_product' }
-      & Pick<Product_Product, 'code' | 'label'>
-    ) }
+  & { productGlass?: Maybe<(
+    { __typename?: 'product_product_glass_view' }
+    & Pick<Product_Product_Glass_View, 'code' | 'label'>
+  )>, productAccessory?: Maybe<(
+    { __typename?: 'product_product_accessory_view' }
+    & Pick<Product_Product_Accessory_View, 'code' | 'label'>
   )> }
 );
 
@@ -17558,59 +17549,20 @@ export type GetServiceConfigByIdSubscription = (
   )> }
 );
 
-export const Product_ProductFragmentFragmentDoc = gql`
-    fragment product_productFragment on product_product {
+export const Product_Product_Accessory_ViewFragmentFragmentDoc = gql`
+    fragment product_product_accessory_viewFragment on product_product_accessory_view {
   code
   label
-  unit
   price
+  unit
 }
     `;
-export const Product_SubstanceAccessoryFragmentFragmentDoc = gql`
-    fragment product_substanceAccessoryFragment on product_substance {
-  accessory {
-    id
-    category
-    product {
-      ...product_productFragment
-    }
-  }
-}
-    ${Product_ProductFragmentFragmentDoc}`;
-export const Product_SubstanceConsumableFragmentFragmentDoc = gql`
-    fragment product_substanceConsumableFragment on product_substance {
-  consomable {
-    id
-    category
-    product {
-      ...product_productFragment
-    }
-  }
-}
-    ${Product_ProductFragmentFragmentDoc}`;
-export const Product_SubstanceGlassFragmentFragmentDoc = gql`
-    fragment product_substanceGlassFragment on product_substance {
-  glass {
-    id
-    type
-    color
-    thickness
-    product {
-      ...product_productFragment
-    }
-  }
-}
-    ${Product_ProductFragmentFragmentDoc}`;
-export const Management_SalesPointFragmentFragmentDoc = gql`
-    fragment management_salesPointFragment on management_salesPoint {
-  name
-  id
-}
-    `;
-export const Management_CompanyFragmentFragmentDoc = gql`
-    fragment management_companyFragment on management_company {
-  name
-  id
+export const Product_Product_Consumable_ViewFragmentFragmentDoc = gql`
+    fragment product_product_consumable_viewFragment on product_product_consumable_view {
+  code
+  label
+  price
+  unit
 }
     `;
 export const Stock_WarehouseFragmentFragmentDoc = gql`
@@ -17627,19 +17579,43 @@ export const Stock_WarehouseFragmentFragmentDoc = gql`
   }
 }
     `;
+export const Product_ProductGlassFragmentFragmentDoc = gql`
+    fragment product_productGlassFragment on product_product_accessory_view {
+  code
+  label
+  price
+  unit
+}
+    `;
+export const Management_SalesPointFragmentFragmentDoc = gql`
+    fragment management_salesPointFragment on management_salesPoint {
+  name
+  id
+}
+    `;
+export const Management_CompanyFragmentFragmentDoc = gql`
+    fragment management_companyFragment on management_company {
+  name
+  id
+}
+    `;
+export const Product_ProductFragmentFragmentDoc = gql`
+    fragment product_productFragment on product_product {
+  code
+  label
+  unit
+  price
+}
+    `;
 export const Product_SubstanceFragmentFragmentDoc = gql`
     fragment product_substanceFragment on product_substance {
-  glass {
-    product {
-      code
-      label
-    }
+  productGlass {
+    code
+    label
   }
-  accessory {
-    product {
-      code
-      label
-    }
+  productAccessory {
+    code
+    label
   }
 }
     `;
@@ -18405,12 +18381,18 @@ export const GetAllAccessoriesStockDocument = gql`
       ...stock_warehouseFragment
     }
     substance {
-      ...product_substanceAccessoryFragment
+      productAccessory {
+        ...product_product_accessory_viewFragment
+      }
+      accessory {
+        category
+        id
+      }
     }
   }
 }
     ${Stock_WarehouseFragmentFragmentDoc}
-${Product_SubstanceAccessoryFragmentFragmentDoc}`;
+${Product_Product_Accessory_ViewFragmentFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
@@ -18430,12 +18412,18 @@ export const GetAllConsumablesStockDocument = gql`
       ...stock_warehouseFragment
     }
     substance {
-      ...product_substanceConsumableFragment
+      productConsumable {
+        ...product_product_consumable_viewFragment
+      }
+      consomable {
+        category
+        id
+      }
     }
   }
 }
     ${Stock_WarehouseFragmentFragmentDoc}
-${Product_SubstanceConsumableFragmentFragmentDoc}`;
+${Product_Product_Consumable_ViewFragmentFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
@@ -18455,12 +18443,22 @@ export const GetAllGlassesStockDocument = gql`
       ...stock_warehouseFragment
     }
     substance {
-      ...product_substanceGlassFragment
+      productGlass {
+        code
+        label
+        price
+        unit
+      }
+      glass {
+        thickness
+        type
+        color
+        id
+      }
     }
   }
 }
-    ${Stock_WarehouseFragmentFragmentDoc}
-${Product_SubstanceGlassFragmentFragmentDoc}`;
+    ${Stock_WarehouseFragmentFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'

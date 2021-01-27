@@ -4,6 +4,7 @@ import {
 
 } from '@tanglass-erp/infrastructure/graphql';
 import * as fromWAccessory from "../models/accessoryWarehouse.model";
+import { flattenObj } from "@tanglass-erp/core/shared";
 @Injectable({
   providedIn: 'root'
 })
@@ -11,10 +12,13 @@ export class WarehouseAccessoryService {
 
   constructor(
     private getAllGQL: GetAllAccessoriesStockGQL,
-
   ) {
-    let data: fromWAccessory.AccessoryWarehouse[]
-    this.getAll().subscribe(o => data = o.data.stock_warehouse_substance)
+    /** 
+    let data:fromWAccessory.AccessoryWarehouse[]
+    this.getAll().subscribe(o => data =o.data.stock_warehouse_substance) 
+    console.log(data)
+    */
+
   }
 
   getAll() {

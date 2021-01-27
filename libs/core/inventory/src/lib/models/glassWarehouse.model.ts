@@ -1,8 +1,21 @@
 import { Glass } from "@tanglass-erp/core/product";
 import { Warehouse } from "./warehouse.model";
+import { ProductItem } from "./shared.models";
 
 export interface GlassWarehouse{
-    substance: { glass?: Glass };
+    substance: SubstanceGlass;
     warehouse: Warehouse;
     quantity: number;
+}
+
+export interface SubstanceGlass {
+    productGlass?: ProductItem;
+    glass?: PartialGlass
+}
+
+export interface PartialGlass {
+    id: string;
+    thickness:number;
+    type:string;
+    color:string;
 }

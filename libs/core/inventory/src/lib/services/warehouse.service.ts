@@ -13,9 +13,10 @@ export class WarehouseService {
     private getAllGQL: GetAllWarehousesGQL,
 
   ) {
+    /** 
     let data: fromWarehouse.Warehouse[]
     this.getAll().subscribe(o=>data=o.data.stock_warehouse)   
-
+*/
    }
 
   getAll() {
