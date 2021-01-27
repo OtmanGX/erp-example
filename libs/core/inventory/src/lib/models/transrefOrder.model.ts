@@ -1,7 +1,8 @@
 import { MetaData } from "@tanglass-erp/core/shared";
-import {PartialData, Warehouse  } from "./warehouse.model";
-import { Transfer } from "./transfer.model";
+import { Warehouse  } from "./warehouse.model";
+import { OrderItem } from "./transfer.model";
 import { Substance } from "libs/core/product/src/lib/models/shared.model";
+import { PartialData } from "./shared.models";
 
 export interface TransferOrder{
     id:number;
@@ -14,16 +15,14 @@ export interface TransferOrder{
 
 export interface DetailedTransferOrder extends MetaData{
     id:number;
-    subsctance:Substance;
-    fromWarehouse:Warehouse;
-    toWarehouse:Warehouse;
-    quantity:number;
+    tranfer_order_items:OrderItem[];
+    fromwarehouse:PartialData;
+    towarehouse:PartialData;
     date:Date;
     deadline:Date;
     status:string; // confirmed/ delivered /closed/suspended enum transferStatus
-    Transfer:Transfer[];
-
 }
+
 
 
 

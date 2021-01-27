@@ -4,12 +4,13 @@ export * from './lib/models/accessoryWarehouse.model';
 
 export * from './lib/models/glassWarehouse.model';
 export * from './lib/models/consumableWarehouse.model';
-export * from './lib/models/TransrefOrder.model';
-export * from './lib/models/Transfer.model';
+export * from './lib/models/transrefOrder.model';
+export * from './lib/models/transfer.model';
 export * from './lib/models/warehouse.model';
+export * from './lib/models/shared.models'
 export * from './lib/enums';
 export * from './lib/services/warehouse-accessory.service';
 export * from './lib/services/warehouse-consumable.service'
 export * from './lib/services/warehouse-glass.service';
-export * from './lib/services/transfer.service';
+export * from './lib/services/transferOrder.service';
 export * from './lib/services/warehouse.service';

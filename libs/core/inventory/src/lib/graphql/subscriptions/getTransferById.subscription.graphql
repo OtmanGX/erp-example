@@ -29,17 +29,13 @@ subscription GetTransferById($id: Int!) {
 }
 
 fragment product_substanceFragment on product_substance {
-  glass {
-    product {
+  productGlass {
       code
       label
-    }
   }
-  accessory {
-    product {
+  productAccessory {
       code
       label
-    }
   }
 }
 
@@ -53,5 +49,3 @@ fragment stock_warehouseForTransferFragment on stock_warehouse {
   name
   id
 }
-
-

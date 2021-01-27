@@ -14,8 +14,10 @@ export class WarehouseConsumableService {
     private getAllGQL: GetAllConsumablesStockGQL,
 
   ) { 
+    /** 
     let data:fromWConso.ConsumableWarehouse[];
     this.getAll().subscribe(o=>data=o.data.stock_warehouse_substance)
+    */
   }
 
   getAll() {

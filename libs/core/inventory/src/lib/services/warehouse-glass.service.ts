@@ -13,9 +13,10 @@ export class WarehouseGlassService {
   private getAllGQL: GetAllGlassesStockGQL,
 
   ) {
+    /** 
     let data: fromWGlass.GlassWarehouse[]
     this.getAll().subscribe(o=>data=o.data.stock_warehouse_substance)   
-
+*/
    }
 
   getAll() {
