@@ -2,12 +2,12 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as WarehousesActions from '../actions/warehouses.actions';
-import { DetailedWarehouse, Warehouse } from '@tanglass-erp/core/inventory';
+import { Warehouse } from '@tanglass-erp/core/inventory';
 
 export const WAREHOUSES_FEATURE_KEY = 'warehouses';
 
 export interface State extends EntityState<Warehouse> {
-  selectedWarehouse?: DetailedWarehouse; // which Warehouses record has been selected
+  selectedWarehouse?: Warehouse; // which Warehouses record has been selected
   loaded: boolean; // has the Warehouses list been loaded
   error?: string | null; // last known error (if any)
 }

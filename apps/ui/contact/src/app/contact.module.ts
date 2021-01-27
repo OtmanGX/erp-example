@@ -13,7 +13,7 @@ import { ProviderComponent } from './pages/provider/provider.component';
 import { ProviderCardComponent } from './pages/provider/provider-card/provider-card.component';
 import { PopProviderComponent } from './pages/provider/pop-provider/pop-provider.component';
 import { PopAddressComponent } from './pages/components/pop-address/pop-address.component';
-import { StoreContactModule } from '@TanglassStore/contact/index'
+import { StoreContactModule } from '@TanglassStore/contact/index';
 import { PopShortContactComponent } from './pages/contact/pop-short-contact/pop-short-contact.component';
 
 

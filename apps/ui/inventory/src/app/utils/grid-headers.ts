@@ -1,6 +1,6 @@
 const WarehouseHeaders = [
   { field: 'name', headerName: 'Nom', type: "textColumn"},
-  { field: 'company', headerName: 'Société', type: "textColumn"},
+  { field: 'company.name', headerName: 'Société', type: "textColumn"},
   { field: 'salePoint', headerName: 'Point de vente', type: "textColumn"},
 ];
 

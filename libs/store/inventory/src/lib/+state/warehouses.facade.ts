@@ -4,6 +4,7 @@ import { select, Store, Action } from '@ngrx/store';
 
 import * as fromWarehouses from '../reducers/warehouses.reducer';
 import * as WarehousesSelectors from '../selectors/warehouses.selectors';
+import * as WarehousesActions from '../actions/warehouses.actions';
 
 @Injectable()
 export class WarehousesFacade {
@@ -19,5 +20,9 @@ export class WarehousesFacade {
 
   dispatch(action: Action) {
     this.store.dispatch(action);
+  }
+
+  loadAllWarehouses() {
+    this.dispatch(WarehousesActions.loadWarehouses());
   }
 }

@@ -23,7 +23,7 @@ export class WarehouseCardComponent implements OnInit {
     this.id = (<any>location.getState()).id;
     this.data.subscribe( data => {
       this.passedData = [
-        {label: 'Type', value: data?.type},
+        // {label: 'Type', value: data?.type},
         {label: 'Nom de la société', value: data?.company?.name},
         {label: 'Nom du point de vente', value: data?.salesPoint?.name},
       ];

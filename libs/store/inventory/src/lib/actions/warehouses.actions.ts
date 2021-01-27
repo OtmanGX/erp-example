@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { DetailedWarehouse, InsertedWarehouse, Warehouse } from '@tanglass-erp/core/inventory';
+import { InsertedWarehouse, Warehouse } from '@tanglass-erp/core/inventory';
 
 export const loadWarehouses = createAction('[Warehouses] Load Warehouses');
 
@@ -48,7 +48,7 @@ export const addWarehouseFailure = createAction(
 // *** Update ***
 export const updateWarehouse = createAction(
   '[Warehouses] update Warehouse',
-  props<{ warehouse: DetailedWarehouse }>()
+  props<{ warehouse: Warehouse }>()
 );
 
 export const updateWarehouseSuccess = createAction(

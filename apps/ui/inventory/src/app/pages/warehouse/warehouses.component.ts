@@ -1,11 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AppState } from '@tanglass-erp/store/app';
-import { Store } from '@ngrx/store';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PopWarehouseComponent } from '@TanglassUi/inventory/pages/warehouse/pop-warehouse/pop-warehouse.component';
 import { WarehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
+import { WarehousesFacade } from '@tanglass-erp/store/inventory';
 
 
 @Component({
@@ -18,9 +17,9 @@ export class WarehousesComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$: any;
+  data$ = this.facade.allWarehouses$;
 
-  constructor(public dialog: MatDialog, private store: Store<AppState>) {
+  constructor(public dialog: MatDialog, private facade: WarehousesFacade) {
     this.setColumnDefs();
   }
 
@@ -29,6 +28,7 @@ export class WarehousesComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.facade.loadAllWarehouses();
   }
 
   openDialog(action, data = {}) {
