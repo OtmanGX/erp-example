@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { Observable } from 'rxjs';
+import { Warehouse } from '@tanglass-erp/core/inventory';
 
 @Component({
   selector: 'ngx-sale-point-card',
@@ -14,10 +15,8 @@ export class WarehouseCardComponent implements OnInit {
   gap = "50px";
   id: string;
   step = null;
-  data: Observable<any>;
+  data: Observable<Warehouse>;
   passedData: any;
-  companyData: any;
-  salePointData: any;
   constructor(private location: Location,
               private store: Store<AppState>) {
 
@@ -25,24 +24,8 @@ export class WarehouseCardComponent implements OnInit {
     this.data.subscribe( data => {
       this.passedData = [
         {label: 'Type', value: data?.type},
-      ];
-
-      this.companyData = [
-        {label: 'Nom', value: data?.company?.name},
-        {label: 'CNSS', value: data?.company?.CNSS},
-        {label: 'ICE', value: data?.company?.ICE},
-        {label: 'IF', value: data?.company?.IF},
-        {label: 'RC', value: data?.company?.RC},
-        {label: 'E-mail', value: data?.company?.email},
-        {label: 'Téléphone', value: data?.company?.phone},
-        {label: 'Site web', value: data?.company?.website},
-      ];
-
-      this.salePointData = [
-        {label: 'Nom', value: data?.salePoint?.name},
-        {label: 'Adresse', value: data?.salePoint?.address},
-        {label: 'E-mail', value: data?.salePoint?.email},
-        {label: 'Téléphone', value: data?.salePoint?.phone},
+        {label: 'Nom de la société', value: data?.company?.name},
+        {label: 'Nom du point de vente', value: data?.salesPoint?.name},
       ];
     });
   }

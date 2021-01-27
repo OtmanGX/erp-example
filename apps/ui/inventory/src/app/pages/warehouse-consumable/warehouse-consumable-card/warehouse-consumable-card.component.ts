@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
+import { Observable } from 'rxjs';
+import { ConsumableWarehouse } from '@tanglass-erp/core/inventory';
 
 @Component({
   selector: 'ngx-warehouse-consumable-card',
@@ -13,29 +15,19 @@ export class WarehouseConsumableCardComponent implements OnInit {
   gap = "50px";
   id: string;
   step = null;
-  data: any;
+  data$: Observable<ConsumableWarehouse>;
   passedData: any;
-  warehouseData: any;
-  consumableData: any;
   constructor(private location: Location,
               private store: Store<AppState>) {
 
     this.id = (<any>location.getState()).id;
-    this.data.subscribe( data => {
+    this.data$.subscribe( data => {
       this.passedData = [
+        {label: 'Type', value: data?.warehouse?.type},
+        {label: 'Nom de la société', value: data?.warehouse?.company?.name},
+        {label: 'Nom du point de vente', value: data?.warehouse?.salesPoint?.name},
+        {label: 'Catégorie du consommable', value: data?.substance.consomable?.category},
         {label: 'Quantité', value: data?.quantity},
-      ];
-
-      this.consumableData = [
-        {label: 'Libellé', value: data?.consumable?.name},
-        {label: 'Code', value: data?.consumable?.code},
-        {label: 'Type', value: data?.consumable?.type},
-      ];
-
-      this.warehouseData = [
-        {label: 'Type', value: data?.type},
-        {label: 'Société', value: data?.company?.name},
-        {label: 'Point de vente', value: data?.salePoint?.name},
       ];
     });
   }
