@@ -4,7 +4,6 @@ import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import { PopWarehouseConsumableComponent } from '@TanglassUi/inventory/pages/warehouse-consumable/pop-warehouse-consumable/pop-warehouse-consumable.component';
 import { ConsumableWarehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
 
 
@@ -32,19 +31,6 @@ export class WarehouseConsumableComponent implements GridView {
   }
 
   openDialog(action, data = {}) {
-    const dialogRef = this.dialog.open(PopWarehouseConsumableComponent, {
-      width: '1000px',
-      panelClass: 'panel-dialog',
-      data: data
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // Store action dispatching
-        if (action === Operations.add) {
-        } else {}
-      }
-    });
   }
 
   eventTriggering(event) {
