@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { Observable } from 'rxjs';
-import { ConsumableWarehouse } from '@tanglass-erp/core/inventory';
+import { ConsumableWarehouse } from '@tanglass-erp/store/inventory';
 
 @Component({
   selector: 'ngx-warehouse-consumable-card',

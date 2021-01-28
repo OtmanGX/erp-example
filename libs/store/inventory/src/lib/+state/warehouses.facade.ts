@@ -12,14 +12,20 @@ export class WarehousesFacade {
   allWarehouses$ = this.store.pipe(
     select(WarehousesSelectors.getAllWarehouses)
   );
-  selectedWarehouses$ = this.store.pipe(
-    select(WarehousesSelectors.getSelectedId)
+  selectedWarehouse$ = this.store.pipe(
+    select(WarehousesSelectors.getSelectedWarehouse)
   );
 
-  constructor(private store: Store<fromWarehouses.WarehousesPartialState>) {}
+  constructor(private store: Store<fromWarehouses.WarehousesPartialState>) {
+    this.loadAllWarehouses();
+  }
 
   dispatch(action: Action) {
     this.store.dispatch(action);
+  }
+
+  loadWarehouse(id) {
+    this.dispatch(WarehousesActions.loadWarehouseById({id: id}));
   }
 
   loadAllWarehouses() {

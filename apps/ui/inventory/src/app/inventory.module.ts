@@ -13,6 +13,8 @@ import { WarehouseAccessoryCardComponent } from './pages/warehouse-accessory/war
 import { WarehouseGlasseComponent } from './pages/warehouse-glasse/warehouse-glasse.component';
 import { WarehouseGlasseCardComponent } from './pages/warehouse-glasse/warehouse-glasse-card/warehouse-glasse-card.component';
 import { StoreInventoryModule } from '@TanglassStore/inventory/index';
+import { WarehouseTransfertComponent } from './pages/warehouse-transfert/warehouse-transfert.component';
+import { PopWarehouseTransfertComponent } from './pages/warehouse-transfert/pop-warehouse-transfert/pop-warehouse-transfert.component';
 
 
 const routes: Routes = [
@@ -22,6 +24,10 @@ const routes: Routes = [
       {
         path: 'warehouses',
         component: WarehousesComponent
+      },
+      {
+        path: 'warehouses/transfert',
+        component: WarehouseTransfertComponent
       },
       {
         path: 'warehouses/:id',
@@ -66,6 +72,8 @@ const routes: Routes = [
     WarehouseAccessoryCardComponent,
     WarehouseGlasseComponent,
     WarehouseGlasseCardComponent,
+    PopWarehouseTransfertComponent,
+    WarehouseTransfertComponent
   ],
   imports: [
     CommonModule,

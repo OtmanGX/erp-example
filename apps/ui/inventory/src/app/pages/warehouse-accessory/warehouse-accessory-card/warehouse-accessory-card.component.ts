@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { AccessoryWarehouse } from '@tanglass-erp/core/inventory';
 import { Observable } from 'rxjs';
+import { AccessoryWarehouse } from '@tanglass-erp/store/inventory';
 
 
 @Component({

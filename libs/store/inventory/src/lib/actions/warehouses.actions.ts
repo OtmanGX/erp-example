@@ -15,7 +15,9 @@ export const loadWarehousesFailure = createAction(
 
 
 // *** Load By Id ***
-export const loadWarehouseById = createAction('[Warehouses] Load Warehouse By Id');
+export const loadWarehouseById = createAction(
+  '[Warehouses] Load Warehouse By Id',
+  props<{ id: any }>());
 
 export const loadWarehouseByIdSuccess = createAction(
   '[Warehouses] Load Warehouse By Id Success',
