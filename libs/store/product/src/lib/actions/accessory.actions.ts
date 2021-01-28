@@ -81,14 +81,14 @@ export const updateAccessoryFailure = createAction(
 /****************************************************************** */
 
 export const removeAccessory = createAction(
-  '[List accessories Component] Update Accessory',
+  '[List accessories Component] Delete Accessory',
   props<{ accessoryId: any }>()
 );
 export const removeAccessorySuccess = createAction(
-  '[Accessory Effect] Update Accessory Success',
+  '[Accessory Effect] Delete Accessory Success',
   props<{ accessoryId: any }>()
 );
 export const removeAccessoryFailure = createAction(
-  '[Accessory Effect] Update Accessory failure',
+  '[Accessory Effect] Delete Accessory failure',
   props<{ error: any }>()
 );

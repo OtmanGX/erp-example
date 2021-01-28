@@ -4,12 +4,13 @@ import { Store, StoreModule } from '@ngrx/store';
 import * as AccessoryReducer from './reducers/accessory.reducer';
 import * as ConsumableReducer from './reducers/consumable.reducer';
 import * as GlassReducer from './reducers/glass.reducer';
-import * as ServiceReducer from './reducers/service.reducer';
+import * as ServiceReducer from './reducers/servicesConfig.reducer';
 import { AccessoryEffects } from './effects/accessory.effects';
 import { ConsumableEffects } from './effects/consumable.effects';
 import { GlassEffects } from './effects/glass.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { AlertEffects } from './effects/alert.effects';
+import { ServiceEffects } from './effects/servicesConfig.effects';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreProductModule } from '@tanglass-erp/core/product';
 
@@ -33,11 +34,17 @@ import { CoreProductModule } from '@tanglass-erp/core/product';
       GlassReducer.reducer,
 
     ),
+    StoreModule.forFeature(
+      ServiceReducer.SERVICE_FEATURE_KEY,
+      ServiceReducer.reducer,
+
+    ),
     EffectsModule.forFeature([
       AccessoryEffects,
       ConsumableEffects,
       GlassEffects,
-      AlertEffects
+      AlertEffects,
+      ServiceEffects
     ]),
     ToastrModule.forRoot(),
   ],

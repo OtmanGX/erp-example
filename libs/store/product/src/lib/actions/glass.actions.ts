@@ -81,14 +81,14 @@ export const updateGlassFailure = createAction(
 /****************************************************************** */
 
 export const removeGlass = createAction(
-  '[List Glasses Component] Update Glass',
+  '[List Glasses Component] Delete Glass',
   props<{ glassId: any }>()
 );
 export const removeGlassesuccess = createAction(
-  '[Glass Effect] Update Glass Success',
+  '[Glass Effect] Delete Glass Success',
   props<{ glassId: any }>()
 );
 export const removeGlassFailure = createAction(
-  '[Glass Effect] Update Glass failure',
+  '[Glass Effect] Delete Glass failure',
   props<{ error: any }>()
 );
