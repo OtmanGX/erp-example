@@ -1,11 +1,16 @@
 const warehouseHeaders = [
-  { field: 'name', headerName: 'Nom'},
+  { field: 'name', headerName: 'Nom', type: "linkColumn",
+    cellRendererParams: (params) => (
+      {
+        link: `/warehouses/${params.data.id}`,
+      }
+  )},
   { field: 'company.name', headerName: 'Société', type: "textColumn"},
   { field: 'salesPoint.name', headerName: 'Point de vente', type: "textColumn"},
 ];
 
 const ProductHeaders = [
-  { field: 'label', headerName: 'Déssignation', type: "textColumn"},
+  { field: 'label', headerName: 'Désignation', type: "textColumn"},
   { field: 'price', headerName: 'Prix', type: 'numberColumn'},
   { field: 'unit', headerName: 'Unité'},
 ];

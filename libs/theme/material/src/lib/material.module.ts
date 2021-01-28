@@ -52,6 +52,7 @@ import { TypeTemplateDirective } from '../directives/type-template';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { SelectSearchComponent } from '../components/form/select-search.component';
 import { OptionItemDirective } from '../directives/option-item';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 const MATERIAL_MODULES = [
@@ -90,6 +91,7 @@ const OTHER_MODULES = [
   ReactiveFormsModule,
   FormsModule,
   NgxMatTagInputModule,
+  MatNativeDateModule
 ];
 
 const COMPONENTS = [
@@ -103,7 +105,7 @@ const COMPONENTS = [
   TagInputComponent,
   CheckboxComponent,
   TextareaComponent,
-  HeaderComponent
+  HeaderComponent,
   ];
 
 const DIRECTIVES = [

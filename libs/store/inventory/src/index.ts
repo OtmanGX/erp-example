@@ -5,5 +5,10 @@ export * from './lib/+state/warehouses.facade';
 export * from './lib/store-inventory.module';
 export {
   Warehouse,
-  InsertedWarehouse
+  InsertedWarehouse,
+  GlassWarehouse,
+  AccessoryWarehouse,
+  ConsumableWarehouse,
+  InsertedTransferOrder,
+  transferStatusDirection
 } from '@tanglass-erp/core/inventory';

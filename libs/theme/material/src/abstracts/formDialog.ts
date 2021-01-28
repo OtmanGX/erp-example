@@ -4,7 +4,7 @@ import { FieldConfig } from '@tanglass-erp/material';
 import { Validators } from '@angular/forms';
 
 @Component({
-  template: ''
+  template: '',
 })
 export abstract class FormDialog implements OnInit {
   abstract regConfig: FieldConfig[];

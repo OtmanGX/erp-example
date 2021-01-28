@@ -1,5 +1,9 @@
 import { FormDialog } from '@tanglass-erp/material';
-import { InsertedTransferOrder, Warehouse } from '@tanglass-erp/core/inventory';
+import {
+  InsertedTransferOrder,
+  transferStatusDirection,
+  Warehouse } from '@tanglass-erp/store/inventory';
+
 
 
 const regConfigWarehouse = (data?: Warehouse, companies = [], salespoints = []) => [
@@ -15,23 +19,34 @@ const regConfigWarehouse = (data?: Warehouse, companies = [], salespoints = []) 
     validations: [
       FormDialog.REQUIRED
     ]
-  },
+  }
 ];
 
 
 
-const regConfigTransferOrder = (data?: InsertedTransferOrder) => [
+const regConfigTransferOrder = (data?: InsertedTransferOrder, warehouses: any = []) => [
   {type: "select", name: "fromWarehouse", label: "De",
-    inputType: "text", value: data?.fromWarehouseid, options: null},
+    inputType: "text", value: data?.fromWarehouseid, options: warehouses, validations: [FormDialog.REQUIRED]},
   {type: "select", name: "toWarehouse", label: "À",
-    inputType: "text", value: data?.toWarehouseid, options: null},
+    inputType: "text", value: data?.toWarehouseid, options: warehouses, validations: [FormDialog.REQUIRED]},
+  {type: "inputSelect", name: "status", label: "Etat", inputType: "text",
+    value: data?.status,
+    options: Object.values(transferStatusDirection).map(elem => ({key: elem, value: elem}))},
   {type: "date", name: "deadlineDate", label: "Date limite",
     inputType: "text", value: data?.deadlineDate},
-  {type: "input", name: "quantity", label: "Quantité", inputType: "number", value: data?.quantity},
-  {type: "input", name: "status", label: "Etat", inputType: "text", value: data?.status},
+];
+
+const regConfigTransferOrderItem = (data?) => [
+  {type: "radiobutton", name: "typeSubstance", label: "",
+    inputType: "number", value: 'Verre', options: ['Accessoire', 'Verre']},
+  {type: "selectSearch", name: "substance", label: "Substance",
+    inputType: "text", value: data?.substance, options: []},
+  {type: "input", name: "quantity", label: "Quantité",
+    inputType: "number", value: data?.quantity, validations: [FormDialog.REQUIRED]},
 ];
 
 export {
   regConfigWarehouse,
   regConfigTransferOrder,
+  regConfigTransferOrderItem
 };

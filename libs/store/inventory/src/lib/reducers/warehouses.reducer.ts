@@ -32,6 +32,15 @@ const warehousesReducer = createReducer(
   on(WarehousesActions.loadWarehousesSuccess, (state, action) =>
     warehousesAdapter.setAll(action.warehouses, { ...state, loaded: true })
   ),
+  on(WarehousesActions.loadWarehouseByIdSuccess, (state, action) =>
+      (
+        {
+          ...state,
+          selectedWarehouse: action.warehouse,
+          error: null
+        }
+      )
+  ),
   // Add
   on(WarehousesActions.addWarehouseSuccess, (state, action) =>
     warehousesAdapter.addOne(action.warehouse, state)
