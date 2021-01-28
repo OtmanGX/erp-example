@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { Observable } from 'rxjs';
-import { Warehouse } from '@tanglass-erp/core/inventory';
+import { Warehouse } from '@TanglassStore/inventory/index';
 
 @Component({
   selector: 'ngx-sale-point-card',
@@ -23,7 +23,7 @@ export class WarehouseCardComponent implements OnInit {
     this.id = (<any>location.getState()).id;
     this.data.subscribe( data => {
       this.passedData = [
-        {label: 'Type', value: data?.type},
+        // {label: 'Type', value: data?.type},
         {label: 'Nom de la société', value: data?.company?.name},
         {label: 'Nom du point de vente', value: data?.salesPoint?.name},
       ];

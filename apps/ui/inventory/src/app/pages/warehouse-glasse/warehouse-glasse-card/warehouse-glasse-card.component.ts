@@ -24,7 +24,7 @@ export class WarehouseGlasseCardComponent implements OnInit {
     this.id = (<any>location.getState()).id;
     this.data$.subscribe( data => {
       this.passedData = [
-        {label: 'Type', value: data?.warehouse?.type},
+        // {label: 'Type', value: data?.warehouse?.type},
         {label: 'Nom de la société', value: data?.warehouse?.company?.name},
         {label: 'Nom du point de vente', value: data?.warehouse?.salesPoint?.name},
         {label: 'Quantité', value: data?.quantity},

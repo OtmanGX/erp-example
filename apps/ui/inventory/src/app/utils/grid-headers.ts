@@ -1,7 +1,7 @@
-const WarehouseHeaders = [
-  { field: 'name', headerName: 'Nom', type: "textColumn"},
-  { field: 'company', headerName: 'Société', type: "textColumn"},
-  { field: 'salePoint', headerName: 'Point de vente', type: "textColumn"},
+const warehouseHeaders = [
+  { field: 'name', headerName: 'Nom'},
+  { field: 'company.name', headerName: 'Société', type: "textColumn"},
+  { field: 'salesPoint.name', headerName: 'Point de vente', type: "textColumn"},
 ];
 
 const ProductHeaders = [
@@ -20,12 +20,12 @@ const SubstanceGlassHeaders = [
   {
     headerName: 'Produit',
     children:
-      ProductHeaders.slice().map(elem => (elem.field = 'substance.productGlass' + elem.field))
+      ProductHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'substance.productGlass' + elem.field))
   },
   {
     headerName: 'Verre',
     children:
-      GlassHeaders.slice().map(elem => (elem.field = 'substance.glass.' + elem.field) && elem)
+      GlassHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'substance.glass.' + elem.field) && elem)
   }
 ];
 
@@ -33,7 +33,7 @@ const SubstanceAccessoryHeaders = [
   {
     headerName: 'Produit',
     children:
-      ProductHeaders.slice().map(elem => (elem.field = 'substance.productAccessory' + elem.field))
+      ProductHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'substance.productAccessory' + elem.field))
   },
   {
     headerName: 'Accessoire',
@@ -47,7 +47,7 @@ const SubstanceConsumableHeaders = [
   {
     headerName: 'Produit',
     children:
-      ProductHeaders.slice().map(elem => (elem.field = 'substance.productConsumable' + elem.field))
+      ProductHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'substance.productConsumable' + elem.field))
   },
   {
     headerName: 'Consommable',
@@ -61,7 +61,7 @@ const SubstanceConsumableHeaders = [
 const GlassWarehouseHeaders = [
   {headerName: 'Entrepôt',
     children:
-      WarehouseHeaders.slice().map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
+      warehouseHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
   },
   {
     headerName: 'Substance',
@@ -73,7 +73,7 @@ const GlassWarehouseHeaders = [
 const ConsumableWarehouseHeaders = [
   {headerName: 'Entrepôt',
     children:
-      WarehouseHeaders.slice().map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
+      warehouseHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
   },
   {headerName: 'Substance', children:
     SubstanceConsumableHeaders
@@ -84,7 +84,7 @@ const ConsumableWarehouseHeaders = [
 const AccessoryWarehouseHeaders = [
   {headerName: 'Entrepôt',
     children:
-      WarehouseHeaders.slice().map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
+      warehouseHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
   },
   {headerName: 'Substance', children:
     SubstanceConsumableHeaders
@@ -94,7 +94,7 @@ const AccessoryWarehouseHeaders = [
 
 
 export {
-  WarehouseHeaders,
+  warehouseHeaders,
   GlassHeaders,
   GlassWarehouseHeaders,
   ConsumableWarehouseHeaders,
