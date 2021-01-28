@@ -28,6 +28,7 @@ export class PopGlasseComponent extends FormDialog   {
   }
   ngOnInit(): void {
     this.facade.loadAllShortCompanies();
+    this.buildForm();
   }
   buildForm() {
     console.log(this.listCompanies)

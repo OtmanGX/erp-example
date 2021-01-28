@@ -19,13 +19,13 @@ export class ShortCompanyFacade {
   );
 
   constructor(
-    private store: Store<fromShortCompany.ShortCompanyPartialState>
+    private store: Store
   ) {}
 
   dispatch(action: Action) {
     this.store.dispatch(action);
   }
-  
+
   loadAllShortCompanies() {
     this.dispatch(ShortCompaniesActions.loadShortCompany());
     console.log('helle')
