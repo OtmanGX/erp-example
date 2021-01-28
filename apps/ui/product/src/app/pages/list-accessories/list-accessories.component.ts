@@ -6,6 +6,9 @@ import { GridView, Operations } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import { PopAccessoriesComponent } from './pop-accessories/pop-accessories.component';
 import { AccessoryHeaders } from '../../utils/grid-headers';
+import * as AccessorySelectors from '@TanglassStore/product/lib/selectors/accessory.selectors';
+import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
+import { Store } from '@ngrx/store';
 
 
 @Component({
@@ -15,18 +18,20 @@ import { AccessoryHeaders } from '../../utils/grid-headers';
 })
 export class ListAccessoriesComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$: Observable<any>;
+  data$ = this.store.select(AccessorySelectors.getAllAccessories);
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
 
   constructor(
     private dialog: MatDialog,
+    private store: Store
   ) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
+    this.store.dispatch(AccessoryActions.loadAccessories());
   }
 
   ngAfterViewInit(): void {
@@ -65,7 +70,8 @@ export class ListAccessoriesComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-
+          console.log(result);
+          this.store.dispatch(AccessoryActions.addAccessory({accessory : result}));
         } else {} // Update
       }
     });

@@ -22,7 +22,7 @@ import { ConsumableCardComponent } from './pages/list-consumable/consumable-card
 import { ServiceGlassCardComponent } from './pages/list-service-glasse/service-glass-card/service-glass-card.component';
 import { PopServiceConfigComponent } from './pages/list-service/pop-service-config/pop-service-config.component';
 import { PopServiceComponent } from './pages/list-service/service-card/pop-service/pop-service.component';
-
+import { StoreProductModule } from '@TanglassStore/product/index'
 
 const popUps = [
   PopConsumableComponent,
@@ -127,6 +127,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     MainAgGridModule,
+    StoreProductModule
   ]
 })
 export class ProductModule { }

@@ -90,6 +90,8 @@
       "tags": []
     },
     "store-inventory": {
+    },
+    "store-product": {
       "tags": []
     }
   }

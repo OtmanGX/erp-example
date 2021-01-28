@@ -8,7 +8,6 @@ import {
   UpdateUserMutationVariables,
   DeleteUserGQL,
 } from '@tanglass-erp/infrastructure/graphql';
-import { User , DetailedUser} from '../models/user.models';
 import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
