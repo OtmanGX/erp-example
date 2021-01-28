@@ -49,7 +49,7 @@ const regConfigProduct = (data?, listCompanies = []) => [
     ]
   },
   {type: "select", label: "Sociétés", multiple: true, name: "companies", value: data?.product?.companies,
-    options: listCompanies}
+    options: listCompanies.map(companie => ({key: companie.id, value: companie.name}))}
 ];
 
 
@@ -62,7 +62,7 @@ const regConfigAccessory = (data?, listCompanies = []) => [
       {type: "input", label: "Quota", inputType: "number", name: "quota", value: data?.quota},
       {type: "inputSelect", label: "Type", inputType: "text", name: "category", value: data?.type,
         options: []},
-      
+
     ]
   },
   {

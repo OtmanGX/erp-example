@@ -31,7 +31,6 @@ export class PopGlasseComponent extends FormDialog   {
     this.buildForm();
   }
   buildForm() {
-    console.log(this.listCompanies)
-    this.regConfig = regConfigGlass(this.data, this.listCompanies);
+    this.listCompanies.subscribe(companies => this.regConfig = regConfigGlass(this.data, companies))
   }
 }
