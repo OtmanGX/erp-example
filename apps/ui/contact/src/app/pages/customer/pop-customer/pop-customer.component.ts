@@ -17,7 +17,7 @@ import { getSelectedCustomer } from '@TanglassStore/contact/lib/selectors/custom
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import { takeWhile } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-
+import { InsertedCustomer } from "@tanglass-erp/core/contact";
 @Component({
   selector: 'ngx-pop-customer',
   templateUrl: './pop-customer.component.html',

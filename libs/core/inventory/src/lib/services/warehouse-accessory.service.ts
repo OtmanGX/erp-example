@@ -4,7 +4,6 @@ import {
 
 } from '@tanglass-erp/infrastructure/graphql';
 import * as fromWAccessory from "../models/accessoryWarehouse.model";
-import { flattenObj } from "@tanglass-erp/core/shared";
 @Injectable({
   providedIn: 'root'
 })

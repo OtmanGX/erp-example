@@ -41,9 +41,9 @@ product_companies:
 }
 ).subscribe(obj=>console.log(obj.data.insert_product_accessory_one))
 
+this.getOneById("eb6c4f62-a1ec-401e-a206-1274353a6245").subscribe(o=>console.log(o.data.product_accessory_by_pk))
 
  */
-this.getOneById("eb6c4f62-a1ec-401e-a206-1274353a6245").subscribe(o=>console.log(o.data.product_accessory_by_pk))
   }
 
   getAll() {

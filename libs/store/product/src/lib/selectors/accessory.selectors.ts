@@ -36,7 +36,7 @@ export const getAccessoryEntities = createSelector(
   (state: State) => selectEntities(state)
 );
 
-export const getSelectedCompanie = createSelector(
+export const getSelectedAccessory = createSelector(
   getAccessoriesState,
   (state: State) => state.selectedAccessory
 );

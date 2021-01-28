@@ -36,13 +36,13 @@ const regConfigProduct = (data?, listCompanies = []) => [
       FormDialog.REQUIRED
     ]
   },
-  {type: "input", label: "Prix min", inputType: "number", name: "price_min",
+  {type: "input", label: "Prix min", inputType: "number", name: "priceMin",
     value: data?.product?.price_min,
     validations: [
       FormDialog.REQUIRED
     ]
   },
-  {type: "input", label: "Prix max", inputType: "number", name: "price_max",
+  {type: "input", label: "Prix max", inputType: "number", name: "priceMax",
     value: data?.product?.price_max,
     validations: [
       FormDialog.REQUIRED
@@ -59,10 +59,10 @@ const regConfigAccessory = (data?, listCompanies = []) => [
     label: 'Accessoire',
     headerVisible: false,
     fields: [
-      {type: "input", label: "Nom", inputType: "text", name: "name", value: data?.name},
       {type: "input", label: "Quota", inputType: "number", name: "quota", value: data?.quota},
-      {type: "inputSelect", label: "Type", inputType: "text", name: "type", value: data?.type,
+      {type: "inputSelect", label: "Type", inputType: "text", name: "category", value: data?.type,
         options: []},
+      
     ]
   },
   {
@@ -72,6 +72,9 @@ const regConfigAccessory = (data?, listCompanies = []) => [
     fields: regConfigProduct(data?.product, listCompanies)
   }
 ];
+
+
+
 
 const regConfigConsumable = (data?, listCompanies = []) => [
   {
@@ -92,7 +95,7 @@ const regConfigConsumable = (data?, listCompanies = []) => [
         ]
       },
       {
-        type: "input", label: "Type", inputType: "text", name: "type", value: data?.type,
+        type: "input", label: "Type", inputType: "text", name: "category", value: data?.type,
         options: []
       },
     ]
@@ -106,7 +109,7 @@ const regConfigConsumable = (data?, listCompanies = []) => [
 ];
 
 
-const regConfigGlass = (data?, listCompanies = []) => [
+const regConfigGlass = (data?, listCompanies :any= []) => [
   {
     name: "product",
     label: "Produit",

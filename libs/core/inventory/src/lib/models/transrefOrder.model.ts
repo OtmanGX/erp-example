@@ -1,4 +1,4 @@
-import { MetaData } from "@tanglass-erp/core/shared";
+import { MetaData } from '@tanglass-erp/core/common';
 import { Warehouse  } from "./warehouse.model";
 import { OrderItem } from "./transfer.model";
 import { Substance } from "libs/core/product/src/lib/models/shared.model";

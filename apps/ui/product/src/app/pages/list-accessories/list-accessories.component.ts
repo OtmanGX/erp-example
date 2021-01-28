@@ -5,6 +5,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { GridView, Operations } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import { PopAccessoriesComponent } from './pop-accessories/pop-accessories.component';
+import { Accessory, insertedAccessory } from "@tanglass-erp/core/product";
 import { AccessoryHeaders } from '../../utils/grid-headers';
 import * as AccessorySelectors from '@TanglassStore/product/lib/selectors/accessory.selectors';
 import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
@@ -18,7 +19,7 @@ import { Store } from '@ngrx/store';
 })
 export class ListAccessoriesComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$ = this.store.select(AccessorySelectors.getAllAccessories);
+  data$:Observable<Accessory[]> = this.store.select(AccessorySelectors.getAllAccessories);
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
@@ -58,6 +59,11 @@ export class ListAccessoriesComponent implements GridView {
     ];
   }
 
+  accessoryAdapter(accessory) {
+    const insertedAccessory: insertedAccessory = 
+  {...accessory.accessory, product :{...accessory.product}}
+    return insertedAccessory
+  }
 
   openDialog(action, data = {}) {
     const dialogRef = this.dialog.open(PopAccessoriesComponent, {
@@ -71,7 +77,8 @@ export class ListAccessoriesComponent implements GridView {
         // Store action dispatching
         if (action === Operations.add) {
           console.log(result);
-          this.store.dispatch(AccessoryActions.addAccessory({accessory : result}));
+          
+          this.store.dispatch(AccessoryActions.addAccessory({accessory : this.accessoryAdapter(result)}));
         } else {} // Update
       }
     });

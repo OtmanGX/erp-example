@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfigAccessory } from '../../../utils/forms';
+import { AppState } from '@tanglass-erp/store/app';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-pop-glass',
@@ -16,6 +18,8 @@ export class PopAccessoriesComponent extends FormDialog {
   constructor(
     public dialogRef: MatDialogRef<PopAccessoriesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private store: Store<AppState>
+
   ) {
     super(dialogRef, data);
   }
@@ -24,4 +28,7 @@ export class PopAccessoriesComponent extends FormDialog {
   buildForm() {
     this.regConfig = regConfigAccessory(this.data, this.listCompanies);
   }
+
+  
+
 }

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfigConsumable } from '../../../utils/forms';
-
+import { InsertedConsumable } from "@tanglass-erp/core/product";
 @Component({
   selector: 'ngx-pop-glass',
   templateUrl: './pop-consumable.component.html',
@@ -15,7 +15,7 @@ export class PopConsumableComponent extends FormDialog {
 
   constructor(
     public dialogRef: MatDialogRef<PopConsumableComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: InsertedConsumable,
   ) {
     super(dialogRef, data);
   }

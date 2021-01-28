@@ -33,6 +33,8 @@ export class ListConsumableComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(ConsumableActions.loadConsumables());
+
   }
 
   ngAfterViewInit(): void {

@@ -1,4 +1,4 @@
-import { MetaData } from '@tanglass-erp/core/shared';
+import { MetaData } from '@tanglass-erp/core/common';
 import { Substance, Product,InsertedProduct } from './shared.model';
 
 import { Service } from "./service.model";

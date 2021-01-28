@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { Location } from '@angular/common';
 import { of } from 'rxjs';
+import * as ConsumableActions from '@TanglassStore/product/lib/actions/consumable.actions';
+import { getSelectedConsumable } from '@TanglassStore/product/lib/selectors/consumable.selectors';
 
 @Component({
   selector: 'ngx-consumable-card',
@@ -12,8 +14,9 @@ import { of } from 'rxjs';
 export class ConsumableCardComponent implements OnInit {
   title = "Consommable";
   id: string;
-  data$: any = of(null);
+ // data$: any = of(null);
   passedData: any;
+  data$ = this.store.select(getSelectedConsumable);
 
   constructor(private store: Store<AppState>,
               private location: Location) {
@@ -22,14 +25,17 @@ export class ConsumableCardComponent implements OnInit {
 
   ngOnInit(): void {
     // this.store.dispatch();
+    this.store.dispatch(ConsumableActions.loadConsumableById({id: this.id}));
+
     this.data$.subscribe(value => {
       this.passedData = [
-        {label: 'Code', value: value?.code},
-        {label: 'Type', value: value?.type},
-        {label: 'Désignation', value: value?.label},
+        {label: 'Code', value: value?.product.code},
+        {label: 'Type', value: value?.category},
+        {label: 'Désignation', value: value?.product.label},
+        {label: 'Unité', value: value?.product.unit},
         {label: 'Prix', value: value?.product?.price},
-        {label: 'Prix min', value: value?.product?.price_min},
-        {label: 'Prix max', value: value?.product?.price_max},
+        {label: 'Prix min', value: value?.product?.priceMin},
+        {label: 'Prix max', value: value?.product?.priceMax},
         {label: 'Sociétés', value: value?.product?.companies, type: 'chips'},
       ];
     });

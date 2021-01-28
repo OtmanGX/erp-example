@@ -64,7 +64,7 @@ const regCustomerConfig = (data?, contacts: any = []) => [
   {type: "input", name: "mail", label: "E-mail", inputType: "text", value: data?.mail},
   {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
   {type: "input", name: "website", label: "Site web", inputType: "text", value: data?.website},
-  {type: "input", name: "Fax", label: "Fax", inputType: "text", value: data?.Fax},
+  {type: "input", name: "Fax", label: "Fax", inputType: "text", value: data?.FAX},
   {type: "selectSearch", name: !data?.id ? "affectedContacts" : "contacts",
     label: "Contacts", inputType: "text", value: data?.contacts ?? [],
     filterFields: ['name', 'phone'],

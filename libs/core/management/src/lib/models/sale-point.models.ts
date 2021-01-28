@@ -1,5 +1,5 @@
 import { UsersProfileForSalePoint } from "./user.models";
-import { MetaData } from '@tanglass-erp/core/shared';
+import { MetaData } from '@tanglass-erp/core/common';
 
 
 export interface SalePoint {
