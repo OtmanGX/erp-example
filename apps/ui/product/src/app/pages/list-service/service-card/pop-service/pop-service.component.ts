@@ -2,10 +2,7 @@ import { Component, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfService } from '../../../../utils/forms';
-import * as CompanieActions from '@TanglassStore/management/lib/actions/companies.actions';
-import * as CompanieSelectors from '@TanglassStore/management/lib/selectors/companies.selectors';
-import { Store } from '@ngrx/store';
-import { AppState } from '@tanglass-erp/store/app';
+import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,32 +11,29 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pop-service.component.scss'],
 })
 export class PopServiceComponent extends FormDialog implements OnDestroy {
-  title = "Ajouter une service";
+  title = "Ajouter collection de service";
   regConfig: Groupfield[] | any;
   companiesSubscription: Subscription;
-  companies$ = this.store.select(CompanieSelectors.getAllCompanies);
+  listCompanies = this.facade.allShortCompany$
   params = [];
 
   constructor(
     public dialogRef: MatDialogRef<PopServiceComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private store: Store<AppState>
+    private facade: ShortCompanyFacade,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     super(dialogRef, data);
   }
 
   buildForm() {
-    this.store.dispatch(CompanieActions.loadCompanies());
-    // const dataParams = JSON.parse(this.data.params);
-    this.regConfig = regConfService(this.data.service, []);
-    // this.companiesSubscription = this.companies$.subscribe(value => {
-    //   this.regConfig = regConfService(this.data.service, value, dataParams);
-    // });
+    this.facade.loadAllShortCompanies();
+    const dataParams = JSON.parse(this.data.params);
+    this.listCompanies.subscribe(companies => this.regConfig = regConfService(this.data.service, companies, dataParams))
   }
 
   submit(value: any) {
     this.dialogRef.close(value);
-    }
+  }
 
   ngOnDestroy(): void {
     // this.companiesSubscription.unsubscribe();

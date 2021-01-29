@@ -28,6 +28,5 @@ export class ShortCompanyFacade {
 
   loadAllShortCompanies() {
     this.dispatch(ShortCompaniesActions.loadShortCompany());
-    console.log('helle')
   }
 }

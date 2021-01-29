@@ -1,14 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
-import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { ServiceConfig } from '@tanglass-erp/core/product';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
-import { ServiceHeaders } from '../../../utils/grid-headers';
+import { ServiceHeaders, } from '../../../utils/grid-headers';
 import { PopServiceComponent } from './pop-service/pop-service.component';
+import * as ServiceGroupActions from '@TanglassStore/product/lib/actions/servicesConfig.actions';
+import { getSelectedServiceConfig } from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'ngx-service-card',
@@ -25,7 +27,9 @@ export class ServiceCardComponent implements OnInit, GridView {
   // Card
   title = 'Service';
   id: string;
-  data$: Observable<any> = of();
+  //data$: Observable<any> = of();
+  data$ = this.store.select(getSelectedServiceConfig);
+  services$: any;
   data: ServiceConfig;
   passedData: any;
 
@@ -33,17 +37,22 @@ export class ServiceCardComponent implements OnInit, GridView {
               private location: Location,
               public dialog: MatDialog) {
     this.id = (<any>this.location.getState()).id;
+    this.setColumnDefs();
+
   }
 
   ngOnInit(): void {
-    // this.store.dispatch(loadServiceById);
+    this.store.dispatch(ServiceGroupActions.loadServiceConfigById({id: this.id}));
     this.data$.subscribe(value => {
-      this.data = value;
-      this.passedData = [
-        { label: 'Nom', value: value?.name },
-        { label: 'Etiquette d\'usine', value: value?.labelFactory },
-        { label: 'Paramètres', value: null },
-      ];
+      if(value) {
+        this.services$ = of(value.services.map(service => service));
+        this.data = value;
+        this.passedData = [
+          { label: 'Nom', value: value?.name },
+          { label: 'Désignation d\'usine', value: value?.labelFactory },
+          { label: 'Paramètres', value: value?.params },
+        ];
+      }
     });
   }
 
@@ -55,7 +64,7 @@ export class ServiceCardComponent implements OnInit, GridView {
     this.columnDefs = [
       ...ServiceHeaders,
       {field: 'id', headerName: 'Action', type: "editColumn"},
-    ];
+    ]; 
   }
   eventTriggering(event: any) {
       switch (event.action) {
@@ -82,6 +91,12 @@ export class ServiceCardComponent implements OnInit, GridView {
         if (result) {
           // Store action dispatching
           if (action === Operations.add) {
+            console.log(result)
+            this.store.dispatch(ServiceGroupActions.addNewItem({
+              item : {
+                service: { serviceConfigid : this.id },
+                product: result.product
+              }}))
           } else {}
         }
       });
