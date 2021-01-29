@@ -27,7 +27,8 @@ export class PopServiceComponent extends FormDialog implements OnDestroy {
 
   buildForm() {
     this.facade.loadAllShortCompanies();
-    this.listCompanies.subscribe(companies => this.regConfig = regConfService(this.data.service, companies))
+     const dataParams = JSON.parse(this.data.params);
+    this.listCompanies.subscribe(companies => this.regConfig = regConfService(this.data.service, companies,dataParams))
   }
 
   submit(value: any) {

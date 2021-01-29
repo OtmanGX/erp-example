@@ -47,7 +47,7 @@ export class ServiceCardComponent implements OnInit, GridView {
         this.data = value;
         this.passedData = [
           { label: 'Nom', value: value?.name },
-          { label: 'Etiquette d\'usine', value: value?.labelFactory },
+          { label: 'Désignation d\'usine', value: value?.labelFactory },
           { label: 'Paramètres', value: value?.params },
         ];
       }
