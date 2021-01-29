@@ -1,14 +1,16 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { PopProviderComponent } from '../pop-provider/pop-provider.component';
 import { getSelectedProvider } from '@TanglassStore/contact/lib/selectors/provider.selectors';
 import { loadProviderById } from '@TanglassStore/contact/lib/actions/provider.actions';
-import { Subscription } from 'rxjs';
 import { PopAddressComponent } from '../../components/pop-address/pop-address.component';
 import { PopShortContactComponent } from '../../contact/pop-short-contact/pop-short-contact.component';
+import { ActivatedRoute } from '@angular/router';
+import { ModelCardComponent } from '@tanglass-erp/material';
+import { takeUntil } from 'rxjs/operators';
+import { DetailedProvider } from '@TanglassStore/contact/index';
 
 const componentMapper = {
   address: PopAddressComponent,
@@ -22,18 +24,15 @@ const componentMapper = {
   styleUrls: ['./provider-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProviderCardComponent implements OnInit, OnDestroy {
+export class ProviderCardComponent extends ModelCardComponent {
   title = "Fournisseur";
   gap = "50px";
   showMessage = 'afficher';
   hideMessage = 'cacher';
-  id: string;
   stepContact = null;
   stepAddress = null;
-  data$ = this.store.select(getSelectedProvider);
-  data: any;
-  dataSubscription: Subscription;
-  passedData: any;
+  data$ = this.store.select(getSelectedProvider)
+    .pipe(takeUntil(this._onDestroy));
 
   contactPassedData = (contact) => [
     {label: 'Code', value: contact?.code},
@@ -51,24 +50,26 @@ export class ProviderCardComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<AppState>,
     public dialog: MatDialog,
-    private location: Location,
+    public route: ActivatedRoute,
     private cdRef: ChangeDetectorRef,
   ) {
-    this.id = (<any>location.getState()).id;
+    super(route);
   }
 
-  ngOnInit(): void {
+  dispatch(): void {
     this.store.dispatch(loadProviderById({id: this.id}));
-    this.dataSubscription = this.data$.subscribe(value => {
-      this.data = value;
-      this.passedData = [
-        {label: 'Nom', value: this.data?.name},
-        {label: 'Note', value: this.data?.note},
-        {label: 'Téléphone', value: this.data?.phone, type: 'phone'},
-        {label: 'E-mail', value: this.data?.mail, type: 'mail'},
-      ];
-      this.cdRef.detectChanges();
-    });
+  }
+
+  passData(data: DetailedProvider) {
+    return [
+      {label: 'Nom', value: this.data?.name},
+      {label: 'Note', value: this.data?.note},
+      {label: 'Téléphone', value: this.data?.phone, type: 'phone'},
+      {label: 'E-mail', value: this.data?.mail, type: 'mail'},
+    ];
+  }
+  afterComplete() {
+    this.cdRef.detectChanges();
   }
 
   openDialog(model, data = {}) {
@@ -92,6 +93,10 @@ export class ProviderCardComponent implements OnInit, OnDestroy {
         }
       }
     });
+  }
+
+  trackByFn(index, item) {
+    return index; // or item.id
   }
 
   // Contact Steps
@@ -126,9 +131,5 @@ export class ProviderCardComponent implements OnInit, OnDestroy {
   }
 
   deleteAdresse(id) {
-  }
-
-  ngOnDestroy(): void {
-    this.dataSubscription.unsubscribe();
   }
 }

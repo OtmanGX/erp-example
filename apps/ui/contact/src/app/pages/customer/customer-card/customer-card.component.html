@@ -14,8 +14,10 @@
         <button mat-button color="primary" (click)="openDialog('contact')">
           <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>&nbsp;&nbsp; Ajouter
         </button>
-        <mat-expansion-panel *ngFor="let item of data?.contacts; index as i" [expanded]="stepContact === i"
-                             (opened)="setStepContact(i)" >
+        <mat-expansion-panel *ngFor="let item of data?.contacts; index as i; trackBy: trackByFn"
+                             [expanded]="stepContact === i"
+                             (opened)="setStepContact(i)"
+                             [hideToggle]="true">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Contact
@@ -50,8 +52,10 @@
         <button mat-button color="primary" (click)="openDialog('address')">
           <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>&nbsp;&nbsp; Ajouter
         </button>
-        <mat-expansion-panel *ngFor="let item of data?.addresses; index as i" [expanded]="stepAddress === i"
-                             (opened)="setStepAddress(i)">
+        <mat-expansion-panel *ngFor="let item of data?.addresses; index as i; trackBy: trackByFn"
+                             [expanded]="stepAddress === i"
+                             (opened)="setStepAddress(i)"
+                             [hideToggle]="true">
           <mat-expansion-panel-header>
             <mat-panel-title class="mat-color-primary font-weight-bold">
               Adresse
