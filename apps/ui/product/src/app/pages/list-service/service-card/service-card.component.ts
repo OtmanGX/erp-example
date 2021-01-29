@@ -47,7 +47,7 @@ export class ServiceCardComponent implements OnInit, GridView {
       this.data = value;
       this.passedData = [
         { label: 'Nom', value: value?.name },
-        { label: 'Etiquette d\'usine', value: value?.labelFactory },
+        { label: 'Désignation d\'usine', value: value?.labelFactory },
         { label: 'Paramètres', value: null },
       ];
     });
@@ -88,6 +88,8 @@ export class ServiceCardComponent implements OnInit, GridView {
         if (result) {
           // Store action dispatching
           if (action === Operations.add) {
+            this.store.dispatch(ServiceGroupActions.addNewItem({item : result}));
+
           } else {}
         }
       });
