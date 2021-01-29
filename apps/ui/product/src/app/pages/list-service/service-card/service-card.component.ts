@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
-import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { ServiceConfig } from '@tanglass-erp/core/product';
@@ -10,7 +9,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ServiceHeaders } from '../../../utils/grid-headers';
 import { PopServiceComponent } from './pop-service/pop-service.component';
 import * as ServiceGroupActions from '@TanglassStore/product/lib/actions/servicesConfig.actions';
-import { getSelectedServiceConfig } from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
+import { getSelectedServiceConfig, getServicesOfSelectedServiceConfig } from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'ngx-service-card',
@@ -29,7 +30,7 @@ export class ServiceCardComponent implements OnInit, GridView {
   id: string;
   //data$: Observable<any> = of();
   data$ = this.store.select(getSelectedServiceConfig);
-
+  services$: any;
   data: ServiceConfig;
   passedData: any;
 
@@ -40,16 +41,17 @@ export class ServiceCardComponent implements OnInit, GridView {
   }
 
   ngOnInit(): void {
-    // this.store.dispatch(loadServiceById);
     this.store.dispatch(ServiceGroupActions.loadServiceConfigById({id: this.id}));
-
     this.data$.subscribe(value => {
-      this.data = value;
-      this.passedData = [
-        { label: 'Nom', value: value?.name },
-        { label: 'Etiquette d\'usine', value: value?.labelFactory },
-        { label: 'Paramètres', value: null },
-      ];
+      if(value) {
+        this.services$ = of(value.services);
+        this.data = value;
+        this.passedData = [
+          { label: 'Nom', value: value?.name },
+          { label: 'Etiquette d\'usine', value: value?.labelFactory },
+          { label: 'Paramètres', value: null },
+        ];
+      }
     });
   }
 

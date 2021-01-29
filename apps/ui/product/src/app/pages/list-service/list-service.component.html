@@ -2,8 +2,8 @@
 <div fxLayout="row" class="mt-8" fxLayoutGap="15px" fxLayoutAlign="center">
   <ngx-service-card-item fxFlex.lg="0 1 15" fxFlex.md="0 1 25" fxFlex.sm="0 1 50"
                          [data]="item"
-                         [routerLink]="['/service', item?.name]"
-                         [state]="item?.id" *ngFor="let item of (data$ | async)">
+                         [routerLink]="['/service', item?.id]"
+                         [state]="{id : item?.id}" *ngFor="let item of (data$ | async)">
   </ngx-service-card-item>
 </div>
 
