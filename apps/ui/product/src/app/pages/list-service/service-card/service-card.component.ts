@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ServiceHeaders } from '../../../utils/grid-headers';
 import { PopServiceComponent } from './pop-service/pop-service.component';
 import * as ServiceGroupActions from '@TanglassStore/product/lib/actions/servicesConfig.actions';
-import { getSelectedServiceConfig, getServicesOfSelectedServiceConfig } from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
+import { getSelectedServiceConfig } from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -49,7 +49,7 @@ export class ServiceCardComponent implements OnInit, GridView {
         this.passedData = [
           { label: 'Nom', value: value?.name },
           { label: 'Etiquette d\'usine', value: value?.labelFactory },
-          { label: 'Paramètres', value: null },
+          { label: 'Paramètres', value: value?.params },
         ];
       }
     });
@@ -90,6 +90,12 @@ export class ServiceCardComponent implements OnInit, GridView {
         if (result) {
           // Store action dispatching
           if (action === Operations.add) {
+            console.log(result)
+            this.store.dispatch(ServiceGroupActions.addNewItem({
+              item : {
+                service: { serviceConfigid : this.id },
+                product: result.product
+              }}))
           } else {}
         }
       });
