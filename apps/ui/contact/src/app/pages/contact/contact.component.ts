@@ -56,27 +56,27 @@ export class ContactComponent implements GridView {
     });
   }
 
-  contactAdapter(contact : Contact, affectation) {
+  contactAdapter(contact: Contact, affectation) {
     const insertedContact: InsertedContact = {
       ...contact,
-    }
+    };
     insertedContact.affectedCustomers = affectation.customers||[];
     insertedContact.affectedProviders = affectation.provider||[];
     insertedContact.customers = [];
     insertedContact.providers = [];
-    return insertedContact
+    return insertedContact;
   }
 
   eventTriggering(event) {
     // Store Action Dispatching
     switch (event.action) {
+      case Operations.add:
       case Operations.update:
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
         this.store.dispatch(ContactActions.removeContact({contactId: event.data[0].id}));
         break;
-      // ...
     }
   }
 

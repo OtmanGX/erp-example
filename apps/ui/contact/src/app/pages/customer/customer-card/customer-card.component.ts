@@ -1,14 +1,16 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { PopCustomerComponent } from '../pop-customer/pop-customer.component';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import { getSelectedCustomer } from '@TanglassStore/contact/lib/selectors/customer.selectors';
-import { Subscription } from 'rxjs';
 import { PopShortContactComponent } from '../../contact/pop-short-contact/pop-short-contact.component';
 import { PopAddressComponent } from '../../components/pop-address/pop-address.component';
+import { ModelCardComponent } from '@tanglass-erp/material';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { DetailedCustomer } from '@TanglassStore/contact/index';
 
 
 const componentMapper = {
@@ -23,18 +25,15 @@ const componentMapper = {
   styleUrls: ['./customer-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomerCardComponent implements OnInit, OnDestroy {
+export class CustomerCardComponent extends ModelCardComponent {
   title = "Client";
   gap = "50px";
   showMessage = 'afficher';
   hideMessage = 'cacher';
-  id: string;
   stepContact = null;
   stepAddress = null;
-  data$ = this.store.select(getSelectedCustomer);
-  data: any;
-  dataSubscription: Subscription;
-  passedData: any;
+  data$ = this.store.select(getSelectedCustomer)
+    .pipe(takeUntil(this._onDestroy));
 
   contactPassedData = (contact) => [
     {label: 'Code', value: contact?.code},
@@ -51,33 +50,33 @@ export class CustomerCardComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<AppState>,
-    private location: Location,
+    public route: ActivatedRoute,
     public dialog: MatDialog,
     private cdRef: ChangeDetectorRef,
   ) {
-    this.id = (<any>location.getState()).id;
+    super(route);
   }
 
-  ngOnInit(): void {
+  dispatch(): void {
     this.store.dispatch(CustomerActions.loadCustomerById({id: this.id}));
-    this.dataSubscription = this.data$
-      .subscribe(value => {
-      this.data = value;
-      this.passedData = [
-        {label: 'Nom', value: value?.name},
-        {label: 'Code', value: value?.code},
-        {label: 'ICE', value: value?.ICE},
-        {label: 'IF', value: value?.IF},
-        {label: 'E-mail', value: value?.mail, type: 'mail'},
-        {label: 'Téléphone', value: value?.phone, type: 'phone'},
-        {label: 'Note', value: value?.note},
-        {label: 'FAX', value: value?.FAX},
-        {label: 'Site web', value: value?.website, type: 'link'},
-        // {label: 'Contacts', type: 'view', code: 'contacts'},
-        // {label: 'Adresses', type: 'view', code: 'addresses'},
-      ];
-        this.cdRef.detectChanges();
-    });
+  }
+
+  afterComplete() {
+    this.cdRef.detectChanges();
+  }
+
+  passData(data: DetailedCustomer) {
+    return [
+      {label: 'Nom', value: data?.name},
+      {label: 'Code', value: data?.code},
+      {label: 'ICE', value: data?.ICE},
+      {label: 'IF', value: data?.IF},
+      {label: 'E-mail', value: data?.mail, type: 'mail'},
+      {label: 'Téléphone', value: data?.phone, type: 'phone'},
+      {label: 'Note', value: data?.note},
+      {label: 'FAX', value: data?.FAX},
+      {label: 'Site web', value: data?.website, type: 'link'},
+    ];
   }
 
   async openDialog(model, data = {}) {
@@ -101,6 +100,10 @@ export class CustomerCardComponent implements OnInit, OnDestroy {
         }
       }
     });
+  }
+
+  trackByFn(index, item) {
+    return index; // or item.id
   }
 
   // Contact Steps
@@ -135,10 +138,6 @@ export class CustomerCardComponent implements OnInit, OnDestroy {
   }
 
   deleteAdresse(id) {
-  }
-
-  ngOnDestroy(): void {
-    this.dataSubscription.unsubscribe();
   }
 
 }
