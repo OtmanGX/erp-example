@@ -41,6 +41,11 @@ export const getSelectedServiceConfig = createSelector(
   (state: State) => state.selectedServiceConfig
 );
 
+export const getServicesOfSelectedServiceConfig = createSelector(
+  getServiceConfigsState,
+  (state: State) => state.selectedServiceConfig.services
+);
+
 
 /********************************************************************************* */
 /****RETURN SERVICE GROUPE VIEW MODEL */

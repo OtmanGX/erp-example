@@ -1,10 +1,10 @@
 <ngx-fiche-card [title]="title"
                 [data]="passedData">
-  <ngx-main-grid [columnId]="columnId"
+  <ngx-main-grid  [columnId]="columnId"
                  [withToolbar]="true"
                  [withCrud]="true"
                  (triggerEvent)="eventTriggering($event)"
-                 [rowData]="data$"
+                 [rowData]="services$"
                  [columnDefs]="columnDefs">
   </ngx-main-grid>
 
