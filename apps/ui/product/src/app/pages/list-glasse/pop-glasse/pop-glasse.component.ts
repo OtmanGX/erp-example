@@ -2,8 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfigGlass } from '../../../utils/forms';
-import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
-import { AppState } from '@tanglass-erp/store/app';
 import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
 
 import { Store } from '@ngrx/store';

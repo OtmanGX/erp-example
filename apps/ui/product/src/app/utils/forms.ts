@@ -1,4 +1,5 @@
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
+import { AnyARecord } from 'dns';
 import { paramOptions } from './enum';
 
 export interface ParamField {
@@ -48,12 +49,12 @@ const regConfigProduct = (data?, listCompanies = []) => [
       FormDialog.REQUIRED
     ]
   },
-  {type: "select", label: "Sociétés", multiple: true, name: "companies", value: data?.product?.companies,
+  {type: "select", label: "Sociétés", multiple: true, name: "product_companies", value: data?.product?.companies,
     options: listCompanies.map(companie => ({key: companie.id, value: companie.name}))}
 ];
 
 
-const regConfigAccessory = (data?, listCompanies = []) => [
+const regConfigAccessory = (data?, listCompanies:any = []) => [
   {
     name: 'accessory',
     label: 'Accessoire',
@@ -82,18 +83,7 @@ const regConfigConsumable = (data?, listCompanies = []) => [
     label: 'Consommable',
     headerVisible: false,
     fields: [
-      {
-        type: "input", label: "Code", inputType: "text", name: "code", value: data?.code,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
-      {
-        type: "input", label: "Désignation", inputType: "text", name: "label", value: data?.label,
-        validations: [
-          FormDialog.REQUIRED
-        ]
-      },
+  
       {
         type: "input", label: "Type", inputType: "text", name: "category", value: data?.type,
         options: []
@@ -121,10 +111,11 @@ const regConfigGlass = (data?, listCompanies :any= []) => [
     label: 'Verre',
     headerVisible: false,
     fields: [
-      {type: "inputSelect", label: "Type", inputType: "text", name: "type", value: data?.type,
-        options: []},
-      {type: "inputSelect", label: "Couleur", inputType: "text", name: "color", value: data?.color,
-        options: []
+      {type: "input", label: "Type", inputType: "text", name: "type", value: data?.type,
+       // options: []
+      },
+      {type: "input", label: "Couleur", inputType: "text", name: "color", value: data?.color,
+        //options: []
       },
       {type: "input", label: "Epaisseur", inputType: "text", name: "thickness", value: data?.thickness},
     ]

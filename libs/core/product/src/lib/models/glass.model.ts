@@ -2,6 +2,7 @@ import { MetaData } from '@tanglass-erp/core/common';
 import { Substance, Product,InsertedProduct } from './shared.model';
 
 import { Service } from "./service.model";
+import { ShortConsumable } from './consumable.model';
 
 
 export interface Glass {
@@ -27,10 +28,13 @@ export interface DetailedGlass extends MetaData{
 
 
 export interface InsertedGlass {
+  glass:ShortGlass
+  product: InsertedProduct;
+  substance?: Substance;
+}
 
+ interface ShortGlass{
   type?: string;
   color?: string;
   thickness: number;
-  product: InsertedProduct;
-  substance?: Substance;
 }

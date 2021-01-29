@@ -73,6 +73,8 @@ export class ListConsumableComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
+          this.store.dispatch(ConsumableActions.addConsumable({consumable : result}));
+
         } else {} // Update
       }
     });

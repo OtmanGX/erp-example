@@ -19234,7 +19234,7 @@ export const InsertConsumableDocument = gql`
     }
   }
 export const InsertGlassDocument = gql`
-    mutation InsertGlass($color: String, $thickness: Int, $type: String, $subsctance: product_substance_insert_input! = {cost: 1.5, type: consumable}, $product: product_product_insert_input!) {
+    mutation InsertGlass($color: String, $thickness: Int, $type: String, $subsctance: product_substance_insert_input! = {cost: 1.5, type: glass}, $product: product_product_insert_input!) {
   insert_product_glass_one(
     object: {color: $color, thickness: $thickness, type: $type, product: {data: $product}, substance: {data: $subsctance}}
   ) {

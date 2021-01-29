@@ -73,6 +73,8 @@ export class ListGlasseComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
+          this.store.dispatch(GlassActions.addGlass({glass : result}));
+
         } else {}
       }
     });

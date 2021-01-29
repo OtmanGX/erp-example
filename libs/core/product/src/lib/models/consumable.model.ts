@@ -1,7 +1,7 @@
 import { InsertedProduct, Substance } from './shared.model';
 import { Service } from "./service.model";
 import {  Product } from './shared.model';
-import { MetaData } from '@tanglass-erp/core/common';
+import { MetaData, ShortCompany } from '@tanglass-erp/core/common';
 import {
   Product_Product_Insert_Input,
   Product_Product_Unit_Enum,
@@ -26,11 +26,15 @@ export interface DetailedConsumable extends MetaData{
 }
 
 export interface InsertedConsumable extends MetaData{
-  category:Product_ConsumableCategory_Enum;  // row material or consumable (enum consoCategory)
+  consumable:ShortConsumable
   Substance?: Substance;
   product: InsertedProduct
 }
 
+export interface ShortConsumable{
+  category:Product_ConsumableCategory_Enum;  // row material or consumable (enum consoCategory)
+
+}
 
 export interface ServiceConsumable {
 

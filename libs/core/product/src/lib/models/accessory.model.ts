@@ -29,8 +29,11 @@ export interface DetailedAccessory  extends MetaData{
 //for inserting an accessory
 
 export interface insertedAccessory{
-  category: Product_AccessoryTypes_Enum;
-  quota?: number;
   substance?: Substance;
   product: InsertedProduct;
+  accessory:ShortAccessory
+}
+export interface ShortAccessory{
+  category: Product_AccessoryTypes_Enum;
+  quota?: number;
 }

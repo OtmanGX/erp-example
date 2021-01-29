@@ -52,8 +52,13 @@ export interface DetailedService extends MetaData{
 
 
 export interface InsertedService extends MetaData{
-  serviceConfigid: string;
+  service:ShortService,
   product: InsertedProduct;
+
+}
+export interface ShortService
+{
+  serviceConfigid: string;
   paramValues?:string;
 
 }

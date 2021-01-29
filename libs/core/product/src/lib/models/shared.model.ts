@@ -3,7 +3,7 @@ import {
   Product_Product_Unit_Enum,
   Product_AccessoryTypes_Enum
 } from '@tanglass-erp/infrastructure/graphql';
-
+import { product_companies } from "../utils/dataAdapter";
 export interface Product {
 
   id?: string;
@@ -25,7 +25,7 @@ export interface InsertedProduct {
   price: number;
   priceMin?: number;
   priceMax?: number;
-  product_companies: { data: AffectedCompany[] };
+  product_companies: string[];
 }
 export interface Substance {
   id?: string;
@@ -38,9 +38,5 @@ export interface Company {
   name?: string
 }
 
-interface AffectedCompany {
 
-  companyid: string
-
-}
 

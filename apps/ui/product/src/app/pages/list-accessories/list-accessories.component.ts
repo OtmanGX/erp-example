@@ -19,7 +19,7 @@ import { Store } from '@ngrx/store';
 })
 export class ListAccessoriesComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$:Observable<Accessory[]> = this.store.select(AccessorySelectors.getAllAccessories);
+  data$: Observable<Accessory[]> = this.store.select(AccessorySelectors.getAllAccessories);
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
@@ -55,15 +55,11 @@ export class ListAccessoriesComponent implements GridView {
   setColumnDefs() {
     this.columnDefs = [
       ...AccessoryHeaders,
-      { field: 'id', headerName: 'Action', type: "editColumn"},
+      { field: 'id', headerName: 'Action', type: "editColumn" },
     ];
   }
 
-  accessoryAdapter(accessory) {
-    const insertedAccessory: insertedAccessory = 
-  {...accessory.accessory, product :{...accessory.product}}
-    return insertedAccessory
-  }
+
 
   openDialog(action, data = {}) {
     const dialogRef = this.dialog.open(PopAccessoriesComponent, {
@@ -76,10 +72,9 @@ export class ListAccessoriesComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-          console.log(result);
-          
-          this.store.dispatch(AccessoryActions.addAccessory({accessory : this.accessoryAdapter(result)}));
-        } else {} // Update
+
+          this.store.dispatch(AccessoryActions.addAccessory({ accessory: result }));
+        } else { } // Update
       }
     });
   }
