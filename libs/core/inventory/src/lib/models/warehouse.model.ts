@@ -17,3 +17,11 @@ export interface InsertedWarehouse {
     salePointid:string;
 }
 
+
+export interface DetailedWarehouse {
+    companyid:string;
+    name:string;
+    salePointid:string;
+    
+}
+

@@ -4,9 +4,9 @@ import { TransferOrder } from "./transrefOrder.model";
 //for the transfer ordered item data 
 
 export interface OrderItem {
-    id:string;
+    id?:string;
     quantity:number;
-    status:string;//pending or delivered
+    status?:string;//pending or delivered
     substance:ItemTransfer;
     item_tranfers:Transfered[]
 }
@@ -24,7 +24,7 @@ export interface ItemTransfer{
   accessory?:ProductTransfer
 }
 
-
+ 
 
 export interface ProductTransfer{
     product:{
