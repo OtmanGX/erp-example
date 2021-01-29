@@ -4,9 +4,11 @@ import {
   InsertServiceConfigGQL,
   GetServiceConfigByIdGQL,
   InsertServiceGQL,
-  Product_Product_Unit_Enum
+  Product_Product_Unit_Enum,
+  InsertServiceMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 import { ServiceConfig,DetailedServiceConfig, InsertedServiceConfig ,InsertedService} from "../models/service.model";
+import { adaptProduct } from '../utils/dataAdapter';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +42,9 @@ export class ServicesConfigService {
   }
 
   addOneItem(createdOne: InsertedService) {
-    return this.insertOneItemGQL.mutate(createdOne)
+    let addeValue:InsertServiceMutationVariables=adaptProduct(createdOne,'service')
+
+    return this.insertOneItemGQL.mutate(addeValue)
   }
 
 }

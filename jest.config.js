@@ -21,5 +21,8 @@ module.exports = {
     '<rootDir>/libs/store/contact',
     '<rootDir>/libs/core/inventory',
     '<rootDir>/libs/store/inventory',
+    '<rootDir>/libs/store/product',
+    '<rootDir>/libs/store/shared',
+    '<rootDir>/libs/core/common',
   ],
 };

@@ -8,7 +8,7 @@ import * as fromCompanies from './reducers/companies.reducer';
 import * as fromSalePoints from './reducers/sale-point-reducer';
 import * as fromUsers from './reducers/users.reducer';
 import { SalePointEffects } from './effects/sale-point.effects';
-import { CoreManagementModule } from '@tanglass-erp/core/management'
+import { CoreManagementModule } from '@tanglass-erp/core/management';
 import { AlertEffects } from './effects/alert.effects';
 import { ToastrModule } from 'ngx-toastr';
 

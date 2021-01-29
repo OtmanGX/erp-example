@@ -1,4 +1,4 @@
-import { MetaData } from "libs/core/shared/metaData";
+import { MetaData } from '@tanglass-erp/core/common';
 import { AffectedContact, InsertedContact } from "./contact.models";
 import { Address,PartialContact } from "./shared.models";
 

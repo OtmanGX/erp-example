@@ -1,7 +1,7 @@
-import { MetaData } from "libs/core/shared/metaData";
 import { InsertedCustomer, AffectedCustomer } from "./customer.models";
 import { InsertedProvider, AffectedProvider } from "./provider.models";
 import { Address } from "./shared.models";
+import { MetaData } from '@tanglass-erp/core/common';
 
 
 

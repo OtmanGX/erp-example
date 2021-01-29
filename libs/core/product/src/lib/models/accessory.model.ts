@@ -1,4 +1,4 @@
-import { MetaData } from 'libs/core/shared/metaData';
+import { MetaData } from '@tanglass-erp/core/common';
 import { Substance, Product, InsertedProduct } from './shared.model';
 import {
   Product_Product_Insert_Input,
@@ -29,8 +29,11 @@ export interface DetailedAccessory  extends MetaData{
 //for inserting an accessory
 
 export interface insertedAccessory{
-  category: Product_AccessoryTypes_Enum;
-  quota?: number;
   substance?: Substance;
   product: InsertedProduct;
+  accessory:ShortAccessory
+}
+export interface ShortAccessory{
+  category: Product_AccessoryTypes_Enum;
+  quota?: number;
 }

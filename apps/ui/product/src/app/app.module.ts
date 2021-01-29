@@ -8,6 +8,8 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from '@tanglass-erp/store/app';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { ProductModule } from './product.module'
+import { InfrastructureGraphqlModule } from '@tanglass-erp/infrastructure/graphql';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,11 +18,14 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    InfrastructureGraphqlModule,
+
     RouterModule.forRoot([{ path: '',
       loadChildren: () => import('./product.module').then(m => m.ProductModule) }], { initialNavigation: 'enabled' }),
     StoreModule.forRoot(reducers, {}),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot(),
+    ProductModule
   ],
   providers: [],
   bootstrap: [AppComponent],

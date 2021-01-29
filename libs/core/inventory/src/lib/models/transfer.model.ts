@@ -1,4 +1,4 @@
-import { MetaData } from "libs/core/shared/metaData";
+import { MetaData } from '@tanglass-erp/core/common';
 import { TransferOrder } from "./transrefOrder.model";
 
 //for the transfer ordered item data 

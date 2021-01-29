@@ -4,7 +4,8 @@ import {
   InsertAccessoryGQL,
   GetAccessoryByIdGQL,
   DeleteOneGQL,
-  DeleteManyGQL
+  DeleteManyGQL,
+  InsertAccessoryMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 import {  insertedAccessory } from "../models/accessory.model";
 import {
@@ -12,6 +13,7 @@ import {
   Product_AccessoryTypes_Enum,
   Product_ConsumableCategory_Enum
 } from "@tanglass-erp/infrastructure/graphql";
+import { adaptProduct } from '../utils/dataAdapter';
 
 @Injectable({
   providedIn: 'root'
@@ -41,9 +43,9 @@ product_companies:
 }
 ).subscribe(obj=>console.log(obj.data.insert_product_accessory_one))
 
+this.getOneById("eb6c4f62-a1ec-401e-a206-1274353a6245").subscribe(o=>console.log(o.data.product_accessory_by_pk))
 
  */
-this.getOneById("eb6c4f62-a1ec-401e-a206-1274353a6245").subscribe(o=>console.log(o.data.product_accessory_by_pk))
   }
 
   getAll() {
@@ -55,7 +57,8 @@ this.getOneById("eb6c4f62-a1ec-401e-a206-1274353a6245").subscribe(o=>console.log
   }
 
   insertOne(createdOne: insertedAccessory) {
-    return this.insertOneGQL.mutate(createdOne)
+   let addeValue:InsertAccessoryMutationVariables=adaptProduct(createdOne,'accessory')
+    return this.insertOneGQL.mutate(addeValue)
   }
 
   removeOne(code: string) {

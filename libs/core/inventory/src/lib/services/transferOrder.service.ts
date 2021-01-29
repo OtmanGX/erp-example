@@ -4,7 +4,7 @@ import {
   GetTransferByIdGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import * as fromTransfer from "../models/transrefOrder.model";
-import { flattenObj } from "libs/core/shared";
+import { flattenObj } from "@tanglass-erp/core/common";
 
 @Injectable({
   providedIn: 'root'

@@ -13725,7 +13725,7 @@ export type Stock_Transfer_Order = {
   createdAt: Scalars['date'];
   createdBy?: Maybe<Scalars['String']>;
   date: Scalars['date'];
-  deadline: Scalars['date'];
+  deadline?: Maybe<Scalars['date']>;
   fromWarehouseid: Scalars['uuid'];
   /** An object relationship */
   fromwarehouse: Stock_Warehouse;
@@ -16334,6 +16334,17 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type GetShortCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetShortCompaniesQuery = (
+  { __typename?: 'query_root' }
+  & { management_company: Array<(
+    { __typename?: 'management_company' }
+    & Pick<Management_Company, 'id' | 'name'>
+  )> }
+);
+
 export type AddContactAddressMutationVariables = Exact<{
   address: Contact_Address_Insert_Input;
   id?: Maybe<Scalars['uuid']>;
@@ -17705,6 +17716,25 @@ export const Product_ProductFragmentFragmentDoc = gql`
   price
 }
     `;
+export const GetShortCompaniesDocument = gql`
+    query GetShortCompanies {
+  management_company {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortCompaniesGQL extends Apollo.Query<GetShortCompaniesQuery, GetShortCompaniesQueryVariables> {
+    document = GetShortCompaniesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const AddContactAddressDocument = gql`
     mutation AddContactAddress($address: contact_address_insert_input!, $id: uuid) {
   insert_contact_contact_address_one(
@@ -19204,7 +19234,7 @@ export const InsertConsumableDocument = gql`
     }
   }
 export const InsertGlassDocument = gql`
-    mutation InsertGlass($color: String, $thickness: Int, $type: String, $subsctance: product_substance_insert_input! = {cost: 1.5, type: consumable}, $product: product_product_insert_input!) {
+    mutation InsertGlass($color: String, $thickness: Int, $type: String, $subsctance: product_substance_insert_input! = {cost: 1.5, type: glass}, $product: product_product_insert_input!) {
   insert_product_glass_one(
     object: {color: $color, thickness: $thickness, type: $type, product: {data: $product}, substance: {data: $subsctance}}
   ) {

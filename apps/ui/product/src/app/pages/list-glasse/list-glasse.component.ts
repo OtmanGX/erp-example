@@ -1,12 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 import { GridView, Operations } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import { PopGlasseComponent } from './pop-glasse/pop-glasse.component';
 import { GlassHeaders } from '../../utils/grid-headers';
-
+import { Store } from '@ngrx/store';
+import { AppState } from '@tanglass-erp/store/app';
+import * as GlassActions from '@TanglassStore/product/lib/actions/glass.actions';
+import * as GlassSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
 
 @Component({
   selector: 'ngx-list-matierePremiere',
@@ -15,18 +17,24 @@ import { GlassHeaders } from '../../utils/grid-headers';
 })
 export class ListGlasseComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$: Observable<any>;
+
+  data$ = this.store.select(GlassSelectors.getAllGlasses);;
+
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
 
   constructor(
     private dialog: MatDialog,
+    private store: Store<AppState>
+
   ) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
+    this.store.dispatch(GlassActions.loadGlasses());
+
   }
 
   ngAfterViewInit(): void {
@@ -65,6 +73,8 @@ export class ListGlasseComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
+          this.store.dispatch(GlassActions.addGlass({glass : result}));
+
         } else {}
       }
     });

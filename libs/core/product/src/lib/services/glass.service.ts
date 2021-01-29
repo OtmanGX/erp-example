@@ -4,9 +4,11 @@ import {
   GetGlassByIdGQL,
   InsertGlassGQL,
   DeleteOneGQL,
-  DeleteManyGQL
+  DeleteManyGQL,
+  InsertGlassMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 import { Glass,DetailedGlass, InsertedGlass } from "../models/glass.model";
+import { adaptProduct } from '../utils/dataAdapter';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +35,8 @@ export class GlassService {
   }
 
   insertOne(createdOne: InsertedGlass) {
-    return this.insertOneGQL.mutate(createdOne)
+    let addeValue:InsertGlassMutationVariables=adaptProduct(createdOne,'glasse')
+    return this.insertOneGQL.mutate(addeValue)
   }
 
   removeOne(code: string) {

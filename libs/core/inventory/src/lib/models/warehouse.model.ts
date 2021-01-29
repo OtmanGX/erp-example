@@ -1,4 +1,3 @@
-import { MetaData } from "libs/core/shared/metaData";
 import { SalePoint } from "@tanglass-erp/core/management";
 import { PartialData } from "./shared.models";
 

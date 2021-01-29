@@ -66,7 +66,9 @@
               "style-loader!leaflet/dist/leaflet.css"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["./libs/theme/tanglass-theme/src/"]
+              "includePaths": [
+                "./libs/theme/tanglass-theme/src/"
+              ]
             }
           },
           "configurations": {
@@ -179,7 +181,10 @@
               "libs/tanglass-core/tsconfig.lib.json",
               "libs/tanglass-core/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/tanglass-core/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/tanglass-core/**/*"
+            ]
           }
         },
         "test": {
@@ -209,7 +214,10 @@
               "libs/theme/tanglass-theme/tsconfig.lib.json",
               "libs/theme/tanglass-theme/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/theme/tanglass-theme/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/theme/tanglass-theme/**/*"
+            ]
           }
         },
         "test": {
@@ -239,7 +247,10 @@
               "libs/store/managment/tsconfig.lib.json",
               "libs/store/managment/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/store/managment/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/managment/**/*"
+            ]
           }
         },
         "test": {
@@ -311,7 +322,9 @@
               "style-loader!leaflet/dist/leaflet.css"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["./libs/theme/tanglass-theme/src/"]
+              "includePaths": [
+                "./libs/theme/tanglass-theme/src/"
+              ]
             }
           },
           "configurations": {
@@ -370,7 +383,10 @@
               "apps/ui/management/tsconfig.spec.json",
               "apps/ui/management/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ui/management/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui/management/**/*"
+            ]
           }
         },
         "test": {
@@ -403,8 +419,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/ui/management-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ui/management-e2e/**/*"]
+            "tsConfig": [
+              "apps/ui/management-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui/management-e2e/**/*"
+            ]
           }
         }
       }
@@ -429,7 +450,10 @@
             "polyfills": "apps/printer/src/polyfills.ts",
             "tsConfig": "apps/printer/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/printer/favicon.ico", "apps/printer/src/assets"],
+            "assets": [
+              "apps/printer/favicon.ico",
+              "apps/printer/src/assets"
+            ],
             "styles": [
               "apps/printer/src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.css",
@@ -463,7 +487,9 @@
               "style-loader!leaflet/dist/leaflet.css"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["./libs/theme/tanglass-theme/src/"]
+              "includePaths": [
+                "./libs/theme/tanglass-theme/src/"
+              ]
             }
           },
           "configurations": {
@@ -522,7 +548,10 @@
               "apps/printer/tsconfig.spec.json",
               "apps/printer/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/printer/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/printer/**/*"
+            ]
           }
         },
         "test": {
@@ -547,7 +576,10 @@
               "libs/theme/material/tsconfig.lib.json",
               "libs/theme/material/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/theme/material/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/theme/material/**/*"
+            ]
           }
         },
         "test": {
@@ -695,7 +727,10 @@
               "apps/ui/production/tsconfig.spec.json",
               "apps/ui/production/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ui/production/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui/production/**/*"
+            ]
           }
         },
         "test": {
@@ -728,8 +763,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/ui/production-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ui/production-e2e/**/*"]
+            "tsConfig": [
+              "apps/ui/production-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui/production-e2e/**/*"
+            ]
           }
         }
       }
@@ -747,7 +787,10 @@
               "libs/store/app/tsconfig.lib.json",
               "libs/store/app/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/store/app/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/app/**/*"
+            ]
           }
         },
         "test": {
@@ -873,7 +916,10 @@
               "apps/ui/inventory/tsconfig.spec.json",
               "apps/ui/inventory/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ui/inventory/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui/inventory/**/*"
+            ]
           }
         },
         "test": {
@@ -906,8 +952,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/ui/inventory-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ui/inventory-e2e/**/*"]
+            "tsConfig": [
+              "apps/ui/inventory-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui/inventory-e2e/**/*"
+            ]
           }
         }
       }
@@ -921,7 +972,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ag-grid/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/ag-grid/**/*.ts"
+            ]
           }
         },
         "test": {
@@ -983,7 +1036,8 @@
               "node_modules/socicon/css/socicon.css",
               "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
               "node_modules/leaflet/dist/leaflet.css",
-              "libs/theme/tanglass-theme/src/styles/styles.scss"
+              "libs/theme/tanglass-theme/src/styles/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ]
           },
           "configurations": {
@@ -1042,7 +1096,10 @@
               "apps/ui/product/tsconfig.spec.json",
               "apps/ui/product/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ui/product/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui/product/**/*"
+            ]
           }
         },
         "test": {
@@ -1075,8 +1132,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/ui/product-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ui/product-e2e/**/*"]
+            "tsConfig": [
+              "apps/ui/product-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui/product-e2e/**/*"
+            ]
           }
         }
       }
@@ -1127,7 +1189,10 @@
               "libs/core/management/tsconfig.lib.json",
               "libs/core/management/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/core/management/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/core/management/**/*"
+            ]
           }
         },
         "test": {
@@ -1157,7 +1222,10 @@
               "libs/core/product/tsconfig.lib.json",
               "libs/core/product/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/core/product/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/core/product/**/*"
+            ]
           }
         },
         "test": {
@@ -1187,7 +1255,10 @@
               "libs/core/contact/tsconfig.lib.json",
               "libs/core/contact/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/core/contact/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/core/contact/**/*"
+            ]
           }
         },
         "test": {
@@ -1240,7 +1311,9 @@
               "libs/theme/tanglass-theme/src/styles/styles.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": ["node_modules/chart.js/dist/Chart.min.js"]
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -1298,7 +1371,10 @@
               "apps/ui/contact/tsconfig.spec.json",
               "apps/ui/contact/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ui/contact/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui/contact/**/*"
+            ]
           }
         },
         "test": {
@@ -1331,8 +1407,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/ui/contact-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ui/contact-e2e/**/*"]
+            "tsConfig": [
+              "apps/ui/contact-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui/contact-e2e/**/*"
+            ]
           }
         }
       }
@@ -1350,7 +1431,10 @@
               "libs/store/contact/tsconfig.lib.json",
               "libs/store/contact/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/store/contact/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/contact/**/*"
+            ]
           }
         },
         "test": {
@@ -1380,7 +1464,10 @@
               "libs/core/inventory/tsconfig.lib.json",
               "libs/core/inventory/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/core/inventory/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/core/inventory/**/*"
+            ]
           }
         },
         "test": {
@@ -1410,13 +1497,109 @@
               "libs/store/inventory/tsconfig.lib.json",
               "libs/store/inventory/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/store/inventory/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/inventory/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/store/inventory/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "store-product": {
+      "projectType": "library",
+      "root": "libs/store/product",
+      "sourceRoot": "libs/store/product/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/product/tsconfig.lib.json",
+              "libs/store/product/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/product/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/product/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "store-shared": {
+      "projectType": "library",
+      "root": "libs/store/shared",
+      "sourceRoot": "libs/store/shared/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/shared/tsconfig.lib.json",
+              "libs/store/shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/shared/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "core-common": {
+      "projectType": "library",
+      "root": "libs/core/common",
+      "sourceRoot": "libs/core/common/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/common/tsconfig.lib.json",
+              "libs/core/common/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/common/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/common/jest.config.js",
             "passWithNoTests": true
           }
         }

@@ -22,8 +22,8 @@ import { ConsumableCardComponent } from './pages/list-consumable/consumable-card
 import { ServiceGlassCardComponent } from './pages/list-service-glasse/service-glass-card/service-glass-card.component';
 import { PopServiceConfigComponent } from './pages/list-service/pop-service-config/pop-service-config.component';
 import { PopServiceComponent } from './pages/list-service/service-card/pop-service/pop-service.component';
-
-
+import { StoreProductModule } from '@TanglassStore/product/index';
+import { StoreSharedModule} from "@tanglass-erp/store/shared";
 const popUps = [
   PopConsumableComponent,
   PopAccessoriesComponent,
@@ -63,58 +63,60 @@ const directives = [
 
 
 const routes: Routes = [
-  { path: '', component: ProductComponent,
-  children: [
-    {
-      path: '',
-      redirectTo: 'ListVerre',
-      pathMatch: 'full'
-    },
-    {
-      path: 'ListVerre',
-      component: ListGlasseComponent ,
-    },
-    {
-      path: 'ListVerre/:id',
-      component: GlassCardComponent ,
-    },
-    {
-      path: 'listConsommables',
-      component: ListConsumableComponent,
-    },
-    {
-      path: 'listConsommables/:id',
-      component: ConsumableCardComponent,
-    },
-    {
-      path: 'listAccessoires',
-      component: ListAccessoriesComponent,
-    },
-    {
-      path: 'listAccessoires/:id',
-      component: AccessoryCardComponent,
-    },
-    {
-      path: 'listServices',
-      component: ListServiceComponent,
-    },
-    {
-      path: 'service/:id',
-      component: ServiceCardComponent,
-    },
-    {
-      path: 'listServicesVerres',
-      component: ListServiceGlasseComponent,
-    },
-    {
-      path: 'listServicesVerres/:id',
-      component: ServiceGlassCardComponent,
-    },
-    {
-      path: 'listServicesConsommable',
-      component: ListServiceConsumableComponent,
-    }
-  ]},
+  {
+    path: '', component: ProductComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'ListVerre',
+        pathMatch: 'full'
+      },
+      {
+        path: 'ListVerre',
+        component: ListGlasseComponent,
+      },
+      {
+        path: 'ListVerre/:id',
+        component: GlassCardComponent,
+      },
+      {
+        path: 'listConsommables',
+        component: ListConsumableComponent,
+      },
+      {
+        path: 'listConsommables/:id',
+        component: ConsumableCardComponent,
+      },
+      {
+        path: 'listAccessoires',
+        component: ListAccessoriesComponent,
+      },
+      {
+        path: 'listAccessoires/:id',
+        component: AccessoryCardComponent,
+      },
+      {
+        path: 'listServices',
+        component: ListServiceComponent,
+      },
+      {
+        path: 'service/:id',
+        component: ServiceCardComponent,
+      },
+      {
+        path: 'listServicesVerres',
+        component: ListServiceGlasseComponent,
+      },
+      {
+        path: 'listServicesVerres/:id',
+        component: ServiceGlassCardComponent,
+      },
+      {
+        path: 'listServicesConsommable',
+        component: ListServiceConsumableComponent,
+      }
+    ]
+  },
 ];
 @NgModule({
   declarations: [
@@ -127,6 +129,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     MainAgGridModule,
+    StoreProductModule,
+    StoreSharedModule,
   ]
 })
 export class ProductModule { }

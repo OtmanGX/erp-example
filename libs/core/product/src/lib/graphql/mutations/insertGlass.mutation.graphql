@@ -1,6 +1,6 @@
 mutation InsertGlass($color: String , $thickness: Int, $type: String,
    $subsctance: product_substance_insert_input! = 
-  {cost: 1.5, type: consumable}
+  {cost: 1.5, type: glass}
  $product: product_product_insert_input!) {
   insert_product_glass_one(object: 
   {color: $color, thickness: $thickness, type: $type, product: {data: $product}

@@ -90,6 +90,14 @@
       "tags": []
     },
     "store-inventory": {
+    },
+    "store-product": {
+      "tags": []
+    },
+    "store-shared": {
+      "tags": []
+    },
+    "core-common": {
       "tags": []
     }
   }

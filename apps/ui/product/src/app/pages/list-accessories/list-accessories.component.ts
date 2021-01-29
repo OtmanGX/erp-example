@@ -5,7 +5,11 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { GridView, Operations } from '@tanglass-erp/ag-grid';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
 import { PopAccessoriesComponent } from './pop-accessories/pop-accessories.component';
+import { Accessory, insertedAccessory } from "@tanglass-erp/core/product";
 import { AccessoryHeaders } from '../../utils/grid-headers';
+import * as AccessorySelectors from '@TanglassStore/product/lib/selectors/accessory.selectors';
+import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
+import { Store } from '@ngrx/store';
 
 
 @Component({
@@ -15,18 +19,20 @@ import { AccessoryHeaders } from '../../utils/grid-headers';
 })
 export class ListAccessoriesComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$: Observable<any>;
+  data$: Observable<Accessory[]> = this.store.select(AccessorySelectors.getAllAccessories);
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
 
   constructor(
     private dialog: MatDialog,
+    private store: Store
   ) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
+    this.store.dispatch(AccessoryActions.loadAccessories());
   }
 
   ngAfterViewInit(): void {
@@ -49,9 +55,10 @@ export class ListAccessoriesComponent implements GridView {
   setColumnDefs() {
     this.columnDefs = [
       ...AccessoryHeaders,
-      { field: 'id', headerName: 'Action', type: "editColumn"},
+      { field: 'id', headerName: 'Action', type: "editColumn" },
     ];
   }
+
 
 
   openDialog(action, data = {}) {
@@ -66,7 +73,8 @@ export class ListAccessoriesComponent implements GridView {
         // Store action dispatching
         if (action === Operations.add) {
 
-        } else {} // Update
+          this.store.dispatch(AccessoryActions.addAccessory({ accessory: result }));
+        } else { } // Update
       }
     });
   }
