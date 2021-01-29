@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pop-service.component.scss'],
 })
 export class PopServiceComponent extends FormDialog implements OnDestroy {
-  title = "Ajouter une service";
+  title = "Ajouter collection de service";
   regConfig: Groupfield[] | any;
   companiesSubscription: Subscription;
   companies$ = this.store.select(CompanieSelectors.getAllCompanies);

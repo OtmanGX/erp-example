@@ -9,6 +9,8 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { ServiceHeaders } from '../../../utils/grid-headers';
 import { PopServiceComponent } from './pop-service/pop-service.component';
+import * as ServiceGroupActions from '@TanglassStore/product/lib/actions/servicesConfig.actions';
+import { getSelectedServiceConfig } from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
 
 @Component({
   selector: 'ngx-service-card',
@@ -25,7 +27,9 @@ export class ServiceCardComponent implements OnInit, GridView {
   // Card
   title = 'Service';
   id: string;
-  data$: Observable<any> = of();
+  //data$: Observable<any> = of();
+  data$ = this.store.select(getSelectedServiceConfig);
+
   data: ServiceConfig;
   passedData: any;
 
@@ -37,6 +41,8 @@ export class ServiceCardComponent implements OnInit, GridView {
 
   ngOnInit(): void {
     // this.store.dispatch(loadServiceById);
+    this.store.dispatch(ServiceGroupActions.loadServiceConfigById({id: this.id}));
+
     this.data$.subscribe(value => {
       this.data = value;
       this.passedData = [

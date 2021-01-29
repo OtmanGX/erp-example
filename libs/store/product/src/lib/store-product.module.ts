@@ -35,7 +35,7 @@ import { CoreProductModule } from '@tanglass-erp/core/product';
 
     ),
     StoreModule.forFeature(
-      ServiceReducer.SERVICE_FEATURE_KEY,
+      ServiceReducer.SERVICE_CONFIG_FEATURE_KEY,
       ServiceReducer.reducer,
 
     ),

@@ -4,26 +4,26 @@ import { createReducer, on, Action } from '@ngrx/store';
 import * as ServiceConfigActions from '../actions/servicesConfig.actions';
 import { ServiceConfig, DetailedServiceConfig } from '@tanglass-erp/core/product';
 
-export const SERVICE_FEATURE_KEY = 'services';
+export const SERVICE_CONFIG_FEATURE_KEY = 'serviceGroup';
 
 
 export interface State extends EntityState<ServiceConfig> {
-  selectedService: DetailedServiceConfig
+  selectedServiceConfig: DetailedServiceConfig
   loaded: boolean; // has the Service list been loaded
   error?: string | null; // last known error (if any)
 }
 
 export interface servicePartialState {
-  readonly [SERVICE_FEATURE_KEY]: State;
+  readonly [SERVICE_CONFIG_FEATURE_KEY]: State;
 }
 
-export const serviceAdapter: EntityAdapter<ServiceConfig> = createEntityAdapter<
+export const serviceConfigAdapter: EntityAdapter<ServiceConfig> = createEntityAdapter<
 ServiceConfig
 >();
 
-export const initialState: State = serviceAdapter.getInitialState({
+export const initialState: State = serviceConfigAdapter.getInitialState({
   // set initial required properties
-  selectedService: null,
+  selectedServiceConfig: null,
   loaded: false,
   error: null,
 });
@@ -31,7 +31,7 @@ export const initialState: State = serviceAdapter.getInitialState({
 const ServiceReducer = createReducer<State>(
   initialState,
   on( ServiceConfigActions.loadServiceConfigsSuccess,
-      (state, action)  => serviceAdapter.setAll(action.serviceConfigs,
+      (state, action)  => serviceConfigAdapter.setAll(action.serviceConfigs,
         {
          ...state,
          loaded: true
@@ -42,18 +42,18 @@ const ServiceReducer = createReducer<State>(
       {
         ...state,
         error: null,
-        selectedService: action.serviceConfig,
+        selectedServiceConfig: action.serviceConfig,
       }
     )
 ),
   on(ServiceConfigActions.addServiceConfigSuccess,
-    (state, action) => serviceAdapter.addOne(action.serviceConfig, state)
+    (state, action) => serviceConfigAdapter.addOne(action.serviceConfig, state)
   ),
   on(ServiceConfigActions.updateServiceConfigSuccess, (state, action) =>
-     serviceAdapter.upsertOne(action.serviceConfig, state)
+  serviceConfigAdapter.upsertOne(action.serviceConfig, state)
   ),
   on(ServiceConfigActions.removeServiceConfigSuccess, (state, action) =>
-     serviceAdapter.removeOne(action.serviceConfigId, state)
+  serviceConfigAdapter.removeOne(action.serviceConfigId, state)
   ),
   on(ServiceConfigActions.loadServiceConfigByIdFailure,
      ServiceConfigActions.loadServiceConfigsFailure,

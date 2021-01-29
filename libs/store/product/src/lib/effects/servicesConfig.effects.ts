@@ -46,6 +46,7 @@ export class ServiceEffects {
     return this.actions$.pipe(
       ofType(ServiceActions.loadServiceConfigById),
       mergeMap((action) =>
+      
         this.serviceConfigService.getOneById(action.id).pipe(
           map((data) =>
             ServiceActions.loadServiceConfigByIdSuccess({serviceConfig: data.data.product_serviceConfig_by_pk})
@@ -76,5 +77,7 @@ export class ServiceEffects {
 
 
   constructor(private actions$: Actions,
-              private serviceConfigService: ServicesConfigService) {}
+              private serviceConfigService: ServicesConfigService) {
+                
+              }
 }

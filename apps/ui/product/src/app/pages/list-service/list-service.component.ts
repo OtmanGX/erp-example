@@ -3,6 +3,9 @@ import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { Operations } from '@tanglass-erp/ag-grid';
 import { PopServiceConfigComponent } from './pop-service-config/pop-service-config.component';
+import * as ServiceGroupeSelectors from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
+import * as ServiceGroupeActions from '@TanglassStore/product/lib/actions/servicesConfig.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-list-service',
@@ -11,14 +14,20 @@ import { PopServiceConfigComponent } from './pop-service-config/pop-service-conf
 })
 export class ListServiceComponent implements OnInit {
 
-  data$: Observable<any>;
-  constructor(private dialog: MatDialog) { }
+  //data$: Observable<any>;
+  data$ = this.store.select(ServiceGroupeSelectors.getAllServiceConfigs);
+
+  constructor(private dialog: MatDialog,
+    private store: Store
+  ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(ServiceGroupeActions.loadServiceConfigs());
+
   }
 
 
-  openDialog(action, data= {}) {
+  openDialog(action, data = {}) {
     const dialogRef = this.dialog.open(PopServiceConfigComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
@@ -28,8 +37,10 @@ export class ListServiceComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Store action dispatching
+
         if (action === Operations.add) {
-        } else {}
+          this.store.dispatch(ServiceGroupeActions.addServiceConfig({ serviceConfig: result }));
+        } else { }
       }
     });
   }
