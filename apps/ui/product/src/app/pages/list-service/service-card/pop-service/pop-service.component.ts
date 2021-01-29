@@ -21,19 +21,19 @@ export class PopServiceComponent extends FormDialog implements OnDestroy {
     public dialogRef: MatDialogRef<PopServiceComponent>,
     private facade: ShortCompanyFacade,
     @Inject(MAT_DIALOG_DATA) public data: any
-      ) {
+  ) {
     super(dialogRef, data);
   }
 
   buildForm() {
     this.facade.loadAllShortCompanies();
-     const dataParams = JSON.parse(this.data.params);
-    this.listCompanies.subscribe(companies => this.regConfig = regConfService(this.data.service, companies,dataParams))
+    const dataParams = JSON.parse(this.data.params);
+    this.listCompanies.subscribe(companies => this.regConfig = regConfService(this.data.service, companies, dataParams))
   }
 
   submit(value: any) {
     this.dialogRef.close(value);
-    }
+  }
 
   ngOnDestroy(): void {
     // this.companiesSubscription.unsubscribe();

@@ -6,7 +6,7 @@ import { ServiceConfig } from '@tanglass-erp/core/product';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
-import { ServiceHeaders } from '../../../utils/grid-headers';
+import { ServiceHeaders, } from '../../../utils/grid-headers';
 import { PopServiceComponent } from './pop-service/pop-service.component';
 import * as ServiceGroupActions from '@TanglassStore/product/lib/actions/servicesConfig.actions';
 import { getSelectedServiceConfig } from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
@@ -37,6 +37,8 @@ export class ServiceCardComponent implements OnInit, GridView {
               private location: Location,
               public dialog: MatDialog) {
     this.id = (<any>this.location.getState()).id;
+    this.setColumnDefs();
+
   }
 
   ngOnInit(): void {
@@ -62,7 +64,7 @@ export class ServiceCardComponent implements OnInit, GridView {
     this.columnDefs = [
       ...ServiceHeaders,
       {field: 'id', headerName: 'Action', type: "editColumn"},
-    ];
+    ]; 
   }
   eventTriggering(event: any) {
       switch (event.action) {

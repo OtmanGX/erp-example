@@ -77,6 +77,7 @@ const AccessoryHeaders = [
 ];
 
 const ServiceHeaders = [
+  
   {
     headerName: 'Produit',
     children: ProductHeaders
