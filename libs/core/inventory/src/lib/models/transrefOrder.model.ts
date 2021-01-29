@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import { MetaData } from '@tanglass-erp/core/common';
 import { Warehouse  } from "./warehouse.model";
-=======
-import { MetaData } from "@tanglass-erp/core/shared";
-import { Warehouse } from "./warehouse.model";
->>>>>>> 362ff58 (insert transfer Order service)
 import { OrderItem } from "./transfer.model";
 import { Substance } from "libs/core/product/src/lib/models/shared.model";
 import { PartialData } from "./shared.models";
@@ -29,12 +24,13 @@ export interface DetailedTransferOrder extends MetaData {
 }
 
 
-export interface InsertedOrder {
+export interface InsertedTransferOrder {
     date: Date, 
     deadline: Date,
     fromWarehouseid: string,
     toWarehouseid: string,
     orderItems: Item[],
+    status:string
 
 }
 export interface Item {
