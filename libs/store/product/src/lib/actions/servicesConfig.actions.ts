@@ -1,4 +1,4 @@
-import { ServiceConfig, DetailedServiceConfig, InsertedServiceConfig, InsertedService } from '@tanglass-erp/core/product';
+import { ServiceConfig, DetailedServiceConfig, InsertedServiceConfig, InsertedService, Service } from '@tanglass-erp/core/product';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -103,7 +103,7 @@ export const addNewItem = createAction(
 );
 export const addNewItemSuccess = createAction(
   '[ServiceConfig Effect] add new Item to ServiceConfig Success',
-  props<{ serviceConfig: any }>()
+  props<{ service: Service }>()
 );
 export const addNewItemFailure = createAction(
   '[ServiceConfig Effect] add new Item to ServiceConfig failure',

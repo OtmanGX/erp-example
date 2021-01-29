@@ -46,7 +46,7 @@ export class ServiceEffects {
     return this.actions$.pipe(
       ofType(ServiceActions.loadServiceConfigById),
       mergeMap((action) =>
-      
+
         this.serviceConfigService.getOneById(action.id).pipe(
           map((data) =>
             ServiceActions.loadServiceConfigByIdSuccess({serviceConfig: data.data.product_serviceConfig_by_pk})
@@ -65,7 +65,8 @@ export class ServiceEffects {
       mergeMap((action) =>
         this.serviceConfigService.addOneItem(action.item).pipe(
           map((data) =>
-            ServiceActions.addNewItemSuccess({serviceConfig: data.data.insert_product_service_one})
+           ServiceActions.addNewItemSuccess({service: data.data.insert_product_service_one})
+
           ),
           catchError((error) =>
             of(ServiceActions.addNewItemFailure({ error }))
@@ -78,6 +79,6 @@ export class ServiceEffects {
 
   constructor(private actions$: Actions,
               private serviceConfigService: ServicesConfigService) {
-                
+
               }
 }

@@ -43,7 +43,7 @@ export class ServiceCardComponent implements OnInit, GridView {
     this.store.dispatch(ServiceGroupActions.loadServiceConfigById({id: this.id}));
     this.data$.subscribe(value => {
       if(value) {
-        this.services$ = of(value.services);
+        this.services$ = of(value.services.map(service => service));
         this.data = value;
         this.passedData = [
           { label: 'Nom', value: value?.name },

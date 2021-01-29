@@ -55,6 +55,19 @@ const ServiceReducer = createReducer<State>(
   on(ServiceConfigActions.removeServiceConfigSuccess, (state, action) =>
   serviceConfigAdapter.removeOne(action.serviceConfigId, state)
   ),
+  on(ServiceConfigActions.addNewItemSuccess, (state, action) => (
+    {
+      ...state,
+      selectedServiceConfig : {
+        ...state.selectedServiceConfig,
+        services : [
+          ...state.selectedServiceConfig.services,
+          action.service
+        ]
+      }
+    }
+  )
+  ),
   on(ServiceConfigActions.loadServiceConfigByIdFailure,
      ServiceConfigActions.loadServiceConfigsFailure,
      ServiceConfigActions.removeServiceConfigFailure,
