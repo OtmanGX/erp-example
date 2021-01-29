@@ -10,7 +10,6 @@ import { ServiceHeaders } from '../../../utils/grid-headers';
 import { PopServiceComponent } from './pop-service/pop-service.component';
 import * as ServiceGroupActions from '@TanglassStore/product/lib/actions/servicesConfig.actions';
 import { getSelectedServiceConfig } from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
-import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Component({
