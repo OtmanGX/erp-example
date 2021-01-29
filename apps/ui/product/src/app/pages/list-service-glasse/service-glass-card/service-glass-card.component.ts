@@ -1,35 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { Location } from '@angular/common';
-import { of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ModelCardComponent } from '@tanglass-erp/material';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ngx-service-glass-card',
   templateUrl: './service-glass-card.component.html',
   styleUrls: ['./service-glass-card.component.scss']
 })
-export class ServiceGlassCardComponent implements OnInit {
+export class ServiceGlassCardComponent extends ModelCardComponent {
   title = "Service Verre";
-  id: string;
-  data: any = of(null);
-  passedData: any;
+  data$: Observable<any>;
 
   constructor(private store: Store<AppState>,
-              private location: Location) {
-    this.id = (<any>this.location.getState()).id;
+              public route: ActivatedRoute) {
+    super(route);
   }
 
-  ngOnInit(): void {
-    // this.store.dispatch();
-    this.data.subscribe(value => {
-      this.passedData = [
-        {label: 'Nom', value: value?.service?.name},
-        {label: 'Paramètres', value: value?.service?.name},
-        {label: 'Type de verre', value: value?.glass?.type},
-        {label: 'Couleur de verre', value: value?.glass?.color},
-        {label: 'Epaisseur de verre', value: value?.glass?.thickness},
-      ];
-    });
+  afterComplete() {
+  }
+
+  dispatch(): void {
+  }
+
+  passData(data) {
+    return [
+      {label: 'Nom', value: data?.service?.name},
+      {label: 'Paramètres', value: data?.service?.name},
+      {label: 'Type de verre', value: data?.glass?.type},
+      {label: 'Couleur de verre', value: data?.glass?.color},
+      {label: 'Epaisseur de verre', value: data?.glass?.thickness},
+    ];
   }
 }

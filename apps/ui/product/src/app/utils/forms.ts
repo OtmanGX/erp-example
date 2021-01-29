@@ -1,12 +1,24 @@
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
-import { AnyARecord } from 'dns';
 import { paramOptions } from './enum';
+import {
+  Product,
+  Consumable,
+  Glass,
+  Accessory,
+  Service,
+  ServiceConfig,
+  Product_Product_Unit_Enum,
+  Product_AccessoryTypes_Enum,
+  Product_ConsumableCategory_Enum,
+} from '@TanglassStore/product/index';
+import { Observable } from 'rxjs';
 
 export interface ParamField {
   name: string;
   type: string;
 }
 
+type ListObservable = Array<any> | Observable<any>;
 
 function getParams(params) {
   const equivalence = new Map([
@@ -21,48 +33,54 @@ function getParams(params) {
   return value;
 }
 
-const regConfigProduct = (data?, listCompanies = []) => [
-  {type: "input", label: "Code", inputType: "text", name: "code", value: data?.product?.code,
+const regConfigProduct = (data?: Product, listCompanies: ListObservable = []) => [
+  {type: "input", label: "Code", inputType: "text", name: "code", value: data?.code,
     validations: [
       FormDialog.REQUIRED
     ]
   },
-  {type: "input", label: "Désignation", inputType: "text", name: "label", value: data?.product?.label,
+  {type: "input", label: "Désignation", inputType: "text", name: "label", value: data?.label,
     validations: [
       FormDialog.REQUIRED
     ]
   },
-  {type: "input", label: "Prix", inputType: "number", name: "price", value: data?.product?.price,
+  {type: "inputSelect", label: "Unité", inputType: "text", name: "label", value: data?.unit,
+    options: Object.values(Product_Product_Unit_Enum).map(item => ({key: item, value: item})),
+    validations: [
+      FormDialog.REQUIRED
+    ]
+  },
+  {type: "input", label: "Prix", inputType: "number", name: "price", value: data?.price,
     validations: [
       FormDialog.REQUIRED
     ]
   },
   {type: "input", label: "Prix min", inputType: "number", name: "priceMin",
-    value: data?.product?.price_min,
+    value: data?.priceMin,
     validations: [
       FormDialog.REQUIRED
     ]
   },
   {type: "input", label: "Prix max", inputType: "number", name: "priceMax",
-    value: data?.product?.price_max,
+    value: data?.priceMax,
     validations: [
       FormDialog.REQUIRED
     ]
   },
-  {type: "select", label: "Sociétés", multiple: true, name: "product_companies", value: data?.product?.companies,
-    options: listCompanies.map(companie => ({key: companie.id, value: companie.name}))}
+  {type: "select", label: "Sociétés", multiple: true, name: "product_companies", value: data?.companies,
+    options: listCompanies}
 ];
 
 
-const regConfigAccessory = (data?, listCompanies:any = []) => [
+const regConfigAccessory = (data?: Accessory, listCompanies: ListObservable = []) => [
   {
     name: 'accessory',
     label: 'Accessoire',
     headerVisible: false,
     fields: [
       {type: "input", label: "Quota", inputType: "number", name: "quota", value: data?.quota},
-      {type: "inputSelect", label: "Type", inputType: "text", name: "category", value: data?.type,
-        options: []},
+      {type: "inputSelect", label: "Type", inputType: "text", name: "category", value: data?.category,
+        options: Object.values(Product_AccessoryTypes_Enum).map(item => ({key: item, value: item}))},
 
     ]
   },
@@ -77,16 +95,15 @@ const regConfigAccessory = (data?, listCompanies:any = []) => [
 
 
 
-const regConfigConsumable = (data?, listCompanies = []) => [
+const regConfigConsumable = (data?: Consumable, listCompanies: ListObservable = []) => [
   {
     name: 'consumable',
     label: 'Consommable',
     headerVisible: false,
     fields: [
-  
       {
-        type: "input", label: "Type", inputType: "text", name: "category", value: data?.type,
-        options: []
+        type: "inputSelect", label: "Catégorie", inputType: "text", name: "category", value: data?.category,
+        options: Object.values(Product_ConsumableCategory_Enum).map(item => ({key: item, value: item}))
       },
     ]
   },
@@ -99,7 +116,7 @@ const regConfigConsumable = (data?, listCompanies = []) => [
 ];
 
 
-const regConfigGlass = (data?, listCompanies :any= []) => [
+const regConfigGlass = (data?: Glass, listCompanies: ListObservable = []) => [
   {
     name: "product",
     label: "Produit",
@@ -111,19 +128,15 @@ const regConfigGlass = (data?, listCompanies :any= []) => [
     label: 'Verre',
     headerVisible: false,
     fields: [
-      {type: "input", label: "Type", inputType: "text", name: "type", value: data?.type,
-       // options: []
-      },
-      {type: "input", label: "Couleur", inputType: "text", name: "color", value: data?.color,
-        //options: []
-      },
-      {type: "input", label: "Epaisseur", inputType: "text", name: "thickness", value: data?.thickness},
+      {type: "input", label: "Type", inputType: "text", name: "type", value: data?.type, },
+      {type: "input", label: "Couleur", inputType: "text", name: "color", value: data?.color, },
+      {type: "input", label: "Epaisseur", inputType: "number", name: "thickness", value: data?.thickness},
     ]
   }
 ];
 
 
-const regConfigServiceConfig = (data?) => [
+const regConfigServiceConfig = (data?: ServiceConfig) => [
   {
     name: "service",
     label: "Service",
@@ -146,7 +159,7 @@ const regConfigServiceConfig = (data?) => [
   },
 ];
 
-const regConfService = (data?, listCompanies = [], params?: ParamField[]) => [
+const regConfService = (data?: Service, listCompanies: ListObservable = [], params?: ParamField[]) => [
   {
     name: "product",
     label: "Produit",
@@ -172,7 +185,7 @@ const regParamForm = [
 ];
 
 
-const regConfigServiceConsumable = (data?, services = []) => [
+const regConfigServiceConsumable = (data?, services: ListObservable = []) => [
   {type: "select", label: "Service", inputType: "text", name: "service", value: data?.service,
     options: services},
   {type: "input", label: "Quota", inputType: "text", name: "quota", value: data?.quota},
@@ -181,7 +194,7 @@ const regConfigServiceConsumable = (data?, services = []) => [
 ];
 
 
-const regConfigServiceGlass = (data?, services = [], glasses = []) => [
+const regConfigServiceGlass = (data?, services: ListObservable = [], glasses: ListObservable = []) => [
   {type: "select", label: "Service", inputType: "text", name: "service", value: data?.service,
     options: services, validations: [FormDialog.REQUIRED]},
   {type: "input", label: "Etiquette d\'usine", inputType: "text", name: "labelFactory",

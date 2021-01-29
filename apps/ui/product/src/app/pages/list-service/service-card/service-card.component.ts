@@ -1,21 +1,23 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
-import { Observable, of } from 'rxjs';
+import { Component, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { ServiceConfig } from '@tanglass-erp/core/product';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { ServiceHeaders } from '../../../utils/grid-headers';
 import { PopServiceComponent } from './pop-service/pop-service.component';
+import { ModelCardComponent } from '@tanglass-erp/material';
+import { ActivatedRoute } from '@angular/router';
+import { loadServiceById } from '@TanglassStore/product/lib/actions/service.actions';
+import { DetailedService } from '@TanglassStore/product/index';
 
 @Component({
   selector: 'ngx-service-card',
   templateUrl: './service-card.component.html',
   styleUrls: ['./service-card.component.scss']
 })
-export class ServiceCardComponent implements OnInit, GridView {
+export class ServiceCardComponent extends ModelCardComponent implements GridView {
   // AgGrid
   @ViewChild(MainGridComponent) mainGrid;
   agGrid: AgGridAngular;
@@ -24,31 +26,31 @@ export class ServiceCardComponent implements OnInit, GridView {
 
   // Card
   title = 'Service';
-  id: string;
-  data$: Observable<any> = of();
-  data: ServiceConfig;
-  passedData: any;
+  data$: Observable<any>;
 
   constructor(private store: Store<AppState>,
-              private location: Location,
+              public route: ActivatedRoute,
               public dialog: MatDialog) {
-    this.id = (<any>this.location.getState()).id;
-  }
-
-  ngOnInit(): void {
-    // this.store.dispatch(loadServiceById);
-    this.data$.subscribe(value => {
-      this.data = value;
-      this.passedData = [
-        { label: 'Nom', value: value?.name },
-        { label: 'Etiquette d\'usine', value: value?.labelFactory },
-        { label: 'Paramètres', value: null },
-      ];
-    });
+    super(route);
   }
 
   ngAfterViewInit(): void {
     this.agGrid = this.mainGrid.agGrid;
+  }
+
+  afterComplete() {
+  }
+
+  dispatch(): void {
+    this.store.dispatch(loadServiceById({id: this.id}));
+  }
+
+  passData(data: DetailedService) {
+    return [
+      { label: 'Nom', value: data?.serviceConfig?.name },
+      { label: 'Etiquette d\'usine', value: data?.serviceConfig?.labelFactory },
+      { label: 'Paramètres', value: null },
+    ];
   }
 
   setColumnDefs(): void {

@@ -1,47 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { Location } from '@angular/common';
-import { of } from 'rxjs';
-import { DetailedGlass } from "@tanglass-erp/core/product";
+import { DetailedGlass } from "@TanglassStore/product/index";
 import * as GlassActions from '@TanglassStore/product/lib/actions/glass.actions';
 import { getSelectedGlass } from '@TanglassStore/product/lib/selectors/glass.selectors';
+import { ModelCardComponent } from '@tanglass-erp/material';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-glass-card',
   templateUrl: './glass-card.component.html',
   styleUrls: ['./glass-card.component.scss']
 })
-export class GlassCardComponent implements OnInit {
+export class GlassCardComponent extends ModelCardComponent {
   title = "Verre";
-  id: string;
-  //data$: any = of(null);
-  data$ = this.store.select(getSelectedGlass);
-
-  passedData: any;
+  data$ = this.store.select(getSelectedGlass)
+    .pipe(takeUntil(this._onDestroy));
 
   constructor(private store: Store<AppState>,
-    private location: Location) {
-    this.id = (<any>this.location.getState()).id;
+    public route: ActivatedRoute) {
+    super(route);
   }
 
-  ngOnInit(): void {
-    // this.store.dispatch();
+  dispatch(): void {
     this.store.dispatch(GlassActions.loadGlassById({ id: this.id }));
-
-    this.data$.subscribe(value => {
-      this.passedData = [
-        { label: 'Code', value: value?.product.code },
-        { label: 'Type', value: value?.type },
-        { label: 'Couleur', value: value?.color },
-        { label: 'Epaisseur', value: value?.thickness },
-        { label: 'Désignation', value: value?.product.label },
-        { label: 'Unité', value: value?.product.unit },
-        { label: 'Prix', value: value?.product?.price },
-        { label: 'Prix min', value: value?.product?.priceMin },
-        { label: 'Prix max', value: value?.product?.priceMax },
-        { label: 'Sociétés', value: value?.product?.companies, type: 'chips' },
-      ];
-    });
   }
+
+  passData(data: DetailedGlass) {
+    return [
+      { label: 'Code', value: data?.product.code },
+      { label: 'Type', value: data?.type },
+      { label: 'Couleur', value: data?.color },
+      { label: 'Epaisseur', value: data?.thickness },
+      { label: 'Désignation', value: data?.product.label },
+      { label: 'Unité', value: data?.product.unit },
+      { label: 'Prix', value: data?.product?.price },
+      { label: 'Prix min', value: data?.product?.priceMin },
+      { label: 'Prix max', value: data?.product?.priceMax },
+      { label: 'Sociétés', value: data?.product?.companies.map(elem => elem.name), type: 'chips' },
+    ];
+  }
+
+  afterComplete() {}
+
 }

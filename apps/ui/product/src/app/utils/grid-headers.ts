@@ -1,7 +1,6 @@
 
 const ProductHeaders = [
   { field: 'product.code', headerName: 'Code', type: "textColumn" },
-  //{ field: 'Catégorie', headerName: 'category',type:"textColumn" },
   { field: 'product.label', headerName: 'Désignation', type: "textColumn" },
   { field: 'product.unit', headerName: 'Unité', type: "numberColumn" },
   { field: 'product.price', headerName: 'Prix', type: "numberColumn" },
@@ -17,8 +16,7 @@ const GlassHeaders = [
         field: 'product.code', headerName: 'Code', type: "linkColumn",
         cellRendererParams: (params) => (
           {
-            link: `/ListVerre/${params.value}`,
-            state: { id: params?.data?.id },
+            link: `/ListVerre/${params.data.id}`,
           })
       },
       { field: 'type', headerName: 'Type', type: "textColumn" },
@@ -41,11 +39,10 @@ const ConsumableHeaders = [
         field: 'product.code', headerName: 'Code', type: "linkColumn",
         cellRendererParams: (params) => (
           {
-            link: `/listConsommables/${params.value}`,
-            state: { id: params?.data?.id },
+            link: `/listConsommables/${params.data.id}`,
           })
       },
-      { field: 'category', headerName: 'Catégory', type: "textColumn" },
+      { field: 'category', headerName: 'Catégory' },
     ]
   },
   {
@@ -62,11 +59,10 @@ const AccessoryHeaders = [
         field: 'product.code', headerName: 'Code', type: "linkColumn",
         cellRendererParams: (params) => (
           {
-            link: `/listAccessoires/${params.value}`,
-            state: { id: params?.data?.id },
+            link: `/listAccessoires/${params.data.id}`,
           })
       },
-      { field: 'category', headerName: 'Catégory',type: "textColumn" },
+      { field: 'category', headerName: 'Catégory' },
       { field: 'quota', headerName: 'Quota', type: "numberColumn" },
     ]
   },
@@ -97,8 +93,7 @@ const ServiceGlassHeaders = [
         field: 'labelFactory', headerName: 'Désignation de fabrication ', type: "linkColumn",
         cellRendererParams: (params) => (
           {
-            link: `/listServicesVerres/${params.value}`,
-            state: { id: params?.data?.id },
+            link: `/listServicesVerres/${params.data.id}`,
           })
       },
     ]
