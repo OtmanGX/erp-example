@@ -9,11 +9,11 @@ import { ServiceHeaders, } from '../../../utils/grid-headers';
 import { PopServiceComponent } from './pop-service/pop-service.component';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
-import { loadServiceById } from '@TanglassStore/product/lib/actions/service.actions';
-import { DetailedService } from '@TanglassStore/product/index';
+import { DetailedServiceConfig, ServiceConfig } from '@TanglassStore/product/index';
 import * as ServiceGroupActions from '@TanglassStore/product/lib/actions/servicesConfig.actions';
 import { getSelectedServiceConfig } from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
 import { of } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-service-card',
@@ -29,7 +29,8 @@ export class ServiceCardComponent extends ModelCardComponent implements GridView
 
   // Card
   title = 'Service';
-  data$ = this.store.select(getSelectedServiceConfig);
+  data$ = this.store.select(getSelectedServiceConfig)
+    .pipe(filter(data => !!data));
   services$: any;
   data: ServiceConfig;
 
@@ -54,12 +55,12 @@ export class ServiceCardComponent extends ModelCardComponent implements GridView
     // this.store.dispatch(loadServiceById({id: this.id}));
   }
 
-  passData(data: DetailedService) {
-    this.services$ = of(value.services.map(service => service));
+  passData(data: DetailedServiceConfig) {
+    this.services$ = of(data.services.map(service => service));
     return [
-      { label: 'Nom', value: data?.serviceConfig?.name },
-      { label: 'Etiquette d\'usine', value: data?.serviceConfig?.labelFactory },
-      { label: 'Paramètres', value: value?.params },
+      { label: 'Nom', value: data?.name },
+      { label: 'Etiquette d\'usine', value: data?.labelFactory },
+      { label: 'Paramètres', value: data?.params },
     ];
   }
 
@@ -67,7 +68,7 @@ export class ServiceCardComponent extends ModelCardComponent implements GridView
     this.columnDefs = [
       ...ServiceHeaders,
       {field: 'id', headerName: 'Action', type: "editColumn"},
-    ]; 
+    ];
   }
   eventTriggering(event: any) {
       switch (event.action) {
@@ -94,12 +95,12 @@ export class ServiceCardComponent extends ModelCardComponent implements GridView
         if (result) {
           // Store action dispatching
           if (action === Operations.add) {
-            console.log(result)
+            console.log(result);
             this.store.dispatch(ServiceGroupActions.addNewItem({
               item : {
                 service: { serviceConfigid : this.id },
                 product: result.product
-              }}))
+              }}));
           } else {}
         }
       });
