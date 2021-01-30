@@ -16832,6 +16832,22 @@ export type GetProviderByIdQuery = (
   )> }
 );
 
+export type DeleteManyWarehousesMutationVariables = Exact<{
+  ids?: Maybe<Array<Scalars['uuid']>>;
+}>;
+
+
+export type DeleteManyWarehousesMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_stock_warehouse?: Maybe<(
+    { __typename?: 'stock_warehouse_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'id'>
+    )> }
+  )> }
+);
+
 export type InsertTransferOrderMutationVariables = Exact<{
   date?: Maybe<Scalars['date']>;
   fromWarehouseid: Scalars['uuid'];
@@ -18515,6 +18531,26 @@ export const GetProviderByIdDocument = gql`
   })
   export class GetProviderByIdGQL extends Apollo.Query<GetProviderByIdQuery, GetProviderByIdQueryVariables> {
     document = GetProviderByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyWarehousesDocument = gql`
+    mutation DeleteManyWarehouses($ids: [uuid!]) {
+  delete_stock_warehouse(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyWarehousesGQL extends Apollo.Mutation<DeleteManyWarehousesMutation, DeleteManyWarehousesMutationVariables> {
+    document = DeleteManyWarehousesDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

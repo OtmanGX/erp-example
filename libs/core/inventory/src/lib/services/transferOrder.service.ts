@@ -21,12 +21,7 @@ export class TransferOrderService {
 
     ) {
       let transferOrder:fromTransfer.DetailedTransferOrder
-       this.getOneById(1).pipe(
-        map(data =>{
-          flattenObj(data.data.stock_transfer_order_by_pk)
-        }
-      
-        )).subscribe(o=>console.log(o))
+       this.getOneById(1).subscribe(o=>flattenObj(o.data.stock_transfer_order_by_pk))
       }
   
     getAll() {

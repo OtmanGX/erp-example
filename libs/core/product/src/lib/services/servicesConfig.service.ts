@@ -5,7 +5,8 @@ import {
   GetServiceConfigByIdGQL,
   InsertServiceGQL,
   Product_Product_Unit_Enum,
-  InsertServiceMutationVariables
+  InsertServiceMutationVariables,
+  DeleteManyGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { ServiceConfig,DetailedServiceConfig, InsertedServiceConfig ,InsertedService} from "../models/service.model";
 import { adaptProduct } from '../utils/dataAdapter';
@@ -19,6 +20,8 @@ export class ServicesConfigService {
     private getByIdGQL: GetServiceConfigByIdGQL,
     private insertOneGQL: InsertServiceConfigGQL,
     private insertOneItemGQL:InsertServiceGQL,
+    private deleteMany:DeleteManyGQL
+
   ) {
     /*** 
     this.getOneById('ee196a6a-9291-4932-b067-64d976cc5a20').subscribe(obj =>
@@ -46,5 +49,8 @@ export class ServicesConfigService {
 
     return this.insertOneItemGQL.mutate(addeValue)
   }
-
+  
+  removeManyItems(codes: string[]) {
+    return this.deleteMany.mutate({codes})
+  }
 }

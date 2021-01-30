@@ -1,3 +1,4 @@
+import { MetaData } from "@tanglass-erp/core/common";
 import { SalePoint } from "@tanglass-erp/core/management";
 import { PartialData } from "./shared.models";
 
@@ -18,10 +19,11 @@ export interface InsertedWarehouse {
 }
 
 
-export interface DetailedWarehouse {
-    companyid:string;
+export interface DetailedWarehouse  extends MetaData{
+    id:string;
     name:string;
-    salePointid:string;
+    company:PartialData;
+    salesPoint?:PartialData;
     
 }
 
