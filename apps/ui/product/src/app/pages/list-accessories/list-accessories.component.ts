@@ -19,7 +19,7 @@ import { Store } from '@ngrx/store';
 })
 export class ListAccessoriesComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$: Observable<Accessory[]> = this.store.select(AccessorySelectors.getAllAccessories);
+  data$ = this.store.select(AccessorySelectors.getAllAccessories);
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;

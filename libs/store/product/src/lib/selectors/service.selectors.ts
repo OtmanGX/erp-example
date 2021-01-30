@@ -36,7 +36,7 @@ export const getServiceEntities = createSelector(
   (state: State) => selectEntities(state)
 );
 
-export const getSelectedCompanie = createSelector(
+export const getSelectedService = createSelector(
   getServicesState,
   (state: State) => state.selectedService
 );

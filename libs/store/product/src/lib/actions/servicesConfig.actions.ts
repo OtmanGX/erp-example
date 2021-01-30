@@ -1,4 +1,4 @@
-import { ServiceConfig, DetailedServiceConfig } from '@tanglass-erp/core/product';
+import { ServiceConfig, DetailedServiceConfig, InsertedServiceConfig, InsertedService, Service } from '@tanglass-erp/core/product';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -10,7 +10,7 @@ export const loadServiceConfigs= createAction('[ServiceConfigs Component] Load S
 
 export const loadServiceConfigsSuccess = createAction(
   '[ServiceConfig Effect] Load ServiceConfigs Success',
-  props<{ ServiceConfigs: ServiceConfig[] }>()
+  props<{ serviceConfigs: ServiceConfig[] }>()
 );
 
 export const loadServiceConfigsFailure = createAction(
@@ -31,7 +31,7 @@ export const loadServiceConfigById = createAction(
 
 export const loadServiceConfigByIdSuccess = createAction(
   '[ServiceConfig Effect] Load ServiceConfig By Id Success',
-  props<{ ServiceConfig: DetailedServiceConfig }>()
+  props<{ serviceConfig: DetailedServiceConfig }>()
 );
 
 export const loadServiceConfigByIdFailure = createAction(
@@ -46,12 +46,12 @@ export const loadServiceConfigByIdFailure = createAction(
 
 export const addServiceConfig = createAction(
   '[ServiceConfigs Component] Add ServiceConfig',
-  props<{ ServiceConfig: ServiceConfig }>()
+  props<{ serviceConfig: InsertedServiceConfig }>()
 );
 
 export const addServiceConfigSuccess = createAction(
   '[ServiceConfig Effect] Add ServiceConfig Success',
-  props<{ ServiceConfig: ServiceConfig }>()
+  props<{ serviceConfig: ServiceConfig }>()
 );
 
 export const addServiceConfigFailure = createAction(
@@ -65,11 +65,11 @@ export const addServiceConfigFailure = createAction(
 
 export const updateServiceConfig = createAction(
   '[ServiceConfigs Component] Update ServiceConfig',
-  props<{ ServiceConfig: ServiceConfig }>()
+  props<{ serviceConfig: ServiceConfig }>()
 );
 export const updateServiceConfigSuccess = createAction(
   '[ServiceConfig Effect] Update ServiceConfig Success',
-  props<{ ServiceConfig: ServiceConfig }>()
+  props<{ serviceConfig: ServiceConfig }>()
 );
 export const updateServiceConfigFailure = createAction(
   '[ServiceConfig Effect] Update ServiceConfig failure',
@@ -81,14 +81,31 @@ export const updateServiceConfigFailure = createAction(
 /****************************************************************** */
 
 export const removeServiceConfig = createAction(
-  '[ServiceConfigs Component] Update ServiceConfig',
-  props<{ ServiceConfig: ServiceConfig }>()
+  '[ServiceConfigs Component] Delete ServiceConfig',
+  props<{ serviceConfigId: any }>()
 );
 export const removeServiceConfigSuccess = createAction(
-  '[ServiceConfig Effect] Update ServiceConfig Success',
-  props<{ ServiceConfig: ServiceConfig }>()
+  '[ServiceConfig Effect] Delete ServiceConfig Success',
+  props<{ serviceConfigId: any }>()
 );
 export const removeServiceConfigFailure = createAction(
-  '[ServiceConfig Effect] Update ServiceConfig failure',
+  '[ServiceConfig Effect] Delete ServiceConfig failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****ADD NEW ITEM TO SERVICE ** */
+/****************************************************************** */
+
+export const addNewItem = createAction(
+  '[ServiceConfigs Component] add new Item to  ServiceConfig',
+  props<{ item: InsertedService}>()
+);
+export const addNewItemSuccess = createAction(
+  '[ServiceConfig Effect] add new Item to ServiceConfig Success',
+  props<{ service: Service }>()
+);
+export const addNewItemFailure = createAction(
+  '[ServiceConfig Effect] add new Item to ServiceConfig failure',
   props<{ error: any }>()
 );

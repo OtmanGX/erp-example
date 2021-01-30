@@ -2,11 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfService } from '../../../../utils/forms';
-import * as CompanieActions from '@TanglassStore/management/lib/actions/companies.actions';
-import * as CompanieSelectors from '@TanglassStore/management/lib/selectors/companies.selectors';
-import { Store } from '@ngrx/store';
-import { AppState } from '@tanglass-erp/store/app';
 import { map } from 'rxjs/operators';
+import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
+
 
 @Component({
   selector: 'ngx-pop-service-config',
@@ -14,26 +12,25 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./pop-service.component.scss'],
 })
 export class PopServiceComponent extends FormDialog {
-  title = "Ajouter une service";
+  title = "Ajouter collection de service";
   regConfig: Groupfield[] | any;
-  companies$ = this.store.select(CompanieSelectors.getAllCompanies)
+  companies$ = this.facade.allShortCompany$
     .pipe(map(item => item.map(company => ({key: company.id, value: company.name})))
     );
   params = [];
 
   constructor(
     public dialogRef: MatDialogRef<PopServiceComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private store: Store<AppState>
+    private facade: ShortCompanyFacade,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     super(dialogRef, data);
   }
 
   buildForm() {
-    this.store.dispatch(CompanieActions.loadCompanies());
-    this.regConfig = regConfService(this.data.service, this.companies$);
-    // const dataParams = JSON.parse(this.data.params);
-    //   this.regConfig = regConfService(this.data.service, this.companies$, dataParams);
+    this.facade.loadAllShortCompanies();
+    const dataParams = JSON.parse(this.data.params);
+    this.regConfig = regConfService(this.data.service, this.companies$, dataParams);
   }
 
   submit(value: any) {

@@ -81,14 +81,14 @@ export const updateConsumableFailure = createAction(
 /****************************************************************** */
 
 export const removeConsumable = createAction(
-  '[List Consumable Component] Update Consumable',
+  '[List Consumable Component] Delete Consumable',
   props<{ consumableId: any }>()
 );
 export const removeConsumableSuccess = createAction(
-  '[Consumable Effect] Update Consumable Success',
+  '[Consumable Effect] Delete Consumable Success',
   props<{ consumableId: any }>()
 );
 export const removeConsumableFailure = createAction(
-  '[Consumable Effect] Update Consumable failure',
+  '[Consumable Effect] Delete Consumable failure',
   props<{ error: any }>()
 );

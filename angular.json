@@ -1530,10 +1530,7 @@
               "libs/store/product/tsconfig.lib.json",
               "libs/store/product/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/store/product/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/store/product/**/*"]
           }
         },
         "test": {
