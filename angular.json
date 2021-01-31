@@ -66,9 +66,7 @@
               "style-loader!leaflet/dist/leaflet.css"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "./libs/theme/tanglass-theme/src/"
-              ]
+              "includePaths": ["./libs/theme/tanglass-theme/src/"]
             }
           },
           "configurations": {
@@ -181,10 +179,7 @@
               "libs/tanglass-core/tsconfig.lib.json",
               "libs/tanglass-core/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/tanglass-core/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/tanglass-core/**/*"]
           }
         },
         "test": {
@@ -214,10 +209,7 @@
               "libs/theme/tanglass-theme/tsconfig.lib.json",
               "libs/theme/tanglass-theme/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/theme/tanglass-theme/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/theme/tanglass-theme/**/*"]
           }
         },
         "test": {
@@ -247,10 +239,7 @@
               "libs/store/managment/tsconfig.lib.json",
               "libs/store/managment/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/store/managment/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/store/managment/**/*"]
           }
         },
         "test": {
@@ -322,9 +311,7 @@
               "style-loader!leaflet/dist/leaflet.css"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "./libs/theme/tanglass-theme/src/"
-              ]
+              "includePaths": ["./libs/theme/tanglass-theme/src/"]
             }
           },
           "configurations": {
@@ -383,10 +370,7 @@
               "apps/ui/management/tsconfig.spec.json",
               "apps/ui/management/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui/management/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/ui/management/**/*"]
           }
         },
         "test": {
@@ -419,13 +403,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/ui/management-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui/management-e2e/**/*"
-            ]
+            "tsConfig": ["apps/ui/management-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ui/management-e2e/**/*"]
           }
         }
       }
@@ -450,10 +429,7 @@
             "polyfills": "apps/printer/src/polyfills.ts",
             "tsConfig": "apps/printer/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/printer/favicon.ico",
-              "apps/printer/src/assets"
-            ],
+            "assets": ["apps/printer/favicon.ico", "apps/printer/src/assets"],
             "styles": [
               "apps/printer/src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.css",
@@ -487,9 +463,7 @@
               "style-loader!leaflet/dist/leaflet.css"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "./libs/theme/tanglass-theme/src/"
-              ]
+              "includePaths": ["./libs/theme/tanglass-theme/src/"]
             }
           },
           "configurations": {
@@ -548,10 +522,7 @@
               "apps/printer/tsconfig.spec.json",
               "apps/printer/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/printer/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/printer/**/*"]
           }
         },
         "test": {
@@ -576,10 +547,7 @@
               "libs/theme/material/tsconfig.lib.json",
               "libs/theme/material/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/theme/material/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/theme/material/**/*"]
           }
         },
         "test": {
@@ -727,10 +695,7 @@
               "apps/ui/production/tsconfig.spec.json",
               "apps/ui/production/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui/production/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/ui/production/**/*"]
           }
         },
         "test": {
@@ -763,13 +728,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/ui/production-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui/production-e2e/**/*"
-            ]
+            "tsConfig": ["apps/ui/production-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ui/production-e2e/**/*"]
           }
         }
       }
@@ -787,10 +747,7 @@
               "libs/store/app/tsconfig.lib.json",
               "libs/store/app/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/store/app/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/store/app/**/*"]
           }
         },
         "test": {
@@ -916,10 +873,7 @@
               "apps/ui/inventory/tsconfig.spec.json",
               "apps/ui/inventory/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui/inventory/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/ui/inventory/**/*"]
           }
         },
         "test": {
@@ -952,13 +906,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/ui/inventory-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui/inventory-e2e/**/*"
-            ]
+            "tsConfig": ["apps/ui/inventory-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ui/inventory-e2e/**/*"]
           }
         }
       }
@@ -972,9 +921,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ag-grid/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ag-grid/**/*.ts"]
           }
         },
         "test": {
@@ -1096,10 +1043,7 @@
               "apps/ui/product/tsconfig.spec.json",
               "apps/ui/product/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui/product/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/ui/product/**/*"]
           }
         },
         "test": {
@@ -1132,13 +1076,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/ui/product-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui/product-e2e/**/*"
-            ]
+            "tsConfig": ["apps/ui/product-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ui/product-e2e/**/*"]
           }
         }
       }
@@ -1189,10 +1128,7 @@
               "libs/core/management/tsconfig.lib.json",
               "libs/core/management/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/core/management/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/core/management/**/*"]
           }
         },
         "test": {
@@ -1222,10 +1158,7 @@
               "libs/core/product/tsconfig.lib.json",
               "libs/core/product/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/core/product/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/core/product/**/*"]
           }
         },
         "test": {
@@ -1255,10 +1188,7 @@
               "libs/core/contact/tsconfig.lib.json",
               "libs/core/contact/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/core/contact/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/core/contact/**/*"]
           }
         },
         "test": {
@@ -1311,9 +1241,7 @@
               "libs/theme/tanglass-theme/src/styles/styles.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js"
-            ]
+            "scripts": ["node_modules/chart.js/dist/Chart.min.js"]
           },
           "configurations": {
             "production": {
@@ -1371,10 +1299,7 @@
               "apps/ui/contact/tsconfig.spec.json",
               "apps/ui/contact/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui/contact/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/ui/contact/**/*"]
           }
         },
         "test": {
@@ -1407,13 +1332,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/ui/contact-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/ui/contact-e2e/**/*"
-            ]
+            "tsConfig": ["apps/ui/contact-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ui/contact-e2e/**/*"]
           }
         }
       }
@@ -1431,10 +1351,7 @@
               "libs/store/contact/tsconfig.lib.json",
               "libs/store/contact/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/store/contact/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/store/contact/**/*"]
           }
         },
         "test": {
@@ -1464,10 +1381,7 @@
               "libs/core/inventory/tsconfig.lib.json",
               "libs/core/inventory/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/core/inventory/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/core/inventory/**/*"]
           }
         },
         "test": {
@@ -1497,10 +1411,7 @@
               "libs/store/inventory/tsconfig.lib.json",
               "libs/store/inventory/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/store/inventory/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/store/inventory/**/*"]
           }
         },
         "test": {
@@ -1604,6 +1515,139 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        }
+      }
+    },
+    "tanglass-main": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/tanglass-main",
+      "sourceRoot": "apps/tanglass-main/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/tanglass-main",
+            "index": "apps/tanglass-main/src/index.html",
+            "main": "apps/tanglass-main/src/main.ts",
+            "polyfills": "apps/tanglass-main/src/polyfills.ts",
+            "tsConfig": "apps/tanglass-main/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/tanglass-main/src/favicon.ico",
+              "apps/tanglass-main/src/assets",
+              {
+                "glob": "**/*",
+                "input": "libs/ag-grid/src/assets",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "apps/tanglass-main/src/styles.scss",
+              "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "libs/theme/tanglass-theme/src/styles/app.scss",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/tanglass-main/src/environments/environment.ts",
+                  "with": "apps/tanglass-main/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "tanglass-main:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tanglass-main:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tanglass-main:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/tanglass-main/tsconfig.app.json",
+              "apps/tanglass-main/tsconfig.spec.json",
+              "apps/tanglass-main/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/tanglass-main/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/tanglass-main/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "tanglass-main-e2e": {
+      "root": "apps/tanglass-main-e2e",
+      "sourceRoot": "apps/tanglass-main-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/tanglass-main-e2e/cypress.json",
+            "tsConfig": "apps/tanglass-main-e2e/tsconfig.e2e.json",
+            "devServerTarget": "tanglass-main:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tanglass-main:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/tanglass-main-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/tanglass-main-e2e/**/*"]
+          }
         }
       }
     }

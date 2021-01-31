@@ -23,6 +23,7 @@
       "@Tanglass-erp/main/*": ["./apps/tanglass-erp/src/*"],
       "@TanglassUi/management/*": ["./apps/ui/management/src/app/*"],
       "@TanglassUi/inventory/*": ["./apps/ui/inventory/src/app/*"],
+      "@TanglassUi/contact/*": ["./apps/ui/contact/src/app/*"],
       "@TanglassCore/*": ["./libs/tanglass-core/src/*"],
       "@TanglassTheme/*": ["./libs/theme/tanglass-theme/src/*"],
       "@TanglassRouting/*": ["./apps/tanglass-routing/src/app/*"],
