@@ -1,20 +1,22 @@
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfService } from '../../../../utils/forms';
+import { map } from 'rxjs/operators';
 import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
-import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'ngx-pop-service-config',
   templateUrl: './pop-service.component.html',
   styleUrls: ['./pop-service.component.scss'],
 })
-export class PopServiceComponent extends FormDialog implements OnDestroy {
+export class PopServiceComponent extends FormDialog {
   title = "Ajouter collection de service";
   regConfig: Groupfield[] | any;
-  companiesSubscription: Subscription;
-  listCompanies = this.facade.allShortCompany$
+  companies$ = this.facade.allShortCompany$
+    .pipe(map(item => item.map(company => ({key: company.id, value: company.name})))
+    );
   params = [];
 
   constructor(
@@ -28,14 +30,10 @@ export class PopServiceComponent extends FormDialog implements OnDestroy {
   buildForm() {
     this.facade.loadAllShortCompanies();
     const dataParams = JSON.parse(this.data.params);
-    this.listCompanies.subscribe(companies => this.regConfig = regConfService(this.data.service, companies, dataParams))
+    this.regConfig = regConfService(this.data.service, this.companies$, dataParams);
   }
 
   submit(value: any) {
     this.dialogRef.close(value);
-  }
-
-  ngOnDestroy(): void {
-    // this.companiesSubscription.unsubscribe();
-  }
+    }
 }

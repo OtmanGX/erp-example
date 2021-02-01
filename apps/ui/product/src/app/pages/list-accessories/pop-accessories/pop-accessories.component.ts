@@ -5,6 +5,7 @@ import { regConfigAccessory } from '../../../utils/forms';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-pop-glass',
@@ -15,10 +16,12 @@ export class PopAccessoriesComponent extends FormDialog {
   title = "Ajouter un accessoire";
   regConfig: Groupfield[];
   listCompanies = this.facade.allShortCompany$
+    .pipe(map(item => item.map(company => ({key: company.id, value: company.name})))
+    );
 
   constructor(
     public dialogRef: MatDialogRef<PopAccessoriesComponent>,
-    private facade:ShortCompanyFacade,
+    private facade: ShortCompanyFacade,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private store: Store<AppState>
 
@@ -26,16 +29,9 @@ export class PopAccessoriesComponent extends FormDialog {
     super(dialogRef, data);
   }
 
-  ngOnInit(): void {
-    this.facade.loadAllShortCompanies();
-    this.buildForm();
-  }
   buildForm() {
-   // this.regConfig = regConfigAccessory(this.data, this.listCompanies);
-   this.listCompanies.subscribe(companies => this.regConfig = regConfigAccessory(this.data, companies))
-
+    this.facade.loadAllShortCompanies();
+    this.regConfig = regConfigAccessory(this.data, this.listCompanies);
   }
-
-  
 
 }

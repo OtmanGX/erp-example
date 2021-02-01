@@ -1,46 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { Location } from '@angular/common';
-import { of } from 'rxjs';
-import { DetailedAccessory } from "@tanglass-erp/core/product";
+import { DetailedAccessory } from "@TanglassStore/product/index";
 import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
 import { getSelectedAccessory } from '@TanglassStore/product/lib/selectors/accessory.selectors';
+import { ModelCardComponent } from '@tanglass-erp/material';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+
 @Component({
   selector: 'ngx-accessory-card',
   templateUrl: './accessory-card.component.html',
   styleUrls: ['./accessory-card.component.scss']
 })
-export class AccessoryCardComponent implements OnInit {
+export class AccessoryCardComponent extends ModelCardComponent {
   title = "Accessoire/Système Apparent";
-  id: string;
-  //data$: any = of(null);
-  data$ = this.store.select(getSelectedAccessory);
-
-  passedData: any;
+  data$ = this.store.select(getSelectedAccessory)
+    .pipe(takeUntil(this._onDestroy));
 
   constructor(private store: Store<AppState>,
-              private location: Location) {
-    this.id = (<any>this.location.getState()).id;
+              public route: ActivatedRoute) {
+    super(route);
   }
 
-  ngOnInit(): void {
-    // this.store.dispatch();
+  dispatch(): void {
     this.store.dispatch(AccessoryActions.loadAccessoryById({id: this.id}));
-
-    this.data$.subscribe(value => {
-      this.passedData = [
-        {label: 'Code', value: value?.product.code},
-        {label: 'Désignation', value: value?.product.label},
-        {label: 'Unité', value: value?.product.unit},
-        {label: 'Type', value: value?.category},
-        {label: 'Quota', value: value?.quota},
-        {label: 'Prix', value: value?.product?.price},
-        {label: 'Prix min', value: value?.product?.priceMin},
-        {label: 'Prix max', value: value?.product?.priceMax},
-        {label: 'Sociétés', value: value?.product?.companies, type: 'chips'},
-      ];
-    });
   }
+  passData(data: DetailedAccessory) {
+    return [
+      {label: 'Code', value: data?.product.code},
+      {label: 'Désignation', value: data?.product.label},
+      {label: 'Unité', value: data?.product.unit},
+      {label: 'Type', value: data?.category},
+      {label: 'Quota', value: data?.quota},
+      {label: 'Prix', value: data?.product?.price},
+      {label: 'Prix min', value: data?.product?.priceMin},
+      {label: 'Prix max', value: data?.product?.priceMax},
+      {label: 'Sociétés', value: data?.product?.companies.map(item => item.name), type: 'chips'},
+    ];
+  }
+
+  afterComplete() {}
+
 
 }

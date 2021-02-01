@@ -16,7 +16,7 @@ import { PopServiceConsumableComponent } from './pages/list-service-consumable/p
 import { ServiceCardComponent } from './pages/list-service/service-card/service-card.component';
 import { ServiceCardItemComponent } from './components/service-card-item/service-card-item.component';
 import { AccessoryCardComponent } from './pages/list-accessories/accessory-card/accessory-card.component';
-import { HighlightDirectiveDirective } from './directives/highlight-directive.directive';
+import { HighlightDirective } from './directives/highlight.directive';
 import { GlassCardComponent } from './pages/list-glasse/glass-card/glass-card.component';
 import { ConsumableCardComponent } from './pages/list-consumable/consumable-card/consumable-card.component';
 import { ServiceGlassCardComponent } from './pages/list-service-glasse/service-glass-card/service-glass-card.component';
@@ -24,6 +24,7 @@ import { PopServiceConfigComponent } from './pages/list-service/pop-service-conf
 import { PopServiceComponent } from './pages/list-service/service-card/pop-service/pop-service.component';
 import { StoreProductModule } from '@TanglassStore/product/index';
 import { StoreSharedModule} from "@tanglass-erp/store/shared";
+
 const popUps = [
   PopConsumableComponent,
   PopAccessoriesComponent,
@@ -58,7 +59,7 @@ const otherComponents = [
 ];
 
 const directives = [
-  HighlightDirectiveDirective
+  HighlightDirective
 ];
 
 

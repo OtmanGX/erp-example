@@ -1,23 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { ServiceConfig } from '@tanglass-erp/core/product';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { ServiceHeaders, } from '../../../utils/grid-headers';
 import { PopServiceComponent } from './pop-service/pop-service.component';
+import { ModelCardComponent } from '@tanglass-erp/material';
+import { ActivatedRoute } from '@angular/router';
+import { DetailedServiceConfig, ServiceConfig } from '@TanglassStore/product/index';
 import * as ServiceGroupActions from '@TanglassStore/product/lib/actions/servicesConfig.actions';
 import { getSelectedServiceConfig } from '@TanglassStore/product/lib/selectors/serviceConfig.selectors';
 import { of } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-service-card',
   templateUrl: './service-card.component.html',
   styleUrls: ['./service-card.component.scss']
 })
-export class ServiceCardComponent implements OnInit, GridView {
+export class ServiceCardComponent extends ModelCardComponent implements GridView {
   // AgGrid
   @ViewChild(MainGridComponent) mainGrid;
   agGrid: AgGridAngular;
@@ -26,45 +29,46 @@ export class ServiceCardComponent implements OnInit, GridView {
 
   // Card
   title = 'Service';
-  id: string;
-  //data$: Observable<any> = of();
-  data$ = this.store.select(getSelectedServiceConfig);
+  data$ = this.store.select(getSelectedServiceConfig)
+    .pipe(filter(data => !!data));
   services$: any;
   data: ServiceConfig;
-  passedData: any;
 
   constructor(private store: Store<AppState>,
-              private location: Location,
+              public route: ActivatedRoute,
               public dialog: MatDialog) {
-    this.id = (<any>this.location.getState()).id;
+    super(route);
     this.setColumnDefs();
 
   }
 
-  ngOnInit(): void {
-    this.store.dispatch(ServiceGroupActions.loadServiceConfigById({id: this.id}));
-    this.data$.subscribe(value => {
-      if(value) {
-        this.services$ = of(value.services.map(service => service));
-        this.data = value;
-        this.passedData = [
-          { label: 'Nom', value: value?.name },
-          { label: 'Désignation d\'usine', value: value?.labelFactory },
-          { label: 'Paramètres', value: value?.params },
-        ];
-      }
-    });
-  }
 
   ngAfterViewInit(): void {
     this.agGrid = this.mainGrid.agGrid;
+  }
+
+  afterComplete() {
+  }
+
+  dispatch(): void {
+    this.store.dispatch(ServiceGroupActions.loadServiceConfigById({id: this.id}));
+    // this.store.dispatch(loadServiceById({id: this.id}));
+  }
+
+  passData(data: DetailedServiceConfig) {
+    this.services$ = of(data.services.map(service => service));
+    return [
+      { label: 'Nom', value: data?.name },
+      { label: 'Etiquette d\'usine', value: data?.labelFactory },
+      { label: 'Paramètres', value: data?.params },
+    ];
   }
 
   setColumnDefs(): void {
     this.columnDefs = [
       ...ServiceHeaders,
       {field: 'id', headerName: 'Action', type: "editColumn"},
-    ]; 
+    ];
   }
   eventTriggering(event: any) {
       switch (event.action) {
@@ -91,12 +95,12 @@ export class ServiceCardComponent implements OnInit, GridView {
         if (result) {
           // Store action dispatching
           if (action === Operations.add) {
-            console.log(result)
+            console.log(result);
             this.store.dispatch(ServiceGroupActions.addNewItem({
               item : {
                 service: { serviceConfigid : this.id },
                 product: result.product
-              }}))
+              }}));
           } else {}
         }
       });

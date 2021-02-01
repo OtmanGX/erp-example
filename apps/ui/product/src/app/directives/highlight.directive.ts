@@ -3,7 +3,7 @@ import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core'
 @Directive({
   selector: '[appHighlight]'
 })
-export class HighlightDirectiveDirective {
+export class HighlightDirective {
 
   @HostBinding('style.cursor') cursor = "pointer";
   @HostBinding('class.light-purple-50') active: boolean;

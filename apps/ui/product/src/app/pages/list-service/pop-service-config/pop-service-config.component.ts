@@ -19,7 +19,6 @@ export class PopServiceConfigComponent extends FormDialog implements AfterViewIn
   constructor(
     public dialogRef: MatDialogRef<PopServiceConfigComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cdr: ChangeDetectorRef,
   ) {
     super(dialogRef, data);
     this.paramFormArray = new FormArray([]);
