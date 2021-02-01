@@ -33,7 +33,7 @@ const regConfigTransferOrder = (data?: InsertedTransferOrder, warehouses: any = 
     value: data?.status,
     options: Object.values(transferStatusDirection).map(elem => ({key: elem, value: elem}))},
   {type: "date", name: "deadlineDate", label: "Date limite",
-    inputType: "text", value: data?.deadlineDate},
+    inputType: "text", value: data?.deadline},
 ];
 
 const regConfigTransferOrderItem = (data?) => [

@@ -124,7 +124,5 @@ export class ContactsEffects {
   });
 
   constructor(private actions$: Actions,
-              private contactService: ContactService) {
-                
-              }
+              private contactService: ContactService) {}
 }

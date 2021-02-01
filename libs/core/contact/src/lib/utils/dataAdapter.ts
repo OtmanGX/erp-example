@@ -39,7 +39,6 @@ export function dataAdapter(obj: objToAdapt): adaptedObj {
     let contacts: Array<InsertedContactDB | AffectedContact>;
     let customers: Array<InsertedCustomerDB | AffectedCustomer>;
     let providers: Array<InsertedProviderDB | AffectedProvider>;
-    console.log(obj)
     if (obj.addresses) {
         addresses = adaptAddress(obj.addresses)
     }
@@ -71,7 +70,6 @@ export function dataAdapter(obj: objToAdapt): adaptedObj {
     }
 
     let {affectedProviders,affectedCustomers,affectedContacts, ...value} = obj;
-    console.log({ ...value, addresses, contacts, customers, providers })
     return { ...value, addresses, contacts, customers, providers }
 }
 

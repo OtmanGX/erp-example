@@ -16832,6 +16832,46 @@ export type GetProviderByIdQuery = (
   )> }
 );
 
+export type DeleteManyWarehousesMutationVariables = Exact<{
+  ids?: Maybe<Array<Scalars['uuid']>>;
+}>;
+
+
+export type DeleteManyWarehousesMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_stock_warehouse?: Maybe<(
+    { __typename?: 'stock_warehouse_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'id'>
+    )> }
+  )> }
+);
+
+export type InsertTransferOrderMutationVariables = Exact<{
+  date?: Maybe<Scalars['date']>;
+  fromWarehouseid: Scalars['uuid'];
+  deadline?: Maybe<Scalars['date']>;
+  toWarehouseid: Scalars['uuid'];
+  orderItems: Array<Stock_Order_Item_Insert_Input>;
+}>;
+
+
+export type InsertTransferOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_stock_transfer_order_one?: Maybe<(
+    { __typename?: 'stock_transfer_order' }
+    & Pick<Stock_Transfer_Order, 'date' | 'deadline' | 'status' | 'id'>
+    & { fromwarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ), towarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ) }
+  )> }
+);
+
 export type InsertWarehouseMutationVariables = Exact<{
   companyid: Scalars['uuid'];
   name: Scalars['String'];
@@ -17050,6 +17090,26 @@ export type Stock_Item_TranferFragmentFragment = (
 export type Stock_WarehouseForTransferFragmentFragment = (
   { __typename?: 'stock_warehouse' }
   & Pick<Stock_Warehouse, 'name' | 'id'>
+);
+
+export type GetWarehouseByIdQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetWarehouseByIdQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_by_pk?: Maybe<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'id' | 'name' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy'>
+    & { salesPoint?: Maybe<(
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'id'>
+    )>, company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ) }
+  )> }
 );
 
 export type Product_ProductFragmentFragment = (
@@ -18476,6 +18536,57 @@ export const GetProviderByIdDocument = gql`
       super(apollo);
     }
   }
+export const DeleteManyWarehousesDocument = gql`
+    mutation DeleteManyWarehouses($ids: [uuid!]) {
+  delete_stock_warehouse(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyWarehousesGQL extends Apollo.Mutation<DeleteManyWarehousesMutation, DeleteManyWarehousesMutationVariables> {
+    document = DeleteManyWarehousesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertTransferOrderDocument = gql`
+    mutation InsertTransferOrder($date: date, $fromWarehouseid: uuid!, $deadline: date, $toWarehouseid: uuid!, $orderItems: [stock_order_item_insert_input!]!) {
+  insert_stock_transfer_order_one(
+    object: {date: $date, fromWarehouseid: $fromWarehouseid, deadline: $deadline, toWarehouseid: $toWarehouseid, order_items: {data: $orderItems}}
+  ) {
+    date
+    deadline
+    fromwarehouse {
+      name
+      id
+    }
+    towarehouse {
+      name
+      id
+    }
+    status
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertTransferOrderGQL extends Apollo.Mutation<InsertTransferOrderMutation, InsertTransferOrderMutationVariables> {
+    document = InsertTransferOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertWarehouseDocument = gql`
     mutation InsertWarehouse($companyid: uuid!, $name: String!, $salesPointid: uuid) {
   insert_stock_warehouse_one(
@@ -18698,6 +18809,37 @@ ${Product_SubstanceFragmentFragmentDoc}`;
   })
   export class GetTransferByIdGQL extends Apollo.Query<GetTransferByIdQuery, GetTransferByIdQueryVariables> {
     document = GetTransferByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetWarehouseByIdDocument = gql`
+    query GetWarehouseById($id: uuid!) {
+  stock_warehouse_by_pk(id: $id) {
+    id
+    name
+    salesPoint {
+      name
+      id
+    }
+    company {
+      name
+      id
+    }
+    createdAt
+    createdBy
+    updatedAt
+    updatedBy
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetWarehouseByIdGQL extends Apollo.Query<GetWarehouseByIdQuery, GetWarehouseByIdQueryVariables> {
+    document = GetWarehouseByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
