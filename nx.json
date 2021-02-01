@@ -89,8 +89,7 @@
     "core-inventory": {
       "tags": []
     },
-    "store-inventory": {
-    },
+    "store-inventory": {},
     "store-product": {
       "tags": []
     },
@@ -99,6 +98,13 @@
     },
     "core-common": {
       "tags": []
+    },
+    "tanglass-main": {
+      "tags": []
+    },
+    "tanglass-main-e2e": {
+      "tags": [],
+      "implicitDependencies": ["tanglass-main"]
     }
   }
 }
