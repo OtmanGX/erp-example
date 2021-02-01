@@ -1,0 +1,6 @@
+ query GetShortWArehouses {
+  stock_warehouse {
+    name
+    id
+  }
+}

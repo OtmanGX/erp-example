@@ -7197,7 +7197,9 @@ export enum Product_ConsumableCategory_Constraint {
 
 export enum Product_ConsumableCategory_Enum {
   /** Consommable */
-  Consommable = 'Consommable'
+  Consommable = 'Consommable',
+  /** Matiére Premiére */
+  Mp = 'MP'
 }
 
 /** expression to compare columns of type product_consumableCategory_enum. All fields are combined with logical 'AND'. */
@@ -16345,6 +16347,39 @@ export type GetShortCompaniesQuery = (
   )> }
 );
 
+export type GeShortSalePointsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GeShortSalePointsQuery = (
+  { __typename?: 'query_root' }
+  & { management_salesPoint: Array<(
+    { __typename?: 'management_salesPoint' }
+    & Pick<Management_SalesPoint, 'name' | 'id'>
+  )> }
+);
+
+export type GetShortWArehousesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetShortWArehousesQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse: Array<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'name' | 'id'>
+  )> }
+);
+
+export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetProductsQuery = (
+  { __typename?: 'query_root' }
+  & { product_product: Array<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code' | 'label' | 'price' | 'priceMax' | 'priceMin' | 'unit'>
+  )> }
+);
+
 export type AddContactAddressMutationVariables = Exact<{
   address: Contact_Address_Insert_Input;
   id?: Maybe<Scalars['uuid']>;
@@ -17790,6 +17825,67 @@ export const GetShortCompaniesDocument = gql`
   })
   export class GetShortCompaniesGQL extends Apollo.Query<GetShortCompaniesQuery, GetShortCompaniesQueryVariables> {
     document = GetShortCompaniesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GeShortSalePointsDocument = gql`
+    query GeShortSalePoints {
+  management_salesPoint {
+    name
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GeShortSalePointsGQL extends Apollo.Query<GeShortSalePointsQuery, GeShortSalePointsQueryVariables> {
+    document = GeShortSalePointsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetShortWArehousesDocument = gql`
+    query GetShortWArehouses {
+  stock_warehouse {
+    name
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortWArehousesGQL extends Apollo.Query<GetShortWArehousesQuery, GetShortWArehousesQueryVariables> {
+    document = GetShortWArehousesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetProductsDocument = gql`
+    query GetProducts {
+  product_product(where: {_not: {consumable: {category: {_eq: MP}}}}) {
+    code
+    label
+    price
+    priceMax
+    priceMin
+    unit
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetProductsGQL extends Apollo.Query<GetProductsQuery, GetProductsQueryVariables> {
+    document = GetProductsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -42931,6 +42931,12 @@
             "description": "Consommable",
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "MP",
+            "description": "Matiére Premiére",
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "possibleTypes": null
