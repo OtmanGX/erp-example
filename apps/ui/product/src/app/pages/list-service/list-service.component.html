@@ -1,10 +1,14 @@
-
-<div fxLayout="row" class="mt-8" fxLayoutGap="15px" fxLayoutAlign="center">
-  <ngx-service-card-item fxFlex.lg="0 1 15" fxFlex.md="0 1 25" fxFlex.sm="0 1 50"
-                         [data]="item"
-                         [routerLink]="['/service', item?.id]"
-                         [state]="{id : item?.id}" *ngFor="let item of (data$ | async)">
-  </ngx-service-card-item>
+<div fxFlexFill="" style="min-width: 100%;width: 100%" >
+  <div fxLayout="row wrap" fxFlexFill="" fxLayoutGap="20px grid" class="mt-8"
+       class="pl-20" fxLayoutAlign="start center">
+    <ngx-service-card-item fxFlex.lg="0 1 15%" fxFlex.md="0 1 25%" fxFlex.sm="0 1 50%" fxFlex.xs="0 1 50%"
+                           class="mb-8"
+                           style="box-sizing: border-box"
+                           [data]="item"
+                           [routerLink]="['/service', item?.id]"
+                           [state]="{id : item?.id}" *ngFor="let item of (data$ | async)">
+    </ngx-service-card-item>
+  </div>
 </div>
 
 

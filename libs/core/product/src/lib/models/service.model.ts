@@ -13,7 +13,6 @@ export interface ServiceConfig {
   labelFactory: string;
 
 }
-let ser:ServiceConfig
 export interface DetailedServiceConfig extends MetaData {
 
   id: string;
@@ -33,19 +32,19 @@ export interface InsertedServiceConfig extends MetaData {
 
 }
 
-// 
+//
 export interface Service {
   id?: string;
   serviceConfig?: ServiceConfig;
   product?: Product;
-  paramValues?:string;
+  paramValues?:any;
 }
 
 export interface DetailedService extends MetaData{
   id: string;
   serviceConfig: ServiceConfig;
   product: Product;
-  paramValues?:string;
+  paramValues?: any;
 
 }
 
