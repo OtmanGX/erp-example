@@ -9,7 +9,7 @@ export interface TransferOrder {
     fromwarehouse: PartialData;
     towarehouse: PartialData;
     date: Date;
-    deadline: Date;
+    deadline?: Date;
     status: string;
 }
 
@@ -19,13 +19,13 @@ export interface DetailedTransferOrder extends MetaData {
     fromwarehouse: PartialData;
     towarehouse: PartialData;
     date: Date;
-    deadline: Date;
+    deadline?: Date;
     status: string; // confirmed/ delivered /closed/suspended enum transferStatus
 }
 
 
 export interface InsertedTransferOrder {
-    date: Date, 
+    date: Date,
     deadline: Date,
     fromWarehouseid: string,
     toWarehouseid: string,
