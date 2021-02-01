@@ -15,20 +15,18 @@ export interface OrderItem {
 export interface Transfered{
     quantity:number;
     id:string;
-    status:string// ready or out
+    status?:string// ready or out
 }
 //for the type and data  of  substances  to transfer
 
 export interface ItemTransfer{
-  glass?:ProductTransfer
-  accessory?:ProductTransfer
+    productGlass?:ProductTransfer
+    productAccessory?:ProductTransfer
 }
 
  
 
 export interface ProductTransfer{
-    product:{
-        code:string;
-        label:string;
-    }
+        code?:string;
+        label?:string;
 }

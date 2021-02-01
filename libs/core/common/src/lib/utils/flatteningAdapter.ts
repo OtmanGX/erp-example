@@ -1,15 +1,20 @@
 
-export function flattenObj(objtoAdapt, parent?, res = {}) {
+export function flattenObj(objtoAdapt ,res={}) {
+     
     for (var key of Object.keys(objtoAdapt)) {
+<<<<<<< HEAD
         if ((key == "__typename" )) continue;
 
         let newKey = parent ? parent + '_' + key : key || '';
+=======
+        if ((key == "__typename")) continue;
+>>>>>>> de2f65f (adding common libs)
         if (typeof objtoAdapt[key] == 'object' && objtoAdapt[key] !== null) {
-            flattenObj(objtoAdapt[key], newKey, res);
+            flattenObj(objtoAdapt[key], res);
         } else {
-            res[newKey] = objtoAdapt[key];
+            res[key] = objtoAdapt[key];
         }
     }
-    console.log(res)
     return res;
 }
+

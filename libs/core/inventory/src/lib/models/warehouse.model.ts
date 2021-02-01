@@ -12,6 +12,8 @@ export interface Warehouse{
 
 
 
+
+
 export interface InsertedWarehouse {
     companyid:string;
     name:string;

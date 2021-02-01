@@ -1,5 +1,5 @@
 import { Accessory } from "@tanglass-erp/core/product";
-import { Warehouse,DetailedWarehouse } from "../models/warehouse.model";
+import { Warehouse } from "../models/warehouse.model";
 
 
 
@@ -10,10 +10,3 @@ export interface WarehousesVM {
     error?: string;
 }
 
-
-// warehouse  fiche 
-export interface DetailedWarehouseVM{
-    detailedWarehouse:DetailedWarehouse;
-    loading:boolean;
-    error?:string;
-}
