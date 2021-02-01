@@ -1,4 +1,4 @@
-import { Component, Inject, ChangeDetectorRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, Inject, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormComponent, FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfigServiceConfig, regParamForm } from '../../../utils/forms';
@@ -30,7 +30,7 @@ export class PopServiceConfigComponent extends FormDialog implements AfterViewIn
         .filter(component => component.name === 'param')
         .map((dynamicForm: DynamicFormComponent) => dynamicForm.form);
       while (this.paramFormArray.length) {
-        this.paramFormArray.shift();
+        this.paramFormArray.removeAt(0);
       }
       forms.forEach(form => this.paramFormArray.push(form));
     });

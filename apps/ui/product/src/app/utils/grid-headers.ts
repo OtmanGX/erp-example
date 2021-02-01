@@ -73,16 +73,15 @@ const AccessoryHeaders = [
 ];
 
 const ServiceHeaders = [
-  
   {
     headerName: 'Produit',
     children: ProductHeaders
   },
-  {
-    headerName: 'Paramètres',
-    children: [
-    ]
-  }
+  // {
+  //   headerName: 'Paramètres',
+  //   children: [
+  //   ]
+  // }
 ];
 
 
