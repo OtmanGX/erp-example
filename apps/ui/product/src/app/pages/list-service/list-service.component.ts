@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { Operations } from '@tanglass-erp/ag-grid';
 import { PopServiceConfigComponent } from './pop-service-config/pop-service-config.component';
@@ -14,7 +13,6 @@ import { Store } from '@ngrx/store';
 })
 export class ListServiceComponent implements OnInit {
 
-  //data$: Observable<any>;
   data$ = this.store.select(ServiceGroupeSelectors.getAllServiceConfigs);
 
   constructor(private dialog: MatDialog,
