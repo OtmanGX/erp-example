@@ -29,9 +29,7 @@ const regConfigTransferOrder = (data?: InsertedTransferOrder, warehouses: any = 
     inputType: "text", value: data?.fromWarehouseid, options: warehouses, validations: [FormDialog.REQUIRED]},
   {type: "select", name: "toWarehouse", label: "À",
     inputType: "text", value: data?.toWarehouseid, options: warehouses, validations: [FormDialog.REQUIRED]},
-  {type: "inputSelect", name: "status", label: "Etat", inputType: "text",
-    value: data?.status,
-    options: Object.values(transferStatusDirection).map(elem => ({key: elem, value: elem}))},
+ // {type: "inputSelect", name: "status", label: "Etat", inputType: "text", value: data?.status,options: Object.values(transferStatusDirection).map(elem => ({key: elem, value: elem}))},
   {type: "date", name: "deadlineDate", label: "Date limite",
     inputType: "text", value: data?.deadline},
 ];
