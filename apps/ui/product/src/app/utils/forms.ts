@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
 export interface ParamField {
   name: string;
   type: string;
+  [key: string]: any;
 }
 
 type ListObservable = Array<any> | Observable<any>;
@@ -24,7 +25,7 @@ function getParams(params) {
   const equivalence = new Map([
     [paramOptions.TEXT, {type: "input", inputType: "text"}],
     [paramOptions.NUMBER, {type: "input", inputType: "number"}],
-    [paramOptions.LIST, {type: "inputTag", inputType: "text"}],
+    [paramOptions.LIST, {type: "inputTag", inputType: "text", options: []}],
   ]);
 
   const value = params.map(elem => <FieldConfig>
