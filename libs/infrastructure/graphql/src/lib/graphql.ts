@@ -7197,7 +7197,9 @@ export enum Product_ConsumableCategory_Constraint {
 
 export enum Product_ConsumableCategory_Enum {
   /** Consommable */
-  Consommable = 'Consommable'
+  Consommable = 'Consommable',
+  /** Matiére Premiére */
+  Mp = 'MP'
 }
 
 /** expression to compare columns of type product_consumableCategory_enum. All fields are combined with logical 'AND'. */
@@ -16334,6 +16336,46 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type GetAccessoriesSubstancesQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetAccessoriesSubstancesQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_substance: Array<(
+    { __typename?: 'stock_warehouse_substance' }
+    & Pick<Stock_Warehouse_Substance, 'quantity'>
+    & { substance: (
+      { __typename?: 'product_substance' }
+      & { productAccessory?: Maybe<(
+        { __typename?: 'product_product_accessory_view' }
+        & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'substanceid' | 'unit'>
+      )> }
+    ) }
+  )> }
+);
+
+export type GetGlassesSubstancesQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetGlassesSubstancesQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_substance: Array<(
+    { __typename?: 'stock_warehouse_substance' }
+    & Pick<Stock_Warehouse_Substance, 'quantity'>
+    & { substance: (
+      { __typename?: 'product_substance' }
+      & { productGlass?: Maybe<(
+        { __typename?: 'product_product_glass_view' }
+        & Pick<Product_Product_Glass_View, 'code' | 'label' | 'substanceid' | 'unit'>
+      )> }
+    ) }
+  )> }
+);
+
 export type GetShortCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -16342,6 +16384,39 @@ export type GetShortCompaniesQuery = (
   & { management_company: Array<(
     { __typename?: 'management_company' }
     & Pick<Management_Company, 'id' | 'name'>
+  )> }
+);
+
+export type GeShortSalePointsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GeShortSalePointsQuery = (
+  { __typename?: 'query_root' }
+  & { management_salesPoint: Array<(
+    { __typename?: 'management_salesPoint' }
+    & Pick<Management_SalesPoint, 'name' | 'id'>
+  )> }
+);
+
+export type GetShortWArehousesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetShortWArehousesQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse: Array<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'name' | 'id'>
+  )> }
+);
+
+export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetProductsQuery = (
+  { __typename?: 'query_root' }
+  & { product_product: Array<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code' | 'label' | 'price' | 'priceMax' | 'priceMin' | 'unit'>
   )> }
 );
 
@@ -16849,11 +16924,11 @@ export type DeleteManyWarehousesMutation = (
 );
 
 export type InsertTransferOrderMutationVariables = Exact<{
-  date?: Maybe<Scalars['date']>;
-  fromWarehouseid: Scalars['uuid'];
+  date: Scalars['date'];
   deadline?: Maybe<Scalars['date']>;
+  fromWarehouseid: Scalars['uuid'];
   toWarehouseid: Scalars['uuid'];
-  orderItems: Array<Stock_Order_Item_Insert_Input>;
+  substances: Array<Stock_Order_Item_Insert_Input>;
 }>;
 
 
@@ -16883,7 +16958,7 @@ export type InsertWarehouseMutation = (
   { __typename?: 'mutation_root' }
   & { insert_stock_warehouse_one?: Maybe<(
     { __typename?: 'stock_warehouse' }
-    & Pick<Stock_Warehouse, 'name' | 'id' | 'createdBy' | 'createdAt'>
+    & Pick<Stock_Warehouse, 'name' | 'id'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
@@ -17681,6 +17756,7 @@ export type GetServiceConfigByIdQuery = (
     & Pick<Product_ServiceConfig, 'id' | 'labelFactory' | 'name' | 'params'>
     & { services: Array<(
       { __typename?: 'product_service' }
+      & Pick<Product_Service, 'paramValues'>
       & { product: (
         { __typename?: 'product_product' }
         & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
@@ -17776,6 +17852,62 @@ export const Product_ProductFragmentFragmentDoc = gql`
   price
 }
     `;
+export const GetAccessoriesSubstancesDocument = gql`
+    query GetAccessoriesSubstances($id: uuid!) {
+  stock_warehouse_substance(
+    where: {warehouseid: {_eq: $id}, substance: {type: {_eq: accessory}}}
+  ) {
+    quantity
+    substance {
+      productAccessory {
+        code
+        label
+        substanceid
+        unit
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAccessoriesSubstancesGQL extends Apollo.Query<GetAccessoriesSubstancesQuery, GetAccessoriesSubstancesQueryVariables> {
+    document = GetAccessoriesSubstancesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetGlassesSubstancesDocument = gql`
+    query GetGlassesSubstances($id: uuid!) {
+  stock_warehouse_substance(
+    where: {warehouseid: {_eq: $id}, substance: {type: {_eq: glass}}}
+  ) {
+    quantity
+    substance {
+      productGlass {
+        code
+        label
+        substanceid
+        unit
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetGlassesSubstancesGQL extends Apollo.Query<GetGlassesSubstancesQuery, GetGlassesSubstancesQueryVariables> {
+    document = GetGlassesSubstancesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetShortCompaniesDocument = gql`
     query GetShortCompanies {
   management_company {
@@ -17790,6 +17922,67 @@ export const GetShortCompaniesDocument = gql`
   })
   export class GetShortCompaniesGQL extends Apollo.Query<GetShortCompaniesQuery, GetShortCompaniesQueryVariables> {
     document = GetShortCompaniesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GeShortSalePointsDocument = gql`
+    query GeShortSalePoints {
+  management_salesPoint {
+    name
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GeShortSalePointsGQL extends Apollo.Query<GeShortSalePointsQuery, GeShortSalePointsQueryVariables> {
+    document = GeShortSalePointsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetShortWArehousesDocument = gql`
+    query GetShortWArehouses {
+  stock_warehouse {
+    name
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortWArehousesGQL extends Apollo.Query<GetShortWArehousesQuery, GetShortWArehousesQueryVariables> {
+    document = GetShortWArehousesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetProductsDocument = gql`
+    query GetProducts {
+  product_product(where: {_not: {consumable: {category: {_eq: MP}}}}) {
+    code
+    label
+    price
+    priceMax
+    priceMin
+    unit
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetProductsGQL extends Apollo.Query<GetProductsQuery, GetProductsQueryVariables> {
+    document = GetProductsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -18557,9 +18750,9 @@ export const DeleteManyWarehousesDocument = gql`
     }
   }
 export const InsertTransferOrderDocument = gql`
-    mutation InsertTransferOrder($date: date, $fromWarehouseid: uuid!, $deadline: date, $toWarehouseid: uuid!, $orderItems: [stock_order_item_insert_input!]!) {
+    mutation InsertTransferOrder($date: date!, $deadline: date, $fromWarehouseid: uuid!, $toWarehouseid: uuid!, $substances: [stock_order_item_insert_input!]!) {
   insert_stock_transfer_order_one(
-    object: {date: $date, fromWarehouseid: $fromWarehouseid, deadline: $deadline, toWarehouseid: $toWarehouseid, order_items: {data: $orderItems}}
+    object: {date: $date, deadline: $deadline, fromWarehouseid: $fromWarehouseid, toWarehouseid: $toWarehouseid, order_items: {data: $substances}}
   ) {
     date
     deadline
@@ -18594,8 +18787,6 @@ export const InsertWarehouseDocument = gql`
   ) {
     name
     id
-    createdBy
-    createdAt
     company {
       name
       id
@@ -19738,6 +19929,7 @@ export const GetServiceConfigByIdDocument = gql`
           id
         }
       }
+      paramValues
     }
   }
 }

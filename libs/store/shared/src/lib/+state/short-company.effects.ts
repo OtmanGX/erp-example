@@ -16,7 +16,7 @@ export class ShortCompanyEffects {
     return this.actions$.pipe(
       ofType(ShortCompanyActions.loadShortCompany),
       mergeMap(() =>
-        this.companieService.getAll().pipe(
+        this.companieService.getAllCompanies().pipe(
           map((data) =>
             ShortCompanyActions.loadShortCompanySuccess({ shortCompany: data.data.management_company })
           ),

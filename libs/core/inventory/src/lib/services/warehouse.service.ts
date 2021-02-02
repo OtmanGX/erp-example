@@ -3,6 +3,7 @@ import {
   GetAllWarehousesGQL,
   GetWarehouseByIdGQL,
   DeleteManyWarehousesGQL,
+  InsertWarehouseGQL,
 } from '@tanglass-erp/infrastructure/graphql';
 import * as fromWarehouse from "../models/warehouse.model";
 
@@ -15,14 +16,9 @@ export class WarehouseService {
     private getAllGQL: GetAllWarehousesGQL,
     private getByIdGQL: GetWarehouseByIdGQL,
     private deleteMany:DeleteManyWarehousesGQL,
+    private insertWarehouseGQL: InsertWarehouseGQL,
 
-  ) {
-    /** 
-    let data: fromWarehouse.Warehouse[]
-    this.getAll().subscribe(o=>data=o.data.stock_warehouse)   
-*/
-
-   }
+  ) {}
 
   getAll() {
     return this.getAllGQL.watch().valueChanges
@@ -36,4 +32,14 @@ export class WarehouseService {
   removeMany(ids: string[]) {
     return this.deleteMany.mutate({ids})
   }
+    
+
+
+  insertOne(createdOne:fromWarehouse.InsertedWarehouse) { 
+  return this.insertWarehouseGQL.mutate(createdOne)
+   }
+
+
+
+
 }

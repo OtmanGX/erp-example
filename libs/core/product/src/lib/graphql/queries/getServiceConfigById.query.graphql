@@ -12,11 +12,12 @@ query GetServiceConfigById($id: uuid!) {
         price
         priceMax
         priceMin
-     companies {
-        name
-        id
+        companies {
+          name
+          id
+        }
       }
-      }
+      paramValues
     }
   }
 }

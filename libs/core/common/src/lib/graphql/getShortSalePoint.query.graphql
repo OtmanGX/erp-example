@@ -1,0 +1,7 @@
+query GeShortSalePoints {
+  management_salesPoint {
+    name
+    id
+    
+  }
+}
