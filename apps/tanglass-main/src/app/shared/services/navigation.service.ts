@@ -36,6 +36,7 @@ export class NavigationService {
       icon: "dashboard",
       state: "dashboard/analytics"
     },
+    // *** Contact ***
     {
       name: "Contact",
       type: "separator"
@@ -57,6 +58,49 @@ export class NavigationService {
       type: "link",
       icon: "assignment_ind",
       state: "contact/customer"
+    },
+    // *** Inventory ***
+    {
+      name: "Stock",
+      type: "separator"
+    },
+    {
+      name: "Entrepôts",
+      type: "dropDown",
+      icon: "assignment_ind",
+      tooltip: "Pages",
+      // badges: [{color: 'primary', value: '6'}],
+      // state: "inventory/warehouses",
+      sub: [
+        { name: "Entrepôts", state: "inventory/warehouses" },
+        { name: "Entrepôts de verre", state: "inventory/warehouse-glasse" },
+        { name: "Entrepôts d'accessoires", state: "inventory/warehouse-accessory" },
+        { name: "Entrepôts de consommable", state: "inventory/warehouse-consumable" },
+      ]
+    },
+    // {
+    //   name: "Entrepôts de verre",
+    //   type: "link",
+    //   icon: "assignment_ind",
+    //   state: "inventory/warehouse-glasse"
+    // },
+    // {
+    //   name: "Entrepôts d'accessoires",
+    //   type: "link",
+    //   icon: "assignment_ind",
+    //   state: "inventory/warehouse-accessory"
+    // },
+    // {
+    //   name: "Entrepôts de consommable",
+    //   type: "link",
+    //   icon: "assignment_ind",
+    //   state: "inventory/warehouse-consumable"
+    // },
+    {
+      name: "Transfert",
+      type: "link",
+      icon: "assignment_ind",
+      state: "inventory/transfert"
     },
   ];
 

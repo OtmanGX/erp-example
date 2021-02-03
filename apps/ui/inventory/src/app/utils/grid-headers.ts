@@ -2,7 +2,7 @@ const warehouseHeaders = [
   { field: 'name', headerName: 'Nom', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `/warehouses/${params.data.id}`,
+        link: `${params.data.id}`,
       }
   )},
   { field: 'company.name', headerName: 'Société', type: "textColumn"},
