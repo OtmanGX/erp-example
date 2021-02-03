@@ -6,6 +6,8 @@ import { PopWarehouseComponent } from '@TanglassUi/inventory/pages/warehouse/pop
 import { WarehousesFacade } from '@tanglass-erp/store/inventory';
 import { Observable } from 'rxjs';
 import { PopWarehouseTransfertComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-warehouse-transfert/pop-warehouse-transfert.component';
+import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
+import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 
 
 @Component({
