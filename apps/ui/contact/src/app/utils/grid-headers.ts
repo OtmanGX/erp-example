@@ -2,7 +2,7 @@ const ContactHeaders = [
   { field: 'code', headerName: 'Code', type: "linkColumn",
     cellRendererParams: (params) => (
     {
-      link: `/contact/${params.data.id}`,
+      link: `${params.data.id}`,
     })
   },
   { field: 'name', headerName: 'Name', type: "textColumn" },
@@ -16,7 +16,7 @@ const CustomerHeaders = [
   { field: 'code', headerName: 'Code', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `/customer/${params.data.id}`,
+        link: `${params.data.id}`,
       })
   },
   { field: 'name', headerName: 'Name', type: "textColumn" },
@@ -30,7 +30,7 @@ const ProviderHeaders = [
   { field: 'name', headerName: 'Name', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `/provider/${params.data.id}`,
+        link: `${params.data.id}`,
       })
   },
   { field: 'note', headerName: 'Note', type: "textColumn" },

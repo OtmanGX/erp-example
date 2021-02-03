@@ -43,8 +43,20 @@ export class NavigationService {
     {
       name: "Contacts",
       type: "link",
-      icon: "move_to_inbox",
+      icon: "contacts",
       state: "contact/contact"
+    },
+    {
+      name: "Fournisseurs",
+      type: "link",
+      icon: "production_quantity_limits",
+      state: "contact/provider"
+    },
+    {
+      name: "Clients",
+      type: "link",
+      icon: "assignment_ind",
+      state: "contact/customer"
     },
   ];
 

@@ -16,8 +16,8 @@ import { ContactModule } from './contact.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    InfrastructureGraphqlModule,
     ContactModule,
+    InfrastructureGraphqlModule,
     StoreModule.forRoot(reducers, {}),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot(),

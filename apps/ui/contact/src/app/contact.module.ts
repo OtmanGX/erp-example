@@ -23,19 +23,21 @@ const routes: Routes = [
     children: [
       {
         path: 'customer',
-        component: CustomerComponent
-      },
-      {
-        path: 'customer/:id',
-        component: CustomerCardComponent
+        children: [
+          { path: '', component: CustomerComponent},
+          {
+            path: ':id',
+            component: CustomerCardComponent,
+          },
+        ]
       },
       {
         path: 'contact',
-        component: ContactComponent
+        component: ContactComponent,
       },
       {
         path: 'contact/:id',
-        component: ContactCardComponent
+        component: ContactCardComponent,
       },
       {
         path: 'provider',
@@ -43,7 +45,7 @@ const routes: Routes = [
       },
       {
         path: 'provider/:id',
-        component: ProviderCardComponent
+        component: ProviderCardComponent,
       },
     ]
   }

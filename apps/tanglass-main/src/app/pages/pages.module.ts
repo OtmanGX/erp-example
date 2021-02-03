@@ -9,12 +9,15 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from '@tanglass-erp/store/app';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { InfrastructureGraphqlModule } from '../../../../../libs/infrastructure/graphql/src';
-
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
     children: [
+      {
+        path: "404",
+        component: NotFoundComponent
+      },
       {
         path: 'management',
         loadChildren: () =>
@@ -25,20 +28,23 @@ const routes: Routes = [
         loadChildren: () =>
           import('@TanglassUi/contact/contact.module').then(m => m.ContactModule),
       },
-    ]}
+    ]},
+  {
+    path: "**",
+    redirectTo: "404",
+  },
 ];
 
 @NgModule({
-  declarations: [PagesComponent],
+  declarations: [PagesComponent, NotFoundComponent],
   imports: [
     CommonModule,
     SharedModule,
     MaterialModule,
+    RouterModule.forChild(routes),
     StoreModule.forRoot(reducers, {}),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot(),
-    RouterModule.forChild(routes),
-    InfrastructureGraphqlModule,
     PerfectScrollbarModule
   ]
 })
