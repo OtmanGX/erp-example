@@ -28,6 +28,16 @@ const routes: Routes = [
         loadChildren: () =>
           import('@TanglassUi/contact/contact.module').then(m => m.ContactModule),
       },
+      {
+        path: 'inventory',
+        loadChildren: () =>
+          import('@TanglassUi/inventory/inventory.module').then(m => m.InventoryModule),
+      },
+      {
+        path: 'product',
+        loadChildren: () =>
+          import('@TanglassUi/product/product.module').then(m => m.ProductModule),
+      },
     ]},
   {
     path: "**",

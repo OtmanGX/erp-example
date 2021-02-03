@@ -23,23 +23,26 @@ const routes: Routes = [
     children: [
       {
         path: 'warehouses',
-        component: WarehousesComponent
+        children: [
+          { path: '', component: WarehousesComponent },
+          { path: ':id', component: WarehouseCardComponent },
+        ],
+        data: {title: 'Entrepôts', breadcrumb: ""}
       },
       {
-        path: 'warehouses/transfert',
-        component: WarehouseTransfertComponent
-      },
-      {
-        path: 'warehouses/:id',
-        component: WarehouseCardComponent
+        path: 'transfert',
+        component: WarehouseTransfertComponent,
+        data: {title: 'Transfert', breadcrumb: ""}
       },
       {
         path: 'warehouse-consumable',
-        component: WarehouseConsumableComponent
+        component: WarehouseConsumableComponent,
+        data: {title: 'Entrepôts de consommable', breadcrumb: ""}
       },
       {
         path: 'warehouse-consumable/:id',
-        component: WarehouseConsumableCardComponent
+        component: WarehouseConsumableCardComponent,
+        data: {title: 'Entrepôts de consommable', breadcrumb: ""}
       },
       {
         path: 'warehouse-accessory',
@@ -47,11 +50,13 @@ const routes: Routes = [
       },
       {
         path: 'warehouse-accessory/:id',
-        component: WarehouseAccessoryCardComponent
+        component: WarehouseAccessoryCardComponent,
+        data: {title: 'Entrepôts d\'accessoires', breadcrumb: ""}
       },
       {
         path: 'warehouse-glasse',
-        component: WarehouseGlasseComponent
+        component: WarehouseGlasseComponent,
+        data: {title: 'Entrepôts de verre', breadcrumb: ""}
       },
       {
         path: 'warehouse-glasse/:id',
