@@ -21,6 +21,19 @@ export class TransferOrderEffects {
     )
   );
 
+  loadTransferOrderById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TransferOrderActions.loadTransferOrderById),
+      mergeMap((action) => this.transferOrderservice.getOneById(action.id)
+        .pipe(
+          map((data) =>
+            TransferOrderActions.loadTransferOrderByIdSuccess({transferOrder: data.data.stock_transfer_order_by_pk})),
+          catchError((error) =>
+            of(TransferOrderActions.loadTransferOrderByIdFailure({error})))
+          ))
+    )
+  );
+
 
   addTransferOrder$ = createEffect(() =>
     this.actions$.pipe(
