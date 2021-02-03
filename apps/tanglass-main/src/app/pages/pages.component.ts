@@ -2,9 +2,7 @@ import {
   Component,
   OnInit,
   AfterViewInit,
-  ViewChild,
   HostListener,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   OnDestroy
 } from '@angular/core';

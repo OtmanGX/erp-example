@@ -29,23 +29,24 @@ const routes: Routes = [
             path: ':id',
             component: CustomerCardComponent,
           },
-        ]
+        ],
+        data: {title: 'Clients', breadcrumb: ""}
       },
       {
         path: 'contact',
-        component: ContactComponent,
-      },
-      {
-        path: 'contact/:id',
-        component: ContactCardComponent,
+        children : [
+          { path: '', component: ContactComponent },
+          { path: ':id', component: ContactCardComponent },
+        ],
+        data: {title: 'Contact', breadcrumb: ""}
       },
       {
         path: 'provider',
-        component: ProviderComponent
-      },
-      {
-        path: 'provider/:id',
-        component: ProviderCardComponent,
+        children : [
+          { path: '', component: ProviderComponent },
+          { path: ':id', component: ProviderCardComponent }
+        ],
+        data: {title: 'Fournisseurs', breadcrumb: ""}
       },
     ]
   }
