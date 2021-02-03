@@ -12,14 +12,30 @@ import { of } from 'rxjs';
 export class WarehouseSubstanceEffects {
   loadWarehouseGlasses$ =createEffect(() => {
     return this.actions$.pipe(
-      ofType(WarehouseSubstanceActions.loadWarehouseSubstance),
+      ofType(WarehouseSubstanceActions.loadWarehouseGlasses),
       mergeMap((action) =>
         this.warehouseSubstanceService.getGlassesSubstances(action.id).pipe(
           map((data) =>
-          WarehouseSubstanceActions.loadWarehouseSubstanceSuccess({ warehouseSubstance: data })
+          WarehouseSubstanceActions.loadWarehouseGlassesSuccess({ warehouseSubstance: data })
           ),
           catchError((error) =>
-            of(WarehouseSubstanceActions.loadWarehouseSubstanceFailure({ error }))
+            of(WarehouseSubstanceActions.loadWarehouseGlassesFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  loadWarehouseAccessories$ =createEffect(() => {
+    return this.actions$.pipe(
+      ofType(WarehouseSubstanceActions.loadWarehouseGlasses),
+      mergeMap((action) =>
+        this.warehouseSubstanceService.getAccessoriesSubstances(action.id).pipe(
+          map((data) =>
+          WarehouseSubstanceActions.loadWarehouseAccessoriesSuccess({ warehouseSubstance: data })
+          ),
+          catchError((error) =>
+            of(WarehouseSubstanceActions.loadWarehouseAccessoriesFailure({ error }))
           )
         )
       )
