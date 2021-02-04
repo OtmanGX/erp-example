@@ -5,7 +5,7 @@
                            class="mb-8"
                            style="box-sizing: border-box"
                            [data]="item"
-                           [routerLink]="['/service', item?.id]"
+                           [routerLink]="[item?.id]"
                            [state]="{id : item?.id}" *ngFor="let item of (data$ | async)">
     </ngx-service-card-item>
   </div>

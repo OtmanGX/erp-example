@@ -16,7 +16,7 @@ const GlassHeaders = [
         field: 'product.code', headerName: 'Code', type: "linkColumn",
         cellRendererParams: (params) => (
           {
-            link: `/ListVerre/${params.data.id}`,
+            link: `${params.data.id}`,
           })
       },
       { field: 'type', headerName: 'Type', type: "textColumn" },
@@ -39,7 +39,7 @@ const ConsumableHeaders = [
         field: 'product.code', headerName: 'Code', type: "linkColumn",
         cellRendererParams: (params) => (
           {
-            link: `/listConsommables/${params.data.id}`,
+            link: `${params.data.id}`,
           })
       },
       { field: 'category', headerName: 'Catégory' },
@@ -59,7 +59,7 @@ const AccessoryHeaders = [
         field: 'product.code', headerName: 'Code', type: "linkColumn",
         cellRendererParams: (params) => (
           {
-            link: `/listAccessoires/${params.data.id}`,
+            link: `${params.data.id}`,
           })
       },
       { field: 'category', headerName: 'Catégory' },
@@ -93,7 +93,7 @@ const ServiceGlassHeaders = [
         field: 'labelFactory', headerName: 'Désignation de fabrication ', type: "linkColumn",
         cellRendererParams: (params) => (
           {
-            link: `/listServicesVerres/${params.data.id}`,
+            link: `${params.data.id}`,
           })
       },
     ]

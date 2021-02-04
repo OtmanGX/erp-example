@@ -78,29 +78,40 @@ export class NavigationService {
         { name: "Entrepôts de consommable", state: "inventory/warehouse-consumable" },
       ]
     },
-    // {
-    //   name: "Entrepôts de verre",
-    //   type: "link",
-    //   icon: "assignment_ind",
-    //   state: "inventory/warehouse-glasse"
-    // },
-    // {
-    //   name: "Entrepôts d'accessoires",
-    //   type: "link",
-    //   icon: "assignment_ind",
-    //   state: "inventory/warehouse-accessory"
-    // },
-    // {
-    //   name: "Entrepôts de consommable",
-    //   type: "link",
-    //   icon: "assignment_ind",
-    //   state: "inventory/warehouse-consumable"
-    // },
     {
       name: "Transfert",
       type: "link",
       icon: "assignment_ind",
       state: "inventory/transfert"
+    },
+    // *** Product ***
+    {
+      name: "Product",
+      type: "separator"
+    },
+    {
+      name: "Verres",
+      type: "link",
+      icon: "assignment_ind",
+      state: "product/glass"
+    },
+    {
+      name: "Accessoires",
+      type: "link",
+      icon: "assignment_ind",
+      state: "product/accessory"
+    },
+    {
+      name: "Matière consommable",
+      type: "link",
+      icon: "assignment_ind",
+      state: "product/consumable"
+    },
+    {
+      name: "Service",
+      type: "link",
+      icon: "assignment_ind",
+      state: "product/service"
     },
   ];
 

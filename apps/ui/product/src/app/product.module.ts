@@ -68,41 +68,33 @@ const routes: Routes = [
     path: '', component: ProductComponent,
     children: [
       {
-        path: '',
-        redirectTo: 'ListVerre',
-        pathMatch: 'full'
+        path: 'glass',
+        children: [
+          { path: '', component: ListGlasseComponent },
+          { path: ':id', component: GlassCardComponent },
+        ],
+        data: {title: 'Verres', breadcrumb: ""}
       },
       {
-        path: 'ListVerre',
-        component: ListGlasseComponent,
+        path: 'consumable',
+        children: [
+          { path: '', component: ListConsumableComponent  },
+          { path: ':id', component: ConsumableCardComponent  },
+        ],
       },
       {
-        path: 'ListVerre/:id',
-        component: GlassCardComponent,
+        path: 'accessory',
+        children: [
+          { path: '', component: ListAccessoriesComponent  },
+          { path: ':id', component: AccessoryCardComponent  },
+        ],
       },
       {
-        path: 'listConsommables',
-        component: ListConsumableComponent,
-      },
-      {
-        path: 'listConsommables/:id',
-        component: ConsumableCardComponent,
-      },
-      {
-        path: 'listAccessoires',
-        component: ListAccessoriesComponent,
-      },
-      {
-        path: 'listAccessoires/:id',
-        component: AccessoryCardComponent,
-      },
-      {
-        path: 'listServices',
-        component: ListServiceComponent,
-      },
-      {
-        path: 'service/:id',
-        component: ServiceCardComponent,
+        path: 'service',
+        children: [
+          { path: '', component: ListServiceComponent  },
+          { path: ':id', component: ServiceCardComponent  },
+        ],
       },
       {
         path: 'listServicesVerres',
