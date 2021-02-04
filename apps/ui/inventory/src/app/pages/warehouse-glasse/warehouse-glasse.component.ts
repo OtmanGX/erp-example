@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { GlassWarehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
+import * as GlassWarehousActions from '@TanglassStore/inventory/lib/actions/warehouseGlass.actions';
+import * as GlassWarehousSelectors from '@TanglassStore/inventory/lib/selectors/warehouseGlass.selectors';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class WarehouseGlasseComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$: any;
+  data$ = this.store.select(GlassWarehousSelectors.getAllGlassWarehouses);
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {
     this.setColumnDefs();
@@ -28,6 +30,7 @@ export class WarehouseGlasseComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(GlassWarehousActions.loadGlassWarehouses())
   }
 
   openDialog(action, data = {}) {

@@ -5,6 +5,9 @@ import { Store } from '@ngrx/store';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { AccessoryWarehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
+import * as AccessoryWarehousActions from '@TanglassStore/inventory/lib/actions/wareHouseAccessory.actions';
+import * as AccessoryWarehousSelectors from '@TanglassStore/inventory/lib/selectors/warehouseAccessory.selectors';
+
 
 
 @Component({
@@ -17,7 +20,7 @@ export class WarehouseAccessoryComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$: any;
+  data$ = this.store.select(AccessoryWarehousSelectors.getAllAccessoryWarehouses);
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {
     this.setColumnDefs();
@@ -28,6 +31,7 @@ export class WarehouseAccessoryComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(AccessoryWarehousActions.loadWareHouseAccessories());
   }
 
   openDialog(action, data = {}) {

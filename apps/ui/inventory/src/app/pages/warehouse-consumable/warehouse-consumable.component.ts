@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ConsumableWarehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
+import * as ConsumableWarehousActions from '@TanglassStore/inventory/lib/actions/warehouseConsumable.actions';
+import * as ConsumableWarehousSelectors from '@TanglassStore/inventory/lib/selectors/warehouseConsumable.selectors';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class WarehouseConsumableComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$: any;
+  data$ = this.store.select(ConsumableWarehousSelectors.getAllConsumableWarehouses);
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {
     this.setColumnDefs();
@@ -28,6 +30,7 @@ export class WarehouseConsumableComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(ConsumableWarehousActions.loadConsumableWarehouses());
   }
 
   openDialog(action, data = {}) {

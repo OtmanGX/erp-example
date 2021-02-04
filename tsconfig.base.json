@@ -31,6 +31,7 @@
       "@TanglassStore/contact/*": ["libs/store/contact/src/*"],
       "@TanglassStore/inventory/*": ["libs/store/inventory/src/*"],
       "@TanglassStore/product/*": ["libs/store/product/src/*"],
+      "@TanglassStore/shared/*": ["libs/store/shared/src/*"],
       "@tanglass-erp/material": ["libs/theme/material/src/index.ts"],
       "@tanglass-erp/store/app": ["libs/store/app/src/index.ts"],
       "@tanglass-erp/ag-grid": ["libs/ag-grid/src/index.ts"],
