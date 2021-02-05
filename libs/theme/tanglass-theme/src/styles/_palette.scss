@@ -46,7 +46,9 @@ $success: map-get($app-theme, success);
 
 
 @each $colorName, $matColor in $material-colors {
-  $color500: map-get($matColor, 500);
+  $color500: #222a45;
+  $secondary_color:  #222a45;
+  $primary_color: #ebeff2;
   $foreground500: map-get(map-get($matColor, contrast), 500);
   .#{"" + $colorName + ""} {
     background-color: $color500 !important;
@@ -76,7 +78,7 @@ $success: map-get($app-theme, success);
   .sidebar-#{"" + $colorName + ""} {
     .navigation-hold {
       background: rgba($color500, 0.96) !important;
-
+// items  sub menu text
       a,
       .sidenav-hold .sidenav li.open a .mat-icon:not(.menu-caret),
       .sidenav li.open > div > a > span:not(.menuitem-badge),
@@ -84,10 +86,10 @@ $success: map-get($app-theme, success);
       .icon-menu .mat-raised-button,
       .app-user .app-user-name,
       .branding .app-logo-text {
-        color: $foreground500 !important;
+        color: $primary_color !important;
       }
       a:hover {
-        // background: rgba(darken($color500, 20), 0.2) !important;
+         background: rgba(darken($color500, 20), 0.2) !important;
       }
       .app-user .app-user-photo,
       .sidenav-hold .sidenav li.open a .mat-icon:not(.menu-caret) {
@@ -114,16 +116,16 @@ $success: map-get($app-theme, success);
   // Header backgrounds
   .topbar-#{"" + $colorName + ""} {
     .topbar.mat-toolbar {
-      background: $color500 !important;
-      color: $foreground500 !important;
+      background: $primary_color !important;
+      color: $color500 !important;
     }
   }
 
   // Footer background
   .footer-#{"" + $colorName + ""} {
     .main-footer {
-      background: $color500 !important;
-      color: $foreground500 !important;
+      background: $primary_color !important;
+      color: $color500 !important;
     }
   }
 
