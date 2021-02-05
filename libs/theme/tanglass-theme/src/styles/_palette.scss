@@ -101,7 +101,13 @@ $success: map-get($app-theme, success);
       }
       .app-user {
         // background: darken($color500, 5) !important;
+      
       }
+      .app-user-photo{
+        color: $primary_color !important;
+
+      }
+      
       li.open {
         // background: rgba($color500, .3) !important;
         > a {
