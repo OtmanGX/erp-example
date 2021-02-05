@@ -2,7 +2,7 @@ const SalePointHeaders = [
   { field: 'name', headerName: 'Nom', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-      link: `/salePoints/${params.value}`,
+      link: `${params.value}`,
       state: {id: params?.data?.id},
       })
   },
@@ -15,7 +15,7 @@ const CompanieHeaders = [
   { field: 'name', headerName: 'Nom', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `/companies/${params.value}`,
+        link: `${params.value}`,
         state: {id: params?.data?.id},
       })
   },
@@ -32,7 +32,7 @@ const UserHeaders = [
   { headerName: 'Nom complet', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `/users/${params?.data?.username}`,
+        link: `${params?.data?.username}`,
         state: {id: params?.data?.id},
       }),
     valueGetter: (params) => [params.value, params?.data?.lastname].join(' ')},

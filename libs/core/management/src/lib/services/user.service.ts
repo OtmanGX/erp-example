@@ -8,7 +8,6 @@ import {
   UpdateUserMutationVariables,
   DeleteUserGQL,
 } from '@tanglass-erp/infrastructure/graphql';
-import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
@@ -24,13 +23,13 @@ interface RequestSignUp {
   providedIn: 'root'
 })
 export class UserService {
+  SIGNUP_PAGE = 'https://gxm.us.auth0.com/dbconnections/signup';
   constructor(
     private getAllGQL: GetAllUsersGQL,
     private getByIdGQL: GetUserByIdGQL,
     private insertOneGQL: InsertUserGQL,
     private updateOneGQL: UpdateUserGQL,
     private deleteOneGQL: DeleteUserGQL,
-    public auth: AuthService,
     @Inject(DOCUMENT) private doc: Document,
     private http: HttpClient
   ) {
@@ -55,19 +54,9 @@ export class UserService {
     return this.deleteOneGQL.mutate({ id })
   }
 
-  loginWithRedirect() {
-    this.auth.loginWithRedirect({
-      theme: {labeledSubmitButton: false}
-    });
-  }
-
   signUp(data: RequestSignUp) {
     data.client_id = 'k35khcRkef3IyRQWkIBRLd7vwFA2guV5';
     data.connection = 'Username-Password-Authentication';
-    return this.http.post('https://gxm.us.auth0.com/dbconnections/signup', data);
-  }
-
-  logout() {
-    this.auth.logout({ returnTo: this.doc.location.origin });
+    return this.http.post(this.SIGNUP_PAGE, data);
   }
 }

@@ -36,6 +36,29 @@ export class NavigationService {
       icon: "dashboard",
       state: "dashboard/analytics"
     },
+    // *** Management ***
+    {
+      name: "Management",
+      type: "separator"
+    },
+    {
+      name: "Employées",
+      type: "link",
+      icon: "badge",
+      state: "management/users"
+    },
+    {
+      name: "Sociétés",
+      type: "link",
+      icon: "business",
+      state: "management/companies"
+    },
+    {
+      name: "Points de vente",
+      type: "link",
+      icon: "store",
+      state: "management/salePoints"
+    },
     // *** Contact ***
     {
       name: "Contact",
@@ -81,7 +104,7 @@ export class NavigationService {
     {
       name: "Transfert",
       type: "link",
-      icon: "assignment_ind",
+      icon: "send",
       state: "inventory/transfert"
     },
     // *** Product ***
