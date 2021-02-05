@@ -2,13 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import { PopWarehouseComponent } from '@TanglassUi/inventory/pages/warehouse/pop-warehouse/pop-warehouse.component';
-import { WarehousesFacade } from '@tanglass-erp/store/inventory';
-import { Observable } from 'rxjs';
 import { PopWarehouseTransfertComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-warehouse-transfert/pop-warehouse-transfert.component';
-import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
-import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
-
+import * as TranserOrderSelectors from '@TanglassStore/inventory/lib/selectors/trasnferOrder.selectors';
+import * as transferOrderActions from '@TanglassStore/inventory/lib/actions/transferOrder.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'tanglass-erp-warehouses',
@@ -20,9 +17,9 @@ export class WarehouseTransfertComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$: Observable<any>;
+  data$ = this.store.select(TranserOrderSelectors.getAllTransferOrders);
 
-  constructor(public dialog: MatDialog, private facade: WarehousesFacade) {
+  constructor(public dialog: MatDialog, private store : Store) {
     this.setColumnDefs();
   }
 
@@ -31,6 +28,7 @@ export class WarehouseTransfertComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(transferOrderActions.loadTransferOrders());
   }
 
   openDialog(action, data = {}) {
