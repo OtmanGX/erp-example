@@ -10,7 +10,7 @@ const warehouseHeaders = [
 ];
 
 const warehouseTransferHeaders = [
-  { field: 'name', headerName: 'Nom', type: "linkColumn",
+  { field: 'id', headerName: 'Référence', type: "linkColumn",
     cellRendererParams: (params) => (
       {
         link: `/warehouses/transfert/${params.data.id}`,
@@ -19,6 +19,8 @@ const warehouseTransferHeaders = [
   { field: 'fromwarehouse.name', headerName: 'Entropot source', type: "textColumn"},
   { field: 'towarehouse.name', headerName: 'Entropot destination', type: "textColumn"},
   { field: 'status', headerName: 'Statut', type: "textColumn"},
+  { field: 'date', headerName: 'Date', type: "textColumn"},
+  { field: 'deadline', headerName: 'Date limite', type: "textColumn"},
 ];
 
 const ProductHeaders = [
