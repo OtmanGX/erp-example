@@ -15,27 +15,27 @@ const routes: Routes = [
     children: [
       {
         path: 'companies',
-        component: CompaniesComponent,
-      },
-      {
-        path: 'companies/:id',
-        component: CompanyCardComponent,
+        children: [
+          { path: '', component: CompaniesComponent },
+          { path: ':id', component: CompanyCardComponent },
+        ],
+        data: {title: 'Sociétés', breadcrumb: ""},
       },
       {
         path: 'salePoints',
-        component: SalePointsComponent,
-      },
-      {
-        path: 'salePoints/:id',
-        component: SalePointCardComponent,
+        children: [
+          { path: '', component: SalePointsComponent },
+          { path: ':id', component: SalePointCardComponent },
+        ],
+        data: {title: 'Points de vente', breadcrumb: ""},
       },
       {
         path: 'users',
-        component: EmployeesComponent,
-      },
-      {
-        path: 'users/:id',
-        component: EmployeeCardComponent,
+        children: [
+          { path: '', component: EmployeesComponent },
+          { path: ':id', component: EmployeeCardComponent },
+        ],
+        data: {title: 'Employées', breadcrumb: ""},
       },
     ],
   },
