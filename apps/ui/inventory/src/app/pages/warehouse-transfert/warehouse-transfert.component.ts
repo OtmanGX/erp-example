@@ -6,6 +6,7 @@ import { PopWarehouseTransfertComponent } from '@TanglassUi/inventory/pages/ware
 import * as TranserOrderSelectors from '@TanglassStore/inventory/lib/selectors/trasnferOrder.selectors';
 import * as transferOrderActions from '@TanglassStore/inventory/lib/actions/transferOrder.actions';
 import { Store } from '@ngrx/store';
+import {warehouseTransferHeaders} from '../../utils/grid-headers';
 
 @Component({
   selector: 'tanglass-erp-warehouses',
@@ -61,7 +62,8 @@ export class WarehouseTransfertComponent implements GridView {
   }
 
   setColumnDefs(): void {
-    this.columnDefs = [
+      this.columnDefs = [
+        ...warehouseTransferHeaders,
       {field: 'id', headerName: 'Action', type: "editColumn"}
     ];
   }
