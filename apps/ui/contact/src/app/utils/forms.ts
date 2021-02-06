@@ -10,6 +10,10 @@ const regConfigAddresses = (data?) => [
 ];
 
 const regConfigProvider = (data?, contacts: any = []) => [
+  {type: "input", name: "code", label: "Code", inputType: "text", value: data?.code,
+  validations: [
+    FormDialog.REQUIRED
+  ]},
   {type: "input", name: "name", label: "Nom", inputType: "text", value: data?.name,
     validations: [
       FormDialog.REQUIRED
@@ -37,6 +41,7 @@ const regConfigContact = (data?) => [
 ];
 
 const regConfigContactDetailed = (data?, customers = [], providers = []) => [
+  
   { name: 'contact', label: 'Information Générales', fields: regConfigContact(data), headerVisible: true },
   { name: 'affectation', label: 'Affectation', headerVisible: true, fields: [
       { type: "select", name: "customers", label: "Clients", inputType: "text",
@@ -49,6 +54,10 @@ const regConfigContactDetailed = (data?, customers = [], providers = []) => [
 
 
 const regCustomerConfig = (data?, contacts: any = []) => [
+  {type: "input", name: "code", label: "Code", inputType: "text", value: data?.code,
+  validations: [
+    FormDialog.REQUIRED
+  ]},
   {type: "input", name: "name", label: "Nom", inputType: "text", value: data?.name},
   {type: "input", label: "ICE", inputType: "text", name: "ICE", value: data?.ICE,
     validations: [
@@ -64,7 +73,7 @@ const regCustomerConfig = (data?, contacts: any = []) => [
   {type: "input", name: "mail", label: "E-mail", inputType: "text", value: data?.mail},
   {type: "textarea", name: "note", label: "Note", inputType: "text", value: data?.note},
   {type: "input", name: "website", label: "Site web", inputType: "text", value: data?.website},
-  {type: "input", name: "Fax", label: "Fax", inputType: "text", value: data?.FAX},
+  {type: "input", name: "FAX", label: "Fax", inputType: "text", value: data?.FAX},
   {type: "selectSearch", name: !data?.id ? "affectedContacts" : "contacts",
     label: "Contacts", inputType: "text", value: data?.contacts ?? [],
     filterFields: ['name', 'phone'],

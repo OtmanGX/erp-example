@@ -15,7 +15,7 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./pop-warehouse-transfert.component.scss'],
 })
 export class PopWarehouseTransfertComponent extends FormDialog implements AfterViewInit {
-  title = 'Transfert';
+  title = 'Order de Transfert';
   regConfig: FieldConfig[];
   regConfig2: FieldConfig[];
   formArray = new FormArray([]);

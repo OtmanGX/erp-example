@@ -54,6 +54,7 @@ export class WarehouseGlasseComponent implements GridView {
       ...GlassWarehouseHeaders,
       {field: 'id', headerName: 'Action', type: "editColumn"},
     ];
+    console.log(GlassWarehouseHeaders)
   }
 
 }

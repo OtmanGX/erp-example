@@ -59,13 +59,15 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit, O
   buildForm(): void {
     this.regConfig = regConfigProvider(this.data, this.contacts$);
     if (this.data?.id) {
+
+      this.title = "Éditer un Fournisseur";
       this.store.dispatch(loadProviderById({id: this.data.id}));
       this.selectedSubscription = this.store.select(getSelectedProvider)
         .subscribe(value => {
           if (value) {
             const obj: any = {...value};
             obj.contacts = obj.contacts.map((elem ) => elem.id);
-            this.regConfig = regCustomerConfig(obj, this.contacts$);
+            this.regConfig = regConfigProvider(obj, this.contacts$);
           }
         });
     }

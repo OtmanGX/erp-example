@@ -47,9 +47,9 @@ export class ProviderComponent implements GridView {
         if (action === Operations.add) {
           this.store.dispatch(ProviderActions.addProvider({provider: result}));
         } else if (action === Operations.update) {
-          const {contacts, ...obj} = result;
+          const {affectedContacts, ...obj} = result;
           obj['id'] = data['id'];
-          this.store.dispatch(ProviderActions.updateProvider({provider: result}));
+          this.store.dispatch(ProviderActions.updateProvider({provider: obj}));
         }
       }
     });

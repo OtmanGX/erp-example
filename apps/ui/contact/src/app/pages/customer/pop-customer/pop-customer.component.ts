@@ -57,6 +57,7 @@ export class PopCustomerComponent extends FormDialog implements AfterViewInit, O
   buildForm(): void {
     this.regConfig = regCustomerConfig(this.data, this.contacts$);
     if (this.data?.id) {
+      this.title = "Éditer un Client";
       this.store.dispatch(CustomerActions.loadCustomerById({id: this.data.id}));
       this.selectedSubscription = this.store.select(getSelectedCustomer)
         .subscribe(value => {
