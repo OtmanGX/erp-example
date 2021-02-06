@@ -81,15 +81,15 @@ export const updateProviderFailure = createAction(
 /****************************************************************** */
 
 export const removeProvider = createAction(
-  '[Providers Component] Update Provider',
+  '[Providers Component] Delete Provider',
   props<{ providerId: any }>()
 );
 export const removeProviderSuccess = createAction(
-  '[Provider Effect] Update Provider Success',
+  '[Provider Effect] Delete Provider Success',
   props<{ providerId: any }>()
 );
 export const removeProviderFailure = createAction(
-  '[Provider Effect] Update Provider failure',
+  '[Provider Effect] Delete Provider failure',
   props<{ error: any }>()
 );
 
