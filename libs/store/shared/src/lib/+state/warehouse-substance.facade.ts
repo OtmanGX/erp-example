@@ -4,6 +4,7 @@ import { select, Store, Action } from '@ngrx/store';
 
 import * as fromWarehouseSubstance from './warehouse-substance.reducer';
 import * as WarehouseSubstanceSelectors from './warehouse-substance.selectors';
+import * as  warehouseSubstancesActions from './warehouse-substance.actions';
 
 @Injectable()
 export class WarehouseSubstanceFacade {
@@ -23,5 +24,11 @@ export class WarehouseSubstanceFacade {
 
   dispatch(action: Action) {
     this.store.dispatch(action);
+  }
+  loadWarehouseGlasses(id) {
+    this.dispatch(warehouseSubstancesActions.loadWarehouseGlasses(id));
+  }
+  loadWarehouseAccessories(id) {
+    this.dispatch(warehouseSubstancesActions.loadWarehouseAccessories(id));
   }
 }

@@ -27,13 +27,13 @@ export const initialState: State = warehouseSubstanceAdapter.getInitialState({
 
 const warehouseSubstanceReducer = createReducer(
   initialState,
-  on(WarehouseSubstanceActions.loadWarehouseSubstance, (state) => ({
+  on(WarehouseSubstanceActions.loadWarehouseGlasses, (state) => ({
     ...state,
     loaded: false,
     error: null,
   })),
   on(
-    WarehouseSubstanceActions.loadWarehouseSubstanceSuccess,
+    WarehouseSubstanceActions.loadWarehouseGlassesSuccess,
     (state, { warehouseSubstance }) =>
       warehouseSubstanceAdapter.setAll(warehouseSubstance, {
         ...state,
@@ -41,7 +41,24 @@ const warehouseSubstanceReducer = createReducer(
       })
   ),
   on(
-    WarehouseSubstanceActions.loadWarehouseSubstanceFailure,
+    WarehouseSubstanceActions.loadWarehouseGlassesFailure,
+    (state, { error }) => ({ ...state, error })
+  ),
+  on(WarehouseSubstanceActions.loadWarehouseAccessories, (state) => ({
+    ...state,
+    loaded: false,
+    error: null,
+  })),
+  on(
+    WarehouseSubstanceActions.loadWarehouseAccessoriesSuccess,
+    (state, { warehouseSubstance }) =>
+      warehouseSubstanceAdapter.setAll(warehouseSubstance, {
+        ...state,
+        loaded: true,
+      })
+  ),
+  on(
+    WarehouseSubstanceActions.loadWarehouseAccessoriesFailure,
     (state, { error }) => ({ ...state, error })
   )
 );

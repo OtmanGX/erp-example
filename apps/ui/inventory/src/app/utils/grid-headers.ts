@@ -9,6 +9,20 @@ const warehouseHeaders = [
   { field: 'salesPoint.name', headerName: 'Point de vente', type: "textColumn"},
 ];
 
+const warehouseTransferHeaders = [
+  { field: 'id', headerName: 'Référence', type: "linkColumn",
+    cellRendererParams: (params) => (
+      {
+        link: `/warehouses/transfert/${params.data.id}`,
+      }
+  )},
+  { field: 'fromwarehouse.name', headerName: 'Entropot source', type: "textColumn"},
+  { field: 'towarehouse.name', headerName: 'Entropot destination', type: "textColumn"},
+  { field: 'status', headerName: 'Statut', type: "textColumn"},
+  { field: 'date', headerName: 'Date', type: "textColumn"},
+  { field: 'deadline', headerName: 'Date limite', type: "textColumn"},
+];
+
 const ProductHeaders = [
   { field: 'label', headerName: 'Désignation', type: "textColumn"},
   { field: 'price', headerName: 'Prix', type: 'numberColumn'},
@@ -100,6 +114,7 @@ const AccessoryWarehouseHeaders = [
 
 export {
   warehouseHeaders,
+  warehouseTransferHeaders,
   GlassHeaders,
   GlassWarehouseHeaders,
   ConsumableWarehouseHeaders,

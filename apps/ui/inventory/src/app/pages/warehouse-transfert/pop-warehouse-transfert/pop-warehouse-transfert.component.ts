@@ -5,7 +5,9 @@ import { regConfigTransferOrder, regConfigTransferOrderItem } from '@TanglassUi/
 import { WarehousesFacade } from '@tanglass-erp/store/inventory';
 import { map, take } from 'rxjs/operators';
 import { FormArray } from '@angular/forms';
+import * as SubstanceSelectors from '@TanglassStore/shared/lib/+state/warehouse-substance.selectors';
 import { regConfigAddresses } from '../../../../../../contact/src/app/utils/forms';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-pop-sale-points',
@@ -18,6 +20,7 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   regConfig2: FieldConfig[];
   formArray = new FormArray([]);
   orderForms = [];
+  substances$ = this.store.select(SubstanceSelectors.getAllWarehouseSubstance);
   @ViewChild('transfert_form', {read: DynamicFormComponent})
       transfertFormComponent: DynamicFormComponent;
   @ViewChildren('orderItem') dynamicForms: QueryList<DynamicFormComponent>;
@@ -35,6 +38,7 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   constructor(
     public dialogRef: MatDialogRef<PopWarehouseTransfertComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private store: Store,
     private facade: WarehousesFacade
   ) {
     super(dialogRef, data);

@@ -4,7 +4,7 @@ import { GlassWarehouse } from '@tanglass-erp/core/inventory';
 export const loadGlassWarehouses = createAction('[GlassWarehouses] Load GlassWarehouses');
 
 export const loadGlassWarehousesSuccess = createAction(
-  '[WareHouseAccessories] Load WareHouseAccessories Success',
+  '[WareHouseGlasses] Load WareHouseGlasses Success',
   props<{ glassWarehouses: GlassWarehouse[] }>()
 );
 

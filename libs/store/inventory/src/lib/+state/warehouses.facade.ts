@@ -31,4 +31,5 @@ export class WarehousesFacade {
   loadAllWarehouses() {
     this.dispatch(WarehousesActions.loadWarehouses());
   }
+
 }
