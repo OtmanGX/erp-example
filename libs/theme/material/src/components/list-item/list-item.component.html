@@ -1,7 +1,18 @@
-<mat-list>
-  <mat-list-item *ngFor="let item of data; last as last" [class.list-item-template]="item.type === 'view'">
-    <div fxLayout="row" style="width: 100%" fxLayoutAlign="start start" [fxLayoutGap]="gap">
-      <span class="label" fxFlex="30">{{item?.label}}</span>
+
+  <div *ngFor="let group of data">
+ 
+    <mat-toolbar *ngIf="group.isToolbar">
+      <span>{{group.label}}</span>
+      <span class="spacer"></span>
+      <button   *ngFor="let icon of group.icons;" mat-icon-button  
+      (click)="triggerAction(icon.event)"
+      [matTooltip]="icon.tooltip">
+        <mat-icon>{{icon.name}}</mat-icon>
+      </button>
+    </mat-toolbar>
+<mat-grid-list [cols]="group.cols" rowHeight="50px" >
+  <mat-grid-tile *ngFor="let item of group.data; last as last"  [class.list-item-template]="item.type === 'view'">
+      <span class="label" fxFlex="25">{{item?.label}}</span>
       <span fxFlexAlign="center" fxFlex="70" [ngSwitch]="item?.type">
         <span *ngSwitchCase="'date'">{{item?.value | date}}</span>
         <span *ngSwitchCase="'chips'">
@@ -35,7 +46,7 @@
         </span>
         <span *ngSwitchDefault>{{item?.value}}</span>
       </span>
-    </div>
-    <mat-divider *ngIf="!last"></mat-divider>
-  </mat-list-item>
-</mat-list>
+  </mat-grid-tile>
+
+</mat-grid-list >
+</div>

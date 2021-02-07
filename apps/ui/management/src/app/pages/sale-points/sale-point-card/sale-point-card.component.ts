@@ -32,11 +32,27 @@ export class SalePointCardComponent implements OnInit {
     this.data$.pipe(takeWhile(value => !value?.id, true)).subscribe( data => {
       this.data = data;
       this.passedData = [
-        {label: 'Nom', value: data?.name},
-        {label: 'Adresse', value: data?.address},
-        {label: 'E-mail', value: data?.email},
-        {label: 'Téléphone', value: data?.phone},
+
+        {
+          label: "Infos Générales",
+          isToolbar:"true",
+          cols:3,
+          icons:[{name:"edit",tooltip:"Modification",event:'editMain'}],
+          data:
+            [
+              {label: 'Nom', value: data?.name},
+              {label: 'Adresse', value: data?.address},
+              {label: 'E-mail', value: data?.email},
+              {label: 'Téléphone', value: data?.phone},
+              { label: 'createdAt', value: data?.createdAt },
+              { label: 'createdBy', value: data?.createdBy },
+              { label: 'updatedAt', value: data?.updatedAt },
+              { label: 'updatedBy', value: data?.updatedBy },
+            ]
+        },
+
         {label: 'Les profiles d\'utilisateurs', code: 'profiles', type: 'view'},
+
       ];
     });
   }

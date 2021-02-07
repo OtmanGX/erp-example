@@ -4492,8 +4492,18 @@ export enum Management_User_Role_Constraint {
 export enum Management_User_Role_Enum {
   /** admin description */
   Admin = 'admin',
-  /** user des */
-  User = 'user'
+  /** Chef d'Atelier */
+  Atelier = 'atelier',
+  /** caissier */
+  Caissier = 'caissier',
+  /** commercial */
+  Commercial = 'commercial',
+  /** comptable */
+  Comptable = 'comptable',
+  /** facturation */
+  Facturation = 'facturation',
+  /** magazinier */
+  Magazinier = 'magazinier'
 }
 
 /** expression to compare columns of type management_user_role_enum. All fields are combined with logical 'AND'. */

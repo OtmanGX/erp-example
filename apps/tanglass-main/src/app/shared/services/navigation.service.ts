@@ -96,9 +96,9 @@ export class NavigationService {
       // state: "inventory/warehouses",
       sub: [
         { name: "Entrepôts", state: "inventory/warehouses" },
-        { name: "Entrepôts de verre", state: "inventory/warehouse-glasse" },
-        { name: "Entrepôts d'accessoires", state: "inventory/warehouse-accessory" },
-        { name: "Entrepôts de consommable", state: "inventory/warehouse-consumable" },
+        { name: "Produit Stockable", state: "inventory/warehouse-glasse" },
+        { name: "Accessoires ", state: "inventory/warehouse-accessory" },
+        { name: "Consommables && MP", state: "inventory/warehouse-consumable" },
       ]
     },
     {
@@ -113,7 +113,7 @@ export class NavigationService {
       type: "separator"
     },
     {
-      name: "Verres",
+      name: "Produit Stockable",
       type: "link",
       icon: "assignment_ind",
       state: "product/glass"
@@ -125,7 +125,7 @@ export class NavigationService {
       state: "product/accessory"
     },
     {
-      name: "Matière consommable",
+      name: "Consommables && MP",
       type: "link",
       icon: "assignment_ind",
       state: "product/consumable"

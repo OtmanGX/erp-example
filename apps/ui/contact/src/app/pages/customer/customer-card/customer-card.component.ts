@@ -36,16 +36,26 @@ export class CustomerCardComponent extends ModelCardComponent {
     .pipe(takeUntil(this._onDestroy));
 
   contactPassedData = (contact) => [
-    {label: 'Code', value: contact?.code},
-    {label: 'Nom', value: contact?.name},
-    {label: 'E-mail', value: contact?.mail, type: 'mail'},
-    {label: 'Téléphone', value: contact?.phone, type: 'phone'},
-    {label: 'Note', value: contact?.note},
+    
+    {
+      cols: 3,
+      data:
+        [
+          {label: 'Assigné à', value: contact?.createdBy },
+          {label: 'Note', value: contact?.note},
+        ]
+    },
   ]
   addressPassedData = (address) => [
-    {label: 'Adresse', value: address?.address},
-    {label: 'Ville', value: address?.city},
-    {label: 'Code Postal', value: address?.zip},
+    {
+      cols: 3,
+      data:
+        [
+          {label: 'Adresse', value: address?.address},
+          {label: 'Ville', value: address?.city},
+          {label: 'Code Postal', value: address?.zip},
+        ]
+    },
   ]
 
   constructor(
@@ -67,16 +77,31 @@ export class CustomerCardComponent extends ModelCardComponent {
 
   passData(data: DetailedCustomer) {
     return [
-      {label: 'Nom', value: data?.name},
-      {label: 'Code', value: data?.code},
-      {label: 'ICE', value: data?.ICE},
-      {label: 'IF', value: data?.IF},
-      {label: 'E-mail', value: data?.mail, type: 'mail'},
-      {label: 'Téléphone', value: data?.phone, type: 'phone'},
-      {label: 'Note', value: data?.note},
-      {label: 'FAX', value: data?.FAX},
-      {label: 'Site web', value: data?.website, type: 'link'},
+    {
+      label: "Infos Générales",
+      isToolbar:"true",
+      cols:4,
+      icons:[{name:"edit",tooltip:"Modification",event:'editMain'}],
+      data:
+        [
+          {label: 'Nom', value: data?.name},
+          {label: 'Code', value: data?.code},
+          {label: 'ICE', value: data?.ICE},
+          {label: 'IF', value: data?.IF},
+          {label: 'E-mail', value: data?.mail, type: 'mail'},
+          {label: 'Téléphone', value: data?.phone, type: 'phone'},
+          {label: 'FAX', value: data?.FAX},
+          {label: 'Site web', value: data?.website, type: 'link'},
+          { label: 'createdAt', value: data?.createdAt },
+          { label: 'createdBy', value: data?.createdBy },
+          { label: 'updatedAt', value: data?.updatedAt },
+          { label: 'updatedBy', value: data?.updatedBy },
+          {label: 'Note', value: data?.note},
+
+        ]
+    },
     ];
+
   }
 
   async openDialog(model, data = {}) {

@@ -1,5 +1,5 @@
 import { FormDialog } from '@tanglass-erp/material';
-import { rolesDirection } from '@TanglassStore/management/index';
+import { Management_User_Role_Enum } from '@TanglassStore/management/index';
 
 const regConfigCompany = (data?) => [
   {type: "input", label: "Nom", inputType: "text", name: "name", value: data?.name,
@@ -71,7 +71,7 @@ const regConfigEmployee = (data?, salePoints = []) => [
     options: salePoints.map(item => ({key: item.id, value: item.name}))
   },
   {type: "select", label: "Role", inputType: "text", name: "phone", value: data?.user_role,
-    options: Object.values(rolesDirection).map(item => ({key : item, value: item})),
+    options: Object.values(Management_User_Role_Enum).map(item => ({key : item, value: item})),
     validations: [
       FormDialog.REQUIRED
     ]

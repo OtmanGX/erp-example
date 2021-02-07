@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input,  Output,
+  EventEmitter } from '@angular/core';
+import { ɵInternalFormsSharedModule } from '@angular/forms';
 
 @Component({
   selector: 'ngx-fiche-card',
@@ -10,6 +12,18 @@ export class FicheCardComponent {
   @Input() data: Array<any>;
   @Input() gap = "50px";
   @Input() withToolbar = true;
-  constructor() { }
+  @Output() triggerEvent = new EventEmitter<{action: string, data?: any}>();
 
+  constructor() { }
+  triggerAction(action: string, data?) {
+    
+    this.triggerEvent.emit({
+      action,
+      data
+    });
+  }
+  // TransPorting event from child to parent !!
+  eventTriggering(event) {
+    this.triggerAction(event)
+  }
 }

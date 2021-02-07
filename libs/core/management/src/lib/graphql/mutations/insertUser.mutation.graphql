@@ -1,6 +1,10 @@
-mutation InsertUser($CIN: String, $active: Boolean = true, $SalesPointsid: uuid , $email: String , $firstname: String , $lastname: String , $phone: String , $username: String, $role: management_user_role_enum = admin) {
-  insert_management_userProfile_one(object: {CIN: $CIN, active: $active, SalesPointsid: $SalesPointsid, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}) {
-        id
+mutation InsertUser($CIN: String, $active: Boolean = true, $SalesPointsid: uuid , $email: String , 
+$firstname: String , $lastname: String , $phone: String , $username: String, 
+$role: management_user_role_enum = admin) {
+  insert_management_userProfile_one(object: {CIN: $CIN, active: $active,
+   SalesPointsid: $SalesPointsid, email: $email, firstname: $firstname,
+    lastname: $lastname, phone: $phone, username: $username, role: $role}) {
+    id
     active
     firstname
     lastname

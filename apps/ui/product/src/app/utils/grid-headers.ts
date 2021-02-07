@@ -1,6 +1,13 @@
 
 const ProductHeaders = [
-  { field: 'product.code', headerName: 'Code', type: "textColumn" },
+  //{ field: 'product.code', headerName: 'Code', type: "textColumn" },
+  {
+    field: 'product.code', headerName: 'Code', type: "linkColumn",
+    cellRendererParams: (params) => (
+      {
+        link: `${params.data.id}`,
+      })
+  },
   { field: 'product.label', headerName: 'Désignation', type: "textColumn" },
   { field: 'product.unit', headerName: 'Unité', type: "numberColumn" },
   { field: 'product.price', headerName: 'Prix', type: "numberColumn" },
@@ -10,66 +17,48 @@ const ProductHeaders = [
 
 const GlassHeaders = [
   {
+    headerName: 'Produit: Produit Stockable',
+    children: ProductHeaders
+  },
+  {
     headerName: 'Caractéristiques',
     children: [
-      {
-        field: 'product.code', headerName: 'Code', type: "linkColumn",
-        cellRendererParams: (params) => (
-          {
-            link: `${params.data.id}`,
-          })
-      },
       { field: 'type', headerName: 'Type', type: "textColumn" },
       { field: 'color', headerName: 'Couleur', type: "textColumn" },
       { field: 'thickness', headerName: 'Epaisseur', type: "numberColumn" },
-
     ]
   },
-  {
-    headerName: 'Produit',
-    children: ProductHeaders
-  }
+ 
 ];
 
 const ConsumableHeaders = [
   {
-    headerName: '',
-    children: [
-      {
-        field: 'product.code', headerName: 'Code', type: "linkColumn",
-        cellRendererParams: (params) => (
-          {
-            link: `${params.data.id}`,
-          })
-      },
-      { field: 'category', headerName: 'Catégory' },
-    ]
+    headerName: 'Produit: Consommables et Matiére Première',
+    children: ProductHeaders
   },
   {
-    headerName: 'Produit',
-    children: ProductHeaders
-  }
+    headerName: '',
+    children: [
+      { field: 'category', headerName: 'Catégory',type: "textColumn" },
+    ]
+  },
+
 ];
 
 const AccessoryHeaders = [
   {
+    headerName: 'Produit:Accessoires et Systéme Apparent ',
+    children: ProductHeaders
+  },
+  {
     headerName: '',
     children: [
-      {
-        field: 'product.code', headerName: 'Code', type: "linkColumn",
-        cellRendererParams: (params) => (
-          {
-            link: `${params.data.id}`,
-          })
-      },
-      { field: 'category', headerName: 'Catégory' },
+  
+      { field: 'category', headerName: 'Catégory',type: "textColumn" },
       { field: 'quota', headerName: 'Quota', type: "numberColumn" },
     ]
   },
-  {
-    headerName: 'Produit',
-    children: ProductHeaders
-  }
+
 ];
 
 const ServiceHeaders = [
@@ -90,7 +79,7 @@ const ServiceGlassHeaders = [
     headerName: '',
     children: [
       {
-        field: 'labelFactory', headerName: 'Désignation de fabrication ', type: "linkColumn",
+        field: 'labelFactory', headerName: "Désignation d'usine" , type: "linkColumn",
         cellRendererParams: (params) => (
           {
             link: `${params.data.id}`,
