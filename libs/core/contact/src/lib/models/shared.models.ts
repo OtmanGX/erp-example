@@ -66,3 +66,10 @@ export interface DeleteAddress{
     id:string;
     addressid:string;
 }
+
+
+
+export interface DeleteAffectedContact{
+    id:string;
+    contactid:string;
+}
