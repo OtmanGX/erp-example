@@ -14,11 +14,10 @@ export interface Provider{
     mail?:string;
 
 }
-// used for get by id (provider card ) and editing option  
+// used for get by id (provider card ) and editing option
 export interface DetailedProvider extends InsertedProvider{
     id:string;
-
-    
+    contacts: PartialContact[];
 }
 
 // used for inserting new provider
