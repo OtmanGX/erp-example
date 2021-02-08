@@ -52,10 +52,63 @@ const CustomerReducer = createReducer<State>(
   on(CustomersActions.updateCustomerSuccess, (state, action) =>
      customerAdapter.upsertOne(action.customer, state)
   ),
+  on(CustomersActions.addContactToCustomerSuccess, (state, action) =>
+     (
+       {
+         ...state,
+         selectedCustomer : {
+           ...state.selectedCustomer,
+           contacts : [
+             ...state.selectedCustomer.contacts,
+             action.contact.contact
+           ]
+         }
+       }
+     )
+  ),
+  on(CustomersActions.addAdressToCustomerSuccess, (state, action) =>
+     (
+       {
+         ...state,
+         selectedCustomer : {
+           ...state.selectedCustomer,
+           addresses : [
+             ...state.selectedCustomer.addresses,
+             action.address.address
+           ]
+         }
+       }
+     )
+  ),
+  on(CustomersActions.removeAdressFromCustomer, (state, action) =>
+     (
+       {
+         ...state,
+         selectedCustomer : {
+           ...state.selectedCustomer,
+           addresses : state.selectedCustomer.addresses.filter( address => address.id !== action.adress.addressid)
+         }
+       }
+     )
+  ),
+  on(CustomersActions.removeContactFromCustomer, (state, action) =>
+     (
+       {
+         ...state,
+         selectedCustomer : {
+           ...state.selectedCustomer,
+           contacts : state.selectedCustomer.contacts.filter(contact => contact.id !== action.contact.contactid)
+         }
+       }
+     )
+  ),
   on(CustomersActions.removeCustomerSuccess, (state, action) =>
      customerAdapter.removeOne(action.customerId, state)
   ),
   on(CustomersActions.loadCustomersFailure,
+     CustomersActions.addAdressToCustomerFailure,
+     CustomersActions.removeAdressFromCustomerFailure,
+     CustomersActions.addContactToCustomerFailure,
      CustomersActions.updateCustomerFailure,
      CustomersActions.addCustomerFailure,
      CustomersActions.loadCustomerByIdFailure,

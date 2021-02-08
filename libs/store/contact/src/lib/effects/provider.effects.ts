@@ -42,6 +42,23 @@ export class ProvidersEffects {
   });
 
 
+  loadProviderById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProvidersActions.loadProviderById),
+      mergeMap((action) =>
+        this.providerService.getOneById(action.id).pipe(
+          map((data) =>
+          ProvidersActions.loadProviderByIdSuccess({provider: data.data.contact_provider_by_pk})
+          ),
+          catchError((error) =>
+            of(ProvidersActions.loadProviderByIdFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+
   updateProvider$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProvidersActions.updateProvider),
@@ -133,6 +150,22 @@ export class ProvidersEffects {
           ),
           catchError((error) =>
             of(ProvidersActions.removeAdressFromProviderFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  removeContactToCustomer$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProvidersActions.removeContactFromProvider),
+      mergeMap((action) =>
+        this.providerService.deleteContact(action.contact).pipe(
+          map((data) =>
+          ProvidersActions.removeContactFromProviderSuccess({contact: data.data.delete_contact_provider_contact_by_pk})
+          ),
+          catchError((error) =>
+            of(ProvidersActions.removeContactFromProviderFailure({ error }))
           )
         )
       )

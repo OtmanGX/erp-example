@@ -14,18 +14,18 @@
 
       </mat-expansion-panel-header>
       <mat-accordion class="headers-align" multi>
-    
+
         <mat-expansion-panel *ngFor="let item of data?.contacts; index as i; trackBy: trackByFn"
                              [expanded]="stepContact === i"
                              (opened)="setStepContact(i)"
-                             [hideToggle]="true" 
+                             [hideToggle]="true"
                              >
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{item.code}}
             </mat-panel-title>
             <mat-panel-description>
-             
+
               <span  fxFlex="30"><h3>{{item.name}}</h3></span>
               <span  fxFlex="30"><h3>{{item.phone}}</h3></span>
               <span  fxFlex="30"><h3>{{item.mail}}</h3></span>
@@ -35,7 +35,7 @@
           <ngx-list-item [data]="contactPassedData(item)" gap="10px">
           </ngx-list-item>
           <mat-action-row>
-            <button mat-button color="warn" (click)="deleteAdresse(item?.id)">Supprimer</button>
+            <button mat-button color="warn" (click)="deleteContact(item?.id)">Supprimer</button>
             <button *ngIf="i>0" mat-button color="accent" (click)="prevStepContact()">Précédent</button>
             <button *ngIf="i<(data?.contacts.length-1)" mat-button color="primary" (click)="nextStepContact()">Suivant</button>
           </mat-action-row>
@@ -71,7 +71,7 @@
           <ngx-list-item [data]="addressPassedData(item)" gap="10px">
           </ngx-list-item>
           <mat-action-row>
-            <button mat-button color="warn" (click)="deleteContact(item?.id)">Supprimer</button>
+            <button mat-button color="warn" (click)="deleteAdresse(item?.id)">Supprimer</button>
             <button *ngIf="i>0" mat-button color="accent" (click)="prevStepAddress()">Précédent</button>
             <button *ngIf="i<(data?.addresses.length-1)" mat-button color="primary" (click)="nextStepAddress()">Suivant</button>
           </mat-action-row>

@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { takeUntil } from 'rxjs/operators';
 import { DetailedProvider, Contact, Address } from '@TanglassStore/contact/index';
+import * as ProviderActions from '@TanglassStore/contact/lib/actions/provider.actions';
+
 
 const componentMapper = {
   address: PopAddressComponent,
@@ -114,8 +116,16 @@ export class ProviderCardComponent extends ModelCardComponent {
         // Store Add/Update action dispatching
         switch (model) {
           case 'address': // Add
+            this.store.dispatch(ProviderActions.addAdressToProvider({adress: {
+              id : this.id,
+              address : result,
+            }}))
             break;
           case 'contact': // Add
+            this.store.dispatch(ProviderActions.addContactToProvider({contact: {
+              id : this.id,
+              contact : result,
+            }}))
             break;
           case 'provider': // Update
             break;
@@ -157,8 +167,16 @@ export class ProviderCardComponent extends ModelCardComponent {
   }
 
   deleteContact(id) {
+    this.store.dispatch(ProviderActions.removeContactFromProvider({contact : {
+      contactid: id,
+      id: this.id
+    }}))
   }
 
   deleteAdresse(id) {
+    this.store.dispatch(ProviderActions.removeAdressFromProvider({adress : {
+      addressid: id,
+      id: this.id
+    }}))
   }
 }

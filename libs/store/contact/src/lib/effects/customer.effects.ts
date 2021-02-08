@@ -156,6 +156,22 @@ export class CustomersEffects {
     )
   });
 
+  removeContactFromCustomer$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CustomersActions.removeContactFromCustomer),
+      mergeMap((action) =>
+        this.customerService.deleteContact(action.contact).pipe(
+          map((data) =>
+          CustomersActions.removeContactFromCustomerSuccess({contact: data.data.delete_contact_customer_contact_by_pk})
+          ),
+          catchError((error) =>
+            of(CustomersActions.removeContactFromCustomerFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
 
   constructor(private actions$: Actions,
               private customerService: CustomerService) {}
