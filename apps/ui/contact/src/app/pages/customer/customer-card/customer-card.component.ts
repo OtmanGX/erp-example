@@ -36,7 +36,7 @@ export class CustomerCardComponent extends ModelCardComponent {
     .pipe(takeUntil(this._onDestroy));
 
   contactPassedData = (contact) => [
-    
+
     {
       cols: 3,
       data:
@@ -117,8 +117,16 @@ export class CustomerCardComponent extends ModelCardComponent {
         // Store Add/Update action dispatching
         switch (model) {
           case 'address': // Add
+            this.store.dispatch(CustomerActions.addAdressToCustomer({address: {
+              id : this.id,
+              address : result,
+            }}))
             break;
           case 'contact': // Add
+            this.store.dispatch(CustomerActions.addContactToCustomer({contact: {
+              id : this.id,
+              contact : result,
+            }}))
             break;
           case 'customer': // Update
             break;
@@ -160,9 +168,17 @@ export class CustomerCardComponent extends ModelCardComponent {
   }
 
   deleteContact(id) {
+    this.store.dispatch(CustomerActions.removeContactFromCustomer({contact : {
+      contactid: id,
+      id: this.id
+    }}))
   }
 
   deleteAdresse(id) {
+    this.store.dispatch(CustomerActions.removeAdressFromCustomer({adress : {
+      addressid: id,
+      id: this.id
+    }}))
   }
 
 }

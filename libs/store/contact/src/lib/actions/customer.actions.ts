@@ -1,4 +1,5 @@
-import { Customer, DetailedCustomer, InsertAddressContact, InsertContact, AffectContactCustomer, DeleteAddress } from '@tanglass-erp/core/contact';
+import { Customer, DetailedCustomer, InsertAddressContact,
+   InsertContact, AffectContactCustomer, DeleteAddress, DeleteAffectedContact } from '@tanglass-erp/core/contact';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -65,7 +66,7 @@ export const addCustomerFailure = createAction(
 
 export const updateCustomer = createAction(
   '[Customers Component] Update Customer',
-  props<{ customer: Customer }>()
+  props<{ customer: DetailedCustomer }>()
 );
 export const updateCustomerSuccess = createAction(
   '[Customer Effect] Update Customer Success',
@@ -159,5 +160,23 @@ export const removeAdressFromCustomerSuccess = createAction(
 );
 export const removeAdressFromCustomerFailure = createAction(
   '[Customer Effect] remove Adress from Customer failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****REMOVE CONTACT FROM CUSTOMER ** */
+/****************************************************************** */
+
+export const removeContactFromCustomer = createAction(
+  '[Customer card Component] remove Contact from Customer',
+  props<{ contact: DeleteAffectedContact }>()
+);
+export const removeContactFromCustomerSuccess = createAction(
+  '[Customer Effect] remove Contact from Customer Success',
+  props<{ contact: any }>()
+);
+export const removeContactFromCustomerFailure = createAction(
+  '[Customer Effect] remove Contact from Customer failure',
   props<{ error: any }>()
 );
