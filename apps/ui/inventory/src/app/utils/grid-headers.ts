@@ -1,34 +1,39 @@
 const warehouseHeaders = [
-  { field: 'name', headerName: 'Nom', type: "linkColumn",
+  {
+    field: 'name', headerName: 'Nom', type: "linkColumn",
     cellRendererParams: (params) => (
       {
         link: `${params.data.id}`,
       }
-  )},
-  { field: 'company.name', headerName: 'Société', type: "textColumn"},
-  { field: 'salesPoint.name', headerName: 'Point de vente', type: "textColumn"},
+    )
+  },
+  { field: 'company.name', headerName: 'Société', type: "textColumn" },
+  { field: 'salesPoint.name', headerName: 'Point de vente', type: "textColumn" },
 ];
 
 const warehouseTransferHeaders = [
-  { field: 'id', headerName: 'Référence', type: "linkColumn",
+  {
+    field: 'id', headerName: 'Référence', type: "linkColumn",
     cellRendererParams: (params) => (
       {
         link: `/warehouses/transfert/${params.data.id}`,
       }
-  )},
-  { field: 'fromwarehouse.name', headerName: 'Entropot source', type: "textColumn"},
-  { field: 'towarehouse.name', headerName: 'Entropot destination', type: "textColumn"},
-  { field: 'status', headerName: 'Statut', type: "textColumn"},
-  { field: 'date', headerName: 'Date', type: "textColumn"},
-  { field: 'deadline', headerName: 'Date limite', type: "textColumn"},
+    )
+  },
+  { field: 'fromwarehouse.name', headerName: 'Entrepôt source', type: "textColumn" },
+  { field: 'towarehouse.name', headerName: 'Entrepôt destination', type: "textColumn" },
+  { field: 'status', headerName: 'Statut', type: "textColumn" },
+  { field: 'date', headerName: 'Date', type: "textColumn" },
+  { field: 'deadline', headerName: 'Date limite', type: "textColumn" },
 ];
 
 const ProductHeaders = [
-  { field: 'label', headerName: 'Désignation', type: "textColumn"},
-  { field: 'price', headerName: 'Prix', type: 'numberColumn'},
-  { field: 'unit', headerName: 'Unité'},
+  { field: 'code', headerName: 'Code', type: "textColumn" },
+  { field: 'label', headerName: 'Désignation', type: "textColumn" },
+  { field: 'price', headerName: 'Prix', type: 'numberColumn' },
+  { field: 'unit', headerName: 'Unité' },
 ];
-
+/** 
 const GlassHeaders = [
   { field: 'type', headerName: 'Code', type: "textColumn"},
   { field: 'color', headerName: 'Couleur', type: "textColumn"},
@@ -47,75 +52,74 @@ const SubstanceGlassHeaders = [
       GlassHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'substance.glass.' + elem.field) && elem)
   }
 ];
-
+*/
+const SubstanceGlassHeaders = [
+  ...ProductHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productGlass.' + elem.field) && elem),
+  { field: 'substance.glass.type', headerName: 'Type', type: "textColumn" },
+  { field: 'substance.glass.color', headerName: 'Couleur', type: "textColumn" },
+  { field: 'substance.glass.thickness', headerName: 'épaisseur', type: "numberColumn" },
+];
 const SubstanceAccessoryHeaders = [
-  {
-    headerName: 'Produit',
-    children:
-      ProductHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'substance.productAccessory' + elem.field))
-  },
-  {
-    headerName: 'Accessoire',
-    children: [
-      { field: 'accessory.category', headerName: 'Catégorie'},
-    ]
-  }
+... ProductHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productAccessory.' + elem.field)&& elem),
+ { field: 'substance.accessory.category', headerName: 'Catégorie' },
 ];
 
 const SubstanceConsumableHeaders = [
-  {
-    headerName: 'Produit',
-    children:
-      ProductHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'substance.productConsumable' + elem.field))
-  },
-  {
-    headerName: 'Consommable',
-    children: [
-      { field: 'consomable.category', headerName: 'Catégorie'},
-    ]
-  }
+
+  ...ProductHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productConsumable.' + elem.field) && elem),
+  { field: 'substance.consomable.category', headerName: 'Catégorie' },
+
 ];
 
 
 const GlassWarehouseHeaders = [
-  {headerName: 'Entrepôt',
-    children:
-      warehouseHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
-  },
   {
-    headerName: 'Substance',
+    headerName: 'Substance: Produit Stockable',
     children: SubstanceGlassHeaders
   },
-  {field: 'quantity', headerName: 'Quantité'}
+  { field: 'quantity', headerName: 'Quantité' },
+  {
+    headerName: 'Entrepôt',
+    children:
+      warehouseHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
+  },
+
 ];
 
 const ConsumableWarehouseHeaders = [
-  {headerName: 'Entrepôt',
+  {
+    headerName: 'Substance: Consommables/Matiére Première',
     children:
-      warehouseHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
+      SubstanceConsumableHeaders
   },
-  {headerName: 'Substance', children:
-    SubstanceConsumableHeaders
+  { field: 'quantity', headerName: 'Quantité' },
+  {
+    headerName: 'Entrepôt',
+    children:
+      warehouseHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
   },
-  {field: 'quantity', headerName: 'Quantité'}
 ];
 
 const AccessoryWarehouseHeaders = [
-  {headerName: 'Entrepôt',
+  {
+    headerName: 'Substance:Accessoires /Système Apparent',
     children:
-      warehouseHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
+    SubstanceAccessoryHeaders
   },
-  {headerName: 'Substance', children:
-    SubstanceConsumableHeaders
+  { field: 'quantity', headerName: 'Quantité' },
+  {
+    headerName: 'Entrepôt',
+    children:
+      warehouseHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
   },
-  {field: 'quantity', headerName: 'Quantité'}
+
 ];
 
 
 export {
   warehouseHeaders,
   warehouseTransferHeaders,
-  GlassHeaders,
+  //GlassHeaders,
   GlassWarehouseHeaders,
   ConsumableWarehouseHeaders,
   AccessoryWarehouseHeaders,

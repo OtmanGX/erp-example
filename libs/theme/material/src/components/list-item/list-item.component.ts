@@ -3,7 +3,9 @@ import {
   Component,
   ContentChildren,
   Input,
-  QueryList
+  QueryList,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { CardItem } from '../../interfaces/card-item';
 import { TypeTemplateDirective } from '../../directives/type-template';
@@ -16,8 +18,10 @@ import { TypeTemplateDirective } from '../../directives/type-template';
 export class ListItemComponent implements AfterContentInit {
   @Input() data: Array<CardItem>;
   @Input() gap = "50px";
+  @Output() triggerEvent = new EventEmitter<{action: string, data?: any}>();
+
   @ContentChildren(TypeTemplateDirective)
-    private typeTemplateDirectives: QueryList<TypeTemplateDirective>;
+  private typeTemplateDirectives: QueryList<TypeTemplateDirective>;
   private templates: any;
 
   constructor() {
@@ -29,5 +33,10 @@ export class ListItemComponent implements AfterContentInit {
       this.templates[item.typeTemplate] = item.templateRef;
     });
   }
-
+  triggerAction(action: string, data?) {
+    this.triggerEvent.emit({
+      action,
+      data
+    });
+  }
 }

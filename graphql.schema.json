@@ -30082,8 +30082,38 @@
             "deprecationReason": null
           },
           {
-            "name": "user",
-            "description": "user des",
+            "name": "atelier",
+            "description": "Chef d'Atelier",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "caissier",
+            "description": "caissier",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commercial",
+            "description": "commercial",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "comptable",
+            "description": "comptable",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "facturation",
+            "description": "facturation",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "magazinier",
+            "description": "magazinier",
             "isDeprecated": false,
             "deprecationReason": null
           }

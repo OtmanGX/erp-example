@@ -32,11 +32,29 @@ export class ContactCardComponent extends ModelCardComponent {
 
   passData(data?: DetailedContact) {
     return [
-      { label: 'Nom', value: data?.name },
-      { label: 'Code', value: data?.code },
-      { label: 'Note', value: data?.note },
-      { label: 'E-mail', value: data?.mail, type: 'mail' },
-      { label: 'Téléphone', value: data?.phone, type: 'phone' },
+      {
+        label: "Infos Générales",
+        isToolbar:"true",
+        cols:3,
+        icons:[{name:"edit",tooltip:"Modification",event:'editMain'}],
+        data:
+          [
+            { label: 'Nom', value: data?.name },
+            { label: 'Code', value: data?.code },
+            { label: 'Note', value: data?.note },
+            { label: 'E-mail', value: data?.mail, type: 'mail' },
+            { label: 'Téléphone', value: data?.phone, type: 'phone' },
+            { label: 'createdAt', value: data?.createdAt },
+            { label: 'createdBy', value: data?.createdBy },
+            { label: 'updatedAt', value: data?.updatedAt },
+            { label: 'updatedBy', value: data?.updatedBy },
+          ]
+      },
     ];
+  }
+
+  eventTriggering(event) {
+    // Store Action Dispatching update
+
   }
 }

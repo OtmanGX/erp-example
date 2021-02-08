@@ -1,30 +1,30 @@
 <ngx-fiche-card [title]="title" [data]="passedData">
 
     <mat-accordion class="headers-align">
-      <mat-expansion-panel #contactPanel>
+      <mat-expansion-panel #contactPanel class="mat-elevation-z0">
         <mat-expansion-panel-header>
           <mat-panel-title class="mat-color-primary font-weight-bold">
             Contacts
           </mat-panel-title>
           <mat-panel-description>
             Cliquez pour les {{contactPanel.expanded?hideMessage:showMessage}}
+            <mat-icon (click)="openDialog('contact')" >add</mat-icon>
           </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-accordion class="headers-align" [multi]="false">
-            <button mat-button color="primary" (click)="openDialog('contact')">
-              <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>&nbsp;&nbsp; Ajouter
-            </button>
           <mat-expansion-panel *ngFor="let item of data?.contacts; index as i;trackBy: trackByFn"
                                [expanded]="stepContact === i"
                                (opened)="setStepContact(i)"
                                [hideToggle]="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Contact
+                {{item.code}}
               </mat-panel-title>
               <mat-panel-description>
-                {{item.name}}
-                <mat-icon fontSet="fas" color="primary" fontIcon="fa-user-circle"></mat-icon>
+                <span  fxFlex="30"><h3>{{item.name}}</h3></span>
+                <span  fxFlex="30"><h3>{{item.phone}}</h3></span>
+                <span  fxFlex="30"><h3>{{item.mail}}</h3></span>
+              <mat-icon fontSet="fas" color="primary" fontIcon="fa-user-circle"></mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <ngx-list-item [data]="contactPassedData(item)" gap="10px">
@@ -38,19 +38,17 @@
         </mat-accordion>
       </mat-expansion-panel>
 
-      <mat-expansion-panel #addressPanel>
+      <mat-expansion-panel #addressPanel class="mat-elevation-z0">
         <mat-expansion-panel-header>
           <mat-panel-title class="mat-color-primary font-weight-bold">
             Adresses
           </mat-panel-title>
           <mat-panel-description>
             Cliquez pour les {{addressPanel.expanded?hideMessage:showMessage}}
+            <mat-icon (click)="openDialog('address')" >add</mat-icon>
           </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-accordion class="headers-align" [multi]="false">
-          <button mat-button color="primary" (click)="openDialog('address')">
-            <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>&nbsp;&nbsp; Ajouter
-          </button>
           <mat-expansion-panel *ngFor="let item of data?.addresses; index as i; trackBy: trackByFn"
                                [expanded]="stepAddress === i"
                                (opened)="setStepAddress(i)" [hideToggle]="true">

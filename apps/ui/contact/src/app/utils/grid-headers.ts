@@ -27,12 +27,13 @@ const CustomerHeaders = [
 ];
 
 const ProviderHeaders = [
-  { field: 'name', headerName: 'Name', type: "linkColumn",
-    cellRendererParams: (params) => (
-      {
-        link: `${params.data.id}`,
-      })
-  },
+  { field: 'code', headerName: 'Code', type: "linkColumn",
+  cellRendererParams: (params) => (
+    {
+      link: `${params.data.id}`,
+    })
+},
+  { field: 'name', headerName: 'Name', type: "textColumn",},
   { field: 'note', headerName: 'Note', type: "textColumn" },
   { field: 'mail', headerName: 'E-mail', type: "textColumn"},
   { field: 'phone', headerName: 'Téléphone', type: "textColumn"},

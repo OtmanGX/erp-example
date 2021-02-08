@@ -18,3 +18,6 @@ export{UsersVM,DetailedUserVM,UserCreationVM}from './lib/pagesVM/users.vm';
 
 export * from './lib/enums'
 
+export {
+    Management_User_Role_Enum,
+} from "@tanglass-erp/infrastructure/graphql";

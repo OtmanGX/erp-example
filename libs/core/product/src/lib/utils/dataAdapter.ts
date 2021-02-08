@@ -25,7 +25,7 @@ export function adaptProduct(Item: objToAdapt,type:string) {
         )
         )
     }
-    return { ...Item[type], product: { ...Item.product, product_companies ,unit:"m2"} }
+    return { ...Item[type], product: { ...Item.product, product_companies } }
 
 }
 

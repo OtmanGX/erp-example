@@ -21,6 +21,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 // Components
 import { SelectComponent } from '../components/form/select.component';
@@ -83,7 +84,8 @@ const MATERIAL_MODULES = [
   MatChipsModule,
   MatExpansionModule,
   MatStepperModule,
-  NgxMatSelectSearchModule
+  NgxMatSelectSearchModule,
+  MatGridListModule
 ];
 
 const OTHER_MODULES = [

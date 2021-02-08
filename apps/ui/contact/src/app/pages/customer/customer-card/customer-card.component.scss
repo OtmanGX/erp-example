@@ -9,7 +9,7 @@
 }
 
 .headers-align .mat-form-field + .mat-form-field {
-  margin-left: 8px;
+  margin-left: 3px;
 }
 
 .model div {
@@ -17,6 +17,16 @@
 }
 
 .spacer {
-  flex: 1 1 auto;
+  flex: 0.25 0.25 ;
 }
 
+::ng-deep .mat-accordion{
+  //background: rgba(0,0,0,0);
+  color: rgba(0,0,0,0); /* transparent */
+  border-bottom: none !important;
+}
+::ng-deep .mat-expansion-panel-header{
+  /* styles that were added to panel before */
+ // background: rgba(0,0,0,.87) ;
+  color: rgba(0,0,0,.87); 
+}

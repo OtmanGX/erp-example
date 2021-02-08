@@ -10,7 +10,7 @@ import { PopShortContactComponent } from '../../contact/pop-short-contact/pop-sh
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { takeUntil } from 'rxjs/operators';
-import { DetailedProvider } from '@TanglassStore/contact/index';
+import { DetailedProvider, Contact, Address } from '@TanglassStore/contact/index';
 
 const componentMapper = {
   address: PopAddressComponent,
@@ -34,17 +34,30 @@ export class ProviderCardComponent extends ModelCardComponent {
   data$ = this.store.select(getSelectedProvider)
     .pipe(takeUntil(this._onDestroy));
 
-  contactPassedData = (contact) => [
-    {label: 'Code', value: contact?.code},
-    {label: 'Nom', value: contact?.name},
-    {label: 'E-mail', value: contact?.mail, type: 'mail'},
-    {label: 'Téléphone', value: contact?.phone, type: 'phone'},
-    {label: 'Note', value: contact?.note},
+  contactPassedData = (contact: Contact) => [
+
+    {
+      cols: 3,
+      data:
+        [
+          { label: 'Code', value: contact?.code },
+          { label: 'Nom', value: contact?.name },
+          { label: 'E-mail', value: contact?.mail, type: 'mail' },
+          { label: 'Téléphone', value: contact?.phone, type: 'phone' },
+          { label: 'Note', value: contact?.note },
+        ]
+    },
   ]
-  addressPassedData = (address) => [
-    {label: 'Adresse', value: address?.address},
-    {label: 'Ville', value: address?.city},
-    {label: 'Code Postal', value: address?.zip},
+  addressPassedData = (address: Address) => [
+    {
+      cols: 3,
+      data:
+        [
+          { label: 'Adresse', value: address?.address },
+          { label: 'Ville', value: address?.city },
+          { label: 'Code Postal', value: address?.zip },
+        ]
+    },
   ]
 
   constructor(
@@ -57,15 +70,31 @@ export class ProviderCardComponent extends ModelCardComponent {
   }
 
   dispatch(): void {
-    this.store.dispatch(loadProviderById({id: this.id}));
+    this.store.dispatch(loadProviderById({ id: this.id }));
   }
 
   passData(data: DetailedProvider) {
     return [
-      {label: 'Nom', value: this.data?.name},
-      {label: 'Note', value: this.data?.note},
-      {label: 'Téléphone', value: this.data?.phone, type: 'phone'},
-      {label: 'E-mail', value: this.data?.mail, type: 'mail'},
+
+
+      {
+        label: "Infos Générales",
+        isToolbar: "true",
+        cols: 3,
+        icons: [{ name: "edit", tooltip: "Modification" ,event:'editMain'}],
+        data:
+          [
+            { label: 'Code', value: data?.code },
+            { label: 'Nom', value: this.data?.name },
+            { label: 'Note', value: this.data?.note },
+            { label: 'Téléphone', value: this.data?.phone, type: 'phone' },
+            { label: 'E-mail', value: this.data?.mail, type: 'mail' },
+            { label: 'createdAt', value: data?.createdAt },
+            { label: 'createdBy', value: data?.createdBy },
+            { label: 'updatedAt', value: data?.updatedAt },
+            { label: 'updatedBy', value: data?.updatedBy },
+          ]
+      },
     ];
   }
   afterComplete() {
