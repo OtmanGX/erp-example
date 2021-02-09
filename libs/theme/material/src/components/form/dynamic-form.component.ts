@@ -1,15 +1,17 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
   OnInit,
   Output
-} from "@angular/core";
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
   Validators,
-} from "@angular/forms";
+  AbstractControl
+} from '@angular/forms';
 import { FieldConfig } from "../../interfaces/field.interface";
 import { Groupfield } from '../../interfaces/groupfield.interface';
 
@@ -60,13 +62,38 @@ export class DynamicFormComponent implements OnInit {
   get value() {
     return this.form.value;
   }
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private ref: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.form = this.createControl(this.fields);
     this.groups.forEach(group => {
       this.form.addControl(group.name, this.createControl(group.fields));
     });
+  }
+
+  /***
+   *
+   * @param name of the field
+   * @param new parameters of the field
+   */
+  remakeField(name: string, {...params}) {
+    const index = this.fields.findIndex((item) => item.name === name);
+    const newField = Object.assign({}, this.fields[index]);
+    for (const [key, value] of Object.entries(params)) {
+      newField[key] = value;
+    }
+    this.fields[index] = newField;
+  }
+
+  /***
+   *
+   * @param paths: list of strings
+   * @return: AbstractControl
+   * @purpose: Accessing controls and nested controls
+   */
+  getField(...paths: string[]): AbstractControl {
+    const path = paths.join('.');
+    return this.form.get(path);
   }
 
   onSubmit(event: Event) {

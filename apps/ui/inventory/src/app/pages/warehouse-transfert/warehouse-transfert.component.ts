@@ -20,7 +20,7 @@ export class WarehouseTransfertComponent implements GridView {
   columnId: string = 'id';
   data$ = this.store.select(TranserOrderSelectors.getAllTransferOrders);
 
-  constructor(public dialog: MatDialog, private store : Store) {
+  constructor(public dialog: MatDialog, private store: Store) {
     this.setColumnDefs();
   }
 

@@ -1,7 +1,6 @@
 import {
   ComponentFactoryResolver,
-  ComponentRef,
-  Directive, HostBinding,
+  Directive,
   Input,
   OnInit,
   ViewContainerRef
@@ -41,9 +40,6 @@ export class DynamicFieldDirective implements OnInit {
   @Input() field: FieldConfig;
   @Input() group: FormGroup;
   @Input() style = 'flex: 0 1 50%; box-sizing: border-box';
-  //
-  // @hostBinding
-  // top:number;
 
   componentRef: any;
   constructor(

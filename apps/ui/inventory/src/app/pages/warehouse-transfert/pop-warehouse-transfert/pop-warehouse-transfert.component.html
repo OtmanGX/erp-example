@@ -1,6 +1,6 @@
 <ngx-dialog-body [title]="title">
-  <mat-horizontal-stepper linear #stepper>
-    <mat-step [stepControl]="transfert_form" [editable]="true">
+  <mat-horizontal-stepper *ngIf="!data?.id ; else editTemplate" linear #stepper>
+    <mat-step [stepControl]="transfertForm" [editable]="true">
       <ng-template matStepLabel>Informations générales</ng-template>
       <dynamic-form #transfert_form [fields]="regConfig"
                     [withActions]="false"
@@ -63,4 +63,11 @@
     </ng-template>
 
   </mat-horizontal-stepper>
+  <ng-template #editTemplate>
+    <dynamic-form #transfert_form [fields]="regConfig"
+                  [withActions]="true"
+                  (close)="closePopup()"
+                  (submit)="submit($event)">
+    </dynamic-form>
+  </ng-template>
 </ngx-dialog-body>
