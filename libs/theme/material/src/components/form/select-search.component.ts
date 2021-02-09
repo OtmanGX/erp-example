@@ -23,8 +23,8 @@ import { takeUntil } from 'rxjs/operators';
           </ngx-mat-select-search>
         </mat-option>
         <mat-option *ngFor="let item of filteredDataMulti$ | async" [value]="item.id">
-    <span optionItem *ngIf="field" [options]="field?.fieldsToShow" [item]="item">&nbsp;
-    </span>
+        <span optionItem *ngIf="field" [options]="field?.fieldsToShow" [item]="item">&nbsp;
+        </span>
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -34,6 +34,7 @@ import { takeUntil } from 'rxjs/operators';
 export class SelectSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   field: FieldConfig;
   group: FormGroup;
+  options: Array<any> = [];
   public filterCtrl: FormControl = new FormControl();
   public filteredDataMulti$: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
   @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
@@ -58,10 +59,13 @@ export class SelectSearchComponent implements OnInit, AfterViewInit, OnDestroy {
       this.field.options
         .pipe(takeUntil(this._onDestroy))
         .subscribe(value => {
-        this.field.options = value;
-        this.filteredDataMulti$.next(this.field.options.slice());
+        this.options = value;
+        this.filteredDataMulti$.next(this.options.slice());
       });
-    } else this.filteredDataMulti$.next(this.field.options.slice());
+    } else {
+      this.options = this.field.options.slice();
+      this.filteredDataMulti$.next(this.options.slice());
+    }
 
   }
 
@@ -78,16 +82,18 @@ export class SelectSearchComponent implements OnInit, AfterViewInit, OnDestroy {
     // get the search keyword
     let search = this.filterCtrl.value;
     if (!search) {
-      this.filteredDataMulti$.next(this.field.options.slice());
+      this.filteredDataMulti$.next(this.options.slice());
       return;
     } else {
       search = search.toLowerCase();
     }
     // filter the banks
     this.filteredDataMulti$.next(
-      this.field.options.filter(elem => {
-        for (const field of this.field.filterFields)
-          if (elem[field].toLowerCase().indexOf(search) > -1) return true;
+      this.options.filter(elem => {
+        for (const field of this.field.filterFields.map(res => res.split('.')))
+
+          if (field.reduce((accum, current) => accum[current], elem)
+            .toLowerCase().indexOf(search) > -1) return true;
           return false;
       })
     );

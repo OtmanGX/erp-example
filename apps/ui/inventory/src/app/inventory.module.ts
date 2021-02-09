@@ -15,6 +15,7 @@ import { WarehouseGlasseCardComponent } from './pages/warehouse-glasse/warehouse
 import { StoreInventoryModule } from '@TanglassStore/inventory/index';
 import { WarehouseTransfertComponent } from './pages/warehouse-transfert/warehouse-transfert.component';
 import { PopWarehouseTransfertComponent } from './pages/warehouse-transfert/pop-warehouse-transfert/pop-warehouse-transfert.component';
+import { StoreProductModule } from '../../../../../libs/store/product/src';
 
 
 const routes: Routes = [
@@ -84,7 +85,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MainAgGridModule,
-    StoreInventoryModule
+    StoreInventoryModule,
+    StoreProductModule
   ]
 })
 export class InventoryModule { }
