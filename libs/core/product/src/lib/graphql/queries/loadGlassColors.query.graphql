@@ -1,0 +1,5 @@
+query getAllGlassColor {
+  product_glassColor {
+    color
+  }
+}

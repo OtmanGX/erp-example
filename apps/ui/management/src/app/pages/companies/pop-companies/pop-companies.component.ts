@@ -14,7 +14,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./pop-companies.component.scss'],
 })
 export class PopCompaniesComponent extends FormDialog {
-
+   title="Ajouter une société"
   regConfig: FieldConfig[];
 
   constructor(
@@ -28,6 +28,7 @@ export class PopCompaniesComponent extends FormDialog {
   buildForm(): void {
     this.regConfig = regConfigCompany(this.data);
     if (!!this.data?.id) {
+      this.title="Editer une société"
       this.store.dispatch(CompanieActions.loadCompanieById({id: this.data.id}));
       this.store.select(CompanieSelectors.getSelectedCompanie)
         .pipe(take(1)).subscribe(value => {

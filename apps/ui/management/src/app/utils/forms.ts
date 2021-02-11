@@ -83,7 +83,7 @@ const regConfigEmployee = (data?, salePoints = []) => [
 
 
 const regConfigSalePoint = (data?) => [
-  {type: "input", label: "Nom", inputType: "text", name: "name", value: data?.name,
+  {type: "input", label: "Emplacement", inputType: "text", name: "name", value: data?.name,
     validations: [
       FormDialog.REQUIRED
     ]

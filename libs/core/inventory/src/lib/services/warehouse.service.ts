@@ -33,8 +33,6 @@ export class WarehouseService {
     return this.deleteMany.mutate({ids})
   }
 
-
-
   insertOne(createdOne:fromWarehouse.InsertedWarehouse) {
   return this.insertWarehouseGQL.mutate(createdOne)
    }

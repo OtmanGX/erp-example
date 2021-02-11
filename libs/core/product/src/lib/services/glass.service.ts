@@ -30,6 +30,7 @@ export class GlassService {
     return this.getAllGQL.watch().valueChanges
   }
 
+
   getOneById(id: string) {
     return this.getByIdGQL.fetch({ id })
   }
@@ -45,6 +46,15 @@ export class GlassService {
 
   removeMany(codes: string[]) {
     return this.deleteMany.mutate({codes})
+  }
+
+    
+  addType(){
+
+
+  }
+  addColor(){
+
   }
 
 }

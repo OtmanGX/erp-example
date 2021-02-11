@@ -12,7 +12,7 @@ import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
   styleUrls: ['./pop-service.component.scss'],
 })
 export class PopServiceComponent extends FormDialog {
-  title = "Ajouter collection de service";
+  title = "Ajouter  service";
   regConfig: Groupfield[] | any;
   companies$ = this.facade.allShortCompany$
     .pipe(map(item => item.map(company => ({key: company.id, value: company.name})))
@@ -28,6 +28,10 @@ export class PopServiceComponent extends FormDialog {
   }
 
   buildForm() {
+    if (this.data?.id) {
+      this.title = "Éditer Service";
+
+    }
     this.facade.loadAllShortCompanies();
     const dataParams = JSON.parse(this.data.params);
     this.regConfig = regConfService(this.data.service, this.companies$, dataParams);
