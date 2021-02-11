@@ -8,6 +8,7 @@ export const CONSUMABLE_WAREHOUSE_FEATURE_KEY = 'consumable_warehouse';
 
 
 export interface State extends EntityState<ConsumableWarehouse> {
+  selectedWareHouse: ConsumableWarehouse,
   loaded: boolean; // has the TransferOrder list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -22,6 +23,7 @@ ConsumableWarehouse
 
 export const initialState: State = ConsumableWarehouseAdapter.getInitialState({
   // set initial required properties
+  selectedWareHouse: null,
   loaded: false,
   error: null,
 });
@@ -35,7 +37,15 @@ const ConsumableWarehouseReducer = createReducer<State>(
          loaded: true
         })
   ),
+  on( ConsumableWarehouseActions.loadWareHouseConsumableByIdSuccess,
+    (state, action)  => (
+      {
+       ...state,
+       selectedWareHouse: action.consumableWarehouse,
+      })
+),
   on(ConsumableWarehouseActions.loadConsumableWarehousesFailure,
+     ConsumableWarehouseActions.loadWareHouseConsumableByIdFailure,
      (state, { error }) => ({
     ...state,
     error,

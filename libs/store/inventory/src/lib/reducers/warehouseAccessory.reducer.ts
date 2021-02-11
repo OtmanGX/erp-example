@@ -8,6 +8,7 @@ export const ACCESSORY_WAREHOUSE_FEATURE_KEY = 'accessory_warehouse';
 
 
 export interface State extends EntityState<AccessoryWarehouse> {
+  selectedAccessoryWarehouse: AccessoryWarehouse,
   loaded: boolean; // has the TransferOrder list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -22,6 +23,7 @@ AccessoryWarehouse
 
 export const initialState: State = accessoryWarehouseAdapter.getInitialState({
   // set initial required properties
+  selectedAccessoryWarehouse: null,
   loaded: false,
   error: null,
 });
@@ -35,7 +37,15 @@ const AccessoryWarehouseReducer = createReducer<State>(
          loaded: true
         })
   ),
+  on( AccessoryWarehouseActions.loadWareHouseAccessorieByIdSuccess,
+    (state, action)  => (
+      {
+       ...state,
+       selectedAccessoryWarehouse: action.accessoryWarehouse,
+      })
+),
   on(AccessoryWarehouseActions.loadWareHouseAccessoriesFailure,
+     AccessoryWarehouseActions.loadWareHouseAccessorieByIdFailure,
      (state, { error }) => ({
     ...state,
     error,

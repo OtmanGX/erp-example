@@ -21,6 +21,19 @@ export class GlassWareHouseEffects {
     )
   );
 
+  loadAccessoryWareHouseById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GlassWareHouseActions.loadWareHouseGlassById),
+      mergeMap((action) => this.glassWarehouseservice.getOneById(action.id)
+        .pipe(
+          map((data) =>
+            GlassWareHouseActions.loadWareHouseGlassByIdSuccess({glassWarehouse: data.data.stock_warehouse_substance_aggregate})),
+          catchError((error) =>
+            of(GlassWareHouseActions.loadWareHouseGlassByIdFailure({error})))
+          ))
+    )
+  );
+
 
 
   constructor(private actions$: Actions,

@@ -12,3 +12,21 @@ export const loadConsumableWarehousesFailure = createAction(
   '[ConsumableWarehouses effect] Load ConsumableWarehouses Failure',
   props<{ error: any }>()
 );
+
+
+// load by id
+
+export const loadWareHouseConsumableById = createAction(
+  '[WareHouseConsumables component] Load WareHouseConsumable By Id',
+  props<{ id: any }>()
+  );
+
+export const loadWareHouseConsumableByIdSuccess = createAction(
+  '[WareHouseConsumables effect] Load WareHouseConsumable By Id Success',
+  props<{ consumableWarehouse: any }>()
+);
+
+export const loadWareHouseConsumableByIdFailure = createAction(
+  '[WareHouseConsumables effect] Load WareHouseConsumable By Id Failure',
+  props<{ error: any }>()
+);

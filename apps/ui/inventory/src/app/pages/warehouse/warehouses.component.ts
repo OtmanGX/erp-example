@@ -7,6 +7,7 @@ import { warehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
 import { WarehousesFacade } from '@tanglass-erp/store/inventory';
 
 
+
 @Component({
   selector: 'tanglass-erp-warehouses',
   templateUrl: './warehouses.component.html',
@@ -42,6 +43,7 @@ export class WarehousesComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
+          console.log(result)
         } else {}
       }
     });

@@ -14,3 +14,21 @@ export const loadWareHouseAccessoriesFailure = createAction(
 );
 
 
+// load by id
+
+export const loadWareHouseAccessorieById = createAction(
+  '[WareHouseAccessories component] Load WareHouseAccessorie By Id',
+  props<{ id: any }>()
+  );
+
+export const loadWareHouseAccessorieByIdSuccess = createAction(
+  '[WareHouseAccessories effect] Load WareHouseAccessorie By Id Success',
+  props<{ accessoryWarehouse: any }>()
+);
+
+export const loadWareHouseAccessorieByIdFailure = createAction(
+  '[WareHouseAccessories effect] Load WareHouseAccessorie By Id Failure',
+  props<{ error: any }>()
+);
+
+

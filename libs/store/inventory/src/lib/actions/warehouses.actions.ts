@@ -33,7 +33,7 @@ export const loadWarehouseByIdFailure = createAction(
 // *** Add ***
 export const addWarehouse = createAction(
   '[Warehouses] Add Warehouse',
-  props<{ warehouse: Warehouse }>()
+  props<{ warehouse: InsertedWarehouse }>()
 );
 
 export const addWarehouseSuccess = createAction(

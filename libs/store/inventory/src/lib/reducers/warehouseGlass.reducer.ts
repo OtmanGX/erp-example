@@ -8,6 +8,7 @@ export const GLASS_WAREHOUSE_FEATURE_KEY = 'glass_warehouse';
 
 
 export interface State extends EntityState<GlassWarehouse> {
+  selectedWarehouse: GlassWarehouse,
   loaded: boolean; // has the TransferOrder list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -22,6 +23,7 @@ GlassWarehouse
 
 export const initialState: State = glassWarehouseAdapter.getInitialState({
   // set initial required properties
+  selectedWarehouse: null,
   loaded: false,
   error: null,
 });
@@ -35,7 +37,15 @@ const GlassWarehouseReducer = createReducer<State>(
          loaded: true
         })
   ),
+  on( GlassWarehouseActions.loadWareHouseGlassByIdSuccess,
+    (state, action)  => (
+      {
+       ...state,
+       selectedWarehouse: action.glassWarehouse
+      })
+),
   on(GlassWarehouseActions.loadGlassWarehousesFailure,
+     GlassWarehouseActions.loadWareHouseGlassByIdFailure,
      (state, { error }) => ({
     ...state,
     error,
