@@ -7,7 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { InfrastructureGraphqlModule } from '@tanglass-erp/infrastructure/graphql';
-import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { AuthGuard, AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment as env } from '../environments/environment.prod';
 
@@ -27,15 +27,15 @@ import { environment as env } from '../environments/environment.prod';
     ToastrModule.forRoot({
       positionClass : 'toast-bottom-right'
     }),
-    RouterModule.forRoot([{ path: '', loadChildren: () =>
+    RouterModule.forRoot([{ path: '', canActivate: [AuthGuard], loadChildren: () =>
         import('./pages/pages.module').then(m => m.PagesModule) }], { initialNavigation: 'enabled' }),
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthHttpInterceptor,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
   ],
 
   bootstrap: [AppComponent],

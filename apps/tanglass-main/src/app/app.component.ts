@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RoutePartsService } from './shared/services/route-parts.service';
 import { LayoutService } from './shared/services/layout.service';
 import { filter } from 'rxjs/operators';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'tanglass-erp-root',
@@ -21,7 +22,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     private routePartsService: RoutePartsService,
     // private themeService: ThemeService,
     private layout: LayoutService,
-  ) { }
+    public auth: AuthService
+  ) {
+  }
 
   ngOnInit() {
     this.changePageTitle();

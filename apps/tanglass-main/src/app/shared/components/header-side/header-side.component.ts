@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 import { LayoutService } from '../../services/layout.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-header-side',
@@ -25,6 +26,7 @@ export class HeaderSideComponent implements OnInit {
     private themeService: ThemeService,
     private layout: LayoutService,
     private renderer: Renderer2,
+    public auth: AuthService
   ) {}
   ngOnInit() {
     this.matxThemes = this.themeService.matxThemes;
@@ -69,5 +71,9 @@ export class HeaderSideComponent implements OnInit {
 
   onSearch(e) {
     //   console.log(e)
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }
