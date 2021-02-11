@@ -12,3 +12,21 @@ export const loadGlassWarehousesFailure = createAction(
   '[GlassWarehouses] Load GlassWarehouses Failure',
   props<{ error: any }>()
 );
+
+
+// load by id
+
+export const loadWareHouseGlassById = createAction(
+  '[WareHouseGlasss component] Load WareHouseGlass By Id',
+  props<{ id: any }>()
+  );
+
+export const loadWareHouseGlassByIdSuccess = createAction(
+  '[WareHouseGlasss effect] Load WareHouseGlass By Id Success',
+  props<{ glassWarehouse: any }>()
+);
+
+export const loadWareHouseGlassByIdFailure = createAction(
+  '[WareHouseGlasss effect] Load WareHouseGlass By Id Failure',
+  props<{ error: any }>()
+);

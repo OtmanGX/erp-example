@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router, NavigationEnd } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { getAllNotifications, AppState } from '@tanglass-erp/store/app';
+
 
 @Component({
   selector: 'app-notifications',
@@ -10,27 +13,9 @@ export class NotificationsComponent implements OnInit {
   @Input() notificPanel;
 
   // Dummy notifications
-  notifications = [{
-    message: 'New contact added',
-    icon: 'assignment_ind',
-    time: '1 min ago',
-    route: '/inbox',
-    color: 'primary'
-  }, {
-    message: 'New message',
-    icon: 'chat',
-    time: '4 min ago',
-    route: '/chat',
-    color: 'accent'
-  }, {
-    message: 'Server rebooted',
-    icon: 'settings_backup_restore',
-    time: '12 min ago',
-    route: '/charts',
-    color: 'warn'
-  }]
+  notifications$ = this.store.select(getAllNotifications)
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store<AppState>) {}
 
   ngOnInit() {
     this.router.events.subscribe((routeChange) => {
@@ -41,6 +26,5 @@ export class NotificationsComponent implements OnInit {
   }
   clearAll(e) {
     e.preventDefault();
-    this.notifications = [];
   }
 }
