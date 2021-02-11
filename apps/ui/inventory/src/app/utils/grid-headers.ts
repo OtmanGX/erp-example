@@ -3,7 +3,7 @@ const warehouseHeaders = [
     field: 'name', headerName: 'Nom', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `${params.data.id}`,
+        link: `${params?.data?.id}`,
       }
     )
   },
@@ -16,7 +16,7 @@ const warehouseTransferHeaders = [
     field: 'id', headerName: 'Référence', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `/warehouses/transfert/${params.data.id}`,
+        link: `/warehouses/transfert/${params?.data?.id}`,
       }
     )
   },

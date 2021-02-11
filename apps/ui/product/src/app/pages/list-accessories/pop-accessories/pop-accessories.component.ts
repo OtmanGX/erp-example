@@ -30,6 +30,10 @@ export class PopAccessoriesComponent extends FormDialog {
   }
 
   buildForm() {
+    if (this.data?.id) {
+      this.title = "Éditer accessoire";
+
+    }
     this.facade.loadAllShortCompanies();
     this.regConfig = regConfigAccessory(this.data, this.listCompanies);
   }

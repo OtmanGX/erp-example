@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
   GetAllGlassesStockGQL,
+  GetGlassWarehousesByIdGQL,
+
 } from '@tanglass-erp/infrastructure/graphql';
 import * as fromWGlass from "../models/glassWarehouse.model";
 
@@ -11,6 +13,8 @@ export class WarehouseGlassService {
 
   constructor(
   private getAllGQL: GetAllGlassesStockGQL,
+  private getGlassWarehousesByIdGQL: GetGlassWarehousesByIdGQL,
+
 
   ) {
     /** 
@@ -21,5 +25,9 @@ export class WarehouseGlassService {
 
   getAll() {
     return this.getAllGQL.watch().valueChanges
+  }
+
+  getOneById(id: number) {
+    return this.getGlassWarehousesByIdGQL.fetch({ id })
   }
 }

@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./pop-glasse.component.scss'],
 })
 export class PopGlasseComponent extends FormDialog   {
-  title = "Ajouter un Verre";
+  title = "Ajouter un Produit Stockable";
   listCompanies$ = this.facade.allShortCompany$
     .pipe(map(item => item.map(company => ({key: company.id, value: company.name}))
     ));
@@ -27,6 +27,11 @@ export class PopGlasseComponent extends FormDialog   {
   }
 
   buildForm() {
+    if (this.data?.id) {
+      this.title = "Éditer Produit Stockable";
+
+    }
+
     this.facade.loadAllShortCompanies();
     this.regConfig = regConfigGlass(this.data, this.listCompanies$);
   }
