@@ -1,12 +1,15 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FieldConfig } from '@tanglass-erp/material';
 import { Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   template: '',
 })
-export abstract class FormDialog implements OnInit {
+export abstract class FormDialog implements OnInit, OnDestroy {
+  /** Subject that emits when the component has been destroyed. */
+  protected _onDestroy = new Subject<void>();
   abstract regConfig: FieldConfig[];
   static REQUIRED = {
     name: "required",
@@ -33,6 +36,11 @@ export abstract class FormDialog implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+  }
+
+  ngOnDestroy(): void {
+    this._onDestroy.next();
+    this._onDestroy.complete();
   }
 
   abstract buildForm(): void ;

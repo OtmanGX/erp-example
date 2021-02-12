@@ -50,11 +50,11 @@ export class LayoutService {
         footerFixed: true,
         topbarColor: "purple", // http://demos.ui-lib.com/matx-doc/#matx-colors
         footerColor: "slate", // http://demos.ui-lib.com/matx-doc/#matx-colors
-        matTheme: "matx-light-purple", // matx-blue, matx-navy, matx-light-purple, matx-dark-purple, matx-dark-pink
+        matTheme: "matx-blue", // matx-blue, matx-navy, matx-light-purple, matx-dark-purple, matx-dark-pink
         breadcrumb: "simple", // simple, title
         perfectScrollbar: true
       }
-    );    
+    );
   }
 
   setAppLayout(layoutConf: ILayoutConf) {
