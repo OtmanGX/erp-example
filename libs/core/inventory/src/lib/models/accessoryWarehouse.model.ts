@@ -3,16 +3,17 @@ import { ProductItem } from "./shared.models";
 
 
 export interface AccessoryWarehouse {
-    substance: SubstanceAccessory;
-    warehouse: Warehouse;
-    quantity: number;
+  substance: SubstanceAccessory;
+  warehouse: Warehouse;
+  quantity: number;
 }
 
 export interface SubstanceAccessory {
-    productAccessory?: ProductItem;
-    accessory?: PartialAccesory
+  productAccessory?: ProductItem;
+  accessory?: PartialAccesory
 }
 export interface PartialAccesory {
-    id: string;
-    category: string;
+  id: string;
+  category: string;
 }
+

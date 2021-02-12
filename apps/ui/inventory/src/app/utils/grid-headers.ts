@@ -27,11 +27,31 @@ const warehouseTransferHeaders = [
   { field: 'deadline', headerName: 'Date limite', type: "textColumn" },
 ];
 
+
+
 const ProductHeaders = [
   { field: 'code', headerName: 'Code', type: "textColumn" },
   { field: 'label', headerName: 'Désignation', type: "textColumn" },
   { field: 'price', headerName: 'Prix', type: 'numberColumn' },
   { field: 'unit', headerName: 'Unité' },
+];
+const ordersDetailsHeaders = [
+  {
+    field: 'id', headerName: 'Référence', type: "linkColumn",
+    cellRendererParams: (params) => (
+      {
+        link: `/warehouses/transfert/${params?.data?.id}`,
+      }
+    )
+  },
+  ...ProductHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'item.' + elem.field) && elem),
+
+  { field: 'fromwarehouse', headerName: 'Entrepôt source', type: "textColumn" },
+  { field: 'towarehouse', headerName: 'Entrepôt destination', type: "textColumn" },
+  { field: 'status', headerName: 'Statut', type: "textColumn" },
+  { field: 'date', headerName: 'Date', type: "textColumn" },
+  { field: 'deadline', headerName: 'Date limite', type: "textColumn" },
+
 ];
 /** 
 const GlassHeaders = [
@@ -123,4 +143,5 @@ export {
   GlassWarehouseHeaders,
   ConsumableWarehouseHeaders,
   AccessoryWarehouseHeaders,
+  ordersDetailsHeaders
 };

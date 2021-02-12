@@ -27,7 +27,7 @@ export class GlassWareHouseEffects {
       mergeMap((action) => this.glassWarehouseservice.getOneById(action.id)
         .pipe(
           map((data) =>
-            GlassWareHouseActions.loadWareHouseGlassByIdSuccess({glassWarehouse: data.data.stock_warehouse_substance_aggregate})),
+            GlassWareHouseActions.loadWareHouseGlassByIdSuccess({glassWarehouse: data})),
           catchError((error) =>
             of(GlassWareHouseActions.loadWareHouseGlassByIdFailure({error})))
           ))

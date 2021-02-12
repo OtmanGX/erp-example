@@ -1,4 +1,4 @@
-query getAllGlassColor {
+query GetGlassColors {
   product_glassColor {
     color
   }

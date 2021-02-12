@@ -27,7 +27,7 @@ export class ConsumableWareHouseEffects {
       mergeMap((action) => this.consumableWarehouseservice.getOneById(action.id)
         .pipe(
           map((data) =>
-            ConsumableWareHouseActions.loadWareHouseConsumableByIdSuccess({consumableWarehouse: data.data.stock_warehouse_substance_aggregate})),
+            ConsumableWareHouseActions.loadWareHouseConsumableByIdSuccess({consumableWarehouse: data})),
           catchError((error) =>
             of(ConsumableWareHouseActions.loadWareHouseConsumableByIdFailure({error})))
           ))

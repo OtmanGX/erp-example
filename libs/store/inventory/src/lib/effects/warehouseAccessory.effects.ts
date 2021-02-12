@@ -27,7 +27,7 @@ export class AccessoryWareHouseEffects {
       mergeMap((action) => this.accessoryWarehouseservice.getOneById(action.id)
         .pipe(
           map((data) =>
-            AccessoryWareHouseActions.loadWareHouseAccessorieByIdSuccess({accessoryWarehouse: data.data.stock_warehouse_substance_aggregate})),
+            AccessoryWareHouseActions.loadWareHouseAccessorieByIdSuccess({accessoryWarehouse: data})),
           catchError((error) =>
             of(AccessoryWareHouseActions.loadWareHouseAccessorieByIdFailure({error})))
           ))

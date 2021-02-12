@@ -4,6 +4,8 @@ import {
   GetGlassWarehousesByIdGQL,
 
 } from '@tanglass-erp/infrastructure/graphql';
+import { AdaptSubstanceStockDetails } from '../utils/detailOrders.Adapter';
+import { map } from 'rxjs/operators';
 import * as fromWGlass from "../models/glassWarehouse.model";
 
 @Injectable({
@@ -27,7 +29,8 @@ export class WarehouseGlassService {
     return this.getAllGQL.watch().valueChanges
   }
 
-  getOneById(id: number) {
-    return this.getGlassWarehousesByIdGQL.fetch({ id })
+  getOneById(id: string){
+    return this.getGlassWarehousesByIdGQL.fetch({ id }).pipe(map((data) =>
+    AdaptSubstanceStockDetails(data.data)))
   }
 }

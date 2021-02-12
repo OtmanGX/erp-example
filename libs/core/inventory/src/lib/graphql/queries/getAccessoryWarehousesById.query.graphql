@@ -15,16 +15,18 @@ query GetAccessoryWarehousesById($id: uuid!) {
     }
     nodes {
       quantity
+      quantity_min
       substance {
         productAccessory {
           code
           label
           price
+          unit
         }
       }
       warehouse {
         name
-        id
+        
       }
     }
   }
