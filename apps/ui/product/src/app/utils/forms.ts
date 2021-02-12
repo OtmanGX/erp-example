@@ -45,7 +45,7 @@ const regConfigProduct = (data?: Product, listCompanies: ListObservable = []) =>
       FormDialog.REQUIRED
     ]
   },
-  {type: "inputSelect", label: "Unité", inputType: "text", name: "label", value: data?.unit,
+  {type: "inputSelect", label: "Unité", inputType: "text", name: "unit", value: data?.unit,
     options: Object.values(Product_Product_Unit_Enum).map(item => ({key: item, value: item})),
     validations: [
       FormDialog.REQUIRED

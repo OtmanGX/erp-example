@@ -2,13 +2,13 @@ import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as GlassWarehouseActions from '../actions/warehouseGlass.actions';
-import { GlassWarehouse } from '@tanglass-erp/core/inventory';
+import { GlassWarehouse ,SubstanceStocksDetails} from '@tanglass-erp/core/inventory';
 
 export const GLASS_WAREHOUSE_FEATURE_KEY = 'glass_warehouse';
 
 
 export interface State extends EntityState<GlassWarehouse> {
-  selectedWarehouse: GlassWarehouse,
+  selectedWarehouse: SubstanceStocksDetails,
   loaded: boolean; // has the TransferOrder list been loaded
   error?: string | null; // last known error (if any)
 }

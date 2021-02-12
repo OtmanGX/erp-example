@@ -2,7 +2,7 @@ import { FormDialog } from '@tanglass-erp/material';
 import {
   DetailedTransferOrder,
   transferStatusDirection,
-  Warehouse
+  Warehouse,
 
 } from '@tanglass-erp/store/inventory';
 

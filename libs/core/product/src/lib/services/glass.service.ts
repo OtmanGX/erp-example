@@ -5,7 +5,11 @@ import {
   InsertGlassGQL,
   DeleteOneGQL,
   DeleteManyGQL,
-  InsertGlassMutationVariables
+  InsertGlassMutationVariables,
+  GetGlassTypesGQL,
+  GetGlassColorsGQL,
+  AddGlassColorGQL,
+  AddGlassTypeGQL,
 } from '@tanglass-erp/infrastructure/graphql';
 import { Glass,DetailedGlass, InsertedGlass } from "../models/glass.model";
 import { adaptProduct } from '../utils/dataAdapter';
@@ -21,7 +25,12 @@ export class GlassService {
     private getByIdGQL: GetGlassByIdGQL,
     private insertOneGQL: InsertGlassGQL,
     private deleteOneGQL: DeleteOneGQL,
-    private deleteMany:DeleteManyGQL
+    private deleteMany:DeleteManyGQL,
+    private getGlassTypesGQL:GetGlassTypesGQL,
+    private addGlassColorGQL:AddGlassColorGQL,
+    private addGlassTypeGQL:AddGlassTypeGQL,
+    private getGlassColorsGQL:GetGlassColorsGQL
+
   ) {
  
   }
@@ -49,12 +58,22 @@ export class GlassService {
   }
 
     
-  addType(){
+  addType(type:string){
+    return this.addGlassTypeGQL.mutate({type})
 
 
   }
-  addColor(){
+  addColor(color:string){
+    return this.addGlassColorGQL.mutate({color})
 
   }
+    
+  getTypes(){
+    return this.getGlassTypesGQL.watch().valueChanges
 
+  }
+  getColors(){
+    return this.getGlassColorsGQL.watch().valueChanges
+
+  }
 }

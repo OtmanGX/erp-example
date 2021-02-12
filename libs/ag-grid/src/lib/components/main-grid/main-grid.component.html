@@ -8,9 +8,12 @@
     <button [disabled]="selectedData.length===0" (click)="deleteDialog()" mat-icon-button matTooltip="Supprimer" color="warn">
       <mat-icon fontSet="far" fontIcon="fa-trash-alt"></mat-icon>
     </button>
+    <button *ngIf="withDetails" (click)="triggerAction(operations.loadDetails)" mat-icon-button color="primary" color="primary">
+      <mat-icon>center_focus_strong</mat-icon>
+    </button>
+
     <mat-divider class="mx-3" vertical style="height:auto; display: inline"></mat-divider>
     </span>
-
       <button (click)="openBottomSheet()" mat-icon-button matTooltip="Exporter">
         <mat-icon fontSet="fas" class="text-green" fontIcon="fa-file-excel"></mat-icon>
       </button>

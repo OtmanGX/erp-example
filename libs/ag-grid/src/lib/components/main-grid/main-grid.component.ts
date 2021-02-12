@@ -26,6 +26,7 @@ export class MainGridComponent {
   @Input() autoGroupColumnDef: any;
   @Input() columnId = 'id';
   @Input() withToolbar: boolean = true;
+  @Input() withDetails: boolean = false;
   @Input() withCrud: boolean = true;
   @Input() theme = "ag-theme-alpine";
   @Output() triggerEvent = new EventEmitter<{action: string, data?: any}>();
