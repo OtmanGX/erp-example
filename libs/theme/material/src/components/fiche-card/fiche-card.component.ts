@@ -16,7 +16,6 @@ export class FicheCardComponent {
 
   constructor() { }
   triggerAction(action: string, data?) {
-    
     this.triggerEvent.emit({
       action,
       data
