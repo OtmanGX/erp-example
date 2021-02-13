@@ -1,0 +1,15 @@
+<ngx-fiche-card [title]="title"
+                [data]="passedData"
+                (triggerEvent)="eventTriggering($event)">
+  <ngx-main-grid [columnId]="columnId"
+                 [withToolbar]="false"
+                 [withCrud]="false"
+                 [withDetails]="false"
+                 height="300px"
+                 [rowData]="orderItems"
+                 rowGroupPanelShow="hide"
+                 [columnDefs]="columnDefs">
+  </ngx-main-grid>
+</ngx-fiche-card>
+
+

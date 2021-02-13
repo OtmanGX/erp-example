@@ -16,15 +16,15 @@ const warehouseTransferHeaders = [
     field: 'id', headerName: 'Référence', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `/warehouses/transfert/${params?.data?.id}`,
+        link: `${params?.data?.id}`,
       }
     )
   },
   { field: 'fromwarehouse.name', headerName: 'Entrepôt source', type: "textColumn" },
   { field: 'towarehouse.name', headerName: 'Entrepôt destination', type: "textColumn" },
-  { field: 'status', headerName: 'Statut', type: "textColumn" },
-  { field: 'date', headerName: 'Date', type: "textColumn" },
-  { field: 'deadline', headerName: 'Date limite', type: "textColumn" },
+  { field: 'status', headerName: 'Statut' },
+  { field: 'date', headerName: 'Date', type: "dateColumn" },
+  { field: 'deadline', headerName: 'Date limite', type: "dateColumn" },
 ];
 
 
@@ -35,6 +35,13 @@ const ProductHeaders = [
   { field: 'price', headerName: 'Prix', type: 'numberColumn' },
   { field: 'unit', headerName: 'Unité' },
 ];
+
+const orderItemsHeaders = [
+  { field: 'substance.label', headerName: 'Substance' },
+  { field: 'quantity', headerName: 'Quantité', type: 'numberColumn' },
+  { field: 'status', headerName: 'Etat' },
+];
+
 const ordersDetailsHeaders = [
   {
     field: 'id', headerName: 'Référence', type: "linkColumn",
@@ -53,7 +60,7 @@ const ordersDetailsHeaders = [
   { field: 'deadline', headerName: 'Date limite', type: "textColumn" },
 
 ];
-/** 
+/**
 const GlassHeaders = [
   { field: 'type', headerName: 'Code', type: "textColumn"},
   { field: 'color', headerName: 'Couleur', type: "textColumn"},
@@ -139,9 +146,9 @@ const AccessoryWarehouseHeaders = [
 export {
   warehouseHeaders,
   warehouseTransferHeaders,
-  //GlassHeaders,
   GlassWarehouseHeaders,
   ConsumableWarehouseHeaders,
   AccessoryWarehouseHeaders,
-  ordersDetailsHeaders
+  ordersDetailsHeaders,
+  orderItemsHeaders
 };
