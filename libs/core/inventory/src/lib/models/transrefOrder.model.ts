@@ -15,12 +15,15 @@ export interface TransferOrder {
 
 export interface DetailedTransferOrder extends MetaData {
     id: number;
-    order_items: OrderItem[];
-    fromwarehouse: PartialData;
-    towarehouse: PartialData;
     date: Date;
     deadline?: Date;
     status: string; // confirmed/ delivered /closed/suspended enum transferStatus
+    fromwarehouse: PartialData;
+    towarehouse: PartialData;
+    items_count:number;
+    items_sum:number;
+    order_items: OrderItem[];
+
 }
 
 

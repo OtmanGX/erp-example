@@ -27,7 +27,7 @@ export class TransferOrderEffects {
       mergeMap((action) => this.transferOrderservice.getOneById(action.id)
         .pipe(
           map((data) =>
-            TransferOrderActions.loadTransferOrderByIdSuccess({transferOrder: data.data.stock_transfer_order_by_pk})),
+            TransferOrderActions.loadTransferOrderByIdSuccess({transferOrder: data})),
           catchError((error) =>
             of(TransferOrderActions.loadTransferOrderByIdFailure({error})))
           ))

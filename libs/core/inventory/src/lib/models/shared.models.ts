@@ -12,7 +12,7 @@ export interface ProductItem {
 
 export interface PartialData {
     name: string;
-    id: string;
+    id?: string;
 }
 
 
