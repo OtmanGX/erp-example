@@ -58,32 +58,36 @@ const  stock_response  = await execute({ substanceid, warehouseid },STOCK_QUERY)
 const  stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substance_by_pk;
 console.log('stock',stock_response)
 if(!stock_warehouse_substance_by_pk) {
-  return res.status(400).json({
-    message: "error 400 "
-  })
+  return {
+    statusCode: 400,
+    body:stringifyObject({  message: 'error 400'})
+};
 }
 
 const quantity_inStock = stock_warehouse_substance_by_pk ? stock_warehouse_substance_by_pk.quantity : 0;
 const newstock =quantity_inStock-quantity
 
 if(quantity_inStock <= 0) {
-  return res.status(400).json({
-    message: "stock épuisé "
-  })
+  return {
+    statusCode: 400,
+    body: stringifyObject({  message:"Stock Epuisé"})
+};
 }
 
   // execute the Hasura operation
   const  data  = await execute({ date, order_itemid, quantity, status,substanceid,warehouseid,newstock},HASURA_OPERATION);
   if (!data.insert_stock_item_tranfer_one) {
-    return res.status(400).json({
-      message: "error 400 "
-    })
+    return {
+      statusCode: 400,
+      body: stringifyObject({  message:"error 400"})
+  };
   }
 
   // success  
-  return res.json({
-    ...data.insert_stock_item_tranfer_one
-  })
+  return {
+    statusCode: 200,
+    body: stringifyObject(data.insert_stock_item_tranfer_one)
+};
 };
 
 
