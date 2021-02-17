@@ -1,6 +1,5 @@
 const stringifyObject = require("stringify-object");
-const axios = require('axios'); 
-
+import axios from 'axios';
 const HASURA_OPERATION = `
 
 mutation InsertItemTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String, $substanceid: uuid!,$warehouseid: uuid!, $newstock: Float) {
@@ -29,20 +28,20 @@ query ($substanceid: uuid!, $warehouseid: uuid!) {
 // execute the  operation in Hasura
 
 const execute = async (variables,operation) => { 
-  const fetchResponse = await axios.post(
+  const fetchResponse = axios.post(
     "https://tanglass.hasura.app/v1/graphql",
     {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: {
         query: operation,
         variables,
-      }
     }
-  );
-  const data = await fetchResponse.json();
-  return data;
+  ).then(data=>{
+    return data
+  })
+  .catch(err=>{
+    return err
+  });
+  console.log(fetchResponse)
+  return fetchResponse;
 };
   
 //  Handler
@@ -54,14 +53,14 @@ const execute = async (variables,operation) => {
 
   // run some business logic
 //fetch current stock availability data 
-const { data: stock_response, errors: stock_errors } = await execute({ substanceid, warehouseid },
-      STOCK_QUERY);
+const  stock_response  = await execute({ substanceid, warehouseid },STOCK_QUERY);
 
 const  stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substance_by_pk;
+console.log('stock',stock_response)
 if(!stock_warehouse_substance_by_pk) {
   return {
     statusCode: 400,
-    body: JSON.stringify({  message: "error 400 "})
+    body: JSON.stringify({  message: stock_response})
 };
 }
 
@@ -76,13 +75,13 @@ if(quantity_inStock <= 0) {
 }
 
   // execute the Hasura operation
-  const { data, errors } = await execute({ date, order_itemid, quantity, status,substanceid,warehouseid,newstock},HASURA_OPERATION);
+  const { data } = await execute({ date, order_itemid, quantity, status,substanceid,warehouseid,newstock},HASURA_OPERATION);
 
   // if Hasura operation errors, then throw error
-  if (errors) {
+  if (data) {
     return {
       statusCode: 400,
-      body: JSON.stringify({  message:errors[0]})
+      body: JSON.stringify({  message:data.error})
   };
   }
 
@@ -91,7 +90,6 @@ if(quantity_inStock <= 0) {
     statusCode: 200,
     body: JSON.stringify(data.insert_stock_item_tranfer_one)
 };
-
 };
 
 

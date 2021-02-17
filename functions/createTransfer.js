@@ -38,48 +38,42 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.handler = void 0;
 var stringifyObject = require("stringify-object");
-var axios = require('axios');
+var axios_1 = require("axios");
 var HASURA_OPERATION = "\n\nmutation InsertItemTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String, $substanceid: uuid!,$warehouseid: uuid!, $newstock: Float) {\n    insert_stock_item_tranfer_one(object: {date: $date, order_itemid: $order_itemid, quantity: $quantity, status: $status}) {\n      id\n      date\n      quantity\n      status\n    }\n    warehouse_status_update:update_stock_warehouse_substance_by_pk(pk_columns: {substanceid: $substanceid, warehouseid: $warehouseid}, _set: {quantity: $newstock}) {\n      quantity\n    }\n  }\n  \n  \n";
 var STOCK_QUERY = "\nquery ($substanceid: uuid!, $warehouseid: uuid!) {\n    stock_warehouse_substance_by_pk(substanceid: $substanceid, warehouseid: $warehouseid) {\n      quantity\n    }\n  }\n  \n";
 // execute the  operation in Hasura
 var execute = function (variables, operation) { return __awaiter(void 0, void 0, void 0, function () {
-    var fetchResponse, data;
+    var fetchResponse;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, axios.post("https://tanglass.hasura.app/v1/graphql", {
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: {
-                        query: operation,
-                        variables: variables
-                    }
-                })];
-            case 1:
-                fetchResponse = _a.sent();
-                return [4 /*yield*/, fetchResponse.json()];
-            case 2:
-                data = _a.sent();
-                return [2 /*return*/, data];
-        }
+        fetchResponse = axios_1["default"].post("https://tanglass.hasura.app/v1/graphql", {
+            query: operation,
+            variables: variables
+        }).then(function (data) {
+            return data;
+        })["catch"](function (err) {
+            return err;
+        });
+        console.log(fetchResponse);
+        return [2 /*return*/, fetchResponse];
     });
 }); };
 //  Handler
 var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var body, _a, date, order_itemid, quantity, status, substanceid, warehouseid, _b, stock_response, stock_errors, stock_warehouse_substance_by_pk, quantity_inStock, newstock, _c, data, errors;
-    return __generator(this, function (_d) {
-        switch (_d.label) {
+    var body, _a, date, order_itemid, quantity, status, substanceid, warehouseid, stock_response, stock_warehouse_substance_by_pk, quantity_inStock, newstock, data;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
                 body = JSON.parse(req.body);
                 _a = body.input, date = _a.date, order_itemid = _a.order_itemid, quantity = _a.quantity, status = _a.status, substanceid = _a.substanceid, warehouseid = _a.warehouseid;
                 return [4 /*yield*/, execute({ substanceid: substanceid, warehouseid: warehouseid }, STOCK_QUERY)];
             case 1:
-                _b = _d.sent(), stock_response = _b.data, stock_errors = _b.errors;
+                stock_response = _b.sent();
                 stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substance_by_pk;
+                console.log('stock', stock_response);
                 if (!stock_warehouse_substance_by_pk) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: "error 400 " })
+                            body: JSON.stringify({ message: stock_response })
                         }];
                 }
                 quantity_inStock = stock_warehouse_substance_by_pk ? stock_warehouse_substance_by_pk.quantity : 0;
@@ -92,12 +86,12 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 }
                 return [4 /*yield*/, execute({ date: date, order_itemid: order_itemid, quantity: quantity, status: status, substanceid: substanceid, warehouseid: warehouseid, newstock: newstock }, HASURA_OPERATION)];
             case 2:
-                _c = _d.sent(), data = _c.data, errors = _c.errors;
+                data = (_b.sent()).data;
                 // if Hasura operation errors, then throw error
-                if (errors) {
+                if (data) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: errors[0] })
+                            body: JSON.stringify({ message: data.error })
                         }];
                 }
                 // success  
