@@ -59,15 +59,15 @@ const execute = async (variables,operation) => {
 //fetch current stock availability data 
 const  stock_response  = await execute({ substanceid, warehouseid },STOCK_QUERY);
 
-const  stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substance_by_pk;
-if(!(stock_warehouse_substance_by_pk)) {
+const  stock_substance = stock_response.data.stock_warehouse_substance_by_pk;
+if(!(stock_substance)) {
   return {
     statusCode: 400,
-    body:JSON.stringify({message:stock_response})
+    body:JSON.stringify({message:stock_substance})
 };
 }
 
-const quantity_inStock = stock_warehouse_substance_by_pk ? stock_warehouse_substance_by_pk.quantity : 0;
+const quantity_inStock = stock_substance ? stock_substance.quantity : 0;
 const newstock =quantity_inStock-quantity
 
 if(quantity_inStock <= 0) {
@@ -84,10 +84,7 @@ if(quantity_inStock <= 0) {
     return {
       statusCode: 400,
       body: JSON.stringify({message:data}),
-      headers: {
-        Accept: 'charset=utf-8',
-        'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv',
-      },
+    
   };
   }
 

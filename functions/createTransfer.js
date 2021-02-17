@@ -62,7 +62,7 @@ var execute = function (variables, operation) { return __awaiter(void 0, void 0,
 }); };
 //  Handler
 var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var body, _a, date, order_itemid, quantity, status, substanceid, warehouseid, stock_response, stock_warehouse_substance_by_pk, quantity_inStock, newstock, data;
+    var body, _a, date, order_itemid, quantity, status, substanceid, warehouseid, stock_response, stock_substance, quantity_inStock, newstock, data;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -71,14 +71,14 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 return [4 /*yield*/, execute({ substanceid: substanceid, warehouseid: warehouseid }, STOCK_QUERY)];
             case 1:
                 stock_response = _b.sent();
-                stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substance_by_pk;
-                if (!(stock_warehouse_substance_by_pk)) {
+                stock_substance = stock_response.data.stock_warehouse_substance_by_pk;
+                if (!(stock_substance)) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: stock_response })
+                            body: JSON.stringify({ message: stock_substance })
                         }];
                 }
-                quantity_inStock = stock_warehouse_substance_by_pk ? stock_warehouse_substance_by_pk.quantity : 0;
+                quantity_inStock = stock_substance ? stock_substance.quantity : 0;
                 newstock = quantity_inStock - quantity;
                 if (quantity_inStock <= 0) {
                     return [2 /*return*/, {
@@ -92,11 +92,7 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 if (!data.insert_stock_item_tranfer_one) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: data }),
-                            headers: {
-                                Accept: 'charset=utf-8',
-                                'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv'
-                            }
+                            body: JSON.stringify({ message: data })
                         }];
                 }
                 // success  
