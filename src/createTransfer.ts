@@ -82,14 +82,14 @@ if(quantity_inStock <= 0) {
   if (errors) {
     return {
       statusCode: 400,
-      body: stringifyObject({  message:errors[0]})
+      body: JSON.stringify({  message:errors[0]})
   };
   }
 
   // success  
   return {
     statusCode: 200,
-    body: stringifyObject({ ...data.insert_stock_item_tranfer_one})
+    body: JSON.stringify(data.insert_stock_item_tranfer_one)
 };
 
 };
