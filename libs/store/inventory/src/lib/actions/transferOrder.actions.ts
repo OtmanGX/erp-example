@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { TransferOrder, DetailedTransferOrder, InsertedTransferOrder } from '@tanglass-erp/core/inventory';
+import { TransferOrder, DetailedTransferOrder, InsertedTransferOrder, OrderDetails } from '@tanglass-erp/core/inventory';
 
 export const loadTransferOrders = createAction('[TransferOrders] Load TransferOrders');
 
@@ -47,4 +47,17 @@ export const addTransferOrderFailure = createAction(
 );
 
 
+// *** load details ***
+export const loadOrdersDetails = createAction(
+  '[TransferOrders] load TransferOrder details'
+);
 
+export const loadOrdersDetailsSuccess = createAction(
+  '[TransferOrders] load TransferOrder details Success',
+  props<{ transferOrders: OrderDetails[] }>()
+);
+
+export const loadOrdersDetailsFailure = createAction(
+  '[TransferOrders] load TransferOrder details Failure',
+  props<{ error: any}>()
+);
