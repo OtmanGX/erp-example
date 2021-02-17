@@ -33,6 +33,11 @@ const execute = async (variables,operation) => {
     {
         query: operation,
         variables,
+    },
+    {
+      headers: {
+        'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv',
+      }
     }
   ).then((data)=>{
     return data.data
@@ -58,7 +63,7 @@ const  stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substanc
 if(!stock_warehouse_substance_by_pk) {
   return {
     statusCode: 400,
-    body:JSON.stringify({message:stock_response})
+    body:JSON.stringify({message:stock_response.errors[0].message})
 };
 }
 
@@ -72,19 +77,25 @@ if(quantity_inStock <= 0) {
 };
 }
 
+
   // execute the Hasura operation
   const  data  = await execute({ date, order_itemid, quantity, status,substanceid,warehouseid,newstock},HASURA_OPERATION);
   if (!data.insert_stock_item_tranfer_one) {
     return {
       statusCode: 400,
-      body: JSON.stringify({message:data})
+      body: JSON.stringify({message:data}),
+      headers: {
+        Accept: 'charset=utf-8',
+        'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv',
+      },
   };
   }
 
   // success  
   return {
     statusCode: 200,
-    body: JSON.stringify(data.insert_stock_item_tranfer_one)
+    body: JSON.stringify(data.insert_stock_item_tranfer_one),
+    
 };
 
 };

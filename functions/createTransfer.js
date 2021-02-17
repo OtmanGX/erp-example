@@ -48,6 +48,10 @@ var execute = function (variables, operation) { return __awaiter(void 0, void 0,
         fetchResponse = axios_1["default"].post("https://tanglass.hasura.app/v1/graphql", {
             query: operation,
             variables: variables
+        }, {
+            headers: {
+                'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv'
+            }
         }).then(function (data) {
             return data.data;
         })["catch"](function (err) {
@@ -71,7 +75,7 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 if (!stock_warehouse_substance_by_pk) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: stock_response })
+                            body: JSON.stringify({ message: stock_response.errors[0].message })
                         }];
                 }
                 quantity_inStock = stock_warehouse_substance_by_pk ? stock_warehouse_substance_by_pk.quantity : 0;
@@ -88,7 +92,11 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 if (!data.insert_stock_item_tranfer_one) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: data })
+                            body: JSON.stringify({ message: data }),
+                            headers: {
+                                Accept: 'charset=utf-8',
+                                'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv'
+                            }
                         }];
                 }
                 // success  
