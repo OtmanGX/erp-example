@@ -75,6 +75,39 @@ export class GlassEffects {
   });
 
 
+  loadTypes$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GlassActions.loadTypes),
+      mergeMap(() =>
+        this.glassService.getTypes().pipe(
+          map((data) =>
+            GlassActions.loadTypesSuccess({types: data})
+          ),
+          catchError((error) =>
+            of(GlassActions.loadTypesFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  loadColors$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GlassActions.loadColors),
+      mergeMap(() =>
+        this.glassService.getColors().pipe(
+          map((data) =>
+            GlassActions.loadColorsSuccess({colors: data})
+          ),
+          catchError((error) =>
+            of(GlassActions.loadColorsFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+
   constructor(private actions$: Actions,
               private glassService: GlassService) {}
 }

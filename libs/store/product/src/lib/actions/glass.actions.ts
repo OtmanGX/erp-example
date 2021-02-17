@@ -92,3 +92,32 @@ export const removeGlassFailure = createAction(
   '[Glass Effect] Delete Glass failure',
   props<{ error: any }>()
 );
+
+
+//
+
+export const loadTypes = createAction(
+  '[List Glasses Component] Load types of Glass'
+);
+export const loadTypesSuccess = createAction(
+  '[Glass Effect] Load types of Glass Success',
+  props<{ types: string[] }>()
+);
+export const loadTypesFailure = createAction(
+  '[Glass Effect] Load types of Glass failure',
+  props<{ error: any }>()
+);
+
+//
+
+export const loadColors = createAction(
+  '[List Glasses Component] Load colors of Glass'
+);
+export const loadColorsSuccess = createAction(
+  '[Glass Effect] Load colors of Glass Success',
+  props<{ colors: string[] }>()
+);
+export const loadColorsFailure = createAction(
+  '[Glass Effect] Load colors of Glass failure',
+  props<{ error: any }>()
+);

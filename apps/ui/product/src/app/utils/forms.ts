@@ -117,7 +117,8 @@ const regConfigConsumable = (data?: Consumable, listCompanies: ListObservable = 
 ];
 
 
-const regConfigGlass = (data?: Glass, listCompanies: ListObservable = []) => [
+const regConfigGlass = (data?: Glass, listCompanies: ListObservable = [],
+   listTypes: ListObservable = [], listColors: ListObservable = []) => [
   {
     name: "product",
     label: "Produit",
@@ -129,8 +130,8 @@ const regConfigGlass = (data?: Glass, listCompanies: ListObservable = []) => [
     label: 'Verre',
     headerVisible: false,
     fields: [
-      {type: "input", label: "Type", inputType: "text", name: "type", value: data?.type, },
-      {type: "input", label: "Couleur", inputType: "text", name: "color", value: data?.color, },
+      {type: "select", label: "Type", multiple: false, name: "type", value: data?.type, options: listTypes },
+      {type: "select", label: "Couleur", multiple: false, name: "color", value: data?.color, options: listColors },
       {type: "input", label: "Epaisseur", inputType: "number", name: "thickness", value: data?.thickness},
     ]
   }
