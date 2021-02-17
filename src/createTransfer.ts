@@ -1,6 +1,5 @@
 const stringifyObject = require("stringify-object");
-import { fetch } from "node-fetch";
-// new 
+const axios = require('axios'); 
 
 const HASURA_OPERATION = `
 
@@ -27,32 +26,30 @@ query ($substanceid: uuid!, $warehouseid: uuid!) {
   }
   
 `
-// execute the parent operation in Hasura
+// execute the  operation in Hasura
 
-const execute = async (variables,operation) => {
-  const fetchResponse = await fetch(
+const execute = async (variables,operation) => { 
+  const fetchResponse = await axios.post(
     "https://tanglass.hasura.app/v1/graphql",
     {
-      method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
-      body: stringifyObject({
+      body: {
         query: operation,
-        variables
-      })
+        variables,
+      }
     }
   );
   const data = await fetchResponse.json();
-  console.log('DEBUG: ', data);
   return data;
 };
   
-// Request Handler
+//  Handler
  export const handler =async (req: any, res) => {
   const body = JSON.parse(req.body);
 
-  // get request input
+  // get  input
   const { date, order_itemid, quantity, status ,substanceid, warehouseid} = body.input;
 
   // run some business logic
@@ -85,14 +82,14 @@ if(quantity_inStock <= 0) {
   if (errors) {
     return {
       statusCode: 400,
-      body: JSON.stringify({  message:errors[0]})
+      body: stringifyObject({  message:errors[0]})
   };
   }
 
   // success  
   return {
     statusCode: 200,
-    body: JSON.stringify({ ...data.insert_stock_item_tranfer_one})
+    body: stringifyObject({ ...data.insert_stock_item_tranfer_one})
 };
 
 };

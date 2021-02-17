@@ -49,36 +49,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.handler = void 0;
 var stringifyObject = require("stringify-object");
-var node_fetch_1 = require("node-fetch");
-// new 
+var axios = require('axios');
 var HASURA_OPERATION = "\n\nmutation InsertItemTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String, $substanceid: uuid!,$warehouseid: uuid!, $newstock: Float) {\n    insert_stock_item_tranfer_one(object: {date: $date, order_itemid: $order_itemid, quantity: $quantity, status: $status}) {\n      id\n      date\n      quantity\n      status\n    }\n    warehouse_status_update:update_stock_warehouse_substance_by_pk(pk_columns: {substanceid: $substanceid, warehouseid: $warehouseid}, _set: {quantity: $newstock}) {\n      quantity\n    }\n  }\n  \n  \n";
 var STOCK_QUERY = "\nquery ($substanceid: uuid!, $warehouseid: uuid!) {\n    stock_warehouse_substance_by_pk(substanceid: $substanceid, warehouseid: $warehouseid) {\n      quantity\n    }\n  }\n  \n";
-// execute the parent operation in Hasura
+// execute the  operation in Hasura
 var execute = function (variables, operation) { return __awaiter(void 0, void 0, void 0, function () {
     var fetchResponse, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, node_fetch_1.fetch("https://tanglass.hasura.app/v1/graphql", {
-                    method: 'POST',
+            case 0: return [4 /*yield*/, axios.post("https://tanglass.hasura.app/v1/graphql", {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: stringifyObject({
+                    body: {
                         query: operation,
                         variables: variables
-                    })
+                    }
                 })];
             case 1:
                 fetchResponse = _a.sent();
                 return [4 /*yield*/, fetchResponse.json()];
             case 2:
                 data = _a.sent();
-                console.log('DEBUG: ', data);
                 return [2 /*return*/, data];
         }
     });
 }); };
-// Request Handler
+//  Handler
 var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var body, _a, date, order_itemid, quantity, status, substanceid, warehouseid, _b, stock_response, stock_errors, stock_warehouse_substance_by_pk, quantity_inStock, newstock, _c, data, errors;
     return __generator(this, function (_d) {
@@ -111,13 +108,13 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 if (errors) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: errors[0] })
+                            body: stringifyObject({ message: errors[0] })
                         }];
                 }
                 // success  
                 return [2 /*return*/, {
                         statusCode: 200,
-                        body: JSON.stringify(__assign({}, data.insert_stock_item_tranfer_one))
+                        body: stringifyObject(__assign({}, data.insert_stock_item_tranfer_one))
                     }];
         }
     });
