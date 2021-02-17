@@ -58,7 +58,7 @@ const  stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substanc
 if(!stock_warehouse_substance_by_pk) {
   return {
     statusCode: 400,
-    body:JSON.stringify({message: 'error 400'})
+    body:JSON.stringify({message:stock_response})
 };
 }
 
