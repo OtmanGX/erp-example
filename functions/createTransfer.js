@@ -75,7 +75,7 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 if (!stock_warehouse_substance_by_pk) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: stock_response.errors[0].message })
+                            body: JSON.stringify({ message: stock_response })
                         }];
                 }
                 quantity_inStock = stock_warehouse_substance_by_pk ? stock_warehouse_substance_by_pk.quantity : 0;
