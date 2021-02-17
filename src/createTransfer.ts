@@ -40,7 +40,6 @@ const execute = async (variables,operation) => {
   .catch(err=>{
     return err
   });
-  console.log(fetchResponse)
   return fetchResponse;
 };
   
@@ -56,11 +55,10 @@ const execute = async (variables,operation) => {
 const  stock_response  = await execute({ substanceid, warehouseid },STOCK_QUERY);
 
 const  stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substance_by_pk;
-console.log('stock',stock_response)
 if(!stock_warehouse_substance_by_pk) {
   return {
     statusCode: 400,
-    body:stringifyObject({message: 'error 400'})
+    body:JSON.stringify({message: 'error 400'})
 };
 }
 
@@ -70,7 +68,7 @@ const newstock =quantity_inStock-quantity
 if(quantity_inStock <= 0) {
   return {
     statusCode: 400,
-    body: stringifyObject({message:"Stock Epuisé"})
+    body: JSON.stringify({message:"Stock Epuisé"})
 };
 }
 
@@ -79,14 +77,14 @@ if(quantity_inStock <= 0) {
   if (!data.insert_stock_item_tranfer_one) {
     return {
       statusCode: 400,
-      body: stringifyObject({message:data})
+      body: JSON.stringify({message:data})
   };
   }
 
   // success  
   return {
     statusCode: 200,
-    body: stringifyObject(data.insert_stock_item_tranfer_one)
+    body: JSON.stringify(data.insert_stock_item_tranfer_one)
 };
 
 };

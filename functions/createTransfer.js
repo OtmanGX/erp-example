@@ -53,7 +53,6 @@ var execute = function (variables, operation) { return __awaiter(void 0, void 0,
         })["catch"](function (err) {
             return err;
         });
-        console.log(fetchResponse);
         return [2 /*return*/, fetchResponse];
     });
 }); };
@@ -69,11 +68,10 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
             case 1:
                 stock_response = _b.sent();
                 stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substance_by_pk;
-                console.log('stock', stock_response);
                 if (!stock_warehouse_substance_by_pk) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: stringifyObject({ message: 'error 400' })
+                            body: JSON.stringify({ message: 'error 400' })
                         }];
                 }
                 quantity_inStock = stock_warehouse_substance_by_pk ? stock_warehouse_substance_by_pk.quantity : 0;
@@ -81,7 +79,7 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 if (quantity_inStock <= 0) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: stringifyObject({ message: "Stock Epuisé" })
+                            body: JSON.stringify({ message: "Stock Epuisé" })
                         }];
                 }
                 return [4 /*yield*/, execute({ date: date, order_itemid: order_itemid, quantity: quantity, status: status, substanceid: substanceid, warehouseid: warehouseid, newstock: newstock }, HASURA_OPERATION)];
@@ -90,13 +88,13 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 if (!data.insert_stock_item_tranfer_one) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: stringifyObject({ message: data })
+                            body: JSON.stringify({ message: data })
                         }];
                 }
                 // success  
                 return [2 /*return*/, {
                         statusCode: 200,
-                        body: stringifyObject(data.insert_stock_item_tranfer_one)
+                        body: JSON.stringify(data.insert_stock_item_tranfer_one)
                     }];
         }
     });
