@@ -34,8 +34,8 @@ const execute = async (variables,operation) => {
         query: operation,
         variables,
     }
-  ).then(data=>{
-    return data
+  ).then((data)=>{
+    return data.data
   })
   .catch(err=>{
     return err
@@ -60,7 +60,7 @@ console.log('stock',stock_response)
 if(!stock_warehouse_substance_by_pk) {
   return {
     statusCode: 400,
-    body: JSON.stringify({  message: stock_response})
+    body:stringifyObject({  message: 'error 400'})
 };
 }
 
@@ -70,25 +70,23 @@ const newstock =quantity_inStock-quantity
 if(quantity_inStock <= 0) {
   return {
     statusCode: 400,
-    body: JSON.stringify({  message:"Stock Epuisé"})
+    body: stringifyObject({  message:"Stock Epuisé"})
 };
 }
 
   // execute the Hasura operation
-  const { data } = await execute({ date, order_itemid, quantity, status,substanceid,warehouseid,newstock},HASURA_OPERATION);
-
-  // if Hasura operation errors, then throw error
-  if (data) {
+  const  data  = await execute({ date, order_itemid, quantity, status,substanceid,warehouseid,newstock},HASURA_OPERATION);
+  if (!data.id) {
     return {
       statusCode: 400,
-      body: JSON.stringify({  message:data.error})
+      body: stringifyObject({  message:data})
   };
   }
 
   // success  
   return {
     statusCode: 200,
-    body: JSON.stringify(data.insert_stock_item_tranfer_one)
+    body: stringifyObject(data.insert_stock_item_tranfer_one)
 };
 };
 

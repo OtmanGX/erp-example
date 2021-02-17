@@ -49,7 +49,7 @@ var execute = function (variables, operation) { return __awaiter(void 0, void 0,
             query: operation,
             variables: variables
         }).then(function (data) {
-            return data;
+            return data.data;
         })["catch"](function (err) {
             return err;
         });
@@ -73,7 +73,7 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 if (!stock_warehouse_substance_by_pk) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: stock_response })
+                            body: stringifyObject({ message: 'error 400' })
                         }];
                 }
                 quantity_inStock = stock_warehouse_substance_by_pk ? stock_warehouse_substance_by_pk.quantity : 0;
@@ -81,23 +81,22 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 if (quantity_inStock <= 0) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: "Stock Epuisé" })
+                            body: stringifyObject({ message: "Stock Epuisé" })
                         }];
                 }
                 return [4 /*yield*/, execute({ date: date, order_itemid: order_itemid, quantity: quantity, status: status, substanceid: substanceid, warehouseid: warehouseid, newstock: newstock }, HASURA_OPERATION)];
             case 2:
-                data = (_b.sent()).data;
-                // if Hasura operation errors, then throw error
-                if (data) {
+                data = _b.sent();
+                if (!data.id) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: JSON.stringify({ message: data.error })
+                            body: stringifyObject({ message: data })
                         }];
                 }
                 // success  
                 return [2 /*return*/, {
                         statusCode: 200,
-                        body: JSON.stringify(data.insert_stock_item_tranfer_one)
+                        body: stringifyObject(data.insert_stock_item_tranfer_one)
                     }];
         }
     });
