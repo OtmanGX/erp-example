@@ -60,7 +60,7 @@ const execute = async (variables,operation) => {
 const  stock_response  = await execute({ substanceid, warehouseid },STOCK_QUERY);
 
 const  stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substance_by_pk;
-if(!stock_warehouse_substance_by_pk) {
+if(!(stock_warehouse_substance_by_pk)) {
   return {
     statusCode: 400,
     body:JSON.stringify({message:stock_response})

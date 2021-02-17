@@ -72,7 +72,7 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
             case 1:
                 stock_response = _b.sent();
                 stock_warehouse_substance_by_pk = stock_response.stock_warehouse_substance_by_pk;
-                if (!stock_warehouse_substance_by_pk) {
+                if (!(stock_warehouse_substance_by_pk)) {
                     return [2 /*return*/, {
                             statusCode: 400,
                             body: JSON.stringify({ message: stock_response })
