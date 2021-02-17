@@ -90,7 +90,7 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 if (!data.insert_stock_item_tranfer_one) {
                     return [2 /*return*/, {
                             statusCode: 400,
-                            body: stringifyObject({ message: "error 400" })
+                            body: stringifyObject({ message: data })
                         }];
                 }
                 // success  

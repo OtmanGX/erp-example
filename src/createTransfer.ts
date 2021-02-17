@@ -60,7 +60,7 @@ console.log('stock',stock_response)
 if(!stock_warehouse_substance_by_pk) {
   return {
     statusCode: 400,
-    body:stringifyObject({  message: 'error 400'})
+    body:stringifyObject({message: 'error 400'})
 };
 }
 
@@ -70,7 +70,7 @@ const newstock =quantity_inStock-quantity
 if(quantity_inStock <= 0) {
   return {
     statusCode: 400,
-    body: stringifyObject({  message:"Stock Epuisé"})
+    body: stringifyObject({message:"Stock Epuisé"})
 };
 }
 
@@ -79,7 +79,7 @@ if(quantity_inStock <= 0) {
   if (!data.insert_stock_item_tranfer_one) {
     return {
       statusCode: 400,
-      body: stringifyObject({  message:"error 400"})
+      body: stringifyObject({message:data})
   };
   }
 
@@ -88,6 +88,7 @@ if(quantity_inStock <= 0) {
     statusCode: 200,
     body: stringifyObject(data.insert_stock_item_tranfer_one)
 };
+
 };
 
 
