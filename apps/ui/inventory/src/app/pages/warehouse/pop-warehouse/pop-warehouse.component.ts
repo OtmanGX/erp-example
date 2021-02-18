@@ -4,7 +4,7 @@ import { FieldConfig, FormDialog } from '@tanglass-erp/material';
 import { regConfigWarehouse } from '@TanglassUi/inventory/utils/forms';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
-import * as shortSalePointActions from '@TanglassStore/shared/lib/+state/short-salePoints.actions';
+import * as shortSalePointActions from '@TanglassStore/shared/lib/+state/short-salePoint.actions';
 import * as shortSalePointSelectors from '@TanglassStore/shared/lib/+state/short-salePoint.selectors';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';

@@ -38,6 +38,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('@TanglassUi/product/product.module').then(m => m.ProductModule),
       },
+      {
+        path: 'purchase',
+        loadChildren: () =>
+          import('@TanglassUi/purchase/purchase.module').then(m => m.PurchaseModule),
+      },
     ]},
   {
     path: "**",

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 
-import * as ShortSalePointActions from './short-SalePoints.actions';
+import * as ShortSalePointActions from './short-salePoint.actions';
 import { ShortFeatureService } from '@tanglass-erp/core/common';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';

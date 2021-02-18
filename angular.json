@@ -1650,6 +1650,129 @@
           }
         }
       }
+    },
+    "ui-purchase": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/ui/purchase",
+      "sourceRoot": "apps/ui/purchase/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ui/purchase",
+            "index": "apps/ui/purchase/src/index.html",
+            "main": "apps/ui/purchase/src/main.ts",
+            "polyfills": "apps/ui/purchase/src/polyfills.ts",
+            "tsConfig": "apps/ui/purchase/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/ui/purchase/src/favicon.ico",
+              "apps/ui/purchase/src/assets"
+            ],
+            "styles": ["apps/ui/purchase/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ui/purchase/src/environments/environment.ts",
+                  "with": "apps/ui/purchase/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ui-purchase:build",
+            "proxyConfig": "apps/ui/purchase/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ui-purchase:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ui-purchase:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ui/purchase/tsconfig.app.json",
+              "apps/ui/purchase/tsconfig.spec.json",
+              "apps/ui/purchase/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ui/purchase/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ui/purchase/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-purchase-e2e": {
+      "root": "apps/ui/purchase-e2e",
+      "sourceRoot": "apps/ui/purchase-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ui/purchase-e2e/cypress.json",
+            "tsConfig": "apps/ui/purchase-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ui-purchase:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ui-purchase:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ui/purchase-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ui/purchase-e2e/**/*"]
+          }
+        }
+      }
     }
   },
   "defaultProject": "tanglass-erp",

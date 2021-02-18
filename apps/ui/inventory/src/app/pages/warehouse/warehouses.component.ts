@@ -47,8 +47,8 @@ export class WarehousesComponent implements GridView {
         if (action === Operations.add) {
           console.log(result);
           this.store.dispatch(wareHouseActions.addWarehouse({warehouse: {
-            companyid:result.company,
-            name:result.name,
+            companyid: result.company,
+            name: result.name,
             salePointid: result.salesPoint
           }}))
         } else {}

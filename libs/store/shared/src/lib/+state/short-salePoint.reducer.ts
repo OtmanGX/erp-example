@@ -1,7 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import * as ShortSalePointActions from './short-salePoints.actions';
+import * as ShortSalePointActions from './short-salePoint.actions';
 import { ShortFeauture } from '@tanglass-erp/core/common';
 
 export const SHORTSALEPOINT_FEATURE_KEY = 'shortSalePoint';

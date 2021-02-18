@@ -25,5 +25,6 @@ module.exports = {
     '<rootDir>/libs/store/shared',
     '<rootDir>/libs/core/common',
     '<rootDir>/apps/tanglass-main',
+    '<rootDir>/apps/ui/purchase',
   ],
 };
