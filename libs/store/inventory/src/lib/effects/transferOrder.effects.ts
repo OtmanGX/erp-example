@@ -48,6 +48,19 @@ export class TransferOrderEffects {
     )
   );
 
+  loadTransferOrderDetails$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TransferOrderActions.loadOrdersDetails),
+      mergeMap(() => this.transferOrderservice.getAllItemsOrders()
+        .pipe(
+          map((data) =>
+            TransferOrderActions.loadOrdersDetailsSuccess({transferOrders: data})),
+          catchError((error) =>
+            of(TransferOrderActions.loadOrdersDetailsFailure({error})))
+          ))
+    )
+  );
+
   constructor(private actions$: Actions,
               private transferOrderservice: TransferOrderService) {}
 }

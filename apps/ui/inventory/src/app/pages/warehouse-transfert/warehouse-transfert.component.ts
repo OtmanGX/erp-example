@@ -58,9 +58,15 @@ export class WarehouseTransfertComponent implements GridView {
       case Operations.delete:
         break;
       case Operations.loadDetails:
+<<<<<<< HEAD
         //this.store.dispatch(transferOrderActions.loadOrdersDetails());
        this.columnDefs=ordersDetailsHeaders
        
+=======
+
+        this.columnDefs = ordersDetailsHeaders ;
+        this.store.dispatch(transferOrderActions.loadOrdersDetails());
+>>>>>>> 925f0ed (trasfer order changes)
         break;
       // ...
     }
