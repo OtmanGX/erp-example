@@ -48,6 +48,14 @@ export type Float_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['Float']>>;
 };
 
+export type InsertItemTranfserOutput = {
+  __typename?: 'InsertItemTranfserOutput';
+  date?: Maybe<Scalars['date']>;
+  id: Scalars['uuid'];
+  quantity?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+};
+
 /** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
   _eq?: Maybe<Scalars['Int']>;
@@ -4639,6 +4647,8 @@ export type Mutation_Root = {
   __typename?: 'mutation_root';
   /** perform the action: "SignUp" */
   SignUp?: Maybe<SignUpOutput>;
+  /** perform the action: "createTransferItem" */
+  createTransferItem?: Maybe<InsertItemTranfserOutput>;
   /** delete data from the table: "contact.address" */
   delete_contact_address?: Maybe<Contact_Address_Mutation_Response>;
   /** delete single row from the table: "contact.address" */
@@ -5098,9 +5108,27 @@ export type Mutation_Root = {
 
 /** mutation root */
 export type Mutation_RootSignUpArgs = {
+  CIN?: Maybe<Scalars['String']>;
+  SalesPointsid?: Maybe<Scalars['uuid']>;
+  active?: Maybe<Scalars['Boolean']>;
   email: Scalars['String'];
-  id: Scalars['String'];
-  username: Scalars['String'];
+  firstname?: Maybe<Scalars['String']>;
+  lastname?: Maybe<Scalars['String']>;
+  password: Scalars['String'];
+  phone?: Maybe<Scalars['String']>;
+  role: Scalars['String'];
+  username?: Maybe<Scalars['String']>;
+};
+
+
+/** mutation root */
+export type Mutation_RootCreateTransferItemArgs = {
+  date?: Maybe<Scalars['date']>;
+  order_itemid?: Maybe<Scalars['uuid']>;
+  quantity?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  warehouseid?: Maybe<Scalars['uuid']>;
 };
 
 
@@ -7764,6 +7792,7 @@ export enum Product_GlassColor_Constraint {
 }
 
 export enum Product_GlassColor_Enum {
+  Blanc = 'blanc',
   Vert = 'vert'
 }
 
@@ -8039,8 +8068,10 @@ export enum Product_GlassType_Constraint {
 }
 
 export enum Product_GlassType_Enum {
+  Bronze = 'bronze',
   Karatachi = 'karatachi',
-  Normale = 'normale'
+  Normale = 'normale',
+  Test = 'test'
 }
 
 /** expression to compare columns of type product_glassType_enum. All fields are combined with logical 'AND'. */
@@ -18417,6 +18448,7 @@ export type GetAllAccessoriesStockQuery = (
       & Stock_WarehouseFragmentFragment
     ), substance: (
       { __typename?: 'product_substance' }
+      & Pick<Product_Substance, 'id'>
       & { productAccessory?: Maybe<(
         { __typename?: 'product_product_accessory_view' }
         & Product_Product_Accessory_ViewFragmentFragment
@@ -18446,6 +18478,7 @@ export type GetAllConsumablesStockQuery = (
       & Stock_WarehouseFragmentFragment
     ), substance: (
       { __typename?: 'product_substance' }
+      & Pick<Product_Substance, 'id'>
       & { productConsumable?: Maybe<(
         { __typename?: 'product_product_consumable_view' }
         & Product_Product_Consumable_ViewFragmentFragment
@@ -18477,6 +18510,7 @@ export type GetAllGlassesStockQuery = (
       & Stock_WarehouseFragmentFragment
     ), substance: (
       { __typename?: 'product_substance' }
+      & Pick<Product_Substance, 'id'>
       & { productGlass?: Maybe<(
         { __typename?: 'product_product_glass_view' }
         & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
@@ -20513,6 +20547,7 @@ export const GetAllAccessoriesStockDocument = gql`
         category
         id
       }
+      id
     }
   }
 }
@@ -20544,6 +20579,7 @@ export const GetAllConsumablesStockDocument = gql`
         category
         id
       }
+      id
     }
   }
 }
@@ -20580,6 +20616,7 @@ export const GetAllGlassesStockDocument = gql`
         color
         id
       }
+      id
     }
   }
 }

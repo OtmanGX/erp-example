@@ -265,6 +265,79 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "InsertItemTranfserOutput",
+        "description": null,
+        "fields": [
+          {
+            "name": "date",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "date",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "quantity",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "String",
+        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "Int_comparison_exp",
         "description": "expression to compare columns of type Int. All fields are combined with logical 'AND'.",
@@ -426,16 +499,6 @@
             "defaultValue": null
           }
         ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "String",
-        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
-        "fields": null,
-        "inputFields": null,
         "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
@@ -30891,6 +30954,36 @@
             "description": "perform the action: \"SignUp\"",
             "args": [
               {
+                "name": "CIN",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "SalesPointsid",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "uuid",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "active",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "email",
                 "description": null,
                 "type": {
@@ -30905,7 +30998,51 @@
                 "defaultValue": null
               },
               {
-                "name": "id",
+                "name": "firstname",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "lastname",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "password",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "phone",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "role",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -30922,13 +31059,9 @@
                 "name": "username",
                 "description": null,
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
                 },
                 "defaultValue": null
               }
@@ -30936,6 +31069,79 @@
             "type": {
               "kind": "OBJECT",
               "name": "SignUpOutput",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createTransferItem",
+            "description": "perform the action: \"createTransferItem\"",
+            "args": [
+              {
+                "name": "date",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "date",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_itemid",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "uuid",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "quantity",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "status",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "substanceid",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "uuid",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "warehouseid",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "uuid",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "InsertItemTranfserOutput",
               "ofType": null
             },
             "isDeprecated": false,
@@ -46175,6 +46381,12 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "blanc",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "vert",
             "description": null,
             "isDeprecated": false,
@@ -47595,6 +47807,12 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "bronze",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "karatachi",
             "description": null,
             "isDeprecated": false,
@@ -47602,6 +47820,12 @@
           },
           {
             "name": "normale",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "test",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

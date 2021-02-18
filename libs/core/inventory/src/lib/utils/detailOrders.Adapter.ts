@@ -10,6 +10,7 @@ export function AdaptOrderedItems(obj) {
     id: obj.id,
     date: obj.transfer_order.date,
     deadline: obj.transfer_order.deadline,
+    transfer_id:obj.transfer_order.id,
     item: flattenObj(obj.substance),
     quantity: obj.quantity,
     status: obj.status

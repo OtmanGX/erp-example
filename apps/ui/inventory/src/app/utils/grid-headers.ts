@@ -44,10 +44,10 @@ const orderItemsHeaders = [
 
 const ordersDetailsHeaders = [
   {
-    field: 'id', headerName: 'Référence', type: "linkColumn",
+    field: 'transfer_id', headerName: 'Référence', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `/warehouses/transfert/${params?.data?.id}`,
+        link: `${params?.data?.transfer_id}`,
       }
     )
   },
