@@ -89,7 +89,7 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 return [4 /*yield*/, execute({ date: date, order_itemid: order_itemid, quantity: quantity, status: status, substanceid: substanceid, warehouseid: warehouseid, newstock: newstock }, HASURA_OPERATION)];
             case 2:
                 data = _b.sent();
-                if (!data.insert_stock_item_tranfer_one) {
+                if (!data.data.insert_stock_item_tranfer_one) {
                     return [2 /*return*/, {
                             statusCode: 400,
                             body: JSON.stringify({ message: data })
@@ -98,7 +98,7 @@ var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                 // success  
                 return [2 /*return*/, {
                         statusCode: 200,
-                        body: JSON.stringify(data.insert_stock_item_tranfer_one)
+                        body: JSON.stringify(data.data.insert_stock_item_tranfer_one)
                     }];
         }
     });

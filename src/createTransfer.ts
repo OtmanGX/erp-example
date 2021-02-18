@@ -80,7 +80,7 @@ if(quantity_inStock <= 0) {
 
   // execute the Hasura operation
   const  data  = await execute({ date, order_itemid, quantity, status,substanceid,warehouseid,newstock},HASURA_OPERATION);
-  if (!data.insert_stock_item_tranfer_one) {
+  if (!data.data.insert_stock_item_tranfer_one) {
     return {
       statusCode: 400,
       body: JSON.stringify({message:data}),
@@ -91,7 +91,7 @@ if(quantity_inStock <= 0) {
   // success  
   return {
     statusCode: 200,
-    body: JSON.stringify(data.insert_stock_item_tranfer_one),
+    body: JSON.stringify(data.data.insert_stock_item_tranfer_one),
     
 };
 
