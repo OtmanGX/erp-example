@@ -5,10 +5,12 @@ import {
   Warehouse,
 
 } from '@tanglass-erp/store/inventory';
+import { Observable } from 'rxjs';
+
+type ListObservable = Observable<any> | Array<any>;
 
 
-
-const regConfigWarehouse = (data?: Warehouse, companies = [], salespoints = []) => [
+const regConfigWarehouse = (data?: Warehouse, companies: ListObservable = [], salespoints: ListObservable = []) => [
   { type: 'input', name: 'name', label: 'Nom', value: data?.name },
   {
     type: "select", name: "company", label: "Société", inputType: "text", value: data?.company,
