@@ -1,8 +1,9 @@
 import { flattenObj } from "@tanglass-erp/core/common";
-import { GetAccessoryWarehousesByIdQuery } from "@tanglass-erp/infrastructure/graphql";
+import { GetAccessoryWarehousesByIdQuery, GetTransferOrderByIdQuery } from "@tanglass-erp/infrastructure/graphql";
 import { SubstanceStocksDetails } from "../models/shared.models";
-export function AdaptOrderedItems(obj) {
 
+
+export function AdaptOrderedItems(obj) {
   return Object.assign({}, {
     fromwarehouse: obj.transfer_order.fromwarehouse.name,
     towarehouse: obj.transfer_order.towarehouse.name,
@@ -16,8 +17,7 @@ export function AdaptOrderedItems(obj) {
 }
 
 
-export function AdaptSubstanceStockDetails(obj: GetAccessoryWarehousesByIdQuery):SubstanceStocksDetails {
-
+export function AdaptSubstanceStockDetails(obj: GetAccessoryWarehousesByIdQuery): SubstanceStocksDetails {
   return {
     sum_quantity: obj.stock_warehouse_substance_aggregate.aggregate.sum.quantity,
     max_quantity: obj.stock_warehouse_substance_aggregate.aggregate.max.quantity,
@@ -33,4 +33,32 @@ export function AdaptSubstanceStockDetails(obj: GetAccessoryWarehousesByIdQuery)
   }
 }
 
+export function AdaptTransferOrderDetails(obj: GetTransferOrderByIdQuery) {
+  return {
+    id:obj.stock_transfer_order_by_pk.id,
+    date: obj.stock_transfer_order_by_pk.date,
+    deadline: obj.stock_transfer_order_by_pk.deadline,
+    createdAt: obj.stock_transfer_order_by_pk.createdAt,
+    createdBy: obj.stock_transfer_order_by_pk.createdBy,
+    updatedAt: obj.stock_transfer_order_by_pk.updatedAt,
+    updatedBy: obj.stock_transfer_order_by_pk.updatedBy,
+    status: obj.stock_transfer_order_by_pk.status,
+    fromwarehouse:obj.stock_transfer_order_by_pk.fromwarehouse,
+    towarehouse:obj.stock_transfer_order_by_pk.towarehouse,
+    items_count: obj.stock_transfer_order_by_pk.order_items_aggregate.aggregate.count,
+    items_sum: obj.stock_transfer_order_by_pk.order_items_aggregate.aggregate.sum.quantity,
+    order_items: obj.stock_transfer_order_by_pk.order_items_aggregate.nodes.map(item =>
+      Object.assign({},
+        {
+          id: item.id,
+          quantity: item.quantity,
+          status: item.status,
+          substance: flattenObj(item.substance),
+          total_deliveries: item.item_tranfers_aggregate.aggregate.sum.quantity,
+          deliveries: item.item_tranfers_aggregate.nodes
+        }))
+
+
+  }
+}
 

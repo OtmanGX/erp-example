@@ -30,7 +30,6 @@ export class WarehouseTransfertComponent implements GridView {
 
   ngOnInit(): void {
     this.store.dispatch(transferOrderActions.loadTransferOrders());
-
   }
 
   openDialog(action, data = {}) {
@@ -59,9 +58,9 @@ export class WarehouseTransfertComponent implements GridView {
       case Operations.delete:
         break;
       case Operations.loadDetails:
-        this.columnDefs = ordersDetailsHeaders ;
-       // this.store.dispatch(transferOrderActions.....;
-
+        //this.store.dispatch(transferOrderActions.loadOrdersDetails());
+       this.columnDefs=ordersDetailsHeaders
+       
         break;
       // ...
     }
