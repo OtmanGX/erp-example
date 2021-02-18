@@ -43,6 +43,20 @@ export class WarehouseTransfertComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
+          console.log({
+            fromWarehouseid: result.fromWarehouse,
+            toWarehouseid: result.toWarehouse,
+            date: result.date,
+            deadline: result.deadline,
+            substances: result.order_items.map(elt => ({substanceid:elt.substance,quantity:elt.quantity}))
+          })
+          this.store.dispatch(transferOrderActions.addTransferOrder({TransferOrder: {
+            fromWarehouseid: result.fromWarehouse,
+            toWarehouseid: result.toWarehouse,
+            date: result.date,
+            deadline: result.deadline,
+            substances: result.order_items.map(elt => ({substanceid:elt.substance,quantity:elt.quantity}))
+          }}))
         } else { }
       }
     });
