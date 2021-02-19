@@ -25,6 +25,8 @@ export class TransferOrderService {
 
   ) {
    
+
+
    }
 
   getAll() {
@@ -49,6 +51,7 @@ export class TransferOrderService {
   }
 
   insertOne(createdOne: fromTransfer.InsertedTransferOrder) {
+    console.log(createdOne);
     return this.insertTransferOrderGQL.mutate(createdOne)
   }
 

@@ -5,6 +5,8 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { PopWarehouseComponent } from '@TanglassUi/inventory/pages/warehouse/pop-warehouse/pop-warehouse.component';
 import { warehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
 import { WarehousesFacade } from '@tanglass-erp/store/inventory';
+import * as wareHouseActions from '@TanglassStore/inventory/lib/actions/warehouses.actions';
+import { Store } from '@ngrx/store';
 
 
 
@@ -20,7 +22,7 @@ export class WarehousesComponent implements GridView {
   columnId: string = 'id';
   data$ = this.facade.allWarehouses$;
 
-  constructor(public dialog: MatDialog, private facade: WarehousesFacade) {
+  constructor(public dialog: MatDialog, private facade: WarehousesFacade, private store: Store) {
     this.setColumnDefs();
   }
 
@@ -43,7 +45,12 @@ export class WarehousesComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-          console.log(result)
+          console.log(result);
+          this.store.dispatch(wareHouseActions.addWarehouse({warehouse: {
+            companyid: result.company,
+            name: result.name,
+            salePointid: result.salesPoint
+          }}))
         } else {}
       }
     });

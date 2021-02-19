@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 
-import * as ShortCompanyActions from './short-company.actions';
+import * as ShortSalePointActions from './short-salePoint.actions';
 import { ShortFeatureService } from '@tanglass-erp/core/common';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable()
-export class ShortCompanyEffects {
-  loadShortCompany$ = createEffect(() => {
+export class ShortSalePointEffects {
+  loadShortSalePoint$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ShortCompanyActions.loadShortCompany),
+      ofType(ShortSalePointActions.loadShortSalePoint),
       mergeMap(() =>
-        this.companieService.getAllCompanies().pipe(
+        this.companieService.getAllSalePoints().pipe(
           map((data) =>
-            ShortCompanyActions.loadShortCompanySuccess({ shortCompany: data.data.management_company })
+            ShortSalePointActions.loadShortSalePointSuccess({ shortSalePoint: data.data.management_salesPoint })
           ),
           catchError((error) =>
-            of(ShortCompanyActions.loadShortCompanyFailure({ error }))
+            of(ShortSalePointActions.loadShortSalePointFailure({ error }))
           )
         )
       )
