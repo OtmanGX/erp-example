@@ -1,4 +1,5 @@
-import { DetailedProvider, Provider, InsertContact, InsertAddressContact, DeleteAddress, AffectContactProvider } from '@tanglass-erp/core/contact';
+import { DetailedProvider, Provider, InsertContact,
+   InsertAddressContact, DeleteAddress, AffectContactProvider, DeleteAffectedContact } from '@tanglass-erp/core/contact';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -65,7 +66,7 @@ export const addProviderFailure = createAction(
 
 export const updateProvider = createAction(
   '[Providers Component] Update Provider',
-  props<{ provider: Provider }>()
+  props<{ provider: DetailedProvider }>()
 );
 export const updateProviderSuccess = createAction(
   '[Provider Effect] Update Provider Success',
@@ -159,5 +160,23 @@ export const removeAdressFromProviderSuccess = createAction(
 );
 export const removeAdressFromProviderFailure = createAction(
   '[Provider Effect] remove Adress from Provider failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****REMOVE CONTACT FROM Provider ** */
+/****************************************************************** */
+
+export const removeContactFromProvider = createAction(
+  '[Provider card Component] remove Contact from Provider',
+  props<{ contact: DeleteAffectedContact }>()
+);
+export const removeContactFromProviderSuccess = createAction(
+  '[Provider Effect] remove Contact from Provider Success',
+  props<{ contact: any }>()
+);
+export const removeContactFromProviderFailure = createAction(
+  '[Provider Effect] remove Contact from Provider failure',
   props<{ error: any }>()
 );

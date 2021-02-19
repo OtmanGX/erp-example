@@ -27,6 +27,10 @@ export class PopConsumableComponent extends FormDialog {
   }
 
   buildForm() {
+    if (this.data?.id) {
+      this.title = "Éditer consommable/MP";
+
+    }
     this.facade.loadAllShortCompanies();
     this.regConfig = regConfigConsumable(this.data, this.listCompanies$);
   }

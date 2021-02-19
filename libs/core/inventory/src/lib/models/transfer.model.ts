@@ -8,13 +8,15 @@ export interface OrderItem {
     quantity:number;
     status?:string;//pending or delivered
     substance:ItemTransfer;
-    item_tranfers:Transfered[]
+    total_deliveries:number;
+    deliveries:Transfered[]
 }
 //for the quantity of  items  that are transfered
 
 export interface Transfered{
-    quantity:number;
     id:string;
+    date:Date;
+    quantity:number;
     status?:string// ready or out
 }
 //for the type and data  of  substances  to transfer

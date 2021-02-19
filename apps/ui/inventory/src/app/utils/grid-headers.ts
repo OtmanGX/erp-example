@@ -3,7 +3,7 @@ const warehouseHeaders = [
     field: 'name', headerName: 'Nom', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `${params.data.id}`,
+        link: `${params?.data?.id}`,
       }
     )
   },
@@ -16,16 +16,18 @@ const warehouseTransferHeaders = [
     field: 'id', headerName: 'Référence', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `/warehouses/transfert/${params.data.id}`,
+        link: `${params?.data?.id}`,
       }
     )
   },
   { field: 'fromwarehouse.name', headerName: 'Entrepôt source', type: "textColumn" },
   { field: 'towarehouse.name', headerName: 'Entrepôt destination', type: "textColumn" },
-  { field: 'status', headerName: 'Statut', type: "textColumn" },
-  { field: 'date', headerName: 'Date', type: "textColumn" },
-  { field: 'deadline', headerName: 'Date limite', type: "textColumn" },
+  { field: 'status', headerName: 'Statut' },
+  { field: 'date', headerName: 'Date', type: "dateColumn" },
+  { field: 'deadline', headerName: 'Date limite', type: "dateColumn" },
 ];
+
+
 
 const ProductHeaders = [
   { field: 'code', headerName: 'Code', type: "textColumn" },
@@ -33,7 +35,35 @@ const ProductHeaders = [
   { field: 'price', headerName: 'Prix', type: 'numberColumn' },
   { field: 'unit', headerName: 'Unité' },
 ];
-/** 
+
+const orderItemsHeaders = [
+  { field: 'substance["code"]', headerName: 'Article',type: "textColumn"},
+  { field: 'substance.label', headerName: 'Désignation',type: "textColumn"},
+  { field: 'quantity', headerName: 'Quantité', type: 'numberColumn' },
+  { field: 'substance.unit', headerName: 'Unité', type: 'textColumn' },
+
+  { field: 'status', headerName: 'Etat' },
+];
+
+const ordersDetailsHeaders = [
+  {
+    field: 'transfer_id', headerName: 'Référence', type: "linkColumn",
+    cellRendererParams: (params) => (
+      {
+        link: `${params?.data?.transfer_id}`,
+      }
+    )
+  },
+  ...ProductHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'item.' + elem.field) && elem),
+
+  { field: 'fromwarehouse', headerName: 'Entrepôt source', type: "textColumn" },
+  { field: 'towarehouse', headerName: 'Entrepôt destination', type: "textColumn" },
+  { field: 'status', headerName: 'Statut', type: "textColumn" },
+  { field: 'date', headerName: 'Date', type: "textColumn" },
+  { field: 'deadline', headerName: 'Date limite', type: "textColumn" },
+
+];
+/**
 const GlassHeaders = [
   { field: 'type', headerName: 'Code', type: "textColumn"},
   { field: 'color', headerName: 'Couleur', type: "textColumn"},
@@ -54,7 +84,14 @@ const SubstanceGlassHeaders = [
 ];
 */
 const SubstanceGlassHeaders = [
-  ...ProductHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productGlass.' + elem.field) && elem),
+  { field: 'substance.productGlass.code', headerName: 'Coode', type: "linkColumn",
+    cellRendererParams: (params) => (
+      {
+        link: `${params?.data?.substance.productGlass.id}`,
+      }
+    )
+ },
+  ...ProductHeaders.filter( elm => elm.field !== 'code').map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productGlass.' + elem.field) && elem),
   { field: 'substance.glass.type', headerName: 'Type', type: "textColumn" },
   { field: 'substance.glass.color', headerName: 'Couleur', type: "textColumn" },
   { field: 'substance.glass.thickness', headerName: 'épaisseur', type: "numberColumn" },
@@ -119,8 +156,9 @@ const AccessoryWarehouseHeaders = [
 export {
   warehouseHeaders,
   warehouseTransferHeaders,
-  //GlassHeaders,
   GlassWarehouseHeaders,
   ConsumableWarehouseHeaders,
   AccessoryWarehouseHeaders,
+  ordersDetailsHeaders,
+  orderItemsHeaders
 };

@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class WarehousesEffects {
+
   loadWarehouses$ = createEffect(() =>
     this.actions$.pipe(
       ofType(WarehousesActions.loadWarehouses),
@@ -18,6 +19,32 @@ export class WarehousesEffects {
             of(WarehousesActions.loadWarehousesFailure({error})))
           ))
     )
+  );
+
+  loadWarehouseById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(WarehousesActions.loadWarehouseById),
+      mergeMap((action) => this.warehouseService.getOneById(action.id)
+        .pipe(
+          map((data) =>
+            WarehousesActions.loadWarehouseByIdSuccess({warehouse: data.data.stock_warehouse_by_pk})),
+          catchError((error) =>
+            of(WarehousesActions.loadWarehouseByIdFailure({error})))
+          ))
+    )
+  );
+
+  InsertOne$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(WarehousesActions.addWarehouse),
+    mergeMap((action) => this.warehouseService.insertOne(action.warehouse)
+      .pipe(
+        map((data) =>
+          WarehousesActions.addWarehouseSuccess({warehouse: data.data.insert_stock_warehouse_one})),
+        catchError((error) =>
+          of(WarehousesActions.addWarehouseFailure({error})))
+        ))
+  )
   );
 
   constructor(private actions$: Actions,

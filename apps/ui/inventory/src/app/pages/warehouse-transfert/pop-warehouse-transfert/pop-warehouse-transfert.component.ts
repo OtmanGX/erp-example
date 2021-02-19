@@ -9,12 +9,12 @@ import {
 import { WarehousesFacade } from '@tanglass-erp/store/inventory';
 import { map, takeUntil } from 'rxjs/operators';
 import { FormArray } from '@angular/forms';
-import * as SubstanceSelectors from '@TanglassStore/shared/lib/+state/warehouse-substance.selectors';
 import { Store } from '@ngrx/store';
 import * as accessorySelectors from '@TanglassStore/product/lib/selectors/accessory.selectors';
 import * as glassSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
 import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
 import * as GlassActions from '@TanglassStore/product/lib/actions/glass.actions';
+import { WarehouseSubstanceFacade } from '@TanglassStore/shared/index';
 
 @Component({
   selector: 'ngx-pop-sale-points',
@@ -49,6 +49,7 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
     @Inject(MAT_DIALOG_DATA) public data: any,
     private store: Store,
     private facade: WarehousesFacade,
+    private Substancefacade:WarehouseSubstanceFacade,
     private cdr: ChangeDetectorRef
   ) {
     super(dialogRef, data);
@@ -65,7 +66,11 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
     this.cdr.detectChanges();
     ['fromWarehouse', 'toWarehouse'].forEach(item => {
       this.transfertForm.get(item).valueChanges
-        .subscribe(value => this.syncWarehouses(item, value));
+        .subscribe(value => {this.syncWarehouses(item, value);
+           //  if (item=='toWarehouse')this.affectWarehouse(value)
+          }
+        );
+        
       }
     );
     this.dynamicForms.changes.subscribe(() => {
@@ -74,7 +79,13 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
     this.newOrderItem();
   }
 
-
+  affectWarehouse(warehouseid){
+    console.log(warehouseid)
+   // this.accessories$ = this.Substancefacade.loadWarehouseAccessories({id:warehouseid});
+   // this.glasses$ = this.Substancefacade.loadWarehouseGlasses({id:warehouseid});
+    this.substances  = {Verre: this.glasses$, Accessoire: this.accessories$};
+      console.log(this.substances)
+  }
 
   buildForm(): void {
     this.regConfig = regConfigTransferOrder(this.data);

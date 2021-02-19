@@ -5,7 +5,7 @@ const ProductHeaders = [
     field: 'product.code', headerName: 'Code', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `${params.data.id}`,
+        link: `${params?.data?.id}`,
       })
   },
   { field: 'product.label', headerName: 'Désignation', type: "textColumn" },

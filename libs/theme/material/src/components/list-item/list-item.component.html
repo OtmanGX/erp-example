@@ -1,15 +1,15 @@
 
   <div *ngFor="let group of data">
- 
     <mat-toolbar *ngIf="group.isToolbar">
       <span>{{group.label}}</span>
       <span class="spacer"></span>
-      <button   *ngFor="let icon of group.icons;" mat-icon-button  
+      <button   *ngFor="let icon of group.icons;" mat-icon-button
       (click)="triggerAction(icon.event)"
       [matTooltip]="icon.tooltip">
         <mat-icon>{{icon.name}}</mat-icon>
       </button>
     </mat-toolbar>
+
 <mat-grid-list [cols]="group.cols" rowHeight="50px" >
   <mat-grid-tile *ngFor="let item of group.data; last as last"  [class.list-item-template]="item.type === 'view'">
       <span class="label" fxFlex="25">{{item?.label}}</span>

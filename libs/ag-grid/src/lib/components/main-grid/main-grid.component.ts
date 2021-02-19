@@ -26,8 +26,12 @@ export class MainGridComponent {
   @Input() autoGroupColumnDef: any;
   @Input() columnId = 'id';
   @Input() withToolbar: boolean = true;
+  @Input() withDetails: boolean = false;
   @Input() withCrud: boolean = true;
   @Input() theme = "ag-theme-alpine";
+  @Input() rowGroupPanelShow = "always";
+  @Input() height = "670px";
+  @Input() width = "100%";
   @Output() triggerEvent = new EventEmitter<{action: string, data?: any}>();
   private gridApi: any;
   private gridColumnApi: any;
@@ -36,7 +40,10 @@ export class MainGridComponent {
   hide = false; // For Search reset  button
 
   // Formatters
-  dateFormatter = (params) => (!params.data) ? null : this.datepipe.transform(params.data.date, 'dd/MM/yyyy');
+  dateFormatter = (params) => (!params.data) ? null :
+    this.datepipe.transform(params.data.date, 'dd/MM/yyyy')
+  dateTimeFormatter = (params) => (!params.data) ? null :
+    this.datepipe.transform(params.data.date, 'dd/MM/yyyy HH:mm')
 
   // Renderers
   frameworkComponents: {
@@ -67,35 +74,38 @@ export class MainGridComponent {
     checkboxSelection: this.checkboxSelectionColumn,
   };
 
+  dateColumnByFormatter = (formatter) => ({
+    filter: 'agDateColumnFilter',
+    suppressMenu: true,
+    valueFormatter: formatter,
+    filterParams : {
+      comparator: function (filterLocalDateAtMidnight, cellValue: Date) {
+      const day = cellValue.getDate();
+      const month = cellValue.getMonth();
+      const year = cellValue.getFullYear();
+      const cellDate = new Date(year, month, day);
+      if (cellDate < filterLocalDateAtMidnight) {
+      return -1;
+    } else if (cellDate > filterLocalDateAtMidnight) {
+    return 1;
+  } else {
+  return 0;
+  }
+  },
+  }
+})
+
   columnTypes = {
     nonEditableColumn: { editable: false },
     textColumn: {filter: 'agTextColumnFilter'},
     editColumn: {cellRendererFramework: MatEditComponent, filter: false},
     objectColumn: {cellRendererFramework: GridObjectRenderComponentComponent, filter: true},
+    dateColumn: this.dateColumnByFormatter(this.dateFormatter),
+    dateTimeColumn: this.dateColumnByFormatter(this.dateTimeFormatter),
     linkColumn: {cellRendererFramework: LinkComponent, filter: 'agTextColumnFilter'},
-    dateColumn: {
-      filter: 'agDateColumnFilter',
-      suppressMenu: true,
-      valueFormatter: this.dateFormatter,
-      filterParams : {
-        comparator: function (filterLocalDateAtMidnight, cellValue: Date) {
-          const day = cellValue.getDate();
-          const month = cellValue.getMonth();
-          const year = cellValue.getFullYear();
-          const cellDate = new Date(year, month, day);
-          if (cellDate < filterLocalDateAtMidnight) {
-            return -1;
-          } else if (cellDate > filterLocalDateAtMidnight) {
-            return 1;
-          } else {
-            return 0;
-          }
-        },
-      }
-    },
     numberColumn: {
       filter: 'agNumberColumnFilter',
-    },
+    }
   };
 
   sideBar = {

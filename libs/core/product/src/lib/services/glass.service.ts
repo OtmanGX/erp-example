@@ -5,8 +5,13 @@ import {
   InsertGlassGQL,
   DeleteOneGQL,
   DeleteManyGQL,
-  InsertGlassMutationVariables
+  InsertGlassMutationVariables,
+  GetGlassTypesGQL,
+  GetGlassColorsGQL,
+  AddGlassColorGQL,
+  AddGlassTypeGQL,
 } from '@tanglass-erp/infrastructure/graphql';
+import { map } from 'rxjs/operators';
 import { Glass,DetailedGlass, InsertedGlass } from "../models/glass.model";
 import { adaptProduct } from '../utils/dataAdapter';
 
@@ -21,14 +26,20 @@ export class GlassService {
     private getByIdGQL: GetGlassByIdGQL,
     private insertOneGQL: InsertGlassGQL,
     private deleteOneGQL: DeleteOneGQL,
-    private deleteMany:DeleteManyGQL
+    private deleteMany:DeleteManyGQL,
+    private getGlassTypesGQL:GetGlassTypesGQL,
+    private addGlassColorGQL:AddGlassColorGQL,
+    private addGlassTypeGQL:AddGlassTypeGQL,
+    private getGlassColorsGQL:GetGlassColorsGQL
+
   ) {
- 
+
   }
 
   getAll() {
     return this.getAllGQL.watch().valueChanges
   }
+
 
   getOneById(id: string) {
     return this.getByIdGQL.fetch({ id })
@@ -47,4 +58,24 @@ export class GlassService {
     return this.deleteMany.mutate({codes})
   }
 
+
+  addType(type:string){
+    return this.addGlassTypeGQL.mutate({type})
+
+
+  }
+  addColor(color:string){
+    return this.addGlassColorGQL.mutate({color})
+
+  }
+
+  getTypes(){
+    return this.getGlassTypesGQL.watch().valueChanges.pipe(map((data)=>
+    data.data.product_glassType.map((res)=>res.type)))
+
+  }
+  getColors(){
+    return this.getGlassColorsGQL.watch().valueChanges.pipe(map((data)=>
+    data.data.product_glassColor.map((res)=>res.color)))
+  }
 }

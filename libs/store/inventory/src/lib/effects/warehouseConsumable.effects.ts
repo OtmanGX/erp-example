@@ -21,6 +21,20 @@ export class ConsumableWareHouseEffects {
     )
   );
 
+  loadAccessoryWareHouseById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ConsumableWareHouseActions.loadWareHouseConsumableById),
+      mergeMap((action) => this.consumableWarehouseservice.getOneById(action.id)
+        .pipe(
+          map((data) =>
+            ConsumableWareHouseActions.loadWareHouseConsumableByIdSuccess({consumableWarehouse: data})),
+          catchError((error) =>
+            of(ConsumableWareHouseActions.loadWareHouseConsumableByIdFailure({error})))
+          ))
+    )
+  );
+
+
 
 
   constructor(private actions$: Actions,

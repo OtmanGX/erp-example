@@ -35,3 +35,9 @@ export const getConsumableWarehouseEntities = createSelector(
   (state: State) => selectEntities(state)
 );
 
+
+
+export const getSelectedWarehouse = createSelector(
+  getConsumableWarehousesState,
+  (state: State) => state.selectedWareHouse
+);

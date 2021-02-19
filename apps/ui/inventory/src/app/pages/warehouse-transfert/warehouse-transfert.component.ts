@@ -6,7 +6,7 @@ import { PopWarehouseTransfertComponent } from '@TanglassUi/inventory/pages/ware
 import * as TranserOrderSelectors from '@TanglassStore/inventory/lib/selectors/trasnferOrder.selectors';
 import * as transferOrderActions from '@TanglassStore/inventory/lib/actions/transferOrder.actions';
 import { Store } from '@ngrx/store';
-import {warehouseTransferHeaders} from '../../utils/grid-headers';
+import { warehouseTransferHeaders ,ordersDetailsHeaders} from '../../utils/grid-headers';
 
 @Component({
   selector: 'tanglass-erp-warehouses',
@@ -43,7 +43,14 @@ export class WarehouseTransfertComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-        } else {}
+          this.store.dispatch(transferOrderActions.addTransferOrder({TransferOrder: {
+            fromWarehouseid: result.fromWarehouse,
+            toWarehouseid: result.toWarehouse,
+            date: result.date,
+            deadline: result.deadline,
+            substances: result.order_items.map(elt => ({substanceid:elt.substance,quantity:+elt.quantity}))
+          }}))
+        } else { }
       }
     });
   }
@@ -57,14 +64,19 @@ export class WarehouseTransfertComponent implements GridView {
         break;
       case Operations.delete:
         break;
+      case Operations.loadDetails:
+
+        this.columnDefs = ordersDetailsHeaders ;
+        this.store.dispatch(transferOrderActions.loadOrdersDetails());
+        break;
       // ...
     }
   }
 
   setColumnDefs(): void {
-      this.columnDefs = [
-        ...warehouseTransferHeaders,
-      {field: 'id', headerName: 'Action', type: "editColumn"}
+    this.columnDefs = [
+      ...warehouseTransferHeaders,
+      { field: 'id', headerName: 'Action', type: "editColumn" }
     ];
   }
 

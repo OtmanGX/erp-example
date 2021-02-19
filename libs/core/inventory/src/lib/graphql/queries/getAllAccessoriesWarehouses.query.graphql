@@ -12,6 +12,7 @@ query GetAllAccessoriesStock {
         category
         id
       }
+      id
     }
   }
 }

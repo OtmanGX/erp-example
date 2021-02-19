@@ -26,14 +26,9 @@
 .mat-icon {
   font-size: 1rem;
 }
-.mat-grid-list{
- //border-left: 0.25px solid var(--color-primary);
- &:hover {
-  box-shadow: 4.6px 5.3px 8.7px rgba(137, 148, 169, 0.43), -4.2px -4.2px 5px #FFFFFF;
-  border:1px solid rgba(137, 148, 169, 0.5);
-}
 
-}
+
+
 .spacer{
   flex: 1 1 auto;
 }

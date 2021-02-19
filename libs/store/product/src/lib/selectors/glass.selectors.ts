@@ -41,6 +41,16 @@ export const getSelectedGlass = createSelector(
   (state: State) => state.selectedGlass
 );
 
+export const getTypes = createSelector(
+  getGlassesState,
+  (state: State) => state.types
+);
+
+export const getColors = createSelector(
+  getGlassesState,
+  (state: State) => state.colors
+);
+
 
 /********************************************************************************* */
 /****RETURN Glasses VIEW MODEL */

@@ -10,6 +10,8 @@ export const GLASS_FEATURE_KEY = 'glasses';
 export interface State extends EntityState<Glass> {
   selectedGlass: DetailedGlass
   loaded: boolean; // has the Glass list been loaded
+  types: string[],
+  colors: string[],
   error?: string | null; // last known error (if any)
 }
 
@@ -24,6 +26,8 @@ Glass
 export const initialState: State = glassAdapter.getInitialState({
   // set initial required properties
   selectedGlass: null,
+  colors: [],
+  types: [],
   loaded: false,
   error: null,
 });
@@ -37,6 +41,20 @@ const GlassReducer = createReducer<State>(
          loaded: true
         })
   ),
+  on( GlassesActions.loadColorsSuccess,
+    (state, action)  => (
+      {
+       ...state,
+       colors: action.colors
+      })
+),
+on( GlassesActions.loadTypesSuccess,
+  (state, action)  => (
+    {
+     ...state,
+     types: action.types
+    })
+),
   on( GlassesActions.loadGlassByIdSuccess,
     (state, action)  => (
       {
@@ -56,6 +74,8 @@ const GlassReducer = createReducer<State>(
      glassAdapter.removeOne(action.glassId, state)
   ),
   on(GlassesActions.loadGlassesFailure,
+    GlassesActions.loadTypesFailure,
+    GlassesActions.loadColorsFailure,
      GlassesActions.updateGlassFailure,
      GlassesActions.addGlassFailure,
      GlassesActions.loadGlassByIdFailure,

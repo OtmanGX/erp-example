@@ -34,3 +34,8 @@ export const getGlassWarehouseEntities = createSelector(
   getGlassWarehousesState,
   (state: State) => selectEntities(state)
 );
+
+export const getSelectedWarehouse = createSelector(
+  getGlassWarehousesState,
+  (state: State) => state.selectedWarehouse
+);

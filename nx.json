@@ -105,6 +105,13 @@
     "tanglass-main-e2e": {
       "tags": [],
       "implicitDependencies": ["tanglass-main"]
+    },
+    "ui-purchase": {
+      "tags": []
+    },
+    "ui-purchase-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-purchase"]
     }
   }
 }

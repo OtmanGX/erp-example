@@ -1,5 +1,5 @@
 import { MetaData } from '@tanglass-erp/core/common';
-import { AffectedContact, InsertedContact } from "./contact.models";
+import { AffectedContact, InsertedContact, Contact } from "./contact.models";
 import { Address ,PartialContact} from "./shared.models";
 
 export interface Customer {
@@ -15,6 +15,7 @@ export interface Customer {
 
 export interface DetailedCustomer extends InsertedCustomer {
     id: string;
+    contacts: PartialContact[];
 }
 
 export interface InsertedCustomer extends MetaData{
