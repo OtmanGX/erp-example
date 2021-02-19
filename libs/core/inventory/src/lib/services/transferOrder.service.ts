@@ -24,8 +24,7 @@ export class TransferOrderService {
     private insertItemTranfserGQL: InsertItemTranfserGQL,
 
   ) {
-    
-
+   
    }
 
   getAll() {
@@ -39,6 +38,8 @@ export class TransferOrderService {
     )
     )
   }
+
+
   addTransfered(value:InsertItemTranfserMutationVariables){
     return this.insertItemTranfserGQL.mutate(value)
 

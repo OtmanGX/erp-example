@@ -20431,7 +20431,7 @@ export const InsertItemTranfserDocument = gql`
 export const InsertTransferOrderDocument = gql`
     mutation InsertTransferOrder($date: date!, $deadline: date, $fromWarehouseid: uuid!, $toWarehouseid: uuid!, $substances: [stock_order_item_insert_input!]!) {
   insert_stock_transfer_order_one(
-    object: {date: $date, deadline: $deadline, fromWarehouseid: $fromWarehouseid, toWarehouseid: $toWarehouseid, order_items: {data: $substances}}
+    object: {date: $date, deadline: $deadline, fromWarehouseid: $fromWarehouseid, toWarehouseid: $toWarehouseid, order_items: {data: $substances, on_conflict: {constraint: accessoryTranferOrder_pkey, update_columns: substanceid}}}
   ) {
     date
     deadline

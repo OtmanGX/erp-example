@@ -37,8 +37,11 @@ const ProductHeaders = [
 ];
 
 const orderItemsHeaders = [
-  { field: 'substance.label', headerName: 'Substance' },
+  { field: 'substance["code"]', headerName: 'Article',type: "textColumn"},
+  { field: 'substance.label', headerName: 'Désignation',type: "textColumn"},
   { field: 'quantity', headerName: 'Quantité', type: 'numberColumn' },
+  { field: 'substance.unit', headerName: 'Unité', type: 'textColumn' },
+
   { field: 'status', headerName: 'Etat' },
 ];
 
@@ -81,7 +84,14 @@ const SubstanceGlassHeaders = [
 ];
 */
 const SubstanceGlassHeaders = [
-  ...ProductHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productGlass.' + elem.field) && elem),
+  { field: 'substance.productGlass.code', headerName: 'Coode', type: "linkColumn",
+    cellRendererParams: (params) => (
+      {
+        link: `${params?.data?.substance.productGlass.id}`,
+      }
+    )
+ },
+  ...ProductHeaders.filter( elm => elm.field !== 'code').map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productGlass.' + elem.field) && elem),
   { field: 'substance.glass.type', headerName: 'Type', type: "textColumn" },
   { field: 'substance.glass.color', headerName: 'Couleur', type: "textColumn" },
   { field: 'substance.glass.thickness', headerName: 'épaisseur', type: "numberColumn" },

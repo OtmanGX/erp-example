@@ -31,8 +31,8 @@ export interface InsertedTransferOrder {
     substances: Item[];
     fromWarehouseid: string;
     toWarehouseid: string;
-    date: Date;
-    deadline?: Date;
+    date: string|Date;
+    deadline?: string|Date;
 }
 
 export interface Item {

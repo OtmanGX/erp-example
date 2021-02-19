@@ -17,7 +17,7 @@ import { WarehouseTransfertComponent } from './pages/warehouse-transfert/warehou
 import { PopWarehouseTransfertComponent } from './pages/warehouse-transfert/pop-warehouse-transfert/pop-warehouse-transfert.component';
 import { StoreProductModule } from '../../../../../libs/store/product/src';
 import { TransfertCardComponent } from './pages/warehouse-transfert/transfert-card/transfert-card.component';
-
+import {StoreSharedModule  } from "@TanglassStore/shared/index";
 
 const routes: Routes = [
   { path: '',
@@ -91,7 +91,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MainAgGridModule,
     StoreInventoryModule,
-    StoreProductModule
+    StoreProductModule,
+    StoreSharedModule
   ]
 })
 export class InventoryModule { }
