@@ -88,14 +88,14 @@ export class NavigationService {
       type: "separator"
     },
     {
-      name: "Entrepôts",
+      name: "Etat de stock",
       type: "dropDown",
       icon: "assignment_ind",
       tooltip: "Pages",
       // badges: [{color: 'primary', value: '6'}],
       // state: "inventory/warehouses",
       sub: [
-        { name: "Entrepôts", state: "inventory/warehouses" },
+        { name: "Emplacements", state: "inventory/warehouses" },
         { name: "Produit Stockable", state: "inventory/warehouse-glasse" },
         { name: "Accessoires ", state: "inventory/warehouse-accessory" },
         { name: "Consommables && MP", state: "inventory/warehouse-consumable" },
