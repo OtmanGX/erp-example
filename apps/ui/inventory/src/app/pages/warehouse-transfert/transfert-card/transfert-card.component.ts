@@ -34,6 +34,8 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
     super(route);
     this.setColumnDefs();
   }
+  ngAfterViewInit(): void {
+  }
 
   afterComplete() {
   }
@@ -43,7 +45,6 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   }
 
   passData(data?: DetailedTransferOrder) {
-
     this.orderItems = of(data?.order_items.map( (item) => {
       const itemClone: any = { ...item };
       itemClone.substance = item.substance?.productAccessory ?? item.substance?.productGlass;
@@ -74,9 +75,6 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   eventTriggering(event) {
     // Store Action Dispatching update
 
-  }
-
-  ngAfterViewInit(): void {
   }
 
   setColumnDefs(): void {

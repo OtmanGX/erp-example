@@ -23,6 +23,6 @@ export class FicheCardComponent {
   }
   // TransPorting event from child to parent !!
   eventTriggering(event) {
-    this.triggerAction(event)
+    this.triggerAction(event);
   }
 }

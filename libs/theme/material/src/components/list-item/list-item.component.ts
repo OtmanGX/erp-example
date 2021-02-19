@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { CardItem } from '../../interfaces/card-item';
+import { GroupItems } from '../../interfaces/group-items';
 import { TypeTemplateDirective } from '../../directives/type-template';
 
 @Component({
@@ -16,7 +16,7 @@ import { TypeTemplateDirective } from '../../directives/type-template';
   styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent implements AfterContentInit {
-  @Input() data: Array<CardItem>;
+  @Input() data: Array<GroupItems>;
   @Input() gap = "50px";
   @Output() triggerEvent = new EventEmitter<{action: string, data?: any}>();
 
@@ -28,7 +28,7 @@ export class ListItemComponent implements AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    this.templates = new Object();
+    this.templates = {};
     this.typeTemplateDirectives.forEach(item => {
       this.templates[item.typeTemplate] = item.templateRef;
     });
