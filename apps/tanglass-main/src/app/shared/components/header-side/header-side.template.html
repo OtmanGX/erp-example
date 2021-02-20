@@ -47,21 +47,21 @@
   </button>
 
   <mat-menu #accountMenu="matMenu">
-    <button mat-menu-item [routerLink]="['/profile/overview']">
+    <button disabled mat-menu-item [routerLink]="['/profile/overview']">
       <mat-icon>account_box</mat-icon>
       <span>Profile</span>
     </button>
-    <button mat-menu-item [routerLink]="['/profile/settings']">
+    <button disabled mat-menu-item [routerLink]="['/profile/settings']">
       <mat-icon>settings</mat-icon>
       <span>Account Settings</span>
     </button>
-    <button mat-menu-item>
+    <button disabled mat-menu-item>
       <mat-icon>notifications_off</mat-icon>
       <span>Disable alerts</span>
     </button>
-    <button mat-menu-item>
+    <button (click)="logout()" mat-menu-item>
       <mat-icon>exit_to_app</mat-icon>
-      <span>Sign out</span>
+      <span>Se déconnecter</span>
     </button>
   </mat-menu>
 </mat-toolbar>
