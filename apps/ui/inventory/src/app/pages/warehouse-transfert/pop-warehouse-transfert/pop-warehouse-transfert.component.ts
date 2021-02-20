@@ -14,7 +14,6 @@ import * as accessorySelectors from '@TanglassStore/product/lib/selectors/access
 import * as glassSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
 import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
 import * as GlassActions from '@TanglassStore/product/lib/actions/glass.actions';
-import { WarehouseSubstanceFacade } from '@TanglassStore/shared/index';
 
 @Component({
   selector: 'ngx-pop-sale-points',
@@ -49,7 +48,7 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
     @Inject(MAT_DIALOG_DATA) public data: any,
     private store: Store,
     private facade: WarehousesFacade,
-    private Substancefacade:WarehouseSubstanceFacade,
+    //private Substancefacade:WarehouseSubstanceFacade,
     private cdr: ChangeDetectorRef
   ) {
     super(dialogRef, data);

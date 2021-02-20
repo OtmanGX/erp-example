@@ -12,9 +12,18 @@ import { ShortCompanyFacade } from './+state/short-company.facade';
 import * as fromShortWarehouse from './+state/short-warehouse.reducer';
 import { ShortWarehouseEffects } from './+state/short-warehouse.effects';
 import { ShortWarehouseFacade } from './+state/short-warehouse.facade';
-import * as fromWarehouseSubstance from './+state/warehouse-substance.reducer';
-import { WarehouseSubstanceEffects } from './+state/warehouse-substance.effects';
-import { WarehouseSubstanceFacade } from './+state/warehouse-substance.facade';
+import * as fromWarehouseSubstance from './+state/warehouse-glass.reducer';
+import { WarehouseSubstanceEffects } from './+state/warehouse-glass.effects';
+import { WarehouseSubstanceFacade } from './+state/warehouse-glass.facade';
+import * as fromShortProduct from './+state/short-product.reducer';
+import { ShortProductEffects } from './+state/short-product.effects';
+import { ShortProductFacade } from './+state/short-product.facade';
+import * as fromShortProvider from './+state/short-provider.reducer';
+import { ShortProviderEffects } from './+state/short-provider.effects';
+import { ShortProviderFacade } from './+state/short-provider.facade';
+import * as fromWarehouseAccessory from './+state/warehouse-accessory.reducer';
+import { WarehouseAccessoryEffects } from './+state/warehouse-accessory.effects';
+import { WarehouseAccessoryFacade } from './+state/warehouse-accessory.facade';
 
 @NgModule({
   imports: [
@@ -31,19 +40,40 @@ import { WarehouseSubstanceFacade } from './+state/warehouse-substance.facade';
     ),
     EffectsModule.forFeature([ShortWarehouseEffects]),
     StoreModule.forFeature(
-      fromWarehouseSubstance.WAREHOUSESUBSTANCE_FEATURE_KEY,
+      fromWarehouseSubstance.WAREHOUSE_GLASS_FEATURE_KEY,
       fromWarehouseSubstance.reducer
     ),
     StoreModule.forFeature(
       fromShortSalePoint.SHORTSALEPOINT_FEATURE_KEY,
       fromShortSalePoint.reducer
     ),
-    EffectsModule.forFeature([WarehouseSubstanceEffects, ShortSalePointEffects]),
+    EffectsModule.forFeature([
+      WarehouseSubstanceEffects,
+      ShortSalePointEffects,
+    ]),
+    StoreModule.forFeature(
+      fromShortProduct.SHORT_PRODUCT_FEATURE_KEY,
+      fromShortProduct.reducer
+    ),
+    EffectsModule.forFeature([ShortProductEffects]),
+    StoreModule.forFeature(
+      fromShortProvider.SHORT_PROVIDER_FEATURE_KEY,
+      fromShortProvider.reducer
+    ),
+    EffectsModule.forFeature([ShortProviderEffects]),
+    StoreModule.forFeature(
+      fromWarehouseAccessory.WAREHOUSE_ACCESSORY_FEATURE_KEY,
+      fromWarehouseAccessory.reducer
+    ),
+    EffectsModule.forFeature([WarehouseAccessoryEffects]),
   ],
   providers: [
     ShortCompanyFacade,
     ShortWarehouseFacade,
     WarehouseSubstanceFacade,
+    ShortProductFacade,
+    ShortProviderFacade,
+    WarehouseAccessoryFacade,
   ],
 })
 export class StoreSharedModule {}

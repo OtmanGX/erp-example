@@ -16,3 +16,8 @@ export interface Product{
     priceMin:number;
     unit:string;
 }
+
+export interface ShortProvider{
+    code?:string;
+    name:string;
+}

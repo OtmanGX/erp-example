@@ -33,8 +33,8 @@
                         (submit)="submit($event)">
           </dynamic-form>
           <mat-action-row>
-            <button mat-button *ngIf="orderForms.length !==0" color="warn" (click)="deleteOrderItem(fields)">Supprimer</button>
-            <button mat-button color="primary" (click)="newOrderItem()">Ajouter</button>
+            <button mat-button *ngIf="orderForms.length !==0" color="warn" (click)="deleteItem(fields)">Supprimer</button>
+            <button mat-button color="primary" (click)="newItem()">Ajouter</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
@@ -71,6 +71,7 @@
                   (close)="closePopup()"
                   (submit)="submit($event)">
     </dynamic-form>
+    
   </ng-template>
   
 </ngx-dialog-body>

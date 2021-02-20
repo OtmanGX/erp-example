@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PopDeliveryComponent } from './pop-delivery.component';
+import { DeliveryCardComponent } from './delivery-card.component';
 
-describe('PopSalePointsComponent', () => {
-  let component: PopDeliveryComponent;
-  let fixture: ComponentFixture<PopDeliveryComponent>;
+describe('SalePointCardComponent', () => {
+  let component: DeliveryCardComponent;
+  let fixture: ComponentFixture<DeliveryCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PopDeliveryComponent ]
+      declarations: [ DeliveryCardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PopDeliveryComponent);
+    fixture = TestBed.createComponent(DeliveryCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
