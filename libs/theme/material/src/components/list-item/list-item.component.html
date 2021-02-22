@@ -14,10 +14,14 @@
                   [ngTemplateOutlet]="templates[group.label]">
     </ng-container>
 
-  <mat-grid-list [cols]="group.cols" rowHeight="50px" >
-    <mat-grid-tile *ngFor="let item of group.data; last as last"  [class.list-item-template]="item.type === 'view'">
+  <div fxLayout="row wrap" fxLayout.xs="column" fxFlexFill=""
+       fxLayoutGap="50px grid" class="my-20 px-16" >
+    <div *ngFor="let item of group.data; last as last"
+         fxLayout="row" [fxFlex]="100/group.cols"
+         fxFlexAlign="center center"
+         [class.list-item-template]="item.type === 'view'">
         <span class="label" fxFlex="25">{{item?.label}}</span>
-        <span fxFlexAlign="center" fxFlex="70" [ngSwitch]="item?.type">
+          <span fxFlex="70" [ngSwitch]="item?.type">
           <span *ngSwitchCase="'date'">{{item?.value | date}}</span>
           <span *ngSwitchCase="'chips'">
             <mat-chip-list>
@@ -50,7 +54,7 @@
           </span>
           <span *ngSwitchDefault>{{item?.value}}</span>
         </span>
-    </mat-grid-tile>
+    </div>
 
-  </mat-grid-list >
+  </div >
 </div>
