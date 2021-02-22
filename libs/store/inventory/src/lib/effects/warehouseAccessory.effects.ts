@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 @Injectable()
 export class AccessoryWareHouseEffects {
 
-  loadTransferOrders$ = createEffect(() =>
+  loadAccessoryWareHouses$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AccessoryWareHouseActions.loadWareHouseAccessories),
       mergeMap(() => this.accessoryWarehouseservice.getAll()
@@ -17,6 +17,19 @@ export class AccessoryWareHouseEffects {
             AccessoryWareHouseActions.loadWareHouseAccessoriesSuccess({wareHouseAccessories: data.data.stock_warehouse_substance})),
           catchError((error) =>
             of(AccessoryWareHouseActions.loadWareHouseAccessoriesFailure({error})))
+          ))
+    )
+  );
+
+  loadAccessoryWareHouseById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AccessoryWareHouseActions.loadWareHouseAccessorieById),
+      mergeMap((action) => this.accessoryWarehouseservice.getOneById(action.id)
+        .pipe(
+          map((data) =>
+            AccessoryWareHouseActions.loadWareHouseAccessorieByIdSuccess({accessoryWarehouse: data})),
+          catchError((error) =>
+            of(AccessoryWareHouseActions.loadWareHouseAccessorieByIdFailure({error})))
           ))
     )
   );

@@ -1,4 +1,4 @@
-<ngx-dialog-body title="Ajouter une société">
+<ngx-dialog-body [title]="title">
   <dynamic-form [fields]="regConfig"
                 (close)="closePopup()"
                 (submit)="submit($event)">

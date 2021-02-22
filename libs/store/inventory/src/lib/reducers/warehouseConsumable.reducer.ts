@@ -2,12 +2,13 @@ import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as ConsumableWarehouseActions from '../actions/warehouseConsumable.actions';
-import { ConsumableWarehouse } from '@tanglass-erp/core/inventory';
+import { ConsumableWarehouse,SubstanceStocksDetails } from '@tanglass-erp/core/inventory';
 
 export const CONSUMABLE_WAREHOUSE_FEATURE_KEY = 'consumable_warehouse';
 
 
 export interface State extends EntityState<ConsumableWarehouse> {
+  selectedWareHouse: SubstanceStocksDetails,
   loaded: boolean; // has the TransferOrder list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -22,6 +23,7 @@ ConsumableWarehouse
 
 export const initialState: State = ConsumableWarehouseAdapter.getInitialState({
   // set initial required properties
+  selectedWareHouse: null,
   loaded: false,
   error: null,
 });
@@ -35,7 +37,15 @@ const ConsumableWarehouseReducer = createReducer<State>(
          loaded: true
         })
   ),
+  on( ConsumableWarehouseActions.loadWareHouseConsumableByIdSuccess,
+    (state, action)  => (
+      {
+       ...state,
+       selectedWareHouse: action.consumableWarehouse,
+      })
+),
   on(ConsumableWarehouseActions.loadConsumableWarehousesFailure,
+     ConsumableWarehouseActions.loadWareHouseConsumableByIdFailure,
      (state, { error }) => ({
     ...state,
     error,

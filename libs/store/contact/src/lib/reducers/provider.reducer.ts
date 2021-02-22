@@ -46,6 +46,56 @@ const ProviderReducer = createReducer<State>(
       }
     )
 ),
+on(ProvidersActions.addContactToProviderSuccess, (state, action) =>
+     (
+       {
+         ...state,
+         selectedProvider : {
+           ...state.selectedProvider,
+           contacts : [
+             ...state.selectedProvider.contacts,
+             action.contact.contact
+           ]
+         }
+       }
+     )
+  ),
+  on(ProvidersActions.addAdressToProviderSuccess, (state, action) =>
+     (
+       {
+         ...state,
+         selectedProvider : {
+           ...state.selectedProvider,
+           addresses : [
+             ...state.selectedProvider.addresses,
+             action.adress.address
+           ]
+         }
+       }
+     )
+  ),
+  on(ProvidersActions.removeAdressFromProvider, (state, action) =>
+     (
+       {
+         ...state,
+         selectedProvider : {
+           ...state.selectedProvider,
+           addresses : state.selectedProvider.addresses.filter( address => address.id !== action.adress.addressid)
+         }
+       }
+     )
+  ),
+  on(ProvidersActions.removeContactFromProvider, (state, action) =>
+     (
+       {
+         ...state,
+         selectedProvider : {
+           ...state.selectedProvider,
+           contacts : state.selectedProvider.contacts.filter(contact => contact.id !== action.contact.contactid)
+         }
+       }
+     )
+  ),
   on(ProvidersActions.addProviderSuccess,
     (state, action) => providerAdapter.addOne(action.provider, state)
   ),

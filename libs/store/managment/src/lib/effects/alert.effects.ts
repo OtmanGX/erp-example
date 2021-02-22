@@ -5,6 +5,10 @@ import * as fromCompaniesActions from '../actions/companies.actions';
 import * as fromSalepointActions from '../actions/salePoint.actions';
 import * as fromUserActions from '../actions/user.actions';
 import { ToastrService } from 'ngx-toastr';
+import { Store } from "@ngrx/store";
+import { AppState } from '@tanglass-erp/store/app';
+import { AddNotification } from '@tanglass-erp/store/app';
+
 
 const OPTIONS = {
   positionClass : 'toast-bottom-center',
@@ -73,7 +77,14 @@ export class AlertEffects {
     () =>
       this.actions.pipe(
         ofType(fromCompaniesActions.addCompanieSuccess),
-        tap( (action) =>this.toastr.success( 'The companie: ' + action.companie.name + ' has been created', 'Creation succeded', OPTIONS))
+        tap( (action) => {
+          this.store.dispatch(AddNotification({notification: {
+            message: 'The companie: ' + action.companie.name + ' has been created',
+            color : 'primary',
+            icon : 'assignment_ind',
+          }}));
+          return this.toastr.success( 'The companie: ' + action.companie.name + ' has been created', 'Creation succeded', OPTIONS)
+        } )
       ),
       {dispatch: false}
 
@@ -237,7 +248,7 @@ export class AlertEffects {
       {dispatch: false}
   )
 
-  constructor( private actions: Actions, private toastr: ToastrService) {
+  constructor( private actions: Actions, private toastr: ToastrService, private store: Store<AppState>) {
 
   }
 

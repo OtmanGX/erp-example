@@ -16,6 +16,10 @@ import { StoreInventoryModule } from '@TanglassStore/inventory/index';
 import { WarehouseTransfertComponent } from './pages/warehouse-transfert/warehouse-transfert.component';
 import { PopWarehouseTransfertComponent } from './pages/warehouse-transfert/pop-warehouse-transfert/pop-warehouse-transfert.component';
 import { StoreProductModule } from '../../../../../libs/store/product/src';
+import { TransfertCardComponent } from './pages/warehouse-transfert/transfert-card/transfert-card.component';
+import { StoreSharedModule} from "@tanglass-erp/store/shared";
+import { PopOrderItemComponent } from './pages/warehouse-transfert/pop-order-item/pop-order-item.component';
+import { PopOrderItemDeliverComponent } from './pages/warehouse-transfert/pop-order-item-deliver/pop-order-item-deliver.component';
 
 
 const routes: Routes = [
@@ -28,12 +32,15 @@ const routes: Routes = [
           { path: '', component: WarehousesComponent },
           { path: ':id', component: WarehouseCardComponent },
         ],
-        data: {title: 'Entrepôts', breadcrumb: ""}
+        data: { title: 'Entrepôts', breadcrumb: "" }
       },
       {
         path: 'transfert',
-        component: WarehouseTransfertComponent,
-        data: {title: 'Transfert', breadcrumb: ""}
+        data: { title: 'Transfert', breadcrumb: "" },
+        children : [
+          { path: '', component: WarehouseTransfertComponent},
+          { path: ':id', component: TransfertCardComponent },
+        ]
       },
       {
         path: 'warehouse-consumable',
@@ -79,13 +86,17 @@ const routes: Routes = [
     WarehouseGlasseComponent,
     WarehouseGlasseCardComponent,
     PopWarehouseTransfertComponent,
-    WarehouseTransfertComponent
+    WarehouseTransfertComponent,
+    TransfertCardComponent,
+    PopOrderItemComponent,
+    PopOrderItemDeliverComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     MainAgGridModule,
     StoreInventoryModule,
+    StoreSharedModule,
     StoreProductModule
   ]
 })

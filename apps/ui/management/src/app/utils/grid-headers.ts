@@ -1,5 +1,5 @@
 const SalePointHeaders = [
-  { field: 'name', headerName: 'Nom', type: "linkColumn",
+  { field: 'name', headerName: 'Emplacement', type: "linkColumn",
     cellRendererParams: (params) => (
       {
       link: `${params.value}`,

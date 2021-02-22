@@ -5,7 +5,9 @@ import { CoreCommonModule } from '@tanglass-erp/core/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromShortCompany from './+state/short-company.reducer';
+import * as fromShortSalePoint from './+state/short-salePoint.reducer';
 import { ShortCompanyEffects } from './+state/short-company.effects';
+import { ShortSalePointEffects } from './+state/short-salePoint.effects';
 import { ShortCompanyFacade } from './+state/short-company.facade';
 import * as fromShortWarehouse from './+state/short-warehouse.reducer';
 import { ShortWarehouseEffects } from './+state/short-warehouse.effects';
@@ -32,7 +34,11 @@ import { WarehouseSubstanceFacade } from './+state/warehouse-substance.facade';
       fromWarehouseSubstance.WAREHOUSESUBSTANCE_FEATURE_KEY,
       fromWarehouseSubstance.reducer
     ),
-    EffectsModule.forFeature([WarehouseSubstanceEffects]),
+    StoreModule.forFeature(
+      fromShortSalePoint.SHORTSALEPOINT_FEATURE_KEY,
+      fromShortSalePoint.reducer
+    ),
+    EffectsModule.forFeature([WarehouseSubstanceEffects, ShortSalePointEffects]),
   ],
   providers: [
     ShortCompanyFacade,

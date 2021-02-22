@@ -1,52 +1,56 @@
 
   <div *ngFor="let group of data">
- 
     <mat-toolbar *ngIf="group.isToolbar">
       <span>{{group.label}}</span>
       <span class="spacer"></span>
-      <button   *ngFor="let icon of group.icons;" mat-icon-button  
+      <button *ngFor="let icon of group.icons;" mat-icon-button
       (click)="triggerAction(icon.event)"
       [matTooltip]="icon.tooltip">
         <mat-icon>{{icon.name}}</mat-icon>
       </button>
     </mat-toolbar>
-<mat-grid-list [cols]="group.cols" rowHeight="50px" >
-  <mat-grid-tile *ngFor="let item of group.data; last as last"  [class.list-item-template]="item.type === 'view'">
-      <span class="label" fxFlex="25">{{item?.label}}</span>
-      <span fxFlexAlign="center" fxFlex="70" [ngSwitch]="item?.type">
-        <span *ngSwitchCase="'date'">{{item?.value | date}}</span>
-        <span *ngSwitchCase="'chips'">
-          <mat-chip-list>
-            <mat-chip *ngFor="let chip of item.value" color="primary" selected>{{chip}}</mat-chip>
-          </mat-chip-list>
-        </span>
-        <span *ngSwitchCase="'view'">
-          <ng-template [ngTemplateOutlet]="templates[item?.code]"></ng-template>
-        </span>
 
-        <span *ngSwitchCase="'link'">
-          <mat-icon fontSet="fas" color="primary" fontIcon="fa-link"></mat-icon>
-          <a [href]="'https://'+item?.value">
-            {{item?.value}}
-          </a>
-        </span>
+    <ng-container *ngIf="templates.hasOwnProperty(group.label)"
+                  [ngTemplateOutlet]="templates[group.label]">
+    </ng-container>
 
-        <span *ngSwitchCase="'phone'">
-          <mat-icon fontSet="fas" color="primary" fontIcon="fa-phone"></mat-icon>
-          <a [href]="'tel:'+item?.value">
-            {{item?.value}}
-          </a>
-        </span>
+  <mat-grid-list [cols]="group.cols" rowHeight="50px" >
+    <mat-grid-tile *ngFor="let item of group.data; last as last"  [class.list-item-template]="item.type === 'view'">
+        <span class="label" fxFlex="25">{{item?.label}}</span>
+        <span fxFlexAlign="center" fxFlex="70" [ngSwitch]="item?.type">
+          <span *ngSwitchCase="'date'">{{item?.value | date}}</span>
+          <span *ngSwitchCase="'chips'">
+            <mat-chip-list>
+              <mat-chip *ngFor="let chip of item.value" color="primary" selected>{{chip}}</mat-chip>
+            </mat-chip-list>
+          </span>
+          <span *ngSwitchCase="'view'">
+            <ng-template [ngTemplateOutlet]="templates[item?.code]"></ng-template>
+          </span>
 
-        <span *ngSwitchCase="'mail'">
-          <mat-icon color="primary" fontSet="fas" fontIcon="fa-at"></mat-icon>
-          <a [href]="'mailto:'+item?.value">
-            {{item?.value}}
-          </a>
-        </span>
-        <span *ngSwitchDefault>{{item?.value}}</span>
-      </span>
-  </mat-grid-tile>
+          <span *ngSwitchCase="'link'">
+            <mat-icon fontSet="fas" color="primary" fontIcon="fa-link"></mat-icon>
+            <a [href]="'https://'+item?.value">
+              {{item?.value}}
+            </a>
+          </span>
 
-</mat-grid-list >
+          <span *ngSwitchCase="'phone'">
+            <mat-icon fontSet="fas" color="primary" fontIcon="fa-phone"></mat-icon>
+            <a [href]="'tel:'+item?.value">
+              {{item?.value}}
+            </a>
+          </span>
+
+          <span *ngSwitchCase="'mail'">
+            <mat-icon color="primary" fontSet="fas" fontIcon="fa-at"></mat-icon>
+            <a [href]="'mailto:'+item?.value">
+              {{item?.value}}
+            </a>
+          </span>
+          <span *ngSwitchDefault>{{item?.value}}</span>
+        </span>
+    </mat-grid-tile>
+
+  </mat-grid-list >
 </div>

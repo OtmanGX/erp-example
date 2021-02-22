@@ -10,12 +10,12 @@ import {
   AddCustomerAddressGQL,
   AddCustomerContactGQL,
   AffectCustomerContactGQL,
-  DeleteCustomerAddressGQL
-
+  DeleteCustomerAddressGQL,
+  DeleteCustomerContactGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import {  DetailedCustomer, InsertedCustomer,Customer } from '../models/customer.models';
 import {  dataAdapter } from '../utils/dataAdapter';
-import { InsertAddressContact ,InsertContact,AffectContactCustomer,DeleteAddress,Address} from "../models/shared.models";
+import { InsertAddressContact ,InsertContact,AffectContactCustomer,DeleteAddress,Address, DeleteAffectedContact} from "../models/shared.models";
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +32,7 @@ export class CustomerService {
     private addCustomerContact:AddCustomerContactGQL,
     private affectCustomerContact:AffectCustomerContactGQL,
     private deleteCustomerAddress:DeleteCustomerAddressGQL,
+    private deleteCustomerContactGQL:DeleteCustomerContactGQL,
 
     ) {
 /**
@@ -92,7 +93,9 @@ this.updateOne({id:"67740a6b-2e68-4bf6-a6cb-ea81442ac43a",code:"code",name:"nouv
   addContact(value:InsertContact){
     return this.addCustomerContact.mutate(value)
   }
-
+  deleteContact(value:DeleteAffectedContact){
+  return this.deleteCustomerContactGQL.mutate(value)
+  }
   affectContact(value:AffectContactCustomer[]){
     return  this.affectCustomerContact.mutate({affectedContacts:value})
   }

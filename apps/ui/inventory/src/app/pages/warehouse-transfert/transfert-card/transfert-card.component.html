@@ -1,0 +1,21 @@
+<ngx-fiche-card [title]="title"
+                [data]="[]"
+                (triggerEvent)="eventTriggering($event)">
+
+  <ngx-list-item [data]="passedData">
+    <ng-template typeTemplate="Les Articles">
+      <ngx-main-grid [columnId]="columnId"
+                     [withToolbar]="false"
+                     [withCrud]="false"
+                     [withDetails]="false"
+                     (triggerEvent)="eventTriggering($event)"
+                     height="300px"
+                     [rowData]="orderItems"
+                     rowGroupPanelShow="hide"
+                     [columnDefs]="columnDefs">
+      </ngx-main-grid>
+    </ng-template>
+  </ngx-list-item>
+
+
+</ngx-fiche-card>

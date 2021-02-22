@@ -12,6 +12,7 @@ query GetAllConsumablesStock {
         category
         id
       }
+      id
     }
   }
 }

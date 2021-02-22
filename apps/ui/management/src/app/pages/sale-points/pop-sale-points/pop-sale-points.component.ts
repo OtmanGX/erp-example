@@ -9,6 +9,7 @@ import { regConfigSalePoint } from '@TanglassUi/management/utils/forms';
   styleUrls: ['./pop-sale-points.component.scss'],
 })
 export class PopSalePointsComponent extends FormDialog {
+  title="Ajouter un Emplacement"
 
   listCompanies = ['Tanglass', 'Trimar'];
   listUsers = ['Tanja Balia', 'Mabrouk', 'Souani', 'Dar Tounssi', 'Sidi Driss'];
@@ -22,6 +23,9 @@ export class PopSalePointsComponent extends FormDialog {
   }
 
   buildForm(): void {
+    if (this.data?.id) {
+      this.title="Editer un Emplacement"
+    }
     this.regConfig = regConfigSalePoint(this.data);
   }
 }

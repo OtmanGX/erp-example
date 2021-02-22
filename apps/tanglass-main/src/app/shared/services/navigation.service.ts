@@ -107,6 +107,21 @@ export class NavigationService {
       icon: "send",
       state: "inventory/transfert"
     },
+    {
+      name: "Mouvement de stock",
+      type: "dropDown",
+      icon: "assignment_ind",
+      tooltip: "Pages",
+      sub: [
+        { name: "Reception fournisseur", state: "purchase/reception" },
+        { name: "Retour fournisseur", state: "purchase/reception" },
+     
+      ]
+      //name: "Reception fournisseur",
+    //  type: "link",
+     // icon: "assignment_ind",
+     // state: "purchase/reception"
+    },
     // *** Product ***
     {
       name: "Product",

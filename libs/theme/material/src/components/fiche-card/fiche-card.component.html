@@ -1,19 +1,19 @@
 <mat-card class="card">
-  <mat-toolbar *ngIf="withToolbar" class="mat-elevation-z15" 
+  <mat-toolbar *ngIf="withToolbar" class="mat-elevation-z15"
   style="height: 60px" color="primary">
-    <button mat-icon-button  
+    <button mat-icon-button
     matTooltip="Précédent">
       <mat-icon>reply</mat-icon>
     </button>
-    <button  mat-icon-button matTooltip="Ajouter"   
+    <button  mat-icon-button matTooltip="Ajouter"
     aria-label="Example icon-button with a menu">
       <mat-icon >add</mat-icon>
     </button>
-    <button mat-icon-button  
+    <button mat-icon-button
     matTooltip="Supprimer">
       <mat-icon>delete</mat-icon>
     </button>
-   
+
   </mat-toolbar>
   <div class="flip" fxLayout="row" fxLayoutAlign="space-around center" >
     <mat-card fxFlex="30">
@@ -22,7 +22,8 @@
   </div>
   <ng-content select="[top]"></ng-content>
   <mat-card-content class="card-content">
-    <ngx-list-item [data]="data" (triggerEvent)="eventTriggering($event)">
+    <ngx-list-item *ngIf="data && data.length" [data]="data"
+                   (triggerEvent)="eventTriggering($event)">
     </ngx-list-item>
 
     <ng-content></ng-content>

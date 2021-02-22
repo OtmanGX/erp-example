@@ -1,16 +1,9 @@
-mutation InsertTransferOrder($date: date!, $deadline: date, $fromWarehouseid: uuid!, $toWarehouseid: uuid!, $substances: [stock_order_item_insert_input!]!) {
-  insert_stock_transfer_order_one(object: {date: $date, deadline: $deadline, fromWarehouseid: $fromWarehouseid, toWarehouseid: $toWarehouseid, order_items: {data: $substances}}) {
+mutation InsertItemTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String) {
+  insert_stock_item_tranfer_one(object: {date: $date, order_itemid: $order_itemid, quantity: $quantity,
+    status: $status}) {
     date
-    deadline
-    fromwarehouse {
-      name
-      id
-    }
-    towarehouse {
-      name
-      id
-    }
-    status
     id
+    quantity
+    status
   }
 }
