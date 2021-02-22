@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { MainGridComponent } from './components/main-grid/main-grid.component';
 import { MatEditComponent } from './components/mat-edit.component';
 import { AgGridModule } from 'ag-grid-angular';
@@ -16,7 +16,8 @@ export const MODULES = [
 
 @NgModule({
   declarations: [MainGridComponent, MatEditComponent, ExportBottomSheetComponent, LinkComponent],
-  imports: [...MODULES, AgGridModule.withComponents([MatEditComponent, LinkComponent]), RouterModule],
+  imports: [...MODULES, AgGridModule.withComponents(
+    [MatEditComponent, LinkComponent]), RouterModule],
   exports: [...MODULES, MainGridComponent],
   providers: [DatePipe]
 })

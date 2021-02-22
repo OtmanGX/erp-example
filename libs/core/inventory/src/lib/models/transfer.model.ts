@@ -1,7 +1,7 @@
 import { MetaData } from '@tanglass-erp/core/common';
 import { TransferOrder } from "./transrefOrder.model";
 
-//for the transfer ordered item data 
+//for the transfer ordered item data
 
 export interface OrderItem {
     id?:string;
@@ -22,11 +22,11 @@ export interface Transfered{
 //for the type and data  of  substances  to transfer
 
 export interface ItemTransfer{
-    productGlass?:ProductTransfer
+    productGlass?: ProductTransfer
     productAccessory?:ProductTransfer
 }
 
- 
+
 
 export interface ProductTransfer{
         code?:string;

@@ -6,6 +6,7 @@ import {
 
 } from '@tanglass-erp/store/inventory';
 import { Observable } from 'rxjs';
+import { Validators } from '@angular/forms';
 
 type ListObservable = Observable<any> | Array<any>;
 
@@ -55,7 +56,7 @@ const regConfigTransferOrderEdit = (data?: DetailedTransferOrder, warehouses: an
       options: Object.values(transferStatusDirection).map(elem => ({key: elem, value: elem}))},
 ];
 
-const regConfigTransferOrderItem = (data?, substances: any = []) => [
+const regConfigTransferOrderItem = (data?, substances: any = [], limit?: number) => [
   {
     type: "radiobutton", name: "typeSubstance", label: "",
     inputType: "number", value: 'Verre', options: ['Accessoire', 'Verre']
@@ -68,13 +69,56 @@ const regConfigTransferOrderItem = (data?, substances: any = []) => [
     validations: [FormDialog.REQUIRED]},
   {
     type: "input", name: "quantity", label: "Quantité",
-    inputType: "number", value: data?.quantity, validations: [FormDialog.REQUIRED]
+    inputType: "number", value: data?.quantity,
+    validations: [
+      FormDialog.REQUIRED,
+      {
+        name: "max",
+        validator: Validators.max(limit),
+        message: "Max dépassé "
+    }]
   },
 ];
+
+
+const regConfigTransferOrderItemCard = (data: any, limit?: number) => [
+  { type: "select", name: "substance", label: "Substance", value: data.substance?.code,
+  disabled: true, options: [{key: data.substance?.code, value: data.substance?.label}]},
+  { type: "inputSelect", name: "status", label: "État", value: data.status,
+  options: Object.values(transferStatusDirection).map(elem => ({key: elem, value: elem}))},
+  {
+    type: "input", name: "quantity", label: "Quantité",
+    inputType: "number", value: data?.quantity,
+    validations: [
+      FormDialog.REQUIRED,
+      {
+      name: "max",
+      validator: Validators.max(limit),
+      message: "Max dépassé "
+      }
+    ]
+  },
+];
+
+const regConfigDelivery = (limit?: number) => [
+  { type: "input", inputType: "number", label: "Quantité", name: "quantity", value: null, validations: [
+      FormDialog.REQUIRED,
+      {
+        name: "max",
+        validator: Validators.max(limit),
+        message: "Max dépassé "
+      }
+    ] },
+  { type: "date", label: "Date", name: "date", value: null },
+  { type: "inputSelect", name: "status", label: "État", value: null,
+    options: ['Ready', 'out'].map(item => ({key: item, value: item}))}
+  ];
 
 export {
   regConfigWarehouse,
   regConfigTransferOrder,
   regConfigTransferOrderItem,
-  regConfigTransferOrderEdit
+  regConfigTransferOrderEdit,
+  regConfigTransferOrderItemCard,
+  regConfigDelivery
 };

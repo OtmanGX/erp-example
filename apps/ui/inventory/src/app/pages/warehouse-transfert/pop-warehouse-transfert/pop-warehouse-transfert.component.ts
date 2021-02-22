@@ -67,10 +67,8 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
     ['fromWarehouse', 'toWarehouse'].forEach(item => {
       this.transfertForm.get(item).valueChanges
         .subscribe(value => {this.syncWarehouses(item, value);
-           //  if (item=='toWarehouse')this.affectWarehouse(value)
           }
         );
-        
       }
     );
     this.dynamicForms.changes.subscribe(() => {
