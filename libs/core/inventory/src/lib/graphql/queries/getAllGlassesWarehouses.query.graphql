@@ -5,6 +5,7 @@ query GetAllGlassesStock($type: product_substance_type_enum_comparison_exp = {_e
       ...stock_warehouseFragment
     }
     substance {
+      
       productGlass {
         code
         label
@@ -17,6 +18,7 @@ query GetAllGlassesStock($type: product_substance_type_enum_comparison_exp = {_e
         color
         id
       }
+      id
     }
   }
 }

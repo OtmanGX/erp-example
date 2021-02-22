@@ -30,7 +30,7 @@ export class MainGridComponent {
   @Input() withCrud: boolean = true;
   @Input() theme = "ag-theme-alpine";
   @Input() rowGroupPanelShow = "always";
-  @Input() height = "500px";
+  @Input() height = "670px";
   @Input() width = "100%";
   @Output() triggerEvent = new EventEmitter<{action: string, data?: any}>();
   private gridApi: any;

@@ -43,6 +43,13 @@ export class WarehouseTransfertComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
+          this.store.dispatch(transferOrderActions.addTransferOrder({TransferOrder: {
+            fromWarehouseid: result.fromWarehouse,
+            toWarehouseid: result.toWarehouse,
+            date: result.date,
+            deadline: result.deadline,
+            substances: result.order_items.map(elt => ({substanceid:elt.substance,quantity:+elt.quantity}))
+          }}))
         } else { }
       }
     });
@@ -60,7 +67,7 @@ export class WarehouseTransfertComponent implements GridView {
       case Operations.loadDetails:
 
         this.columnDefs = ordersDetailsHeaders ;
-        // this.store.dispatch(transferOrderActions.loadOrdersDetails());
+        this.store.dispatch(transferOrderActions.loadOrdersDetails());
         break;
       // ...
     }

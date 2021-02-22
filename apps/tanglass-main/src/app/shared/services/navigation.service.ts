@@ -107,6 +107,12 @@ export class NavigationService {
       icon: "send",
       state: "inventory/transfert"
     },
+    {
+      name: "Reception",
+      type: "link",
+      icon: "assignment_ind",
+      state: "purchase/reception"
+    },
     // *** Product ***
     {
       name: "Product",

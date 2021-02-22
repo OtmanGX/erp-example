@@ -19,7 +19,7 @@ export class WarehouseSubstanceFacade {
   );
 
   constructor(
-    private store: Store<fromWarehouseSubstance.WarehouseSubstancePartialState>
+    private store: Store
   ) {}
 
   dispatch(action: Action) {

@@ -3,7 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfigGlass } from '../../../utils/forms';
 import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
+import * as productSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
+import * as productActions from '@TanglassStore/product/lib/actions/glass.actions'
 import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-pop-glass',
@@ -12,6 +15,8 @@ import { map } from 'rxjs/operators';
 })
 export class PopGlasseComponent extends FormDialog   {
   title = "Ajouter un Produit Stockable";
+  listColors$ = this.store.select(productSelectors.getColors);
+  listTypes$ = this.store.select(productSelectors.getTypes);
   listCompanies$ = this.facade.allShortCompany$
     .pipe(map(item => item.map(company => ({key: company.id, value: company.name}))
     ));
@@ -22,17 +27,22 @@ export class PopGlasseComponent extends FormDialog   {
     public dialogRef: MatDialogRef<PopGlasseComponent>,
     private facade: ShortCompanyFacade,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private store: Store
   ) {
     super(dialogRef, data);
   }
 
   buildForm() {
+    this.store.dispatch(productActions.loadColors());
+    this.store.dispatch(productActions.loadTypes());
     if (this.data?.id) {
       this.title = "Éditer Produit Stockable";
 
     }
 
     this.facade.loadAllShortCompanies();
-    this.regConfig = regConfigGlass(this.data, this.listCompanies$);
+    this.regConfig = regConfigGlass(this.data, this.listCompanies$,
+       this.listTypes$.pipe(map(item => item.map(elt => ({key: elt, value: elt})))),
+        this.listColors$.pipe(map(item => item.map(elt => ({key: elt, value: elt})))));
   }
 }
