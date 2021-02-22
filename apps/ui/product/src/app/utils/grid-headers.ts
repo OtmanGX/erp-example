@@ -1,6 +1,5 @@
 
 const ProductHeaders = [
-  //{ field: 'product.code', headerName: 'Code', type: "textColumn" },
   {
     field: 'product.code', headerName: 'Code', type: "linkColumn",
     cellRendererParams: (params) => (
@@ -28,7 +27,7 @@ const GlassHeaders = [
       { field: 'thickness', headerName: 'Epaisseur', type: "numberColumn" },
     ]
   },
- 
+
 ];
 
 const ConsumableHeaders = [
@@ -53,24 +52,17 @@ const AccessoryHeaders = [
   {
     headerName: '',
     children: [
-  
       { field: 'category', headerName: 'Catégory',type: "textColumn" },
       { field: 'quota', headerName: 'Quota', type: "numberColumn" },
     ]
   },
-
 ];
 
 const ServiceHeaders = [
   {
     headerName: 'Produit',
     children: ProductHeaders
-  },
-  // {
-  //   headerName: 'Paramètres',
-  //   children: [
-  //   ]
-  // }
+  }
 ];
 
 
@@ -114,6 +106,20 @@ const ServiceConsumableHeaders = [
   },
 ];
 
+const SuppliesHeaders = [
+  {
+    headerName: 'Produit:Fournitures ',
+    children: ProductHeaders
+  },
+  {
+    headerName: '',
+    children: [
+      { field: 'category', headerName: 'Catégory', type: "textColumn" },
+      { field: 'quota', headerName: 'Quota', type: "numberColumn" },
+    ]
+  },
+];
+
 export {
   ServiceHeaders,
   ProductHeaders,
@@ -121,5 +127,6 @@ export {
   AccessoryHeaders,
   ConsumableHeaders,
   ServiceConsumableHeaders,
-  ServiceGlassHeaders
+  ServiceGlassHeaders,
+  SuppliesHeaders
 };
