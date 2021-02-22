@@ -36,15 +36,6 @@ const ProductHeaders = [
   { field: 'unit', headerName: 'Unité' },
 ];
 
-const orderItemsHeaders = [
-  { field: 'substance["code"]', headerName: 'Article',type: "textColumn"},
-  { field: 'substance.label', headerName: 'Désignation',type: "textColumn"},
-  { field: 'quantity', headerName: 'Quantité', type: 'numberColumn' },
-  { field: 'substance.unit', headerName: 'Unité', type: 'textColumn' },
-
-  { field: 'status', headerName: 'Etat' },
-];
-
 const ordersDetailsHeaders = [
   {
     field: 'transfer_id', headerName: 'Référence', type: "linkColumn",
@@ -63,28 +54,20 @@ const ordersDetailsHeaders = [
   { field: 'deadline', headerName: 'Date limite', type: "textColumn" },
 
 ];
-/**
-const GlassHeaders = [
-  { field: 'type', headerName: 'Code', type: "textColumn"},
-  { field: 'color', headerName: 'Couleur', type: "textColumn"},
-  { field: 'thickness', headerName: 'épaisseur', type: "textColumn"},
+
+const orderItemsHeaders = [
+  { field: 'substance.code', headerName: 'Article', type: "textColumn" },
+  { field: 'substance.label', headerName: 'Désignation', type: "textColumn" },
+  { field: 'quantity', headerName: 'Quantité', type: 'numberColumn' },
+  { field: 'total_deliveries', headerName: 'Livré', type: 'numberColumn', valueGetter: params => params.value || 0,
+    cellStyle: {color: 'green'}
+  },
+  { field: 'substance.unit', headerName: 'Unité', type: 'textColumn' },
+  { field: 'status', headerName: 'Etat' },
 ];
 
 const SubstanceGlassHeaders = [
-  {
-    headerName: 'Produit',
-    children:
-      ProductHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'substance.productGlass' + elem.field))
-  },
-  {
-    headerName: 'Verre',
-    children:
-      GlassHeaders.map(elem => ({...elem})).map(elem => (elem.field = 'substance.glass.' + elem.field) && elem)
-  }
-];
-*/
-const SubstanceGlassHeaders = [
-  { field: 'substance.productGlass.code', headerName: 'Coode', type: "linkColumn",
+  { field: 'substance.productGlass.code', headerName: 'Code', type: "linkColumn",
     cellRendererParams: (params) => (
       {
         link: `${params?.data?.substance.productGlass.id}`,
@@ -96,14 +79,17 @@ const SubstanceGlassHeaders = [
   { field: 'substance.glass.color', headerName: 'Couleur', type: "textColumn" },
   { field: 'substance.glass.thickness', headerName: 'épaisseur', type: "numberColumn" },
 ];
+
 const SubstanceAccessoryHeaders = [
-... ProductHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productAccessory.' + elem.field)&& elem),
+... ProductHeaders.map(elem => ({ ...elem }))
+  .map(elem => (elem.field = 'substance.productAccessory.' + elem.field)&& elem),
  { field: 'substance.accessory.category', headerName: 'Catégorie' },
 ];
 
 const SubstanceConsumableHeaders = [
 
-  ...ProductHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productConsumable.' + elem.field) && elem),
+  ...ProductHeaders.map(elem => ({ ...elem }))
+    .map(elem => (elem.field = 'substance.productConsumable.' + elem.field) && elem),
   { field: 'substance.consomable.category', headerName: 'Catégorie' },
 
 ];
@@ -118,7 +104,8 @@ const GlassWarehouseHeaders = [
   {
     headerName: 'Entrepôt',
     children:
-      warehouseHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
+      warehouseHeaders.map(elem => ({ ...elem }))
+        .map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
   },
 
 ];
@@ -147,7 +134,8 @@ const AccessoryWarehouseHeaders = [
   {
     headerName: 'Entrepôt',
     children:
-      warehouseHeaders.map(elem => ({ ...elem })).map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
+      warehouseHeaders.map(elem => ({ ...elem }))
+        .map(elem => (elem.field = 'warehouse.' + elem.field) && elem)
   },
 
 ];

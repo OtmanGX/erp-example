@@ -18,6 +18,8 @@ import { PopWarehouseTransfertComponent } from './pages/warehouse-transfert/pop-
 import { StoreProductModule } from '../../../../../libs/store/product/src';
 import { TransfertCardComponent } from './pages/warehouse-transfert/transfert-card/transfert-card.component';
 import { StoreSharedModule} from "@tanglass-erp/store/shared";
+import { PopOrderItemComponent } from './pages/warehouse-transfert/pop-order-item/pop-order-item.component';
+import { PopOrderItemDeliverComponent } from './pages/warehouse-transfert/pop-order-item-deliver/pop-order-item-deliver.component';
 
 
 const routes: Routes = [
@@ -85,7 +87,9 @@ const routes: Routes = [
     WarehouseGlasseCardComponent,
     PopWarehouseTransfertComponent,
     WarehouseTransfertComponent,
-    TransfertCardComponent
+    TransfertCardComponent,
+    PopOrderItemComponent,
+    PopOrderItemDeliverComponent
   ],
   imports: [
     CommonModule,

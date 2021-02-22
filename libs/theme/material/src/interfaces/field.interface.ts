@@ -15,5 +15,6 @@ export interface FieldConfig {
   validations?: Validator[];
   style?: string;
   hint?: string;
+  disabled?: boolean;
   [key: string]: any;
 }

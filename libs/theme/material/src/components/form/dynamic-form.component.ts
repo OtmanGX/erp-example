@@ -117,6 +117,7 @@ export class DynamicFormComponent implements OnInit {
         field.value,
         this.bindValidations(field.validations || [])
       );
+      if (field?.disabled) control.disable();
       group.addControl(field.name, control);
     });
     return group;
