@@ -1,0 +1,17 @@
+<mat-card
+  class="p-24"
+  fxFlex
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-icon class="mat-color-primary text-48">{{icon}}</mat-icon>
+    <div class="ml-12">
+      <p class="m-0 text-muted mb-4">{{title}}</p>
+      <h5 class="m-0 mat-color-primary">{{subtitle}}</h5>
+    </div>
+  </div>
+  <button mat-icon-button matTooltip="view more" [routerLink]="link">
+    <mat-icon class="mat-18">arrow_right_alt</mat-icon>
+  </button>
+</mat-card>
