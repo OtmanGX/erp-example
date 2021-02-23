@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CardConfig } from '@tanglass-erp/material';
+
 
 @Component({
   selector: 'ngx-trending-card',
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trending-card.component.scss']
 })
 export class TrendingCardComponent implements OnInit {
-
+  @Input() config: CardConfig;
   constructor() { }
 
   ngOnInit(): void {

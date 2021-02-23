@@ -1,0 +1,42 @@
+<div fxLayout="row wrap">
+  <div fxFlex="100" fxFlex.sm="70" fxFlex.gt-sm="70">
+    <div fxLayout="row wrap">
+      <ngx-amount-card
+        fxFlex="100"
+        fxFlex.sm="50"
+        fxFlex.gt-sm="50"
+        *ngFor="let item of statCardList"
+        [config]="item">
+      </ngx-amount-card>
+    </div>
+    <div fxLayout="row wrap">
+      <ngx-trending-card *ngFor="let item of trending_list"
+                         [config]="item"
+                         fxFlex.gt-xs="calc(50% - 16px)" fxFlex="100">
+      </ngx-trending-card>
+    </div>
+  </div>
+  <div fxFlex="100" fxFlex.sm="30" fxFlex.gt-sm="30">
+    <div fxLayout="row wrap">
+      <mat-card fxFlex="100">
+        <mat-card-title class="mb-0">Un graphe</mat-card-title>
+        <small class="text-muted">Dernier 30 jours</small>
+        <div
+          style="height: 280px"
+        ></div>
+      </mat-card>
+      <mat-card fxFlex="100">
+        <mat-card class="text-center mat-bg-gray p-sm-24 mat-elevation-z0">
+
+          <button class="px-24" mat-raised-button color="primary">
+            Click
+          </button>
+        </mat-card>
+      </mat-card>
+    </div>
+</div>
+
+
+</div>
+
+

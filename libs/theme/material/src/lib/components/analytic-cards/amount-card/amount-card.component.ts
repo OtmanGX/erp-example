@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CardConfig } from '../../../interfaces/card-config';
 
 @Component({
   selector: 'ngx-amount-card',
@@ -6,10 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./amount-card.component.scss']
 })
 export class AmountCardComponent implements OnInit {
-  @Input() title: string;
-  @Input() subtitle: string;
-  @Input() icon: string;
-  @Input() link: string;
+  @Input() config: CardConfig;
   constructor() { }
 
   ngOnInit(): void {

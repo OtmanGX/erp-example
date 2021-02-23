@@ -57,6 +57,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AmountCardComponent } from './components/analytic-cards/amount-card/amount-card.component';
 import { RouterModule } from '@angular/router';
 import { TrendingCardComponent } from './components/analytic-cards/trending-card/trending-card.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 const MATERIAL_MODULES = [
@@ -111,7 +112,8 @@ const COMPONENTS = [
   CheckboxComponent,
   TextareaComponent,
   HeaderComponent,
-  AmountCardComponent
+  AmountCardComponent,
+  TrendingCardComponent
   ];
 
 const DIRECTIVES = [
@@ -129,7 +131,7 @@ const OTHER_COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, ...OTHER_COMPONENTS, ...DIRECTIVES, TrendingCardComponent],
+  declarations: [...COMPONENTS, ...OTHER_COMPONENTS, ...DIRECTIVES],
   imports: [...OTHER_MODULES, ...MATERIAL_MODULES, RouterModule],
   exports: [...OTHER_MODULES, ...MATERIAL_MODULES, ...COMPONENTS, ...OTHER_COMPONENTS, ...DIRECTIVES],
   entryComponents: COMPONENTS,
