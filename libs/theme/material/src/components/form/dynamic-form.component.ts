@@ -20,18 +20,28 @@ import { Groupfield } from '../../interfaces/groupfield.interface';
   selector: "dynamic-form",
   template: `
   <form fxFlexFill="" style="min-width: 100%;width: 100%" [formGroup]="form" (submit)="onSubmit($event)">
-
+    <ng-container *ngIf="!flat; else flatGroups">
     <div *ngFor="let g of groups">
-      <div mat-subheader *ngIf="g.headerVisible" fxLayout="row" fxLayoutGap="16px"
-           fxLayoutAlign="space-between center" class="mat-h3 p-16">
-        <span fxFlex="" class="text-nowrap font-weight-bold">{{g.label}}</span>
-        <mat-divider fxFlex="100"></mat-divider>
-      </div>
-      <div class="pl-28" fxFlexFill="" fxLayoutGap="20px grid" fxLayout="row wrap" fxLayoutAlign="space-between center">
-      <ng-container *ngFor="let field of g.fields;" dynamicField [field]="field" [group]="form.controls[g.name]">
-      </ng-container>
+        <div mat-subheader *ngIf="g.headerVisible" fxLayout="row" fxLayoutGap="16px"
+             fxLayoutAlign="space-between center" class="mat-h3 p-16">
+          <span fxFlex="" class="text-nowrap font-weight-bold">{{g.label}}</span>
+          <mat-divider fxFlex="100"></mat-divider>
+        </div>
+        <div class="pl-28" fxFlexFill="" fxLayoutGap="20px grid" fxLayout="row wrap" fxLayoutAlign="space-between center">
+          <ng-container *ngFor="let field of g.fields;" dynamicField [field]="field" [group]="form.controls[g.name]">
+          </ng-container>
         </div>
     </div>
+    </ng-container>
+
+    <ng-template #flatGroups>
+      <div class="pl-20" fxLayoutGap="20px grid" fxFlexFill="" fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <ng-container *ngFor="let g of groups">
+          <ng-container *ngFor="let field of g.fields;" dynamicField [field]="field" [group]="form.controls[g.name]">
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-template>
 
   <div *ngIf="fields.length" class="pl-20" fxLayoutGap="20px grid" fxFlexFill="" fxLayout="row wrap" fxLayoutAlign="space-between center">
     <ng-container *ngFor="let field of fields;" dynamicField [field]="field" [group]="form">
@@ -53,6 +63,7 @@ export class DynamicFormComponent implements OnInit {
   @Input() fields: FieldConfig[] = [];
   @Input() groups: Groupfield[] = [];
   @Input() withActions: boolean = true;
+  @Input() flat: boolean = false;
 
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
@@ -62,7 +73,8 @@ export class DynamicFormComponent implements OnInit {
   get value() {
     return this.form.value;
   }
-  constructor(private fb: FormBuilder, private ref: ChangeDetectorRef) {}
+  constructor(private fb: FormBuilder, private ref: ChangeDetectorRef) {
+  }
 
   ngOnInit() {
     this.form = this.createControl(this.fields);

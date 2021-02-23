@@ -4,7 +4,7 @@ import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfigGlass } from '../../../utils/forms';
 import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
 import * as productSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
-import * as productActions from '@TanglassStore/product/lib/actions/glass.actions'
+import * as productActions from '@TanglassStore/product/lib/actions/glass.actions';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 

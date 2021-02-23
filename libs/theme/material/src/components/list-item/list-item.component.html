@@ -17,39 +17,39 @@
   <div fxLayout="row wrap" fxLayout.xs="column" fxFlexFill=""
        fxLayoutGap="25px grid" class="my-20 px-16" >
     <div *ngFor="let item of group.data; last as last"
-         fxLayoutAlign="center center"
+         fxLayoutAlign="start center"
          fxLayout="row" [fxFlex]="100/group.cols"
          [class.list-item-template]="item.type === 'view'">
-        <span class="label" fxFlex="25">{{item?.label}}</span>
-          <span fxFlex="75" fxFlexFill [ngSwitch]="item?.type">
-          <span *ngSwitchCase="'date'">{{item?.value | date}}</span>
-            <mat-chip-list *ngSwitchCase="'chips'">
-              <mat-chip *ngFor="let chip of item.value" color="primary" selected>{{chip}}</mat-chip>
-            </mat-chip-list>
-          <span *ngSwitchCase="'view'">
-            <ng-template [ngTemplateOutlet]="templates[item?.code]"></ng-template>
-          </span>
+        <span class="label" fxFlex="1 1 auto">{{item?.label}}</span>
+        <span fxFlex="1 0 auto" [ngSwitch]="item?.type">
+        <span *ngSwitchCase="'date'">{{item?.value | date}}</span>
+        <mat-chip-list *ngSwitchCase="'chips'">
+          <mat-chip *ngFor="let chip of item.value" color="primary" selected>{{chip}}</mat-chip>
+        </mat-chip-list>
+        <span *ngSwitchCase="'view'">
+          <ng-template [ngTemplateOutlet]="templates[item?.code]"></ng-template>
+        </span>
 
-          <span *ngSwitchCase="'link'">
-            <mat-icon fontSet="fas" color="primary" fontIcon="fa-link"></mat-icon>
-            <a [href]="'https://'+item?.value">
-              {{item?.value}}
-            </a>
-          </span>
+        <span *ngSwitchCase="'link'">
+          <mat-icon fontSet="fas" color="primary" fontIcon="fa-link"></mat-icon>
+          <a [href]="'https://'+item?.value">
+            {{item?.value}}
+          </a>
+        </span>
 
-          <span *ngSwitchCase="'phone'">
-            <mat-icon fontSet="fas" color="primary" fontIcon="fa-phone"></mat-icon>
-            <a [href]="'tel:'+item?.value">
-              {{item?.value}}
-            </a>
-          </span>
+        <span *ngSwitchCase="'phone'">
+          <mat-icon fontSet="fas" color="primary" fontIcon="fa-phone"></mat-icon>
+          <a [href]="'tel:'+item?.value">
+            {{item?.value}}
+          </a>
+        </span>
 
-          <span *ngSwitchCase="'mail'">
-            <mat-icon color="primary" fontSet="fas" fontIcon="fa-at"></mat-icon>
-            <a [href]="'mailto:'+item?.value">
-              {{item?.value}}
-            </a>
-          </span>
+        <span *ngSwitchCase="'mail'">
+          <mat-icon color="primary" fontSet="fas" fontIcon="fa-at"></mat-icon>
+          <a [href]="'mailto:'+item?.value">
+            {{item?.value}}
+          </a>
+        </span>
           <span *ngSwitchDefault>{{item?.value}}</span>
         </span>
     </div>
