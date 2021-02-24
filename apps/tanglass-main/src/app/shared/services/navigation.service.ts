@@ -115,7 +115,7 @@ export class NavigationService {
       sub: [
         { name: "Reception fournisseur", state: "purchase/reception" },
         { name: "Retour fournisseur", state: "purchase/reception" },
-     
+
       ]
       //name: "Reception fournisseur",
     //  type: "link",
@@ -138,6 +138,12 @@ export class NavigationService {
       type: "link",
       icon: "assignment_ind",
       state: "product/accessory"
+    },
+    {
+      name: "Fournitures",
+      type: "link",
+      icon: "assignment_ind",
+      state: "product/supplies"
     },
     {
       name: "Consommables && MP",

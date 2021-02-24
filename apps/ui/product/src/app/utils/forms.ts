@@ -94,8 +94,6 @@ const regConfigAccessory = (data?: Accessory, listCompanies: ListObservable = []
 ];
 
 
-
-
 const regConfigConsumable = (data?: Consumable, listCompanies: ListObservable = []) => [
   {
     name: 'consumable',
@@ -205,6 +203,23 @@ const regConfigServiceGlass = (data?, services: ListObservable = [], glasses: Li
     options: glasses, validations: [FormDialog.REQUIRED]},
 ];
 
+const regConfigSupplies = (data?: Accessory, listCompanies: ListObservable = []) => [
+  {
+    name: 'supply',
+    label: 'Fournitures',
+    headerVisible: false,
+    fields: [
+
+    ]
+  },
+  {
+    name: "product",
+    label: "Produit",
+    headerVisible: false,
+    fields: regConfigProduct(data?.product, listCompanies)
+  }
+];
+
 
 export {
   regConfigAccessory,
@@ -214,5 +229,6 @@ export {
   regConfService,
   regParamForm,
   regConfigServiceConsumable,
-  regConfigServiceGlass
+  regConfigServiceGlass,
+  regConfigSupplies
 };

@@ -24,6 +24,10 @@ import { PopServiceConfigComponent } from './pages/list-service/pop-service-conf
 import { PopServiceComponent } from './pages/list-service/service-card/pop-service/pop-service.component';
 import { StoreProductModule } from '@TanglassStore/product/index';
 import { StoreSharedModule} from "@tanglass-erp/store/shared";
+import { PopSuppliesComponent } from '@TanglassUi/product/pages/list-supplies/pop-supplies/pop-supplies.component';
+import { ListSuppliesComponent } from '@TanglassUi/product/pages/list-supplies/list-supplies.component';
+import { SupplyCardComponent } from '@TanglassUi/product/pages/list-supplies/supplies-card/supply-card.component';
+
 
 const popUps = [
   PopConsumableComponent,
@@ -32,7 +36,8 @@ const popUps = [
   PopServiceConfigComponent,
   PopServiceConsumableComponent,
   PopServiceGlasseComponent,
-  PopServiceComponent
+  PopServiceComponent,
+  PopSuppliesComponent
 ];
 
 
@@ -44,6 +49,7 @@ const pages = [
   ListServiceComponent,
   ListServiceGlasseComponent,
   ListServiceConsumableComponent,
+  ListSuppliesComponent
 ];
 
 const cardPages = [
@@ -51,7 +57,8 @@ const cardPages = [
   AccessoryCardComponent,
   GlassCardComponent,
   ConsumableCardComponent,
-  ServiceGlassCardComponent
+  ServiceGlassCardComponent,
+  SupplyCardComponent
 ];
 
 const otherComponents = [
@@ -87,6 +94,13 @@ const routes: Routes = [
         children: [
           { path: '', component: ListAccessoriesComponent  },
           { path: ':id', component: AccessoryCardComponent  },
+        ],
+      },
+      {
+        path: 'supplies',
+        children: [
+          { path: '', component: ListSuppliesComponent  },
+          { path: ':id', component: SupplyCardComponent  },
         ],
       },
       {
