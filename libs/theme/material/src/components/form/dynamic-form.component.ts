@@ -52,6 +52,7 @@ export class DynamicFormComponent implements OnInit {
   @Input() name: string;
   @Input() fields: FieldConfig[] = [];
   @Input() groups: Groupfield[] = [];
+  @Input() options;
   @Input() withActions: boolean = true;
 
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
@@ -110,7 +111,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   createControl(fields) {
-    const group = this.fb.group({});
+    const group = this.fb.group({}, this.options);
     fields.forEach(field => {
       if (field.type === "button") return;
       const control = this.fb.control(

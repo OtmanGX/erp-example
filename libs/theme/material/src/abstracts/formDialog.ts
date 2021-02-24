@@ -11,11 +11,34 @@ export abstract class FormDialog implements OnInit, OnDestroy {
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
   abstract regConfig: FieldConfig[];
+  // Validators
   static REQUIRED = {
     name: "required",
     validator: Validators.required,
     message: "Required"
   };
+  static MAXNUMBER = (limit) =>
+      ({
+        name: "max",
+        validator: Validators.max(limit),
+        message: "Max dépassé"
+    })
+  static EMAIL = {
+    name: "max",
+    validator: Validators.email,
+    message: "Email non valide"
+  };
+  static MINLENGTH = (length) => (
+    {
+      name: "max",
+      validator: Validators.minLength(length),
+      message: "Max dépassé"
+    }
+  )
+  static PASSWORD = [
+    FormDialog.REQUIRED,
+    FormDialog.MINLENGTH(8),
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<any>,

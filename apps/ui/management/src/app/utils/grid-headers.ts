@@ -29,14 +29,16 @@ const CompanieHeaders = [
 ];
 
 const UserHeaders = [
-  { headerName: 'Nom complet', type: "linkColumn",
+  { field: 'email', headerName: 'Émail', type: "linkColumn",
     cellRendererParams: (params) => (
-      {
-        link: `${params?.data?.username}`,
-        state: {id: params?.data?.id},
-      }),
-    valueGetter: (params) => [params.value, params?.data?.lastname].join(' ')},
+        {
+          link: `${params?.data?.id}`,
+        }
+      )
+    },
   { field: 'username', headerName: 'Nom d\'utilisateur', type: "textColumn"},
+  { headerName: 'Nom complet', type: "textColumn", field: 'firstname',
+    valueGetter: (params) => [params.data?.firstname, params.data?.lastname].join(" ")},
   { field: 'phone', headerName: 'Téléphone', type: "textColumn"},
 ];
 

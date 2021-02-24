@@ -67,6 +67,11 @@ const regConfigEmployee = (data?, salePoints = []) => [
       FormDialog.REQUIRED
     ]
   },
+  {type: "input", label: "Mot de passe", inputType: "password", name: "password", value: data.password,
+    validations: [
+      FormDialog.REQUIRED
+    ]
+  },
   {type: "select", label: "Point de vente", inputType: "text", name: "phone", value: data?.SalesPoint,
     options: salePoints.map(item => ({key: item.id, value: item.name}))
   },
