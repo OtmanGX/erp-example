@@ -26,11 +26,11 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   formArray = new FormArray([]);
   orderForms = [];
   glasses$ = this.facade.allWarehouseGlass$ .pipe(
-    map(elem => elem.map(val => ({key: val.code, value: val.label})))
+    map(elem => elem.map(val => ({key: val.substanceid, value: val.label})))
   );;
 
   accessories$=this.facade.allWarehouseAccessory$ .pipe(
-    map(elem => elem.map(val => ({key: val.code, value: val.label})))
+    map(elem => elem.map(val => ({key: val.substanceid, value: val.label})))
   );
   substances={} ;
 
