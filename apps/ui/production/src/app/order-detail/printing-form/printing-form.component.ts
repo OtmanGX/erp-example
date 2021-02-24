@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Article } from '@TanglassCore/models/production/productionOrder.model';
 
 @Component({
   selector: 'ngx-printing-form',
@@ -7,7 +6,7 @@ import { Article } from '@TanglassCore/models/production/productionOrder.model';
   styleUrls: ['./printing-form.component.scss'],
 })
 export class PrintingFormComponent implements OnInit {
-  @Input() articles: Article[];
+  @Input() articles: any;
   constructor() {}
 
   ngOnInit(): void {}

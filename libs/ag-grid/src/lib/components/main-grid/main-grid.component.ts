@@ -28,6 +28,7 @@ export class MainGridComponent {
   @Input() withToolbar: boolean = true;
   @Input() withDetails: boolean = false;
   @Input() withCrud: boolean = true;
+  @Input() enableCharts: boolean = true;
   @Input() theme = "ag-theme-alpine";
   @Input() rowGroupPanelShow = "always";
   @Input() height = "670px";

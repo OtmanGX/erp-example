@@ -1,7 +1,0 @@
-{
-  "domain": "gxm.us.auth0.com",
-  "clientId": "k35khcRkef3IyRQWkIBRLd7vwFA2guV5",
-  "audience": "https://tanglass.com",
-  "apiUri": ["https://gxm.us.auth0.com", "https://tanglass.hasura.app"],
-  "appUri": "http://localhost:4200"
-}

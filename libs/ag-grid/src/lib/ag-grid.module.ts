@@ -9,9 +9,11 @@ import { ExportBottomSheetComponent } from './components/export-bottom-sheet/exp
 import { LinkComponent } from './components/link.component';
 import { RouterModule } from '@angular/router';
 
+
+
 export const MODULES = [
   MaterialModule,
-  AgGridModule
+  AgGridModule,
 ];
 
 @NgModule({
