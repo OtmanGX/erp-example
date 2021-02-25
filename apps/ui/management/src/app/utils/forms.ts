@@ -67,7 +67,10 @@ const regConfigEmployee = (data?, salePoints = []) => [
       FormDialog.REQUIRED
     ]
   },
-  {type: "input", label: "Mot de passe", inputType: "password", name: "password", value: data.password,
+  {type: "input", label: "Mot de passe", inputType: "password", name: "password", value: null,
+    validations: FormDialog.PASSWORD
+  },
+  {type: "input", label: "Confirmation", inputType: "password", name: "confirmPassword", value: null,
     validations: [
       FormDialog.REQUIRED
     ]

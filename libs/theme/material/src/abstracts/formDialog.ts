@@ -30,14 +30,14 @@ export abstract class FormDialog implements OnInit, OnDestroy {
   };
   static MINLENGTH = (length) => (
     {
-      name: "max",
+      name: "min",
       validator: Validators.minLength(length),
-      message: "Max dépassé"
+      message: "Min 8 characters"
     }
   )
   static PASSWORD = [
-    FormDialog.REQUIRED,
     FormDialog.MINLENGTH(8),
+    FormDialog.REQUIRED,
   ];
 
   constructor(
