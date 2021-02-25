@@ -88,6 +88,12 @@ export class NavigationService {
       type: "separator"
     },
     {
+      name: "Emplacements",
+      type: "link",
+      icon: "assignment_ind",
+      state: "inventory/warehouses"
+    },
+    {
       name: "Etat de stock",
       type: "dropDown",
       icon: "assignment_ind",
@@ -95,17 +101,23 @@ export class NavigationService {
       // badges: [{color: 'primary', value: '6'}],
       // state: "inventory/warehouses",
       sub: [
-        { name: "Emplacements", state: "inventory/warehouses" },
         { name: "Produit Stockable", state: "inventory/warehouse-glasse" },
         { name: "Accessoires ", state: "inventory/warehouse-accessory" },
         { name: "Consommables && MP", state: "inventory/warehouse-consumable" },
       ]
     },
+    
+
     {
       name: "Transfert",
-      type: "link",
-      icon: "send",
-      state: "inventory/transfert"
+      type: "dropDown",
+      icon: "assignment_ind",
+      tooltip: "Pages",
+      sub: [
+        { name: "Commande transfert", state: "inventory/transfert" },
+        { name: "Transferts réalisés", state: "inventory/transfert" },
+     
+      ]
     },
     {
       name: "Mouvement de stock",
@@ -113,14 +125,10 @@ export class NavigationService {
       icon: "assignment_ind",
       tooltip: "Pages",
       sub: [
-        { name: "Reception fournisseur", state: "purchase/reception" },
+        { name: "Réception fournisseur", state: "purchase/reception" },
         { name: "Retour fournisseur", state: "purchase/reception" },
 
       ]
-      //name: "Reception fournisseur",
-    //  type: "link",
-     // icon: "assignment_ind",
-     // state: "purchase/reception"
     },
     // *** Product ***
     {

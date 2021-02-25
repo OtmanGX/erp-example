@@ -1,20 +1,14 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
-import {
-  regConfigTransferOrder,
-  regConfigTransferOrderEdit,
-  regConfigTransferOrderItem
-} from '@TanglassUi/inventory/utils/forms';
-import { WarehousesFacade } from '@tanglass-erp/store/inventory';
+
+import {regConfigDelivery,regConfigDeliveryItem  } from "@TanglassUi/purchase/utils/forms";
+import { ShortWarehouseFacade } from '@TanglassStore/shared/index';
 import { map, takeUntil } from 'rxjs/operators';
 import { FormArray } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import * as accessorySelectors from '@TanglassStore/product/lib/selectors/accessory.selectors';
-import * as glassSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
-import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
-import * as GlassActions from '@TanglassStore/product/lib/actions/glass.actions';
-import { WarehouseSubstanceFacade } from '@TanglassStore/shared/index';
+import { ShortProductFacade } from '@TanglassStore/shared/index';
+
 
 @Component({
   selector: 'ngx-pop-delivery',
@@ -26,46 +20,45 @@ export class PopDeliveryComponent extends FormDialog implements AfterViewInit {
   regConfig: FieldConfig[];
   formArray = new FormArray([]);
   orderForms = [];
-  accessories$ = this.store.select(accessorySelectors.getAllAccessories);
-  glasses$ = this.store.select(glassSelectors.getAllGlasses);
-  substances  = {Verre: this.glasses$, Accessoire: this.accessories$};
-  warehouses$ = this.facade.allWarehouses$
+  substances  = [];
+  warehouses$ = this.facade.allShortWarehouse$
     .pipe(
       map(elem => elem.map(val => ({key: val.id, value: val.name})))
     );
   warehouses: Array<any>;
+  providers$
 
-  @ViewChild('transfert_form', {read: DynamicFormComponent})
-  transfertFormComponent: DynamicFormComponent;
-  @ViewChildren('orderItem') dynamicForms: QueryList<DynamicFormComponent>;
+  @ViewChild('delivery_form', {read: DynamicFormComponent})
+  deliveryFormComponent: DynamicFormComponent;
+  @ViewChildren('delivery_Item') dynamicForms: QueryList<DynamicFormComponent>;
 
   // Getters
-  get transfertForm() {
-    return this.transfertFormComponent?.form;
+  get deliveryForm() {
+    return this.deliveryFormComponent?.form;
   }
 
   constructor(
     public dialogRef: MatDialogRef<PopDeliveryComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private store: Store,
-    private facade: WarehousesFacade,
-    private Substancefacade:WarehouseSubstanceFacade,
+    private facade: ShortWarehouseFacade,
+    private facadeProduct:ShortProductFacade,
     private cdr: ChangeDetectorRef
   ) {
     super(dialogRef, data);
   }
 
   ngOnInit() {
-    this.store.dispatch(AccessoryActions.loadAccessories());
-    this.store.dispatch(GlassActions.loadGlasses());
+ 
     super.ngOnInit();
-
+    this.facade.loadAllShortWarehouses();
+    this.facadeProduct.loadAllShortProduct()
   }
 
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
-    ['fromWarehouse', 'toWarehouse'].forEach(item => {
-      this.transfertForm.get(item).valueChanges
+    ['provider', 'warehouse'].forEach(item => {
+      this.deliveryForm.get(item).valueChanges
         .subscribe(value => {this.syncWarehouses(item, value);
            //  if (item=='toWarehouse')this.affectWarehouse(value)
           }
@@ -74,31 +67,23 @@ export class PopDeliveryComponent extends FormDialog implements AfterViewInit {
       }
     );
     this.dynamicForms.changes.subscribe(() => {
-      this.assignOrderItemForms();
+      this.assignDeliveryItemForms();
     });
-    this.newOrderItem();
+    this.newItem();
   }
 
-  affectWarehouse(warehouseid){
-    console.log(warehouseid)
-   // this.accessories$ = this.Substancefacade.loadWarehouseAccessories({id:warehouseid});
-   // this.glasses$ = this.Substancefacade.loadWarehouseGlasses({id:warehouseid});
-    this.substances  = {Verre: this.glasses$, Accessoire: this.accessories$};
-      console.log(this.substances)
-  }
+
 
   buildForm(): void {
-    this.regConfig = regConfigTransferOrder(this.data);
+    this.regConfig = regConfigDelivery(this.data);
     this.warehouses$.pipe(takeUntil(this._onDestroy)).subscribe(value => {
       if (!!value)
         this.warehouses = value;
-        this.regConfig = this.data?.id ?
-          regConfigTransferOrderEdit(this.data, this.warehouses)
-          : regConfigTransferOrder(this.data, this.warehouses);
+        this.regConfig = regConfigDelivery(this.data, this.warehouses);
     });
   }
 
-  assignOrderItemForms() {
+  assignDeliveryItemForms() {
     const forms = this.dynamicForms.map(item => {
       item.getField('typeSubstance').valueChanges.subscribe(value =>
         this.syncSubstances(item, value)
@@ -123,18 +108,17 @@ export class PopDeliveryComponent extends FormDialog implements AfterViewInit {
     else selectInput.options = this.warehouses.filter(item => item.key !== value);
   }
 
-  newOrderItem() {
-    this.orderForms.push(Object.assign([], regConfigTransferOrderItem({},
-      this.glasses$)));
+  newItem() {
+    this.orderForms.push(Object.assign([], regConfigDeliveryItem({})));
   }
 
   submitAll() {
-    const formValue = this.transfertForm.value;
+    const formValue = this.deliveryForm.value;
     formValue.order_items = this.formArray.value;
     this.submit(formValue);
   }
 
-  deleteOrderItem(fields) {
+  deleteItem(fields) {
     this.orderForms = this.orderForms.filter(item => item !== fields);
   }
 }

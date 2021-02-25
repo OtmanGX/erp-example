@@ -7,6 +7,7 @@ import { PurchaseComponent } from './purchase.component';
 import { PopDeliveryComponent } from './pages/purchase/pop-delivery/pop-delivery.component'
 import { PurchaseDeliveryComponent } from './pages/purchase/purchase-delivery.component'
 //import { DeliveryCardComponent } from './pages/purchase/delivery-card/delivery-card.component'
+import { StoreSharedModule} from "@tanglass-erp/store/shared";
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MainAgGridModule,
+    StoreSharedModule,
 
   ]
 })

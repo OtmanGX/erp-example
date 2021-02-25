@@ -7,10 +7,13 @@ import {
   GetProductsGQL,
   GetAccessoriesSubstancesGQL,
   GetGlassesSubstancesGQL,
+  GetShortSubstancesGQL,
+  GetShortProvidersGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
-import { Substance } from '../models/substance';
-import { Observable } from "rxjs";
+import { Substance, ShortSubstance, } from '../models/substance';
+import { ShortProvider } from '../models/shortFeature.models';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,9 +27,13 @@ export class ShortFeatureService {
     private getProductsGQL: GetProductsGQL,
     private getAccessoriesSubstancesGQL: GetAccessoriesSubstancesGQL,
     private getGlassesSubstancesGQL: GetGlassesSubstancesGQL,
+    private getShortSubstancesGQL: GetShortSubstancesGQL,
+    private getShortProvidersGQL: GetShortProvidersGQL,
 
-
-  ) { }
+  ) {
+    let data:ShortProvider[]
+    this.getShortProviders().subscribe(o=>data=o.data.contact_provider)
+   }
 
 
   getAllCompanies() {
@@ -52,12 +59,19 @@ export class ShortFeatureService {
     ))
   }
 
-
-  getGlassesSubstances(id: string) {
-    return this.getGlassesSubstancesGQL.fetch({ id }).pipe(map((data) =>
-      data.data.stock_warehouse_substance.map((obj) => flattenObj(obj)  as Substance)
+  getShortSubstance() {
+    return this.getShortSubstancesGQL.watch().valueChanges.pipe(map((data) =>
+      data.data.product_product.map((obj) => flattenObj(obj) as ShortSubstance)
     ))
   }
 
+  getGlassesSubstances(id: string) {
+    return this.getGlassesSubstancesGQL.fetch({ id }).pipe(map((data) =>
+      data.data.stock_warehouse_substance.map((obj) => flattenObj(obj) as Substance)
+    ))
+  }
 
+  getShortProviders() {
+    return this.getShortProvidersGQL.watch().valueChanges
+  }
 }
