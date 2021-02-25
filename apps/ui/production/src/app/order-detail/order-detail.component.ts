@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrderProductionMockService } from '@TanglassCore/mock/production/productionOrder.mock.service';
-import {
-  ProductionOrder,
-  AddedValue,
-} from '@TanglassCore/models/production/productionOrder.model';
+import { ProductionOrder } from '@TanglassCore/models/production/productionOrder.model';
 
 @Component({
   selector: 'ngx-order-detail',

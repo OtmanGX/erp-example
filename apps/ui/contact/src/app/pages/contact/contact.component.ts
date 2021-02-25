@@ -8,7 +8,7 @@ import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PopContactComponent } from './pop-contact/pop-contact.component';
 import { ContactHeaders } from '../../utils/grid-headers';
-import { InsertedContact, Contact } from '@TanglassStore/contact/index';
+import { Contact, InsertedContact } from '@TanglassStore/contact/index';
 
 
 @Component({

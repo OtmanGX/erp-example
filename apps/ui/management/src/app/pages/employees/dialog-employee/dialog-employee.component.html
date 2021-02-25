@@ -1,6 +1,7 @@
 <ngx-dialog-body title="Ajouter un utilisateur">
   <dynamic-form [fields]="regConfig"
                 (close)="closePopup()"
+                [validators]="reConfigValidator"
                 (submit)="submit($event)">
   </dynamic-form>
 </ngx-dialog-body>

@@ -52,7 +52,7 @@ export class DynamicFormComponent implements OnInit {
   @Input() name: string;
   @Input() fields: FieldConfig[] = [];
   @Input() groups: Groupfield[] = [];
-  @Input() options;
+  @Input() validators;
   @Input() withActions: boolean = true;
 
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
@@ -67,6 +67,7 @@ export class DynamicFormComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.createControl(this.fields);
+    this.form.setValidators(this.validators);
     this.groups.forEach(group => {
       this.form.addControl(group.name, this.createControl(group.fields));
     });
@@ -111,7 +112,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   createControl(fields) {
-    const group = this.fb.group({}, this.options);
+    const group = this.fb.group({});
     fields.forEach(field => {
       if (field.type === "button") return;
       const control = this.fb.control(

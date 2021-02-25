@@ -1,16 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
 import { PurchaseComponent } from './purchase.component';
-import { SubstanceComponent } from './pages/substances/substance.component'
-
-
-
-
-
-
-
+import { SubstanceComponent } from './pages/substances/substance.component';
 
 
 const routes: Routes = [

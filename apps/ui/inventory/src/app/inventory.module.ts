@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { InventoryComponent } from './inventory.component';
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
 import { WarehousesComponent } from './pages/warehouse/warehouses.component';
@@ -17,7 +17,7 @@ import { WarehouseTransfertComponent } from './pages/warehouse-transfert/warehou
 import { PopWarehouseTransfertComponent } from './pages/warehouse-transfert/pop-warehouse-transfert/pop-warehouse-transfert.component';
 import { StoreProductModule } from '../../../../../libs/store/product/src';
 import { TransfertCardComponent } from './pages/warehouse-transfert/transfert-card/transfert-card.component';
-import { StoreSharedModule} from "@tanglass-erp/store/shared";
+import { StoreSharedModule } from '@tanglass-erp/store/shared';
 import { PopOrderItemComponent } from './pages/warehouse-transfert/pop-order-item/pop-order-item.component';
 import { PopOrderItemDeliverComponent } from './pages/warehouse-transfert/pop-order-item-deliver/pop-order-item-deliver.component';
 

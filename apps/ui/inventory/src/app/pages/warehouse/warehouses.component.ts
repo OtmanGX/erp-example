@@ -9,7 +9,6 @@ import * as wareHouseActions from '@TanglassStore/inventory/lib/actions/warehous
 import { Store } from '@ngrx/store';
 
 
-
 @Component({
   selector: 'tanglass-erp-warehouses',
   templateUrl: './warehouses.component.html',

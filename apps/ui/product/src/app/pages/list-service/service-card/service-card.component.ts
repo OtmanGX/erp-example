@@ -4,7 +4,7 @@ import { AppState } from '@tanglass-erp/store/app';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
-import { ServiceHeaders, } from '../../../utils/grid-headers';
+import { ServiceHeaders } from '../../../utils/grid-headers';
 import { PopServiceComponent } from './pop-service/pop-service.component';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';

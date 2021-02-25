@@ -5,3 +5,4 @@ export * from './abstracts/formDialog';
 export * from './abstracts/ModelCard';
 export * from './components/form/dynamic-form.component';
 export * from './components/confirm-dialog/confirm-dialog.component';
+export * from './helpers/validators';
