@@ -15,11 +15,10 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
 @import 'utilities/spacing';
+@import 'utilities/height-width';
 @import 'components/components';
 @import 'palette';
 @import 'page-layouts';
-@import 'main/main';
-
 
 //Other Styles
 
@@ -68,3 +67,5 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+@import 'main/main';

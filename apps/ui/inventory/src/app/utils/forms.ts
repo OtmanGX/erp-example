@@ -14,7 +14,7 @@ type ListObservable = Observable<any> | Array<any>;
 const regConfigWarehouse = (data?: Warehouse, companies: ListObservable = [], salespoints: ListObservable = []) => [
   { type: 'input', name: 'name', label: 'Nom', value: data?.name },
   {
-    type: "select", name: "company", label: "Société", inputType: "text", value: data?.company,
+    type: "select", name: "company", label: "Société", inputType: "text", value: data?.company?.id,
     options: companies,
     validations: [
       FormDialog.REQUIRED
@@ -22,7 +22,7 @@ const regConfigWarehouse = (data?: Warehouse, companies: ListObservable = [], sa
   },
   {
     type: "select", name: "salesPoint", label: "Point de vente",
-    inputType: "text", value: data?.salesPoint, options: salespoints,
+    inputType: "text", value: data?.salesPoint?.id, options: salespoints,
     validations: [
       FormDialog.REQUIRED
     ]
