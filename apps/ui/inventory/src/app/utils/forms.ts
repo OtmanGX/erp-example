@@ -15,7 +15,7 @@ const regConfigWarehouse = (
     name: 'company',
     label: 'Société',
     inputType: 'text',
-    value: data?.company,
+    value: data?.company?.id,
     options: companies,
     validations: [REQUIRED],
   },

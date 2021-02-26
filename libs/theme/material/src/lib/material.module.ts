@@ -24,35 +24,38 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 
 // Components
-import { SelectComponent } from '../components/form/select.component';
-import { CheckboxComponent } from '../components/form/checkbox.component';
-import { RadiobuttonComponent } from '../components/form/radiobutton.component';
-import { DateComponent } from '../components/form/date.component';
-import { ButtonComponent } from '../components/form/button.component';
-import { InputComponent } from '../components/form/input.component';
-import { DynamicFormComponent } from '../components/form/dynamic-form.component';
-import { DynamicFieldDirective } from '../components/form/dynamic-field.directive';
+import { SelectComponent } from './components/form/select.component';
+import { CheckboxComponent } from './components/form/checkbox.component';
+import { RadiobuttonComponent } from './components/form/radiobutton.component';
+import { DateComponent } from './components/form/date.component';
+import { ButtonComponent } from './components/form/button.component';
+import { InputComponent } from './components/form/input.component';
+import { DynamicFormComponent } from './components/form/dynamic-form.component';
+import { DynamicFieldDirective } from './components/form/dynamic-field.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { InputSelectComponent } from '../components/form/input-select.component';
+import { InputSelectComponent } from './components/form/input-select.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { TagInputComponent } from '../components/form/tag-input.component';
+import { TagInputComponent } from './components/form/tag-input.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { DialogBodyComponent } from '../components/dialog-body.component';
-import { FicheCardComponent } from '../components/fiche-card/fiche-card.component';
-import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
+import { DialogBodyComponent } from './components/dialog-body.component';
+import { FicheCardComponent } from './components/fiche-card/fiche-card.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
-import { TextareaComponent } from '../components/form/textarea.component';
-import { HeaderComponent } from '../components/form/header.component';
-import { ListItemComponent } from '../components/list-item/list-item.component';
-import { TypeTemplateDirective } from '../directives/type-template';
+import { TextareaComponent } from './components/form/textarea.component';
+import { HeaderComponent } from './components/form/header.component';
+import { ListItemComponent } from './components/list-item/list-item.component';
+import { TypeTemplateDirective } from './directives/type-template';
 
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { SelectSearchComponent } from '../components/form/select-search.component';
-import { OptionItemDirective } from '../directives/option-item';
+import { SelectSearchComponent } from './components/form/select-search.component';
+import { OptionItemDirective } from './directives/option-item';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AmountCardComponent } from './components/analytic-cards/amount-card/amount-card.component';
+import { RouterModule } from '@angular/router';
+import { TrendingCardComponent } from './components/analytic-cards/trending-card/trending-card.component';
 
 
 const MATERIAL_MODULES = [
@@ -106,6 +109,8 @@ const COMPONENTS = [
   CheckboxComponent,
   TextareaComponent,
   HeaderComponent,
+  AmountCardComponent,
+  TrendingCardComponent
   ];
 
 const DIRECTIVES = [
@@ -124,7 +129,7 @@ const OTHER_COMPONENTS = [
 
 @NgModule({
   declarations: [...COMPONENTS, ...OTHER_COMPONENTS, ...DIRECTIVES],
-  imports: [...OTHER_MODULES, ...MATERIAL_MODULES],
+  imports: [...OTHER_MODULES, ...MATERIAL_MODULES, RouterModule],
   exports: [...OTHER_MODULES, ...MATERIAL_MODULES, ...COMPONENTS, ...OTHER_COMPONENTS, ...DIRECTIVES],
   entryComponents: COMPONENTS,
 })

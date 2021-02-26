@@ -43,7 +43,6 @@ const regConfigContact = (data?) => [
 ];
 
 const regConfigContactDetailed = (data?, customers = [], providers = []) => [
-
   { name: 'contact', label: 'Information Générales', fields: regConfigContact(data), headerVisible: true },
   { name: 'affectation', label: 'Affectation', headerVisible: true, fields: [
       { type: "select", name: "customers", label: "Clients", inputType: "text",

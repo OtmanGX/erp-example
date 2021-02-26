@@ -6,3 +6,12 @@ export const PurchaseHeaders = [
   { field: 'company', headerName: 'Société', type: "textColumn" },
 
 ];
+
+
+export const DeliveredItemsHeaders = [
+  { field: 'code', headerName: 'Code', type: "textColumn" },
+  { field: 'label', headerName: 'Désignation', type: "textColumn" },
+  { field: 'status', headerName: 'Etat', type: "textColumn" },
+  { field: 'company', headerName: 'Société', type: "textColumn" },
+
+];

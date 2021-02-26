@@ -3,15 +3,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PurchaseHeaders } from '../../utils/grid-header';
+import { PopDeliveryComponent } from './pop-delivery/pop-delivery.component';
 
 import { of } from 'rxjs';
 
 @Component({
-  selector: 'tanglass-erp-warehouses',
-  templateUrl: './substance.component.html',
+  selector: 'tanglass-erp-delivery',
+  templateUrl: './purchase-delivery.component.html',
   styleUrls: [],
 })
-export class SubstanceComponent implements GridView {
+export class PurchaseDeliveryComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
   agGrid: AgGridAngular;
   columnDefs;
@@ -36,6 +37,8 @@ export class SubstanceComponent implements GridView {
     // Store Action Dispatching
     switch (event.action) {
       case Operations.add:
+        this.openDialog(event.action, event.data);
+
       case Operations.update:
         break;
       case Operations.delete:
@@ -51,4 +54,21 @@ export class SubstanceComponent implements GridView {
     ];
   }
 
+  openDialog(action, data = {}) {
+    console.log('hefklerf')
+    const dialogRef = this.dialog.open(PopDeliveryComponent, {
+      width: '1000px',
+      panelClass: 'panel-dialog',
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Store action dispatching
+        if (action === Operations.add) {
+
+         // this.store.dispatch(....);
+        } else { } // Update
+      }
+    });
+  }
 }

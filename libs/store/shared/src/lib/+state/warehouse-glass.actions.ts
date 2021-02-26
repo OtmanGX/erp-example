@@ -12,7 +12,7 @@ export const loadWarehouseGlasses = createAction(
 
 export const loadWarehouseGlassesSuccess = createAction(
   '[WarehouseGlasses] Load WarehouseGlasses Success',
-  props<{ warehouseSubstance: Substance[] }>()
+  props<{ warehouseGlass: Substance[] }>()
 );
 
 export const loadWarehouseGlassesFailure = createAction(

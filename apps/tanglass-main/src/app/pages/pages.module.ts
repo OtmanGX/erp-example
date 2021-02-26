@@ -10,13 +10,23 @@ import { reducers } from '@tanglass-erp/store/app';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
     children: [
       {
+        path: "",
+        redirectTo: "dashboard/analytics"
+      },
+      {
         path: "404",
         component: NotFoundComponent
+      },
+      {
+        path: "dashboard/analytics",
+        component: DashboardComponent
       },
       {
         path: 'management',
@@ -51,7 +61,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PagesComponent, NotFoundComponent],
+  declarations: [PagesComponent, NotFoundComponent, DashboardComponent],
   imports: [
     CommonModule,
     SharedModule,
