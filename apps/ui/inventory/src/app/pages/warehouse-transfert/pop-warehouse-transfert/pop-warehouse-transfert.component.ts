@@ -27,8 +27,8 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   orderForms = [];
   glasses$ = this.facade.allWarehouseGlass$ .pipe(
     map(elem => elem.map(val => ({key: val.code, value: val.label})))
-  );; 
-    
+  );;
+
   accessories$=this.facade.allWarehouseAccessory$ .pipe(
     map(elem => elem.map(val => ({key: val.code, value: val.label})))
   );
@@ -58,7 +58,7 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
     private cdr: ChangeDetectorRef
   ) {
     super(dialogRef, data);
-    
+
   }
 
   ngOnInit() {
@@ -73,6 +73,7 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
     ['fromWarehouse', 'toWarehouse'].forEach(item => {
       this.transfertForm.get(item).valueChanges
         .subscribe(value => {this.syncWarehouses(item, value);
+          console.log(value)
            if (item=='toWarehouse')this.loadItems(value)
           }
         );
@@ -85,23 +86,17 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   }
 
   loadItems(warehouseid){
-
    this.facade.loadAllWarehouseAccessories(warehouseid);
    this.facade.loadAllWarehouseGlasses(warehouseid);
-  this.accessories$.subscribe(val=>this.substances['Accessoire']=val)
-  this.glasses$.subscribe(val=>this.substances['Verre']=val)
-    console.log(this.substances)
+   this.substances['Accessoire'] = this.accessories$;
+   this.substances['Verre'] = this.glasses$;
   }
 
   buildForm(): void {
     this.regConfig = regConfigTransferOrder(this.data);
-    this.warehouses$.pipe(takeUntil(this._onDestroy)).subscribe(value => {
-      if (!!value)
-        this.warehouses = value;
-        this.regConfig = this.data?.id ?
-          regConfigTransferOrderEdit(this.data, this.warehouses)
-          : regConfigTransferOrder(this.data, this.warehouses);
-    });
+    this.regConfig = this.data?.id ?
+          regConfigTransferOrderEdit(this.data, this.warehouses$)
+          : regConfigTransferOrder(this.data, this.warehouses$);
   }
 
   assignOrderItemForms() {
@@ -124,9 +119,12 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   syncWarehouses(inputName, value) {
     const selectInput = this.regConfig.find(elem => elem.name === 'fromWarehouse');
     const selectInput2 = this.regConfig.find(elem => elem.name === 'toWarehouse');
-    if (inputName === 'fromWarehouse')
-      selectInput2.options = this.warehouses.filter(item => item.key !== value);
-    else selectInput.options = this.warehouses.filter(item => item.key !== value);
+    this.warehouses$.pipe(takeUntil(this._onDestroy)).subscribe(warhouses => {
+      if (inputName === 'fromWarehouse')
+        selectInput2.options = warhouses.filter(item => item.key !== value);
+      else
+        selectInput.options = warhouses.filter(item => item.key !== value);
+    });
   }
 
   newOrderItem() {
