@@ -60,14 +60,22 @@ export class PopDeliveryComponent extends FormDialog implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
- 
+    ['provider', 'warehouse'].forEach(item => {
+      this.deliveryForm.get(item).valueChanges
+        .subscribe(value => {this.syncWarehouses(item, value);
+           //  if (item=='toWarehouse')this.affectWarehouse(value)
+          }
+        );
+        
+      }
+    );
     this.dynamicForms.changes.subscribe(() => {
       this.assignDeliveryItemForms();
     });
     this.newItem();
   }
 
-
+ 
 
   buildForm(): void {
     this.regConfig = regConfigDelivery(this.data);
@@ -93,6 +101,14 @@ export class PopDeliveryComponent extends FormDialog implements AfterViewInit {
 
   syncSubstances(component: DynamicFormComponent, typeSubstance: string) {
     component.remakeField('substance', {options: this.substances[typeSubstance]});
+  }
+
+  syncWarehouses(inputName, value) {
+    const selectInput = this.regConfig.find(elem => elem.name === 'fromWarehouse');
+    const selectInput2 = this.regConfig.find(elem => elem.name === 'toWarehouse');
+    if (inputName === 'fromWarehouse')
+      selectInput2.options = this.warehouses.filter(item => item.key !== value);
+    else selectInput.options = this.warehouses.filter(item => item.key !== value);
   }
 
   newItem() {

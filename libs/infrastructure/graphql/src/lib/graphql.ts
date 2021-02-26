@@ -18366,19 +18366,21 @@ export type DeleteManyWarehousesMutation = (
   )> }
 );
 
-export type InsertItemTranfserMutationVariables = Exact<{
+export type InsertTranfserMutationVariables = Exact<{
   date?: Maybe<Scalars['date']>;
   order_itemid?: Maybe<Scalars['uuid']>;
   quantity?: Maybe<Scalars['Float']>;
   status?: Maybe<Scalars['String']>;
+  substanceid?: Maybe<Scalars['uuid']>;
+  warehouseid?: Maybe<Scalars['uuid']>;
 }>;
 
 
-export type InsertItemTranfserMutation = (
+export type InsertTranfserMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_stock_item_tranfer_one?: Maybe<(
-    { __typename?: 'stock_item_tranfer' }
-    & Pick<Stock_Item_Tranfer, 'date' | 'id' | 'quantity' | 'status'>
+  & { createTransferItem?: Maybe<(
+    { __typename?: 'InsertItemTranfserOutput' }
+    & Pick<InsertItemTranfserOutput, 'date' | 'id' | 'quantity' | 'status'>
   )> }
 );
 
@@ -20487,10 +20489,15 @@ export const DeleteManyWarehousesDocument = gql`
       super(apollo);
     }
   }
-export const InsertItemTranfserDocument = gql`
-    mutation InsertItemTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String) {
-  insert_stock_item_tranfer_one(
-    object: {date: $date, order_itemid: $order_itemid, quantity: $quantity, status: $status}
+export const InsertTranfserDocument = gql`
+    mutation InsertTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String, $substanceid: uuid, $warehouseid: uuid) {
+  createTransferItem(
+    date: $date
+    order_itemid: $order_itemid
+    quantity: $quantity
+    status: $status
+    substanceid: $substanceid
+    warehouseid: $warehouseid
   ) {
     date
     id
@@ -20503,8 +20510,8 @@ export const InsertItemTranfserDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class InsertItemTranfserGQL extends Apollo.Mutation<InsertItemTranfserMutation, InsertItemTranfserMutationVariables> {
-    document = InsertItemTranfserDocument;
+  export class InsertTranfserGQL extends Apollo.Mutation<InsertTranfserMutation, InsertTranfserMutationVariables> {
+    document = InsertTranfserDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
