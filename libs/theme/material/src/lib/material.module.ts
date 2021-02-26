@@ -56,7 +56,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AmountCardComponent } from './components/analytic-cards/amount-card/amount-card.component';
 import { RouterModule } from '@angular/router';
 import { TrendingCardComponent } from './components/analytic-cards/trending-card/trending-card.component';
-import { BrowserModule } from '@angular/platform-browser';
 
 
 const MATERIAL_MODULES = [

@@ -1,15 +1,15 @@
-import { FieldConfig, FormDialog } from '@tanglass-erp/material';
+import { FieldConfig, MINNUMBER, REQUIRED } from '@tanglass-erp/material';
 import { paramOptions } from './enum';
 import {
-  Product,
+  Accessory,
   Consumable,
   Glass,
-  Accessory,
-  Service,
-  ServiceConfig,
-  Product_Product_Unit_Enum,
+  Product,
   Product_AccessoryTypes_Enum,
   Product_ConsumableCategory_Enum,
+  Product_Product_Unit_Enum,
+  Service,
+  ServiceConfig
 } from '@TanglassStore/product/index';
 import { Observable } from 'rxjs';
 
@@ -37,35 +37,38 @@ function getParams(params) {
 const regConfigProduct = (data?: Product, listCompanies: ListObservable = []) => [
   {type: "input", label: "Code", inputType: "text", name: "code", value: data?.code,
     validations: [
-      FormDialog.REQUIRED
+      REQUIRED
     ]
   },
   {type: "input", label: "Désignation", inputType: "text", name: "label", value: data?.label,
     validations: [
-      FormDialog.REQUIRED
+      REQUIRED
     ]
   },
   {type: "inputSelect", label: "Unité", inputType: "text", name: "unit", value: data?.unit,
     options: Object.values(Product_Product_Unit_Enum).map(item => ({key: item, value: item})),
     validations: [
-      FormDialog.REQUIRED
+      REQUIRED
     ]
   },
   {type: "input", label: "Prix", inputType: "number", name: "price", value: data?.price,
     validations: [
-      FormDialog.REQUIRED
+      REQUIRED,
+      MINNUMBER(1)
     ]
   },
   {type: "input", label: "Prix min", inputType: "number", name: "priceMin",
     value: data?.priceMin,
     validations: [
-      FormDialog.REQUIRED
+      REQUIRED,
+      MINNUMBER(1)
     ]
   },
   {type: "input", label: "Prix max", inputType: "number", name: "priceMax",
     value: data?.priceMax,
     validations: [
-      FormDialog.REQUIRED
+      REQUIRED,
+      MINNUMBER(1)
     ]
   },
   {type: "select", label: "Sociétés", multiple: true, name: "product_companies", value: data?.companies,
@@ -144,11 +147,11 @@ const regConfigServiceConfig = (data?: ServiceConfig) => [
     fields: [
       {type: "input", label: "Nom", inputType: "text", name: "name", value: data?.name,
         validations: [
-          FormDialog.REQUIRED
+          REQUIRED
         ]
       },
       {type: "input", label: "Etiquette d\'usine", inputType: "text", name: "labelFactory",
-        value: data?.labelFactory, validations: [FormDialog.REQUIRED]},
+        value: data?.labelFactory, validations: [REQUIRED]},
     ]
   },
   {
@@ -176,11 +179,11 @@ const regConfService = (data?: Service, listCompanies: ListObservable = [], para
 
 const regParamForm = [
   {type: "input", label: "Nom", inputType: "text", name: "name", value: null,
-    validations: [FormDialog.REQUIRED]
+    validations: [REQUIRED]
   },
   {type: "select", label: "Type", inputType: "text", name: "type", value: null,
     options: Object.values(paramOptions).map(elem => ({key: elem, value: elem})),
-    validations: [FormDialog.REQUIRED]
+    validations: [REQUIRED]
   },
 ];
 
@@ -196,11 +199,11 @@ const regConfigServiceConsumable = (data?, services: ListObservable = []) => [
 
 const regConfigServiceGlass = (data?, services: ListObservable = [], glasses: ListObservable = []) => [
   {type: "select", label: "Service", inputType: "text", name: "service", value: data?.service,
-    options: services, validations: [FormDialog.REQUIRED]},
+    options: services, validations: [REQUIRED]},
   {type: "input", label: "Etiquette d\'usine", inputType: "text", name: "labelFactory",
-    value: data?.labelFactory, validations: [FormDialog.REQUIRED]},
+    value: data?.labelFactory, validations: [REQUIRED]},
   {type: "select", label: "Verre", inputType: "text", name: "glasse", value: data?.glasse,
-    options: glasses, validations: [FormDialog.REQUIRED]},
+    options: glasses, validations: [REQUIRED]},
 ];
 
 const regConfigSupplies = (data?: Accessory, listCompanies: ListObservable = []) => [

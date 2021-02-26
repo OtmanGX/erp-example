@@ -2,8 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
-import { GridView, Operations } from '@tanglass-erp/ag-grid';
-import { MainGridComponent } from '@tanglass-erp/ag-grid';
+import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopServiceGlasseComponent } from './pop-service-glasse/pop-service-glasse.component';
 import { ServiceGlassHeaders } from '../../utils/grid-headers';
 

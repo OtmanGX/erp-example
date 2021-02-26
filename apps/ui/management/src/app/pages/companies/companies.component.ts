@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopCompaniesComponent } from './pop-companies/pop-companies.component';
 import { CompanieHeaders } from '@TanglassUi/management/utils/grid-headers';
+
 @Component({
   selector: 'tanglass-erp-companies',
   templateUrl: './companies.component.html',
@@ -24,7 +25,7 @@ export class CompaniesComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
 
   constructor(
-    public dialog: MatDialog, 
+    public dialog: MatDialog,
     private store: Store<AppState> ) {
     this.setColumnDefs();
   }

@@ -4,14 +4,14 @@ import { AppState } from '@tanglass-erp/store/app';
 import { MatDialog } from '@angular/material/dialog';
 import { PopProviderComponent } from '../pop-provider/pop-provider.component';
 import { getSelectedProvider } from '@TanglassStore/contact/lib/selectors/provider.selectors';
+import * as ProviderActions from '@TanglassStore/contact/lib/actions/provider.actions';
 import { loadProviderById } from '@TanglassStore/contact/lib/actions/provider.actions';
 import { PopAddressComponent } from '../../components/pop-address/pop-address.component';
 import { PopShortContactComponent } from '../../contact/pop-short-contact/pop-short-contact.component';
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { takeUntil } from 'rxjs/operators';
-import { DetailedProvider, Contact, Address } from '@TanglassStore/contact/index';
-import * as ProviderActions from '@TanglassStore/contact/lib/actions/provider.actions';
+import { Address, Contact, DetailedProvider } from '@TanglassStore/contact/index';
 
 
 const componentMapper = {

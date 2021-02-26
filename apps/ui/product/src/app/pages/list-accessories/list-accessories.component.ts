@@ -1,11 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
-import { GridView, Operations } from '@tanglass-erp/ag-grid';
-import { MainGridComponent } from '@tanglass-erp/ag-grid';
+import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopAccessoriesComponent } from './pop-accessories/pop-accessories.component';
-import { Accessory, insertedAccessory } from "@tanglass-erp/core/product";
 import { AccessoryHeaders } from '../../utils/grid-headers';
 import * as AccessorySelectors from '@TanglassStore/product/lib/selectors/accessory.selectors';
 import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';

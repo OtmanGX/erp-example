@@ -1,8 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AgGridAngular } from 'ag-grid-angular';
-import { GridView, Operations } from '@tanglass-erp/ag-grid';
-import { MainGridComponent } from '@tanglass-erp/ag-grid';
+import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopGlasseComponent } from './pop-glasse/pop-glasse.component';
 import { GlassHeaders } from '../../utils/grid-headers';
 import { Store } from '@ngrx/store';

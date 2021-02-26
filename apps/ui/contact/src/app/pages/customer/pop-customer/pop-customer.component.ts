@@ -1,13 +1,7 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  Inject, OnDestroy,
-  QueryList, ViewChildren
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
-import { FormGroup, FormArray } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { regConfigAddresses, regConfigContact, regCustomerConfig } from '../../../utils/forms';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
@@ -15,9 +9,8 @@ import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 import { getSelectedCustomer } from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
-import { takeWhile } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { InsertedCustomer } from "@tanglass-erp/core/contact";
+
 @Component({
   selector: 'ngx-pop-customer',
   templateUrl: './pop-customer.component.html',

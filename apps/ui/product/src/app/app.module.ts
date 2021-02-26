@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from '@tanglass-erp/store/app';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { ProductModule } from './product.module'
+import { ProductModule } from './product.module';
 import { InfrastructureGraphqlModule } from '@tanglass-erp/infrastructure/graphql';
 
 @NgModule({

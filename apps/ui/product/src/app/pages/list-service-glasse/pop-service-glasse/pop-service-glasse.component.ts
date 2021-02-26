@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormDialog, FieldConfig } from '@tanglass-erp/material';
+import { FieldConfig, FormDialog } from '@tanglass-erp/material';
 import { regConfigServiceGlass } from '../../../utils/forms';
 
 @Component({

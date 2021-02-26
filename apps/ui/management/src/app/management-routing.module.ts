@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ManagementComponent } from './management.component';
 import { EmployeesComponent } from '@TanglassUi/management/pages/employees/employees.component';
 import { CompaniesComponent } from '@TanglassUi/management/pages/companies/companies.component';

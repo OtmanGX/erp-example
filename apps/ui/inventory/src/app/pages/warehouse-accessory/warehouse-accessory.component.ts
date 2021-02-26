@@ -9,7 +9,6 @@ import * as AccessoryWarehousActions from '@TanglassStore/inventory/lib/actions/
 import * as AccessoryWarehousSelectors from '@TanglassStore/inventory/lib/selectors/warehouseAccessory.selectors';
 
 
-
 @Component({
   selector: 'tanglass-erp-warehouse-accessory',
   templateUrl: './warehouse-accessory.component.html',
