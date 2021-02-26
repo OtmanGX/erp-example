@@ -20,7 +20,11 @@ export class PopDeliveryComponent extends FormDialog implements AfterViewInit {
   regConfig: FieldConfig[];
   formArray = new FormArray([]);
   orderForms = [];
-  substances  = [];
+  substances = [];
+  substances$  = this.facade.allShortProduct$
+  .pipe(
+    map(elem => elem.map(val => ({key: val.substanceid, value: val.label})))
+  );;
   warehouses$ = this.facade.allShortWarehouse$
     .pipe(
       map(elem => elem.map(val => ({key: val.id, value: val.name})))
@@ -50,7 +54,7 @@ export class PopDeliveryComponent extends FormDialog implements AfterViewInit {
   }
 
   ngOnInit() {
- 
+
     super.ngOnInit();
     this.facade.loadAllShortWarehouses();
     this.facade.loadAllShortProduct();
@@ -60,15 +64,6 @@ export class PopDeliveryComponent extends FormDialog implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
-    ['provider', 'warehouse'].forEach(item => {
-      this.deliveryForm.get(item).valueChanges
-        .subscribe(value => {this.syncWarehouses(item, value);
-           //  if (item=='toWarehouse')this.affectWarehouse(value)
-          }
-        );
-        
-      }
-    );
     this.dynamicForms.changes.subscribe(() => {
       this.assignDeliveryItemForms();
     });
@@ -79,11 +74,7 @@ export class PopDeliveryComponent extends FormDialog implements AfterViewInit {
 
   buildForm(): void {
     this.regConfig = regConfigDelivery(this.data);
-    this.warehouses$.pipe(takeUntil(this._onDestroy)).subscribe(value => {
-      if (!!value)
-        this.warehouses = value;
-        this.regConfig = regConfigDelivery(this.data, this.warehouses);
-    });
+    this.regConfig = regConfigDelivery(this.data, this.providers$, this.warehouses$)
   }
 
   assignDeliveryItemForms() {
@@ -112,7 +103,7 @@ export class PopDeliveryComponent extends FormDialog implements AfterViewInit {
   }
 
   newItem() {
-    this.orderForms.push(Object.assign([], regConfigDeliveryItem({})));
+    this.orderForms.push(Object.assign([], regConfigDeliveryItem({}, this.substances$)));
   }
 
   submitAll() {
