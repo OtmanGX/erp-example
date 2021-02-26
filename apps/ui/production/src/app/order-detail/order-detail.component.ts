@@ -10,20 +10,16 @@ import { ProductionOrder } from '@TanglassCore/models/production/productionOrder
 })
 export class OrderDetailComponent implements OnInit {
   id: number;
-  order: ProductionOrder;
+  order: any;
   content: string = '';
   linesArray: string[] = [];
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly ordersService: OrderProductionMockService
   ) {}
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.ordersService.getOneById(this.id).subscribe({
-        next: (order: ProductionOrder) => (this.order = order),
-      });
     }
     this.getPrinting();
   }

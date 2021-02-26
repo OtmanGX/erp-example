@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { User } from '@TanglassCore/models/management/users';
 
 export const loginPage = createAction(
   '[Login Component] Login User',
@@ -13,7 +12,7 @@ export const loginModal = createAction(
 
 export const loginSuccess = createAction(
   '[Auth Effect] Login User Success',
-  props<{ user: User }>()
+  props<{ user: any }>()
 );
 
 export const loginFailure = createAction(
@@ -25,5 +24,5 @@ export const logout = createAction('[Auth Links Component] Logout User');
 
 export const browserReload = createAction(
   '[Core Component] Browser Reload',
-  props<{ user: User }>()
+  props<{ user: any }>()
 );

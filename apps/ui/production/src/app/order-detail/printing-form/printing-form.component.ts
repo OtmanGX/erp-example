@@ -7,7 +7,7 @@ import { Article } from '@TanglassCore/models/production/productionOrder.model';
   styleUrls: ['./printing-form.component.scss'],
 })
 export class PrintingFormComponent implements OnInit {
-  @Input() articles: Article[];
+  @Input() articles: any;
   constructor() {}
 
   ngOnInit(): void {}

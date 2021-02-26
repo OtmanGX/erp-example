@@ -12,12 +12,6 @@
     "nx.json": "*"
   },
   "projects": {
-    "tanglass-erp": {
-      "tags": []
-    },
-    "tanglass-core": {
-      "tags": []
-    },
     "tanglass-theme": {
       "tags": []
     },

@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { OrderProductionMockService } from '@TanglassCore/mock/production/productionOrder.mock.service';
-import { ProductionOrder } from '@TanglassCore/models/production/productionOrder.model';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
@@ -13,7 +11,7 @@ import { MainGridComponent } from '@tanglass-erp/ag-grid';
 })
 export class ListOrdersComponent implements OnInit, AfterViewInit {
   @ViewChild(MainGridComponent) mainGrid;
-  orders$: Observable<ProductionOrder[]>;
+  orders$: Observable<any>;
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
@@ -25,8 +23,7 @@ export class ListOrdersComponent implements OnInit, AfterViewInit {
     //   checkbox: true
     // }
   };
-  constructor(private ordersService: OrderProductionMockService,
-              public datepipe: DatePipe) {
+  constructor(public datepipe: DatePipe) {
     this.setColumnDefs();
   }
 
@@ -60,7 +57,6 @@ export class ListOrdersComponent implements OnInit, AfterViewInit {
   }
 
   getOrders() {
-    this.orders$ = this.ordersService.getAll();
   }
 
   eventTriggering(event) {
