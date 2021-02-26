@@ -4,7 +4,7 @@ import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfigAccessory } from '../../../utils/forms';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
-import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
+import { SharedFacade } from '@tanglass-erp/store/shared';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -21,7 +21,7 @@ export class PopAccessoriesComponent extends FormDialog {
 
   constructor(
     public dialogRef: MatDialogRef<PopAccessoriesComponent>,
-    private facade: ShortCompanyFacade,
+    private facade: SharedFacade,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private store: Store<AppState>
 

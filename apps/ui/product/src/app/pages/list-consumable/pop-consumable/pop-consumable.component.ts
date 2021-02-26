@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfigConsumable } from '../../../utils/forms';
-import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
+import { SharedFacade } from '@tanglass-erp/store/shared';
 import { map } from 'rxjs/operators';
 import { Consumable } from '@TanglassStore/product/index';
 
@@ -20,7 +20,7 @@ export class PopConsumableComponent extends FormDialog {
 
   constructor(
     public dialogRef: MatDialogRef<PopConsumableComponent>,
-    private facade: ShortCompanyFacade,
+    private facade: SharedFacade,
     @Inject(MAT_DIALOG_DATA) public data: Consumable,
   ) {
     super(dialogRef, data);

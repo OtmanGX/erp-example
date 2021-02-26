@@ -8,22 +8,17 @@ import * as fromShortCompany from './+state/short-company.reducer';
 import * as fromShortSalePoint from './+state/short-salePoint.reducer';
 import { ShortCompanyEffects } from './+state/short-company.effects';
 import { ShortSalePointEffects } from './+state/short-salePoint.effects';
-import { ShortCompanyFacade } from './+state/short-company.facade';
+import { SharedFacade } from './+state/shared.facade';
 import * as fromShortWarehouse from './+state/short-warehouse.reducer';
 import { ShortWarehouseEffects } from './+state/short-warehouse.effects';
-import { ShortWarehouseFacade } from './+state/short-warehouse.facade';
 import * as fromWarehouseSubstance from './+state/warehouse-glass.reducer';
 import { WarehouseSubstanceEffects } from './+state/warehouse-glass.effects';
-import { WarehouseSubstanceFacade } from './+state/warehouse-glass.facade';
 import * as fromShortProduct from './+state/short-product.reducer';
 import { ShortProductEffects } from './+state/short-product.effects';
-import { ShortProductFacade } from './+state/short-product.facade';
 import * as fromShortProvider from './+state/short-provider.reducer';
 import { ShortProviderEffects } from './+state/short-provider.effects';
-import { ShortProviderFacade } from './+state/short-provider.facade';
 import * as fromWarehouseAccessory from './+state/warehouse-accessory.reducer';
 import { WarehouseAccessoryEffects } from './+state/warehouse-accessory.effects';
-import { WarehouseAccessoryFacade } from './+state/warehouse-accessory.facade';
 
 @NgModule({
   imports: [
@@ -68,12 +63,7 @@ import { WarehouseAccessoryFacade } from './+state/warehouse-accessory.facade';
     EffectsModule.forFeature([WarehouseAccessoryEffects]),
   ],
   providers: [
-    ShortCompanyFacade,
-    ShortWarehouseFacade,
-    WarehouseSubstanceFacade,
-    ShortProductFacade,
-    ShortProviderFacade,
-    WarehouseAccessoryFacade,
+    SharedFacade
   ],
 })
 export class StoreSharedModule {}
