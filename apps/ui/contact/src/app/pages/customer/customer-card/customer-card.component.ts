@@ -80,7 +80,7 @@ export class CustomerCardComponent extends ModelCardComponent {
     {
       label: "Infos Générales",
       isToolbar:"true",
-      cols:4,
+      cols:3,
       icons:[{name:"edit",tooltip:"Modification",event:'editMain'}],
       data:
         [

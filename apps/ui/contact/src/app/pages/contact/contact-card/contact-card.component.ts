@@ -35,7 +35,10 @@ export class ContactCardComponent extends ModelCardComponent {
       {
         label: "Infos Générales",
         isToolbar:"true",
-        cols:3,
+        cols:4,
+        "cols-sm":2,
+        "cols-md":3,
+        "cols-lg":4,
         icons:[{name:"edit",tooltip:"Modification",event:'editMain'}],
         data:
           [

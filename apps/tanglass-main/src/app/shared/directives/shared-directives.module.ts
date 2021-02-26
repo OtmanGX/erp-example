@@ -20,8 +20,8 @@ const directives = [
   MatXSideNavToggleDirective,
   MatXSidenavHelperDirective,
   MatXSidenavTogglerDirective,
-  MatXHighlightDirective
-]
+  MatXHighlightDirective,
+];
 
 @NgModule({
   imports: [

@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
 import { PurchaseComponent } from './purchase.component';
-import { SubstanceComponent } from './pages/substances/substance.component'
-
-
-
-
-
-
-
+import { PopDeliveryComponent } from './pages/purchase/pop-delivery/pop-delivery.component'
+import { PurchaseDeliveryComponent } from './pages/purchase/purchase-delivery.component'
+//import { DeliveryCardComponent } from './pages/purchase/delivery-card/delivery-card.component'
+import { StoreSharedModule} from "@tanglass-erp/store/shared";
 
 
 const routes: Routes = [
@@ -20,9 +17,9 @@ const routes: Routes = [
     {
       path: 'reception',
       children: [
-        { path: '', component: SubstanceComponent },
+        { path: '', component: PurchaseDeliveryComponent },
       ],
-      data: { title: 'Reception', breadcrumb: "" }
+      data: { title: 'Réception', breadcrumb: "" }
     }
   ]
 }
@@ -30,11 +27,15 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     PurchaseComponent,
-    SubstanceComponent
+    PurchaseDeliveryComponent,
+    PopDeliveryComponent,
+   // DeliveryCardComponent
   ],
   imports: [
+    CommonModule,
     RouterModule.forChild(routes),
     MainAgGridModule,
+    StoreSharedModule,
 
   ]
 })

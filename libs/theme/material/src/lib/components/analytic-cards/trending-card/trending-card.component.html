@@ -1,0 +1,31 @@
+<mat-card>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <button class="mat-elevation-z0" mat-mini-fab [color]="config.color">
+      <mat-icon class="mat-18">
+        {{config.icon}}
+      </mat-icon>
+    </button>
+    <div class="mat-card-title mat-color-{{config.color}} m-0 ml-12">
+      {{config.title}}
+    </div>
+  </div>
+  <div
+    class="mt-16"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <h2 class="m-0 text-muted text-28 font-weight-bold">
+      {{config.subtitle}}
+    </h2>
+    <div fxLayout="row wrap" fxLayoutAlign="start center">
+      <div class="small-circle" [ngClass]="config.down?'mat-bg-warn':'mat-bg-'+config.color" >
+        <mat-icon class="text-12">
+          expand_less
+        </mat-icon>
+      </div>
+      <small class="m-0 ml-4 mat-color-{{config.color}} text-12">
+        ({{config.percentage}}%)
+      </small>
+    </div>
+  </div>
+</mat-card>

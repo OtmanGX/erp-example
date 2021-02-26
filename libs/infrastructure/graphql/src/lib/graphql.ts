@@ -17770,6 +17770,17 @@ export type GetShortCompaniesQuery = (
   )> }
 );
 
+export type GetShortProvidersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetShortProvidersQuery = (
+  { __typename?: 'query_root' }
+  & { contact_provider: Array<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'code' | 'name'>
+  )> }
+);
+
 export type GeShortSalePointsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -17778,6 +17789,27 @@ export type GeShortSalePointsQuery = (
   & { management_salesPoint: Array<(
     { __typename?: 'management_salesPoint' }
     & Pick<Management_SalesPoint, 'name' | 'id'>
+  )> }
+);
+
+export type GetShortSubstancesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetShortSubstancesQuery = (
+  { __typename?: 'query_root' }
+  & { product_product: Array<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'label' | 'code' | 'price' | 'priceMax' | 'priceMin'>
+    & { glass?: Maybe<(
+      { __typename?: 'product_glass' }
+      & Pick<Product_Glass, 'substanceid'>
+    )>, consumable?: Maybe<(
+      { __typename?: 'product_consumable' }
+      & Pick<Product_Consumable, 'substanceid'>
+    )>, accessory?: Maybe<(
+      { __typename?: 'product_accessory' }
+      & Pick<Product_Accessory, 'substanceid'>
+    )> }
   )> }
 );
 
@@ -19545,6 +19577,25 @@ export const GetShortCompaniesDocument = gql`
       super(apollo);
     }
   }
+export const GetShortProvidersDocument = gql`
+    query GetShortProviders {
+  contact_provider {
+    code
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortProvidersGQL extends Apollo.Query<GetShortProvidersQuery, GetShortProvidersQueryVariables> {
+    document = GetShortProvidersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GeShortSalePointsDocument = gql`
     query GeShortSalePoints {
   management_salesPoint {
@@ -19559,6 +19610,37 @@ export const GeShortSalePointsDocument = gql`
   })
   export class GeShortSalePointsGQL extends Apollo.Query<GeShortSalePointsQuery, GeShortSalePointsQueryVariables> {
     document = GeShortSalePointsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetShortSubstancesDocument = gql`
+    query GetShortSubstances {
+  product_product {
+    label
+    code
+    glass {
+      substanceid
+    }
+    consumable {
+      substanceid
+    }
+    accessory {
+      substanceid
+    }
+    price
+    priceMax
+    priceMin
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortSubstancesGQL extends Apollo.Query<GetShortSubstancesQuery, GetShortSubstancesQueryVariables> {
+    document = GetShortSubstancesDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
