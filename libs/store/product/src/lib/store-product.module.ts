@@ -5,6 +5,7 @@ import * as AccessoryReducer from './reducers/accessory.reducer';
 import * as ConsumableReducer from './reducers/consumable.reducer';
 import * as GlassReducer from './reducers/glass.reducer';
 import * as ServiceReducer from './reducers/servicesConfig.reducer';
+import * as SupplyReducer from "./reducers/supply.reducer";
 import { AccessoryEffects } from './effects/accessory.effects';
 import { ConsumableEffects } from './effects/consumable.effects';
 import { GlassEffects } from './effects/glass.effects';
@@ -37,6 +38,11 @@ import { CoreProductModule } from '@tanglass-erp/core/product';
     StoreModule.forFeature(
       ServiceReducer.SERVICE_CONFIG_FEATURE_KEY,
       ServiceReducer.reducer,
+
+    ),
+    StoreModule.forFeature(
+      SupplyReducer.SUPPLY_FEATURE_KEY,
+      SupplyReducer.reducer,
 
     ),
     EffectsModule.forFeature([
