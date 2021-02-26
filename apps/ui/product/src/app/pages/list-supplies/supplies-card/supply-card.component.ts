@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { DetailedAccessory } from '@TanglassStore/product/index';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import * as SupplyActions from '@TanglassStore/product/lib/actions/supply.actions';
+import { getSelectedSupply } from '@TanglassStore/product/lib/selectors/supply.selectors';
+import { takeUntil } from 'rxjs/operators';
 
 
 @Component({
@@ -14,8 +16,7 @@ import { Observable } from 'rxjs';
 })
 export class SupplyCardComponent extends ModelCardComponent {
   title = "Fourniture";
-  data$: Observable<any>;
-
+  data$=  this.store.select(getSelectedSupply).pipe(takeUntil(this._onDestroy));
   constructor(private store: Store<AppState>,
     public route: ActivatedRoute) {
     super(route);
@@ -23,8 +24,10 @@ export class SupplyCardComponent extends ModelCardComponent {
 
   dispatch(): void {
     // Load data
+    this.store.dispatch(SupplyActions.loadSupplyById({ id: this.id }));
+
   }
-  passData(data: DetailedAccessory) {
+  passData(data: any) {
     return [
       {
         label: "Infos",
