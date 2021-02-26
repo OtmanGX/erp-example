@@ -36,7 +36,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { InputSelectComponent } from './components/form/input-select.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { NgxMatTagInputModule } from 'ngx-mat-tag-input';
 import { TagInputComponent } from './components/form/tag-input.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -96,7 +95,6 @@ const OTHER_MODULES = [
   CommonModule,
   ReactiveFormsModule,
   FormsModule,
-  NgxMatTagInputModule,
   MatNativeDateModule
 ];
 
