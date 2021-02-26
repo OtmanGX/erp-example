@@ -43,6 +43,8 @@ export class WarehouseTransfertComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
+          console.log( result.order_items)
+
           this.store.dispatch(transferOrderActions.addTransferOrder({TransferOrder: {
             fromWarehouseid: result.fromWarehouse,
             toWarehouseid: result.toWarehouse,

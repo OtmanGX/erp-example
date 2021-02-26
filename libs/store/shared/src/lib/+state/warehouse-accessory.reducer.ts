@@ -18,7 +18,10 @@ export interface WarehouseAccessoryPartialState {
 
 export const warehouseAccessoryAdapter: EntityAdapter<Substance> = createEntityAdapter<
 Substance
->();
+>({
+  selectId: (substance: Substance) => substance.substanceid,
+
+});
 
 export const initialState: State = warehouseAccessoryAdapter.getInitialState({
   // set initial required properties

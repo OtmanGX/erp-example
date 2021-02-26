@@ -14,7 +14,7 @@ export class WarehouseAccessoryEffects {
     return this.actions$.pipe(
       ofType(WarehouseAccessoryActions.loadWarehouseAccessory),
       mergeMap((action) =>
-        this.warehouseSubstanceService.getAccessoriesSubstances(action.type).pipe(
+        this.warehouseSubstanceService.getAccessoriesSubstances(action.id).pipe(
           map((data) =>
           WarehouseAccessoryActions.loadWarehouseAccessorySuccess({ warehouseAccessory: data })
           ),

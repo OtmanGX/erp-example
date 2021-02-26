@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfigGlass } from '../../../utils/forms';
-import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
+import { SharedFacade } from '@tanglass-erp/store/shared';
 import * as productSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
 import * as productActions from '@TanglassStore/product/lib/actions/glass.actions';
 import { map } from 'rxjs/operators';
@@ -25,7 +25,7 @@ export class PopGlasseComponent extends FormDialog   {
 
   constructor(
     public dialogRef: MatDialogRef<PopGlasseComponent>,
-    private facade: ShortCompanyFacade,
+    private facade: SharedFacade,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private store: Store
   ) {

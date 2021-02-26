@@ -30,10 +30,7 @@ export class ShortFeatureService {
     private getShortSubstancesGQL: GetShortSubstancesGQL,
     private getShortProvidersGQL: GetShortProvidersGQL,
 
-  ) {
-    let data:ShortProvider[]
-    this.getShortProviders().subscribe(o=>data=o.data.contact_provider)
-   }
+  ) {}
 
 
   getAllCompanies() {

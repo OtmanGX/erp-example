@@ -6,14 +6,10 @@ import {
   regConfigTransferOrderEdit,
   regConfigTransferOrderItem
 } from '@TanglassUi/inventory/utils/forms';
-import { WarehousesFacade } from '@tanglass-erp/store/inventory';
 import { map, takeUntil } from 'rxjs/operators';
 import { FormArray } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import * as accessorySelectors from '@TanglassStore/product/lib/selectors/accessory.selectors';
-import * as glassSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
-import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
-import * as GlassActions from '@TanglassStore/product/lib/actions/glass.actions';
+import { SharedFacade } from '@tanglass-erp/store/shared';
 
 @Component({
   selector: 'ngx-pop-sale-points',
@@ -25,20 +21,25 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   regConfig: FieldConfig[];
   formArray = new FormArray([]);
   orderForms = [];
-  accessories$ = this.store.select(accessorySelectors.getAllAccessories);
-  glasses$ = this.store.select(glassSelectors.getAllGlasses);
-  substances  = {Verre: this.glasses$, Accessoire: this.accessories$};
-  warehouses$ = this.facade.allWarehouses$
+  glasses$ = this.facade.allWarehouseGlass$.pipe(
+    map(elem => elem.map(val => ({ key: val.substanceid, value: val.label })))
+  );;
+
+  accessories$ = this.facade.allWarehouseAccessory$.pipe(
+    map(elem => elem.map(val => ({ key: val.substanceid, value: val.label })))
+  );
+  substances = {};
+
+  warehouses$ = this.facade.allShortWarehouse$
     .pipe(
-      map(elem => elem.map(val => ({key: val.id, value: val.name})))
+      map(elem => elem.map(val => ({ key: val.id, value: val.name })))
     );
   warehouses: Array<any>;
 
-  @ViewChild('transfert_form', {read: DynamicFormComponent})
+  @ViewChild('transfert_form', { read: DynamicFormComponent })
   transfertFormComponent: DynamicFormComponent;
   @ViewChildren('orderItem') dynamicForms: QueryList<DynamicFormComponent>;
 
-  // Getters
   get transfertForm() {
     return this.transfertFormComponent?.form;
   }
@@ -47,26 +48,26 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
     public dialogRef: MatDialogRef<PopWarehouseTransfertComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private store: Store,
-    private facade: WarehousesFacade,
-    //private Substancefacade:WarehouseSubstanceFacade,
+    private facade: SharedFacade,
     private cdr: ChangeDetectorRef
   ) {
     super(dialogRef, data);
   }
 
   ngOnInit() {
-    this.store.dispatch(AccessoryActions.loadAccessories());
-    this.store.dispatch(GlassActions.loadGlasses());
-    super.ngOnInit();
 
+    this.facade.loadAllShortWarehouses();
+    super.ngOnInit();
   }
 
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
     ['fromWarehouse', 'toWarehouse'].forEach(item => {
       this.transfertForm.get(item).valueChanges
-        .subscribe(value => {this.syncWarehouses(item, value);
-          }
+        .subscribe(value => {
+          this.syncWarehouses(item, value);
+          if (item == 'toWarehouse') this.loadItems(value)
+        }
         );
       }
     );
@@ -76,23 +77,18 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
     this.newOrderItem();
   }
 
-  affectWarehouse(warehouseid){
-    console.log(warehouseid)
-   // this.accessories$ = this.Substancefacade.loadWarehouseAccessories({id:warehouseid});
-   // this.glasses$ = this.Substancefacade.loadWarehouseGlasses({id:warehouseid});
-    this.substances  = {Verre: this.glasses$, Accessoire: this.accessories$};
-      console.log(this.substances)
+  loadItems(warehouseid) {
+    this.facade.loadAllWarehouseAccessories(warehouseid);
+    this.facade.loadAllWarehouseGlasses(warehouseid);
+    this.substances['Accessoire'] = this.accessories$;
+    this.substances['Verre'] = this.glasses$;
   }
 
   buildForm(): void {
     this.regConfig = regConfigTransferOrder(this.data);
-    this.warehouses$.pipe(takeUntil(this._onDestroy)).subscribe(value => {
-      if (!!value)
-        this.warehouses = value;
-        this.regConfig = this.data?.id ?
-          regConfigTransferOrderEdit(this.data, this.warehouses)
-          : regConfigTransferOrder(this.data, this.warehouses);
-    });
+    this.regConfig = this.data?.id ?
+      regConfigTransferOrderEdit(this.data, this.warehouses$)
+      : regConfigTransferOrder(this.data, this.warehouses$);
   }
 
   assignOrderItemForms() {
@@ -109,15 +105,18 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   }
 
   syncSubstances(component: DynamicFormComponent, typeSubstance: string) {
-    component.remakeField('substance', {options: this.substances[typeSubstance]});
+    component.remakeField('substance', { options: this.substances[typeSubstance] });
   }
 
   syncWarehouses(inputName, value) {
     const selectInput = this.regConfig.find(elem => elem.name === 'fromWarehouse');
     const selectInput2 = this.regConfig.find(elem => elem.name === 'toWarehouse');
-    if (inputName === 'fromWarehouse')
-      selectInput2.options = this.warehouses.filter(item => item.key !== value);
-    else selectInput.options = this.warehouses.filter(item => item.key !== value);
+    this.warehouses$.pipe(takeUntil(this._onDestroy)).subscribe(warhouses => {
+      if (inputName === 'fromWarehouse')
+        selectInput2.options = warhouses.filter(item => item.key !== value);
+      else
+        selectInput.options = warhouses.filter(item => item.key !== value);
+    });
   }
 
   newOrderItem() {

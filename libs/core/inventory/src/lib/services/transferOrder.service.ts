@@ -4,8 +4,8 @@ import {
   GetTransferOrderByIdGQL,
   InsertTransferOrderGQL,
   GetAllOrdersDetailsGQL,
-  InsertItemTranfserGQL,
-  InsertItemTranfserMutationVariables
+  InsertTranfserGQL,
+  InsertTranfserMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
 import * as fromTransfer from "../models/transrefOrder.model";
@@ -21,7 +21,7 @@ export class TransferOrderService {
     private getTransferOrderByIdGQL: GetTransferOrderByIdGQL,
     private insertTransferOrderGQL: InsertTransferOrderGQL,
     private getAllOrdersDetailsGQL: GetAllOrdersDetailsGQL,
-    private insertItemTranfserGQL: InsertItemTranfserGQL,
+    private insertItemTranfserGQL: InsertTranfserGQL,
 
   ) {
    
@@ -42,7 +42,7 @@ export class TransferOrderService {
   }
 
 
-  addTransfered(value:InsertItemTranfserMutationVariables){
+  addTransfered(value:InsertTranfserMutationVariables){
     return this.insertItemTranfserGQL.mutate(value)
 
   }
@@ -51,7 +51,6 @@ export class TransferOrderService {
   }
 
   insertOne(createdOne: fromTransfer.InsertedTransferOrder) {
-    console.log(createdOne);
     return this.insertTransferOrderGQL.mutate(createdOne)
   }
 

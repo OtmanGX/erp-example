@@ -3,6 +3,7 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as ShortProviderActions from './short-provider.actions';
 import { ShortProvider } from '@tanglass-erp/core/common';
+import { deflateRawSync } from 'zlib';
 
 export const SHORT_PROVIDER_FEATURE_KEY = 'shortProvider';
 
@@ -18,7 +19,10 @@ export interface ShortProviderPartialState {
 
 export const shortProviderAdapter: EntityAdapter<ShortProvider> = createEntityAdapter<
 ShortProvider
->();
+>({
+  selectId: (provider: ShortProvider) => provider.code,
+
+});
 
 export const initialState: State = shortProviderAdapter.getInitialState({
   // set initial required properties

@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfService } from '../../../../utils/forms';
 import { map } from 'rxjs/operators';
-import { ShortCompanyFacade } from '@tanglass-erp/store/shared';
+import { SharedFacade } from '@tanglass-erp/store/shared';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class PopServiceComponent extends FormDialog {
 
   constructor(
     public dialogRef: MatDialogRef<PopServiceComponent>,
-    private facade: ShortCompanyFacade,
+    private facade: SharedFacade,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     super(dialogRef, data);

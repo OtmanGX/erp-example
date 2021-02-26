@@ -5,6 +5,8 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopSuppliesComponent } from './pop-supplies/pop-supplies.component';
 import { SuppliesHeaders } from '../../utils/grid-headers';
+import * as SupplySelectors from '@TanglassStore/product/lib/selectors/supply.selectors';
+import * as SupplyActions from '@TanglassStore/product/lib/actions/supply.actions';
 import { Store } from '@ngrx/store';
 
 
@@ -15,7 +17,7 @@ import { Store } from '@ngrx/store';
 })
 export class ListSuppliesComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$: Observable<any>;
+  data$ = this.store.select(SupplySelectors.getAllSupplies);
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
@@ -29,6 +31,8 @@ export class ListSuppliesComponent implements GridView {
 
   ngOnInit(): void {
     // load data
+    this.store.dispatch(SupplyActions.loadSupplies());
+
   }
 
   ngAfterViewInit(): void {
@@ -63,6 +67,8 @@ export class ListSuppliesComponent implements GridView {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (action === Operations.add) {
+          this.store.dispatch(SupplyActions.addSupply({ supply: result }));
+
         } else { } // Update
       }
     });

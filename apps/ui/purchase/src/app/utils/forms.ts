@@ -1,9 +1,15 @@
 import { REQUIRED } from '@tanglass-erp/material';
 
-const regConfigDelivery = (data?, warehouses: any = []) => [
+import { FormDialog } from '@tanglass-erp/material';
+import { Observable } from 'rxjs';
+
+
+type ListObservable = Observable<any> | Array<any>;
+
+const regConfigDelivery = (data?, providers: ListObservable = [], warehouses: ListObservable = []) => [
     {
       type: "select", name: "provider", label: "Fournisseur",
-      inputType: "text", value: data?.fromwarehouse?.id, options: warehouses, validations: [REQUIRED]
+      inputType: "text", value: data?.fromwarehouse?.id, options: providers, validations: [REQUIRED]
     },
     {
       type: "select", name: "Warehouse", label: "Emplacement",
@@ -15,12 +21,10 @@ const regConfigDelivery = (data?, warehouses: any = []) => [
     },
   ];
 
-const regConfigDeliveryItem = (data?, substances: any = []) => [
+const regConfigDeliveryItem = (data?, substances: ListObservable = []) => [
 
-    {type: "selectSearch", name: "substance", label: "Substance",
+    {type: "select", name: "substance", label: "Substance",
       inputType: "text", value: data?.substance ?? [],
-      filterFields: ['product.label'],
-      fieldsToShow: ['product.label'],
       options: substances},
     {
       type: "input", name: "quantity", label: "Quantité",
@@ -29,7 +33,7 @@ const regConfigDeliveryItem = (data?, substances: any = []) => [
   ];
 
 
-export {
-  regConfigDelivery,
-  regConfigDeliveryItem
-};
+  export {
+    regConfigDelivery,
+    regConfigDeliveryItem
+  };

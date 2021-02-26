@@ -2,7 +2,9 @@ import { createAction, props } from '@ngrx/store';
 import { Substance } from '@tanglass-erp/core/common';
 
 export const loadWarehouseAccessory = createAction(
-  '[WarehouseAccessory] Load WarehouseAccessory'
+  '[WarehouseAccessory] Load WarehouseAccessory',
+  props<{ id: any }>()
+
 );
 
 export const loadWarehouseAccessorySuccess = createAction(
