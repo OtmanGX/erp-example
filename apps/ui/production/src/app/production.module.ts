@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ProductionComponent } from './production.component';
 import { ListOrdersComponent } from './list-orders/list-orders.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';

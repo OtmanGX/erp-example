@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MainContactComponent } from './main-contact.component';
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
 import { CustomerComponent } from './pages/customer/customer.component';

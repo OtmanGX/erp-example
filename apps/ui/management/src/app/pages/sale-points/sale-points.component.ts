@@ -5,10 +5,9 @@ import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoi
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
-import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
+import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { SalePointHeaders } from '@TanglassUi/management/utils/grid-headers';
-import { Operations } from '@tanglass-erp/ag-grid';
 
 
 @Component({

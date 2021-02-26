@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { FieldConfig, FormDialog } from '@tanglass-erp/material';
+import { FieldConfig, FormDialog, MustMatch } from '@tanglass-erp/material';
 import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoint.actions';
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
 import { regConfigEmployee } from '@TanglassUi/management/utils/forms';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 export class DialogEmployeeComponent extends FormDialog implements OnDestroy {
 
   regConfig: FieldConfig[];
-
+  reConfigValidator = MustMatch('password', 'confirmPassword');
   salePoints$ = this.store.select(SalePointSelectors.getAllSalePoints);
   salePointsSubscription: Subscription;
 

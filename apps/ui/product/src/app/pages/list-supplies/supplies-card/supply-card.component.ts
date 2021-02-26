@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { DetailedAccessory } from "@TanglassStore/product/index";
+import { DetailedAccessory } from '@TanglassStore/product/index';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';

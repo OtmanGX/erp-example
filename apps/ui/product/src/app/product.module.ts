@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ProductComponent } from './product.component';
 import { ListGlasseComponent } from './pages/list-glasse/list-glasse.component';
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
@@ -23,7 +23,7 @@ import { ServiceGlassCardComponent } from './pages/list-service-glasse/service-g
 import { PopServiceConfigComponent } from './pages/list-service/pop-service-config/pop-service-config.component';
 import { PopServiceComponent } from './pages/list-service/service-card/pop-service/pop-service.component';
 import { StoreProductModule } from '@TanglassStore/product/index';
-import { StoreSharedModule} from "@tanglass-erp/store/shared";
+import { StoreSharedModule } from '@tanglass-erp/store/shared';
 import { PopSuppliesComponent } from '@TanglassUi/product/pages/list-supplies/pop-supplies/pop-supplies.component';
 import { ListSuppliesComponent } from '@TanglassUi/product/pages/list-supplies/list-supplies.component';
 import { SupplyCardComponent } from '@TanglassUi/product/pages/list-supplies/supplies-card/supply-card.component';

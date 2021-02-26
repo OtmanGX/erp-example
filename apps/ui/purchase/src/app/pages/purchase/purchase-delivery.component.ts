@@ -2,10 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import  { PurchaseHeaders } from '../../utils/grid-header'
+import { PurchaseHeaders } from '../../utils/grid-header';
 import { PopDeliveryComponent } from './pop-delivery/pop-delivery.component';
 
-import { of } from "rxjs";
+import { of } from 'rxjs';
 
 @Component({
   selector: 'tanglass-erp-delivery',
