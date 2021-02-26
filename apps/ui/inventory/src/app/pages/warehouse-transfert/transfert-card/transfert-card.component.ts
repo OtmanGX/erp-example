@@ -69,6 +69,7 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
       {
         label: "Les Articles",
         isToolbar: "true",
+        cols: 3,
         data: []
       }
     ];
