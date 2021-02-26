@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 import { Component, ViewChild } from '@angular/core';
 import * as UserActions from '@TanglassStore/management/lib/actions/user.actions';
 import * as UserSelectors from '@TanglassStore/management/lib/selectors/user.selectors';
-import { AppState} from '@tanglass-erp/store/app';
+import { AppState } from '@tanglass-erp/store/app';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEmployeeComponent } from '@TanglassUi/management/pages/employees/dialog-employee/dialog-employee.component';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';

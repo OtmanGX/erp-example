@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { DetailedAccessory } from "@TanglassStore/product/index";
+import { DetailedAccessory } from '@TanglassStore/product/index';
 import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
 import { getSelectedAccessory } from '@TanglassStore/product/lib/selectors/accessory.selectors';
 import { ModelCardComponent } from '@tanglass-erp/material';

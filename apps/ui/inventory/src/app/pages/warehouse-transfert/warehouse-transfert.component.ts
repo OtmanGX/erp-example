@@ -6,7 +6,7 @@ import { PopWarehouseTransfertComponent } from '@TanglassUi/inventory/pages/ware
 import * as TranserOrderSelectors from '@TanglassStore/inventory/lib/selectors/trasnferOrder.selectors';
 import * as transferOrderActions from '@TanglassStore/inventory/lib/actions/transferOrder.actions';
 import { Store } from '@ngrx/store';
-import { warehouseTransferHeaders , ordersDetailsHeaders} from '../../utils/grid-headers';
+import { ordersDetailsHeaders, warehouseTransferHeaders } from '../../utils/grid-headers';
 
 @Component({
   selector: 'tanglass-erp-warehouses',

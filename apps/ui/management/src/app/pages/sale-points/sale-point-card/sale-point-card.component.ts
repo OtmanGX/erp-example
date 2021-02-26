@@ -6,6 +6,7 @@ import { AppState } from '@tanglass-erp/store/app';
 import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoint.actions';
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
 import { takeWhile } from 'rxjs/operators';
+
 @Component({
   selector: 'ngx-sale-point-card',
   templateUrl: './sale-point-card.component.html',

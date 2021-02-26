@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, QueryList, ViewChildren } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormComponent, FormDialog, Groupfield } from '@tanglass-erp/material';
 import { regConfigServiceConfig, regParamForm } from '../../../utils/forms';

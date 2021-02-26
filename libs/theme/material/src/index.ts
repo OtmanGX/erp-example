@@ -1,4 +1,5 @@
 export * from './lib/material.module';
+export * from './helpers/validators';
 export * from './lib/interfaces/field.interface';
 export * from './lib/interfaces/groupfield.interface';
 export * from './lib/interfaces/card-config';
