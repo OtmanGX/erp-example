@@ -18,7 +18,7 @@ export class WarehouseCardComponent extends ModelCardComponent {
     .pipe(takeUntil(this._onDestroy));
 
   constructor(private activatedRoute: ActivatedRoute,
-              private facade: WarehousesFacade) {
+              protected facade: WarehousesFacade) {
     super(activatedRoute);
   }
 
