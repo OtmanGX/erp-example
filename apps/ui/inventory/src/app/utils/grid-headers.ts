@@ -3,7 +3,7 @@ const warehouseHeaders = [
     field: 'name', headerName: 'Nom', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-        link: `${params?.data?.id}`,
+        link: `${params?.data?.id || params?.data?.warehouse?.id}`,
       }
     )
   },
@@ -67,13 +67,7 @@ const orderItemsHeaders = [
 ];
 
 const SubstanceGlassHeaders = [
-  { field: 'substance.productGlass.code', headerName: 'Code', type: "linkColumn",
-    cellRendererParams: (params) => (
-      {
-        link: `${params?.data?.substance.productGlass.id}`,
-      }
-    )
- },
+  { field: 'substance.productGlass.code', headerName: 'Code', type: "textColumn" },
   ...ProductHeaders.filter( elm => elm.field !== 'code').map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productGlass.' + elem.field) && elem),
   { field: 'substance.glass.type', headerName: 'Type', type: "textColumn" },
   { field: 'substance.glass.color', headerName: 'Couleur', type: "textColumn" },

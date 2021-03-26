@@ -53,16 +53,16 @@ export class ServiceCardComponent extends ModelCardComponent implements GridView
 
   passData(data: DetailedServiceConfig) {
     this.services$ = of(data.services).pipe(take(1));
-    this.title=data.name
+    this.title = data.name;
     return [
       {
         label: "Détails",
-        isToolbar:"true",
-        cols:3,
-        icons:[{name:"edit",tooltip:"Modification",event:'editMain'}],
+        isToolbar: "true",
+        cols: 3,
+        icons: [ {name: "edit", tooltip: "Modification", event: 'editMain'} ],
         data:
           [
-            { label: 'réf.d\'usine', value: null },
+            { label: 'réf.d\'usine', value: data?.labelFactory },
             { label: 'createdAt', value: data?.createdAt },
             { label: 'createdBy', value: data?.createdBy },
             { label: 'updatedAt', value: data?.updatedAt },
@@ -70,10 +70,6 @@ export class ServiceCardComponent extends ModelCardComponent implements GridView
           ]
 
       },
-      //{ label: 'Nom', value: data?.name },
-      //{ label: 'Paramètres', value: null },
-      { label: 'Consommables/MP', value: null },
-
     ];
   }
 
