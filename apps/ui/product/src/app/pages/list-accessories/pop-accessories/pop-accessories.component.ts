@@ -16,8 +16,9 @@ export class PopAccessoriesComponent extends FormDialog {
   title = "Ajouter un accessoire";
   regConfig: Groupfield[];
   listCompanies = this.facade.allShortCompany$
-    .pipe(map(item => item.map(company => ({key: company.id, value: company.name})))
+    .pipe(map(item => item.map(company => ({ key: company.id, value: company.name })))
     );
+
 
   constructor(
     public dialogRef: MatDialogRef<PopAccessoriesComponent>,

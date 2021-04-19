@@ -18,7 +18,9 @@ export interface ShortProductPartialState {
 
 export const shortProductAdapter: EntityAdapter<ShortSubstance> = createEntityAdapter<
 ShortSubstance
->();
+>({
+  selectId: (product: ShortSubstance) => product.code,
+})
 
 export const initialState: State = shortProductAdapter.getInitialState({
   // set initial required properties
