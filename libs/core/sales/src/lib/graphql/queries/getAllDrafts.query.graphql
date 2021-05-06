@@ -1,0 +1,14 @@
+query GetAllDrafts {
+  sales_draft {
+      id
+ company {
+      name
+    }    customer {
+      name
+      phone
+    }
+    date
+
+    status
+  }
+}

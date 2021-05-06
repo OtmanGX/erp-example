@@ -1581,6 +1581,66 @@
           }
         }
       }
+    },
+    "store-sales": {
+      "projectType": "library",
+      "root": "libs/store/sales",
+      "sourceRoot": "libs/store/sales/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/sales/tsconfig.lib.json",
+              "libs/store/sales/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/sales/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/sales/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "core-sales": {
+      "projectType": "library",
+      "root": "libs/core/sales",
+      "sourceRoot": "libs/core/sales/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/sales/tsconfig.lib.json",
+              "libs/core/sales/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/sales/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/sales/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "schematics": {

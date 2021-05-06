@@ -1,0 +1,20 @@
+mutation insertServiceDraft($company_name: String, $company_id: uuid, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: String, $unit: String, $draft_id: Int, $glass_draft_id: uuid, $m2: numeric = "") {
+  insert_sales_service_draft_one(object: {product_draft: {data: {company_name: $company_name, company_id: $company_id, label: $label, price: $price, product_code: $product_code,  total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id, m2: $m2}}, glass_draft_id: $glass_draft_id}) {
+    id
+    product_draft {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      total_price
+      type
+      unit
+      width
+    }
+  }
+}

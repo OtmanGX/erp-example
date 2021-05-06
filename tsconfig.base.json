@@ -47,7 +47,9 @@
       "@tanglass-erp/core/inventory": ["libs/core/inventory/src/index.ts"],
       "@tanglass-erp/store/inventory": ["libs/store/inventory/src/index.ts"],
       "@tanglass-erp/store/shared": ["libs/store/shared/src/index.ts"],
-      "@tanglass-erp/core/common": ["libs/core/common/src/index.ts"]
+      "@tanglass-erp/core/common": ["libs/core/common/src/index.ts"],
+      "@tanglass-erp/store/sales": ["libs/store/sales/src/index.ts"],
+      "@tanglass-erp/core/sales": ["libs/core/sales/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."
