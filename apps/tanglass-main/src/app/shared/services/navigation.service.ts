@@ -165,6 +165,21 @@ export class NavigationService {
       icon: "assignment_ind",
       state: "product/service"
     },
+    // *** Sales ***
+    {
+      name: "Ventes",
+      type: "separator"
+    },
+    {
+      name: "Drafts",
+      type: "link",
+      icon: "assignment_ind",
+      state: "sales/draft"
+    },
+   
+ 
+  
+  
   ];
 
 

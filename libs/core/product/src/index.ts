@@ -15,3 +15,4 @@ export * from './lib/services/accessory.service';
 export * from './lib/services/consumable.service';
 export * from './lib/services/glass.service';
 export * from './lib/services/servicesConfig.service';
+export * from './lib/services/service.service';

@@ -23,7 +23,7 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   orderForms = [];
   glasses$ = this.facade.allWarehouseGlass$.pipe(
     map(elem => elem.map(val => ({ key: val.substanceid, value: val.label })))
-  );;
+  );
 
   accessories$ = this.facade.allWarehouseAccessory$.pipe(
     map(elem => elem.map(val => ({ key: val.substanceid, value: val.label })))
@@ -36,8 +36,7 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
     );
   warehouses: Array<any>;
 
-  @ViewChild('transfert_form', { read: DynamicFormComponent })
-  transfertFormComponent: DynamicFormComponent;
+  @ViewChild('transfert_form', { read: DynamicFormComponent }) transfertFormComponent: DynamicFormComponent;
   @ViewChildren('orderItem') dynamicForms: QueryList<DynamicFormComponent>;
 
   get transfertForm() {
