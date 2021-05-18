@@ -19,7 +19,9 @@ export interface servicePartialState {
 
 export const serviceAdapter: EntityAdapter<Service> = createEntityAdapter<
 Service
->();
+>({
+  selectId: (product: Service) => product.product.code,
+});
 
 export const initialState: State = serviceAdapter.getInitialState({
   // set initial required properties

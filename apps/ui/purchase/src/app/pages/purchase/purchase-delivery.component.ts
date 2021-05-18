@@ -55,7 +55,6 @@ export class PurchaseDeliveryComponent implements GridView {
   }
 
   openDialog(action, data = {}) {
-    console.log('hefklerf')
     const dialogRef = this.dialog.open(PopDeliveryComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',

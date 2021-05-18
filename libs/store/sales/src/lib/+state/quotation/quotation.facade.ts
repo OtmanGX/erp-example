@@ -9,7 +9,7 @@ import * as QuotationSelectors from './quotation.selectors';
 export class QuotationFacade {
   loaded$ = this.store.pipe(select(QuotationSelectors.getQuotationLoaded));
   allQuotation$ = this.store.pipe(select(QuotationSelectors.getAllQuotation));
-  selectedQuotation$ = this.store.pipe(select(QuotationSelectors.getSelected));
+  selectedQuotation$ = this.store.pipe(select(QuotationSelectors.getSelectedQuotation));
 
   constructor(private store: Store<fromQuotation.QuotationPartialState>) {}
 

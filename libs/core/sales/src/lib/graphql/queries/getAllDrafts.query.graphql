@@ -3,12 +3,12 @@ query GetAllDrafts {
       id
  company {
       name
-    }    customer {
+    }    
+ customer {
       name
       phone
     }
     date
-
     status
   }
 }

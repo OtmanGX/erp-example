@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   QUOTATION_FEATURE_KEY,
-  State,
+  QuotationState,
   QuotationPartialState,
   quotationAdapter,
 } from './quotation.reducer';
@@ -9,38 +9,38 @@ import {
 // Lookup the 'Quotation' feature state managed by NgRx
 export const getQuotationState = createFeatureSelector<
   QuotationPartialState,
-  State
+  QuotationState
 >(QUOTATION_FEATURE_KEY);
 
 const { selectAll, selectEntities } = quotationAdapter.getSelectors();
 
 export const getQuotationLoaded = createSelector(
   getQuotationState,
-  (state: State) => state.loaded
+  (state: QuotationState) => state.loaded
 );
 
 export const getQuotationError = createSelector(
   getQuotationState,
-  (state: State) => state.error
+  (state: QuotationState) => state.error
 );
 
 export const getAllQuotation = createSelector(
   getQuotationState,
-  (state: State) => selectAll(state)
+  (state: QuotationState) => selectAll(state)
 );
 
 export const getQuotationEntities = createSelector(
   getQuotationState,
-  (state: State) => selectEntities(state)
+  (state: QuotationState) => selectEntities(state)
 );
 
-export const getSelectedId = createSelector(
+export const getSelectedIdQuotation = createSelector(
   getQuotationState,
-  (state: State) => state.selectedId
+  (state: QuotationState) => state.selectedId
 );
 
-export const getSelected = createSelector(
+export const getSelectedQuotation = createSelector(
   getQuotationEntities,
-  getSelectedId,
+  getSelectedIdQuotation,
   (entities, selectedId) => selectedId && entities[selectedId]
 );

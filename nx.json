@@ -112,6 +112,13 @@
     },
     "core-sales": {
       "tags": []
+    },
+    "ui-sales": {
+      "tags": []
+    },
+    "ui/sales-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-sales"]
     }
   }
 }
