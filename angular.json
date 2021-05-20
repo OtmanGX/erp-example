@@ -112,6 +112,7 @@
             "allowedCommonJsDependencies": [
               "angular2-chartjs",
               "echarts",
+              "chart.js",
               "lodash",
               "zrender/lib/svg/svg",
               "zrender/lib/vml/vml",
