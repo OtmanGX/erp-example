@@ -4,7 +4,7 @@ import { select, Store, Action } from '@ngrx/store';
 
 import * as fromQuotation from './quotation.reducer';
 import * as QuotationSelectors from './quotation.selectors';
-
+import * as QuotationsActions from './quotation.actions';
 @Injectable()
 export class QuotationFacade {
   loaded$ = this.store.pipe(select(QuotationSelectors.getQuotationLoaded));
@@ -15,5 +15,9 @@ export class QuotationFacade {
 
   dispatch(action: Action) {
     this.store.dispatch(action);
+  }
+
+  loadAllQuotations() {
+    this.dispatch(QuotationsActions.loadQuotations());
   }
 }

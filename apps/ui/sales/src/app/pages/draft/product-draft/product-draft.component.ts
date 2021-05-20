@@ -4,8 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopProductComponent } from "../pop-product/pop-product.component";
 import { FieldConfig } from '@tanglass-erp/material';
 import { Store } from '@ngrx/store';
-import { ELEMENT_DATA } from "./mock-data";
-import { ProductDraftHeaders } from "../../../utils/table-headers";
+import { ProductDraftHeaders } from "../../../utils/grid-headers";
 import { DraftItem } from "../../../utils/models";
 import { ProductDraftFacade } from "@tanglass-erp/store/sales";
 import { ProductsTypes, GlassGroup, ServiceGroup, AccessoryGroup } from "../../../utils/enums";
@@ -17,12 +16,16 @@ import { ProductsTypes, GlassGroup, ServiceGroup, AccessoryGroup } from "../../.
 })
 
 export class ProductDraftComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'product_code', 'label', 'count',
-    'heigth', 'width', 'm2', 'ml', 'unit', 'price', 'total_price', 'company_name', 'action'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = [ 'product_code', 'label', 'count','heigth',
+   'width', 'm2', 'ml', 'unit', 'price', 'total_price', 'company_name', 
+  'action'];
+  dataSourceGlass=[] ;
+  dataSourceArticles=[] ;
+
   headers = ProductDraftHeaders
   regConfig: FieldConfig[];
-  Products = this.facade.allProduct$;
+  products$ = this.facade.allProduct$;
+  
 
   @ViewChild(MatTable, { static: true }) table: MatTable<DraftItem>;
   @Input() draft_id;
@@ -32,13 +35,18 @@ export class ProductDraftComponent implements OnInit {
     private facade: ProductDraftFacade,
   ) { }
   ngOnInit(): void {
+   
+
   }
 
   ngOnChanges() {
-
-    console.log(this.draft_id[0]?.id)
     this.facade.loadAllProducts(this.draft_id[0]?.id)
-
+    this.products$.subscribe(
+      items => {
+        this.dataSourceGlass = items.filter(item => item.type == ProductsTypes.glass);
+        this.dataSourceArticles = items.filter(item => item.type !== ProductsTypes.glass);
+      }
+    )
   }
 
   addRowData(row_obj) {
@@ -47,9 +55,7 @@ export class ProductDraftComponent implements OnInit {
   }
 
   deleteRowData(row_obj) {
-    this.dataSource = this.dataSource.filter((value, key) => {
-      return value.id != row_obj.id;
-    });
+
   }
   openDialog(action, product_type: string, row?: DraftItem) {
     const dialogRef = this.dialog.open(PopProductComponent, {

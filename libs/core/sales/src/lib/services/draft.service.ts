@@ -12,7 +12,7 @@ import {
   GetProductsGroupGQL,
   Sales_Product_Type_Enum
 } from '@tanglass-erp/infrastructure/graphql';
-import { Product_draft } from "../models/draft";
+import { Product_draft } from "../models/product";
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +32,8 @@ export class DraftService {
   }
 
   getAll() {
+ 
+
     return this.getAllDraftsGQL.watch().valueChanges
 
   }
@@ -56,7 +58,6 @@ export class DraftService {
   //Get all the products in a draft (order or quotation)
   getDraftPorducts(draft_id: number) {
     return this.getProductsByTypeGQL.watch({ draft_id }).valueChanges
-
   }
   //Get just the glasses in a draft (order or quotation)
 

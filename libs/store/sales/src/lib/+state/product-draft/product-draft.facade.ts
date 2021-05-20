@@ -27,7 +27,7 @@ export class ProductDraftFacade {
   }
 
   loadAllProducts(draft_id: number) {
-    this.dispatch(ProductsActions.loadProduct({ draft_id }));
+    this.dispatch(ProductsActions.loadProducts({ draft_id }));
   }
 
   addGlass(product) {

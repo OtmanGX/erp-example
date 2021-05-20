@@ -9,16 +9,16 @@ import { of } from 'rxjs';
 export class ProductDraftEffects {
 
 
-  loadProductDraft$ = createEffect(() => {
+  loadProductsDraft$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ProductActions.loadProduct),
+      ofType(ProductActions.loadProducts),
       mergeMap((action) =>
         this.ProductService.getDraftPorducts(action.draft_id).pipe(
           map((data) =>
-            ProductActions.loadProductSuccess({ product: data.data.sales_product_draft })
+            ProductActions.loadProductsSuccess({ products: data.data.sales_product_draft })
           ),
           catchError((error) =>
-            of(ProductActions.loadProductFailure({ error }))
+            of(ProductActions.loadProductsFailure({ error }))
           )
         )
       )

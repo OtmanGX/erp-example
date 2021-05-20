@@ -4,25 +4,27 @@ import { fetch } from '@nrwl/angular';
 
 import * as fromQuotation from './quotation.reducer';
 import * as QuotationActions from './quotation.actions';
+import { QuotationService } from '@tanglass-erp/core/sales';
+import { mergeMap, map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
 export class QuotationEffects {
-  loadQuotation$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(QuotationActions.loadQuotation),
-      fetch({
-        run: (action) => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
-          return QuotationActions.loadQuotationSuccess({ quotation: [] });
-        },
-
-        onError: (action, error) => {
-          console.error('Error', error);
-          return QuotationActions.loadQuotationFailure({ error });
-        },
-      })
+  loadQuotationsDraft$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(QuotationActions.loadQuotations),
+      mergeMap((action) =>
+        this.quotationService.getAll().pipe(
+          map((data) =>
+          QuotationActions.loadQuotationsSuccess({ quotations: data.data.sales_quotation })
+          ),
+          catchError((error) =>
+            of(QuotationActions.loadQuotationsFailure({ error }))
+          )
+        )
+      )
     )
-  );
+  });
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions, private quotationService:QuotationService) {}
 }

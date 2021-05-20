@@ -2,7 +2,6 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   PRODUCT_FEATURE_KEY,
   ProductState,
-  ProductPartialState,
   productAdapter,
 } from './product-draft.reducer';
 

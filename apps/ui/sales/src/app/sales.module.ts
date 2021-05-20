@@ -14,7 +14,8 @@ import { StoreSalesModule } from '@tanglass-erp/store/sales';
 import { StoreContactModule } from '@TanglassStore/contact/index';
 import { QuotationComponent } from './pages/quotation/quotation.component';
 import { OrderComponent } from './pages/order/order.component';
-
+import { CreateQuotationComponent } from './pages/quotation/create-quotation/create-quotation.component';
+import { CreateOrderComponent } from "./pages/order/create-order/create-order.component";
 @NgModule({
   declarations: [
     SalesComponent,
@@ -23,7 +24,9 @@ import { OrderComponent } from './pages/order/order.component';
     ProductDraftComponent,
     PopProductComponent,
     QuotationComponent,
-    OrderComponent],
+    OrderComponent,
+    CreateOrderComponent,
+    CreateQuotationComponent],
   imports: [
     CommonModule,
     SalesRoutingModule,

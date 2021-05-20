@@ -1,14 +1,14 @@
 import { createAction, props } from '@ngrx/store';
-import { QuotationEntity } from './quotation.models';
+import { Quotation } from "@tanglass-erp/core/sales";
 
-export const loadQuotation = createAction('[Quotation] Load Quotation');
+export const loadQuotations = createAction('[Quotations] Load Quotations');
 
-export const loadQuotationSuccess = createAction(
-  '[Quotation] Load Quotation Success',
-  props<{ quotation: QuotationEntity[] }>()
+export const loadQuotationsSuccess = createAction(
+  '[Quotations] Load Quotations Success',
+  props<{ quotations: Quotation[] }>()
 );
 
-export const loadQuotationFailure = createAction(
-  '[Quotation] Load Quotation Failure',
+export const loadQuotationsFailure = createAction(
+  '[Quotations] Load Quotations Failure',
   props<{ error: any }>()
 );
