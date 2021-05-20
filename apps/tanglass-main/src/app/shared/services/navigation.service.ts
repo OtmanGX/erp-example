@@ -171,14 +171,23 @@ export class NavigationService {
       type: "separator"
     },
     {
-      name: "Drafts",
+      name: "Brouillons",
       type: "link",
       icon: "assignment_ind",
       state: "sales/draft"
     },
-   
- 
-  
+    {
+      name: "Devis",
+      type: "link",
+      icon: "assignment_ind",
+      state: "sales/quotation"
+    },
+    {
+      name: "Commandes",
+      type: "link",
+      icon: "assignment_ind",
+      state: "sales/order"
+    },
   
   ];
 

@@ -36,14 +36,14 @@ export const initialProductState: ProductState = productAdapter.getInitialState(
 const productReducer = createReducer(
   initialProductState,
   
-  on(ProductActions.loadProduct, (state) => ({
+  on(ProductActions.loadProducts, (state) => ({
     ...state,
     loaded: false,
     error: null,
   })),
 
-  on(ProductActions.loadProductSuccess, (state, { product }) =>
-    productAdapter.setAll(product, { ...state, loaded: true })
+  on(ProductActions.loadProductsSuccess, (state,action) =>
+    productAdapter.setAll(action.products, { ...state, loaded: true })
   ),
 
   on(ProductActions.addGlassSuccess,
@@ -61,7 +61,7 @@ const productReducer = createReducer(
     (state, action) => productAdapter.addOne<ProductState>(action.service, state)
     ),
 
-  on(ProductActions.loadProductFailure,
+  on(ProductActions.loadProductsFailure,
     ProductActions.addGlassFailure,
     ProductActions.addAccessoryFailure,
     ProductActions.addConsumableFailure,

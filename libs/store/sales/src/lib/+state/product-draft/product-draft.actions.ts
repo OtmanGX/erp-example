@@ -7,19 +7,19 @@ import { Product_draft } from "@tanglass-erp/core/sales";
 /*****LOAD  Products ** */
 /****************************************************************** */
 
-export const loadProduct = createAction(
-  '[Product] Load ProductDraft',
+export const loadProducts = createAction(
+  '[Products] Load Products',
   props<{ draft_id: number }>()
 
 );
 
-export const loadProductSuccess = createAction(
-  '[Product] Load Product Success',
-  props<{ product: Product_draft[] }>()
+export const loadProductsSuccess = createAction(
+  '[Products] Load Products Success',
+  props<{ products: Product_draft[] }>()
 );
 
-export const loadProductFailure = createAction(
-  '[Product] Load Product Failure',
+export const loadProductsFailure = createAction(
+  '[Products] Load Products Failure',
   props<{ error: any }>()
 );
 

@@ -1,4 +1,4 @@
-
+import { Sales_Product_Type_Enum } from "@tanglass-erp/infrastructure/graphql";
 
 export interface Draft{
     id:number;
@@ -8,24 +8,5 @@ export interface Draft{
     date?:Date;
     company_id?:string;
 
-}
-
-export interface Product_draft{
-    id:string;
-    draft_id?:number;
-    product_code?:string;
-    label?:string;
-    count?:number;
-    width?:number;
-    heigth?:number;
-    quantity?:number;
-    price?:number;
-    total_price?:number;
-    company_name ?:string;
-    company_id?:string;
-    m2?:number;
-    ml?:number;
-    glass_draft_id?:string;
-    warehouse_id?:string;
 }
 

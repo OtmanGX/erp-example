@@ -13,14 +13,15 @@ export class DraftItem {
     id: string;
     product_code: string;
     label: string;
-    count: number;
+    count: number=0;
     heigth: number;
     width: number;
-    m2: number;
-    ml: number;
+    m2: number=0;
+    ml: number=0;
     unit: string;
     price: number;
-    total_price: number;
+    quantity:number=0;
+    total_price: number=0;
     company_name?: string;
   }
 

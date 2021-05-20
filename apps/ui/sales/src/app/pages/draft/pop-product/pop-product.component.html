@@ -1,4 +1,4 @@
-<ngx-dialog-body [title]="title">
+<ngx-dialog-body title="Nouveau">
   <div class="radio">
     <mat-radio-group aria-label="Select an option" [(ngModel)]="type">
       <mat-radio-button *ngFor="let type of types" [value]="type" (change)="getItems($event.value)">{{type}} </mat-radio-button>

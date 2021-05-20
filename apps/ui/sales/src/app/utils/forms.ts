@@ -221,14 +221,67 @@ const regConfigServiceItem = (
       options: companies,
       validations: [REQUIRED],
     },
-    {
-      type: "select", name: "warehouse_id", label: "Stock",
-      inputType: "text", value: data?.warehouse_id ?? [],
-      options: warehouses,
-      validations: [REQUIRED],
-    },
+ 
 
   ];
+
+  const regConfigConsumableItem = (
+    data?,
+    services: any = [],
+    companies: any = [],
+    warehouses: any = [],
+    quantities:any=[],
+    limit?: number
+  ) => [
+      {
+        type: "selectSearch",
+        name: "product_code",
+        label: "Code",
+        inputType: "text",
+        value: data?.product_code,
+        filterFields: ['id', 'label'],
+        fieldsToShow: ['id', 'label'],
+        options: services,
+      },
+      {
+        type: 'input',
+        name: 'label',
+        label: 'Désignation',
+        inputType: 'text',
+        value: data?.label,
+        validations: [REQUIRED, MAXNUMBER(limit)],
+      },
+   
+      {
+        type: 'inputSelect',
+        name: 'quantity',
+        label: 'Quantité',
+        inputType: 'number',
+        value: data?.quantity,
+        options:quantities ?? [],
+      },
+      {
+        type: 'input',
+        name: 'price',
+        label: 'P.U',
+        inputType: 'number',
+        value: data?.price,
+        validations: [REQUIRED, MAXNUMBER(limit)],
+      },
+      {
+        type: "select", name: "company_id", label: "Société",
+        inputType: "text", value: data?.company_id ?? [],
+        options: companies,
+        validations: [REQUIRED],
+      },
+      {
+        type: "select", name: "warehouse_id", label: "Stock",
+        inputType: "text", value: data?.warehouse_id ?? [],
+        options: warehouses,
+        //validations: [REQUIRED],
+      },
+  
+    ];
 export {
   regConfigDraftInfos,
   regConfigGlassItem,

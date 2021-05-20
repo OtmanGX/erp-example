@@ -392,6 +392,10 @@ export type Contact_Contact = {
   mail?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   note?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  orders: Array<Sales_Order>;
+  /** An aggregated array relationship */
+  orders_aggregate: Sales_Order_Aggregate;
   phone: Scalars['String'];
   /** An array relationship */
   providers: Array<Contact_Contact_Providers_View>;
@@ -499,6 +503,26 @@ export type Contact_ContactCutomers_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Contact_Contact_Customers_View_Order_By>>;
   where?: Maybe<Contact_Contact_Customers_View_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.contact" */
+export type Contact_ContactOrdersArgs = {
+  distinct_on?: Maybe<Array<Sales_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Order_Order_By>>;
+  where?: Maybe<Sales_Order_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.contact" */
+export type Contact_ContactOrders_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Order_Order_By>>;
+  where?: Maybe<Sales_Order_Bool_Exp>;
 };
 
 
@@ -840,6 +864,7 @@ export type Contact_Contact_Bool_Exp = {
   mail?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   note?: Maybe<String_Comparison_Exp>;
+  orders?: Maybe<Sales_Order_Bool_Exp>;
   phone?: Maybe<String_Comparison_Exp>;
   providers?: Maybe<Contact_Contact_Providers_View_Bool_Exp>;
   updatedAt?: Maybe<Date_Comparison_Exp>;
@@ -1070,6 +1095,7 @@ export type Contact_Contact_Insert_Input = {
   mail?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
+  orders?: Maybe<Sales_Order_Arr_Rel_Insert_Input>;
   phone?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -1169,6 +1195,7 @@ export type Contact_Contact_Order_By = {
   mail?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   note?: Maybe<Order_By>;
+  orders_aggregate?: Maybe<Sales_Order_Aggregate_Order_By>;
   phone?: Maybe<Order_By>;
   providers_aggregate?: Maybe<Contact_Contact_Providers_View_Aggregate_Order_By>;
   updatedAt?: Maybe<Order_By>;
@@ -1433,11 +1460,23 @@ export type Contact_Customer = {
   customer_contacts: Array<Contact_Customer_Contact>;
   /** An aggregated array relationship */
   customer_contacts_aggregate: Contact_Customer_Contact_Aggregate;
+  /** An array relationship */
+  drafts: Array<Sales_Draft>;
+  /** An aggregated array relationship */
+  drafts_aggregate: Sales_Draft_Aggregate;
   id: Scalars['uuid'];
   mail?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   note?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  orders: Array<Sales_Order>;
+  /** An aggregated array relationship */
+  orders_aggregate: Sales_Order_Aggregate;
   phone: Scalars['String'];
+  /** An array relationship */
+  quotations: Array<Sales_Quotation>;
+  /** An aggregated array relationship */
+  quotations_aggregate: Sales_Quotation_Aggregate;
   type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -1522,6 +1561,66 @@ export type Contact_CustomerCustomer_Contacts_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Contact_Customer_Contact_Order_By>>;
   where?: Maybe<Contact_Customer_Contact_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerDraftsArgs = {
+  distinct_on?: Maybe<Array<Sales_Draft_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Draft_Order_By>>;
+  where?: Maybe<Sales_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerDrafts_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Draft_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Draft_Order_By>>;
+  where?: Maybe<Sales_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerOrdersArgs = {
+  distinct_on?: Maybe<Array<Sales_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Order_Order_By>>;
+  where?: Maybe<Sales_Order_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerOrders_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Order_Order_By>>;
+  where?: Maybe<Sales_Order_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerQuotationsArgs = {
+  distinct_on?: Maybe<Array<Sales_Quotation_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Quotation_Order_By>>;
+  where?: Maybe<Sales_Quotation_Bool_Exp>;
+};
+
+
+/** columns and relationships of "contact.customer" */
+export type Contact_CustomerQuotations_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Quotation_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Quotation_Order_By>>;
+  where?: Maybe<Sales_Quotation_Bool_Exp>;
 };
 
 /** columns and relationships of "contact.customer_address" */
@@ -1841,11 +1940,14 @@ export type Contact_Customer_Bool_Exp = {
   createdBy?: Maybe<Uuid_Comparison_Exp>;
   customer_addresses?: Maybe<Contact_Customer_Address_Bool_Exp>;
   customer_contacts?: Maybe<Contact_Customer_Contact_Bool_Exp>;
+  drafts?: Maybe<Sales_Draft_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   mail?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   note?: Maybe<String_Comparison_Exp>;
+  orders?: Maybe<Sales_Order_Bool_Exp>;
   phone?: Maybe<String_Comparison_Exp>;
+  quotations?: Maybe<Sales_Quotation_Bool_Exp>;
   type?: Maybe<String_Comparison_Exp>;
   updatedAt?: Maybe<Date_Comparison_Exp>;
   updatedBy?: Maybe<Uuid_Comparison_Exp>;
@@ -2195,11 +2297,14 @@ export type Contact_Customer_Insert_Input = {
   createdBy?: Maybe<Scalars['uuid']>;
   customer_addresses?: Maybe<Contact_Customer_Address_Arr_Rel_Insert_Input>;
   customer_contacts?: Maybe<Contact_Customer_Contact_Arr_Rel_Insert_Input>;
+  drafts?: Maybe<Sales_Draft_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
   mail?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
+  orders?: Maybe<Sales_Order_Arr_Rel_Insert_Input>;
   phone?: Maybe<Scalars['String']>;
+  quotations?: Maybe<Sales_Quotation_Arr_Rel_Insert_Input>;
   type?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -2318,11 +2423,14 @@ export type Contact_Customer_Order_By = {
   createdBy?: Maybe<Order_By>;
   customer_addresses_aggregate?: Maybe<Contact_Customer_Address_Aggregate_Order_By>;
   customer_contacts_aggregate?: Maybe<Contact_Customer_Contact_Aggregate_Order_By>;
+  drafts_aggregate?: Maybe<Sales_Draft_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   mail?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   note?: Maybe<Order_By>;
+  orders_aggregate?: Maybe<Sales_Order_Aggregate_Order_By>;
   phone?: Maybe<Order_By>;
+  quotations_aggregate?: Maybe<Sales_Quotation_Aggregate_Order_By>;
   type?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
@@ -3493,6 +3601,10 @@ export type Management_Company = {
   email?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   name: Scalars['String'];
+  /** An array relationship */
+  orders: Array<Sales_Order>;
+  /** An aggregated array relationship */
+  orders_aggregate: Sales_Order_Aggregate;
   phone: Scalars['String'];
   /** An array relationship */
   productDraftsByCompanyId: Array<Sales_Product_Draft>;
@@ -3506,6 +3618,10 @@ export type Management_Company = {
   product_drafts: Array<Sales_Product_Draft>;
   /** An aggregated array relationship */
   product_drafts_aggregate: Sales_Product_Draft_Aggregate;
+  /** An array relationship */
+  quotations: Array<Sales_Quotation>;
+  /** An aggregated array relationship */
+  quotations_aggregate: Sales_Quotation_Aggregate;
   updatedAt: Scalars['timestamptz'];
   updatedBy?: Maybe<Scalars['uuid']>;
   /** An array relationship */
@@ -3533,6 +3649,26 @@ export type Management_CompanyDrafts_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Sales_Draft_Order_By>>;
   where?: Maybe<Sales_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "management.company" */
+export type Management_CompanyOrdersArgs = {
+  distinct_on?: Maybe<Array<Sales_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Order_Order_By>>;
+  where?: Maybe<Sales_Order_Bool_Exp>;
+};
+
+
+/** columns and relationships of "management.company" */
+export type Management_CompanyOrders_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Order_Order_By>>;
+  where?: Maybe<Sales_Order_Bool_Exp>;
 };
 
 
@@ -3593,6 +3729,26 @@ export type Management_CompanyProduct_Drafts_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Sales_Product_Draft_Order_By>>;
   where?: Maybe<Sales_Product_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "management.company" */
+export type Management_CompanyQuotationsArgs = {
+  distinct_on?: Maybe<Array<Sales_Quotation_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Quotation_Order_By>>;
+  where?: Maybe<Sales_Quotation_Bool_Exp>;
+};
+
+
+/** columns and relationships of "management.company" */
+export type Management_CompanyQuotations_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Quotation_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Quotation_Order_By>>;
+  where?: Maybe<Sales_Quotation_Bool_Exp>;
 };
 
 
@@ -3666,10 +3822,12 @@ export type Management_Company_Bool_Exp = {
   email?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
+  orders?: Maybe<Sales_Order_Bool_Exp>;
   phone?: Maybe<String_Comparison_Exp>;
   productDraftsByCompanyId?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_companies?: Maybe<Product_Product_Companies_Bool_Exp>;
   product_drafts?: Maybe<Sales_Product_Draft_Bool_Exp>;
+  quotations?: Maybe<Sales_Quotation_Bool_Exp>;
   updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
   updatedBy?: Maybe<Uuid_Comparison_Exp>;
   warehouses?: Maybe<Stock_Warehouse_Bool_Exp>;
@@ -3705,10 +3863,12 @@ export type Management_Company_Insert_Input = {
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  orders?: Maybe<Sales_Order_Arr_Rel_Insert_Input>;
   phone?: Maybe<Scalars['String']>;
   productDraftsByCompanyId?: Maybe<Sales_Product_Draft_Arr_Rel_Insert_Input>;
   product_companies?: Maybe<Product_Product_Companies_Arr_Rel_Insert_Input>;
   product_drafts?: Maybe<Sales_Product_Draft_Arr_Rel_Insert_Input>;
+  quotations?: Maybe<Sales_Quotation_Arr_Rel_Insert_Input>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
   updatedBy?: Maybe<Scalars['uuid']>;
   warehouses?: Maybe<Stock_Warehouse_Arr_Rel_Insert_Input>;
@@ -3824,10 +3984,12 @@ export type Management_Company_Order_By = {
   email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
+  orders_aggregate?: Maybe<Sales_Order_Aggregate_Order_By>;
   phone?: Maybe<Order_By>;
   productDraftsByCompanyId_aggregate?: Maybe<Sales_Product_Draft_Aggregate_Order_By>;
   product_companies_aggregate?: Maybe<Product_Product_Companies_Aggregate_Order_By>;
   product_drafts_aggregate?: Maybe<Sales_Product_Draft_Aggregate_Order_By>;
+  quotations_aggregate?: Maybe<Sales_Quotation_Aggregate_Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
   warehouses_aggregate?: Maybe<Stock_Warehouse_Aggregate_Order_By>;
@@ -14972,10 +15134,10 @@ export enum Sales_Accessory_Draft_Update_Column {
 /** columns and relationships of "sales.consumable_draft" */
 export type Sales_Consumable_Draft = {
   __typename?: 'sales_consumable_draft';
-  /** An object relationship */
-  glass_draft?: Maybe<Sales_Glass_Draft>;
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   id: Scalars['uuid'];
+  /** An object relationship */
+  productDraftByDependentId?: Maybe<Sales_Product_Draft>;
   /** An object relationship */
   product_draft: Sales_Product_Draft;
   productdraft_id: Scalars['uuid'];
@@ -15021,9 +15183,9 @@ export type Sales_Consumable_Draft_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Sales_Consumable_Draft_Bool_Exp>>>;
   _not?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Consumable_Draft_Bool_Exp>>>;
-  glass_draft?: Maybe<Sales_Glass_Draft_Bool_Exp>;
-  glass_draft_id?: Maybe<Uuid_Comparison_Exp>;
+  dependent_id?: Maybe<Uuid_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  productDraftByDependentId?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   productdraft_id?: Maybe<Uuid_Comparison_Exp>;
 };
@@ -15038,9 +15200,9 @@ export enum Sales_Consumable_Draft_Constraint {
 
 /** input type for inserting data into table "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Insert_Input = {
-  glass_draft?: Maybe<Sales_Glass_Draft_Obj_Rel_Insert_Input>;
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
+  productDraftByDependentId?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
@@ -15048,14 +15210,14 @@ export type Sales_Consumable_Draft_Insert_Input = {
 /** aggregate max on columns */
 export type Sales_Consumable_Draft_Max_Fields = {
   __typename?: 'sales_consumable_draft_max_fields';
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Max_Order_By = {
-  glass_draft_id?: Maybe<Order_By>;
+  dependent_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
@@ -15063,14 +15225,14 @@ export type Sales_Consumable_Draft_Max_Order_By = {
 /** aggregate min on columns */
 export type Sales_Consumable_Draft_Min_Fields = {
   __typename?: 'sales_consumable_draft_min_fields';
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Min_Order_By = {
-  glass_draft_id?: Maybe<Order_By>;
+  dependent_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
@@ -15099,9 +15261,9 @@ export type Sales_Consumable_Draft_On_Conflict = {
 
 /** ordering options when selecting data from "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Order_By = {
-  glass_draft?: Maybe<Sales_Glass_Draft_Order_By>;
-  glass_draft_id?: Maybe<Order_By>;
+  dependent_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  productDraftByDependentId?: Maybe<Sales_Product_Draft_Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
@@ -15114,7 +15276,7 @@ export type Sales_Consumable_Draft_Pk_Columns_Input = {
 /** select columns of table "sales.consumable_draft" */
 export enum Sales_Consumable_Draft_Select_Column {
   /** column name */
-  GlassDraftId = 'glass_draft_id',
+  DependentId = 'dependent_id',
   /** column name */
   Id = 'id',
   /** column name */
@@ -15123,7 +15285,7 @@ export enum Sales_Consumable_Draft_Select_Column {
 
 /** input type for updating data in table "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Set_Input = {
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
@@ -15131,7 +15293,7 @@ export type Sales_Consumable_Draft_Set_Input = {
 /** update columns of table "sales.consumable_draft" */
 export enum Sales_Consumable_Draft_Update_Column {
   /** column name */
-  GlassDraftId = 'glass_draft_id',
+  DependentId = 'dependent_id',
   /** column name */
   Id = 'id',
   /** column name */
@@ -15660,58 +15822,10 @@ export type Sales_Draft_Variance_Order_By = {
 /** columns and relationships of "sales.glass_draft" */
 export type Sales_Glass_Draft = {
   __typename?: 'sales_glass_draft';
-  /** An array relationship */
-  consumable_drafts: Array<Sales_Consumable_Draft>;
-  /** An aggregated array relationship */
-  consumable_drafts_aggregate: Sales_Consumable_Draft_Aggregate;
   id: Scalars['uuid'];
   /** An object relationship */
   product_draft: Sales_Product_Draft;
   productdraft_id: Scalars['uuid'];
-  /** An array relationship */
-  service_drafts: Array<Sales_Service_Draft>;
-  /** An aggregated array relationship */
-  service_drafts_aggregate: Sales_Service_Draft_Aggregate;
-};
-
-
-/** columns and relationships of "sales.glass_draft" */
-export type Sales_Glass_DraftConsumable_DraftsArgs = {
-  distinct_on?: Maybe<Array<Sales_Consumable_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Consumable_Draft_Order_By>>;
-  where?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.glass_draft" */
-export type Sales_Glass_DraftConsumable_Drafts_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Consumable_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Consumable_Draft_Order_By>>;
-  where?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.glass_draft" */
-export type Sales_Glass_DraftService_DraftsArgs = {
-  distinct_on?: Maybe<Array<Sales_Service_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Service_Draft_Order_By>>;
-  where?: Maybe<Sales_Service_Draft_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.glass_draft" */
-export type Sales_Glass_DraftService_Drafts_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Service_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Service_Draft_Order_By>>;
-  where?: Maybe<Sales_Service_Draft_Bool_Exp>;
 };
 
 /** aggregated selection of "sales.glass_draft" */
@@ -15754,11 +15868,9 @@ export type Sales_Glass_Draft_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Sales_Glass_Draft_Bool_Exp>>>;
   _not?: Maybe<Sales_Glass_Draft_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Glass_Draft_Bool_Exp>>>;
-  consumable_drafts?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   productdraft_id?: Maybe<Uuid_Comparison_Exp>;
-  service_drafts?: Maybe<Sales_Service_Draft_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.glass_draft" */
@@ -15771,11 +15883,9 @@ export enum Sales_Glass_Draft_Constraint {
 
 /** input type for inserting data into table "sales.glass_draft" */
 export type Sales_Glass_Draft_Insert_Input = {
-  consumable_drafts?: Maybe<Sales_Consumable_Draft_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   productdraft_id?: Maybe<Scalars['uuid']>;
-  service_drafts?: Maybe<Sales_Service_Draft_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -15828,11 +15938,9 @@ export type Sales_Glass_Draft_On_Conflict = {
 
 /** ordering options when selecting data from "sales.glass_draft" */
 export type Sales_Glass_Draft_Order_By = {
-  consumable_drafts_aggregate?: Maybe<Sales_Consumable_Draft_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   productdraft_id?: Maybe<Order_By>;
-  service_drafts_aggregate?: Maybe<Sales_Service_Draft_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: "sales.glass_draft" */
@@ -15865,13 +15973,23 @@ export enum Sales_Glass_Draft_Update_Column {
 /** columns and relationships of "sales.order" */
 export type Sales_Order = {
   __typename?: 'sales_order';
+  /** An object relationship */
+  company: Management_Company;
   company_id: Scalars['uuid'];
+  /** An object relationship */
+  contact: Contact_Contact;
   contact_id: Scalars['uuid'];
+  /** An object relationship */
+  customer: Contact_Customer;
   customer_id: Scalars['uuid'];
   date: Scalars['date'];
   deadline: Scalars['date'];
   draft_id: Scalars['Int'];
   id: Scalars['Int'];
+  status: Scalars['String'];
+  total_ht: Scalars['numeric'];
+  total_tax: Scalars['numeric'];
+  total_ttc: Scalars['numeric'];
 };
 
 /** aggregated selection of "sales.order" */
@@ -15930,12 +16048,18 @@ export type Sales_Order_Avg_Fields = {
   __typename?: 'sales_order_avg_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "sales.order" */
 export type Sales_Order_Avg_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "sales.order". All fields are combined with a logical 'AND'. */
@@ -15943,13 +16067,20 @@ export type Sales_Order_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Sales_Order_Bool_Exp>>>;
   _not?: Maybe<Sales_Order_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Order_Bool_Exp>>>;
+  company?: Maybe<Management_Company_Bool_Exp>;
   company_id?: Maybe<Uuid_Comparison_Exp>;
+  contact?: Maybe<Contact_Contact_Bool_Exp>;
   contact_id?: Maybe<Uuid_Comparison_Exp>;
+  customer?: Maybe<Contact_Customer_Bool_Exp>;
   customer_id?: Maybe<Uuid_Comparison_Exp>;
   date?: Maybe<Date_Comparison_Exp>;
   deadline?: Maybe<Date_Comparison_Exp>;
   draft_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
+  status?: Maybe<String_Comparison_Exp>;
+  total_ht?: Maybe<Numeric_Comparison_Exp>;
+  total_tax?: Maybe<Numeric_Comparison_Exp>;
+  total_ttc?: Maybe<Numeric_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.order" */
@@ -15962,17 +16093,27 @@ export enum Sales_Order_Constraint {
 export type Sales_Order_Inc_Input = {
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** input type for inserting data into table "sales.order" */
 export type Sales_Order_Insert_Input = {
+  company?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
   company_id?: Maybe<Scalars['uuid']>;
+  contact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
   contact_id?: Maybe<Scalars['uuid']>;
+  customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   deadline?: Maybe<Scalars['date']>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate max on columns */
@@ -15985,6 +16126,10 @@ export type Sales_Order_Max_Fields = {
   deadline?: Maybe<Scalars['date']>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** order by max() on columns of table "sales.order" */
@@ -15996,6 +16141,10 @@ export type Sales_Order_Max_Order_By = {
   deadline?: Maybe<Order_By>;
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  status?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -16008,6 +16157,10 @@ export type Sales_Order_Min_Fields = {
   deadline?: Maybe<Scalars['date']>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** order by min() on columns of table "sales.order" */
@@ -16019,6 +16172,10 @@ export type Sales_Order_Min_Order_By = {
   deadline?: Maybe<Order_By>;
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  status?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "sales.order" */
@@ -16045,13 +16202,20 @@ export type Sales_Order_On_Conflict = {
 
 /** ordering options when selecting data from "sales.order" */
 export type Sales_Order_Order_By = {
+  company?: Maybe<Management_Company_Order_By>;
   company_id?: Maybe<Order_By>;
+  contact?: Maybe<Contact_Contact_Order_By>;
   contact_id?: Maybe<Order_By>;
+  customer?: Maybe<Contact_Customer_Order_By>;
   customer_id?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   deadline?: Maybe<Order_By>;
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  status?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "sales.order" */
@@ -16074,7 +16238,15 @@ export enum Sales_Order_Select_Column {
   /** column name */
   DraftId = 'draft_id',
   /** column name */
-  Id = 'id'
+  Id = 'id',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  TotalHt = 'total_ht',
+  /** column name */
+  TotalTax = 'total_tax',
+  /** column name */
+  TotalTtc = 'total_ttc'
 }
 
 /** input type for updating data in table "sales.order" */
@@ -16086,6 +16258,10 @@ export type Sales_Order_Set_Input = {
   deadline?: Maybe<Scalars['date']>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate stddev on columns */
@@ -16093,12 +16269,18 @@ export type Sales_Order_Stddev_Fields = {
   __typename?: 'sales_order_stddev_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "sales.order" */
 export type Sales_Order_Stddev_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -16106,12 +16288,18 @@ export type Sales_Order_Stddev_Pop_Fields = {
   __typename?: 'sales_order_stddev_pop_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "sales.order" */
 export type Sales_Order_Stddev_Pop_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -16119,12 +16307,18 @@ export type Sales_Order_Stddev_Samp_Fields = {
   __typename?: 'sales_order_stddev_samp_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "sales.order" */
 export type Sales_Order_Stddev_Samp_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
@@ -16132,12 +16326,18 @@ export type Sales_Order_Sum_Fields = {
   __typename?: 'sales_order_sum_fields';
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** order by sum() on columns of table "sales.order" */
 export type Sales_Order_Sum_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** update columns of table "sales.order" */
@@ -16155,7 +16355,15 @@ export enum Sales_Order_Update_Column {
   /** column name */
   DraftId = 'draft_id',
   /** column name */
-  Id = 'id'
+  Id = 'id',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  TotalHt = 'total_ht',
+  /** column name */
+  TotalTax = 'total_tax',
+  /** column name */
+  TotalTtc = 'total_ttc'
 }
 
 /** aggregate var_pop on columns */
@@ -16163,12 +16371,18 @@ export type Sales_Order_Var_Pop_Fields = {
   __typename?: 'sales_order_var_pop_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "sales.order" */
 export type Sales_Order_Var_Pop_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
@@ -16176,12 +16390,18 @@ export type Sales_Order_Var_Samp_Fields = {
   __typename?: 'sales_order_var_samp_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "sales.order" */
 export type Sales_Order_Var_Samp_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -16189,12 +16409,18 @@ export type Sales_Order_Variance_Fields = {
   __typename?: 'sales_order_variance_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "sales.order" */
 export type Sales_Order_Variance_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "sales.product_draft" */
@@ -16210,6 +16436,10 @@ export type Sales_Product_Draft = {
   company_name?: Maybe<Scalars['String']>;
   /** An object relationship */
   consumable_draft?: Maybe<Sales_Consumable_Draft>;
+  /** An array relationship */
+  consumable_drafts: Array<Sales_Consumable_Draft>;
+  /** An aggregated array relationship */
+  consumable_drafts_aggregate: Sales_Consumable_Draft_Aggregate;
   count?: Maybe<Scalars['Int']>;
   /** An object relationship */
   draft: Sales_Draft;
@@ -16230,11 +16460,55 @@ export type Sales_Product_Draft = {
   quantity?: Maybe<Scalars['numeric']>;
   /** An object relationship */
   service_draft?: Maybe<Sales_Service_Draft>;
+  /** An array relationship */
+  service_drafts: Array<Sales_Service_Draft>;
+  /** An aggregated array relationship */
+  service_drafts_aggregate: Sales_Service_Draft_Aggregate;
   total_price?: Maybe<Scalars['numeric']>;
   type?: Maybe<Sales_Product_Type_Enum>;
   unit?: Maybe<Scalars['String']>;
   warehouse_id?: Maybe<Scalars['uuid']>;
   width?: Maybe<Scalars['numeric']>;
+};
+
+
+/** columns and relationships of "sales.product_draft" */
+export type Sales_Product_DraftConsumable_DraftsArgs = {
+  distinct_on?: Maybe<Array<Sales_Consumable_Draft_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Consumable_Draft_Order_By>>;
+  where?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.product_draft" */
+export type Sales_Product_DraftConsumable_Drafts_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Consumable_Draft_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Consumable_Draft_Order_By>>;
+  where?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.product_draft" */
+export type Sales_Product_DraftService_DraftsArgs = {
+  distinct_on?: Maybe<Array<Sales_Service_Draft_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Service_Draft_Order_By>>;
+  where?: Maybe<Sales_Service_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.product_draft" */
+export type Sales_Product_DraftService_Drafts_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Service_Draft_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Service_Draft_Order_By>>;
+  where?: Maybe<Sales_Service_Draft_Bool_Exp>;
 };
 
 /** aggregated selection of "sales.product_draft" */
@@ -16326,6 +16600,7 @@ export type Sales_Product_Draft_Bool_Exp = {
   company_id?: Maybe<Uuid_Comparison_Exp>;
   company_name?: Maybe<String_Comparison_Exp>;
   consumable_draft?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
+  consumable_drafts?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
   count?: Maybe<Int_Comparison_Exp>;
   draft?: Maybe<Sales_Draft_Bool_Exp>;
   draft_id?: Maybe<Int_Comparison_Exp>;
@@ -16341,6 +16616,7 @@ export type Sales_Product_Draft_Bool_Exp = {
   product_type?: Maybe<Sales_Product_Type_Bool_Exp>;
   quantity?: Maybe<Numeric_Comparison_Exp>;
   service_draft?: Maybe<Sales_Service_Draft_Bool_Exp>;
+  service_drafts?: Maybe<Sales_Service_Draft_Bool_Exp>;
   total_price?: Maybe<Numeric_Comparison_Exp>;
   type?: Maybe<Sales_Product_Type_Enum_Comparison_Exp>;
   unit?: Maybe<String_Comparison_Exp>;
@@ -16375,6 +16651,7 @@ export type Sales_Product_Draft_Insert_Input = {
   company_id?: Maybe<Scalars['uuid']>;
   company_name?: Maybe<Scalars['String']>;
   consumable_draft?: Maybe<Sales_Consumable_Draft_Obj_Rel_Insert_Input>;
+  consumable_drafts?: Maybe<Sales_Consumable_Draft_Arr_Rel_Insert_Input>;
   count?: Maybe<Scalars['Int']>;
   draft?: Maybe<Sales_Draft_Obj_Rel_Insert_Input>;
   draft_id?: Maybe<Scalars['Int']>;
@@ -16390,6 +16667,7 @@ export type Sales_Product_Draft_Insert_Input = {
   product_type?: Maybe<Sales_Product_Type_Obj_Rel_Insert_Input>;
   quantity?: Maybe<Scalars['numeric']>;
   service_draft?: Maybe<Sales_Service_Draft_Obj_Rel_Insert_Input>;
+  service_drafts?: Maybe<Sales_Service_Draft_Arr_Rel_Insert_Input>;
   total_price?: Maybe<Scalars['numeric']>;
   type?: Maybe<Sales_Product_Type_Enum>;
   unit?: Maybe<Scalars['String']>;
@@ -16509,6 +16787,7 @@ export type Sales_Product_Draft_Order_By = {
   company_id?: Maybe<Order_By>;
   company_name?: Maybe<Order_By>;
   consumable_draft?: Maybe<Sales_Consumable_Draft_Order_By>;
+  consumable_drafts_aggregate?: Maybe<Sales_Consumable_Draft_Aggregate_Order_By>;
   count?: Maybe<Order_By>;
   draft?: Maybe<Sales_Draft_Order_By>;
   draft_id?: Maybe<Order_By>;
@@ -16524,6 +16803,7 @@ export type Sales_Product_Draft_Order_By = {
   product_type?: Maybe<Sales_Product_Type_Order_By>;
   quantity?: Maybe<Order_By>;
   service_draft?: Maybe<Sales_Service_Draft_Order_By>;
+  service_drafts_aggregate?: Maybe<Sales_Service_Draft_Aggregate_Order_By>;
   total_price?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
   unit?: Maybe<Order_By>;
@@ -17016,14 +17296,23 @@ export enum Sales_Product_Type_Update_Column {
 /** columns and relationships of "sales.quotation" */
 export type Sales_Quotation = {
   __typename?: 'sales_quotation';
+  /** An object relationship */
+  company: Management_Company;
   company_id: Scalars['uuid'];
   contact_id: Scalars['uuid'];
+  /** An object relationship */
+  customer: Contact_Customer;
   customer_id: Scalars['uuid'];
   date: Scalars['date'];
   deadline: Scalars['date'];
+  /** An object relationship */
+  draft: Sales_Draft;
   draft_id: Scalars['Int'];
   id: Scalars['Int'];
   status: Scalars['String'];
+  total_ht: Scalars['numeric'];
+  total_tax: Scalars['numeric'];
+  total_ttc: Scalars['numeric'];
 };
 
 /** aggregated selection of "sales.quotation" */
@@ -17082,12 +17371,18 @@ export type Sales_Quotation_Avg_Fields = {
   __typename?: 'sales_quotation_avg_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "sales.quotation" */
 export type Sales_Quotation_Avg_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "sales.quotation". All fields are combined with a logical 'AND'. */
@@ -17095,14 +17390,20 @@ export type Sales_Quotation_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Sales_Quotation_Bool_Exp>>>;
   _not?: Maybe<Sales_Quotation_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Quotation_Bool_Exp>>>;
+  company?: Maybe<Management_Company_Bool_Exp>;
   company_id?: Maybe<Uuid_Comparison_Exp>;
   contact_id?: Maybe<Uuid_Comparison_Exp>;
+  customer?: Maybe<Contact_Customer_Bool_Exp>;
   customer_id?: Maybe<Uuid_Comparison_Exp>;
   date?: Maybe<Date_Comparison_Exp>;
   deadline?: Maybe<Date_Comparison_Exp>;
+  draft?: Maybe<Sales_Draft_Bool_Exp>;
   draft_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
+  total_ht?: Maybe<Numeric_Comparison_Exp>;
+  total_tax?: Maybe<Numeric_Comparison_Exp>;
+  total_ttc?: Maybe<Numeric_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.quotation" */
@@ -17115,18 +17416,27 @@ export enum Sales_Quotation_Constraint {
 export type Sales_Quotation_Inc_Input = {
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** input type for inserting data into table "sales.quotation" */
 export type Sales_Quotation_Insert_Input = {
+  company?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
   company_id?: Maybe<Scalars['uuid']>;
   contact_id?: Maybe<Scalars['uuid']>;
+  customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   deadline?: Maybe<Scalars['date']>;
+  draft?: Maybe<Sales_Draft_Obj_Rel_Insert_Input>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate max on columns */
@@ -17140,6 +17450,9 @@ export type Sales_Quotation_Max_Fields = {
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** order by max() on columns of table "sales.quotation" */
@@ -17152,6 +17465,9 @@ export type Sales_Quotation_Max_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -17165,6 +17481,9 @@ export type Sales_Quotation_Min_Fields = {
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** order by min() on columns of table "sales.quotation" */
@@ -17177,6 +17496,9 @@ export type Sales_Quotation_Min_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "sales.quotation" */
@@ -17203,14 +17525,20 @@ export type Sales_Quotation_On_Conflict = {
 
 /** ordering options when selecting data from "sales.quotation" */
 export type Sales_Quotation_Order_By = {
+  company?: Maybe<Management_Company_Order_By>;
   company_id?: Maybe<Order_By>;
   contact_id?: Maybe<Order_By>;
+  customer?: Maybe<Contact_Customer_Order_By>;
   customer_id?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   deadline?: Maybe<Order_By>;
+  draft?: Maybe<Sales_Draft_Order_By>;
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "sales.quotation" */
@@ -17235,7 +17563,13 @@ export enum Sales_Quotation_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  Status = 'status'
+  Status = 'status',
+  /** column name */
+  TotalHt = 'total_ht',
+  /** column name */
+  TotalTax = 'total_tax',
+  /** column name */
+  TotalTtc = 'total_ttc'
 }
 
 /** input type for updating data in table "sales.quotation" */
@@ -17248,6 +17582,9 @@ export type Sales_Quotation_Set_Input = {
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate stddev on columns */
@@ -17255,12 +17592,18 @@ export type Sales_Quotation_Stddev_Fields = {
   __typename?: 'sales_quotation_stddev_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "sales.quotation" */
 export type Sales_Quotation_Stddev_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -17268,12 +17611,18 @@ export type Sales_Quotation_Stddev_Pop_Fields = {
   __typename?: 'sales_quotation_stddev_pop_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "sales.quotation" */
 export type Sales_Quotation_Stddev_Pop_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -17281,12 +17630,18 @@ export type Sales_Quotation_Stddev_Samp_Fields = {
   __typename?: 'sales_quotation_stddev_samp_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "sales.quotation" */
 export type Sales_Quotation_Stddev_Samp_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
@@ -17294,12 +17649,18 @@ export type Sales_Quotation_Sum_Fields = {
   __typename?: 'sales_quotation_sum_fields';
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
 };
 
 /** order by sum() on columns of table "sales.quotation" */
 export type Sales_Quotation_Sum_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** update columns of table "sales.quotation" */
@@ -17319,7 +17680,13 @@ export enum Sales_Quotation_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  Status = 'status'
+  Status = 'status',
+  /** column name */
+  TotalHt = 'total_ht',
+  /** column name */
+  TotalTax = 'total_tax',
+  /** column name */
+  TotalTtc = 'total_ttc'
 }
 
 /** aggregate var_pop on columns */
@@ -17327,12 +17694,18 @@ export type Sales_Quotation_Var_Pop_Fields = {
   __typename?: 'sales_quotation_var_pop_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "sales.quotation" */
 export type Sales_Quotation_Var_Pop_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
@@ -17340,12 +17713,18 @@ export type Sales_Quotation_Var_Samp_Fields = {
   __typename?: 'sales_quotation_var_samp_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "sales.quotation" */
 export type Sales_Quotation_Var_Samp_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -17353,21 +17732,27 @@ export type Sales_Quotation_Variance_Fields = {
   __typename?: 'sales_quotation_variance_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  total_ht?: Maybe<Scalars['Float']>;
+  total_tax?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "sales.quotation" */
 export type Sales_Quotation_Variance_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_tax?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "sales.service_draft" */
 export type Sales_Service_Draft = {
   __typename?: 'sales_service_draft';
-  /** An object relationship */
-  glass_draft: Sales_Glass_Draft;
-  glass_draft_id: Scalars['uuid'];
+  dependent_id: Scalars['uuid'];
   id: Scalars['uuid'];
+  /** An object relationship */
+  productDraftByDependentId: Sales_Product_Draft;
   /** An object relationship */
   product_draft: Sales_Product_Draft;
   productdraft_id: Scalars['uuid'];
@@ -17413,9 +17798,9 @@ export type Sales_Service_Draft_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Sales_Service_Draft_Bool_Exp>>>;
   _not?: Maybe<Sales_Service_Draft_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Service_Draft_Bool_Exp>>>;
-  glass_draft?: Maybe<Sales_Glass_Draft_Bool_Exp>;
-  glass_draft_id?: Maybe<Uuid_Comparison_Exp>;
+  dependent_id?: Maybe<Uuid_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  productDraftByDependentId?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   productdraft_id?: Maybe<Uuid_Comparison_Exp>;
 };
@@ -17430,9 +17815,9 @@ export enum Sales_Service_Draft_Constraint {
 
 /** input type for inserting data into table "sales.service_draft" */
 export type Sales_Service_Draft_Insert_Input = {
-  glass_draft?: Maybe<Sales_Glass_Draft_Obj_Rel_Insert_Input>;
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
+  productDraftByDependentId?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
@@ -17440,14 +17825,14 @@ export type Sales_Service_Draft_Insert_Input = {
 /** aggregate max on columns */
 export type Sales_Service_Draft_Max_Fields = {
   __typename?: 'sales_service_draft_max_fields';
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "sales.service_draft" */
 export type Sales_Service_Draft_Max_Order_By = {
-  glass_draft_id?: Maybe<Order_By>;
+  dependent_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
@@ -17455,14 +17840,14 @@ export type Sales_Service_Draft_Max_Order_By = {
 /** aggregate min on columns */
 export type Sales_Service_Draft_Min_Fields = {
   __typename?: 'sales_service_draft_min_fields';
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "sales.service_draft" */
 export type Sales_Service_Draft_Min_Order_By = {
-  glass_draft_id?: Maybe<Order_By>;
+  dependent_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
@@ -17491,9 +17876,9 @@ export type Sales_Service_Draft_On_Conflict = {
 
 /** ordering options when selecting data from "sales.service_draft" */
 export type Sales_Service_Draft_Order_By = {
-  glass_draft?: Maybe<Sales_Glass_Draft_Order_By>;
-  glass_draft_id?: Maybe<Order_By>;
+  dependent_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  productDraftByDependentId?: Maybe<Sales_Product_Draft_Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
@@ -17506,7 +17891,7 @@ export type Sales_Service_Draft_Pk_Columns_Input = {
 /** select columns of table "sales.service_draft" */
 export enum Sales_Service_Draft_Select_Column {
   /** column name */
-  GlassDraftId = 'glass_draft_id',
+  DependentId = 'dependent_id',
   /** column name */
   Id = 'id',
   /** column name */
@@ -17515,7 +17900,7 @@ export enum Sales_Service_Draft_Select_Column {
 
 /** input type for updating data in table "sales.service_draft" */
 export type Sales_Service_Draft_Set_Input = {
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
@@ -17523,7 +17908,7 @@ export type Sales_Service_Draft_Set_Input = {
 /** update columns of table "sales.service_draft" */
 export enum Sales_Service_Draft_Update_Column {
   /** column name */
-  GlassDraftId = 'glass_draft_id',
+  DependentId = 'dependent_id',
   /** column name */
   Id = 'id',
   /** column name */
@@ -23637,7 +24022,7 @@ export type InsertConsumableDraftMutationVariables = Exact<{
   type?: Maybe<Sales_Product_Type_Enum>;
   unit?: Maybe<Scalars['String']>;
   draft_id?: Maybe<Scalars['Int']>;
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   m2?: Maybe<Scalars['numeric']>;
   ml?: Maybe<Scalars['numeric']>;
   on_conflict?: Maybe<Sales_Product_Draft_On_Conflict>;
@@ -23709,7 +24094,7 @@ export type InsertServiceDraftMutationVariables = Exact<{
   total_price?: Maybe<Scalars['numeric']>;
   type?: Maybe<Sales_Product_Type_Enum>;
   unit?: Maybe<Scalars['String']>;
-  glass_draft_id?: Maybe<Scalars['uuid']>;
+  dependent_id?: Maybe<Scalars['uuid']>;
   m2?: Maybe<Scalars['numeric']>;
   quantity?: Maybe<Scalars['numeric']>;
   ml?: Maybe<Scalars['numeric']>;
@@ -23745,6 +24130,42 @@ export type GetAllDraftsQuery = (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'phone'>
     )> }
+  )> }
+);
+
+export type GetAllOrdersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllOrdersQuery = (
+  { __typename?: 'query_root' }
+  & { sales_order: Array<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'status' | 'id' | 'draft_id' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
+    ) }
+  )> }
+);
+
+export type GetAllQuotationsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllQuotationsQuery = (
+  { __typename?: 'query_root' }
+  & { sales_quotation: Array<(
+    { __typename?: 'sales_quotation' }
+    & Pick<Sales_Quotation, 'status' | 'id' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline' | 'draft_id' | 'contact_id'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
+    ) }
   )> }
 );
 
@@ -26407,9 +26828,9 @@ export const InsertAccessoryDraftDocument = gql`
     }
   }
 export const InsertConsumableDraftDocument = gql`
-    mutation InsertConsumableDraft($company_id: uuid, $label: String, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $draft_id: Int, $glass_draft_id: uuid, $m2: numeric, $ml: numeric, $on_conflict: sales_product_draft_on_conflict = {constraint: product_draft_pkey, update_columns: company_name}) {
+    mutation InsertConsumableDraft($company_id: uuid, $label: String, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $draft_id: Int, $dependent_id: uuid, $m2: numeric, $ml: numeric, $on_conflict: sales_product_draft_on_conflict = {constraint: product_draft_pkey, update_columns: company_name}) {
   insert_sales_consumable_draft_one(
-    object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id, m2: $m2, ml: $ml}, on_conflict: $on_conflict}, glass_draft_id: $glass_draft_id}
+    object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id, m2: $m2, ml: $ml}, on_conflict: $on_conflict}, dependent_id: $dependent_id}
   ) {
     id
     product_draft {
@@ -26496,9 +26917,9 @@ export const InsertGlassDraftDocument = gql`
     }
   }
 export const InsertServiceDraftDocument = gql`
-    mutation insertServiceDraft($company_id: uuid, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $glass_draft_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $on_conflict: sales_product_draft_on_conflict = {constraint: product_draft_pkey, update_columns: company_name}, $draft_id: Int) {
+    mutation insertServiceDraft($company_id: uuid, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $on_conflict: sales_product_draft_on_conflict = {constraint: product_draft_pkey, update_columns: company_name}, $draft_id: Int) {
   insert_sales_service_draft_one(
-    object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id}, on_conflict: $on_conflict}, glass_draft_id: $glass_draft_id}
+    object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id}, on_conflict: $on_conflict}, dependent_id: $dependent_id}
   ) {
     id
     product_draft {
@@ -26552,6 +26973,77 @@ export const GetAllDraftsDocument = gql`
   })
   export class GetAllDraftsGQL extends Apollo.Query<GetAllDraftsQuery, GetAllDraftsQueryVariables> {
     document = GetAllDraftsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllOrdersDocument = gql`
+    query GetAllOrders {
+  sales_order {
+    company {
+      name
+      id
+    }
+    customer {
+      code
+      id
+      name
+      phone
+    }
+    status
+    id
+    draft_id
+    total_ht
+    total_tax
+    total_ttc
+    date
+    deadline
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllOrdersGQL extends Apollo.Query<GetAllOrdersQuery, GetAllOrdersQueryVariables> {
+    document = GetAllOrdersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllQuotationsDocument = gql`
+    query GetAllQuotations {
+  sales_quotation {
+    company {
+      name
+      id
+    }
+    customer {
+      code
+      id
+      name
+      phone
+    }
+    status
+    id
+    total_ht
+    total_tax
+    total_ttc
+    date
+    deadline
+    draft_id
+    contact_id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllQuotationsGQL extends Apollo.Query<GetAllQuotationsQuery, GetAllQuotationsQueryVariables> {
+    document = GetAllQuotationsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

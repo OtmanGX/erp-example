@@ -10,7 +10,7 @@
     Ajouter Verre
   </button>
 </mat-toolbar>
-<table mat-table [dataSource]="dataSource">
+<table mat-table class="full-width-table" [dataSource]="dataSourceGlass">
   <ng-container *ngFor="let disCol of headers; let colIndex = index" matColumnDef="{{disCol.field}}">
     <th mat-header-cell *matHeaderCellDef>{{disCol.headerName}}</th>
     <td mat-cell *matCellDef="let element">{{element[disCol.field]}}</td>
@@ -44,7 +44,7 @@
   <span class="example-spacer"></span>
   <button (click)="openDialog('Add','Accessoire',{})" mat-flat-button color="primary" style="width : 12em;">Ajouter Article</button>
 </mat-toolbar>
-<table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSourceArticles">
   <ng-container *ngFor="let disCol of headers; let colIndex = index" matColumnDef="{{disCol.field}}">
     <th mat-header-cell *matHeaderCellDef>{{disCol.headerName}}</th>
     <td mat-cell *matCellDef="let element">{{element[disCol.field]}}</td>
