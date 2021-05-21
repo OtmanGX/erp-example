@@ -1,3 +1,6 @@
+export const deliveryHeaders = [
+  { field: 'id', headersName: 'ID' }
+];
 
 
 export const ProductDraftHeaders = [
@@ -13,7 +16,6 @@ export const ProductDraftHeaders = [
     { field: 'price', headerName: 'P.U' },
     { field: 'total_price', headerName: 'Total' },
     { field: 'company_name', headerName: 'Société' },
-
 ];
 
 

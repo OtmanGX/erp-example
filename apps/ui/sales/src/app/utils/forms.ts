@@ -3,6 +3,48 @@ import { Observable } from 'rxjs';
 
 type ListObservable = Observable<any> | Array<any>;
 
+
+
+const regConfigDelivery = (data?) => [
+  {
+    type: "selectSearch",
+    name: "ref",
+    label: "N° Commande",
+    inputType: "text",
+    value: data?.customers ?? [],
+    filterFields: ['name', 'phone'],
+    fieldsToShow: ['name', 'phone'],
+    options: []
+  },
+  {
+    type: "date",
+    name: "predicted_date",
+    label: "Date prévue",
+    inputType: "text",
+  },
+  {
+    type: "select",
+    name: "society",
+    label: "Société",
+    inputType: "text",
+    options: []
+  },
+  {
+    type: "selectSearch",
+    name: "client",
+    label: "Client",
+    inputType: "text",
+    options: []
+  },
+  {
+    type: "selectSearch",
+    name: "contact",
+    label: "Contact",
+    inputType: "text",
+    options: []
+  },
+  ];
+
 const regConfigDraftInfos = (
   data?,
   customers: any = [],
@@ -61,7 +103,7 @@ const regConfigGlassItem = (
       filterFields: ['id', 'label'],
       fieldsToShow: ['id', 'label'],
       options: glasses,
-      
+
     },
 
     {
@@ -198,7 +240,7 @@ const regConfigServiceItem = (
       value: data?.label,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
- 
+
     {
       type: 'inputSelect',
       name: 'quantity',
@@ -221,7 +263,7 @@ const regConfigServiceItem = (
       options: companies,
       validations: [REQUIRED],
     },
- 
+
 
   ];
 
@@ -251,7 +293,7 @@ const regConfigServiceItem = (
         value: data?.label,
         validations: [REQUIRED, MAXNUMBER(limit)],
       },
-   
+
       {
         type: 'inputSelect',
         name: 'quantity',
@@ -280,11 +322,12 @@ const regConfigServiceItem = (
         options: warehouses,
         //validations: [REQUIRED],
       },
-  
+
     ];
 export {
   regConfigDraftInfos,
   regConfigGlassItem,
   regConfigAccessoireItem,
-  regConfigServiceItem
+  regConfigServiceItem,
+  regConfigDelivery
 };

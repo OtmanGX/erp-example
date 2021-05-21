@@ -7,6 +7,8 @@ import { CreateQuotationComponent } from "./pages/quotation/create-quotation/cre
 
 import { OrderComponent } from "./pages/order/order.component";
 import { CreateOrderComponent } from "./pages/order/create-order/create-order.component";
+import { DeliveryListComponent } from '@TanglassUi/sales/pages/delivery/delivery-list/delivery-list.component';
+import { DeliveryAddComponent } from '@TanglassUi/sales/pages/delivery/delivery-add/delivery-add.component';
 
 const routes: Routes = [
   {
@@ -38,7 +40,15 @@ const routes: Routes = [
 
         ],
         data: { title: 'Orders', breadcrumb: "" }
-      }
+      },
+      {
+        path: 'delivery',
+        children: [
+          { path: '', component: DeliveryListComponent },
+          { path: 'add', component: DeliveryAddComponent },
+        ],
+        data: { title: 'Bons de livraison', breadcrumb: "" }
+      },
     ]
   }
 ];
