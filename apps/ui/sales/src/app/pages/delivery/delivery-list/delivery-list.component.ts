@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { of } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { AppState } from '@tanglass-erp/store/app';
 import { deliveryHeaders } from '@TanglassUi/sales/utils/grid-headers';
 import { Router } from '@angular/router';
+import { DeliveryFacade } from '@tanglass-erp/store/sales';
 
 @Component({
   selector: 'ngx-delivery-list',
@@ -19,11 +18,12 @@ export class DeliveryListComponent implements GridView {
   data$ = of([]);
   mainGrid: MainGridComponent;
   constructor(private router: Router,
-              private store: Store<AppState>) {
+              private deliveryFacade: DeliveryFacade) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
+    this.deliveryFacade.loadAllDelivery();
   }
 
   ngAfterViewInit(): void {
@@ -34,9 +34,10 @@ export class DeliveryListComponent implements GridView {
     switch (event.action) {
       case Operations.add:
       case Operations.update:
-        this.router.navigate(['sales/delivery/add']);
+        this.router.navigate(['sales/delivery/add', event.data ? {id: event.data.id} : {}]);
         break;
       case Operations.delete:
+        this.deliveryFacade.removeDelivery(event.data.map(e => e.id));
         break;
     }
   }

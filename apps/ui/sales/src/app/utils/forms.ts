@@ -14,7 +14,8 @@ const regConfigDelivery = (data?) => [
     value: data?.customers ?? [],
     filterFields: ['name', 'phone'],
     fieldsToShow: ['name', 'phone'],
-    options: []
+    options: [],
+    // validations: [REQUIRED]
   },
   {
     type: "date",

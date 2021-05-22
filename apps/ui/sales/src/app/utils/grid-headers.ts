@@ -1,5 +1,10 @@
 export const deliveryHeaders = [
-  { field: 'id', headersName: 'ID' }
+  { field: 'id', headerName: 'ID' },
+  { field: 'status', headerName: 'Etat' },
+  { field: 'order', headerName: 'Commande' },
+  { field: 'predicted_date', headerName: 'Date prévue', type: 'dateColumn' },
+  { field: 'client', headerName: 'Client' },
+  { field: 'company', headerName: 'Société' },
 ];
 
 

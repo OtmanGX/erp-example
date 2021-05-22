@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FieldConfig } from '@tanglass-erp/material';
 import { regConfigDelivery } from '@TanglassUi/sales/utils/forms';
 import { ColumnType, Column } from '@tanglass-erp/material';
+import { DeliveryFacade } from '@tanglass-erp/store/sales';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'ngx-delivery-add',
@@ -9,7 +11,7 @@ import { ColumnType, Column } from '@tanglass-erp/material';
   styleUrls: ['./delivery-add.component.scss']
 })
 export class DeliveryAddComponent implements OnInit {
-
+  deliveryLinesForm: FormGroup;
   regConfig: FieldConfig[];
   data: Array<any> = [
     { name: 'article1', rest: 2, delivered: 4, stock_state: false },
@@ -37,10 +39,17 @@ export class DeliveryAddComponent implements OnInit {
       ]
     }
   ];
-  constructor() { }
+  constructor(private deliveryFacade: DeliveryFacade) { }
 
   ngOnInit(): void {
     this.buildForm();
+    const controls = {};
+    this.data.forEach(item => {
+      controls[item.name] = new FormControl(0);
+    });
+    this.deliveryLinesForm = new FormGroup(
+      controls
+    );
   }
 
   buildForm() {
@@ -49,5 +58,7 @@ export class DeliveryAddComponent implements OnInit {
 
   submit(value: any) {
     console.log(value);
+    console.log(this.deliveryLinesForm.value);
+    // this.deliveryFacade.addDelivery(value);
   }
 }

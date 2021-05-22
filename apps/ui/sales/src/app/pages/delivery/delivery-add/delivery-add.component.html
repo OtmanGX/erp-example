@@ -23,11 +23,12 @@
       <mat-toolbar class="header-info">
         Lignes de livraison
       </mat-toolbar>
-
+      <form [formGroup]="deliveryLinesForm">
       <app-table #table  [data]="data"
                  [templates]="{delivered: delivered, qte: qte, stock_state: state, rest: rest}"
                  [columnsToShow]="displayedColumns">
       </app-table>
+      </form>
 
       <!--      Templates-->
       <ng-template let-item="data" #state>
@@ -45,9 +46,11 @@
       </ng-template>
 
       <ng-template let-item="data" #qte>
-        <mat-form-field *ngIf="item.rest">
-          <input matInput type="number" name="qte" [value]="0" [min]="0"/>
+        <div [formGroup]="deliveryLinesForm" *ngIf="item.rest">
+        <mat-form-field >
+          <input matInput type="number" [name]="item.name" [formControlName]="item.name" [value]="0" [min]="0"/>
         </mat-form-field>
+        </div>
       </ng-template>
       <mat-card-actions class="mt-12 ml-12">
         <button mat-raised-button color="primary">
