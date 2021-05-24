@@ -26,4 +26,6 @@ export {
   Order,
   Draft,
   Product_draft,
+  DeliveryForm,
+  DeliveryLine
 } from '@tanglass-erp/core/sales';

@@ -18,6 +18,8 @@ import { CreateQuotationComponent } from './pages/quotation/create-quotation/cre
 import { CreateOrderComponent } from "./pages/order/create-order/create-order.component";
 import { DeliveryListComponent } from '@TanglassUi/sales/pages/delivery/delivery-list/delivery-list.component';
 import { DeliveryAddComponent } from '@TanglassUi/sales/pages/delivery/delivery-add/delivery-add.component';
+import { DeliveryLineComponent } from '@TanglassUi/sales/pages/components/delivery-line/delivery-line.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     SalesComponent,
@@ -30,7 +32,8 @@ import { DeliveryAddComponent } from '@TanglassUi/sales/pages/delivery/delivery-
     CreateOrderComponent,
     CreateQuotationComponent,
     DeliveryListComponent,
-    DeliveryAddComponent
+    DeliveryAddComponent,
+    DeliveryLineComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +43,8 @@ import { DeliveryAddComponent } from '@TanglassUi/sales/pages/delivery/delivery-
     StoreSharedModule,
     StoreProductModule,
     StoreContactModule,
-    StoreSalesModule
+    StoreSalesModule,
+    MatSlideToggleModule
   ]
 })
 export class SalesModule { }

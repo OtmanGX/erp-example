@@ -23,35 +23,7 @@
       <mat-toolbar class="header-info">
         Lignes de livraison
       </mat-toolbar>
-      <form [formGroup]="deliveryLinesForm">
-      <app-table #table  [data]="data"
-                 [templates]="{delivered: delivered, qte: qte, stock_state: state, rest: rest}"
-                 [columnsToShow]="displayedColumns">
-      </app-table>
-      </form>
-
-      <!--      Templates-->
-      <ng-template let-item="data" #state>
-        <mat-icon [color]="item?'primary':'warn'" [matTooltip]="item?'Disponible':'Rupture de stock'">
-          {{item?'check_box':'dangerous'}}
-        </mat-icon>
-      </ng-template>
-
-      <ng-template let-item="data" #delivered>
-        <div class="text-success">{{item}}</div>
-      </ng-template>
-
-      <ng-template let-item="data" #rest>
-        <div [ngClass]="item?'text-danger':'text-success'">{{item}}</div>
-      </ng-template>
-
-      <ng-template let-item="data" #qte>
-        <div [formGroup]="deliveryLinesForm" *ngIf="item.rest">
-        <mat-form-field >
-          <input matInput type="number" [name]="item.name" [formControlName]="item.name" [value]="0" [min]="0"/>
-        </mat-form-field>
-        </div>
-      </ng-template>
+      <ngx-delivery-line #table></ngx-delivery-line>
       <mat-card-actions class="mt-12 ml-12">
         <button mat-raised-button color="primary">
           Confirmer

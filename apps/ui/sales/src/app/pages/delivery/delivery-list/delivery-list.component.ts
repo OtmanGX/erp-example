@@ -33,8 +33,10 @@ export class DeliveryListComponent implements GridView {
     // Store Action Dispatching
     switch (event.action) {
       case Operations.add:
+        this.router.navigate(['sales/delivery/add']);
+        break;
       case Operations.update:
-        this.router.navigate(['sales/delivery/add', event.data ? {id: event.data.id} : {}]);
+        this.router.navigate(['sales/delivery/update', {id: event.data?.id}]);
         break;
       case Operations.delete:
         this.deliveryFacade.removeDelivery(event.data.map(e => e.id));

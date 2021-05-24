@@ -46,6 +46,7 @@ const routes: Routes = [
         children: [
           { path: '', component: DeliveryListComponent },
           { path: 'add', component: DeliveryAddComponent },
+          { path: 'update', component: DeliveryAddComponent },
         ],
         data: { title: 'Bons de livraison', breadcrumb: "" }
       },

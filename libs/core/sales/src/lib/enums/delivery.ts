@@ -3,3 +3,10 @@ export enum DeliveryStatus {
   PENDING = 'En attendant',
   PARTIAL_COMPLETED = 'Partiellement Complété'
 }
+
+
+export enum PaymentMethod {
+  CHECK = 'Chèque',
+  CASH = 'Espèce',
+  TRANSFER = 'Virement'
+}

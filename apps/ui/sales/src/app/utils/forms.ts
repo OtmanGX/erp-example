@@ -5,7 +5,7 @@ type ListObservable = Observable<any> | Array<any>;
 
 
 
-const regConfigDelivery = (data?) => [
+const regConfigDelivery = (data?, clients?, companies?, contacts?) => [
   {
     type: "selectSearch",
     name: "ref",
@@ -28,21 +28,25 @@ const regConfigDelivery = (data?) => [
     name: "society",
     label: "Société",
     inputType: "text",
-    options: []
+    options: companies
   },
   {
     type: "selectSearch",
     name: "client",
     label: "Client",
+    filterFields: ['name', 'phone'],
+    fieldsToShow: ['name', 'phone'],
     inputType: "text",
-    options: []
+    options: clients
   },
   {
     type: "selectSearch",
     name: "contact",
     label: "Contact",
+    filterFields: ['name', 'code'],
+    fieldsToShow: ['name', 'code'],
     inputType: "text",
-    options: []
+    options: contacts
   },
   ];
 
