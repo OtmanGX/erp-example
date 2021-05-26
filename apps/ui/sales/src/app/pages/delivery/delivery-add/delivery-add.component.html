@@ -1,0 +1,39 @@
+<mat-card class="pr-0 pl-0">
+
+  <mat-card-header >
+    <mat-card-title class="mat-color-primary">
+      <h1>
+        Bon de livraison
+      </h1>
+      <mat-divider></mat-divider>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="px-0 mt-24">
+    <dynamic-form [fields]="regConfig"
+                  [flat]="true"
+                  [withActions]="false"
+                  (submit)="submit($event)">
+
+      <mat-toolbar class="header-info">
+        Commande Infos
+      </mat-toolbar>
+
+      <ngx-list-item [data]="commandData"></ngx-list-item>
+
+      <mat-toolbar class="header-info">
+        Lignes de livraison
+      </mat-toolbar>
+      <ngx-delivery-line #table></ngx-delivery-line>
+      <mat-card-actions class="mt-12 ml-12">
+        <button mat-raised-button color="primary">
+          Confirmer
+        </button>
+      </mat-card-actions>
+
+    </dynamic-form>
+
+  </mat-card-content>
+</mat-card>
+
+
+

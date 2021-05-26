@@ -3,6 +3,53 @@ import { Observable } from 'rxjs';
 
 type ListObservable = Observable<any> | Array<any>;
 
+
+
+const regConfigDelivery = (data?, clients?, companies?, contacts?) => [
+  {
+    type: "selectSearch",
+    name: "ref",
+    label: "N° Commande",
+    inputType: "text",
+    value: data?.customers ?? [],
+    filterFields: ['name', 'phone'],
+    fieldsToShow: ['name', 'phone'],
+    options: [],
+    // validations: [REQUIRED]
+  },
+  {
+    type: "date",
+    name: "predicted_date",
+    label: "Date prévue",
+    inputType: "text",
+  },
+  {
+    type: "select",
+    name: "society",
+    label: "Société",
+    inputType: "text",
+    options: companies
+  },
+  {
+    type: "selectSearch",
+    name: "client",
+    label: "Client",
+    filterFields: ['name', 'phone'],
+    fieldsToShow: ['name', 'phone'],
+    inputType: "text",
+    options: clients
+  },
+  {
+    type: "selectSearch",
+    name: "contact",
+    label: "Contact",
+    filterFields: ['name', 'code'],
+    fieldsToShow: ['name', 'code'],
+    inputType: "text",
+    options: contacts
+  },
+  ];
+
 const regConfigDraftInfos = (
   data?,
   customers: any = [],
@@ -61,7 +108,7 @@ const regConfigGlassItem = (
       filterFields: ['id', 'label'],
       fieldsToShow: ['id', 'label'],
       options: glasses,
-      
+
     },
 
     {
@@ -198,7 +245,7 @@ const regConfigServiceItem = (
       value: data?.label,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
- 
+
     {
       type: 'inputSelect',
       name: 'quantity',
@@ -221,7 +268,7 @@ const regConfigServiceItem = (
       options: companies,
       validations: [REQUIRED],
     },
- 
+
 
   ];
 
@@ -251,7 +298,7 @@ const regConfigServiceItem = (
         value: data?.label,
         validations: [REQUIRED, MAXNUMBER(limit)],
       },
-   
+
       {
         type: 'inputSelect',
         name: 'quantity',
@@ -280,11 +327,12 @@ const regConfigServiceItem = (
         options: warehouses,
         //validations: [REQUIRED],
       },
-  
+
     ];
 export {
   regConfigDraftInfos,
   regConfigGlassItem,
   regConfigAccessoireItem,
-  regConfigServiceItem
+  regConfigServiceItem,
+  regConfigDelivery
 };
