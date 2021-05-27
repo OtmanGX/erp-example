@@ -24,7 +24,7 @@
       <mat-toolbar class="header-info">
         Lignes de livraison
       </mat-toolbar>
-      <ngx-delivery-line #table></ngx-delivery-line>
+      <ngx-delivery-line *ngIf="orderLines$ | async; let orderLines" [data]="orderLines" #table></ngx-delivery-line>
       <mat-card-actions class="mt-12 ml-12">
         <button mat-raised-button color="primary">
           Confirmer

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DraftFacade } from '@tanglass-erp/store/sales';
 
 @Component({
   selector: 'ngx-draft',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DraftComponent implements OnInit {
 
-  constructor() { }
+  constructor(private facade: DraftFacade) { }
 
   ngOnInit(): void {
   }

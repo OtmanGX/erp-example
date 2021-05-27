@@ -2,14 +2,14 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { ActivatedRoute, Router } from '@angular/router';
 import { DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
 import { regConfigDelivery } from '@TanglassUi/sales/utils/forms';
-import { DeliveryFacade, DraftFacade, Order, OrdersFacade } from '@tanglass-erp/store/sales';
+import { DeliveryFacade, DraftFacade, Order, OrdersFacade, Product_draft } from '@tanglass-erp/store/sales';
 import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { DeliveryLineComponent } from '@TanglassUi/sales/pages/components/delivery-line/delivery-line.component';
 
@@ -33,6 +33,10 @@ export class DeliveryAddComponent
   orders$ = this.ordersFacade.allOrders$;
   selectedOrder$ = this.ordersFacade.selectedOrder$;
   selectedOrder: Order;
+  orderLines$ = this.draftFacade.draftLoadedById$.pipe(
+    filter(val => !!val),
+    map(val => val?.product_drafts)
+  );
 
   // Id for update reason
   deliveryId: string;
@@ -41,8 +45,8 @@ export class DeliveryAddComponent
 
 
   constructor(
-    private deliveryFacade: DeliveryFacade,
     private store: Store,
+    private deliveryFacade: DeliveryFacade,
     private draftFacade: DraftFacade,
     private ordersFacade: OrdersFacade,
     private router: Router,
@@ -61,9 +65,11 @@ export class DeliveryAddComponent
     const orderField = this.form.getField('order');
     const companyField = this.form.getField('company');
     const clientField = this.form.getField('client');
+    this.orderLines$.subscribe(value => console.log('orderlines', value))
     this.selectedOrder$.subscribe(
       value => {
         this.selectedOrder = value;
+        this.draftFacade.loadById(value.draft_id)
         this.setColumnsData();
         companyField.patchValue(value.company.id);
         clientField.patchValue(value.customer.id);
@@ -120,5 +126,6 @@ export class DeliveryAddComponent
 
   ngOnDestroy(): void {
     this.ordersFacade.clearSelection();
+    this.draftFacade.clearState();
   }
 }

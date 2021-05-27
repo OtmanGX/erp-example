@@ -16,10 +16,10 @@ export interface SalesCustomer {
     id?: string;
     code?: string;
     name: string;
-    phone: string;
+    phone?: string;
 }
 
  export interface SalesCompany {
-    id: string;
+    id?: string;
     name: string;
 }

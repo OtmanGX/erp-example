@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { DraftEntity } from './draft.models';
-import { Draft } from "@tanglass-erp/core/sales";
+import { Draft, DraftDetailed } from '@tanglass-erp/core/sales';
 
 /****************************************************************** */
 /*****LOAD Drafts ** */
@@ -29,13 +29,13 @@ export const loadDraftFailure = createAction(
 
 export const loadDraftById = createAction(
   '[Draft Card Component] Load Draft By Id',
-  props<{ id:any }>()
+  props<{ id: any }>()
   );
 
 
 export const loadDraftByIdSuccess = createAction(
   '[Draft Effect] Load Draft By Id Success',
-  props<{ draft: Draft }>()
+  props<{ draft: DraftDetailed }>()
 );
 
 export const loadDraftByIdFailure = createAction(
@@ -96,3 +96,5 @@ export const removeDraftFailure = createAction(
   '[Draft Effect] Delete Draft failure',
   props<{ error: any }>()
 );
+
+export const clearDraftState = createAction('[Draft] Clear Draft State');
