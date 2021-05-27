@@ -20,6 +20,7 @@ import { TransfertCardComponent } from './pages/warehouse-transfert/transfert-ca
 import { StoreSharedModule } from '@tanglass-erp/store/shared';
 import { PopOrderItemComponent } from './pages/warehouse-transfert/pop-order-item/pop-order-item.component';
 import { PopOrderItemDeliverComponent } from './pages/warehouse-transfert/pop-order-item-deliver/pop-order-item-deliver.component';
+import { WarehouseTransferredComponent } from '@TanglassUi/inventory/pages/warehouse-transferred/warehouse-transferred.component';
 
 
 const routes: Routes = [
@@ -35,11 +36,18 @@ const routes: Routes = [
         data: { title: 'Entrepôts', breadcrumb: "" }
       },
       {
-        path: 'transfert',
+        path: 'transfer',
         data: { title: 'Transfert', breadcrumb: "" },
         children : [
           { path: '', component: WarehouseTransfertComponent},
           { path: ':id', component: TransfertCardComponent },
+        ]
+      },
+      {
+        path: 'transferred',
+        data: { title: 'Transfert', breadcrumb: "" },
+        children : [
+          { path: '', component: WarehouseTransferredComponent},
         ]
       },
       {
@@ -89,7 +97,8 @@ const routes: Routes = [
     WarehouseTransfertComponent,
     TransfertCardComponent,
     PopOrderItemComponent,
-    PopOrderItemDeliverComponent
+    PopOrderItemDeliverComponent,
+    WarehouseTransferredComponent
   ],
   imports: [
     CommonModule,
