@@ -38,7 +38,15 @@ const ordersReducer = createReducer(
   on(OrdersActions.loadOrdersFailure, (state, { error }) => ({
     ...state,
     error,
-  }))
+  })),
+  on(OrdersActions.selectOrder, (state, { id }) => ({
+    ...state,
+    selectedId: id,
+  })),
+  on(OrdersActions.clearSelection, (state) => ({
+    ...state,
+    selectedId: null,
+  })),
 );
 
 export function reducer(state: State | undefined, action: Action) {

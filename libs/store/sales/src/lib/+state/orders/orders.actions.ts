@@ -12,3 +12,12 @@ export const loadOrdersFailure = createAction(
   '[Orders] Load Orders Failure',
   props<{ error: any }>()
 );
+
+
+export const selectOrder = createAction(
+  '[Orders] Select Order',
+  props<{ id: string | number}>()
+);
+
+
+export const clearSelection = createAction('[Orders] Clear Selection');

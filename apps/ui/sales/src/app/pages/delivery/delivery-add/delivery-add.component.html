@@ -9,17 +9,18 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content class="px-0 mt-24">
-    <dynamic-form [fields]="regConfig"
+  <dynamic-form #form [fields]="regConfig"
                   [flat]="true"
                   [withActions]="false"
                   (submit)="submit($event)">
 
-      <mat-toolbar class="header-info">
-        Commande Infos
-      </mat-toolbar>
+      <ng-container *ngIf="selectedOrder">
+        <mat-toolbar class="header-info">
+          Commande Infos
+        </mat-toolbar>
 
-      <ngx-list-item [data]="commandData"></ngx-list-item>
-
+        <ngx-list-item [data]="commandData"></ngx-list-item>
+      </ng-container>
       <mat-toolbar class="header-info">
         Lignes de livraison
       </mat-toolbar>
