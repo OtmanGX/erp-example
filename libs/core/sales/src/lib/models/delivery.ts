@@ -7,7 +7,7 @@ import { Company } from '@tanglass-erp/core/product';
 
 export interface DeliveryForm extends MetaData {
   id: string;
-  order: Order[];
+  orders: Order[];
   status: DeliveryStatus;
   predicted_date: Date;
   client: Customer;
@@ -20,23 +20,25 @@ export interface DeliveryForm extends MetaData {
 
 export interface InsertedDeliveryForm extends MetaData {
   id: string;
-  order: string[];
+  orders: number[];
   status: DeliveryStatus;
   predicted_date: Date;
   client: string;
   company: string;
   contact: string;
-  delivery_lines: DeliveryLine[];
+  delivery_lines?: DeliveryLine[];
   payment_method: PaymentMethod;
 }
 
 
 export interface DeliveryLine {
   id?: string;
+  delivery: string;
   product: any;
   total: number;
   delivered: number;
-  company?: Company | string;
+  company_name?: string;
+  product_label?: string;
   amount?: number;
   isReturned?: boolean;
   toDeliver?: number; // For Form purpose only

@@ -1,0 +1,37 @@
+# Looks like you do not have any tables.
+# Click on the "Data" tab on top to create tables
+# Try out GraphQL queries here after you create tables
+mutation InsertDelivery(
+  $orders: [sales_delivery_orders_insert_input!]!= []
+  $status: String!
+  $predicted_date: date
+  $client: uuid!,
+  $company: uuid!,
+  $contact: uuid!,
+  $delivery_lines: [sales_delivery_line_insert_input!]!= []
+  $payment_method: String!
+) {
+  insert_sales_delivery_one(
+    object: {
+      delivery_orders: { data: $orders }
+      company: $company
+      payment_method: $payment_method
+      predicted_date: $predicted_date
+      status: $status
+      client: $client
+      delivery_lines: { data: $delivery_lines }
+      contact: $contact
+    }
+  ) {
+    id
+    status
+    client
+    company
+    contact
+    payment_method
+    predicted_date
+    orders: delivery_orders{
+      order_id
+    }
+  }
+}

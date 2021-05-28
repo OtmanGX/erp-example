@@ -3,6 +3,8 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as DeliveryActions from './delivery.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { DeliveryService } from '@tanglass-erp/core/sales';
+import { reverseAdaptDelivery } from '@tanglass-erp/core/sales';
 
 @Injectable()
 export class DeliveryEffects {
@@ -40,8 +42,14 @@ export class DeliveryEffects {
     this.actions$.pipe(
       ofType(DeliveryActions.addDelivery),
       mergeMap((action) =>
-        of(null).pipe(
-          map((data) => DeliveryActions.addDeliverySuccess({ delivery: data })),
+        this.deliveryService.insertOne(action.delivery).pipe(
+          map((data) =>
+            DeliveryActions.addDeliverySuccess({
+              delivery: reverseAdaptDelivery(
+                data.data.insert_sales_delivery_one
+              ),
+            })
+          ),
           catchError((error) =>
             of(DeliveryActions.addDeliveryFailure({ error }))
           )
@@ -82,5 +90,8 @@ export class DeliveryEffects {
     )
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(
+    private actions$: Actions,
+    private deliveryService: DeliveryService
+  ) {}
 }

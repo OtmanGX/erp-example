@@ -1,0 +1,14 @@
+query getAllDelivery {
+  sales_delivery{
+    id
+    status
+    client
+    company
+    contact
+    payment_method
+    predicted_date
+    delivery_orders{
+      order_id
+    }
+  }
+}
