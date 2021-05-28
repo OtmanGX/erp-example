@@ -1,3 +1,5 @@
+import { DeliveryStatus } from '@tanglass-erp/core/sales';
+
 export * from './lib/+state/delivery/delivery.facade';
 export * from './lib/+state/delivery/delivery.actions';
 export * from './lib/+state/delivery/delivery.reducer';
@@ -27,5 +29,7 @@ export {
   Draft,
   Product_draft,
   DeliveryForm,
-  DeliveryLine
+  DeliveryLine,
+  DeliveryStatus,
+  PaymentMethod
 } from '@tanglass-erp/core/sales';

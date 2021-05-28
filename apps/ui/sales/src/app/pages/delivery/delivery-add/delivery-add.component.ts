@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
-import { regConfigDelivery } from '@TanglassUi/sales/utils/forms';
+import { deliveryFormType, regConfigDelivery } from '@TanglassUi/sales/utils/forms';
 import { DeliveryFacade, DraftFacade, Order, OrdersFacade, Product_draft } from '@tanglass-erp/store/sales';
 import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
@@ -12,6 +12,7 @@ import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.
 import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { DeliveryLineComponent } from '@TanglassUi/sales/pages/components/delivery-line/delivery-line.component';
+import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 
 
 @Component({
@@ -62,10 +63,10 @@ export class DeliveryAddComponent
   }
 
   ngAfterViewInit(): void {
-    const orderField = this.form.getField('order');
+    const orderField = this.form.getField('orders');
     const companyField = this.form.getField('company');
     const clientField = this.form.getField('client');
-    this.orderLines$.subscribe(value => console.log('orderlines', value))
+    // this.orderLines$.subscribe(value => console.log('orderlines', value))
     this.selectedOrder$.subscribe(
       value => {
         this.selectedOrder = value;
@@ -115,13 +116,16 @@ export class DeliveryAddComponent
     );
   }
 
-  submit(value: any) {
-    console.log(value);
-    console.log(this.table.data);
-    this.router.navigate(['/sales/delivery']);
-    // if (this.deliveryId)
-    //   this.deliveryFacade.updateDelivery(value);
-    // else this.deliveryFacade.addDelivery(value);
+  submit(value: deliveryFormType) {
+    const delivery: InsertedDeliveryForm = {
+      ...value,
+      delivery_lines: this.table.submitValue()
+    };
+    console.log(delivery);
+    if (this.deliveryId)
+      this.deliveryFacade.updateDelivery(value);
+    else this.deliveryFacade.addDelivery(delivery);
+    // this.router.navigate(['/sales/delivery']);
   }
 
   ngOnDestroy(): void {

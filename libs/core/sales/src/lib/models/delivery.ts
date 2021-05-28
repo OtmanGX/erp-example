@@ -19,7 +19,7 @@ export interface DeliveryForm extends MetaData {
 
 
 export interface InsertedDeliveryForm extends MetaData {
-  id: string;
+  id?: string;
   orders: number[];
   status: DeliveryStatus;
   predicted_date: Date;
@@ -33,13 +33,12 @@ export interface InsertedDeliveryForm extends MetaData {
 
 export interface DeliveryLine {
   id?: string;
-  delivery: string;
   product: any;
-  total: number;
+  quantity: number;
   delivered: number;
-  company_name?: string;
+  company_name: string;
   product_label?: string;
   amount?: number;
-  isReturned?: boolean;
+  isReturned: boolean;
   toDeliver?: number; // For Form purpose only
 }

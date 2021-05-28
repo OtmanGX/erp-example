@@ -1,45 +1,69 @@
 <form #f="ngForm">
-  <app-table #table [data]="deliveryLines"
-             [templates]="{
-               delivered: delivered, qte: qte, rest: rest,
-               isReturned: isReturned, stock_state: state, amount: amount
-             }"
-             [columnsToShow]="displayedColumns">
+  <app-table
+    #table
+    [data]="deliveryLines"
+    [templates]="{
+      delivered: delivered,
+      qte: qte,
+      rest: rest,
+      isReturned: isReturned,
+      stock_state: state,
+      amount: amount
+    }"
+    [columnsToShow]="displayedColumns"
+  >
   </app-table>
 </form>
 
 <!--      Templates-->
 <ng-template let-item="data" #state>
-<!--  <mat-icon [color]="item?'primary':'warn'" [matTooltip]="item?'Disponible':'Rupture de stock'">-->
-<!--    {{item?'check_box':'dangerous'}}-->
-<!--  </mat-icon>-->
+  <!--  <mat-icon [color]="item?'primary':'warn'" [matTooltip]="item?'Disponible':'Rupture de stock'">-->
+  <!--    {{item?'check_box':'dangerous'}}-->
+  <!--  </mat-icon>-->
   <mat-icon matTooltip="Disponible">check_box</mat-icon>
 </ng-template>
 
 <ng-template let-item="data" #delivered>
-  <div class="text-success">{{item}}</div>
+  <div class="text-success">{{ item }}</div>
 </ng-template>
 
-<ng-template let-item="data" #rest >
-  <div [ngClass]="item.total-item.delivered?'text-danger':'text-success'">{{item.total-item.delivered}}</div>
+<ng-template let-item="data" #rest>
+  <div [ngClass]="item.quantity - item.delivered ? 'text-danger' : 'text-success'">
+    {{ item.quantity - item.delivered }}
+  </div>
 </ng-template>
 
-
-<ng-template let-item="data" #isReturned >
-  <mat-slide-toggle [checked]="item.isReturned" (change)="switchReturned(item, $event.checked)"></mat-slide-toggle>
+<ng-template let-item="data" #isReturned>
+  <mat-slide-toggle
+    [checked]="item.isReturned"
+    (change)="switchReturned(item, $event.checked)"
+  ></mat-slide-toggle>
 </ng-template>
 
-<ng-template let-item="data" #amount >
+<ng-template let-item="data" #amount>
   <mat-form-field>
-    <input matInput type="number" name="amount" [(ngModel)]="item.amount" [min]="0" />
+    <input
+      matInput
+      type="number"
+      name="amount"
+      [(ngModel)]="item.amount"
+      [min]="0"
+    />
   </mat-form-field>
 </ng-template>
 
 <ng-template let-item="data" #qte>
-  <div *ngIf="item.total - item.delivered">
+  <div *ngIf="item.quantity - item.delivered">
     <mat-form-field>
-      <input matInput type="number" [(ngModel)]="item.toDeliver" [name]="item.product"
-             [value]="0" [min]="0" [max]="item.total-item.delivered"/>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="item.toDeliver"
+        [name]="item.product"
+        [value]="0"
+        [min]="0"
+        [max]="item.quantity - item.delivered"
+      />
     </mat-form-field>
   </div>
 </ng-template>

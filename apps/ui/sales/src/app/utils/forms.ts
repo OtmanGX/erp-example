@@ -1,21 +1,32 @@
 import { MAXNUMBER, REQUIRED } from '@tanglass-erp/material';
 import { Observable } from 'rxjs';
+import { DeliveryStatus, PaymentMethod } from '@tanglass-erp/core/sales';
 
 type ListObservable = Observable<any> | Array<any>;
 
 
+export type deliveryFormType = {
+  orders: number[];
+  predicted_date: Date;
+  status: DeliveryStatus;
+  company: string;
+  client: string;
+  contact: string;
+  payment_method: PaymentMethod;
+}
 
 const regConfigDelivery = (data?, orders?, clients?, companies?, contacts?) => [
   {
     type: "selectSearch",
-    name: "order",
+    name: "orders",
     label: "N° Commande",
     inputType: "text",
+    multiple: true,
     value: data?.customers ?? [],
     filterFields: ['draft_id', 'company.name'],
     fieldsToShow: ['draft_id', 'company.name'],
     options: orders,
-    // validations: [REQUIRED]
+    validations: [REQUIRED]
   },
   {
     type: "date",
@@ -47,6 +58,20 @@ const regConfigDelivery = (data?, orders?, clients?, companies?, contacts?) => [
     fieldsToShow: ['name', 'code'],
     inputType: "text",
     options: contacts
+  },
+  {
+    type: "select",
+    name: "payment_method",
+    label: "Méthode de paiement",
+    inputType: "text",
+    options: Object.values(PaymentMethod).map(e => ({key: e, value: e}))
+  },
+  {
+    type: "select",
+    name: "status",
+    label: "Etat",
+    inputType: "text",
+    options: Object.values(DeliveryStatus).map(e => ({key: e, value: e}))
   },
   ];
 

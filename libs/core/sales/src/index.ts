@@ -9,4 +9,4 @@ export * from './lib/services/order.service';
 export * from './lib/services/delivery.service';
 export * from './lib/utils/data-adapter';
 export * from './lib/models/delivery';
-
+export * from './lib/enums/delivery';
