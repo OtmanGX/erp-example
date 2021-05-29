@@ -52,7 +52,7 @@ export const updateDelivery = createAction(
 
 export const updateDeliverySuccess = createAction(
   '[Delivery] update Delivery Success',
-  props<{ delivery: DeliveryForm }>()
+  props<{ delivery: Partial<DeliveryForm> }>()
 );
 
 export const updateDeliveryFailure = createAction(

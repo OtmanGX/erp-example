@@ -10,9 +10,6 @@ query getAllDelivery {
     }
     payment_method
     predicted_date
-    delivery_orders {
-      order_id
-    }
     client: customer {
       name
       mail

@@ -6,12 +6,14 @@ import * as fromDelivery from './delivery.reducer';
 import * as DeliverySelectors from './delivery.selectors';
 import * as DeliveryActions from './delivery.actions';
 import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
+import { filter } from 'rxjs/operators';
 
 @Injectable()
 export class DeliveryFacade {
   loaded$ = this.store.pipe(select(DeliverySelectors.getDeliveryLoaded));
   allDelivery$ = this.store.pipe(select(DeliverySelectors.getAllDelivery));
-  selectedDelivery$ = this.store.pipe(select(DeliverySelectors.getSelectedEntity));
+  selectedDelivery$ = this.store.pipe(select(DeliverySelectors.getSelectedEntity))
+    .pipe(filter(e => !!e));
 
   constructor(private store: Store<fromDelivery.DeliveryPartialState>) {}
 

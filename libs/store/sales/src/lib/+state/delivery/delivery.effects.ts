@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as DeliveryActions from './delivery.actions';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { DeliveryService } from '@tanglass-erp/core/sales';
+import { adaptDelivery, DeliveryForm, DeliveryService, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 import { reverseAdaptDelivery } from '@tanglass-erp/core/sales';
 import { Router } from '@angular/router';
 
@@ -14,8 +14,9 @@ export class DeliveryEffects {
       ofType(DeliveryActions.loadDelivery),
       mergeMap(() =>
         this.deliveryService.getAll().pipe(
-          map((data) => DeliveryActions.loadDeliverySuccess({ delivery: data.data.sales_delivery.map(
-            e => reverseAdaptDelivery(e)
+          map((data) => DeliveryActions.loadDeliverySuccess(
+            { delivery: data.data.sales_delivery.map(
+            e => <DeliveryForm> reverseAdaptDelivery(e)
             ) })),
           catchError((error) =>
             of(DeliveryActions.loadDeliveryFailure({ error }))
@@ -29,9 +30,9 @@ export class DeliveryEffects {
     this.actions$.pipe(
       ofType(DeliveryActions.loadDeliveryById),
       mergeMap((action) =>
-        of(null).pipe(
-          map((data) =>
-            DeliveryActions.loadDeliveryByIdSuccess({ delivery: data })
+        this.deliveryService.getOneById(<string> action.id).pipe(
+          map((data) =>  DeliveryActions.loadDeliveryByIdSuccess(
+                { delivery: <InsertedDeliveryForm> reverseAdaptDelivery(data.data.sales_delivery_by_pk) })
           ),
           catchError((error) =>
             of(DeliveryActions.loadDeliveryByIdFailure({ error }))
@@ -49,7 +50,7 @@ export class DeliveryEffects {
           map((data) => {
             this.router.navigate(['/sales/delivery']);
               return DeliveryActions.addDeliverySuccess({
-                delivery: reverseAdaptDelivery(
+                delivery: <DeliveryForm>reverseAdaptDelivery(
                   data.data.insert_sales_delivery_one
                 ),
               })
@@ -67,10 +68,11 @@ export class DeliveryEffects {
     this.actions$.pipe(
       ofType(DeliveryActions.updateDelivery),
       mergeMap((action) =>
-        of(null).pipe(
+        this.deliveryService.updateDelivery(action.delivery).pipe(
           map((data) =>
-            DeliveryActions.updateDeliverySuccess({ delivery: data })
+            DeliveryActions.updateDeliverySuccess({delivery: data[0].data.update_sales_delivery_by_pk})
           ),
+          tap(e => this.router.navigate(['/sales/delivery'])),
           catchError((error) =>
             of(DeliveryActions.updateDeliveryFailure({ error }))
           )

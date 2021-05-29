@@ -7,7 +7,9 @@ export function adaptDelivery(delivery: InsertedDeliveryForm) {
   }
 }
 
-export function reverseAdaptDelivery(delivery: any): DeliveryForm {
+export function reverseAdaptDelivery(obj: any): DeliveryForm | InsertedDeliveryForm {
+  // delete delivery.__typename;
+  const {__typename, ...delivery} = obj;
   return {
     ...delivery,
     orders: delivery.orders.map(e => e.order_id)

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { ActivatedRoute, Router } from '@angular/router';
 import { DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
 import { deliveryFormType, regConfigDelivery } from '@TanglassUi/sales/utils/forms';
-import { DeliveryFacade, DraftFacade, Order, OrdersFacade, Product_draft } from '@tanglass-erp/store/sales';
+import { DeliveryFacade, DraftFacade, Order, OrdersFacade } from '@tanglass-erp/store/sales';
 import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
@@ -23,7 +23,7 @@ import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 export class DeliveryAddComponent
   implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('table', { read: DeliveryLineComponent }) table;
-  @ViewChild('form', { read: DynamicFormComponent }) form;
+  @ViewChild('form', { read: DynamicFormComponent, static: false }) form;
 
   regConfig: FieldConfig[];
 
@@ -41,6 +41,7 @@ export class DeliveryAddComponent
 
   // Id for update reason
   deliveryId: string;
+  delivery: InsertedDeliveryForm = null;
 
   commandData = [];
 
@@ -59,10 +60,18 @@ export class DeliveryAddComponent
 
   ngOnInit(): void {
     this.dispatchActions();
-    this.buildForm();
+    if (this.deliveryId) {
+      this.deliveryFacade.loadDeliveryById(this.deliveryId);
+      this.deliveryFacade.selectedDelivery$.subscribe(value => {
+      this.delivery = <InsertedDeliveryForm> value;
+        this.buildForm()
+      })
+    } else this.buildForm();
   }
 
   ngAfterViewInit(): void {
+    if (this.deliveryId)
+      return
     const orderField = this.form.getField('orders');
     const companyField = this.form.getField('company');
     const clientField = this.form.getField('client');
@@ -108,7 +117,9 @@ export class DeliveryAddComponent
 
   buildForm() {
     this.regConfig = regConfigDelivery(
-      null,
+      {
+        ...this.delivery,
+      },
       this.orders$,
       this.customers$,
       this.companies$.pipe(map(e => e.map(company => ({ key: company.id, value: company.name })))),
@@ -117,14 +128,16 @@ export class DeliveryAddComponent
   }
 
   submit(value: deliveryFormType) {
-    const delivery: InsertedDeliveryForm = {
+    const deliveryToInsert: InsertedDeliveryForm = {
       ...value,
       delivery_lines: this.table.submitValue()
     };
     if (this.deliveryId)
-      this.deliveryFacade.updateDelivery(value);
-    else this.deliveryFacade.addDelivery(delivery);
-    // this.router.navigate(['/sales/delivery']);
+      this.deliveryFacade.updateDelivery({
+        ...deliveryToInsert,
+        id: this.deliveryId
+      });
+    else this.deliveryFacade.addDelivery(deliveryToInsert);
   }
 
   ngOnDestroy(): void {

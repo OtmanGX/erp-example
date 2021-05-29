@@ -46,7 +46,7 @@ const deliveryReducer = createReducer(
     deliveryAdapter.addOne(delivery, state)
   ),
   on(DeliveryActions.updateDeliverySuccess, (state, {delivery}) =>
-    deliveryAdapter.upsertOne(delivery, state)
+    deliveryAdapter.updateOne({id: delivery.id, changes: delivery}, state)
   ),
   on(DeliveryActions.removeDeliverySuccess, (state, {ids}) =>
     deliveryAdapter.removeMany(ids, state)

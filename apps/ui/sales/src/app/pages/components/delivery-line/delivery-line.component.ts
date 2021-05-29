@@ -11,6 +11,7 @@ export class DeliveryLineComponent implements OnInit {
   @Input()
   public data: Product_draft[] = [];
 
+  @Input()
   public deliveryLines: Array<DeliveryLine> = [];
   //   [ // For testing purpose
   //   { product: 'article1', total: 6, delivered: 4, company: 'Tanglass', toDeliver: 0, isReturned: true },
@@ -39,16 +40,21 @@ export class DeliveryLineComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.deliveryLines = this.data.map((elem) => ({
-      product: elem.id,
-      quantity: elem.quantity,
-      delivered: 0,
-      company_name: elem.company_name,
-      toDeliver: 0,
-      isReturned: true,
-      product_label: elem.label,
-    }));
+    if (!this.deliveryLines)
+      this.deliveryLines = this.data.map((elem) => ({
+        product: elem.id,
+        quantity: elem.quantity,
+        delivered: 0,
+        company_name: elem.company_name,
+        toDeliver: 0,
+        isReturned: true,
+        product_label: elem.label,
+      }));
+    else this.deliveryLines = [
+      ...this.deliveryLines.map(e => ({...e, toDeliver: 0}))
+    ]
   }
+
 
   switchReturned(obj, newValue: boolean) {
     obj.isReturned = newValue;
@@ -58,7 +64,7 @@ export class DeliveryLineComponent implements OnInit {
     const returnedValue = this.deliveryLines.map((e) => {
       const { toDeliver, ...wanted } = {
         ...e,
-        delivered: e.delivered + e.toDeliver,
+        delivered: e.delivered + e.toDeliver ?? 0,
       };
       return wanted;
     });
