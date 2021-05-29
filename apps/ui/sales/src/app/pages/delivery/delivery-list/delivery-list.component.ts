@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import { of } from 'rxjs';
 import { deliveryHeaders } from '@TanglassUi/sales/utils/grid-headers';
 import { Router } from '@angular/router';
 import { DeliveryFacade } from '@tanglass-erp/store/sales';
@@ -15,7 +14,7 @@ export class DeliveryListComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId = 'id';
-  data$ = of([]);
+  data$ = this.deliveryFacade.allDelivery$;
   mainGrid: MainGridComponent;
   constructor(private router: Router,
               private deliveryFacade: DeliveryFacade) {

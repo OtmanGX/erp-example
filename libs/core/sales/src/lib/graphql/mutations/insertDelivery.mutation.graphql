@@ -25,13 +25,23 @@ mutation InsertDelivery(
   ) {
     id
     status
-    client
-    company
+    company: companyObject{
+      name
+    }
     contact
     payment_method
     predicted_date
-    orders: delivery_orders{
+    delivery_orders {
       order_id
+    }
+    client: customer {
+      name
+      mail
+    }
+    contactByContact {
+      mail
+      name
+      phone
     }
   }
 }

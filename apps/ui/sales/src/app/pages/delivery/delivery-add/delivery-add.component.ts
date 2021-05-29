@@ -121,7 +121,6 @@ export class DeliveryAddComponent
       ...value,
       delivery_lines: this.table.submitValue()
     };
-    console.log(delivery);
     if (this.deliveryId)
       this.deliveryFacade.updateDelivery(value);
     else this.deliveryFacade.addDelivery(delivery);

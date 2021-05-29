@@ -13,7 +13,7 @@ export interface DeliveryForm extends MetaData {
   client: Customer;
   company: Company;
   contact: Contact;
-  delivery_lines: DeliveryLine[];
+  // delivery_lines: DeliveryLine[];
   payment_method: PaymentMethod;
 }
 

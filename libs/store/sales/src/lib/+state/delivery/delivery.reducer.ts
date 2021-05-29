@@ -6,8 +6,8 @@ import { DeliveryForm, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 
 export const DELIVERY_FEATURE_KEY = 'delivery';
 
-export interface State extends EntityState<InsertedDeliveryForm> {
-  selectedDeliveryForm?: string | DeliveryForm; // which Delivery record has been selected
+export interface State extends EntityState<DeliveryForm> {
+  selectedDeliveryForm?: string | InsertedDeliveryForm; // which Delivery record has been selected
   loaded: boolean; // has the Delivery list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -16,8 +16,8 @@ export interface DeliveryPartialState {
   readonly [DELIVERY_FEATURE_KEY]: State;
 }
 
-export const deliveryAdapter: EntityAdapter<InsertedDeliveryForm> = createEntityAdapter<
-  InsertedDeliveryForm
+export const deliveryAdapter: EntityAdapter<DeliveryForm> = createEntityAdapter<
+  DeliveryForm
 >();
 
 export const initialState: State = deliveryAdapter.getInitialState({

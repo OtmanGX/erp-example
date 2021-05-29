@@ -15536,6 +15536,8 @@ export type Sales_Delivery = {
   __typename?: 'sales_delivery';
   client: Scalars['uuid'];
   company: Scalars['uuid'];
+  /** An object relationship */
+  companyObject: Management_Company;
   contact?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   contactByContact?: Maybe<Contact_Contact>;
@@ -15661,6 +15663,7 @@ export type Sales_Delivery_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Sales_Delivery_Bool_Exp>>>;
   client?: Maybe<Uuid_Comparison_Exp>;
   company?: Maybe<Uuid_Comparison_Exp>;
+  companyObject?: Maybe<Management_Company_Bool_Exp>;
   contact?: Maybe<Uuid_Comparison_Exp>;
   contactByContact?: Maybe<Contact_Contact_Bool_Exp>;
   customer?: Maybe<Contact_Customer_Bool_Exp>;
@@ -15683,6 +15686,7 @@ export enum Sales_Delivery_Constraint {
 export type Sales_Delivery_Insert_Input = {
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
+  companyObject?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
   contact?: Maybe<Scalars['uuid']>;
   contactByContact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
   customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
@@ -16151,6 +16155,7 @@ export type Sales_Delivery_On_Conflict = {
 export type Sales_Delivery_Order_By = {
   client?: Maybe<Order_By>;
   company?: Maybe<Order_By>;
+  companyObject?: Maybe<Management_Company_Order_By>;
   contact?: Maybe<Order_By>;
   contactByContact?: Maybe<Contact_Contact_Order_By>;
   customer?: Maybe<Contact_Customer_Order_By>;
@@ -25360,10 +25365,19 @@ export type InsertDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_delivery_one?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date'>
-    & { orders: Array<(
+    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), delivery_orders: Array<(
       { __typename?: 'sales_delivery_orders' }
       & Pick<Sales_Delivery_Orders, 'order_id'>
+    )>, client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'mail'>
+    ), contactByContact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
     )> }
   )> }
 );
@@ -25449,10 +25463,22 @@ export type GetAllDeliveryQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery: Array<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date'>
-    & { delivery_orders: Array<(
+    & Pick<Sales_Delivery, 'id' | 'status' | 'payment_method' | 'predicted_date'>
+    & { orders: Array<(
       { __typename?: 'sales_delivery_orders' }
       & Pick<Sales_Delivery_Orders, 'order_id'>
+    )>, company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), delivery_orders: Array<(
+      { __typename?: 'sales_delivery_orders' }
+      & Pick<Sales_Delivery_Orders, 'order_id'>
+    )>, client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'mail'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
     )> }
   )> }
 );
@@ -28228,13 +28254,23 @@ export const InsertDeliveryDocument = gql`
   ) {
     id
     status
-    client
-    company
+    company: companyObject {
+      name
+    }
     contact
     payment_method
     predicted_date
-    orders: delivery_orders {
+    delivery_orders {
       order_id
+    }
+    client: customer {
+      name
+      mail
+    }
+    contactByContact {
+      mail
+      name
+      phone
     }
   }
 }
@@ -28343,14 +28379,26 @@ export const GetAllDeliveryDocument = gql`
     query getAllDelivery {
   sales_delivery {
     id
+    orders {
+      order_id
+    }
     status
-    client
-    company
-    contact
+    company: companyObject {
+      name
+    }
     payment_method
     predicted_date
     delivery_orders {
       order_id
+    }
+    client: customer {
+      name
+      mail
+    }
+    contact: contactByContact {
+      mail
+      name
+      phone
     }
   }
 }

@@ -7,7 +7,7 @@ export const loadDelivery = createAction('[Delivery] Load Delivery');
 
 export const loadDeliverySuccess = createAction(
   '[Delivery] Load Delivery Success',
-  props<{ delivery: InsertedDeliveryForm[] }>()
+  props<{ delivery: DeliveryForm[] }>()
 );
 
 export const loadDeliveryFailure = createAction(
@@ -21,7 +21,7 @@ export const loadDeliveryById = createAction('[Delivery] Load Delivery By Id',
 
 export const loadDeliveryByIdSuccess = createAction(
   '[Delivery] Load Delivery By Id Success',
-  props<{ delivery: DeliveryForm }>()
+  props<{ delivery: InsertedDeliveryForm }>()
 );
 
 export const loadDeliveryByIdFailure = createAction(
@@ -37,7 +37,7 @@ export const addDelivery = createAction(
 
 export const addDeliverySuccess = createAction(
   '[Delivery] Add Delivery Success',
-  props<{ delivery: InsertedDeliveryForm }>()
+  props<{ delivery: DeliveryForm }>()
 );
 
 export const addDeliveryFailure = createAction(
@@ -52,7 +52,7 @@ export const updateDelivery = createAction(
 
 export const updateDeliverySuccess = createAction(
   '[Delivery] update Delivery Success',
-  props<{ delivery: InsertedDeliveryForm }>()
+  props<{ delivery: DeliveryForm }>()
 );
 
 export const updateDeliveryFailure = createAction(

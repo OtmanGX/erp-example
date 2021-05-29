@@ -1,4 +1,4 @@
-import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
+import { InsertedDeliveryForm, DeliveryForm } from '@tanglass-erp/core/sales';
 
 export function adaptDelivery(delivery: InsertedDeliveryForm) {
   return {
@@ -7,7 +7,7 @@ export function adaptDelivery(delivery: InsertedDeliveryForm) {
   }
 }
 
-export function reverseAdaptDelivery(delivery: any): InsertedDeliveryForm {
+export function reverseAdaptDelivery(delivery: any): DeliveryForm {
   return {
     ...delivery,
     orders: delivery.orders.map(e => e.order_id)

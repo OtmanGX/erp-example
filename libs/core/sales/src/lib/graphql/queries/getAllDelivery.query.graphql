@@ -1,14 +1,26 @@
 query getAllDelivery {
   sales_delivery{
     id
+    orders{
+      order_id
+    }
     status
-    client
-    company
-    contact
+    company: companyObject{
+      name
+    }
     payment_method
     predicted_date
-    delivery_orders{
+    delivery_orders {
       order_id
+    }
+    client: customer {
+      name
+      mail
+    }
+    contact: contactByContact {
+      mail
+      name
+      phone
     }
   }
 }

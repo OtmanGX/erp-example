@@ -5,6 +5,7 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { DeliveryService } from '@tanglass-erp/core/sales';
 import { reverseAdaptDelivery } from '@tanglass-erp/core/sales';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class DeliveryEffects {
@@ -12,8 +13,10 @@ export class DeliveryEffects {
     this.actions$.pipe(
       ofType(DeliveryActions.loadDelivery),
       mergeMap(() =>
-        of([]).pipe(
-          map((data) => DeliveryActions.loadDeliverySuccess({ delivery: [] })),
+        this.deliveryService.getAll().pipe(
+          map((data) => DeliveryActions.loadDeliverySuccess({ delivery: data.data.sales_delivery.map(
+            e => reverseAdaptDelivery(e)
+            ) })),
           catchError((error) =>
             of(DeliveryActions.loadDeliveryFailure({ error }))
           )
@@ -43,12 +46,14 @@ export class DeliveryEffects {
       ofType(DeliveryActions.addDelivery),
       mergeMap((action) =>
         this.deliveryService.insertOne(action.delivery).pipe(
-          map((data) =>
-            DeliveryActions.addDeliverySuccess({
-              delivery: reverseAdaptDelivery(
-                data.data.insert_sales_delivery_one
-              ),
-            })
+          map((data) => {
+            this.router.navigate(['/sales/delivery']);
+              return DeliveryActions.addDeliverySuccess({
+                delivery: reverseAdaptDelivery(
+                  data.data.insert_sales_delivery_one
+                ),
+              })
+            }
           ),
           catchError((error) =>
             of(DeliveryActions.addDeliveryFailure({ error }))
@@ -91,6 +96,7 @@ export class DeliveryEffects {
   );
 
   constructor(
+    private router: Router,
     private actions$: Actions,
     private deliveryService: DeliveryService
   ) {}
