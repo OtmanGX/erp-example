@@ -9,7 +9,7 @@ mutation UpdateDeliveryLine(
   $quantity: Int
 ) {
   update_sales_delivery_line_by_pk(
-    pk_columns: { id: $id },
+    pk_columns: { id: $id }
     _set: {
       amount: $amount
       company_name: $company_name
@@ -20,7 +20,14 @@ mutation UpdateDeliveryLine(
       product_label: $product_label
       quantity: $quantity
     }
-  ){
+  ) {
     id
+    amount
+    company_name
+    delivered
+    isReturned
+    product
+    product_label
+    quantity
   }
 }

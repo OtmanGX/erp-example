@@ -4941,6 +4941,10 @@ export type Mutation_Root = {
   delete_product_consumableCategory_by_pk?: Maybe<Product_ConsumableCategory>;
   /** delete single row from the table: "product.consumable" */
   delete_product_consumable_by_pk?: Maybe<Product_Consumable>;
+  /** delete data from the table: "product.customer_product" */
+  delete_product_customer_product?: Maybe<Product_Customer_Product_Mutation_Response>;
+  /** delete single row from the table: "product.customer_product" */
+  delete_product_customer_product_by_pk?: Maybe<Product_Customer_Product>;
   /** delete data from the table: "product.glass" */
   delete_product_glass?: Maybe<Product_Glass_Mutation_Response>;
   /** delete data from the table: "product.glassColor" */
@@ -5147,6 +5151,10 @@ export type Mutation_Root = {
   insert_product_consumableCategory_one?: Maybe<Product_ConsumableCategory>;
   /** insert a single row into the table: "product.consumable" */
   insert_product_consumable_one?: Maybe<Product_Consumable>;
+  /** insert data into the table: "product.customer_product" */
+  insert_product_customer_product?: Maybe<Product_Customer_Product_Mutation_Response>;
+  /** insert a single row into the table: "product.customer_product" */
+  insert_product_customer_product_one?: Maybe<Product_Customer_Product>;
   /** insert data into the table: "product.glass" */
   insert_product_glass?: Maybe<Product_Glass_Mutation_Response>;
   /** insert data into the table: "product.glassColor" */
@@ -5357,6 +5365,10 @@ export type Mutation_Root = {
   update_product_consumableCategory_by_pk?: Maybe<Product_ConsumableCategory>;
   /** update single row of the table: "product.consumable" */
   update_product_consumable_by_pk?: Maybe<Product_Consumable>;
+  /** update data of the table: "product.customer_product" */
+  update_product_customer_product?: Maybe<Product_Customer_Product_Mutation_Response>;
+  /** update single row of the table: "product.customer_product" */
+  update_product_customer_product_by_pk?: Maybe<Product_Customer_Product>;
   /** update data of the table: "product.glass" */
   update_product_glass?: Maybe<Product_Glass_Mutation_Response>;
   /** update data of the table: "product.glassColor" */
@@ -5730,6 +5742,18 @@ export type Mutation_RootDelete_Product_ConsumableCategory_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Product_Consumable_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Customer_ProductArgs = {
+  where: Product_Customer_Product_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Customer_Product_By_PkArgs = {
+  code: Scalars['String'];
 };
 
 
@@ -6387,6 +6411,20 @@ export type Mutation_RootInsert_Product_ConsumableCategory_OneArgs = {
 export type Mutation_RootInsert_Product_Consumable_OneArgs = {
   object: Product_Consumable_Insert_Input;
   on_conflict?: Maybe<Product_Consumable_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Customer_ProductArgs = {
+  objects: Array<Product_Customer_Product_Insert_Input>;
+  on_conflict?: Maybe<Product_Customer_Product_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Product_Customer_Product_OneArgs = {
+  object: Product_Customer_Product_Insert_Input;
+  on_conflict?: Maybe<Product_Customer_Product_On_Conflict>;
 };
 
 
@@ -7123,6 +7161,22 @@ export type Mutation_RootUpdate_Product_ConsumableCategory_By_PkArgs = {
 export type Mutation_RootUpdate_Product_Consumable_By_PkArgs = {
   _set?: Maybe<Product_Consumable_Set_Input>;
   pk_columns: Product_Consumable_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Customer_ProductArgs = {
+  _inc?: Maybe<Product_Customer_Product_Inc_Input>;
+  _set?: Maybe<Product_Customer_Product_Set_Input>;
+  where: Product_Customer_Product_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Customer_Product_By_PkArgs = {
+  _inc?: Maybe<Product_Customer_Product_Inc_Input>;
+  _set?: Maybe<Product_Customer_Product_Set_Input>;
+  pk_columns: Product_Customer_Product_Pk_Columns_Input;
 };
 
 
@@ -8676,16 +8730,282 @@ export enum Product_Consumable_Update_Column {
   UpdatedBy = 'updatedBy'
 }
 
+/** columns and relationships of "product.customer_product" */
+export type Product_Customer_Product = {
+  __typename?: 'product_customer_product';
+  code: Scalars['String'];
+  label: Scalars['String'];
+  thickness: Scalars['Int'];
+};
+
+/** aggregated selection of "product.customer_product" */
+export type Product_Customer_Product_Aggregate = {
+  __typename?: 'product_customer_product_aggregate';
+  aggregate?: Maybe<Product_Customer_Product_Aggregate_Fields>;
+  nodes: Array<Product_Customer_Product>;
+};
+
+/** aggregate fields of "product.customer_product" */
+export type Product_Customer_Product_Aggregate_Fields = {
+  __typename?: 'product_customer_product_aggregate_fields';
+  avg?: Maybe<Product_Customer_Product_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Product_Customer_Product_Max_Fields>;
+  min?: Maybe<Product_Customer_Product_Min_Fields>;
+  stddev?: Maybe<Product_Customer_Product_Stddev_Fields>;
+  stddev_pop?: Maybe<Product_Customer_Product_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Product_Customer_Product_Stddev_Samp_Fields>;
+  sum?: Maybe<Product_Customer_Product_Sum_Fields>;
+  var_pop?: Maybe<Product_Customer_Product_Var_Pop_Fields>;
+  var_samp?: Maybe<Product_Customer_Product_Var_Samp_Fields>;
+  variance?: Maybe<Product_Customer_Product_Variance_Fields>;
+};
+
+
+/** aggregate fields of "product.customer_product" */
+export type Product_Customer_Product_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Product_Customer_Product_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "product.customer_product" */
+export type Product_Customer_Product_Aggregate_Order_By = {
+  avg?: Maybe<Product_Customer_Product_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Product_Customer_Product_Max_Order_By>;
+  min?: Maybe<Product_Customer_Product_Min_Order_By>;
+  stddev?: Maybe<Product_Customer_Product_Stddev_Order_By>;
+  stddev_pop?: Maybe<Product_Customer_Product_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Product_Customer_Product_Stddev_Samp_Order_By>;
+  sum?: Maybe<Product_Customer_Product_Sum_Order_By>;
+  var_pop?: Maybe<Product_Customer_Product_Var_Pop_Order_By>;
+  var_samp?: Maybe<Product_Customer_Product_Var_Samp_Order_By>;
+  variance?: Maybe<Product_Customer_Product_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "product.customer_product" */
+export type Product_Customer_Product_Arr_Rel_Insert_Input = {
+  data: Array<Product_Customer_Product_Insert_Input>;
+  on_conflict?: Maybe<Product_Customer_Product_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Product_Customer_Product_Avg_Fields = {
+  __typename?: 'product_customer_product_avg_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "product.customer_product" */
+export type Product_Customer_Product_Avg_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "product.customer_product". All fields are combined with a logical 'AND'. */
+export type Product_Customer_Product_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Product_Customer_Product_Bool_Exp>>>;
+  _not?: Maybe<Product_Customer_Product_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Product_Customer_Product_Bool_Exp>>>;
+  code?: Maybe<String_Comparison_Exp>;
+  label?: Maybe<String_Comparison_Exp>;
+  thickness?: Maybe<Int_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "product.customer_product" */
+export enum Product_Customer_Product_Constraint {
+  /** unique or primary key constraint */
+  CustomerProductPkey = 'customer_product_pkey'
+}
+
+/** input type for incrementing integer column in table "product.customer_product" */
+export type Product_Customer_Product_Inc_Input = {
+  thickness?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "product.customer_product" */
+export type Product_Customer_Product_Insert_Input = {
+  code?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+  thickness?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate max on columns */
+export type Product_Customer_Product_Max_Fields = {
+  __typename?: 'product_customer_product_max_fields';
+  code?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+  thickness?: Maybe<Scalars['Int']>;
+};
+
+/** order by max() on columns of table "product.customer_product" */
+export type Product_Customer_Product_Max_Order_By = {
+  code?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Product_Customer_Product_Min_Fields = {
+  __typename?: 'product_customer_product_min_fields';
+  code?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+  thickness?: Maybe<Scalars['Int']>;
+};
+
+/** order by min() on columns of table "product.customer_product" */
+export type Product_Customer_Product_Min_Order_By = {
+  code?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  thickness?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "product.customer_product" */
+export type Product_Customer_Product_Mutation_Response = {
+  __typename?: 'product_customer_product_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Product_Customer_Product>;
+};
+
+/** input type for inserting object relation for remote table "product.customer_product" */
+export type Product_Customer_Product_Obj_Rel_Insert_Input = {
+  data: Product_Customer_Product_Insert_Input;
+  on_conflict?: Maybe<Product_Customer_Product_On_Conflict>;
+};
+
+/** on conflict condition type for table "product.customer_product" */
+export type Product_Customer_Product_On_Conflict = {
+  constraint: Product_Customer_Product_Constraint;
+  update_columns: Array<Product_Customer_Product_Update_Column>;
+  where?: Maybe<Product_Customer_Product_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "product.customer_product" */
+export type Product_Customer_Product_Order_By = {
+  code?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  thickness?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.customer_product" */
+export type Product_Customer_Product_Pk_Columns_Input = {
+  code: Scalars['String'];
+};
+
+/** select columns of table "product.customer_product" */
+export enum Product_Customer_Product_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  Label = 'label',
+  /** column name */
+  Thickness = 'thickness'
+}
+
+/** input type for updating data in table "product.customer_product" */
+export type Product_Customer_Product_Set_Input = {
+  code?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+  thickness?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate stddev on columns */
+export type Product_Customer_Product_Stddev_Fields = {
+  __typename?: 'product_customer_product_stddev_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "product.customer_product" */
+export type Product_Customer_Product_Stddev_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Product_Customer_Product_Stddev_Pop_Fields = {
+  __typename?: 'product_customer_product_stddev_pop_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "product.customer_product" */
+export type Product_Customer_Product_Stddev_Pop_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Product_Customer_Product_Stddev_Samp_Fields = {
+  __typename?: 'product_customer_product_stddev_samp_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "product.customer_product" */
+export type Product_Customer_Product_Stddev_Samp_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Product_Customer_Product_Sum_Fields = {
+  __typename?: 'product_customer_product_sum_fields';
+  thickness?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "product.customer_product" */
+export type Product_Customer_Product_Sum_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** update columns of table "product.customer_product" */
+export enum Product_Customer_Product_Update_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  Label = 'label',
+  /** column name */
+  Thickness = 'thickness'
+}
+
+/** aggregate var_pop on columns */
+export type Product_Customer_Product_Var_Pop_Fields = {
+  __typename?: 'product_customer_product_var_pop_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "product.customer_product" */
+export type Product_Customer_Product_Var_Pop_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Product_Customer_Product_Var_Samp_Fields = {
+  __typename?: 'product_customer_product_var_samp_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "product.customer_product" */
+export type Product_Customer_Product_Var_Samp_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Product_Customer_Product_Variance_Fields = {
+  __typename?: 'product_customer_product_variance_fields';
+  thickness?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "product.customer_product" */
+export type Product_Customer_Product_Variance_Order_By = {
+  thickness?: Maybe<Order_By>;
+};
+
 /** columns and relationships of "product.glass" */
 export type Product_Glass = {
   __typename?: 'product_glass';
-  color: Product_GlassColor_Enum;
+  color?: Maybe<Product_GlassColor_Enum>;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['uuid']>;
   /** An object relationship */
-  glassColor: Product_GlassColor;
+  glassColor?: Maybe<Product_GlassColor>;
   /** An object relationship */
-  glassType: Product_GlassType;
+  glassType?: Maybe<Product_GlassType>;
   id: Scalars['uuid'];
   /** An object relationship */
   product: Product_Product;
@@ -8694,7 +9014,7 @@ export type Product_Glass = {
   substance?: Maybe<Product_Substance>;
   substanceid: Scalars['uuid'];
   thickness: Scalars['Int'];
-  type: Product_GlassType_Enum;
+  type?: Maybe<Product_GlassType_Enum>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
 };
@@ -8703,6 +9023,30 @@ export type Product_Glass = {
 export type Product_GlassColor = {
   __typename?: 'product_glassColor';
   color: Scalars['String'];
+  /** An array relationship */
+  glasses: Array<Product_Glass>;
+  /** An aggregated array relationship */
+  glasses_aggregate: Product_Glass_Aggregate;
+};
+
+
+/** columns and relationships of "product.glassColor" */
+export type Product_GlassColorGlassesArgs = {
+  distinct_on?: Maybe<Array<Product_Glass_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Glass_Order_By>>;
+  where?: Maybe<Product_Glass_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.glassColor" */
+export type Product_GlassColorGlasses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Glass_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Glass_Order_By>>;
+  where?: Maybe<Product_Glass_Bool_Exp>;
 };
 
 /** aggregated selection of "product.glassColor" */
@@ -8746,6 +9090,7 @@ export type Product_GlassColor_Bool_Exp = {
   _not?: Maybe<Product_GlassColor_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Product_GlassColor_Bool_Exp>>>;
   color?: Maybe<String_Comparison_Exp>;
+  glasses?: Maybe<Product_Glass_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "product.glassColor" */
@@ -8771,6 +9116,7 @@ export type Product_GlassColor_Enum_Comparison_Exp = {
 /** input type for inserting data into table "product.glassColor" */
 export type Product_GlassColor_Insert_Input = {
   color?: Maybe<Scalars['String']>;
+  glasses?: Maybe<Product_Glass_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -8820,6 +9166,7 @@ export type Product_GlassColor_On_Conflict = {
 /** ordering options when selecting data from "product.glassColor" */
 export type Product_GlassColor_Order_By = {
   color?: Maybe<Order_By>;
+  glasses_aggregate?: Maybe<Product_Glass_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: "product.glassColor" */
@@ -8978,7 +9325,31 @@ export enum Product_GlassThickness_Update_Column {
 /** columns and relationships of "product.glassType" */
 export type Product_GlassType = {
   __typename?: 'product_glassType';
+  /** An array relationship */
+  glasses: Array<Product_Glass>;
+  /** An aggregated array relationship */
+  glasses_aggregate: Product_Glass_Aggregate;
   type: Scalars['String'];
+};
+
+
+/** columns and relationships of "product.glassType" */
+export type Product_GlassTypeGlassesArgs = {
+  distinct_on?: Maybe<Array<Product_Glass_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Glass_Order_By>>;
+  where?: Maybe<Product_Glass_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.glassType" */
+export type Product_GlassTypeGlasses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Glass_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Glass_Order_By>>;
+  where?: Maybe<Product_Glass_Bool_Exp>;
 };
 
 /** aggregated selection of "product.glassType" */
@@ -9021,6 +9392,7 @@ export type Product_GlassType_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Product_GlassType_Bool_Exp>>>;
   _not?: Maybe<Product_GlassType_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Product_GlassType_Bool_Exp>>>;
+  glasses?: Maybe<Product_Glass_Bool_Exp>;
   type?: Maybe<String_Comparison_Exp>;
 };
 
@@ -9048,6 +9420,7 @@ export type Product_GlassType_Enum_Comparison_Exp = {
 
 /** input type for inserting data into table "product.glassType" */
 export type Product_GlassType_Insert_Input = {
+  glasses?: Maybe<Product_Glass_Arr_Rel_Insert_Input>;
   type?: Maybe<Scalars['String']>;
 };
 
@@ -9097,6 +9470,7 @@ export type Product_GlassType_On_Conflict = {
 
 /** ordering options when selecting data from "product.glassType" */
 export type Product_GlassType_Order_By = {
+  glasses_aggregate?: Maybe<Product_Glass_Aggregate_Order_By>;
   type?: Maybe<Order_By>;
 };
 
@@ -13359,6 +13733,12 @@ export type Query_Root = {
   product_consumable_aggregate: Product_Consumable_Aggregate;
   /** fetch data from the table: "product.consumable" using primary key columns */
   product_consumable_by_pk?: Maybe<Product_Consumable>;
+  /** fetch data from the table: "product.customer_product" */
+  product_customer_product: Array<Product_Customer_Product>;
+  /** fetch aggregated fields from the table: "product.customer_product" */
+  product_customer_product_aggregate: Product_Customer_Product_Aggregate;
+  /** fetch data from the table: "product.customer_product" using primary key columns */
+  product_customer_product_by_pk?: Maybe<Product_Customer_Product>;
   /** fetch data from the table: "product.glass" */
   product_glass: Array<Product_Glass>;
   /** fetch data from the table: "product.glassColor" */
@@ -14178,6 +14558,32 @@ export type Query_RootProduct_Consumable_AggregateArgs = {
 /** query root */
 export type Query_RootProduct_Consumable_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootProduct_Customer_ProductArgs = {
+  distinct_on?: Maybe<Array<Product_Customer_Product_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Customer_Product_Order_By>>;
+  where?: Maybe<Product_Customer_Product_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Customer_Product_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Customer_Product_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Customer_Product_Order_By>>;
+  where?: Maybe<Product_Customer_Product_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Customer_Product_By_PkArgs = {
+  code: Scalars['String'];
 };
 
 
@@ -15711,8 +16117,6 @@ export type Sales_Delivery_Line = {
   id: Scalars['uuid'];
   isReturned: Scalars['Boolean'];
   product: Scalars['uuid'];
-  /** An object relationship */
-  product_draft: Sales_Product_Draft;
   product_label?: Maybe<Scalars['String']>;
   quantity: Scalars['Int'];
 };
@@ -15796,7 +16200,6 @@ export type Sales_Delivery_Line_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
   isReturned?: Maybe<Boolean_Comparison_Exp>;
   product?: Maybe<Uuid_Comparison_Exp>;
-  product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_label?: Maybe<String_Comparison_Exp>;
   quantity?: Maybe<Int_Comparison_Exp>;
 };
@@ -15824,7 +16227,6 @@ export type Sales_Delivery_Line_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
   isReturned?: Maybe<Scalars['Boolean']>;
   product?: Maybe<Scalars['uuid']>;
-  product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   product_label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['Int']>;
 };
@@ -15911,7 +16313,6 @@ export type Sales_Delivery_Line_Order_By = {
   id?: Maybe<Order_By>;
   isReturned?: Maybe<Order_By>;
   product?: Maybe<Order_By>;
-  product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   product_label?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
@@ -17647,7 +18048,7 @@ export type Sales_Product_Draft = {
   /** An object relationship */
   company?: Maybe<Management_Company>;
   company_id?: Maybe<Scalars['uuid']>;
-  company_name: Scalars['String'];
+  company_name?: Maybe<Scalars['String']>;
   /** An object relationship */
   consumable_draft?: Maybe<Sales_Consumable_Draft>;
   /** An array relationship */
@@ -17665,7 +18066,7 @@ export type Sales_Product_Draft = {
   label: Scalars['String'];
   m2?: Maybe<Scalars['numeric']>;
   ml?: Maybe<Scalars['numeric']>;
-  price: Scalars['numeric'];
+  price?: Maybe<Scalars['numeric']>;
   /** An object relationship */
   product: Product_Product;
   product_code: Scalars['String'];
@@ -21679,6 +22080,12 @@ export type Subscription_Root = {
   product_consumable_aggregate: Product_Consumable_Aggregate;
   /** fetch data from the table: "product.consumable" using primary key columns */
   product_consumable_by_pk?: Maybe<Product_Consumable>;
+  /** fetch data from the table: "product.customer_product" */
+  product_customer_product: Array<Product_Customer_Product>;
+  /** fetch aggregated fields from the table: "product.customer_product" */
+  product_customer_product_aggregate: Product_Customer_Product_Aggregate;
+  /** fetch data from the table: "product.customer_product" using primary key columns */
+  product_customer_product_by_pk?: Maybe<Product_Customer_Product>;
   /** fetch data from the table: "product.glass" */
   product_glass: Array<Product_Glass>;
   /** fetch data from the table: "product.glassColor" */
@@ -22498,6 +22905,32 @@ export type Subscription_RootProduct_Consumable_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootProduct_Consumable_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Customer_ProductArgs = {
+  distinct_on?: Maybe<Array<Product_Customer_Product_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Customer_Product_Order_By>>;
+  where?: Maybe<Product_Customer_Product_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Customer_Product_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Customer_Product_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Customer_Product_Order_By>>;
+  where?: Maybe<Product_Customer_Product_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Customer_Product_By_PkArgs = {
+  code: Scalars['String'];
 };
 
 
@@ -25471,19 +25904,10 @@ export type UpdateDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'payment_method' | 'predicted_date'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'company' | 'payment_method' | 'predicted_date' | 'client' | 'contact'>
     & { orders: Array<(
       { __typename?: 'sales_delivery_orders' }
       & Pick<Sales_Delivery_Orders, 'order_id'>
-    )>, company: (
-      { __typename?: 'management_company' }
-      & Pick<Management_Company, 'name'>
-    ), client: (
-      { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'name' | 'mail'>
-    ), contact?: Maybe<(
-      { __typename?: 'contact_contact' }
-      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
     )> }
   )> }
 );
@@ -25504,7 +25928,7 @@ export type UpdateDeliveryLineMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_line_by_pk?: Maybe<(
     { __typename?: 'sales_delivery_line' }
-    & Pick<Sales_Delivery_Line, 'id'>
+    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'company_name' | 'delivered' | 'isReturned' | 'product' | 'product_label' | 'quantity'>
   )> }
 );
 
@@ -28438,20 +28862,11 @@ export const UpdateDeliveryDocument = gql`
       order_id
     }
     status
-    company: companyObject {
-      name
-    }
+    company
     payment_method
     predicted_date
-    client: customer {
-      name
-      mail
-    }
-    contact: contactByContact {
-      mail
-      name
-      phone
-    }
+    client
+    contact
   }
 }
     `;
@@ -28473,6 +28888,13 @@ export const UpdateDeliveryLineDocument = gql`
     _set: {amount: $amount, company_name: $company_name, delivered: $delivered, id: $id, isReturned: $isReturned, product: $product, product_label: $product_label, quantity: $quantity}
   ) {
     id
+    amount
+    company_name
+    delivered
+    isReturned
+    product
+    product_label
+    quantity
   }
 }
     `;

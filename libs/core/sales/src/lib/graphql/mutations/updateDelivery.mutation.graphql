@@ -23,19 +23,10 @@ mutation UpdateDelivery(
       order_id
     }
     status
-    company: companyObject{
-      name
-    }
+    company
     payment_method
     predicted_date
-    client: customer {
-      name
-      mail
-    }
-    contact: contactByContact {
-      mail
-      name
-      phone
-    }
+    client
+    contact
   }
 }
