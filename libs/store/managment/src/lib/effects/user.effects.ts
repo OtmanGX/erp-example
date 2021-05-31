@@ -34,7 +34,7 @@ export class UsersEffects {
       mergeMap((action) =>
         this.userService.insertOne(action.user).pipe(
           map((data) =>
-          UsersActions.addUserSuccess({user: data.data.insert_management_userProfile_one})
+          UsersActions.addUserSuccess({user: data.data.SignUp})
           ),
           catchError((error) =>
             of(UsersActions.addUserFailure({ error }))

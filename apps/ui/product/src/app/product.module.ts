@@ -9,8 +9,8 @@ import { PopConsumableComponent } from './pages/list-consumable/pop-consumable/p
 import { ListAccessoriesComponent } from './pages/list-accessories/list-accessories.component';
 import { PopAccessoriesComponent } from './pages/list-accessories/pop-accessories/pop-accessories.component';
 import { ListServiceComponent } from './pages/list-service/list-service.component';
-import { PopServiceGlasseComponent } from './pages/list-service-glasse/pop-service-glasse/pop-service-glasse.component';
-import { ListServiceGlasseComponent } from './pages/list-service-glasse/list-service-glasse.component';
+import { PopCustomerProductComponent } from './pages/list-customer-product/pop-customer-product/pop-customer-product.component';
+import { ListCustomerProductComponent } from './pages/list-customer-product/list-customer-product.component';
 import { ListServiceConsumableComponent } from './pages/list-service-consumable/list-service-consumable.component';
 import { PopServiceConsumableComponent } from './pages/list-service-consumable/pop-service-glasse/pop-service-consumable.component';
 import { ServiceCardComponent } from './pages/list-service/service-card/service-card.component';
@@ -19,7 +19,7 @@ import { AccessoryCardComponent } from './pages/list-accessories/accessory-card/
 import { HighlightDirective } from './directives/highlight.directive';
 import { GlassCardComponent } from './pages/list-glasse/glass-card/glass-card.component';
 import { ConsumableCardComponent } from './pages/list-consumable/consumable-card/consumable-card.component';
-import { ServiceGlassCardComponent } from './pages/list-service-glasse/service-glass-card/service-glass-card.component';
+import { CustomerProductCardComponent } from './pages/list-customer-product/customer-product-card/customer-product-card.component';
 import { PopServiceConfigComponent } from './pages/list-service/pop-service-config/pop-service-config.component';
 import { PopServiceComponent } from './pages/list-service/service-card/pop-service/pop-service.component';
 import { StoreProductModule } from '@TanglassStore/product/index';
@@ -35,7 +35,7 @@ const popUps = [
   PopGlasseComponent,
   PopServiceConfigComponent,
   PopServiceConsumableComponent,
-  PopServiceGlasseComponent,
+  PopCustomerProductComponent,
   PopServiceComponent,
   PopSuppliesComponent
 ];
@@ -47,7 +47,7 @@ const pages = [
   ListConsumableComponent,
   ListAccessoriesComponent,
   ListServiceComponent,
-  ListServiceGlasseComponent,
+  ListCustomerProductComponent,
   ListServiceConsumableComponent,
   ListSuppliesComponent
 ];
@@ -57,7 +57,7 @@ const cardPages = [
   AccessoryCardComponent,
   GlassCardComponent,
   ConsumableCardComponent,
-  ServiceGlassCardComponent,
+  CustomerProductCardComponent,
   SupplyCardComponent
 ];
 
@@ -110,14 +110,15 @@ const routes: Routes = [
           { path: ':id', component: ServiceCardComponent  },
         ],
       },
+
       {
-        path: 'listServicesVerres',
-        component: ListServiceGlasseComponent,
-      },
-      {
-        path: 'listServicesVerres/:id',
-        component: ServiceGlassCardComponent,
-      },
+        path: 'customerProduct',
+        children: [
+          { path: '', component: ListCustomerProductComponent },
+          { path: ':id', component: CustomerProductCardComponent },
+        ],
+        data: {title: 'Articles Clients', breadcrumb: ""}
+      }, 
       {
         path: 'listServicesConsommable',
         component: ListServiceConsumableComponent,

@@ -1,0 +1,5 @@
+mutation DeleteCustomerProduct($code: String!) {
+  delete_product_customer_product_by_pk(code: $code) {
+    code
+  }
+}

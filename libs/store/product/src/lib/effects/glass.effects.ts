@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 @Injectable()
 export class GlassEffects {
 
-  loadAccessories$ = createEffect(() => {
+  loadGlasses$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GlassActions.loadGlasses),
       mergeMap(() =>

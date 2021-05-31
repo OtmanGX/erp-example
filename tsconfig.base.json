@@ -26,6 +26,7 @@
       "@TanglassUi/contact/*": ["./apps/ui/contact/src/app/*"],
       "@TanglassUi/purchase/*": ["./apps/ui/purchase/src/app/*"],
       "@TanglassUi/product/*": ["./apps/ui/product/src/app/*"],
+      "@TanglassUi/sales/*": ["./apps/ui/sales/src/app/*"],
       "@TanglassCore/*": ["./libs/tanglass-core/src/*"],
       "@TanglassTheme/*": ["./libs/theme/tanglass-theme/src/*"],
       "@TanglassRouting/*": ["./apps/tanglass-routing/src/app/*"],
@@ -47,7 +48,9 @@
       "@tanglass-erp/core/inventory": ["libs/core/inventory/src/index.ts"],
       "@tanglass-erp/store/inventory": ["libs/store/inventory/src/index.ts"],
       "@tanglass-erp/store/shared": ["libs/store/shared/src/index.ts"],
-      "@tanglass-erp/core/common": ["libs/core/common/src/index.ts"]
+      "@tanglass-erp/core/common": ["libs/core/common/src/index.ts"],
+      "@tanglass-erp/store/sales": ["libs/store/sales/src/index.ts"],
+      "@tanglass-erp/core/sales": ["libs/core/sales/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

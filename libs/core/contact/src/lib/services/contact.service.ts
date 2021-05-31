@@ -50,6 +50,7 @@ export class ContactService {
   insertOne(createdOne: InsertedContact) {
     let addedValue: InsertContactMutationVariables;
     addedValue = dataAdapter(createdOne);
+    console.log('added value', addedValue);
     return this.insertOneGQL.mutate(addedValue)
   }
   updateOne(updatedOne: DetailedContact) {

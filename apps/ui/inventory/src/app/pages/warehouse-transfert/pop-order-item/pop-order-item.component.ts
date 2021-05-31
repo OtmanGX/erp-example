@@ -19,7 +19,6 @@ export class PopOrderItemComponent extends FormDialog {
     super(dialogRef, data);
   }
 
-
   buildForm(): void {
     this.regConfig = regConfigTransferOrderItemCard(this.data, 100);
   }

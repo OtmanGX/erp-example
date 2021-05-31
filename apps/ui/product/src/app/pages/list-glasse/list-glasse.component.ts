@@ -33,7 +33,6 @@ export class ListGlasseComponent implements GridView {
 
   ngOnInit(): void {
     this.store.dispatch(GlassActions.loadGlasses());
-
   }
 
   ngAfterViewInit(): void {

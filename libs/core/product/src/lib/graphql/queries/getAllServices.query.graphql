@@ -1,12 +1,20 @@
 query GetAllServices {
   product_service {
+    paramValues
+    serviceConfig {
+      labelFactory
+      id
+      name
+      params
+    
+    }
     product {
       code
       label
-      unit
       price
       priceMax
       priceMin
+      unit
       companies {
         name
         id
