@@ -1,17 +1,14 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
-  TemplateRef,
   ViewChild
 } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
-import { TableDataSource } from './table-datasource';
 import {MatDialog} from "@angular/material/dialog";
 import {SelectionModel} from "@angular/cdk/collections";
 import {Column, ColumnType} from "../../interfaces/Column";
@@ -50,12 +47,11 @@ export class TableComponent<T> implements AfterViewInit, OnInit {
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource();
+    this.dataSource = new MatTableDataSource(this.data);
     // this.dataSource = new TableDataSource(this.columnsToCompare);
     this.selection = new SelectionModel<T>(allowMultiSelect, initialSelection);
     /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
     this.displayedColumns = ['select', ...this.columnsToShow.map(item => item.key)];
-    this.dataSource.data = this.data;
   }
 
   ngAfterViewInit() {
@@ -90,7 +86,6 @@ export class TableComponent<T> implements AfterViewInit, OnInit {
     this.applyFilter('');
   }
 
-
   reassignData(data) {
     while (this.dataSource.data.length)
       this.dataSource.data.pop();
@@ -98,8 +93,9 @@ export class TableComponent<T> implements AfterViewInit, OnInit {
     this.updateChanges();
   }
 
-  UpdateAt(index: number, obj) {
-    // this.dataSource.data.
+  render() {
+    this.dataSource._updateChangeSubscription();
+    // this.table.renderRows();
   }
 
   updateChanges() {
