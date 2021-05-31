@@ -16117,6 +16117,8 @@ export type Sales_Delivery_Line = {
   id: Scalars['uuid'];
   isReturned: Scalars['Boolean'];
   product: Scalars['uuid'];
+  /** An object relationship */
+  product_draft: Sales_Product_Draft;
   product_label?: Maybe<Scalars['String']>;
   quantity: Scalars['Int'];
 };
@@ -16200,6 +16202,7 @@ export type Sales_Delivery_Line_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
   isReturned?: Maybe<Boolean_Comparison_Exp>;
   product?: Maybe<Uuid_Comparison_Exp>;
+  product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_label?: Maybe<String_Comparison_Exp>;
   quantity?: Maybe<Int_Comparison_Exp>;
 };
@@ -16227,6 +16230,7 @@ export type Sales_Delivery_Line_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
   isReturned?: Maybe<Scalars['Boolean']>;
   product?: Maybe<Scalars['uuid']>;
+  product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   product_label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['Int']>;
 };
@@ -16313,6 +16317,7 @@ export type Sales_Delivery_Line_Order_By = {
   id?: Maybe<Order_By>;
   isReturned?: Maybe<Order_By>;
   product?: Maybe<Order_By>;
+  product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   product_label?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
@@ -17596,6 +17601,10 @@ export type Sales_Order = {
   customer_id: Scalars['uuid'];
   date: Scalars['date'];
   deadline: Scalars['date'];
+  /** An array relationship */
+  delivery_orders: Array<Sales_Delivery_Orders>;
+  /** An aggregated array relationship */
+  delivery_orders_aggregate: Sales_Delivery_Orders_Aggregate;
   /** An object relationship */
   draft: Sales_Draft;
   draft_id: Scalars['Int'];
@@ -17604,6 +17613,26 @@ export type Sales_Order = {
   total_ht: Scalars['numeric'];
   total_tax: Scalars['numeric'];
   total_ttc: Scalars['numeric'];
+};
+
+
+/** columns and relationships of "sales.order" */
+export type Sales_OrderDelivery_OrdersArgs = {
+  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
+  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.order" */
+export type Sales_OrderDelivery_Orders_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
+  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
 };
 
 /** aggregated selection of "sales.order" */
@@ -17689,6 +17718,7 @@ export type Sales_Order_Bool_Exp = {
   customer_id?: Maybe<Uuid_Comparison_Exp>;
   date?: Maybe<Date_Comparison_Exp>;
   deadline?: Maybe<Date_Comparison_Exp>;
+  delivery_orders?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
   draft?: Maybe<Sales_Draft_Bool_Exp>;
   draft_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
@@ -17723,6 +17753,7 @@ export type Sales_Order_Insert_Input = {
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   deadline?: Maybe<Scalars['date']>;
+  delivery_orders?: Maybe<Sales_Delivery_Orders_Arr_Rel_Insert_Input>;
   draft?: Maybe<Sales_Draft_Obj_Rel_Insert_Input>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
@@ -17826,6 +17857,7 @@ export type Sales_Order_Order_By = {
   customer_id?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   deadline?: Maybe<Order_By>;
+  delivery_orders_aggregate?: Maybe<Sales_Delivery_Orders_Aggregate_Order_By>;
   draft?: Maybe<Sales_Draft_Order_By>;
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -25819,6 +25851,39 @@ export type InsertConsumableDraftMutation = (
   )> }
 );
 
+export type InsertDeliveryMutationVariables = Exact<{
+  orders?: Array<Sales_Delivery_Orders_Insert_Input>;
+  status: Scalars['String'];
+  predicted_date?: Maybe<Scalars['date']>;
+  client: Scalars['uuid'];
+  company: Scalars['uuid'];
+  contact: Scalars['uuid'];
+  delivery_lines?: Array<Sales_Delivery_Line_Insert_Input>;
+  payment_method: Scalars['String'];
+}>;
+
+
+export type InsertDeliveryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_delivery_one?: Maybe<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), delivery_orders: Array<(
+      { __typename?: 'sales_delivery_orders' }
+      & Pick<Sales_Delivery_Orders, 'order_id'>
+    )>, client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'mail'>
+    ), contactByContact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
+    )> }
+  )> }
+);
+
 export type InsertDraftMutationVariables = Exact<{
   status?: Maybe<Scalars['String']>;
 }>;
@@ -25893,6 +25958,73 @@ export type InsertServiceDraftMutation = (
   )> }
 );
 
+export type UpdateDeliveryMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  payment_method: Scalars['String'];
+  contact?: Maybe<Scalars['uuid']>;
+  company?: Maybe<Scalars['uuid']>;
+  client?: Maybe<Scalars['uuid']>;
+  predicted_date?: Maybe<Scalars['date']>;
+  status: Scalars['String'];
+}>;
+
+
+export type UpdateDeliveryMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_sales_delivery_by_pk?: Maybe<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'id' | 'status' | 'company' | 'payment_method' | 'predicted_date' | 'client' | 'contact'>
+    & { orders: Array<(
+      { __typename?: 'sales_delivery_orders' }
+      & Pick<Sales_Delivery_Orders, 'order_id'>
+    )> }
+  )> }
+);
+
+export type UpdateDeliveryLineMutationVariables = Exact<{
+  amount?: Maybe<Scalars['numeric']>;
+  company_name?: Maybe<Scalars['String']>;
+  delivered?: Maybe<Scalars['Int']>;
+  id: Scalars['uuid'];
+  isReturned?: Maybe<Scalars['Boolean']>;
+  product: Scalars['uuid'];
+  product_label?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type UpdateDeliveryLineMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_sales_delivery_line_by_pk?: Maybe<(
+    { __typename?: 'sales_delivery_line' }
+    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'company_name' | 'delivered' | 'isReturned' | 'product' | 'product_label' | 'quantity'>
+  )> }
+);
+
+export type GetAllDeliveryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllDeliveryQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery: Array<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'id' | 'status' | 'payment_method' | 'predicted_date'>
+    & { orders: Array<(
+      { __typename?: 'sales_delivery_orders' }
+      & Pick<Sales_Delivery_Orders, 'order_id'>
+    )>, company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'mail'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
+    )> }
+  )> }
+);
+
 export type GetAllDraftsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -25944,6 +26076,26 @@ export type GetAllQuotationsQuery = (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
     ) }
+  )> }
+);
+
+export type GetDeliveryByIdQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetDeliveryByIdQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery_by_pk?: Maybe<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date'>
+    & { orders: Array<(
+      { __typename?: 'sales_delivery_orders' }
+      & Pick<Sales_Delivery_Orders, 'order_id'>
+    )>, delivery_lines: Array<(
+      { __typename?: 'sales_delivery_line' }
+      & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'company_name' | 'delivered' | 'isReturned' | 'product' | 'quantity' | 'product_label'>
+    )> }
   )> }
 );
 
@@ -28709,6 +28861,45 @@ export const InsertConsumableDraftDocument = gql`
       super(apollo);
     }
   }
+export const InsertDeliveryDocument = gql`
+    mutation InsertDelivery($orders: [sales_delivery_orders_insert_input!]! = [], $status: String!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!) {
+  insert_sales_delivery_one(
+    object: {delivery_orders: {data: $orders}, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, status: $status, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact}
+  ) {
+    id
+    status
+    company: companyObject {
+      name
+    }
+    contact
+    payment_method
+    predicted_date
+    delivery_orders {
+      order_id
+    }
+    client: customer {
+      name
+      mail
+    }
+    contactByContact {
+      mail
+      name
+      phone
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertDeliveryGQL extends Apollo.Mutation<InsertDeliveryMutation, InsertDeliveryMutationVariables> {
+    document = InsertDeliveryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertDraftDocument = gql`
     mutation InsertDraft($status: String = "draft") {
   insert_sales_draft_one(object: {status: $status}) {
@@ -28794,6 +28985,100 @@ export const InsertServiceDraftDocument = gql`
   })
   export class InsertServiceDraftGQL extends Apollo.Mutation<InsertServiceDraftMutation, InsertServiceDraftMutationVariables> {
     document = InsertServiceDraftDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateDeliveryDocument = gql`
+    mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact: uuid, $company: uuid, $client: uuid, $predicted_date: date, $status: String!) {
+  update_sales_delivery_by_pk(
+    pk_columns: {id: $id}
+    _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, status: $status}
+  ) {
+    id
+    orders {
+      order_id
+    }
+    status
+    company
+    payment_method
+    predicted_date
+    client
+    contact
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateDeliveryGQL extends Apollo.Mutation<UpdateDeliveryMutation, UpdateDeliveryMutationVariables> {
+    document = UpdateDeliveryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateDeliveryLineDocument = gql`
+    mutation UpdateDeliveryLine($amount: numeric, $company_name: String, $delivered: Int, $id: uuid!, $isReturned: Boolean, $product: uuid!, $product_label: String, $quantity: Int) {
+  update_sales_delivery_line_by_pk(
+    pk_columns: {id: $id}
+    _set: {amount: $amount, company_name: $company_name, delivered: $delivered, id: $id, isReturned: $isReturned, product: $product, product_label: $product_label, quantity: $quantity}
+  ) {
+    id
+    amount
+    company_name
+    delivered
+    isReturned
+    product
+    product_label
+    quantity
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateDeliveryLineGQL extends Apollo.Mutation<UpdateDeliveryLineMutation, UpdateDeliveryLineMutationVariables> {
+    document = UpdateDeliveryLineDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllDeliveryDocument = gql`
+    query getAllDelivery {
+  sales_delivery {
+    id
+    orders {
+      order_id
+    }
+    status
+    company: companyObject {
+      name
+    }
+    payment_method
+    predicted_date
+    client: customer {
+      name
+      mail
+    }
+    contact: contactByContact {
+      mail
+      name
+      phone
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllDeliveryGQL extends Apollo.Query<GetAllDeliveryQuery, GetAllDeliveryQueryVariables> {
+    document = GetAllDeliveryDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -28892,6 +29177,43 @@ export const GetAllQuotationsDocument = gql`
   })
   export class GetAllQuotationsGQL extends Apollo.Query<GetAllQuotationsQuery, GetAllQuotationsQueryVariables> {
     document = GetAllQuotationsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetDeliveryByIdDocument = gql`
+    query GetDeliveryById($id: uuid!) {
+  sales_delivery_by_pk(id: $id) {
+    id
+    status
+    client
+    company
+    contact
+    payment_method
+    predicted_date
+    orders {
+      order_id
+    }
+    delivery_lines {
+      id
+      amount
+      company_name
+      delivered
+      isReturned
+      product
+      quantity
+      product_label
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetDeliveryByIdGQL extends Apollo.Query<GetDeliveryByIdQuery, GetDeliveryByIdQueryVariables> {
+    document = GetDeliveryByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

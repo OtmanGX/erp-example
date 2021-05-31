@@ -1,0 +1,32 @@
+mutation UpdateDelivery(
+  $id: uuid!
+  $payment_method: String!
+  $contact: uuid
+  $company: uuid
+  $client: uuid
+  $predicted_date: date
+  $status: String!
+) {
+  update_sales_delivery_by_pk(
+    pk_columns: {id: $id}
+    _set: {
+      payment_method: $payment_method
+      contact: $contact
+      company: $company
+      client: $client
+      predicted_date: $predicted_date
+      status: $status
+    }
+  ) {
+    id
+    orders{
+      order_id
+    }
+    status
+    company
+    payment_method
+    predicted_date
+    client
+    contact
+  }
+}

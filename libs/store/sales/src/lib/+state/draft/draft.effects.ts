@@ -28,6 +28,22 @@ export class DraftEffects {
     )
   });
 
+  loadDraftById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DraftActions.loadDraftById),
+      mergeMap((action) =>
+        this.draftervice.getOneById(action.id).pipe(
+          map((data) =>
+            DraftActions.loadDraftByIdSuccess({ draft: data.data.sales_draft_by_pk })
+          ),
+          catchError((error) =>
+            of(DraftActions.loadDraftByIdFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
 
   constructor(private actions$: Actions,
     private draftervice: DraftService) { }

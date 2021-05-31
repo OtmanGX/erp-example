@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Glass, Accessory, Service, Consumable,CustomerProduct } from "@TanglassStore/product/index";
 import { Intermediate_Data, DraftItem } from "./models";
+import { DeliveryStatus, InsertedDeliveryForm, PaymentMethod } from '@tanglass-erp/core/sales';
 
 type ListObservable = Observable<any> | Array<any>;
 
@@ -13,6 +14,83 @@ function getGlassQuantities(row: DraftItem) {
     { key: row.ml, value: row.ml + '  ml' }
   ]
 }
+
+export type deliveryFormType = {
+  orders: number[];
+  predicted_date: Date;
+  status: DeliveryStatus;
+  company: string;
+  client: string;
+  contact: string;
+  payment_method: PaymentMethod;
+}
+
+const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?, companies?, contacts?) => [
+  {
+    type: "selectSearch",
+    name: "orders",
+    label: "N° Commande",
+    inputType: "text",
+    multiple: true,
+    value: data?.orders ?? [],
+    filterFields: ['id', 'company.name'],
+    fieldsToShow: ['id', 'company.name'],
+    disabled: data !== null,
+    options: orders,
+    validations: [REQUIRED]
+  },
+  {
+    type: "date",
+    name: "predicted_date",
+    label: "Date prévue",
+    value: data?.predicted_date,
+    inputType: "text",
+  },
+  {
+    type: "select",
+    name: "company",
+    label: "Société",
+    inputType: "text",
+    options: companies,
+    value: data?.company
+  },
+  {
+    type: "selectSearch",
+    name: "client",
+    label: "Client",
+    filterFields: ['name', 'phone'],
+    fieldsToShow: ['name', 'phone'],
+    inputType: "text",
+    options: clients,
+    value: data?.client
+  },
+  {
+    type: "selectSearch",
+    name: "contact",
+    label: "Contact",
+    filterFields: ['name', 'code'],
+    fieldsToShow: ['name', 'code'],
+    inputType: "text",
+    options: contacts,
+    value: data?.contact
+  },
+  {
+    type: "select",
+    name: "payment_method",
+    label: "Méthode de paiement",
+    inputType: "text",
+    options: Object.values(PaymentMethod).map(e => ({key: e, value: e})),
+    value: data?.payment_method
+  },
+  {
+    type: "select",
+    name: "status",
+    label: "Etat",
+    inputType: "text",
+    value: data?.status,
+    options: Object.values(DeliveryStatus).map(e => ({key: e, value: e}))
+  },
+  ];
 
 const regConfigDraftInfos = (
   data?,
@@ -393,5 +471,6 @@ export {
   regConfigAccessoireItem,
   regConfigServiceItem,
   regConfigConsumableItem,
-  regConfigCustomerItem
+  regConfigCustomerItem,
+  regConfigDelivery
 };

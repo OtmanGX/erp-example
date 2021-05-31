@@ -18,7 +18,6 @@ import { AlertEffects } from './effects/alert.effects';
 import { ServiceEffects } from './effects/servicesConfig.effects';
 import { ServiceChildsEffects } from './effects/service.effects';
 
-
 import { ToastrModule } from 'ngx-toastr';
 import { CoreProductModule } from '@tanglass-erp/core/product';
 

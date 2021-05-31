@@ -2,12 +2,14 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as DraftActions from './draft.actions';
-import { Draft } from "@tanglass-erp/core/sales";
+import { Draft } from '@tanglass-erp/core/sales';
+import { clearDraftState } from './draft.actions';
 
 export const DRAFT_FEATURE_KEY = 'draft';
 
 export interface DraftState extends EntityState<Draft> {
   selectedId?: string | number; // which Draft record has been selected
+  draftLoadedById?: Draft;
   loaded: boolean; // has the Draft list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -38,8 +40,18 @@ const draftReducer = createReducer(
   on(DraftActions.addDraftSuccess,
     (state, action) => draftAdapter.addOne(action.draft, state)
   ),
+  on(DraftActions.loadDraftById,
+    (state) => ({...state, draftLoadedById: null})
+  ),
+  on(DraftActions.loadDraftByIdSuccess,
+    (state, {draft}) => ({...state, draftLoadedById: draft})
+  ),
+  on(DraftActions.clearDraftState,
+    (state) => draftAdapter.removeAll(initialDraftState)
+    ),
   on(DraftActions.loadDraftFailure,
     DraftActions.addDraftFailure,
+    DraftActions.loadDraftByIdFailure,
 
     (state, { error }) => ({ ...state, error }))
 );

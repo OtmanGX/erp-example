@@ -107,9 +107,6 @@ export class ProductDraftEffects {
   });
 
 
-
-  constructor(private actions$: Actions,
-    private ProductService: DraftService,
-    private ProductFacade: ProductDraftFacade,
+  constructor(private actions$: Actions, private ProductService: DraftService
   ) { }
 }

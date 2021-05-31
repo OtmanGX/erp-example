@@ -52,7 +52,6 @@ export class ProductDraftFacade {
       total_price: product.quantity * product.price,
     }
     this.dispatch(ProductsActions.addAccessory({ accessory }))
-
   }
   addConsumable(product) {
     let consumable = {
@@ -60,7 +59,6 @@ export class ProductDraftFacade {
       total_price: product.quantity * product.price,
     }
     this.dispatch(ProductsActions.addConsumable({ consumable }))
-
   }
   addService(product) {
     let service = {

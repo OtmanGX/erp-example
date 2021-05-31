@@ -28,7 +28,6 @@ export const productAdapter: EntityAdapter<Product_draft> = createEntityAdapter<
 export const initialProductState: ProductState = productAdapter.getInitialState({
   // set initial required properties
   selectedId: null,
-  amounts:[],
   loaded: false,
   error: null,
 
@@ -48,12 +47,10 @@ const productReducer = createReducer(
   ),
 
   on(ProductActions.addGlassSuccess,
-    (state, action) => 
-    productAdapter.addOne<ProductState>(action.glass, state)
+    (state, action) => productAdapter.addOne<ProductState>(action.glass, state)
     ),
   on(ProductActions.addAccessorySuccess,
-    (state, action) =>
-     productAdapter.addOne<ProductState>(action.accessory, state)
+    (state, action) => productAdapter.addOne<ProductState>(action.accessory, state)
     ),
 
   on(ProductActions.addConsumableSuccess,

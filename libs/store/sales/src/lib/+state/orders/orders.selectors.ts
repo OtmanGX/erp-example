@@ -1,13 +1,13 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   ORDERS_FEATURE_KEY,
-  State,
+  OrderState,
   OrdersPartialState,
   ordersAdapter,
 } from './orders.reducer';
 
 // Lookup the 'Orders' feature state managed by NgRx
-export const getOrdersState = createFeatureSelector<OrdersPartialState, State>(
+export const getOrdersState = createFeatureSelector<OrdersPartialState, OrderState>(
   ORDERS_FEATURE_KEY
 );
 
@@ -15,26 +15,26 @@ const { selectAll, selectEntities } = ordersAdapter.getSelectors();
 
 export const getOrdersLoaded = createSelector(
   getOrdersState,
-  (state: State) => state.loaded
+  (state: OrderState) => state.loaded
 );
 
 export const getOrdersError = createSelector(
   getOrdersState,
-  (state: State) => state.error
+  (state: OrderState) => state.error
 );
 
-export const getAllOrders = createSelector(getOrdersState, (state: State) =>
+export const getAllOrders = createSelector(getOrdersState, (state: OrderState) =>
   selectAll(state)
 );
 
 export const getOrdersEntities = createSelector(
   getOrdersState,
-  (state: State) => selectEntities(state)
+  (state: OrderState) => selectEntities(state)
 );
 
 export const getSelectedId = createSelector(
   getOrdersState,
-  (state: State) => state.selectedId
+  (state: OrderState) => state.selectedId
 );
 
 export const getSelected = createSelector(

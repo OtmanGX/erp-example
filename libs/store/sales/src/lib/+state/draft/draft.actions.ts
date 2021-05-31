@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { DraftEntity } from './draft.models';
-import { Draft } from "@tanglass-erp/core/sales";
+import { Draft } from '@tanglass-erp/core/sales';
 
 /****************************************************************** */
 /*****LOAD Drafts ** */
@@ -96,3 +96,5 @@ export const removeDraftFailure = createAction(
   '[Draft Effect] Delete Draft failure',
   props<{ error: any }>()
 );
+
+export const clearDraftState = createAction('[Draft] Clear Draft State');

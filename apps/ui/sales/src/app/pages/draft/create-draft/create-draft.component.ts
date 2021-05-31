@@ -40,6 +40,7 @@ export class CreateDraftComponent implements OnInit {
   }
 
   buildForm(): void {
+
     let data
     this.regConfig = regConfigDraftInfos(
       data,
@@ -49,5 +50,6 @@ export class CreateDraftComponent implements OnInit {
     );
     this.store.dispatch(CustomerActions.loadCustomers());
     this.store.dispatch(ContactActions.loadContacts());
+
   }
 }

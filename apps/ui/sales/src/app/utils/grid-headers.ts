@@ -89,3 +89,60 @@ export const QuotationHeaders = [
     { field: 'total_ht', headerName: 'Total HT', type: "numberColumn" },
 ];
 
+export const deliveryHeaders = [
+  {
+    headerName: 'Livraison',
+    children: [
+      {
+        field: 'id',
+        headerName: 'ID',
+        type: 'linkColumn',
+        cellRendererParams: (params) => ({
+          link: `update;id=${params?.data?.id}`,
+        }),
+      },
+      { field: 'status', headerName: 'Etat' },
+      { field: 'order', headerName: 'N° Commande', type: 'textColumn' },
+      {
+        field: 'predicted_date',
+        headerName: 'Date prévue',
+        type: 'dateColumn',
+      },
+    ],
+  },
+  {
+    headerName: 'Société',
+    children: [{ field: 'company.name', headerName: 'Nom' }],
+  },
+  {
+    headerName: 'Client',
+    children: [
+      { field: 'client.name', headerName: 'Nom', type: 'textColumn' },
+      { field: 'client.mail', headerName: 'E-mail', type: 'textColumn' },
+    ],
+  },
+  {
+    headerName: 'Contact',
+    children: [
+      { field: 'contact.name', headerName: 'Nom', type: 'textColumn' },
+      { field: 'contact.mail', headerName: 'E-mail', type: 'textColumn' },
+      { field: 'contact.phone', headerName: 'Phone', type: 'textColumn' },
+    ],
+  },
+];
+
+export const ProductDraftHeaders = [
+  { field: 'id', headerName: 'ID. ' },
+  { field: 'product_code', headerName: 'Code' },
+  { field: 'label', headerName: 'Désignation' },
+  { field: 'count', headerName: 'Count' },
+  { field: 'heigth', headerName: 'Hauteur' },
+  { field: 'width', headerName: 'Largeur' },
+  { field: 'm2', headerName: 'm2' },
+  { field: 'ml', headerName: 'ml' },
+  { field: 'unit', headerName: 'Unité' },
+  { field: 'price', headerName: 'P.U' },
+  { field: 'total_price', headerName: 'Total' },
+  { field: 'company_name', headerName: 'Société' },
+];
+

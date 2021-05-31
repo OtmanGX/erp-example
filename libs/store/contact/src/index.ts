@@ -7,5 +7,5 @@ export {
   DetailedContact,
   DetailedCustomer,
   DetailedProvider,
-  Provider
-} from '@tanglass-erp/core/contact'
+  Provider,
+  } from '@tanglass-erp/core/contact'

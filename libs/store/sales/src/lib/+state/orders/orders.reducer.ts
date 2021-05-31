@@ -6,27 +6,27 @@ import  {Order as OrdersEntity } from "@tanglass-erp/core/sales";
 
 export const ORDERS_FEATURE_KEY = 'orders';
 
-export interface State extends EntityState<OrdersEntity> {
+export interface OrderState extends EntityState<OrdersEntity> {
   selectedId?: string | number; // which Orders record has been selected
   loaded: boolean; // has the Orders list been loaded
   error?: string | null; // last known error (if any)
 }
 
 export interface OrdersPartialState {
-  readonly [ORDERS_FEATURE_KEY]: State;
+  readonly [ORDERS_FEATURE_KEY]: OrderState;
 }
 
 export const ordersAdapter: EntityAdapter<OrdersEntity> = createEntityAdapter<
   OrdersEntity
 >();
 
-export const initialState: State = ordersAdapter.getInitialState({
+export const initialStateOrder: OrderState = ordersAdapter.getInitialState({
   // set initial required properties
   loaded: false,
 });
 
 const ordersReducer = createReducer(
-  initialState,
+  initialStateOrder,
   on(OrdersActions.loadOrders, (state) => ({
     ...state,
     loaded: false,
@@ -38,9 +38,17 @@ const ordersReducer = createReducer(
   on(OrdersActions.loadOrdersFailure, (state, { error }) => ({
     ...state,
     error,
-  }))
+  })),
+  on(OrdersActions.selectOrder, (state, { id }) => ({
+    ...state,
+    selectedId: id,
+  })),
+  on(OrdersActions.clearSelection, (state) => ({
+    ...state,
+    selectedId: null,
+  })),
 );
 
-export function reducer(state: State | undefined, action: Action) {
+export function reducerOrder(state: OrderState | undefined, action: Action) {
   return ordersReducer(state, action);
 }
