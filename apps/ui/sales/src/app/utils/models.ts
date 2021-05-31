@@ -13,7 +13,7 @@ export class DraftItem {
     id: string;
     product_code: string;
     label: string;
-    count: number=0;
+    count: number;
     heigth: number;
     width: number;
     m2: number=0;
@@ -23,10 +23,31 @@ export class DraftItem {
     quantity:number=0;
     total_price: number=0;
     company_name?: string;
+    warehouse_id?:string;
+  }
+
+  export class SalesItem{
+
+    id: string;
+    product_code: string;
+    label: string;
+    unit: string;
+    price: number;
+    quantity:number;
+    total_price: number=0;
+    company_name?: string;
+    warehouse_id?:string;
   }
 
   export class Intermediate_Data{
-    data?:DraftItem
-    product_type:string
-    row?:DraftItem
+    data?:DraftItem;
+    product_type:string;
+    row?:DraftItem;
+    companies:KeyValue[];
+    warehouses:KeyValue[];
+  }
+  class KeyValue{
+    key:string;
+    value:string;
+    company_id?:string;
   }

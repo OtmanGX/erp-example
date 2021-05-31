@@ -7,10 +7,10 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ngx-service-glass-card',
-  templateUrl: './service-glass-card.component.html',
-  styleUrls: ['./service-glass-card.component.scss']
+  templateUrl: './customer-product-card.component.html',
+  styleUrls: ['./customer-product-card.component.scss']
 })
-export class ServiceGlassCardComponent extends ModelCardComponent {
+export class CustomerProductCardComponent extends ModelCardComponent {
   title = "Service Verre";
   data$: Observable<any>;
 

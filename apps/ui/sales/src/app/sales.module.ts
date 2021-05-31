@@ -16,6 +16,7 @@ import { QuotationComponent } from './pages/quotation/quotation.component';
 import { OrderComponent } from './pages/order/order.component';
 import { CreateQuotationComponent } from './pages/quotation/create-quotation/create-quotation.component';
 import { CreateOrderComponent } from "./pages/order/create-order/create-order.component";
+import { AmountsOrderComponent } from "./pages/order/amounts-order/amounts-order.component";
 @NgModule({
   declarations: [
     SalesComponent,
@@ -26,7 +27,8 @@ import { CreateOrderComponent } from "./pages/order/create-order/create-order.co
     QuotationComponent,
     OrderComponent,
     CreateOrderComponent,
-    CreateQuotationComponent],
+    CreateQuotationComponent,
+    AmountsOrderComponent],
   imports: [
     CommonModule,
     SalesRoutingModule,

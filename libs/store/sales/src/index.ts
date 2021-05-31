@@ -1,3 +1,4 @@
+
 export * from './lib/+state/orders/orders.actions';
 export * from './lib/+state/orders/orders.reducer';
 export * from './lib/+state/orders/orders.selectors';
@@ -19,3 +20,4 @@ export * from './lib/+state/quotation/quotation.selectors';
 export * from './lib/+state/quotation/quotation.facade';
 export * from './lib/store-sales.module';
 export { Quotation, Order, Draft,Product_draft } from '@tanglass-erp/core/sales';
+export * from './lib/+state/product-draft/products-draft.models'

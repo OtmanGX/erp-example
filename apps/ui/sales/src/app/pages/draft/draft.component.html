@@ -1,2 +1,7 @@
-<p>draft works!</p>
-<ngx-create-draft></ngx-create-draft>
+<ngx-main-grid [columnId]="columnId"
+               [withToolbar]="false"
+               [withCrud]="false"
+               (triggerEvent)="eventTriggering($event)"
+               [rowData]="data$"
+               [columnDefs]="columnDefs">
+</ngx-main-grid>

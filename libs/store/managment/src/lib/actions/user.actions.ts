@@ -1,4 +1,4 @@
-import { User, DetailedUser } from '@tanglass-erp/core/management';
+import { User, DetailedUser,InsertedUser } from '@tanglass-erp/core/management';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
@@ -45,7 +45,7 @@ export const loadUserByIdFailure = createAction(
 
 export const addUser = createAction(
   '[Pop Users Component] Add User',
-  props<{ user: User }>()
+  props<{ user: InsertedUser }>()
 );
 
 export const addUserSuccess = createAction(

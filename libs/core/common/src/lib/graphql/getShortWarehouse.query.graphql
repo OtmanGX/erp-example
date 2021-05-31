@@ -1,6 +1,7 @@
- query GetShortWArehouses {
+query GetShortWArehouses {
   stock_warehouse {
     name
     id
+    companyid
   }
 }

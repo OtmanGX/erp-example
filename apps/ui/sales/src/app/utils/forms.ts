@@ -1,7 +1,18 @@
 import { MAXNUMBER, REQUIRED } from '@tanglass-erp/material';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Glass, Accessory, Service, Consumable,CustomerProduct } from "@TanglassStore/product/index";
+import { Intermediate_Data, DraftItem } from "./models";
 
 type ListObservable = Observable<any> | Array<any>;
+
+
+function getGlassQuantities(row: DraftItem) {
+  return [
+    { key: row.m2, value: row.m2 + '  m2' },
+    { key: row.ml, value: row.ml + '  ml' }
+  ]
+}
 
 const regConfigDraftInfos = (
   data?,
@@ -46,10 +57,10 @@ const regConfigDraftInfos = (
   ];
 
 const regConfigGlassItem = (
-  data?,
-  glasses: any = [],
+  glasses: Observable<Glass[]>,
   companies: any = [],
   warehouses: any = [],
+  data?: Intermediate_Data,
   limit?: number
 ) => [
     {
@@ -57,11 +68,12 @@ const regConfigGlassItem = (
       name: "product_code",
       label: "Code",
       inputType: "text",
-      value: data?.product_code,
+      value: data.data?.product_code,
       filterFields: ['id', 'label'],
       fieldsToShow: ['id', 'label'],
-      options: glasses,
-      
+      options: glasses.pipe(
+        map(item => item.map(glass => ({ id: glass.product.code, label: glass.product.label })))),
+
     },
 
     {
@@ -69,7 +81,7 @@ const regConfigGlassItem = (
       name: 'label',
       label: 'Désignation',
       inputType: 'text',
-      value: data?.label,
+      value: data?.data?.label,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
     {
@@ -77,7 +89,7 @@ const regConfigGlassItem = (
       name: 'width',
       label: 'Largeur',
       inputType: 'number',
-      value: data?.width,
+      value: data?.data?.width,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
     {
@@ -85,7 +97,7 @@ const regConfigGlassItem = (
       name: 'heigth',
       label: 'Hauteur',
       inputType: 'number',
-      value: data?.heigth,
+      value: data?.data?.heigth,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
     {
@@ -93,7 +105,7 @@ const regConfigGlassItem = (
       name: 'count',
       label: 'N° de piéces',
       inputType: 'number',
-      value: data?.count,
+      value: data?.data?.count,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
     {
@@ -101,136 +113,35 @@ const regConfigGlassItem = (
       name: 'price',
       label: 'P.U',
       inputType: 'number',
-      value: data?.price,
+      value: data?.data?.price,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
     {
       type: "select", name: "company_id", label: "Société",
-      inputType: "text", value: data?.company_id ,
+      inputType: "text", value: data?.data?.company_name,
       options: companies,
       validations: [REQUIRED],
     },
     {
       type: "select", name: "warehouse_id", label: "Stock",
-      inputType: "text", value: data?.warehouse ?? [],
+      inputType: "text", value: data?.data?.warehouse_id ?? [],
       options: warehouses,
       validations: [REQUIRED],
     },
-  ];
-const regConfigAccessoireItem = (
-  data?,
-  accessories: any = [],
-  companies: any = [],
-  warehouses: any = [],
-  limit?: number
-) => [
-    {
-      type: "selectSearch",
-      name: "product_code",
-      label: "Code",
-      inputType: "text",
-      value: data?.product_code,
-      filterFields: ['id', 'label'],
-      fieldsToShow: ['id', 'label'],
-      options: accessories,
-    },
-
     {
       type: 'input',
-      name: 'label',
-      label: 'Désignation',
+      name: 'unit',
+      label: 'Unité',
       inputType: 'text',
-      value: data?.label,
+      value: data?.data?.unit,
       validations: [REQUIRED, MAXNUMBER(limit)],
-    },
-    {
-      type: 'input',
-      name: 'quantity',
-      label: 'Quantité',
-      inputType: 'number',
-      value: data?.quantity,
-      validations: [REQUIRED, MAXNUMBER(limit)],
-    },
-    {
-      type: 'input',
-      name: 'price',
-      label: 'P.U',
-      inputType: 'number',
-      value: data?.price,
-      validations: [REQUIRED, MAXNUMBER(limit)],
-    },
-    {
-      type: "select", name: "company_id", label: "Société",
-      inputType: "text", value: data?.company_id ,
-      options: companies,
-      validations: [REQUIRED],
-    },
-    {
-      type: "select", name: "warehouse_id", label: "Stock",
-      inputType: "text", value: data?.warehouse_id ,
-      options: warehouses,
-      validations: [REQUIRED],
     },
   ];
-const regConfigServiceItem = (
-  data?,
-  services: any = [],
-  companies: any = [],
-  warehouses: any = [],
-  quantities:any=[],
-  limit?: number
-) => [
-    {
-      type: "selectSearch",
-      name: "product_code",
-      label: "Code",
-      inputType: "text",
-      value: data?.product_code,
-      filterFields: ['id', 'label'],
-      fieldsToShow: ['id', 'label'],
-      options: services,
-    },
-    {
-      type: 'input',
-      name: 'label',
-      label: 'Désignation',
-      inputType: 'text',
-      value: data?.label,
-      validations: [REQUIRED, MAXNUMBER(limit)],
-    },
- 
-    {
-      type: 'inputSelect',
-      name: 'quantity',
-      label: 'Quantité',
-      inputType: 'number',
-      value: data?.quantity,
-      options:quantities ?? [],
-    },
-    {
-      type: 'input',
-      name: 'price',
-      label: 'P.U',
-      inputType: 'number',
-      value: data?.price,
-      validations: [REQUIRED, MAXNUMBER(limit)],
-    },
-    {
-      type: "select", name: "company_id", label: "Société",
-      inputType: "text", value: data?.company_id ?? [],
-      options: companies,
-      validations: [REQUIRED],
-    },
- 
 
-  ];
 
-  const regConfigConsumableItem = (
-    data?,
-    services: any = [],
-    companies: any = [],
-    warehouses: any = [],
-    quantities:any=[],
+  const regConfigCustomerItem = (
+    customerProducts: Observable<CustomerProduct[]>,
+    data?: Intermediate_Data,
     limit?: number
   ) => [
       {
@@ -238,53 +149,249 @@ const regConfigServiceItem = (
         name: "product_code",
         label: "Code",
         inputType: "text",
-        value: data?.product_code,
+        value: data.data?.product_code,
         filterFields: ['id', 'label'],
         fieldsToShow: ['id', 'label'],
-        options: services,
+        options: customerProducts.pipe(
+          map(item => item.map(product => ({ id: product.code, label: product.label })))),
+  
       },
       {
         type: 'input',
         name: 'label',
         label: 'Désignation',
         inputType: 'text',
-        value: data?.label,
+        value: data?.data?.label,
         validations: [REQUIRED, MAXNUMBER(limit)],
-      },
-   
-      {
-        type: 'inputSelect',
-        name: 'quantity',
-        label: 'Quantité',
-        inputType: 'number',
-        value: data?.quantity,
-        options:quantities ?? [],
       },
       {
         type: 'input',
-        name: 'price',
-        label: 'P.U',
+        name: 'width',
+        label: 'Largeur',
         inputType: 'number',
-        value: data?.price,
+        value: data?.data?.width,
         validations: [REQUIRED, MAXNUMBER(limit)],
       },
       {
-        type: "select", name: "company_id", label: "Société",
-        inputType: "text", value: data?.company_id ?? [],
-        options: companies,
-        validations: [REQUIRED],
+        type: 'input',
+        name: 'heigth',
+        label: 'Hauteur',
+        inputType: 'number',
+        value: data?.data?.heigth,
+        validations: [REQUIRED, MAXNUMBER(limit)],
       },
       {
-        type: "select", name: "warehouse_id", label: "Stock",
-        inputType: "text", value: data?.warehouse_id ?? [],
-        options: warehouses,
-        //validations: [REQUIRED],
+        type: 'input',
+        name: 'count',
+        label: 'N° de piéces',
+        inputType: 'number',
+        value: data?.data?.count,
+        validations: [REQUIRED, MAXNUMBER(limit)],
       },
-  
+
+      {
+        type: 'input',
+        name: 'unit',
+        label: 'Unité',
+        inputType: 'text',
+        value: data?.data?.unit,
+        validations: [REQUIRED, MAXNUMBER(limit)],
+      },
     ];
+
+
+const regConfigAccessoireItem = (
+  accessories: Observable<Accessory[]>,
+  companies: any = [],
+  warehouses: any = [],
+  data?: Intermediate_Data,
+  limit?: number
+) => [
+    {
+      type: "selectSearch",
+      name: "product_code",
+      label: "Code",
+      inputType: "text",
+      value: data?.data?.product_code,
+      filterFields: ['id', 'label'],
+      fieldsToShow: ['id', 'label'],
+      options: accessories.pipe(
+        map(item => item.map(accessory => ({ id: accessory.product.code, label: accessory.product.label })))),
+    },
+
+    {
+      type: 'input',
+      name: 'label',
+      label: 'Désignation',
+      inputType: 'text',
+      value: data?.data?.label,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: 'input',
+      name: 'quantity',
+      label: 'Quantité',
+      inputType: 'number',
+      value: data?.data?.quantity,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: 'input',
+      name: 'price',
+      label: 'P.U',
+      inputType: 'number',
+      value: data?.data?.price,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: "select", name: "company_id", label: "Société",
+      inputType: "text", value: data?.data?.company_name,
+      options: companies,
+      validations: [REQUIRED],
+    },
+    {
+      type: "select", name: "warehouse_id", label: "Stock",
+      inputType: "text", value: data?.data?.warehouse_id,
+      options: warehouses,
+      validations: [REQUIRED],
+    },
+    {
+      type: 'input',
+      name: 'unit',
+      label: 'Unité',
+      inputType: 'text',
+      value: data?.data?.unit,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+  ];
+const regConfigServiceItem = (
+  services: Observable<Service[]>,
+  companies: any = [],
+  data?: Intermediate_Data,
+  limit?: number
+) => [
+    {
+      type: "selectSearch",
+      name: "product_code",
+      label: "Code",
+      inputType: "text",
+      value: data?.data?.product_code,
+      filterFields: ['id', 'label'],
+      fieldsToShow: ['id', 'label'],
+      options: services.pipe(
+        map(item => item.map(service => ({ id: service.product.code, label: service.product.label })))),
+    },
+    {
+      type: 'input',
+      name: 'label',
+      label: 'Désignation',
+      inputType: 'text',
+      value: data?.data?.label,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+
+    {
+      type: 'inputSelect',
+      name: 'quantity',
+      label: 'Quantité',
+      inputType: 'number',
+      value: data?.data?.quantity,
+      options: getGlassQuantities(data.row) ?? [],
+    },
+    {
+      type: 'input',
+      name: 'price',
+      label: 'P.U',
+      inputType: 'number',
+      value: data?.data?.price,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: "select", name: "company_id", label: "Société",
+      inputType: "text", value: data?.data?.company_name,
+      options: companies,
+      validations: [REQUIRED],
+    },
+    {
+      type: 'input',
+      name: 'unit',
+      label: 'Unité',
+      inputType: 'text',
+      value: data?.data?.unit,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+  ];
+
+const regConfigConsumableItem = (
+  consumbales: Observable<Consumable[]>,
+  companies: any = [],
+  warehouses: any = [],
+  data?: Intermediate_Data,
+  limit?: number
+) => [
+    {
+      type: "selectSearch",
+      name: "product_code",
+      label: "Code",
+      inputType: "text",
+      value: data?.data?.product_code,
+      filterFields: ['id', 'label'],
+      fieldsToShow: ['id', 'label'],
+      options: consumbales.pipe(map(item => item.map(consumable =>
+        ({ id: consumable.product.code, label: consumable.product.label })))),
+    },
+    {
+      type: 'input',
+      name: 'label',
+      label: 'Désignation',
+      inputType: 'text',
+      value: data?.data?.label,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+
+    {
+      type: 'inputSelect',
+      name: 'quantity',
+      label: 'Quantité',
+      inputType: 'number',
+      value: data?.data?.quantity,
+      options: ((data.row.ml || data.row.m2) ? getGlassQuantities(data.row) : null) ?? [],
+    },
+    {
+      type: 'input',
+      name: 'price',
+      label: 'P.U',
+      inputType: 'number',
+      value: data?.data?.price,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: "select", name: "company_id", label: "Société",
+      inputType: "text", value: data?.data?.company_name,
+      options: companies,
+      validations: [REQUIRED],
+    },
+    {
+      type: "select", name: "warehouse_id", label: "Stock",
+      inputType: "text", value: data?.data?.warehouse_id ?? [],
+      options: warehouses,
+      //validations: [REQUIRED],
+    },
+    {
+      type: 'input',
+      name: 'unit',
+      label: 'Unité',
+      inputType: 'text',
+      value: data?.data?.unit,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+
+  ];
 export {
   regConfigDraftInfos,
   regConfigGlassItem,
   regConfigAccessoireItem,
-  regConfigServiceItem
+  regConfigServiceItem,
+  regConfigConsumableItem,
+  regConfigCustomerItem
 };

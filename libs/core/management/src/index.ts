@@ -7,7 +7,7 @@ export { UserService } from './lib/services/user.service'
 // Models
 export {Companie,DetailedCompanie} from './lib/models/companies.models';
 export {SalePoint,DetailedSalePoint} from './lib/models/sale-point.models';
-export {User,DetailedUser} from './lib/models/user.models';
+export {User,DetailedUser,InsertedUser} from './lib/models/user.models';
 
 //Views
 export{CompaniesVM,DetailedCompanyVM}from './lib/pagesVM/companies.vm';

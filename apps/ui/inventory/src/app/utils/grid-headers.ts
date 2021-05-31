@@ -69,8 +69,8 @@ const orderItemsHeaders = [
 const SubstanceGlassHeaders = [
   { field: 'substance.productGlass.code', headerName: 'Code', type: "textColumn" },
   ...ProductHeaders.filter( elm => elm.field !== 'code').map(elem => ({ ...elem })).map(elem => (elem.field = 'substance.productGlass.' + elem.field) && elem),
-  { field: 'substance.glass.type', headerName: 'Type', type: "textColumn" },
-  { field: 'substance.glass.color', headerName: 'Couleur', type: "textColumn" },
+  //{ field: 'substance.glass.type', headerName: 'Type', type: "textColumn" },
+  //{ field: 'substance.glass.color', headerName: 'Couleur', type: "textColumn" },
   { field: 'substance.glass.thickness', headerName: 'épaisseur', type: "numberColumn" },
 ];
 

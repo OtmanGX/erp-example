@@ -1,6 +1,5 @@
 query getGlassById($id: uuid!) {
   product_glass_by_pk(id: $id) {
-    color
     createdBy
     createdAt
     id
@@ -17,7 +16,6 @@ query getGlassById($id: uuid!) {
       }
     }
     thickness
-    type
     updatedAt
     updatedBy
   }

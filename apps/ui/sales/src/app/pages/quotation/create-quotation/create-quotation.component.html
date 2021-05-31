@@ -4,10 +4,13 @@
     </button>
     <span>Créer Votre Devis !</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar><ngx-create-draft></ngx-create-draft>
+    <button mat-flat-button color="primary" style="width : 8em;margin-right: 8px;">
+      CONFIRMER
+  </button>
+  <button mat-flat-button class=" mat-bg-warn" style="width : 8em;">
+      ANNULER
+  </button>
+  </mat-toolbar>
+  <ngx-create-draft></ngx-create-draft>
+
+  <ngx-amounts-order></ngx-amounts-order>

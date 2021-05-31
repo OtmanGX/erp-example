@@ -23,7 +23,8 @@ export const getDraftError = createSelector(
   (state: DraftState) => state.error
 );
 
-export const getAllDraft = createSelector(getDraftState, (state: DraftState) =>
+export const getAllDraft = createSelector(
+  getDraftState, (state: DraftState) =>
   selectAll(state)
 );
 

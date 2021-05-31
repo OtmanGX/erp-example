@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
 @Component({
   selector: 'ngx-create-order',
   templateUrl: './create-order.component.html',
@@ -7,9 +6,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateOrderComponent implements OnInit {
 
-  constructor() { }
+
+
+  constructor(
+  ) { }
 
   ngOnInit(): void {
+
   }
+
+  ngOnChanges() {
+  }
+
 
 }

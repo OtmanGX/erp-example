@@ -6,6 +6,8 @@ import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoi
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
 import { regConfigEmployee } from '@TanglassUi/management/utils/forms';
 import { Subscription } from 'rxjs';
+import { InsertedUser } from "@TanglassStore/management/index";
+
 
 @Component({
   selector: 'ngx-dialog-employee',
@@ -37,8 +39,23 @@ export class DialogEmployeeComponent extends FormDialog implements OnDestroy {
     );
   }
 
+
+  submitForm(value){
+    this.submit({
+      firstname:value.firstname,
+      lastname:value.lastname,
+      username:value.username,
+      phone:value.phone,
+      password:value.password,
+      active:value.active,
+      email:value.email,
+      CIN:value.CIN,
+      role:value.role
+
+    })
+  }
   ngOnDestroy(): void {
-    this.salePointsSubscription.unsubscribe();
+    this.salePointsSubscription?.unsubscribe();
   }
 
 }

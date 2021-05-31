@@ -142,6 +142,12 @@ export class NavigationService {
       state: "product/glass"
     },
     {
+      name: "Article Clients",
+      type: "link",
+      icon: "assignment_ind",
+      state: "product/customerProduct"
+    },
+    {
       name: "Accessoires",
       type: "link",
       icon: "assignment_ind",

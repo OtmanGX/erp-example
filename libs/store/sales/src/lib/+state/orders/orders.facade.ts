@@ -5,7 +5,7 @@ import { select, Store, Action } from '@ngrx/store';
 import * as fromOrders from './orders.reducer';
 import * as OrdersSelectors from './orders.selectors';
 import * as OrdersActions from './orders.actions';
-
+import * as DraftActions from "../draft/draft.actions";
 @Injectable()
 export class OrdersFacade {
   loaded$ = this.store.pipe(select(OrdersSelectors.getOrdersLoaded));
@@ -20,4 +20,10 @@ export class OrdersFacade {
   loadAllOrders() {
     this.dispatch(OrdersActions.loadOrders());
   }
+
+  loadSelectedOrder(id){
+    this.dispatch(OrdersActions.loadOrderById({id}))
+  }
+
+
 }

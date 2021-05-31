@@ -1,41 +1,29 @@
-import { Component, Inject, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, Inject, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
-import { regConfigGlassItem, regConfigAccessoireItem, regConfigServiceItem } from '@TanglassUi/sales/utils/forms';
-import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
-import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
-import * as shortWarehouseActions from '@TanglassStore/shared/lib/+state/short-warehouse.actions';
-import * as shortWarehouseSelectors from '@TanglassStore/shared/lib/+state/short-warehouse.selectors';
+import * as regConfigs from '@TanglassUi/sales/utils/forms';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
 import { ProductsTypes, GlassGroup, ServiceGroup, AccessoryGroup } from "../../../utils/enums";
 import { DynamicFormComponent } from '@tanglass-erp/material';
-import * as GlassActions from '@TanglassStore/product/lib/actions/glass.actions';
-import * as GlassSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
-import * as ServiceActions from '@TanglassStore/product/lib/actions/service.actions';
-import * as ServiceSelectors from '@TanglassStore/product/lib/selectors/service.selectors';
-import * as ConsumableActions from '@TanglassStore/product/lib/actions/consumable.actions';
-import * as ConsumableSelectors from '@TanglassStore/product/lib/selectors/consumable.selectors';
-import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
-import * as AccessorySelectors from '@TanglassStore/product/lib/selectors/accessory.selectors';
-import { Intermediate_Data } from "../../../utils/models";
+import * as productStore from '@TanglassStore/product/index';
+import { DraftItem, Intermediate_Data,SalesItem } from "../../../utils/models";
 @Component({
   selector: 'ngx-pop-product',
   templateUrl: './pop-product.component.html',
   styleUrls: ['./pop-product.component.scss']
 })
-export class PopProductComponent extends FormDialog implements AfterViewInit {
+export class PopProductComponent extends FormDialog implements AfterViewInit, OnDestroy {
   type: string;
   types: string[];
   regConfig: FieldConfig[];
-  companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany).pipe(map(item => item.map(company => ({ key: company.id, value: company.name }))));
-  warehouses$ = this.store.select(shortWarehouseSelectors.getAllShortWarehouse).pipe(map(item => item.map(warehouse => ({ key: warehouse.id, value: warehouse.name }))));
-  glasses$ = this.store.select(GlassSelectors.getAllGlasses)
-  services$ = this.store.select(ServiceSelectors.getAllServices);
-  accessories$ = this.store.select(AccessorySelectors.getAllAccessories)
-  consumables$ = this.store.select(ConsumableSelectors.getAllConsumables)
-  products; formValue = {};
-  
+  glasses$ = this.store.select(productStore.getAllGlasses)
+  services$ = this.store.select(productStore.getAllServices);
+  accessories$ = this.store.select(productStore.getAllAccessories)
+  consumables$ = this.store.select(productStore.getAllConsumables)
+  customerItems$=this.store.select(productStore.getAllCustomerProducts)
+  products; formValue: SalesItem = new SalesItem();
+  companies; warehouses; allWarehouses
+
   @ViewChild('product_form', { read: DynamicFormComponent }) productFormComponent: DynamicFormComponent;
   get productForm() {
     return this.productFormComponent?.form;
@@ -43,40 +31,49 @@ export class PopProductComponent extends FormDialog implements AfterViewInit {
   constructor(
     public dialogRef: MatDialogRef<PopProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Intermediate_Data,
-    private store: Store
-  ) { super(dialogRef, data) }
+    private store: Store,
+  ) {
+    super(dialogRef, data);
+    this.companies = this.data.companies;
+    this.warehouses = this.data.warehouses;
+  }
 
   ngOnInit(): void {
-
-    this.store.dispatch(ShortCompanieActions.loadShortCompany());
-    this.store.dispatch(shortWarehouseActions.loadShortWarehouse());
     this.buildForm();
   }
   ngAfterViewInit(): void {
 
-    this.productForm.get('product_code')?.valueChanges.subscribe(
+    this.productForm.get('product_code')?.valueChanges?.subscribe(
       (val) => {
         const found = this.products?.find(element => element.product?.code == val)
         this.productForm.controls['price'].setValue(found?.product?.price);
         this.productForm.controls['label'].setValue(found?.product?.label);
+        this.productForm.controls['unit'].setValue(found?.product?.unit);
+      }
+    )
+    this.productForm.get('company_id')?.valueChanges?.subscribe(
+      (val) => {
+        let found = this.companies.find(element => element.key == val)
+        console.log('company')
+        this.formValue = { ...this.formValue, company_name: found?.value }
+        this.warehouses = this.data.warehouses.filter(warehouse => warehouse.company_id == val);
+        this.data.data = this.productForm.value;
+        this.getItems(this.type)
       }
     )
   }
   buildForm(): void {
     switch (this.data.product_type) {
-
       case ProductsTypes.glass: {
         this.types = Object.values(GlassGroup);
         this.type = ProductsTypes.glass;
         break;
       }
-
       case ProductsTypes.accessory: {
         this.types = Object.values(AccessoryGroup);
         this.type = ProductsTypes.accessory;
         break;
       }
-
       case ProductsTypes.service: {
         this.formValue['dependent_id'] = this.data.row.id;
         this.types = Object.values(ServiceGroup);
@@ -90,46 +87,35 @@ export class PopProductComponent extends FormDialog implements AfterViewInit {
     this.getItems(this.type);
   }
   getItems(type) {
-
     switch (type) {
-
       case ProductsTypes.glass: {
-        this.store.dispatch(GlassActions.loadGlasses());
+        this.store.dispatch(productStore.loadGlasses());
         this.glasses$.subscribe(data => this.products = data)
-        this.regConfig = regConfigGlassItem(this.data.data, this.glasses$.pipe(
-          map(item => item.map(glass =>({ id: glass.product.code, label: glass.product.label })))),
-          this.companies$, this.warehouses$);
+        this.regConfig = regConfigs.regConfigGlassItem(this.glasses$,this.companies, this.warehouses, this.data);
         break
       }
-
+      case ProductsTypes.customerPorduct: {
+        this.store.dispatch(productStore.loadCustomerProducts());
+        this.glasses$.subscribe(data => this.products = data)
+        this.regConfig = regConfigs.regConfigCustomerItem(this.customerItems$, this.data);
+        break
+      }
       case ProductsTypes.accessory: {
-        this.store.dispatch(AccessoryActions.loadAccessories());
+        this.store.dispatch(productStore.loadAccessories());
         this.accessories$.subscribe(data => this.products = data)
-        this.regConfig = regConfigAccessoireItem(this.data.data, this.accessories$.pipe(
-          map(item => item.map(accessory =>({ id: accessory.product.code, label: accessory.product.label })))),
-          this.companies$, this.warehouses$);
+        this.regConfig = regConfigs.regConfigAccessoireItem(this.accessories$, this.companies, this.warehouses, this.data);
         break
       }
-
       case ProductsTypes.consumable: {
-        this.store.dispatch(ConsumableActions.loadConsumables());
+        this.store.dispatch(productStore.loadConsumables());
         this.consumables$.subscribe(data => this.products = data)
-        this.regConfig = regConfigServiceItem(this.data.data,
-          this.consumables$.pipe(map(item => item.map(consumable =>
-            ({ id: consumable.product.code, label: consumable.product.label })))),this.companies$, this.warehouses$,
-         (this.data.row.ml||this.data.row.m2)? [{ key: this.data.row.m2, value: this.data.row.m2 + '  m2' },
-          { key: this.data.row.ml, value: this.data.row.ml + '  ml' }]:null);
+        this.regConfig = regConfigs.regConfigConsumableItem(this.consumables$, this.companies, this.warehouses,this.data)
         break
       }
-
       case ProductsTypes.service: {
-        this.store.dispatch(ServiceActions.loadServices());
+        this.store.dispatch(productStore.loadServices());
         this.services$.subscribe(data => this.products = data)
-        this.regConfig = regConfigServiceItem(this.data.data,
-          this.services$.pipe(map(item => item.map(service =>({ id: service.product.code, label: service.product.label })))),
-          this.companies$, this.warehouses$,
-          [{ key: this.data.row.m2, value: this.data.row.m2 + '  m2' },
-          { key: this.data.row.ml, value: this.data.row.ml + '  ml' }]);
+        this.regConfig = regConfigs.regConfigServiceItem(this.services$,this.companies,this.data);
         break
       }
     }
@@ -139,4 +125,8 @@ export class PopProductComponent extends FormDialog implements AfterViewInit {
     this.formValue = { ...this.formValue, ...this.productForm.value, type: this.type };
     this.submit(this.formValue);
   }
+
+  ngOnDestroy() {
+
+  }        
 }

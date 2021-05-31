@@ -53,8 +53,6 @@ export class GlassCardComponent extends ModelCardComponent {
         icons:[{name:"edit",tooltip:"Modification",event:"editMain"}],
         data:
           [
-            { label: 'Type', value: data?.type },
-            { label: 'Couleur', value: data?.color },
             { label: 'Epaisseur', value: data?.thickness },
             { label: 'createdAt', value: data?.createdAt },
             { label: 'createdBy', value: data?.createdBy },

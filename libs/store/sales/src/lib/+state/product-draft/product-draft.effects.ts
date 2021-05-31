@@ -4,7 +4,7 @@ import * as ProductActions from './product-draft.actions';
 import { DraftService } from '@tanglass-erp/core/sales';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-
+import { ProductDraftFacade } from "./product-draft.facade";
 @Injectable()
 export class ProductDraftEffects {
 
@@ -15,7 +15,8 @@ export class ProductDraftEffects {
       mergeMap((action) =>
         this.ProductService.getDraftPorducts(action.draft_id).pipe(
           map((data) =>
-            ProductActions.loadProductsSuccess({ products: data.data.sales_product_draft })
+            ProductActions.loadProductsSuccess({ products: data.data.sales_product_draft }),
+
           ),
           catchError((error) =>
             of(ProductActions.loadProductsFailure({ error }))
@@ -31,7 +32,7 @@ export class ProductDraftEffects {
       mergeMap((action) =>
         this.ProductService.addGlass(action.glass).pipe(
           map((data) =>
-            ProductActions.addGlassSuccess({ glass: data.data.insert_sales_glass_draft_one.product_draft })
+            ProductActions.addGlassSuccess({ glass: data.data.insert_sales_glass_draft_one.product_draft }),
           ),
           catchError((error) =>
             of(ProductActions.addGlassFailure({ error }))
@@ -46,7 +47,9 @@ export class ProductDraftEffects {
       mergeMap((action) =>
         this.ProductService.addService(action.service).pipe(
           map((data) =>
-            ProductActions.addServiceSuccess({ service: data.data.insert_sales_service_draft_one.product_draft })
+            ProductActions.addServiceSuccess({
+              service: data.data.insert_sales_service_draft_one.product_draft
+            })
           ),
           catchError((error) =>
             of(ProductActions.addServiceFailure({ error }))
@@ -104,6 +107,9 @@ export class ProductDraftEffects {
   });
 
 
-  constructor(private actions$: Actions, private ProductService: DraftService
+
+  constructor(private actions$: Actions,
+    private ProductService: DraftService,
+    private ProductFacade: ProductDraftFacade,
   ) { }
 }

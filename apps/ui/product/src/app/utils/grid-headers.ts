@@ -22,13 +22,23 @@ const GlassHeaders = [
   {
     headerName: 'Caractéristiques',
     children: [
-      { field: 'type', headerName: 'Type', type: "textColumn" },
-      { field: 'color', headerName: 'Couleur', type: "textColumn" },
+    //  { field: 'type', headerName: 'Type', type: "textColumn" },
+    //  { field: 'color', headerName: 'Couleur', type: "textColumn" },
       { field: 'thickness', headerName: 'Epaisseur', type: "numberColumn" },
     ]
   },
 
 ];
+
+
+const CustomerProductHeaders = [
+
+    { field: 'code', headerName: 'Code', type: "textColumn"},
+    { field: 'label', headerName: 'Désignation', type: "textColumn"},
+    { field: 'thickness', headerName: 'Epaisseur', type: "textColumn"},
+  ];
+
+
 
 const ConsumableHeaders = [
   {
@@ -128,5 +138,6 @@ export {
   ConsumableHeaders,
   ServiceConsumableHeaders,
   ServiceGlassHeaders,
-  SuppliesHeaders
+  SuppliesHeaders,
+  CustomerProductHeaders
 };

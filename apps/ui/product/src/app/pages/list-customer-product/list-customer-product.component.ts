@@ -3,29 +3,36 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
-import { PopServiceGlasseComponent } from './pop-service-glasse/pop-service-glasse.component';
-import { ServiceGlassHeaders } from '../../utils/grid-headers';
+import { PopCustomerProductComponent } from './pop-customer-product/pop-customer-product.component';
+import { CustomerProductHeaders } from '../../utils/grid-headers';
+import * as CustomerProductSelectors from '@TanglassStore/product/lib/selectors/customer-product.selectores';
+import * as CustomerProductActions from '@TanglassStore/product/lib/actions/customer-product.actions';
+import { Store } from '@ngrx/store';
 
 
 @Component({
-  selector: 'ngx-list-consumable',
-  templateUrl: './list-service-glasse.component.html',
-  styleUrls: ['./list-service-glasse.component.scss'],
+  selector: 'ngx-list-customer-product',
+  templateUrl: './list-customer-product.component.html',
+  styleUrls: ['./list-customer-product.component.scss'],
 })
-export class ListServiceGlasseComponent implements GridView {
+export class ListCustomerProductComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$: Observable<any>;
+  data$ = this.store.select(CustomerProductSelectors.getAllCustomerProducts);
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
 
   constructor(
     private dialog: MatDialog,
+    private store: Store
+
   ) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
+    this.store.dispatch(CustomerProductActions.loadCustomerProducts());
+
   }
 
   ngAfterViewInit(): void {
@@ -47,14 +54,14 @@ export class ListServiceGlasseComponent implements GridView {
 
   setColumnDefs() {
     this.columnDefs = [
-      ...ServiceGlassHeaders,
-      { field: 'id', headerName: 'Action', type: "editColumn"},
+      ...CustomerProductHeaders,
+      //{ field: 'id', headerName: 'Action', type: "editColumn"},
     ];
   }
 
 
   openDialog(action, data = {}) {
-    const dialogRef = this.dialog.open(PopServiceGlasseComponent, {
+    const dialogRef = this.dialog.open(PopCustomerProductComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
       data: data
@@ -64,6 +71,8 @@ export class ListServiceGlasseComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
+          this.store.dispatch(CustomerProductActions.addCustomerProduct({ customerProduct: result }));
+
         } else {} // Update
       }
     });

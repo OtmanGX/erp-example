@@ -5,6 +5,7 @@
 export interface ShortFeauture{
     id:string;
     name:string;
+    companyid?:string; //for warehouse
 
 }
 // for sales product

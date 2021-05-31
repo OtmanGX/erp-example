@@ -8,12 +8,13 @@ export enum ProductsTypes {
   accessory = 'Accessoire',
   service = 'Service',
   glass = 'Verre',
-  consumable = 'Consommable'
+  consumable = 'Consommable',
+  customerPorduct='Article Client'
 }
 
 export enum GlassGroup{
   glass = 'Verre',
-  customerGlass = 'Article Client'
+  customerPorduct = 'Article Client'
 }
 
 export enum ServiceGroup{
