@@ -10,7 +10,7 @@ export const glassesColumns: string[] = [
     'price',
     'total_price',
     'company_name',
-    'action'
+    //'action'
 ];
 
 export const displayedColumns: string[] = [
@@ -21,7 +21,7 @@ export const displayedColumns: string[] = [
     'price',
     'total_price',
     'company_name',
-    'action'
+   // 'action'
 ];
 export const displayedAmountsColumns: string[] = [
     'company',

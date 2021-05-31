@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild, Input, OnChanges, OnDestroy } from '@angu
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { PopProductComponent } from "../pop-product/pop-product.component";
-import { FieldConfig } from '@tanglass-erp/material';
+import { Column, ColumnType, FieldConfig, TableComponent } from '@tanglass-erp/material';
 import { ProductHeaders, ProductGlassHeaders, displayedColumns, glassesColumns } from "../../../utils/grid-headers";
 import { DraftItem } from "../../../utils/models";
 import { ProductDraftFacade } from "@tanglass-erp/store/sales";
-import { ProductsTypes} from "../../../utils/enums";
+import { ProductsTypes } from "../../../utils/enums";
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -17,9 +17,37 @@ import { Subscription } from 'rxjs';
 })
 
 export class ProductDraftComponent implements OnInit, OnDestroy {
-  isCardMode:string
-  displayedColumns: string[] = displayedColumns;
-  glassesColumns = glassesColumns
+  isCardMode: string;
+  @ViewChild('glassTable') glassTable: TableComponent<DraftItem>;
+  @ViewChild('articlesTable', {read: TableComponent, static: false}) articlesTable: TableComponent<DraftItem>;
+  displayedColumns: Array<Column> =
+    [
+      ...displayedColumns.map((e) => ({
+        title: e[0].toUpperCase() + e.slice(1),
+        type: ColumnType.normal,
+        key: e,
+      })),
+      {
+        title: 'Action',
+        key: 'action',
+        type: ColumnType.template,
+        withRow: true,
+      },
+    ];
+  glassesColumns =
+    [
+      ...glassesColumns.map((e) => ({
+        title: e[0].toUpperCase() + e.slice(1),
+        type: ColumnType.normal,
+        key: e,
+      })),
+      {
+        title: 'Action',
+        key: 'action',
+        type: ColumnType.template,
+        withRow: true,
+      },
+    ];
   dataSourceGlass = [];
   dataSourceArticles = [];
   glassHeaders = ProductGlassHeaders;
@@ -65,7 +93,6 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
       data: { product_type, row, companies, warehouses }
     });
     dialogRef.afterClosed().subscribe(result => {
-console.log(result)
       switch (result?.type) {
         case ProductsTypes.glass: {
           this.facade.addGlass({ ...result, draft_id: this.draft_id[0]?.id })
@@ -92,8 +119,25 @@ console.log(result)
         }
       }
     });
+    this.articlesTable.render();
+    this.glassTable.render();
+  }
+  delete(item: DraftItem) {
+    // this.facade.removeProduct(item.id);
+    // this.articlesTable.render();
+    // this.glassTable.render();
   }
 
+  deleteArticle(item: any) {
+    this.facade.removeProduct(item.id);
+    this.dataSourceArticles.splice(item , 1);
+    this.articlesTable.render()
+  }
+  deleteGlass(item: any) {
+    this.facade.removeProduct(item.id);
+    this.dataSourceGlass.splice(item , 1);
+    this.glassTable.render()
+  }
   ngOnDestroy() {
     this.productsSub?.unsubscribe();
     this.warehousesSub?.unsubscribe();

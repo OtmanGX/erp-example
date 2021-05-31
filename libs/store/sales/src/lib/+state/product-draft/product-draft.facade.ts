@@ -65,7 +65,6 @@ export class ProductDraftFacade {
       ...product,
       total_price: product.quantity * product.price,
     }
-    console.log(service)
     this.dispatch(ProductsActions.addService({ service }))
 
   }
@@ -120,5 +119,10 @@ export class ProductDraftFacade {
       };
     }, new Amount()))
     this.amounts$.next(amounts)
+  }
+
+  removeProduct(productId){
+    this.dispatch(ProductsActions.removeProduct({ productId }));
+    this.updateAmounts()
   }
 }
