@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { StoreAppModule } from '../../../../../libs/store/app/src/lib/store-app.module';
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
@@ -70,6 +71,7 @@ const routes: Routes = [
     StoreModule.forRoot(reducers, {}),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot(),
+    StoreAppModule,
     PerfectScrollbarModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')

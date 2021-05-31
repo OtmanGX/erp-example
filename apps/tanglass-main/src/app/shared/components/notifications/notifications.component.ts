@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { getAllNotifications, AppState } from '@tanglass-erp/store/app';
+import { NotificationFacadeService } from '@tanglass-erp/store/app';
 
 
 @Component({
@@ -12,19 +10,28 @@ import { getAllNotifications, AppState } from '@tanglass-erp/store/app';
 export class NotificationsComponent implements OnInit {
   @Input() notificPanel;
 
-  // Dummy notifications
-  notifications$ = this.store.select(getAllNotifications)
+  notifications$ = this.notifService.notifications$;
 
-  constructor(private router: Router, private store: Store<AppState>) {}
+  constructor(private router: Router, public notifService: NotificationFacadeService) {}
 
   ngOnInit() {
+    // Test purpose
+    this.notifService.addNotification({
+      id: '5',
+      message: 'Contact Added',
+      time: 'before 5mn',
+      icon: 'checked',
+      route: 'contact/contact',
+      color: 'primary'
+    });
     this.router.events.subscribe((routeChange) => {
-        if (routeChange instanceof NavigationEnd) {
-          this.notificPanel.close();
-        }
+      if (routeChange instanceof NavigationEnd) {
+        this.notificPanel.close();
+      }
     });
   }
   clearAll(e) {
+    this.notifService.clearNotifications();
     e.preventDefault();
   }
 }

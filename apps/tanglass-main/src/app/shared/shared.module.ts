@@ -13,6 +13,7 @@ import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { SharedDirectivesModule } from './directives/shared-directives.module';
 import { MaterialModule } from '@tanglass-erp/material';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { StoreAppModule } from '../../../../../libs/store/app/src/lib/store-app.module';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     MaterialModule,
     SharedDirectivesModule,
     PerfectScrollbarModule,
+    
   ],
   providers: [
     ThemeService,

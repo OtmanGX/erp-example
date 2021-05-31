@@ -1,20 +1,26 @@
 import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 import * as NotifActions from './notification.actions';
-import { Notification } from './notification.model';
+import { MNotification } from './notification.model';
+import { clearNotification } from './notification.actions';
 
-export const authFeatureKey = 'notifications';
+export const notificationFeatureKey = 'notifications';
 
-export interface State extends EntityState<Notification> {
+export interface NotificationState extends EntityState<MNotification> {
   loaded: boolean; // has the Service list been loaded
   error?: string | null; // last known error (if any)
 }
 
-export const notificationsAdapter: EntityAdapter<Notification> = createEntityAdapter<
-Notification
->();
+export interface NotificationPartialState {
+  readonly [notificationFeatureKey]: NotificationState;
+}
 
-export const initialState: State = notificationsAdapter.getInitialState({
+export const notificationsAdapter: EntityAdapter<MNotification> = createEntityAdapter<
+MNotification
+>(
+);
+
+export const initialState: NotificationState = notificationsAdapter.getInitialState({
   entities: [],
   ids: [],
   loaded: false,
@@ -33,6 +39,9 @@ export const reducer = createReducer(
      )),
   on(NotifActions.AddNotification,
     (state, action) =>  notificationsAdapter.addOne(action.notification, state)
+  ),
+  on(NotifActions.clearNotification,
+    (state) =>  notificationsAdapter.removeAll(state)
   ),
   on(NotifActions.loadNotificationsFailure,
      NotifActions.AddNotificationFailure,
