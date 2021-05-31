@@ -3,16 +3,16 @@ import {
   ActionReducerMap,
 } from '@ngrx/store';
 import * as fromAuth from './lib/auth.reducer';
-import * as fromNotif from './lib/notification.reducer'
+import * as fromNotif from './lib/notification/notification.reducer'
 
 export interface AppState {
   [fromAuth.authFeatureKey]: fromAuth.State,
-  [fromNotif.authFeatureKey]: fromNotif.State
+  [fromNotif.notificationFeatureKey]: fromNotif.NotificationState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   [fromAuth.authFeatureKey]: fromAuth.reducer,
-  [fromNotif.authFeatureKey]: fromNotif.reducer
+  [fromNotif.notificationFeatureKey]: fromNotif.reducer
 };
 
 
@@ -25,5 +25,7 @@ export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
     return reducer(state, action);
   };
 }
-export *  from './lib/notification.actions';
-export *  from './lib/notification.selectors';
+export *  from './lib/notification/notification.actions';
+export *  from './lib/notification/notification.selectors';
+export *  from './lib/notification/notification.model';
+export *  from './lib/notification/notification-facade.service';

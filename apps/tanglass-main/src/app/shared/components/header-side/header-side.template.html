@@ -35,7 +35,9 @@
     class="topbar-button-right"
   >
     <mat-icon>notifications</mat-icon>
-    <span class="notification-number mat-bg-warn">3</span>
+    <span *ngIf="notifications$ | async; let notifications" class="notification-number mat-bg-warn">
+      {{notifications}}
+    </span>
   </button>
   <!-- Top left user menu -->
   <button
