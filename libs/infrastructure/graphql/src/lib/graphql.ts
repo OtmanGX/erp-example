@@ -25472,6 +25472,19 @@ export type GetServiceConfigByIdQuery = (
   )> }
 );
 
+export type DeleteDeliveryMutationVariables = Exact<{
+  ids?: Array<Scalars['uuid']>;
+}>;
+
+
+export type DeleteDeliveryMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_delivery?: Maybe<(
+    { __typename?: 'sales_delivery_mutation_response' }
+    & Pick<Sales_Delivery_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type DeleteProductDraftMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -28445,6 +28458,24 @@ export const GetServiceConfigByIdDocument = gql`
   })
   export class GetServiceConfigByIdGQL extends Apollo.Query<GetServiceConfigByIdQuery, GetServiceConfigByIdQueryVariables> {
     document = GetServiceConfigByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteDeliveryDocument = gql`
+    mutation DeleteDelivery($ids: [uuid!]! = []) {
+  delete_sales_delivery(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteDeliveryGQL extends Apollo.Mutation<DeleteDeliveryMutation, DeleteDeliveryMutationVariables> {
+    document = DeleteDeliveryDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

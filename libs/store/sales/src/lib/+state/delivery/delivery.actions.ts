@@ -63,7 +63,8 @@ export const updateDeliveryFailure = createAction(
 // remove Delivery Form
 export const removeDelivery = createAction(
   '[Delivery] remove Delivery',
-  props<{ ids: string[] }>());
+  props<{ ids: string[] }>()
+);
 
 export const removeDeliverySuccess = createAction(
   '[Delivery] remove Delivery Success',
