@@ -4,12 +4,10 @@ import * as DeliveryActions from './delivery.actions';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
-  adaptDelivery,
   DeliveryForm,
   DeliveryService,
   InsertedDeliveryForm,
 } from '@tanglass-erp/core/sales';
-import { reverseAdaptDelivery } from '@tanglass-erp/core/sales';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -21,9 +19,7 @@ export class DeliveryEffects {
         this.deliveryService.getAll().pipe(
           map((data) =>
             DeliveryActions.loadDeliverySuccess({
-              delivery: data.data.sales_delivery.map(
-                (e) => <DeliveryForm>reverseAdaptDelivery(e)
-              ),
+              delivery: data.data.sales_delivery,
             })
           ),
           catchError((error) =>
@@ -39,12 +35,12 @@ export class DeliveryEffects {
       ofType(DeliveryActions.loadDeliveryById),
       mergeMap((action) =>
         this.deliveryService.getOneById(<string>action.id).pipe(
-          map((data) =>
-            DeliveryActions.loadDeliveryByIdSuccess({
-              delivery: <InsertedDeliveryForm>(
-                reverseAdaptDelivery(data.data.sales_delivery_by_pk)
-              ),
+          map((data) => {
+            const {__typename, ...delivery} = data.data.sales_delivery_by_pk;
+            return DeliveryActions.loadDeliveryByIdSuccess({
+              delivery: <InsertedDeliveryForm> delivery,
             })
+          }
           ),
           catchError((error) =>
             of(DeliveryActions.loadDeliveryByIdFailure({ error }))
@@ -62,9 +58,8 @@ export class DeliveryEffects {
           map((data) => {
             this.router.navigate(['/sales/delivery']);
             return DeliveryActions.addDeliverySuccess({
-              delivery: <DeliveryForm>(
-                reverseAdaptDelivery(data.data.insert_sales_delivery_one)
-              ),
+              delivery: <DeliveryForm>data.data.insert_sales_delivery_one
+              ,
             });
           }),
           catchError((error) =>

@@ -19,9 +19,7 @@ mutation UpdateDelivery(
     }
   ) {
     id
-    orders{
-      order_id
-    }
+    order
     status
     company
     payment_method

@@ -9,8 +9,7 @@ import {
   UpdateDeliveryLineMutationVariables,
   UpdateDeliveryMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
-import { DeliveryLine, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
-import { adaptDelivery } from '../utils/data-adapter';
+import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 import { combineLatest } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -35,7 +34,7 @@ export class DeliveryService {
 
   insertOne(delivery: InsertedDeliveryForm) {
     return this.insertDeliveryGQL.mutate(
-      adaptDelivery(delivery)
+      delivery
     );
   }
 
@@ -45,7 +44,7 @@ export class DeliveryService {
   }
 
   updateDelivery(delivery: InsertedDeliveryForm) {
-      const {orders, delivery_lines, ...deliveryOnly} = delivery;
+      const {delivery_lines, ...deliveryOnly} = delivery;
     return combineLatest(
       this.updateDeliveryGQL.mutate(deliveryOnly as UpdateDeliveryMutationVariables),
       ...delivery_lines.map(e => {

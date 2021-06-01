@@ -22,7 +22,7 @@ export class DeliveryLineComponent implements OnInit {
     { title: 'Demande', key: 'qte', type: ColumnType.template, withRow: true },
     { title: 'Reste', key: 'rest', type: ColumnType.template, withRow: true },
     { title: 'Livré', key: 'delivered', type: ColumnType.template },
-    { title: 'Société', key: 'company', type: ColumnType.normal },
+    { title: 'Société', key: 'company_name', type: ColumnType.normal },
     {
       title: 'Montant',
       key: 'amount',
