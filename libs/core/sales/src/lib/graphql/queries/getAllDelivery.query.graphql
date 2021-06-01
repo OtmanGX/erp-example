@@ -1,9 +1,7 @@
 query getAllDelivery {
   sales_delivery{
     id
-    orders{
-      order_id
-    }
+    order
     status
     company: companyObject{
       name

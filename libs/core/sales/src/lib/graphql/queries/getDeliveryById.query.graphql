@@ -7,9 +7,7 @@ query GetDeliveryById($id: uuid!) {
     contact
     payment_method
     predicted_date
-    orders{
-      order_id
-    }
+    order
     delivery_lines {
       id
       amount

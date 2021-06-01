@@ -1,5 +1,4 @@
 import { DeliveryStatus, PaymentMethod } from '../enums/delivery';
-import { Order } from '@tanglass-erp/core/sales';
 import { MetaData } from '@tanglass-erp/core/common';
 import { Contact, Customer } from '@tanglass-erp/core/contact';
 import { Company } from '@tanglass-erp/core/product';
@@ -7,20 +6,27 @@ import { Company } from '@tanglass-erp/core/product';
 
 export interface DeliveryForm extends MetaData {
   id: string;
-  orders: Order[];
-  status: DeliveryStatus;
+  order: number;
+  status: DeliveryStatus | string;
   predicted_date: Date;
-  client: Customer;
+  client: {
+    name: string
+    mail?: string
+  };
   company: Company;
-  contact: Contact;
+  contact?: {
+    name: string
+    mail?: string
+    phone: string
+  };
   // delivery_lines: DeliveryLine[];
-  payment_method: PaymentMethod;
+  payment_method: PaymentMethod | string;
 }
 
 
 export interface InsertedDeliveryForm extends MetaData {
   id?: string;
-  orders: number[];
+  order: number;
   status: DeliveryStatus;
   predicted_date: Date;
   client: string;
