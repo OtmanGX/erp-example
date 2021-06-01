@@ -36,7 +36,7 @@ export class DeliveryAddComponent
   selectedOrder: Order;
   orderLines$ = this.draftFacade.draftLoadedById$.pipe(
     filter(val => !!val),
-    map(val => val?.products)
+    map(val => val['product_drafts'])
   );
 
   // Id for update reason
@@ -72,7 +72,7 @@ export class DeliveryAddComponent
   ngAfterViewInit(): void {
     if (this.deliveryId)
       return
-    const orderField = this.form.getField('orders');
+    const orderField = this.form.getField('order');
     const companyField = this.form.getField('company');
     const clientField = this.form.getField('client');
     // this.orderLines$.subscribe(value => console.log('orderlines', value))
@@ -117,9 +117,7 @@ export class DeliveryAddComponent
 
   buildForm() {
     this.regConfig = regConfigDelivery(
-      {
-        ...this.delivery,
-      },
+      this.delivery,
       this.orders$,
       this.customers$,
       this.companies$.pipe(map(e => e.map(company => ({ key: company.id, value: company.name })))),

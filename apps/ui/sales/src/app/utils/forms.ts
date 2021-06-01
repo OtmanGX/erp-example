@@ -16,7 +16,7 @@ function getGlassQuantities(row: DraftItem) {
 }
 
 export type deliveryFormType = {
-  orders: number[];
+  order: number;
   predicted_date: Date;
   status: DeliveryStatus;
   company: string;
@@ -28,11 +28,10 @@ export type deliveryFormType = {
 const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?, companies?, contacts?) => [
   {
     type: "selectSearch",
-    name: "orders",
+    name: "order",
     label: "N° Commande",
     inputType: "text",
-    multiple: true,
-    value: data?.orders ?? [],
+    value: data?.order,
     filterFields: ['id', 'company.name'],
     fieldsToShow: ['id', 'company.name'],
     disabled: data !== null,
@@ -232,7 +231,7 @@ const regConfigGlassItem = (
         fieldsToShow: ['id', 'label'],
         options: customerProducts.pipe(
           map(item => item.map(product => ({ id: product.code, label: product.label })))),
-  
+
       },
       {
         type: 'input',

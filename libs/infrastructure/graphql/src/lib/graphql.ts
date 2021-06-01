@@ -5015,10 +5015,6 @@ export type Mutation_Root = {
   delete_sales_delivery_line?: Maybe<Sales_Delivery_Line_Mutation_Response>;
   /** delete single row from the table: "sales.delivery_line" */
   delete_sales_delivery_line_by_pk?: Maybe<Sales_Delivery_Line>;
-  /** delete data from the table: "sales.delivery_orders" */
-  delete_sales_delivery_orders?: Maybe<Sales_Delivery_Orders_Mutation_Response>;
-  /** delete single row from the table: "sales.delivery_orders" */
-  delete_sales_delivery_orders_by_pk?: Maybe<Sales_Delivery_Orders>;
   /** delete data from the table: "sales.draft" */
   delete_sales_draft?: Maybe<Sales_Draft_Mutation_Response>;
   /** delete single row from the table: "sales.draft" */
@@ -5227,10 +5223,6 @@ export type Mutation_Root = {
   insert_sales_delivery_line_one?: Maybe<Sales_Delivery_Line>;
   /** insert a single row into the table: "sales.delivery" */
   insert_sales_delivery_one?: Maybe<Sales_Delivery>;
-  /** insert data into the table: "sales.delivery_orders" */
-  insert_sales_delivery_orders?: Maybe<Sales_Delivery_Orders_Mutation_Response>;
-  /** insert a single row into the table: "sales.delivery_orders" */
-  insert_sales_delivery_orders_one?: Maybe<Sales_Delivery_Orders>;
   /** insert data into the table: "sales.draft" */
   insert_sales_draft?: Maybe<Sales_Draft_Mutation_Response>;
   /** insert a single row into the table: "sales.draft" */
@@ -5439,10 +5431,6 @@ export type Mutation_Root = {
   update_sales_delivery_line?: Maybe<Sales_Delivery_Line_Mutation_Response>;
   /** update single row of the table: "sales.delivery_line" */
   update_sales_delivery_line_by_pk?: Maybe<Sales_Delivery_Line>;
-  /** update data of the table: "sales.delivery_orders" */
-  update_sales_delivery_orders?: Maybe<Sales_Delivery_Orders_Mutation_Response>;
-  /** update single row of the table: "sales.delivery_orders" */
-  update_sales_delivery_orders_by_pk?: Maybe<Sales_Delivery_Orders>;
   /** update data of the table: "sales.draft" */
   update_sales_draft?: Maybe<Sales_Draft_Mutation_Response>;
   /** update single row of the table: "sales.draft" */
@@ -5967,19 +5955,6 @@ export type Mutation_RootDelete_Sales_Delivery_LineArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Sales_Delivery_Line_By_PkArgs = {
   id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Sales_Delivery_OrdersArgs = {
-  where: Sales_Delivery_Orders_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Sales_Delivery_Orders_By_PkArgs = {
-  delivery_id: Scalars['uuid'];
-  order_id: Scalars['Int'];
 };
 
 
@@ -6677,20 +6652,6 @@ export type Mutation_RootInsert_Sales_Delivery_Line_OneArgs = {
 export type Mutation_RootInsert_Sales_Delivery_OneArgs = {
   object: Sales_Delivery_Insert_Input;
   on_conflict?: Maybe<Sales_Delivery_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Sales_Delivery_OrdersArgs = {
-  objects: Array<Sales_Delivery_Orders_Insert_Input>;
-  on_conflict?: Maybe<Sales_Delivery_Orders_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Sales_Delivery_Orders_OneArgs = {
-  object: Sales_Delivery_Orders_Insert_Input;
-  on_conflict?: Maybe<Sales_Delivery_Orders_On_Conflict>;
 };
 
 
@@ -7422,6 +7383,7 @@ export type Mutation_RootUpdate_Sales_Consumable_Draft_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Sales_DeliveryArgs = {
+  _inc?: Maybe<Sales_Delivery_Inc_Input>;
   _set?: Maybe<Sales_Delivery_Set_Input>;
   where: Sales_Delivery_Bool_Exp;
 };
@@ -7429,6 +7391,7 @@ export type Mutation_RootUpdate_Sales_DeliveryArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Sales_Delivery_By_PkArgs = {
+  _inc?: Maybe<Sales_Delivery_Inc_Input>;
   _set?: Maybe<Sales_Delivery_Set_Input>;
   pk_columns: Sales_Delivery_Pk_Columns_Input;
 };
@@ -7447,22 +7410,6 @@ export type Mutation_RootUpdate_Sales_Delivery_Line_By_PkArgs = {
   _inc?: Maybe<Sales_Delivery_Line_Inc_Input>;
   _set?: Maybe<Sales_Delivery_Line_Set_Input>;
   pk_columns: Sales_Delivery_Line_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Sales_Delivery_OrdersArgs = {
-  _inc?: Maybe<Sales_Delivery_Orders_Inc_Input>;
-  _set?: Maybe<Sales_Delivery_Orders_Set_Input>;
-  where: Sales_Delivery_Orders_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Sales_Delivery_Orders_By_PkArgs = {
-  _inc?: Maybe<Sales_Delivery_Orders_Inc_Input>;
-  _set?: Maybe<Sales_Delivery_Orders_Set_Input>;
-  pk_columns: Sales_Delivery_Orders_Pk_Columns_Input;
 };
 
 
@@ -13865,12 +13812,6 @@ export type Query_Root = {
   sales_delivery_line_aggregate: Sales_Delivery_Line_Aggregate;
   /** fetch data from the table: "sales.delivery_line" using primary key columns */
   sales_delivery_line_by_pk?: Maybe<Sales_Delivery_Line>;
-  /** fetch data from the table: "sales.delivery_orders" */
-  sales_delivery_orders: Array<Sales_Delivery_Orders>;
-  /** fetch aggregated fields from the table: "sales.delivery_orders" */
-  sales_delivery_orders_aggregate: Sales_Delivery_Orders_Aggregate;
-  /** fetch data from the table: "sales.delivery_orders" using primary key columns */
-  sales_delivery_orders_by_pk?: Maybe<Sales_Delivery_Orders>;
   /** fetch data from the table: "sales.draft" */
   sales_draft: Array<Sales_Draft>;
   /** fetch aggregated fields from the table: "sales.draft" */
@@ -15153,33 +15094,6 @@ export type Query_RootSales_Delivery_Line_By_PkArgs = {
 
 
 /** query root */
-export type Query_RootSales_Delivery_OrdersArgs = {
-  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootSales_Delivery_Orders_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootSales_Delivery_Orders_By_PkArgs = {
-  delivery_id: Scalars['uuid'];
-  order_id: Scalars['Int'];
-};
-
-
-/** query root */
 export type Query_RootSales_DraftArgs = {
   distinct_on?: Maybe<Array<Sales_Draft_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -15953,15 +15867,10 @@ export type Sales_Delivery = {
   delivery_lines: Array<Sales_Delivery_Line>;
   /** An aggregated array relationship */
   delivery_lines_aggregate: Sales_Delivery_Line_Aggregate;
-  /** An array relationship */
-  delivery_orders: Array<Sales_Delivery_Orders>;
-  /** An aggregated array relationship */
-  delivery_orders_aggregate: Sales_Delivery_Orders_Aggregate;
   id: Scalars['uuid'];
-  /** An array relationship */
-  orders: Array<Sales_Delivery_Orders>;
-  /** An aggregated array relationship */
-  orders_aggregate: Sales_Delivery_Orders_Aggregate;
+  order: Scalars['Int'];
+  /** An object relationship */
+  orderObject: Sales_Order;
   payment_method: Scalars['String'];
   predicted_date: Scalars['date'];
   status: Scalars['String'];
@@ -15987,46 +15896,6 @@ export type Sales_DeliveryDelivery_Lines_AggregateArgs = {
   where?: Maybe<Sales_Delivery_Line_Bool_Exp>;
 };
 
-
-/** columns and relationships of "sales.delivery" */
-export type Sales_DeliveryDelivery_OrdersArgs = {
-  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.delivery" */
-export type Sales_DeliveryDelivery_Orders_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.delivery" */
-export type Sales_DeliveryOrdersArgs = {
-  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.delivery" */
-export type Sales_DeliveryOrders_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
-};
-
 /** aggregated selection of "sales.delivery" */
 export type Sales_Delivery_Aggregate = {
   __typename?: 'sales_delivery_aggregate';
@@ -16037,9 +15906,17 @@ export type Sales_Delivery_Aggregate = {
 /** aggregate fields of "sales.delivery" */
 export type Sales_Delivery_Aggregate_Fields = {
   __typename?: 'sales_delivery_aggregate_fields';
+  avg?: Maybe<Sales_Delivery_Avg_Fields>;
   count?: Maybe<Scalars['Int']>;
   max?: Maybe<Sales_Delivery_Max_Fields>;
   min?: Maybe<Sales_Delivery_Min_Fields>;
+  stddev?: Maybe<Sales_Delivery_Stddev_Fields>;
+  stddev_pop?: Maybe<Sales_Delivery_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Sales_Delivery_Stddev_Samp_Fields>;
+  sum?: Maybe<Sales_Delivery_Sum_Fields>;
+  var_pop?: Maybe<Sales_Delivery_Var_Pop_Fields>;
+  var_samp?: Maybe<Sales_Delivery_Var_Samp_Fields>;
+  variance?: Maybe<Sales_Delivery_Variance_Fields>;
 };
 
 
@@ -16051,15 +15928,34 @@ export type Sales_Delivery_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "sales.delivery" */
 export type Sales_Delivery_Aggregate_Order_By = {
+  avg?: Maybe<Sales_Delivery_Avg_Order_By>;
   count?: Maybe<Order_By>;
   max?: Maybe<Sales_Delivery_Max_Order_By>;
   min?: Maybe<Sales_Delivery_Min_Order_By>;
+  stddev?: Maybe<Sales_Delivery_Stddev_Order_By>;
+  stddev_pop?: Maybe<Sales_Delivery_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Sales_Delivery_Stddev_Samp_Order_By>;
+  sum?: Maybe<Sales_Delivery_Sum_Order_By>;
+  var_pop?: Maybe<Sales_Delivery_Var_Pop_Order_By>;
+  var_samp?: Maybe<Sales_Delivery_Var_Samp_Order_By>;
+  variance?: Maybe<Sales_Delivery_Variance_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "sales.delivery" */
 export type Sales_Delivery_Arr_Rel_Insert_Input = {
   data: Array<Sales_Delivery_Insert_Input>;
   on_conflict?: Maybe<Sales_Delivery_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Sales_Delivery_Avg_Fields = {
+  __typename?: 'sales_delivery_avg_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "sales.delivery" */
+export type Sales_Delivery_Avg_Order_By = {
+  order?: Maybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "sales.delivery". All fields are combined with a logical 'AND'. */
@@ -16074,9 +15970,9 @@ export type Sales_Delivery_Bool_Exp = {
   contactByContact?: Maybe<Contact_Contact_Bool_Exp>;
   customer?: Maybe<Contact_Customer_Bool_Exp>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Bool_Exp>;
-  delivery_orders?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
-  orders?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
+  order?: Maybe<Int_Comparison_Exp>;
+  orderObject?: Maybe<Sales_Order_Bool_Exp>;
   payment_method?: Maybe<String_Comparison_Exp>;
   predicted_date?: Maybe<Date_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
@@ -16088,6 +15984,11 @@ export enum Sales_Delivery_Constraint {
   DeliveryPkey = 'delivery_pkey'
 }
 
+/** input type for incrementing integer column in table "sales.delivery" */
+export type Sales_Delivery_Inc_Input = {
+  order?: Maybe<Scalars['Int']>;
+};
+
 /** input type for inserting data into table "sales.delivery" */
 export type Sales_Delivery_Insert_Input = {
   client?: Maybe<Scalars['uuid']>;
@@ -16097,9 +15998,9 @@ export type Sales_Delivery_Insert_Input = {
   contactByContact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
   customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Arr_Rel_Insert_Input>;
-  delivery_orders?: Maybe<Sales_Delivery_Orders_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
-  orders?: Maybe<Sales_Delivery_Orders_Arr_Rel_Insert_Input>;
+  order?: Maybe<Scalars['Int']>;
+  orderObject?: Maybe<Sales_Order_Obj_Rel_Insert_Input>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
   status?: Maybe<Scalars['String']>;
@@ -16496,6 +16397,7 @@ export type Sales_Delivery_Max_Fields = {
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
+  order?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
   status?: Maybe<Scalars['String']>;
@@ -16507,6 +16409,7 @@ export type Sales_Delivery_Max_Order_By = {
   company?: Maybe<Order_By>;
   contact?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  order?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
   predicted_date?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
@@ -16519,6 +16422,7 @@ export type Sales_Delivery_Min_Fields = {
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
+  order?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
   status?: Maybe<Scalars['String']>;
@@ -16530,6 +16434,7 @@ export type Sales_Delivery_Min_Order_By = {
   company?: Maybe<Order_By>;
   contact?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  order?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
   predicted_date?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
@@ -16566,276 +16471,12 @@ export type Sales_Delivery_Order_By = {
   contactByContact?: Maybe<Contact_Contact_Order_By>;
   customer?: Maybe<Contact_Customer_Order_By>;
   delivery_lines_aggregate?: Maybe<Sales_Delivery_Line_Aggregate_Order_By>;
-  delivery_orders_aggregate?: Maybe<Sales_Delivery_Orders_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
-  orders_aggregate?: Maybe<Sales_Delivery_Orders_Aggregate_Order_By>;
+  order?: Maybe<Order_By>;
+  orderObject?: Maybe<Sales_Order_Order_By>;
   payment_method?: Maybe<Order_By>;
   predicted_date?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
-};
-
-/** columns and relationships of "sales.delivery_orders" */
-export type Sales_Delivery_Orders = {
-  __typename?: 'sales_delivery_orders';
-  /** An object relationship */
-  delivery: Sales_Delivery;
-  delivery_id: Scalars['uuid'];
-  /** An object relationship */
-  order: Sales_Order;
-  order_id: Scalars['Int'];
-};
-
-/** aggregated selection of "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Aggregate = {
-  __typename?: 'sales_delivery_orders_aggregate';
-  aggregate?: Maybe<Sales_Delivery_Orders_Aggregate_Fields>;
-  nodes: Array<Sales_Delivery_Orders>;
-};
-
-/** aggregate fields of "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Aggregate_Fields = {
-  __typename?: 'sales_delivery_orders_aggregate_fields';
-  avg?: Maybe<Sales_Delivery_Orders_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Sales_Delivery_Orders_Max_Fields>;
-  min?: Maybe<Sales_Delivery_Orders_Min_Fields>;
-  stddev?: Maybe<Sales_Delivery_Orders_Stddev_Fields>;
-  stddev_pop?: Maybe<Sales_Delivery_Orders_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Sales_Delivery_Orders_Stddev_Samp_Fields>;
-  sum?: Maybe<Sales_Delivery_Orders_Sum_Fields>;
-  var_pop?: Maybe<Sales_Delivery_Orders_Var_Pop_Fields>;
-  var_samp?: Maybe<Sales_Delivery_Orders_Var_Samp_Fields>;
-  variance?: Maybe<Sales_Delivery_Orders_Variance_Fields>;
-};
-
-
-/** aggregate fields of "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Aggregate_Order_By = {
-  avg?: Maybe<Sales_Delivery_Orders_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<Sales_Delivery_Orders_Max_Order_By>;
-  min?: Maybe<Sales_Delivery_Orders_Min_Order_By>;
-  stddev?: Maybe<Sales_Delivery_Orders_Stddev_Order_By>;
-  stddev_pop?: Maybe<Sales_Delivery_Orders_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Sales_Delivery_Orders_Stddev_Samp_Order_By>;
-  sum?: Maybe<Sales_Delivery_Orders_Sum_Order_By>;
-  var_pop?: Maybe<Sales_Delivery_Orders_Var_Pop_Order_By>;
-  var_samp?: Maybe<Sales_Delivery_Orders_Var_Samp_Order_By>;
-  variance?: Maybe<Sales_Delivery_Orders_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Arr_Rel_Insert_Input = {
-  data: Array<Sales_Delivery_Orders_Insert_Input>;
-  on_conflict?: Maybe<Sales_Delivery_Orders_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type Sales_Delivery_Orders_Avg_Fields = {
-  __typename?: 'sales_delivery_orders_avg_fields';
-  order_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Avg_Order_By = {
-  order_id?: Maybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "sales.delivery_orders". All fields are combined with a logical 'AND'. */
-export type Sales_Delivery_Orders_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Sales_Delivery_Orders_Bool_Exp>>>;
-  _not?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Sales_Delivery_Orders_Bool_Exp>>>;
-  delivery?: Maybe<Sales_Delivery_Bool_Exp>;
-  delivery_id?: Maybe<Uuid_Comparison_Exp>;
-  order?: Maybe<Sales_Order_Bool_Exp>;
-  order_id?: Maybe<Int_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "sales.delivery_orders" */
-export enum Sales_Delivery_Orders_Constraint {
-  /** unique or primary key constraint */
-  DeliveryOrdersPkey = 'delivery_orders_pkey'
-}
-
-/** input type for incrementing integer column in table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Inc_Input = {
-  order_id?: Maybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Insert_Input = {
-  delivery?: Maybe<Sales_Delivery_Obj_Rel_Insert_Input>;
-  delivery_id?: Maybe<Scalars['uuid']>;
-  order?: Maybe<Sales_Order_Obj_Rel_Insert_Input>;
-  order_id?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate max on columns */
-export type Sales_Delivery_Orders_Max_Fields = {
-  __typename?: 'sales_delivery_orders_max_fields';
-  delivery_id?: Maybe<Scalars['uuid']>;
-  order_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by max() on columns of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Max_Order_By = {
-  delivery_id?: Maybe<Order_By>;
-  order_id?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Sales_Delivery_Orders_Min_Fields = {
-  __typename?: 'sales_delivery_orders_min_fields';
-  delivery_id?: Maybe<Scalars['uuid']>;
-  order_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by min() on columns of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Min_Order_By = {
-  delivery_id?: Maybe<Order_By>;
-  order_id?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Mutation_Response = {
-  __typename?: 'sales_delivery_orders_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Sales_Delivery_Orders>;
-};
-
-/** input type for inserting object relation for remote table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Obj_Rel_Insert_Input = {
-  data: Sales_Delivery_Orders_Insert_Input;
-  on_conflict?: Maybe<Sales_Delivery_Orders_On_Conflict>;
-};
-
-/** on conflict condition type for table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_On_Conflict = {
-  constraint: Sales_Delivery_Orders_Constraint;
-  update_columns: Array<Sales_Delivery_Orders_Update_Column>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Order_By = {
-  delivery?: Maybe<Sales_Delivery_Order_By>;
-  delivery_id?: Maybe<Order_By>;
-  order?: Maybe<Sales_Order_Order_By>;
-  order_id?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Pk_Columns_Input = {
-  delivery_id: Scalars['uuid'];
-  order_id: Scalars['Int'];
-};
-
-/** select columns of table "sales.delivery_orders" */
-export enum Sales_Delivery_Orders_Select_Column {
-  /** column name */
-  DeliveryId = 'delivery_id',
-  /** column name */
-  OrderId = 'order_id'
-}
-
-/** input type for updating data in table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Set_Input = {
-  delivery_id?: Maybe<Scalars['uuid']>;
-  order_id?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate stddev on columns */
-export type Sales_Delivery_Orders_Stddev_Fields = {
-  __typename?: 'sales_delivery_orders_stddev_fields';
-  order_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Stddev_Order_By = {
-  order_id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Sales_Delivery_Orders_Stddev_Pop_Fields = {
-  __typename?: 'sales_delivery_orders_stddev_pop_fields';
-  order_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Stddev_Pop_Order_By = {
-  order_id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Sales_Delivery_Orders_Stddev_Samp_Fields = {
-  __typename?: 'sales_delivery_orders_stddev_samp_fields';
-  order_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Stddev_Samp_Order_By = {
-  order_id?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Sales_Delivery_Orders_Sum_Fields = {
-  __typename?: 'sales_delivery_orders_sum_fields';
-  order_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Sum_Order_By = {
-  order_id?: Maybe<Order_By>;
-};
-
-/** update columns of table "sales.delivery_orders" */
-export enum Sales_Delivery_Orders_Update_Column {
-  /** column name */
-  DeliveryId = 'delivery_id',
-  /** column name */
-  OrderId = 'order_id'
-}
-
-/** aggregate var_pop on columns */
-export type Sales_Delivery_Orders_Var_Pop_Fields = {
-  __typename?: 'sales_delivery_orders_var_pop_fields';
-  order_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Var_Pop_Order_By = {
-  order_id?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Sales_Delivery_Orders_Var_Samp_Fields = {
-  __typename?: 'sales_delivery_orders_var_samp_fields';
-  order_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Var_Samp_Order_By = {
-  order_id?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Sales_Delivery_Orders_Variance_Fields = {
-  __typename?: 'sales_delivery_orders_variance_fields';
-  order_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "sales.delivery_orders" */
-export type Sales_Delivery_Orders_Variance_Order_By = {
-  order_id?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "sales.delivery" */
@@ -16854,6 +16495,8 @@ export enum Sales_Delivery_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Order = 'order',
+  /** column name */
   PaymentMethod = 'payment_method',
   /** column name */
   PredictedDate = 'predicted_date',
@@ -16867,9 +16510,54 @@ export type Sales_Delivery_Set_Input = {
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
+  order?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
   status?: Maybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Sales_Delivery_Stddev_Fields = {
+  __typename?: 'sales_delivery_stddev_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "sales.delivery" */
+export type Sales_Delivery_Stddev_Order_By = {
+  order?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Sales_Delivery_Stddev_Pop_Fields = {
+  __typename?: 'sales_delivery_stddev_pop_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "sales.delivery" */
+export type Sales_Delivery_Stddev_Pop_Order_By = {
+  order?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Sales_Delivery_Stddev_Samp_Fields = {
+  __typename?: 'sales_delivery_stddev_samp_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "sales.delivery" */
+export type Sales_Delivery_Stddev_Samp_Order_By = {
+  order?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Sales_Delivery_Sum_Fields = {
+  __typename?: 'sales_delivery_sum_fields';
+  order?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "sales.delivery" */
+export type Sales_Delivery_Sum_Order_By = {
+  order?: Maybe<Order_By>;
 };
 
 /** update columns of table "sales.delivery" */
@@ -16883,12 +16571,47 @@ export enum Sales_Delivery_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Order = 'order',
+  /** column name */
   PaymentMethod = 'payment_method',
   /** column name */
   PredictedDate = 'predicted_date',
   /** column name */
   Status = 'status'
 }
+
+/** aggregate var_pop on columns */
+export type Sales_Delivery_Var_Pop_Fields = {
+  __typename?: 'sales_delivery_var_pop_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "sales.delivery" */
+export type Sales_Delivery_Var_Pop_Order_By = {
+  order?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Sales_Delivery_Var_Samp_Fields = {
+  __typename?: 'sales_delivery_var_samp_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "sales.delivery" */
+export type Sales_Delivery_Var_Samp_Order_By = {
+  order?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Sales_Delivery_Variance_Fields = {
+  __typename?: 'sales_delivery_variance_fields';
+  order?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "sales.delivery" */
+export type Sales_Delivery_Variance_Order_By = {
+  order?: Maybe<Order_By>;
+};
 
 /** columns and relationships of "sales.draft" */
 export type Sales_Draft = {
@@ -17602,9 +17325,9 @@ export type Sales_Order = {
   date: Scalars['date'];
   deadline: Scalars['date'];
   /** An array relationship */
-  delivery_orders: Array<Sales_Delivery_Orders>;
+  deliveries: Array<Sales_Delivery>;
   /** An aggregated array relationship */
-  delivery_orders_aggregate: Sales_Delivery_Orders_Aggregate;
+  deliveries_aggregate: Sales_Delivery_Aggregate;
   /** An object relationship */
   draft: Sales_Draft;
   draft_id: Scalars['Int'];
@@ -17617,22 +17340,22 @@ export type Sales_Order = {
 
 
 /** columns and relationships of "sales.order" */
-export type Sales_OrderDelivery_OrdersArgs = {
-  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
+export type Sales_OrderDeliveriesArgs = {
+  distinct_on?: Maybe<Array<Sales_Delivery_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
+  order_by?: Maybe<Array<Sales_Delivery_Order_By>>;
+  where?: Maybe<Sales_Delivery_Bool_Exp>;
 };
 
 
 /** columns and relationships of "sales.order" */
-export type Sales_OrderDelivery_Orders_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
+export type Sales_OrderDeliveries_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Delivery_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
+  order_by?: Maybe<Array<Sales_Delivery_Order_By>>;
+  where?: Maybe<Sales_Delivery_Bool_Exp>;
 };
 
 /** aggregated selection of "sales.order" */
@@ -17718,7 +17441,7 @@ export type Sales_Order_Bool_Exp = {
   customer_id?: Maybe<Uuid_Comparison_Exp>;
   date?: Maybe<Date_Comparison_Exp>;
   deadline?: Maybe<Date_Comparison_Exp>;
-  delivery_orders?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
+  deliveries?: Maybe<Sales_Delivery_Bool_Exp>;
   draft?: Maybe<Sales_Draft_Bool_Exp>;
   draft_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
@@ -17753,7 +17476,7 @@ export type Sales_Order_Insert_Input = {
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   deadline?: Maybe<Scalars['date']>;
-  delivery_orders?: Maybe<Sales_Delivery_Orders_Arr_Rel_Insert_Input>;
+  deliveries?: Maybe<Sales_Delivery_Arr_Rel_Insert_Input>;
   draft?: Maybe<Sales_Draft_Obj_Rel_Insert_Input>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
@@ -17857,7 +17580,7 @@ export type Sales_Order_Order_By = {
   customer_id?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   deadline?: Maybe<Order_By>;
-  delivery_orders_aggregate?: Maybe<Sales_Delivery_Orders_Aggregate_Order_By>;
+  deliveries_aggregate?: Maybe<Sales_Delivery_Aggregate_Order_By>;
   draft?: Maybe<Sales_Draft_Order_By>;
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -22244,12 +21967,6 @@ export type Subscription_Root = {
   sales_delivery_line_aggregate: Sales_Delivery_Line_Aggregate;
   /** fetch data from the table: "sales.delivery_line" using primary key columns */
   sales_delivery_line_by_pk?: Maybe<Sales_Delivery_Line>;
-  /** fetch data from the table: "sales.delivery_orders" */
-  sales_delivery_orders: Array<Sales_Delivery_Orders>;
-  /** fetch aggregated fields from the table: "sales.delivery_orders" */
-  sales_delivery_orders_aggregate: Sales_Delivery_Orders_Aggregate;
-  /** fetch data from the table: "sales.delivery_orders" using primary key columns */
-  sales_delivery_orders_by_pk?: Maybe<Sales_Delivery_Orders>;
   /** fetch data from the table: "sales.draft" */
   sales_draft: Array<Sales_Draft>;
   /** fetch aggregated fields from the table: "sales.draft" */
@@ -23528,33 +23245,6 @@ export type Subscription_RootSales_Delivery_Line_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootSales_Delivery_Line_By_PkArgs = {
   id: Scalars['uuid'];
-};
-
-
-/** subscription root */
-export type Subscription_RootSales_Delivery_OrdersArgs = {
-  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootSales_Delivery_Orders_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Delivery_Orders_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Delivery_Orders_Order_By>>;
-  where?: Maybe<Sales_Delivery_Orders_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootSales_Delivery_Orders_By_PkArgs = {
-  delivery_id: Scalars['uuid'];
-  order_id: Scalars['Int'];
 };
 
 
@@ -25852,7 +25542,7 @@ export type InsertConsumableDraftMutation = (
 );
 
 export type InsertDeliveryMutationVariables = Exact<{
-  orders?: Array<Sales_Delivery_Orders_Insert_Input>;
+  order: Scalars['Int'];
   status: Scalars['String'];
   predicted_date?: Maybe<Scalars['date']>;
   client: Scalars['uuid'];
@@ -25867,14 +25557,11 @@ export type InsertDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_delivery_one?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date' | 'order'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
-    ), delivery_orders: Array<(
-      { __typename?: 'sales_delivery_orders' }
-      & Pick<Sales_Delivery_Orders, 'order_id'>
-    )>, client: (
+    ), client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
     ), contactByContact?: Maybe<(
@@ -25973,11 +25660,7 @@ export type UpdateDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'company' | 'payment_method' | 'predicted_date' | 'client' | 'contact'>
-    & { orders: Array<(
-      { __typename?: 'sales_delivery_orders' }
-      & Pick<Sales_Delivery_Orders, 'order_id'>
-    )> }
+    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'company' | 'payment_method' | 'predicted_date' | 'client' | 'contact'>
   )> }
 );
 
@@ -26008,11 +25691,8 @@ export type GetAllDeliveryQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery: Array<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'payment_method' | 'predicted_date'>
-    & { orders: Array<(
-      { __typename?: 'sales_delivery_orders' }
-      & Pick<Sales_Delivery_Orders, 'order_id'>
-    )>, company: (
+    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date'>
+    & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
     ), client: (
@@ -26088,11 +25768,8 @@ export type GetDeliveryByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date'>
-    & { orders: Array<(
-      { __typename?: 'sales_delivery_orders' }
-      & Pick<Sales_Delivery_Orders, 'order_id'>
-    )>, delivery_lines: Array<(
+    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date' | 'order'>
+    & { delivery_lines: Array<(
       { __typename?: 'sales_delivery_line' }
       & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'company_name' | 'delivered' | 'isReturned' | 'product' | 'quantity' | 'product_label'>
     )> }
@@ -28862,9 +28539,9 @@ export const InsertConsumableDraftDocument = gql`
     }
   }
 export const InsertDeliveryDocument = gql`
-    mutation InsertDelivery($orders: [sales_delivery_orders_insert_input!]! = [], $status: String!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!) {
+    mutation InsertDelivery($order: Int!, $status: String!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!) {
   insert_sales_delivery_one(
-    object: {delivery_orders: {data: $orders}, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, status: $status, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact}
+    object: {order: $order, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, status: $status, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact}
   ) {
     id
     status
@@ -28874,9 +28551,7 @@ export const InsertDeliveryDocument = gql`
     contact
     payment_method
     predicted_date
-    delivery_orders {
-      order_id
-    }
+    order
     client: customer {
       name
       mail
@@ -28997,9 +28672,7 @@ export const UpdateDeliveryDocument = gql`
     _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, status: $status}
   ) {
     id
-    orders {
-      order_id
-    }
+    order
     status
     company
     payment_method
@@ -29052,9 +28725,7 @@ export const GetAllDeliveryDocument = gql`
     query getAllDelivery {
   sales_delivery {
     id
-    orders {
-      order_id
-    }
+    order
     status
     company: companyObject {
       name
@@ -29192,9 +28863,7 @@ export const GetDeliveryByIdDocument = gql`
     contact
     payment_method
     predicted_date
-    orders {
-      order_id
-    }
+    order
     delivery_lines {
       id
       amount

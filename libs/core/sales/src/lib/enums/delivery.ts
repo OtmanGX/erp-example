@@ -1,7 +1,6 @@
 export enum DeliveryStatus {
-  COMPLETED = 'Complété',
-  PENDING = 'En attendant',
-    PARTIAL_COMPLETED = 'Partiellement Complété'
+  INVOICED = 'Facturé',
+  NOT_INVOICED = 'Non Facturé'
 }
 
 
