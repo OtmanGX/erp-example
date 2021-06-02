@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, Output, ViewChild, EventEmitter, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  ViewChild,
+  EventEmitter,
+} from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { DatePipe } from '@angular/common';
 import { MatEditComponent } from '../mat-edit.component';
@@ -11,12 +17,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '@tanglass-erp/material';
 import { LinkComponent } from '../link.component';
 import { Operations } from '../../enums/operations';
-
+import { GridPermissions } from '../../interfaces/grid-permissions';
+import { GroupButton } from '../../interfaces/group-button';
 
 @Component({
   selector: 'ngx-main-grid',
   templateUrl: './main-grid.component.html',
-  styleUrls: ['./main-grid.component.scss']
+  styleUrls: ['./main-grid.component.scss'],
 })
 export class MainGridComponent {
   operations = Operations;
@@ -25,15 +32,36 @@ export class MainGridComponent {
   @Input() columnDefs: any;
   @Input() autoGroupColumnDef: any;
   @Input() columnId = 'id';
+  // Toolbar
   @Input() withToolbar: boolean = true;
+  @Input() extraActions: Array<GroupButton> = [];
   @Input() withDetails: boolean = false;
+  _permissions: GridPermissions = {
+    add: true,
+    update: true,
+    delete: true,
+  };
   @Input() withCrud: boolean = true;
+  @Input()
+  set permissions(perms: GridPermissions) {
+    this._permissions = {
+      add: true,
+      update: true,
+      delete: true,
+      ...perms
+    };
+  }
+
+  get permissions() {
+    return this._permissions;
+  }
+
   @Input() enableCharts: boolean = true;
-  @Input() theme = "ag-theme-alpine";
-  @Input() rowGroupPanelShow = "always";
-  @Input() height = "500px";
-  @Input() width = "100%";
-  @Output() triggerEvent = new EventEmitter<{action: string, data?: any}>();
+  @Input() theme = 'ag-theme-alpine';
+  @Input() rowGroupPanelShow = 'always';
+  @Input() height = '500px';
+  @Input() width = '100%';
+  @Output() triggerEvent = new EventEmitter<{ action: string; data?: any }>();
   private gridApi: any;
   private gridColumnApi: any;
   selectedData = new Array();
@@ -41,19 +69,23 @@ export class MainGridComponent {
   hide = false; // For Search reset  button
 
   // Formatters
-  dateFormatter = (params) => (!params.data) ? null :
-    this.datepipe.transform(params.data.date, 'dd/MM/yyyy')
-  dateTimeFormatter = (params) => (!params.data) ? null :
-    this.datepipe.transform(params.data.date, 'dd/MM/yyyy HH:mm')
+  dateFormatter = (params) =>
+    !params.data
+      ? null
+      : this.datepipe.transform(params.data.date, 'dd/MM/yyyy');
+  dateTimeFormatter = (params) =>
+    !params.data
+      ? null
+      : this.datepipe.transform(params.data.date, 'dd/MM/yyyy HH:mm');
 
   // Renderers
   frameworkComponents: {
-    editRenderer: MatEditComponent,
+    editRenderer: MatEditComponent;
   };
   checkboxSelectionColumn = (params) => {
     const displayedColumns = params.columnApi.getAllDisplayedColumns();
     return displayedColumns[0] === params.column;
-  }
+  };
 
   // AgGrid Parameters
   gridOptions = {
@@ -79,34 +111,40 @@ export class MainGridComponent {
     filter: 'agDateColumnFilter',
     suppressMenu: true,
     valueFormatter: formatter,
-    filterParams : {
+    filterParams: {
       comparator: function (filterLocalDateAtMidnight, cellValue: Date) {
-      const day = cellValue.getDate();
-      const month = cellValue.getMonth();
-      const year = cellValue.getFullYear();
-      const cellDate = new Date(year, month, day);
-      if (cellDate < filterLocalDateAtMidnight) {
-      return -1;
-    } else if (cellDate > filterLocalDateAtMidnight) {
-    return 1;
-  } else {
-  return 0;
-  }
-  },
-  }
-})
+        const day = cellValue.getDate();
+        const month = cellValue.getMonth();
+        const year = cellValue.getFullYear();
+        const cellDate = new Date(year, month, day);
+        if (cellDate < filterLocalDateAtMidnight) {
+          return -1;
+        } else if (cellDate > filterLocalDateAtMidnight) {
+          return 1;
+        } else {
+          return 0;
+        }
+      },
+    },
+  });
 
   columnTypes = {
     nonEditableColumn: { editable: false },
-    textColumn: {filter: 'agTextColumnFilter'},
-    editColumn: {cellRendererFramework: MatEditComponent, filter: false},
-    objectColumn: {cellRendererFramework: GridObjectRenderComponentComponent, filter: true},
+    textColumn: { filter: 'agTextColumnFilter' },
+    editColumn: { cellRendererFramework: MatEditComponent, filter: false },
+    objectColumn: {
+      cellRendererFramework: GridObjectRenderComponentComponent,
+      filter: true,
+    },
     dateColumn: this.dateColumnByFormatter(this.dateFormatter),
     dateTimeColumn: this.dateColumnByFormatter(this.dateTimeFormatter),
-    linkColumn: {cellRendererFramework: LinkComponent, filter: 'agTextColumnFilter'},
+    linkColumn: {
+      cellRendererFramework: LinkComponent,
+      filter: 'agTextColumnFilter',
+    },
     numberColumn: {
       filter: 'agNumberColumnFilter',
-    }
+    },
   };
 
   sideBar = {
@@ -124,33 +162,34 @@ export class MainGridComponent {
         labelKey: 'filters',
         iconKey: 'filter',
         toolPanel: 'agFiltersToolPanel',
-      }
+      },
     ],
   };
 
   statusBar: {
     statusPanels: [
       {
-        statusPanel: 'agTotalAndFilteredRowCountComponent',
-        align: 'left',
+        statusPanel: 'agTotalAndFilteredRowCountComponent';
+        align: 'left';
       },
       {
-        statusPanel: 'agTotalRowCountComponent',
-        align: 'center',
+        statusPanel: 'agTotalRowCountComponent';
+        align: 'center';
       },
       { statusPanel: 'agFilteredRowCountComponent' },
       { statusPanel: 'agSelectedRowCountComponent' },
-      { statusPanel: 'agAggregationComponent' },
-    ],
+      { statusPanel: 'agAggregationComponent' }
+    ];
   };
 
   constructor(
     public datepipe: DatePipe,
     private _bottomSheet: MatBottomSheet,
     public dialog: MatDialog,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute
+  ) {
     this.context = {
-      componentParent: this
+      componentParent: this,
     };
   }
 
@@ -160,9 +199,9 @@ export class MainGridComponent {
     this.agGrid.gridOptions.onRowSelected = (event) => {
       this.selectedData = this.getSelectedRows();
     };
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       if (params.hasOwnProperty('filterby')) {
-          this.applyFilter(params.filterby, params.value);
+        this.applyFilter(params.filterby, params.value);
       }
     });
   }
@@ -178,13 +217,13 @@ export class MainGridComponent {
   triggerAction(action: string, data?) {
     this.triggerEvent.emit({
       action,
-      data
+      data,
     });
   }
 
   getSelectedRows() {
     const selectedNodes = this.agGrid.api.getSelectedNodes();
-    const selectedData = selectedNodes.map(node => {
+    const selectedData = selectedNodes.map((node) => {
       return node.data;
     });
     // const selectedDataStringPresentation = selectedData.map(node => node.date + ' ' + node.id).join(', ');
@@ -202,12 +241,10 @@ export class MainGridComponent {
 
   openBottomSheet() {
     const bottomSheetRef = this._bottomSheet.open(ExportBottomSheetComponent);
-    bottomSheetRef.afterDismissed().subscribe(
-      value => {
-        if (value === 'excel') this.exportExcel();
-        else if (value === 'csv') this.exportCsv();
-      }
-    );
+    bottomSheetRef.afterDismissed().subscribe((value) => {
+      if (value === 'excel') this.exportExcel();
+      else if (value === 'csv') this.exportCsv();
+    });
   }
 
   exportCsv() {
@@ -219,14 +256,13 @@ export class MainGridComponent {
   }
 
   deleteDialog() {
-      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        width: '250px',
-      });
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
-        if (result)
-          this.triggerAction(this.operations.delete, this.getSelectedRows());
-      });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result)
+        this.triggerAction(this.operations.delete, this.getSelectedRows());
+    });
   }
 }
