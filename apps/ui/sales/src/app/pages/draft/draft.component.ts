@@ -1,11 +1,10 @@
-
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
+import { GridPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { QuotationHeaders } from '../../utils/grid-headers';
 import { Router } from '@angular/router';
-import { OrdersFacade } from "@tanglass-erp/store/sales";
+import { DraftFacade } from '@tanglass-erp/store/sales';
 
 @Component({
   selector: 'ngx-draft',
@@ -17,12 +16,16 @@ export class DraftComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$=this.facade.allOrders$;
+  data$ = this.facade.allDraft$;
+  permissions: GridPermissions = {
+    add: false,
+    delete: true
+  }
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private facade: OrdersFacade,
+    private facade: DraftFacade,
   ) {
     this.setColumnDefs();
   }
@@ -32,18 +35,15 @@ export class DraftComponent implements GridView {
   }
 
   ngOnInit(): void {
-    this.facade.loadAllOrders();
+    this.facade.loadAll();
   }
 
   eventTriggering(event) {
     // Store Action Dispatching
     switch (event.action) {
-      case Operations.add:
-      case Operations.update:
-        break;
       case Operations.delete:
+        this.facade.removeMany(event.data.map((e) => e.id))
         break;
-      // ...
     }
   }
 

@@ -44,6 +44,38 @@ export class DraftEffects {
     )
   });
 
+  loadAllDraft$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DraftActions.loadDrafts),
+      mergeMap((action) =>
+        this.draftervice.getAll().pipe(
+          map((data) =>
+            DraftActions.loadDraftSuccess({ draft: data.data.sales_draft })
+          ),
+          catchError((error) =>
+            of(DraftActions.loadDraftFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  removeDrafts$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DraftActions.removeDrafts),
+      mergeMap((action) =>
+        this.draftervice.removeMany(action.ids).pipe(
+          map((data) =>
+            DraftActions.removeDraftSuccess({ ids: action.ids })
+          ),
+          catchError((error) =>
+            of(DraftActions.removeDraftFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
 
   constructor(private actions$: Actions,
     private draftervice: DraftService) { }
