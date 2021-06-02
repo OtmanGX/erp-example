@@ -1,4 +1,3 @@
-
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
@@ -40,11 +39,12 @@ export class OrderComponent implements GridView {
     switch (event.action) {
       case Operations.add:
         this.router.navigateByUrl('sales/order/createOrder');
+        break;
       case Operations.update:
         break;
       case Operations.delete:
+        this.facade.removeMany(event.data.map((e) => e.id));
         break;
-      // ...
     }
   }
 
