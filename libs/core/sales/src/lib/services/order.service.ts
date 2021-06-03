@@ -1,30 +1,19 @@
 import { Injectable } from '@angular/core';
-import {
-  GetAllOrdersGQL,
-} from '@tanglass-erp/infrastructure/graphql';
-import { flattenObj } from "@tanglass-erp/core/common";
-import { Order } from "../models/order";
-import { map, } from 'rxjs/operators';
-import { from, of, observable } from "rxjs";
+import { GetAllOrdersGQL, DeleteOrdersGQL } from '@tanglass-erp/infrastructure/graphql';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderService {
-
   constructor(
-    private getAllOrdersGQL: GetAllOrdersGQL
-
-  ) {
-  }
+    private getAllOrdersGQL: GetAllOrdersGQL,
+    private deleteOrdersGQL: DeleteOrdersGQL
+  ) {}
 
   getAll() {
-
-
-    return this.getAllOrdersGQL.watch().valueChanges
-
+    return this.getAllOrdersGQL.watch().valueChanges;
   }
 
-
-
+  removeMany(ids: number[]) {
+    return this.deleteOrdersGQL.mutate({ids});
+  }
 }
-

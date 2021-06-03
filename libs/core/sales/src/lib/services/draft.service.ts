@@ -9,6 +9,7 @@ import {
   GetAllDraftsGQL,
   GetDraftByIdGQL,
   GetProductsByTypeGQL,
+  DeleteDraftsGQL,
   Sales_Product_Type_Enum
 } from '@tanglass-erp/infrastructure/graphql';
 import { Product_draft } from "../models/product";
@@ -24,6 +25,7 @@ export class DraftService {
     private insertService: InsertServiceDraftGQL,
     private insertAccessory: InsertAccessoryDraftGQL,
     private deleteProductDraft: DeleteProductDraftGQL,
+    private deleteDraftsGQL: DeleteDraftsGQL,
     private getProductsByTypeGQL: GetProductsByTypeGQL,
     private getAllDraftsGQL: GetAllDraftsGQL,
     private getDraftByIdGQL: GetDraftByIdGQL
@@ -52,7 +54,8 @@ export class DraftService {
   removeOne(id: string) {
   }
 
-  removeMany(ids: string[]) {
+  removeMany(ids: number[]) {
+    return this.deleteDraftsGQL.mutate({ids});
   }
   //Get all the products in a draft (order or quotation)
   getDraftPorducts(draft_id: number) {

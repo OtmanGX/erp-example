@@ -5,7 +5,6 @@ import { select, Store, Action } from '@ngrx/store';
 import * as fromOrders from './orders.reducer';
 import * as OrdersSelectors from './orders.selectors';
 import * as OrdersActions from './orders.actions';
-import * as DraftActions from "../draft/draft.actions";
 import { filter } from 'rxjs/operators';
 
 @Injectable()
@@ -15,7 +14,7 @@ export class OrdersFacade {
   selectedOrders$ = this.store.pipe(select(OrdersSelectors.getSelected));
   selectedOrder$ = this.store.pipe(
     select(OrdersSelectors.getSelected),
-    filter(val => !!val)
+    filter((val) => !!val)
   );
 
   constructor(private store: Store<fromOrders.OrdersPartialState>) {}
@@ -27,13 +26,16 @@ export class OrdersFacade {
     this.dispatch(OrdersActions.loadOrders());
   }
 
-  loadSelectedOrder(id){
-    this.dispatch(OrdersActions.loadOrderById({id}))
+  loadSelectedOrder(id) {
+    this.dispatch(OrdersActions.loadOrderById({ id }));
   }
 
-
   selectOrder(id: string | number) {
-    this.dispatch(OrdersActions.selectOrder({id}));
+    this.dispatch(OrdersActions.selectOrder({ id }));
+  }
+
+  removeMany(ids: number[]) {
+    this.dispatch(OrdersActions.removeOrders({ ids }));
   }
 
   clearSelection() {

@@ -19,8 +19,16 @@ export class DraftFacade {
   dispatch(action: Action) {
     this.store.dispatch(action);
   }
-  createDraft(){
+
+  loadAll() {
+    this.dispatch(DraftActions.loadDrafts())
+  }
+  createDraft() {
     this.dispatch(DraftActions.addDraft())
+  }
+
+  removeMany(ids: number[]) {
+    this.dispatch(DraftActions.removeDrafts({ids}));
   }
 
   clearState() {

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import  {Order as OrdersEntity } from "@tanglass-erp/core/sales";
+import {Order as OrdersEntity } from "@tanglass-erp/core/sales";
 
 export const loadOrders = createAction('[Orders] Load Orders');
 
@@ -74,13 +74,13 @@ export const updateOrderFailure = createAction(
 /*****REMOVE INDIVIDUAL Order ** */
 /****************************************************************** */
 
-export const removeOrder = createAction(
+export const removeOrders = createAction(
   '[Orders Component] Delete Order',
-  props<{ OrderId: any }>()
+  props<{ ids: number[] }>()
 );
 export const removeOrderSuccess = createAction(
   '[Order Effect] Delete Order Success',
-  props<{ OrderId: any }>()
+  props<{ ids: number[] }>()
 );
 export const removeOrderFailure = createAction(
   '[Order Effect] Delete Order failure',
