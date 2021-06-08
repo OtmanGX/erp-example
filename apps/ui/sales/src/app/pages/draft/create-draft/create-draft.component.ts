@@ -24,21 +24,24 @@ export class CreateDraftComponent implements OnInit {
   companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany);
   customer$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
-  data = this.facade.allDraft$;
+  data = this.facade.selectedDraft$;
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
   constructor(
     public dialog: MatDialog,
     private store: Store,
     private facade: DraftFacade,
-    ) { }
+    ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(ShortCompanieActions.loadShortCompany());
     this.facade.createDraft();
+    this.store.dispatch(ShortCompanieActions.loadShortCompany());
     this.buildForm();
   }
 
+  ngOnChanges() {
+
+  }
   buildForm(): void {
 
     let data

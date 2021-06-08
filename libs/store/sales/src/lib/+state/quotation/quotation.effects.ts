@@ -26,5 +26,39 @@ export class QuotationEffects {
     )
   });
 
+
+  addQuotation$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(QuotationActions.addQuotation),
+      mergeMap((action) =>
+        this.quotationService.insertOne(action.Quotation).pipe(
+          map((data) =>
+          QuotationActions.addQuotationSuccess({Quotation: data.data.insert_sales_quotation_one})
+          ),
+          catchError((error) =>
+            of(QuotationActions.addQuotationFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+
+  getOrderById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(QuotationActions.loadQuotationById),
+      mergeMap((action) =>
+        this.quotationService.getOneById(action.id).pipe(
+          map((data) =>
+          QuotationActions.loadQuotationByIdSuccess({Quotation: data.data.sales_quotation_by_pk})
+          ),
+          catchError((error) =>
+            of(QuotationActions.loadQuotationByIdFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
   constructor(private actions$: Actions, private quotationService:QuotationService) {}
 }

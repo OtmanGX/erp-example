@@ -70,12 +70,13 @@ export const AmountstHeaders = [
 
 
 export const QuotationHeaders = [
-    { field: 'id', headerName: 'ID.', type: "linkColumn",
+  {
+    field: 'id', headerName: 'Référence', type: "linkColumn",
     cellRendererParams: (params) => (
       {
-      link: `${params.value}`,
-      state: {id: params?.data?.id},
-      })
+        link: `${params?.data?.id}`,
+      }
+    )
   },
     { field: 'draft_id', headerName: 'Ref', type: "numberColumn" },
     { field: 'status', headerName: 'Etat', type: "textColumn" },

@@ -19,7 +19,7 @@ export const loadOrdersFailure = createAction(
 
 export const loadOrderById = createAction(
   '[Order Card Component] Load Order By Id',
-  props<{ id: any }>()
+  props<{ id: number }>()
   );
 
 

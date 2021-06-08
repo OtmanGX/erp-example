@@ -17,7 +17,8 @@ export class CompanyCardComponent implements OnInit {
   step = null;
   data$ = this.store.select(CompanieSelectors.getSelectedCompanie);
   passedData: any;
-  constructor(private store: Store<AppState>,
+  constructor(
+    private store: Store<AppState>,
     private location: Location) {
     this.id = (<any>this.location.getState()).id;
   }

@@ -21,6 +21,7 @@ import { DeliveryListComponent } from '@TanglassUi/sales/pages/delivery/delivery
 import { DeliveryAddComponent } from '@TanglassUi/sales/pages/delivery/delivery-add/delivery-add.component';
 import { DeliveryLineComponent } from '@TanglassUi/sales/pages/components/delivery-line/delivery-line.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { OrderCardComponent } from "./pages/order/order-card/order-card.component";
 @NgModule({
   declarations: [
     SalesComponent,
@@ -35,7 +36,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     AmountsOrderComponent,
     DeliveryListComponent,
     DeliveryAddComponent,
-    DeliveryLineComponent
+    DeliveryLineComponent,
+    OrderCardComponent
   ],
   imports: [
     CommonModule,

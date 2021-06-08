@@ -54,7 +54,6 @@ export class PopProductComponent extends FormDialog implements AfterViewInit, On
     this.productForm.get('company_id')?.valueChanges?.subscribe(
       (val) => {
         let found = this.companies.find(element => element.key == val)
-        console.log('company')
         this.formValue = { ...this.formValue, company_name: found?.value }
         this.warehouses = this.data.warehouses.filter(warehouse => warehouse.company_id == val);
         this.data.data = this.productForm.value;

@@ -8,6 +8,7 @@ export const ORDERS_FEATURE_KEY = 'orders';
 
 export interface OrderState extends EntityState<OrdersEntity> {
   selectedId?: string | number; // which Orders record has been selected
+  selectedOrder:OrdersEntity
   loaded: boolean; // has the Orders list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -22,8 +23,9 @@ export const ordersAdapter: EntityAdapter<OrdersEntity> = createEntityAdapter<
 
 export const initialStateOrder: OrderState = ordersAdapter.getInitialState({
   // set initial required properties
+  selectedOrder: null,
   loaded: false,
-});
+  error: null,});
 
 const ordersReducer = createReducer(
   initialStateOrder,
@@ -38,6 +40,16 @@ const ordersReducer = createReducer(
   on(OrdersActions.removeOrderSuccess, (state, {ids}) =>
     ordersAdapter.removeMany(ids, state)
   ),
+  on(OrdersActions.loadOrderByIdSuccess,
+    (state, {Order}) => ({...state, selectedOrder: Order})
+  ),
+  on(OrdersActions.addOrderSuccess,
+    (state, action) => ordersAdapter.addOne(action.Order, state)
+  ),
+  on(OrdersActions.loadOrdersFailure, (state, { error }) => ({
+    ...state,
+    error,
+  })),
   on(OrdersActions.selectOrder, (state, { id }) => ({
     ...state,
     selectedId: id,

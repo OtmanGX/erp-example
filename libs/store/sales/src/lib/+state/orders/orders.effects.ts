@@ -11,7 +11,7 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class OrdersEffects {
-  loadQuotationsDraft$ = createEffect(() => {
+  loadOrderssDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(OrdersActions.loadOrders),
       mergeMap((action) =>
@@ -37,5 +37,41 @@ export class OrdersEffects {
     );
   });
 
-  constructor(private actions$: Actions, private orderService: OrderService) {}
+
+  addOrder$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(OrdersActions.addOrder),
+      mergeMap((action) =>
+        this.orderService.insertOne(action.Order).pipe(
+          map((data) =>
+          OrdersActions.addOrderSuccess({Order: data.data.insert_sales_order_one})
+          ),
+          catchError((error) =>
+            of(OrdersActions.addOrderFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+
+  getOrderById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(OrdersActions.loadOrderById),
+      mergeMap((action) =>
+        this.orderService.getOneById(action.id).pipe(
+          map((data) =>
+          OrdersActions.loadOrderByIdSuccess({Order: data.data.sales_order_by_pk})
+          ),
+          catchError((error) =>
+            of(OrdersActions.loadOrderByIdFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+
+
+  constructor(private actions$: Actions,private orderService:OrderService) {}
 }

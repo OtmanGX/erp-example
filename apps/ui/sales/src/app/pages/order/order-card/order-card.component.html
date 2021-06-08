@@ -1,13 +1,22 @@
-
-<mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>
-        <span>Infos Générales</span>
-  </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+<mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span> Votre Commande !</span>
+    <span class="example-spacer"></span>
+    <button mat-flat-button color="primary" style="width : 8em;margin-right: 8px;">
+        LANCER
+    </button>
+    <button mat-flat-button class=" mat-bg-warn" style="width : 8em;">
+        MODIFIER
+    </button>
+    <button mat-flat-button class=" primary" style="width : 8em;">
+        IMPRIMER
+    </button>
+</mat-toolbar>
  
-    </mat-card-content>
-  </mat-card>
-  
-  <ngx-product-draft [draft_id]="data | async"></ngx-product-draft>
+
+    <ngx-fiche-card [title]="title" [data]="passedData"
+    [withToolbar]='false'>
+    </ngx-fiche-card>
+

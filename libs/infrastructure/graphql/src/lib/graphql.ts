@@ -17317,8 +17317,8 @@ export type Sales_Order = {
   company: Management_Company;
   company_id: Scalars['uuid'];
   /** An object relationship */
-  contact: Contact_Contact;
-  contact_id: Scalars['uuid'];
+  contact?: Maybe<Contact_Contact>;
+  contact_id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   customer: Contact_Customer;
   customer_id: Scalars['uuid'];
@@ -18666,7 +18666,7 @@ export type Sales_Quotation = {
   /** An object relationship */
   company: Management_Company;
   company_id: Scalars['uuid'];
-  contact_id: Scalars['uuid'];
+  contact_id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   customer: Contact_Customer;
   customer_id: Scalars['uuid'];
@@ -25655,6 +25655,67 @@ export type InsertGlassDraftMutation = (
   )> }
 );
 
+export type InsertOrderMutationVariables = Exact<{
+  company_id?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
+  customer_id?: Maybe<Scalars['uuid']>;
+  date?: Maybe<Scalars['date']>;
+  deadline?: Maybe<Scalars['date']>;
+  draft_id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
+}>;
+
+
+export type InsertOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_order_one?: Maybe<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'name'>
+    )>, customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+    ) }
+  )> }
+);
+
+export type InsertQuotationMutationVariables = Exact<{
+  company_id?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
+  customer_id?: Maybe<Scalars['uuid']>;
+  date?: Maybe<Scalars['date']>;
+  deadline?: Maybe<Scalars['date']>;
+  draft_id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
+}>;
+
+
+export type InsertQuotationMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_quotation_one?: Maybe<(
+    { __typename?: 'sales_quotation' }
+    & Pick<Sales_Quotation, 'date' | 'deadline' | 'draft_id' | 'id' | 'status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+    ) }
+  )> }
+);
+
 export type InsertServiceDraftMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
   company_name?: Maybe<Scalars['String']>;
@@ -25838,6 +25899,29 @@ export type GetDraftByIdQuery = (
   )> }
 );
 
+export type GetOrderByIdQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type GetOrderByIdQuery = (
+  { __typename?: 'query_root' }
+  & { sales_order_by_pk?: Maybe<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'name' | 'phone' | 'id'>
+    )>, customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'id' | 'name' | 'phone' | 'code'>
+    ) }
+  )> }
+);
+
 export type GetProductsByTypeQueryVariables = Exact<{
   draft_id: Scalars['Int'];
   type?: Maybe<Sales_Product_Type_Enum>;
@@ -25863,6 +25947,26 @@ export type GetProductsGroupQuery = (
   & { sales_product_draft: Array<(
     { __typename?: 'sales_product_draft' }
     & Pick<Sales_Product_Draft, 'company_id' | 'company_name' | 'draft_id' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
+  )> }
+);
+
+export type GetQuotationByIdQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type GetQuotationByIdQuery = (
+  { __typename?: 'query_root' }
+  & { sales_quotation_by_pk?: Maybe<(
+    { __typename?: 'sales_quotation' }
+    & Pick<Sales_Quotation, 'date' | 'deadline' | 'draft_id' | 'id' | 'status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'id' | 'name' | 'phone' | 'code'>
+    ) }
   )> }
 );
 
@@ -28723,6 +28827,82 @@ export const InsertGlassDraftDocument = gql`
       super(apollo);
     }
   }
+export const InsertOrderDocument = gql`
+    mutation InsertOrder($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $status: String, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric) {
+  insert_sales_order_one(
+    object: {company_id: $company_id, contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, status: $status, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc}
+  ) {
+    company {
+      name
+      id
+    }
+    contact {
+      code
+      name
+    }
+    customer {
+      code
+      name
+      phone
+    }
+    date
+    deadline
+    draft_id
+    id
+    status
+    total_ht
+    total_tax
+    total_ttc
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertOrderGQL extends Apollo.Mutation<InsertOrderMutation, InsertOrderMutationVariables> {
+    document = InsertOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertQuotationDocument = gql`
+    mutation InsertQuotation($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $status: String, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric) {
+  insert_sales_quotation_one(
+    object: {company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, status: $status, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, contact_id: $contact_id}
+  ) {
+    company {
+      name
+      id
+    }
+    customer {
+      code
+      name
+      phone
+    }
+    date
+    deadline
+    draft_id
+    id
+    status
+    total_ht
+    total_tax
+    total_ttc
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertQuotationGQL extends Apollo.Mutation<InsertQuotationMutation, InsertQuotationMutationVariables> {
+    document = InsertQuotationDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertServiceDraftDocument = gql`
     mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int) {
   insert_sales_service_draft_one(
@@ -29023,6 +29203,47 @@ export const GetDraftByIdDocument = gql`
       super(apollo);
     }
   }
+export const GetOrderByIdDocument = gql`
+    query GetOrderById($id: Int!) {
+  sales_order_by_pk(id: $id) {
+    company {
+      name
+      id
+    }
+    contact {
+      code
+      name
+      phone
+      id
+    }
+    customer {
+      id
+      name
+      phone
+      code
+    }
+    date
+    deadline
+    draft_id
+    id
+    status
+    total_ht
+    total_tax
+    total_ttc
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetOrderByIdGQL extends Apollo.Query<GetOrderByIdQuery, GetOrderByIdQueryVariables> {
+    document = GetOrderByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetProductsByTypeDocument = gql`
     query GetProductsByType($draft_id: Int!, $type: sales_product_type_enum) {
   sales_product_draft(where: {draft_id: {_eq: $draft_id}, type: {_eq: $type}}) {
@@ -29082,6 +29303,41 @@ export const GetProductsGroupDocument = gql`
   })
   export class GetProductsGroupGQL extends Apollo.Query<GetProductsGroupQuery, GetProductsGroupQueryVariables> {
     document = GetProductsGroupDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetQuotationByIdDocument = gql`
+    query GetQuotationById($id: Int!) {
+  sales_quotation_by_pk(id: $id) {
+    company {
+      name
+      id
+    }
+    customer {
+      id
+      name
+      phone
+      code
+    }
+    date
+    deadline
+    draft_id
+    id
+    status
+    total_ht
+    total_tax
+    total_ttc
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetQuotationByIdGQL extends Apollo.Query<GetQuotationByIdQuery, GetQuotationByIdQueryVariables> {
+    document = GetQuotationByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

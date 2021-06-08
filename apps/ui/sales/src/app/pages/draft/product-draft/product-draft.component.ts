@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges, OnDestroy, AfterViewInit } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { PopProductComponent } from "../pop-product/pop-product.component";
@@ -15,11 +15,9 @@ import { Subscription } from 'rxjs';
   templateUrl: './product-draft.component.html',
   styleUrls: ['./product-draft.component.scss']
 })
-
 export class ProductDraftComponent implements OnInit, OnDestroy {
-  isCardMode: string;
   @ViewChild('glassTable') glassTable: TableComponent<DraftItem>;
-  @ViewChild('articlesTable', {read: TableComponent, static: false}) articlesTable: TableComponent<DraftItem>;
+  @ViewChild('articlesTable', { read: TableComponent, static: false }) articlesTable: TableComponent<DraftItem>;
   displayedColumns: Array<Column> =
     [
       ...displayedColumns.map((e) => ({
@@ -60,20 +58,23 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
   companiesSub: Subscription;
   warehousesSub: Subscription;
   @ViewChild(MatTable, { static: true }) table: MatTable<DraftItem>;
-  @Input() draft_id;
+  @Input() draftData;
+  @Input() isCardMode: boolean=false;
   constructor(
     public dialog: MatDialog,
     private facade: ProductDraftFacade,
     private sharedfacade: SharedFacade,
-
   ) { }
   ngOnInit(): void {
     this.sharedfacade.loadAllShortCompanies()
     this.sharedfacade.loadAllShortWarehouses()
   }
-
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.facade.loadAllProducts(this.draftData.id)
+    },1000)
+  }
   ngOnChanges() {
-    this.facade.loadAllProducts(this.draft_id[0]?.id);
     this.productsSub = this.products$.subscribe(
       items => {
         this.facade.updateAmounts()
@@ -82,7 +83,6 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
       }
     )
   }
-
   openDialog(action, product_type: string, row?: DraftItem) {
     let companies; let warehouses
     this.companiesSub = this.companies$.subscribe(val => companies = val)
@@ -95,23 +95,23 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       switch (result?.type) {
         case ProductsTypes.glass: {
-          this.facade.addGlass({ ...result, draft_id: this.draft_id[0]?.id })
+          this.facade.addGlass({ ...result, draft_id: this.draftData?.id })
           break;
         }
         case ProductsTypes.accessory: {
-          this.facade.addAccessory({ ...result, draft_id: this.draft_id[0]?.id })
+          this.facade.addAccessory({ ...result, draft_id: this.draftData?.id })
           break;
         }
         case ProductsTypes.service: {
-          this.facade.addService({ ...result, draft_id: this.draft_id[0]?.id })
+          this.facade.addService({ ...result, draft_id: this.draftData?.id })
           break;
         }
         case ProductsTypes.consumable: {
-          this.facade.addConsumable({ ...result, draft_id: this.draft_id[0]?.id })
+          this.facade.addConsumable({ ...result, draft_id: this.draftData?.id })
           break;
         }
         case ProductsTypes.customerPorduct: {
-          this.facade.addCustomerProduct({ ...result, draft_id: this.draft_id[0]?.id })
+          this.facade.addCustomerProduct({ ...result, draft_id: this.draftData?.id })
           break;
         }
         default: {
@@ -126,16 +126,19 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
     // this.facade.removeProduct(item.id);
     // this.articlesTable.render();
     // this.glassTable.render();
-  }
+    // this.facade.updateAmounts()
 
+  }
   deleteArticle(item: any) {
     this.facade.removeProduct(item.id);
-    this.dataSourceArticles.splice(item , 1);
+    this.dataSourceArticles.splice(item, 1);
+    this.facade.updateAmounts()
     this.articlesTable.render()
   }
   deleteGlass(item: any) {
     this.facade.removeProduct(item.id);
-    this.dataSourceGlass.splice(item , 1);
+    this.dataSourceGlass.splice(item, 1);
+    this.facade.updateAmounts()
     this.glassTable.render()
   }
   ngOnDestroy() {
