@@ -10,8 +10,11 @@ query GetAllOrders {
         name
         phone
       }
+<<<<<<< HEAD
       delivery_status 
       payment_status 
+=======
+>>>>>>> 758c36aa69dafbbd1199dadc6db997d8d4d3df64
       id
       draft_id
       total_ht
@@ -19,6 +22,7 @@ query GetAllOrders {
       total_ttc
       date
       deadline
-    
+      delivery_status
+      payment_status
   }
 }

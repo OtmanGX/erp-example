@@ -27,9 +27,14 @@ registerLocaleData(localeFr, 'fr');
         ...env.httpInterceptor,
       },
     }),
-    ToastrModule.forRoot({
-      positionClass : 'toast-bottom-right'
-    }),
+    ToastrModule.forRoot(
+      {
+        disableTimeOut: true,
+        positionClass: 'toast-top-center',
+        preventDuplicates: true,
+        closeButton: true
+      }
+    ),
     RouterModule.forRoot([{ path: '', canActivate: [AuthGuard], loadChildren: () =>
         import('./pages/pages.module').then(m => m.PagesModule) }], { initialNavigation: 'enabled' }),
   ],
