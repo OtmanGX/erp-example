@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { AmountstHeaders } from "../../../utils/grid-headers";
 import { ProductDraftFacade, Amount } from "@tanglass-erp/store/sales";
 import { debounceTime } from 'rxjs/operators';
 import {displayedAmountsColumns  } from "../../../utils/grid-headers";
+import {Column, ColumnType } from '@tanglass-erp/material';
+
 @Component({
   selector: 'ngx-amounts-order',
   templateUrl: './amounts-order.component.html',
   styleUrls: ['./amounts-order.component.scss']
 })
 export class AmountsOrderComponent implements OnInit {
-  displayedColumns: string[] =displayedAmountsColumns;
+  displayedColumns: Array<Column> =displayedAmountsColumns;
   dataSource: Amount[];
-  headers = AmountstHeaders;
   amountsByCompanySub = this.facade.amounts$;
-
+  isCardMode=false;
   @ViewChild(MatTable, { static: true }) table: MatTable<Amount>;
 
   constructor(
@@ -24,7 +24,7 @@ export class AmountsOrderComponent implements OnInit {
   ngOnInit(): void {
     this.facade.amounts$.pipe(debounceTime(500)).subscribe(
       data =>
-      {  this.dataSource = data ;}
+      {  this.dataSource =data??[] ;}
     )
   }
 

@@ -17,6 +17,9 @@ import { OrdersFacade } from './+state/orders/orders.facade';
 import * as fromDelivery from './+state/delivery/delivery.reducer';
 import { DeliveryEffects } from './+state/delivery/delivery.effects';
 import { DeliveryFacade } from './+state/delivery/delivery.facade';
+import * as fromPayments from './+state/payments/payments.reducer';
+import { PaymentsEffects } from './+state/payments/payments.effects';
+import { PaymentsFacade } from './+state/payments/payments.facade';
 
 @NgModule({
   imports: [
@@ -33,13 +36,21 @@ import { DeliveryFacade } from './+state/delivery/delivery.facade';
       fromProductDraft.reducerProduct
     ),
     EffectsModule.forFeature([ProductDraftEffects]),
-    StoreModule.forFeature(fromOrders.ORDERS_FEATURE_KEY, fromOrders.reducerOrder),
+    StoreModule.forFeature(
+      fromOrders.ORDERS_FEATURE_KEY,
+      fromOrders.reducerOrder
+    ),
     EffectsModule.forFeature([OrdersEffects]),
     StoreModule.forFeature(
       fromDelivery.DELIVERY_FEATURE_KEY,
       fromDelivery.reducer
     ),
     EffectsModule.forFeature([DeliveryEffects]),
+    StoreModule.forFeature(
+      fromPayments.PAYMENTS_FEATURE_KEY,
+      fromPayments.reducerPayment
+    ),
+    EffectsModule.forFeature([PaymentsEffects]),
   ],
   providers: [
     QuotationFacade,
@@ -47,6 +58,7 @@ import { DeliveryFacade } from './+state/delivery/delivery.facade';
     ProductDraftFacade,
     OrdersFacade,
     DeliveryFacade,
+    PaymentsFacade,
   ],
 })
 export class StoreSalesModule {}

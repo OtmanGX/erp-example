@@ -4,7 +4,6 @@ query GetQuotationById($id: Int!) {
       name
       id
     }
-
     customer {
       id
       name

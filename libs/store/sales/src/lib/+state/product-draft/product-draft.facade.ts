@@ -7,6 +7,7 @@ import { Product_draft } from "@tanglass-erp/core/sales";
 import { Subscription, Subject, BehaviorSubject } from 'rxjs';
 
 import { Amount } from "./products-draft.models";
+import { parseValue } from 'graphql';
 @Injectable()
 export class ProductDraftFacade {
   loaded$ = this.store.pipe(
@@ -18,11 +19,12 @@ export class ProductDraftFacade {
   selectedProduct$ = this.store.pipe(
     select(ProductDraftSelectors.getSelectedProduct)
   );
+  
   amounts$ = new BehaviorSubject<Amount[]>([new Amount()]);
   constructor(
     private store: Store,
   ) { }
-
+ 
   dispatch(action: Action) {
     this.store.dispatch(action);
   }
@@ -78,17 +80,17 @@ export class ProductDraftFacade {
             obj =>
             ({
               company: obj.company_name,
-              total_HT: 0,
-              total_TTC: obj.total_price,
-              total_TVA: 0,
+              total_HT: parseFloat((obj.total_price*(5/6)).toFixed(2)),
+              total_TTC:parseFloat (obj.total_price.toFixed(2)),
+              total_TVA:parseFloat( (obj.total_price/6).toFixed(2)),
             }
             )
           ).reduce(function (accumulator, product: Amount) {
             return {
               company: product.company,
-              total_HT: 0,
+              total_HT: product.total_HT+accumulator.total_HT,
               total_TTC: product.total_TTC + accumulator.total_TTC,
-              total_TVA: 0,
+              total_TVA: product.total_TVA+accumulator.total_TVA,
             };
           }, new Amount())
       }
@@ -113,9 +115,9 @@ export class ProductDraftFacade {
     amounts.push(amounts.reduce(function (accumulator, product: Amount) {
       return {
         company: 'Total',
-        total_HT: 0,
+        total_HT: product.total_HT + accumulator.total_HT,
         total_TTC: product.total_TTC + accumulator.total_TTC,
-        total_TVA: 0,
+        total_TVA: product.total_TVA + accumulator.total_TVA,
       };
     }, new Amount()))
     this.amounts$.next(amounts)

@@ -2,7 +2,6 @@ import { SalesCustomer,SalesCompany } from "./quotation";
 export interface Order {
     id: number;
     draft_id: number;
-    status?: string;
     customer: SalesCustomer
     contact_id?: string;
     date?: Date;
@@ -11,6 +10,8 @@ export interface Order {
     total_ttc: number;
     total_tax: number;
     total_ht: number;
+    delivery_status:string;
+    payment_status:string;
 }
 
 

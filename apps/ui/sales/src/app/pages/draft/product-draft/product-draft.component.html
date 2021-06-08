@@ -38,8 +38,8 @@
 </app-table>
 
 <ng-template #action2 let-item="data">
-  <button mat-stroked-button color="primary" (click)="deleteArticle(item)">
-    <mat-icon  *ngIf="!isCardMode" color="primary" class="example-icon" aria-hidden="false" aria-label="Example delete icon">
+  <button *ngIf="!isCardMode" mat-stroked-button color="primary" (click)="deleteArticle(item)">
+    <mat-icon   color="primary" class="example-icon" aria-hidden="false" aria-label="Example delete icon">
       delete
     </mat-icon>
     delete

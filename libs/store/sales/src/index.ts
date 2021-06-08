@@ -1,8 +1,16 @@
-
 export * from './lib/+state/orders/orders.actions';
 export * from './lib/+state/orders/orders.reducer';
 export * from './lib/+state/orders/orders.selectors';
 import { DeliveryStatus } from '@tanglass-erp/core/sales';
+export * from './lib/+state/payments/payments.actions';
+
+export * from './lib/+state/payments/payments.reducer';
+
+export * from './lib/+state/payments/payments.selectors';
+
+export * from './lib/+state/payments/payments.models';
+
+export * from './lib/+state/payments/payments.facade';
 
 export * from './lib/+state/delivery/delivery.facade';
 export * from './lib/+state/delivery/delivery.actions';
@@ -27,7 +35,7 @@ export * from './lib/+state/quotation/quotation.reducer';
 export * from './lib/+state/quotation/quotation.selectors';
 export * from './lib/+state/quotation/quotation.facade';
 export * from './lib/store-sales.module';
-export * from './lib/+state/product-draft/products-draft.models'
+export * from './lib/+state/product-draft/products-draft.models';
 export {
   Quotation,
   Order,
@@ -36,5 +44,5 @@ export {
   DeliveryForm,
   DeliveryLine,
   DeliveryStatus,
-  PaymentMethod
+  PaymentMethod,
 } from '@tanglass-erp/core/sales';

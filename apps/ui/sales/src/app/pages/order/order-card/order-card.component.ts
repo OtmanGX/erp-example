@@ -19,6 +19,7 @@ export class OrderCardComponent extends ModelCardComponent {
   data$ = this.facade.orderById$
   .pipe(takeUntil(this._onDestroy));
   draftID$;
+  isCardMode:boolean=true;
   constructor(
     public activatedRoute: ActivatedRoute,
     protected facade: OrdersFacade
@@ -31,7 +32,9 @@ export class OrderCardComponent extends ModelCardComponent {
   }
 
   passData(data) {
-    this.draftID$={id:data?.draft_id}
+    this.data$.subscribe(
+      data=>this.draftID$=data?.draft_id
+    ) 
     return [
       {
         label: "Infos Générales",
@@ -46,12 +49,21 @@ export class OrderCardComponent extends ModelCardComponent {
             { label: 'Tél', value: data?.customer.phone },
             { label: 'Date', value: data?.date },
             { label: 'Date limite ', value: data?.deadline, },
-            { label: 'Status', value: data?.status },
-            { label: 'Réf', value: data?.draft_id },
+            { label: 'Livraison', value: [data?.delivery_status],type: 'chips' },
+            { label: 'Paiement', value: [data?.payment_status] ,type: 'chips'},
+            { label: 'Réf ', value: data?.draft_id },
           ]
       },
     ];
   }
   afterComplete() {}
+  edit(){
+    this.isCardMode=false;
+  }
+  save(){}
+  cancel(){}
+  print(){}
+  launch(){}
+  pay(){}
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';
@@ -13,6 +13,7 @@ import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.acti
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
 import { map } from 'rxjs/operators';
 import { DraftFacade } from "@tanglass-erp/store/sales";
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'ngx-create-draft',
   templateUrl: './create-draft.component.html',
@@ -25,25 +26,24 @@ export class CreateDraftComponent implements OnInit {
   customer$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
   data = this.facade.selectedDraft$;
+  draftID$;
+  dataSub: Subscription
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
   constructor(
     public dialog: MatDialog,
     private store: Store,
     private facade: DraftFacade,
-    ) {}
+  ) { }
 
   ngOnInit(): void {
     this.facade.createDraft();
     this.store.dispatch(ShortCompanieActions.loadShortCompany());
     this.buildForm();
+    this.dataSub = this.data.subscribe(data => this.draftID$ = data?.id)
   }
 
-  ngOnChanges() {
-
-  }
   buildForm(): void {
-
     let data
     this.regConfig = regConfigDraftInfos(
       data,
@@ -54,5 +54,8 @@ export class CreateDraftComponent implements OnInit {
     this.store.dispatch(CustomerActions.loadCustomers());
     this.store.dispatch(ContactActions.loadContacts());
 
+  }
+  ngOnDestroy() {
+    this.dataSub.unsubscribe()
   }
 }

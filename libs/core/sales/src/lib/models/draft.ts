@@ -9,11 +9,7 @@ export interface Draft{
     date?:Date;
     company_id?:string;
     products?:Product_draft[]
-
-
-
 }
-
 
 export interface DraftDetailed {
     id: number;

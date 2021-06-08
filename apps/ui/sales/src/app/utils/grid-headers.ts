@@ -1,72 +1,51 @@
-export const glassesColumns: string[] = [
-    'product_code',
-    'label',
-    'count',
-    'heigth',
-    'width',
-    'unit',
-    'm2',
-    'ml',
-    'price',
-    'total_price',
-    'company_name',
-    //'action'
+
+import {Column, ColumnType } from '@tanglass-erp/material';
+
+export const action=    {
+  title: 'Action',
+  key: 'action',
+  type: ColumnType.template,
+  withRow: true,
+}
+
+
+export const displayedAmountsColumns: Array<Column> = [
+  { key: 'company', title: 'Société' ,type: ColumnType.normal },
+  { key: 'total_HT', title: 'Total Hors Taxe' ,type: ColumnType.normal },
+  { key: 'total_TVA', title: 'Total TVA' ,type: ColumnType.normal },
+  { key: 'total_TTC', title: 'Total TTC' ,type: ColumnType.normal },
+  { key: 'received', title: 'Reçu' ,type: ColumnType.normal },
+  { key: 'debt', title: 'Reste' ,type: ColumnType.normal },
 ];
 
-export const displayedColumns: string[] = [
-    'product_code',
-    'label',
-    'quantity',
-    'unit',
-    'price',
-    'total_price',
-    'company_name',
-   // 'action'
-];
-export const displayedAmountsColumns: string[] = [
-    'company',
-    'total_HT',
-    'total_TVA',
-    'total_TTC'
-];
-
-
-export const ProductGlassHeaders = [
-    { field: 'id', headerName: 'ID. ' },
-    { field: 'product_code', headerName: 'Code' },
-    { field: 'label', headerName: 'Désignation' },
-    { field: 'count', headerName: 'Count' },
-    { field: 'heigth', headerName: 'Hauteur' },
-    { field: 'width', headerName: 'Largeur' },
-    { field: 'unit', headerName: 'Unité' },
-    { field: 'm2', headerName: 'm2' },
-    { field: 'ml', headerName: 'ml' },
-    { field: 'price', headerName: 'P.U' },
-    { field: 'total_price', headerName: 'Total' },
-    { field: 'company_name', headerName: 'Société' },
-
+export const ProductGlassHeaders: Array<Column> = [
+   // { field: 'id', headerName: 'ID. ' },
+    { key: 'product_code', title: 'Code',type: ColumnType.normal},
+    { key: 'label', title: 'Désignation',type: ColumnType.normal },
+    { key: 'count', title: 'Count',type: ColumnType.normal },
+    { key: 'heigth', title: 'Hauteur' ,type: ColumnType.normal},
+    { key: 'width', title: 'Largeur',type: ColumnType.normal },
+    { key: 'unit', title: 'Unité' ,type: ColumnType.normal},
+    { key: 'm2', title: 'm2' ,type: ColumnType.normal},
+    { key: 'ml', title: 'ml',type: ColumnType.normal },
+    { key: 'price', title: 'P.U',type: ColumnType.normal },
+    { key: 'total_price', title: 'Total' ,type: ColumnType.normal},
+    { key: 'company_name', title: 'Société' ,type: ColumnType.normal},
+     action
 ];
 
-export const ProductHeaders = [
-    { field: 'id', headerName: 'ID. ' },
-    { field: 'product_code', headerName: 'Code' },
-    { field: 'label', headerName: 'Désignation' },
-    { field: 'quantity', headerName: 'Quantité' },
-    { field: 'unit', headerName: 'Unité' },
-    { field: 'price', headerName: 'P.U' },
-    { field: 'total_price', headerName: 'Total' },
-    { field: 'company_name', headerName: 'Société' },
-
+export const ProductHeaders: Array<Column> = [
+    //{ field: 'id', headerName: 'ID. ' },
+    { key: 'product_code', title: 'Code' ,type: ColumnType.normal },
+    { key: 'label', title: 'Désignation' ,type: ColumnType.normal },
+    { key: 'quantity', title: 'Quantité' ,type: ColumnType.normal },
+    { key: 'unit', title: 'Unité' ,type: ColumnType.normal },
+    { key: 'price', title: 'P.U'  ,type: ColumnType.normal},
+    { key: 'total_price', title: 'Total' ,type: ColumnType.normal },
+    { key: 'company_name', title: 'Société' ,type: ColumnType.normal },
+    action
 ];
 
-export const AmountstHeaders = [
-
-    { field: 'company', headerName: 'Société ' },
-    { field: 'total_HT', headerName: 'Total HT' },
-    { field: 'total_TVA', headerName: 'Total TVA ' },
-    { field: 'total_TTC', headerName: 'Total TTC ' },
-
-]
 
 
 export const QuotationHeaders = [
@@ -78,8 +57,6 @@ export const QuotationHeaders = [
       }
     )
   },
-    { field: 'draft_id', headerName: 'Ref', type: "numberColumn" },
-    { field: 'status', headerName: 'Etat', type: "textColumn" },
     { field: 'customer.name', headerName: 'Client', type: "textColumn" },
     { field: 'customer.phone', headerName: 'Phone.N°', type: "textColumn" },
     { field: 'date', headerName: 'Date', type: "textColumn" },
@@ -88,7 +65,32 @@ export const QuotationHeaders = [
     { field: 'total_ttc', headerName: 'Total TTC', type: "numberColumn" },
     { field: 'total_tax', headerName: 'Total TVA', type: "numberColumn" },
     { field: 'total_ht', headerName: 'Total HT', type: "numberColumn" },
-];
+    { field: 'draft_id', headerName: 'Ref Brouillon ', type: "numberColumn" },
+    { field: 'status', headerName: 'Statut', type: "textColumn" },
+
+  ];
+
+  export const OrderHeaders=[
+    {
+      field: 'id', headerName: 'Référence', type: "linkColumn",
+      cellRendererParams: (params) => (
+        {
+          link: `${params?.data?.id}`,
+        }
+      )
+    },
+      { field: 'customer.name', headerName: 'Client', type: "textColumn" },
+      { field: 'customer.phone', headerName: 'Phone.N°', type: "textColumn" },
+      { field: 'date', headerName: 'Date', type: "textColumn" },
+      { field: 'deadline', headerName: 'Expiration', type: "textColumn" },
+      { field: 'company.name', headerName: 'Société', type: "textColumn" },
+      { field: 'total_ttc', headerName: 'Total TTC', type: "numberColumn" },
+      { field: 'total_tax', headerName: 'Total TVA', type: "numberColumn" },
+      { field: 'total_ht', headerName: 'Total HT', type: "numberColumn" },
+      { field: 'draft_id', headerName: 'Ref Brouillon ', type: "numberColumn" },
+      { field: 'delivery_status', headerName: 'Livraison', type: "textColumn" },
+      { field: 'payment_status', headerName: 'paiement', type: "textColumn" },
+    ];
 
 export const deliveryHeaders = [
   {

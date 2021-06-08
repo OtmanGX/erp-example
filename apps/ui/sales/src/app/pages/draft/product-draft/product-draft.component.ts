@@ -3,7 +3,7 @@ import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { PopProductComponent } from "../pop-product/pop-product.component";
 import { Column, ColumnType, FieldConfig, TableComponent } from '@tanglass-erp/material';
-import { ProductHeaders, ProductGlassHeaders, displayedColumns, glassesColumns } from "../../../utils/grid-headers";
+import { ProductHeaders, ProductGlassHeaders, action } from "../../../utils/grid-headers";
 import { DraftItem } from "../../../utils/models";
 import { ProductDraftFacade } from "@tanglass-erp/store/sales";
 import { ProductsTypes } from "../../../utils/enums";
@@ -18,38 +18,11 @@ import { Subscription } from 'rxjs';
 export class ProductDraftComponent implements OnInit, OnDestroy {
   @ViewChild('glassTable') glassTable: TableComponent<DraftItem>;
   @ViewChild('articlesTable', { read: TableComponent, static: false }) articlesTable: TableComponent<DraftItem>;
-  displayedColumns: Array<Column> =
-    [
-      ...displayedColumns.map((e) => ({
-        title: e[0].toUpperCase() + e.slice(1),
-        type: ColumnType.normal,
-        key: e,
-      })),
-      {
-        title: 'Action',
-        key: 'action',
-        type: ColumnType.template,
-        withRow: true,
-      },
-    ];
-  glassesColumns =
-    [
-      ...glassesColumns.map((e) => ({
-        title: e[0].toUpperCase() + e.slice(1),
-        type: ColumnType.normal,
-        key: e,
-      })),
-      {
-        title: 'Action',
-        key: 'action',
-        type: ColumnType.template,
-        withRow: true,
-      },
-    ];
+
+  displayedColumns: Array<Column>=ProductHeaders
+  glassesColumns: Array<Column>=  ProductGlassHeaders
   dataSourceGlass = [];
   dataSourceArticles = [];
-  glassHeaders = ProductGlassHeaders;
-  headers = ProductHeaders
   regConfig: FieldConfig[];
   products$ = this.facade.allProduct$;
   companies$ = this.sharedfacade.allShortCompany$.pipe(map(item => item.map(company => ({ key: company.id, value: company.name }))));
@@ -59,22 +32,19 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
   warehousesSub: Subscription;
   @ViewChild(MatTable, { static: true }) table: MatTable<DraftItem>;
   @Input() draftData;
-  @Input() isCardMode: boolean=false;
+  @Input() isCardMode: boolean = false;
   constructor(
     public dialog: MatDialog,
     private facade: ProductDraftFacade,
     private sharedfacade: SharedFacade,
   ) { }
   ngOnInit(): void {
-    this.sharedfacade.loadAllShortCompanies()
-    this.sharedfacade.loadAllShortWarehouses()
+    this.sharedfacade.loadAllShortCompanies();
+    this.sharedfacade.loadAllShortWarehouses();
   }
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.facade.loadAllProducts(this.draftData.id)
-    },1000)
-  }
+
   ngOnChanges() {
+    this.facade.loadAllProducts(this.draftData)
     this.productsSub = this.products$.subscribe(
       items => {
         this.facade.updateAmounts()
@@ -95,23 +65,23 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       switch (result?.type) {
         case ProductsTypes.glass: {
-          this.facade.addGlass({ ...result, draft_id: this.draftData?.id })
+          this.facade.addGlass({ ...result, draft_id: this.draftData })
           break;
         }
         case ProductsTypes.accessory: {
-          this.facade.addAccessory({ ...result, draft_id: this.draftData?.id })
+          this.facade.addAccessory({ ...result, draft_id: this.draftData })
           break;
         }
         case ProductsTypes.service: {
-          this.facade.addService({ ...result, draft_id: this.draftData?.id })
+          this.facade.addService({ ...result, draft_id: this.draftData })
           break;
         }
         case ProductsTypes.consumable: {
-          this.facade.addConsumable({ ...result, draft_id: this.draftData?.id })
+          this.facade.addConsumable({ ...result, draft_id: this.draftData })
           break;
         }
         case ProductsTypes.customerPorduct: {
-          this.facade.addCustomerProduct({ ...result, draft_id: this.draftData?.id })
+          this.facade.addCustomerProduct({ ...result, draft_id: this.draftData })
           break;
         }
         default: {
