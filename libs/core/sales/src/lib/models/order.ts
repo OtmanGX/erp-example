@@ -12,8 +12,6 @@ export interface Order {
     total_ttc: number;
     total_tax: number;
     total_ht: number;
-    delivery_status:string;
-    payment_status:string;
 }
 
 
