@@ -21,7 +21,7 @@
                       [checked]="selection.isSelected(row)">
         </mat-checkbox>
       </td>
-      <td mat-footer-cell *matFooterCellDef> Total {{data.length}}</td>
+      <td mat-footer-cell *matFooterCellDef> Total {{data?.length}}</td>
       <ng-content #status></ng-content>
     </ng-container>
 

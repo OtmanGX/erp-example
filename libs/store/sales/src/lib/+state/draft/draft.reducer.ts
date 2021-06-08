@@ -38,7 +38,8 @@ const draftReducer = createReducer(
     draftAdapter.setAll(draft, { ...state, loaded: true })
   ),
   on(DraftActions.addDraftSuccess,
-    (state, action) => draftAdapter.addOne(action.draft, state)
+    (state, action) => draftAdapter.addOne(action.draft,
+       {...state,selectedId:action.draft.id})
   ),
   on(DraftActions.loadDraftById,
     (state) => ({...state, draftLoadedById: null})

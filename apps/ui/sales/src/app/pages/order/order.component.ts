@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import { QuotationHeaders } from '../../utils/grid-headers';
+import { OrderHeaders } from '../../utils/grid-headers';
 import { Router } from '@angular/router';
 import { OrdersFacade } from "@tanglass-erp/store/sales";
 
@@ -50,7 +50,7 @@ export class OrderComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-      ...QuotationHeaders,
+      ...OrderHeaders,
       { field: 'id', headerName: 'Action', type: "editColumn" }
     ];
   }

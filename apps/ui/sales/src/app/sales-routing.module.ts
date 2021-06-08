@@ -9,7 +9,7 @@ import { OrderComponent } from "./pages/order/order.component";
 import { CreateOrderComponent } from "./pages/order/create-order/create-order.component";
 import { DeliveryListComponent } from '@TanglassUi/sales/pages/delivery/delivery-list/delivery-list.component';
 import { DeliveryAddComponent } from '@TanglassUi/sales/pages/delivery/delivery-add/delivery-add.component';
-
+import { OrderCardComponent } from "./pages/order/order-card/order-card.component";
 const routes: Routes = [
   {
     path: '',
@@ -37,6 +37,7 @@ const routes: Routes = [
         children: [
           { path: '', component: OrderComponent },
           { path: 'createOrder', component: CreateOrderComponent },
+          { path: ':id', component: OrderCardComponent },
 
         ],
         data: { title: 'Orders', breadcrumb: "" }

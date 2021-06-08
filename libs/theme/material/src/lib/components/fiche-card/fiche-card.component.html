@@ -15,7 +15,7 @@
     </button>
 
   </mat-toolbar>
-  <div class="flip" fxLayout="row" fxLayoutAlign="space-around center" >
+  <div  *ngIf="title" class="flip" fxLayout="row" fxLayoutAlign="space-around center" >
     <mat-card fxFlex="30">
       <h4 style="text-align: center">{{title}}</h4>
     </mat-card>

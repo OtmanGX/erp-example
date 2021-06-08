@@ -5,12 +5,15 @@
     <span>Montants!</span>
     <span class="example-spacer"></span>
 </mat-toolbar>
-
-<table mat-table class="full-width-table" [dataSource]="dataSource">
-    <ng-container *ngFor="let disCol of headers; let colIndex = index" matColumnDef="{{disCol.field}}">
-        <th mat-header-cell *matHeaderCellDef>{{disCol.headerName}}</th>
-        <td mat-cell *matCellDef="let element">{{element[disCol.field]}}</td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<app-table #amountTable [data]="dataSource" 
+[templates]="{ action: action }"
+  [columnsToShow]="displayedColumns">
+</app-table>
+<ng-template #action let-item="data">
+  <button *ngIf="!isCardMode" mat-stroked-button color="primary" (click)="addPayment()">
+    <mat-icon   color="primary" class="example-icon" aria-hidden="false" aria-label="Example add icon">
+      add_circle
+    </mat-icon>
+    paiement
+  </button>
+</ng-template>
