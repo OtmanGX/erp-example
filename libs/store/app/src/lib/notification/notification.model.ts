@@ -1,8 +1,10 @@
 export interface MNotification {
-  id?: string;
+  id?: number;
   message: string;
-  icon: string;
-  time?: string;
+  title?: string;
+  operation?: string;
+  icon?: string;
+  time?: Date;
   route?: string;
-  color: 'primary';
+  color: string;
 }

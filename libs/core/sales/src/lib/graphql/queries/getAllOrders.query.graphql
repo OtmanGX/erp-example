@@ -11,7 +11,6 @@ query GetAllOrders {
         name
         phone
       }
-      status
       id
       draft_id
       total_ht
@@ -19,6 +18,7 @@ query GetAllOrders {
       total_ttc
       date
       deadline
-    
+      delivery_status
+      payment_status
   }
 }

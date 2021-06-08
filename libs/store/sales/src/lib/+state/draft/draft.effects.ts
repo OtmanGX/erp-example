@@ -3,7 +3,7 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as DraftActions from './draft.actions';
 
 import { DraftService } from '@tanglass-erp/core/sales';
-import { mergeMap, map, catchError } from 'rxjs/operators';
+import { mergeMap, map, catchError, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 
@@ -33,6 +33,7 @@ export class DraftEffects {
       ofType(DraftActions.loadDraftById),
       mergeMap((action) =>
         this.draftervice.getOneById(action.id).pipe(
+          take(1),
           map((data) =>
             DraftActions.loadDraftByIdSuccess({ draft: data.data.sales_draft_by_pk })
           ),

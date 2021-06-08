@@ -16,37 +16,48 @@ export interface NotificationPartialState {
 }
 
 export const notificationsAdapter: EntityAdapter<MNotification> = createEntityAdapter<
-MNotification
->(
-);
+  MNotification
+>();
 
-export const initialState: NotificationState = notificationsAdapter.getInitialState({
-  entities: [],
-  ids: [],
-  loaded: false,
-  error: null,
-});
+export const initialState: NotificationState = notificationsAdapter.getInitialState(
+  {
+    entities: [],
+    ids: [],
+    loaded: false,
+    error: null,
+  }
+);
 
 export const reducer = createReducer(
   initialState,
 
-  on(NotifActions.loadNotificationsSuccess,
-     (state, action) => notificationsAdapter.setAll(action.notifications,
-       {
-         ...state,
-         loaded : true
-       }
-     )),
-  on(NotifActions.AddNotification,
-    (state, action) =>  notificationsAdapter.addOne(action.notification, state)
+  on(NotifActions.loadNotificationsSuccess, (state, action) =>
+    notificationsAdapter.setAll(action.notifications, {
+      ...state,
+      loaded: true,
+    })
   ),
-  on(NotifActions.clearNotification,
-    (state) =>  notificationsAdapter.removeAll(state)
+  on(NotifActions.AddNotification, (state, action) =>
+    notificationsAdapter.addOne(
+      {
+        id: Math.random(),
+        time: new Date(),
+        color: 'primary',
+        icon: 'checked',
+        ...action.notification,
+      },
+      state
+    )
   ),
-  on(NotifActions.loadNotificationsFailure,
-     NotifActions.AddNotificationFailure,
-     (state, { error }) => ({
+  on(NotifActions.clearNotification, (state) =>
+    notificationsAdapter.removeAll(state)
+  ),
+  on(
+    NotifActions.loadNotificationsFailure,
+    NotifActions.AddNotificationFailure,
+    (state, { error }) => ({
       ...state,
       error,
-    }))
+    })
+  )
 );
