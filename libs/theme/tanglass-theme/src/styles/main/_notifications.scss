@@ -7,8 +7,13 @@
 .notification-list {
   min-width: 240px;
 }
+
+.notification-list .notific-item {
+  margin-top: 7px;
+}
 .notification-list .notific-item a {
   outline: 0;
+  margin-bottom: 7px;
   width: 100%;
   display: flex;
   flex-direction: column;

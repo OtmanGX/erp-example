@@ -7,12 +7,15 @@
     <mat-icon [color]="n.color" class="notific-icon mr-1">{{n.icon}}</mat-icon>
     <a [routerLink]="[n.route || '/dashboard']">
       <div class="mat-list-text">
-        <h4 class="message">{{n.message}}</h4>
-        <small class="time text-muted">{{n.time}}</small>
+        <h4 class="font-weight-bold">{{n.title}}</h4>
+        <h5 class="">{{n.message}}</h5>
+        <small class="time text-muted ml-auto">{{n.time | date: 'mediumTime'}}</small>
       </div>
     </a>
+
+    <mat-divider></mat-divider>
   </mat-list-item>
 </mat-nav-list>
 <div class="text-center mt-1"  *ngIf="(notifications$ | async)?.length">
-  <small><a href="#" (click)="clearAll($event)">Clear all notifications</a></small>
+  <small><a href="#" (click)="clearAll($event)">Effacer toutes les notifications </a></small>
 </div>

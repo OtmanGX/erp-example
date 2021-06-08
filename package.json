@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@ag-grid-enterprise/charts": "^25.1.0",
-    "@angular/animations": "^10.2.4",
+    "@angular/animations": "^10.2.5",
     "@angular/cdk": "^10.2.7",
     "@angular/common": "^10.0.10",
     "@angular/compiler": "^10.0.10",
@@ -79,7 +79,7 @@
     "ngx-mat-select-search": "^3.2.0",
     "ngx-perfect-scrollbar": "^10.1.0",
     "ngx-print": "^1.2.0-beta.5",
-    "ngx-toastr": "^13.2.0",
+    "ngx-toastr": "^13.2.1",
     "node-sass": "^4.14.1",
     "normalize.css": "6.0.0",
     "pace-js": "1.0.2",

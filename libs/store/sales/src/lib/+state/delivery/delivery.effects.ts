@@ -9,6 +9,7 @@ import {
   InsertedDeliveryForm,
 } from '@tanglass-erp/core/sales';
 import { Router } from '@angular/router';
+import { NotificationFacadeService } from '@tanglass-erp/store/app';
 
 @Injectable()
 export class DeliveryEffects {
@@ -18,12 +19,14 @@ export class DeliveryEffects {
       mergeMap(() =>
         this.deliveryService.getAll().pipe(
           map((data) =>
-            DeliveryActions.loadDeliverySuccess({
-              delivery: data.data.sales_delivery,
-            })
+              DeliveryActions.loadDeliverySuccess({
+                delivery: data.data.sales_delivery,
+              })
           ),
-          catchError((error) =>
-            of(DeliveryActions.loadDeliveryFailure({ error }))
+          catchError((error) => {
+            this.notificationService.showToast('error', 'Erreur de chargement', error);
+            return of(DeliveryActions.loadDeliveryFailure({ error }))
+          }
           )
         )
       )
@@ -42,8 +45,10 @@ export class DeliveryEffects {
             })
           }
           ),
-          catchError((error) =>
-            of(DeliveryActions.loadDeliveryByIdFailure({ error }))
+          catchError((error) => {
+            this.notificationService.showToast('error', 'Erreur de chargement', error);
+            return of(DeliveryActions.loadDeliveryByIdFailure({ error }))
+          }
           )
         )
       )
@@ -57,32 +62,30 @@ export class DeliveryEffects {
         this.deliveryService.insertOne(action.delivery).pipe(
           map((data) => {
             this.router.navigate(['/sales/delivery']);
+            this.notificationService.showNotifToast({
+              message: 'Ajoutée avec succès',
+              operation: 'success',
+              title: 'Ventes',
+              time: new Date(),
+              icon: 'checked',
+              route: 'sales/delivery',
+              color: 'primary'
+            })
             return DeliveryActions.addDeliverySuccess({
               delivery: <DeliveryForm>data.data.insert_sales_delivery_one
               ,
             });
           }),
-          catchError((error) =>
-            of(DeliveryActions.addDeliveryFailure({ error }))
+          catchError((error) => {
+            this.notificationService.showToast('error', 'Erreur d\'ajout', error);
+            return of(DeliveryActions.addDeliveryFailure({ error }))
+          }
           )
         )
       )
     )
   );
 
-  // removeDelivery$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(DeliveryActions.removeDelivery),
-  //     mergeMap((action) =>
-  //       this.deliveryService.deleteMany(action.ids).pipe(
-  //         map(() => DeliveryActions.removeDeliverySuccess({ids: []})),
-  //         catchError((error) =>
-  //           of(DeliveryActions.removeDeliveryFailure({ error }))
-  //         )
-  //       )
-  //     )
-  //   )
-  // );
 
   updateDelivery$ = createEffect(() =>
     this.actions$.pipe(
@@ -100,8 +103,10 @@ export class DeliveryEffects {
             })
           ),
           tap((e) => this.router.navigate(['/sales/delivery'])),
-          catchError((error) =>
-            of(DeliveryActions.updateDeliveryFailure({ error }))
+          catchError((error) => {
+            this.notificationService.showToast('error', 'Erreur de mise à jour', error);
+            return of(DeliveryActions.updateDeliveryFailure({ error }))
+          }
           )
         )
       )
@@ -113,11 +118,22 @@ export class DeliveryEffects {
       ofType(DeliveryActions.removeDelivery),
       mergeMap((action) =>
         this.deliveryService.deleteMany(action.ids).pipe(
-          map((data) =>
-            DeliveryActions.removeDeliverySuccess({ ids: action.ids })
+          map((data) => {
+              this.notificationService.showNotifToast({
+                message: 'Supprimée avec succès',
+                operation: 'info',
+                title: 'Livraison',
+                icon: 'closed',
+                route: 'sales/delivery',
+                color: 'warn'
+              })
+              return DeliveryActions.removeDeliverySuccess({ ids: action.ids })
+            }
           ),
-          catchError((error) =>
-            of(DeliveryActions.removeDeliveryFailure({ error }))
+          catchError((error) => {
+            this.notificationService.showToast('error', 'Erreur de suppression', error);
+            return of(DeliveryActions.removeDeliveryFailure({ error }))
+          }
           )
         )
       )
@@ -127,6 +143,7 @@ export class DeliveryEffects {
   constructor(
     private router: Router,
     private actions$: Actions,
-    private deliveryService: DeliveryService
+    private deliveryService: DeliveryService,
+    private notificationService: NotificationFacadeService,
   ) {}
 }

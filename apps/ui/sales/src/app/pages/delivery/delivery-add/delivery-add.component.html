@@ -22,6 +22,7 @@
       <mat-toolbar class="header-info"> Lignes de livraison </mat-toolbar>
       <ngx-delivery-line
         *ngIf="(orderLines$ | async) || delivery; let orderLines"
+        [update]="!!delivery?.delivery_lines"
         [deliveryLines]="delivery?.delivery_lines"
         [data]="orderLines"
         #table

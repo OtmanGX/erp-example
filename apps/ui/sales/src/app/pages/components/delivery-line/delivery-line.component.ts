@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DeliveryLine, Product_draft } from '@tanglass-erp/core/sales';
-import { Column, ColumnType } from '@tanglass-erp/material';
+import { Column, ColumnType, TableComponent } from '@tanglass-erp/material';
 
 @Component({
   selector: 'ngx-delivery-line',
@@ -8,15 +8,34 @@ import { Column, ColumnType } from '@tanglass-erp/material';
   styleUrls: ['./delivery-line.component.scss'],
 })
 export class DeliveryLineComponent implements OnInit {
+  @ViewChild('table', {read: TableComponent}) table: TableComponent<Product_draft>;
+  _data: Product_draft[] = [];
+  @Input() update: boolean = false;
   @Input()
-  public data: Product_draft[] = [];
+  public set data(data) {
+    this._data = data;
+    if (!this.update)
+      this.deliveryLines = data.map((elem) => ({
+        product: elem.id,
+        quantity: elem.quantity,
+        delivered: 0,
+        company_name: elem.company_name,
+        toDeliver: 0,
+        isReturned: false,
+        product_label: elem.label,
+      }));
+    else this.deliveryLines = [
+      ...this.deliveryLines.map(e => ({...e, toDeliver: 0}))
+    ]
+    this.table;
+  }
+
+  public get data() {
+    return this._data;
+  }
 
   @Input()
   public deliveryLines: Array<DeliveryLine> = [];
-  //   [ // For testing purpose
-  //   { product: 'article1', total: 6, delivered: 4, company: 'Tanglass', toDeliver: 0, isReturned: true },
-  //   { product: 'article2', total: 5, delivered: 5, company: 'Glassinox', toDeliver: 0 },
-  // ];
   displayedColumns: Array<Column> = [
     { title: 'Article', key: 'product_label', type: ColumnType.normal },
     { title: 'Demande', key: 'qte', type: ColumnType.template, withRow: true },
@@ -40,19 +59,7 @@ export class DeliveryLineComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    if (!this.deliveryLines)
-      this.deliveryLines = this.data.map((elem) => ({
-        product: elem.id,
-        quantity: elem.quantity,
-        delivered: 0,
-        company_name: elem.company_name,
-        toDeliver: 0,
-        isReturned: true,
-        product_label: elem.label,
-      }));
-    else this.deliveryLines = [
-      ...this.deliveryLines.map(e => ({...e, toDeliver: 0}))
-    ]
+
   }
 
 
