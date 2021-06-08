@@ -6,10 +6,8 @@ import { Draft } from '@tanglass-erp/core/sales';
 /*****LOAD Drafts ** */
 /****************************************************************** */
 
-export const loadDraft = createAction(
-  '[Draft] Load Draft',
-  props<{ id: any }>()
-
+export const loadDrafts = createAction(
+  '[Draft] Load Draft'
   );
 
 export const loadDraftSuccess = createAction(
@@ -84,13 +82,13 @@ export const updateDraftFailure = createAction(
 /*****REMOVE INDIVIDUAL Draft ** */
 /****************************************************************** */
 
-export const removeDraft = createAction(
+export const removeDrafts = createAction(
   '[List drafts Component] Delete Draft',
-  props<{ draftId: any }>()
+  props<{ ids: number[] }>()
 );
 export const removeDraftSuccess = createAction(
   '[Draft Effect] Delete Draft Success',
-  props<{ draftId: any }>()
+  props<{ ids: number[] }>()
 );
 export const removeDraftFailure = createAction(
   '[Draft Effect] Delete Draft failure',

@@ -2,7 +2,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as OrdersActions from './orders.actions';
-import  {Order as OrdersEntity } from "@tanglass-erp/core/sales";
+import {Order as OrdersEntity } from "@tanglass-erp/core/sales";
 
 export const ORDERS_FEATURE_KEY = 'orders';
 
@@ -35,10 +35,9 @@ const ordersReducer = createReducer(
   on(OrdersActions.loadOrdersSuccess, (state, { orders }) =>
     ordersAdapter.setAll(orders, { ...state, loaded: true })
   ),
-  on(OrdersActions.loadOrdersFailure, (state, { error }) => ({
-    ...state,
-    error,
-  })),
+  on(OrdersActions.removeOrderSuccess, (state, {ids}) =>
+    ordersAdapter.removeMany(ids, state)
+  ),
   on(OrdersActions.selectOrder, (state, { id }) => ({
     ...state,
     selectedId: id,
@@ -46,6 +45,16 @@ const ordersReducer = createReducer(
   on(OrdersActions.clearSelection, (state) => ({
     ...state,
     selectedId: null,
+  })),
+  on(
+    OrdersActions.loadOrdersFailure,
+    OrdersActions.loadOrderByIdFailure,
+    OrdersActions.addOrderFailure,
+    OrdersActions.updateOrderFailure,
+    OrdersActions.removeOrderFailure,
+    (state, {error}) => ({
+    ...state,
+    error,
   })),
 );
 

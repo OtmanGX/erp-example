@@ -70,6 +70,20 @@ export class DeliveryEffects {
     )
   );
 
+  // removeDelivery$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(DeliveryActions.removeDelivery),
+  //     mergeMap((action) =>
+  //       this.deliveryService.deleteMany(action.ids).pipe(
+  //         map(() => DeliveryActions.removeDeliverySuccess({ids: []})),
+  //         catchError((error) =>
+  //           of(DeliveryActions.removeDeliveryFailure({ error }))
+  //         )
+  //       )
+  //     )
+  //   )
+  // );
+
   updateDelivery$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DeliveryActions.updateDelivery),
@@ -98,7 +112,7 @@ export class DeliveryEffects {
     this.actions$.pipe(
       ofType(DeliveryActions.removeDelivery),
       mergeMap((action) =>
-        of(null).pipe(
+        this.deliveryService.deleteMany(action.ids).pipe(
           map((data) =>
             DeliveryActions.removeDeliverySuccess({ ids: action.ids })
           ),

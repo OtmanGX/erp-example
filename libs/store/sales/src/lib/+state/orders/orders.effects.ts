@@ -17,15 +17,25 @@ export class OrdersEffects {
       mergeMap((action) =>
         this.orderService.getAll().pipe(
           map((data) =>
-          OrdersActions.loadOrdersSuccess({ orders: data.data.sales_order})
+            OrdersActions.loadOrdersSuccess({ orders: data.data.sales_order })
           ),
-          catchError((error) =>
-            of(OrdersActions.loadOrdersFailure({ error }))
-          )
+          catchError((error) => of(OrdersActions.loadOrdersFailure({ error })))
         )
       )
-    )
+    );
   });
 
-  constructor(private actions$: Actions,private orderService:OrderService) {}
+  removeOrders$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(OrdersActions.removeOrders),
+      mergeMap(({ ids }) =>
+        this.orderService.removeMany(ids).pipe(
+          map((data) => OrdersActions.removeOrderSuccess({ ids })),
+          catchError((error) => of(OrdersActions.removeOrderFailure({ error })))
+        )
+      )
+    );
+  });
+
+  constructor(private actions$: Actions, private orderService: OrderService) {}
 }

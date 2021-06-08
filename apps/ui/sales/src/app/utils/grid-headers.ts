@@ -98,7 +98,7 @@ export const deliveryHeaders = [
         headerName: 'ID',
         type: 'linkColumn',
         cellRendererParams: (params) => ({
-          link: `update;id=${params?.data?.id}`,
+          link: ['update', {id : params?.data?.id}],
         }),
       },
       { field: 'status', headerName: 'Etat' },

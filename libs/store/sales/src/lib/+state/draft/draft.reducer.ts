@@ -29,7 +29,7 @@ export const initialDraftState: DraftState = draftAdapter.getInitialState({
 
 const draftReducer = createReducer(
   initialDraftState,
-  on(DraftActions.loadDraft, (state) => ({
+  on(DraftActions.loadDrafts, (state) => ({
     ...state,
     loaded: false,
     error: null,
@@ -42,6 +42,9 @@ const draftReducer = createReducer(
   ),
   on(DraftActions.loadDraftById,
     (state) => ({...state, draftLoadedById: null})
+  ),
+  on(DraftActions.removeDraftSuccess, (state, action) =>
+    draftAdapter.removeMany(action.ids, state)
   ),
   on(DraftActions.loadDraftByIdSuccess,
     (state, {draft}) => ({...state, draftLoadedById: draft})

@@ -25472,6 +25472,45 @@ export type GetServiceConfigByIdQuery = (
   )> }
 );
 
+export type DeleteDeliveryMutationVariables = Exact<{
+  ids?: Array<Scalars['uuid']>;
+}>;
+
+
+export type DeleteDeliveryMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_delivery?: Maybe<(
+    { __typename?: 'sales_delivery_mutation_response' }
+    & Pick<Sales_Delivery_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type DeleteDraftsMutationVariables = Exact<{
+  ids?: Array<Scalars['Int']>;
+}>;
+
+
+export type DeleteDraftsMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_draft?: Maybe<(
+    { __typename?: 'sales_draft_mutation_response' }
+    & Pick<Sales_Draft_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type DeleteOrdersMutationVariables = Exact<{
+  ids?: Array<Scalars['Int']>;
+}>;
+
+
+export type DeleteOrdersMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_order?: Maybe<(
+    { __typename?: 'sales_order_mutation_response' }
+    & Pick<Sales_Order_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type DeleteProductDraftMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -28445,6 +28484,60 @@ export const GetServiceConfigByIdDocument = gql`
   })
   export class GetServiceConfigByIdGQL extends Apollo.Query<GetServiceConfigByIdQuery, GetServiceConfigByIdQueryVariables> {
     document = GetServiceConfigByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteDeliveryDocument = gql`
+    mutation DeleteDelivery($ids: [uuid!]! = []) {
+  delete_sales_delivery(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteDeliveryGQL extends Apollo.Mutation<DeleteDeliveryMutation, DeleteDeliveryMutationVariables> {
+    document = DeleteDeliveryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteDraftsDocument = gql`
+    mutation deleteDrafts($ids: [Int!]! = []) {
+  delete_sales_draft(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteDraftsGQL extends Apollo.Mutation<DeleteDraftsMutation, DeleteDraftsMutationVariables> {
+    document = DeleteDraftsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteOrdersDocument = gql`
+    mutation deleteOrders($ids: [Int!]! = []) {
+  delete_sales_order(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteOrdersGQL extends Apollo.Mutation<DeleteOrdersMutation, DeleteOrdersMutationVariables> {
+    document = DeleteOrdersDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

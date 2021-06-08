@@ -9,7 +9,7 @@ import {
   GetAllDraftsGQL,
   GetDraftByIdGQL,
   GetProductsByTypeGQL,
-  GetProductsGroupGQL,
+  DeleteDraftsGQL,
   Sales_Product_Type_Enum
 } from '@tanglass-erp/infrastructure/graphql';
 import { Product_draft } from "../models/product";
@@ -25,14 +25,15 @@ export class DraftService {
     private insertService: InsertServiceDraftGQL,
     private insertAccessory: InsertAccessoryDraftGQL,
     private deleteProductDraft: DeleteProductDraftGQL,
+    private deleteDraftsGQL: DeleteDraftsGQL,
     private getProductsByTypeGQL: GetProductsByTypeGQL,
     private getAllDraftsGQL: GetAllDraftsGQL,
     private getDraftByIdGQL: GetDraftByIdGQL
-  ) { 
+  ) {
   }
 
   getAll() {
- 
+
 
     return this.getAllDraftsGQL.watch().valueChanges
 
@@ -53,7 +54,8 @@ export class DraftService {
   removeOne(id: string) {
   }
 
-  removeMany(ids: string[]) {
+  removeMany(ids: number[]) {
+    return this.deleteDraftsGQL.mutate({ids});
   }
   //Get all the products in a draft (order or quotation)
   getDraftPorducts(draft_id: number) {
@@ -84,24 +86,24 @@ export class DraftService {
     return this.getProductsByTypeGQL.watch({ draft_id, type: Sales_Product_Type_Enum.Consommable }).valueChanges
   }
 
-  //add Glass to  a Draft (order or quotation ) 
+  //add Glass to  a Draft (order or quotation )
   addGlass(createdItem: Product_draft) {
     return this.insertGlass.mutate(createdItem)
   }
 
-  //add Consumable to  a Draft (order or quotation ) 
+  //add Consumable to  a Draft (order or quotation )
 
   addConsumable(createdItem: Product_draft) {
     return this.insertConsumable.mutate(createdItem)
   }
 
-  //add Accessory to  a Draft (order or quotation ) 
+  //add Accessory to  a Draft (order or quotation )
 
   addAccessory(createdItem: Product_draft) {
     return this.insertAccessory.mutate(createdItem)
   }
 
-  //add Service to  a Draft (order or quotation ) 
+  //add Service to  a Draft (order or quotation )
 
   addService(createdItem: Product_draft) {
     return this.insertService.mutate(createdItem)
