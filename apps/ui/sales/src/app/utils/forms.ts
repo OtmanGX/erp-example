@@ -40,17 +40,17 @@ const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?
     validations: [REQUIRED]
   },
   {
-    type: "date",
-    name: "predicted_date",
-    label: "Date prévue",
-    value: data?.predicted_date,
-    inputType: "text",
-  },
-  {
     type: "checkbox",
     name: "isReturned",
     label: "Retourné ?",
     value: data?.isReturned,
+    inputType: "text",
+  },
+  {
+    type: "date",
+    name: "predicted_date",
+    label: "Date prévue",
+    value: data?.predicted_date,
     inputType: "text",
   },
   {

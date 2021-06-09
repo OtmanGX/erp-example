@@ -17,7 +17,7 @@ export class DeliveryLineComponent implements OnInit {
     if (!this.update)
       this.deliveryLines = data.map((elem) => ({
         product: elem.id,
-        quantity: elem.quantity,
+        quantity: elem.quantity - (elem?.delivered || 0),
         delivered: 0,
         amount: 0,
         toDeliver: 0,

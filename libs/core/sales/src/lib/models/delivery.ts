@@ -30,7 +30,7 @@ export interface InsertedDeliveryForm extends MetaData {
   order: number;
   status: DeliveryStatus;
   predicted_date: Date;
-  isReturned: boolean;
+  isReturned?: boolean;
   client: string;
   company: string;
   contact: string;
