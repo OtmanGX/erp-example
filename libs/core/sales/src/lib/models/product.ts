@@ -9,6 +9,7 @@ export interface Product_draft{
     quantity?:number;
     price?:number;
     total_price?:number;
+    delivered?: number;
     company_name ?:string;
     company_id?:string;
     m2?:number;

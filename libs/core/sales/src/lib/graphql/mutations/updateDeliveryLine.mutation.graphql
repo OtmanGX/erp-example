@@ -1,21 +1,17 @@
 mutation UpdateDeliveryLine(
   $amount: numeric
-  $company_name: String
-  $delivered: Int
+  $delivered: numeric
   $id: uuid!
-  $isReturned: Boolean
   $product: uuid!
   $product_label: String
-  $quantity: Int
+  $quantity: numeric
 ) {
   update_sales_delivery_line_by_pk(
     pk_columns: { id: $id }
     _set: {
       amount: $amount
-      company_name: $company_name
       delivered: $delivered
       id: $id
-      isReturned: $isReturned
       product: $product
       product_label: $product_label
       quantity: $quantity
@@ -23,9 +19,7 @@ mutation UpdateDeliveryLine(
   ) {
     id
     amount
-    company_name
     delivered
-    isReturned
     product
     product_label
     quantity

@@ -4,6 +4,7 @@ mutation UpdateDelivery(
   $contact: uuid
   $company: uuid
   $client: uuid
+  $isReturned: Boolean
   $predicted_date: date
   $status: String!
 ) {
@@ -15,6 +16,7 @@ mutation UpdateDelivery(
       company: $company
       client: $client
       predicted_date: $predicted_date
+      isReturned: $isReturned
       status: $status
     }
   ) {
@@ -23,6 +25,7 @@ mutation UpdateDelivery(
     status
     company
     payment_method
+    isReturned
     predicted_date
     client
     contact

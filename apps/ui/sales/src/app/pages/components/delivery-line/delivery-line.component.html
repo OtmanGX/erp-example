@@ -6,7 +6,6 @@
       delivered: delivered,
       qte: qte,
       rest: rest,
-      isReturned: isReturned,
       stock_state: state,
       amount: amount
     }"
@@ -31,13 +30,6 @@
   <div [ngClass]="item.quantity - item.delivered ? 'text-danger' : 'text-success'">
     {{ item.quantity - item.delivered }}
   </div>
-</ng-template>
-
-<ng-template let-item="data" #isReturned>
-  <mat-slide-toggle
-    [checked]="item.isReturned"
-    (change)="switchReturned(item, $event.checked)"
-  ></mat-slide-toggle>
 </ng-template>
 
 <ng-template let-item="data" #amount>

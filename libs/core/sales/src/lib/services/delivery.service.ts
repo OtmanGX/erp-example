@@ -53,10 +53,8 @@ export class DeliveryService {
           product: e.product,
           amount: e.amount,
           delivered: e.delivered,
-          company_name: e.company_name,
           quantity: e.quantity,
           product_label: e.product_label,
-          isReturned: e.isReturned,
         };
         return this.updateDeliveryLineGQL.mutate(deliveryLine);
       })

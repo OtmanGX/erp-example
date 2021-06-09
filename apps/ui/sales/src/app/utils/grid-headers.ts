@@ -111,6 +111,10 @@ export const deliveryHeaders = [
         headerName: 'Date prévue',
         type: 'dateColumn',
       },
+      {
+        field: 'isReturned',
+        headerName: 'Retourné',
+      },
     ],
   },
   {

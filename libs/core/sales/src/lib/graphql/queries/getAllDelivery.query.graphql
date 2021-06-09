@@ -8,6 +8,7 @@ query getAllDelivery {
     }
     payment_method
     predicted_date
+    isReturned
     client: customer {
       name
       mail
