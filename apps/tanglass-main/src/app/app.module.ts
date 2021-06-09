@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import {registerLocaleData} from "@angular/common";
+import localeFr from '@angular/common/locales/fr';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -10,6 +12,7 @@ import { InfrastructureGraphqlModule } from '@tanglass-erp/infrastructure/graphq
 import { AuthGuard, AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment as env } from '../environments/environment.prod';
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,9 +27,14 @@ import { environment as env } from '../environments/environment.prod';
         ...env.httpInterceptor,
       },
     }),
-    ToastrModule.forRoot({
-      positionClass : 'toast-bottom-right'
-    }),
+    ToastrModule.forRoot(
+      {
+        disableTimeOut: true,
+        positionClass: 'toast-top-center',
+        preventDuplicates: true,
+        closeButton: true
+      }
+    ),
     RouterModule.forRoot([{ path: '', canActivate: [AuthGuard], loadChildren: () =>
         import('./pages/pages.module').then(m => m.PagesModule) }], { initialNavigation: 'enabled' }),
   ],
@@ -36,6 +44,7 @@ import { environment as env } from '../environments/environment.prod';
       useClass: AuthHttpInterceptor,
       multi: true,
     },
+    { provide: LOCALE_ID, useValue: "fr" },
   ],
 
   bootstrap: [AppComponent],

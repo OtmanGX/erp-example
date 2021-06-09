@@ -2,20 +2,13 @@
   
 query GetAllUsers {
   management_userProfile {
-    id
+    CIN
     active
     firstname
+    id
     lastname
     phone
+    role
     username
-    user_role {
-      name
-      description
-    }
-    SalesPoint {
-      name
-      address
-      phone
-    }
   }
 }

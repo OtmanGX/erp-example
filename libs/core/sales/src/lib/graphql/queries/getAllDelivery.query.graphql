@@ -1,0 +1,22 @@
+query getAllDelivery {
+  sales_delivery{
+    id
+    order
+    status
+    company: companyObject{
+      name
+    }
+    payment_method
+    predicted_date
+    isReturned
+    client: customer {
+      name
+      mail
+    }
+    contact: contactByContact {
+      mail
+      name
+      phone
+    }
+  }
+}

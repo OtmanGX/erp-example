@@ -35,7 +35,9 @@
     class="topbar-button-right"
   >
     <mat-icon>notifications</mat-icon>
-    <span class="notification-number mat-bg-warn">3</span>
+    <span *ngIf="notifications$ | async; let notifications" class="notification-number mat-bg-warn">
+      {{notifications}}
+    </span>
   </button>
   <!-- Top left user menu -->
   <button
@@ -47,7 +49,7 @@
   </button>
 
   <mat-menu #accountMenu="matMenu">
-    <button disabled mat-menu-item [routerLink]="['/profile/overview']">
+    <button mat-menu-item [routerLink]="['/profile/overview']">
       <mat-icon>account_box</mat-icon>
       <span>Profile</span>
     </button>

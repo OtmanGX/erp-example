@@ -6,7 +6,7 @@ import { AppState } from '@tanglass-erp/store/app';
 import * as transferOrderActions from '@TanglassStore/inventory/lib/actions/transferOrder.actions';
 import * as TranserOrderSelectors from '@TanglassStore/inventory/lib/selectors/trasnferOrder.selectors';
 import { ActivatedRoute } from '@angular/router';
-import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
+import { GridPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { orderItemsHeaders } from '@TanglassUi/inventory/utils/grid-headers';
 import { takeUntil } from 'rxjs/operators';
@@ -33,6 +33,9 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   columnDefs;
   columnId = "id";
   mainGrid: MainGridComponent;
+  permissions: GridPermissions = {
+    deliver: true
+  }
   constructor(private store: Store<AppState>,
               public dialog: MatDialog,
               public route: ActivatedRoute) {

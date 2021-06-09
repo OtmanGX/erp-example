@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 interface IMenuItem {
   type: string; // Possible values: link/dropDown/separator/extLink
@@ -11,6 +11,7 @@ interface IMenuItem {
   sub?: IChildItem[]; // Dropdown items
   badges?: IBadge[];
 }
+
 interface IChildItem {
   type?: string;
   name: string; // Display text
@@ -26,150 +27,192 @@ interface IBadge {
 
 @Injectable()
 export class NavigationService {
-  constructor() {}
+  constructor() {
+  }
+
   iconMenu: IMenuItem[] = [
 
     {
-      name: "Dashboard",
-      type: "link",
-      tooltip: "Dashboard",
-      icon: "dashboard",
-      state: "dashboard/analytics"
+      name: 'Dashboard',
+      type: 'link',
+      tooltip: 'Dashboard',
+      icon: 'dashboard',
+      state: 'dashboard/analytics'
     },
     // *** Management ***
     {
-      name: "Management",
-      type: "separator"
+      name: 'Management',
+      type: 'separator'
     },
     {
-      name: "Employées",
-      type: "link",
-      icon: "badge",
-      state: "management/users"
+      name: 'Employées',
+      type: 'link',
+      icon: 'badge',
+      state: 'management/users'
     },
     {
-      name: "Sociétés",
-      type: "link",
-      icon: "business",
-      state: "management/companies"
+      name: 'Sociétés',
+      type: 'link',
+      icon: 'business',
+      state: 'management/companies'
     },
     {
-      name: "Points de vente",
-      type: "link",
-      icon: "store",
-      state: "management/salePoints"
+      name: 'Points de vente',
+      type: 'link',
+      icon: 'store',
+      state: 'management/salePoints'
     },
     // *** Contact ***
     {
-      name: "Contact",
-      type: "separator"
+      name: 'Contact',
+      type: 'separator'
     },
     {
-      name: "Contacts",
-      type: "link",
-      icon: "contacts",
-      state: "contact/contact"
+      name: 'Contacts',
+      type: 'link',
+      icon: 'contacts',
+      state: 'contact/contact'
     },
     {
-      name: "Fournisseurs",
-      type: "link",
-      icon: "production_quantity_limits",
-      state: "contact/provider"
+      name: 'Fournisseurs',
+      type: 'link',
+      icon: 'production_quantity_limits',
+      state: 'contact/provider'
     },
     {
-      name: "Clients",
-      type: "link",
-      icon: "assignment_ind",
-      state: "contact/customer"
+      name: 'Clients',
+      type: 'link',
+      icon: 'assignment_ind',
+      state: 'contact/customer'
     },
     // *** Inventory ***
     {
-      name: "Stock",
-      type: "separator"
+      name: 'Stock',
+      type: 'separator'
     },
     {
-      name: "Emplacements",
-      type: "link",
-      icon: "assignment_ind",
-      state: "inventory/warehouses"
+      name: 'Emplacements',
+      type: 'link',
+      icon: 'assignment_ind',
+      state: 'inventory/warehouses'
     },
     {
-      name: "Etat de stock",
-      type: "dropDown",
-      icon: "assignment_ind",
-      tooltip: "Pages",
+      name: 'Etat de stock',
+      type: 'dropDown',
+      icon: 'assignment_ind',
+      tooltip: 'Pages',
       // badges: [{color: 'primary', value: '6'}],
       // state: "inventory/warehouses",
       sub: [
-        { name: "Produit Stockable", state: "inventory/warehouse-glasse" },
-        { name: "Accessoires ", state: "inventory/warehouse-accessory" },
-        { name: "Consommables && MP", state: "inventory/warehouse-consumable" },
+        { name: 'Produit Stockable', state: 'inventory/warehouse-glasse' },
+        { name: 'Accessoires ', state: 'inventory/warehouse-accessory' },
+        { name: 'Consommables && MP', state: 'inventory/warehouse-consumable' }
       ]
     },
 
 
     {
-      name: "Transfert",
-      type: "dropDown",
-      icon: "assignment_ind",
-      tooltip: "Pages",
+      name: 'Transfert',
+      type: 'dropDown',
+      icon: 'assignment_ind',
+      tooltip: 'Pages',
       sub: [
         { name: "Commande transfert", state: "inventory/transfer" },
         { name: "Transferts réalisés", state: "inventory/transferred" },
       ]
     },
     {
-      name: "Mouvement de stock",
-      type: "dropDown",
-      icon: "assignment_ind",
-      tooltip: "Pages",
+      name: 'Mouvement de stock',
+      type: 'dropDown',
+      icon: 'assignment_ind',
+      tooltip: 'Pages',
       sub: [
         { name: "Réception fournisseur", state: "purchase/reception" },
         { name: "Retour fournisseur", state: "purchase/returned" },
-
       ]
     },
     // *** Product ***
     {
-      name: "Product",
-      type: "separator"
+      name: 'Product',
+      type: 'separator'
     },
     {
-      name: "Produit Stockable",
+      name: 'Produit Stockable',
+      type: 'link',
+      icon: 'assignment_ind',
+      state: 'product/glass'
+    },
+    {
+      name: 'Accessoires',
+      type: 'link',
+      icon: 'assignment_ind',
+      state: 'product/accessory'
+    },
+    {
+      name: "Article Clients",
       type: "link",
       icon: "assignment_ind",
-      state: "product/glass"
+      state: "product/customerProduct"
     },
     {
       name: "Accessoires",
       type: "link",
       icon: "assignment_ind",
       state: "product/accessory"
+    },{
+      name: 'Fournitures',
+      type: 'link',
+      icon: 'assignment_ind',
+      state: 'product/supplies'
     },
     {
-      name: "Fournitures",
-      type: "link",
-      icon: "assignment_ind",
-      state: "product/supplies"
+      name: 'Consommables && MP',
+      type: 'link',
+      icon: 'assignment_ind',
+      state: 'product/consumable'
     },
     {
-      name: "Consommables && MP",
-      type: "link",
-      icon: "assignment_ind",
-      state: "product/consumable"
+      name: 'Service',
+      type: 'link',
+      icon: 'assignment_ind',
+      state: 'product/service'
+    },
+    // *** Sales ***
+    {
+      name: 'Ventes',
+      type: 'separator'
     },
     {
-      name: "Service",
-      type: "link",
-      icon: "assignment_ind",
-      state: "product/service"
+      name: 'Brouillons',
+      type: 'link',
+      icon: 'assignment_ind',
+      state: 'sales/draft'
     },
+    {
+      name: 'Devis',
+      type: 'link',
+      icon: 'assignment_ind',
+      state: 'sales/quotation'
+    },
+    {
+      name: 'Commandes',
+      type: 'link',
+      icon: 'assignment_ind',
+      state: 'sales/order'
+    },
+    {
+      name: 'Livraison',
+      type: 'link',
+      icon: 'assignment_ind',
+      tooltip: 'Livraison',
+      state: 'sales/delivery'
+    }
   ];
 
 
   // Icon menu TITLE at the very top of navigation.
   // This title will appear if any icon type item is present in menu.
-  iconTypeMenuTitle: string = "Frequently Accessed";
+  iconTypeMenuTitle: string = 'Frequently Accessed';
   // sets iconMenu as default;
   menuItems = new BehaviorSubject<IMenuItem[]>(this.iconMenu);
   // navigation component has subscribed to this Observable

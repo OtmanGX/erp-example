@@ -26,20 +26,24 @@
       "@TanglassUi/contact/*": ["./apps/ui/contact/src/app/*"],
       "@TanglassUi/purchase/*": ["./apps/ui/purchase/src/app/*"],
       "@TanglassUi/product/*": ["./apps/ui/product/src/app/*"],
+      "@TanglassUi/sales/*": ["./apps/ui/sales/src/app/*"],
       "@TanglassCore/*": ["./libs/tanglass-core/src/*"],
       "@TanglassTheme/*": ["./libs/theme/tanglass-theme/src/*"],
       "@TanglassRouting/*": ["./apps/tanglass-routing/src/app/*"],
+        //      Store
       "@TanglassStore/management/*": ["libs/store/managment/src/*"],
       "@TanglassStore/contact/*": ["libs/store/contact/src/*"],
       "@TanglassStore/inventory/*": ["libs/store/inventory/src/*"],
       "@TanglassStore/product/*": ["libs/store/product/src/*"],
       "@TanglassStore/shared/*": ["libs/store/shared/src/*"],
+        //      Libs
       "@tanglass-erp/material": ["libs/theme/material/src/index.ts"],
       "@tanglass-erp/store/app": ["libs/store/app/src/index.ts"],
       "@tanglass-erp/ag-grid": ["libs/ag-grid/src/index.ts"],
       "@tanglass-erp/infrastructure/graphql": [
         "libs/infrastructure/graphql/src/index.ts"
       ],
+      //      Core
       "@tanglass-erp/core/management": ["libs/core/management/src/index.ts"],
       "@tanglass-erp/core/product": ["libs/core/product/src/index.ts"],
       "@tanglass-erp/core/contact": ["libs/core/contact/src/index.ts"],
@@ -47,7 +51,9 @@
       "@tanglass-erp/core/inventory": ["libs/core/inventory/src/index.ts"],
       "@tanglass-erp/store/inventory": ["libs/store/inventory/src/index.ts"],
       "@tanglass-erp/store/shared": ["libs/store/shared/src/index.ts"],
-      "@tanglass-erp/core/common": ["libs/core/common/src/index.ts"]
+      "@tanglass-erp/core/common": ["libs/core/common/src/index.ts"],
+      "@tanglass-erp/store/sales": ["libs/store/sales/src/index.ts"],
+      "@tanglass-erp/core/sales": ["libs/core/sales/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

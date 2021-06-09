@@ -12,6 +12,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { StoreAppModule } from '../../../../../libs/store/app/src/lib/store-app.module';
+import { AuthGuard } from '@auth0/auth0-angular';
+import { ProfileComponent } from './auth/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
@@ -26,7 +29,18 @@ const routes: Routes = [
       },
       {
         path: "dashboard/analytics",
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: "profile",
+        children: [
+          {
+            path: 'overview',
+            data: { title: 'Profile', breadcrumb: "" },
+            component: ProfileComponent
+          }
+        ]
       },
       {
         path: 'management',
@@ -53,6 +67,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('@TanglassUi/purchase/purchase.module').then(m => m.PurchaseModule),
       },
+      {
+        path: 'sales',
+        loadChildren: () =>
+          import('@TanglassUi/sales/sales.module').then(m => m.SalesModule),
+      },
     ]},
   {
     path: "**",
@@ -61,7 +80,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PagesComponent, NotFoundComponent, DashboardComponent],
+  declarations: [PagesComponent, NotFoundComponent, DashboardComponent, ProfileComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -70,6 +89,7 @@ const routes: Routes = [
     StoreModule.forRoot(reducers, {}),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot(),
+    StoreAppModule,
     PerfectScrollbarModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')

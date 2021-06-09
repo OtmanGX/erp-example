@@ -32,13 +32,15 @@ export interface InsertedServiceConfig extends MetaData {
 
 }
 
-//
+
 export interface Service {
   id?: string;
   serviceConfig?: ServiceConfig;
   product?: Product;
   paramValues?:any;
 }
+ 
+
 
 export interface DetailedService extends MetaData{
   id: string;

@@ -69,6 +69,12 @@ const regConfigEmployee = (data?, salePoints = []) => [
       REQUIRED
     ]
   },
+  {type: "input", label: "Email", inputType: "text", name: "email", value: null,
+  validations: [
+    REQUIRED
+  ]  },
+  {type: "input", label: "CIN", inputType: "text", name: "CIN", value: null,
+ },
   {type: "input", label: "Mot de passe", inputType: "password", name: "password", value: null,
   validations: PASSWORD
   },
@@ -80,7 +86,7 @@ const regConfigEmployee = (data?, salePoints = []) => [
   {type: "select", label: "Point de vente", inputType: "text", name: "phone", value: data?.SalesPoint,
     options: salePoints.map(item => ({key: item.id, value: item.name}))
   },
-  {type: "select", label: "Role", inputType: "text", name: "phone", value: data?.user_role,
+  {type: "select", label: "Role", inputType: "text", name: "role", value: data?.user_role,
     options: Object.values(Management_User_Role_Enum).map(item => ({key : item, value: item})),
     validations: [
       REQUIRED
@@ -89,6 +95,7 @@ const regConfigEmployee = (data?, salePoints = []) => [
   { type: "checkbox", label: "Active", inputType: "text", name: "active",
     value: data?.active ?? true,
   },
+
 ];
 
 

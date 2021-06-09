@@ -1,0 +1,19 @@
+<mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon color="primary">attach_money</mat-icon>
+    </button>
+    <span>Montants!</span>
+    <span class="example-spacer"></span>
+</mat-toolbar>
+<app-table #amountTable [data]="dataSource" 
+[templates]="{ action: action }"
+  [columnsToShow]="displayedColumns">
+</app-table>
+<ng-template #action let-item="data">
+  <button *ngIf="!isCardMode" mat-stroked-button color="primary" (click)="addPayment()">
+    <mat-icon   color="primary" class="example-icon" aria-hidden="false" aria-label="Example add icon">
+      add_circle
+    </mat-icon>
+    paiement
+  </button>
+</ng-template>

@@ -41,7 +41,7 @@ export class EmployeeCardComponent implements OnInit {
               {label: 'Téléphone', value: data?.phone, type: 'phone'},
               {label: 'CIN', value: data?.CIN},
               {label: 'Rejoignez à', value: data?.joinUs, type: 'date'},
-              {label: 'Role', value: data?.user_role.name},
+              {label: 'Role', value: data?.role},
               {label: 'Active', value: data?.active ? 'oui' : 'non'},
               {label: 'Point de vente', value: ''},
               { label: 'createdAt', value: data?.createdAt },

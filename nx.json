@@ -106,6 +106,19 @@
     "ui-purchase-e2e": {
       "tags": [],
       "implicitDependencies": ["ui-purchase"]
+    },
+    "store-sales": {
+      "tags": []
+    },
+    "core-sales": {
+      "tags": []
+    },
+    "ui-sales": {
+      "tags": []
+    },
+    "ui/sales-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-sales"]
     }
   }
 }

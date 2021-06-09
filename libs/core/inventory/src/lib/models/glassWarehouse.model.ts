@@ -16,6 +16,6 @@ export interface SubstanceGlass {
 export interface PartialGlass {
     id: string;
     thickness:number;
-    type:string;
-    color:string;
+    type?:string;
+    color?:string;
 }

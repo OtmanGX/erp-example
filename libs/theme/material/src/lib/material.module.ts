@@ -56,6 +56,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AmountCardComponent } from './components/analytic-cards/amount-card/amount-card.component';
 import { RouterModule } from '@angular/router';
 import { TrendingCardComponent } from './components/analytic-cards/trending-card/trending-card.component';
+import { TableComponent } from './components/table/table.component';
 
 
 const MATERIAL_MODULES = [
@@ -110,7 +111,8 @@ const COMPONENTS = [
   TextareaComponent,
   HeaderComponent,
   AmountCardComponent,
-  TrendingCardComponent
+  TrendingCardComponent,
+  TableComponent
   ];
 
 const DIRECTIVES = [

@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 import { LayoutService } from '../../services/layout.service';
 import { AuthService } from '@auth0/auth0-angular';
+import { NotificationFacadeService } from '@tanglass-erp/store/app';
+import { map } from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-header-side',
@@ -9,6 +12,7 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class HeaderSideComponent implements OnInit {
   @Input() notificPanel;
+  notifications$: Observable<number> = this.notifService.notifications$.pipe(map( val => val.length || null));
   public availableLangs = [{
     name: 'EN',
     code: 'en',
@@ -26,7 +30,8 @@ export class HeaderSideComponent implements OnInit {
     private themeService: ThemeService,
     private layout: LayoutService,
     private renderer: Renderer2,
-    public auth: AuthService
+    public auth: AuthService,
+    private notifService: NotificationFacadeService
   ) {}
   ngOnInit() {
     this.matxThemes = this.themeService.matxThemes;
