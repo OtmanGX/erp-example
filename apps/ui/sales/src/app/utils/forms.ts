@@ -43,7 +43,7 @@ const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?
     type: "checkbox",
     name: "isReturned",
     label: "Retourné ?",
-    value: data?.isReturned,
+    value: data?.isReturned ?? false,
     inputType: "text",
   },
   {

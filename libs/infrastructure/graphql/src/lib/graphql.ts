@@ -5027,6 +5027,14 @@ export type Mutation_Root = {
   delete_sales_glass_draft?: Maybe<Sales_Glass_Draft_Mutation_Response>;
   /** delete single row from the table: "sales.glass_draft" */
   delete_sales_glass_draft_by_pk?: Maybe<Sales_Glass_Draft>;
+  /** delete data from the table: "sales.invoice" */
+  delete_sales_invoice?: Maybe<Sales_Invoice_Mutation_Response>;
+  /** delete single row from the table: "sales.invoice" */
+  delete_sales_invoice_by_pk?: Maybe<Sales_Invoice>;
+  /** delete data from the table: "sales.invoice_delivery" */
+  delete_sales_invoice_delivery?: Maybe<Sales_Invoice_Delivery_Mutation_Response>;
+  /** delete single row from the table: "sales.invoice_delivery" */
+  delete_sales_invoice_delivery_by_pk?: Maybe<Sales_Invoice_Delivery>;
   /** delete data from the table: "sales.order" */
   delete_sales_order?: Maybe<Sales_Order_Mutation_Response>;
   /** delete single row from the table: "sales.order" */
@@ -5251,6 +5259,14 @@ export type Mutation_Root = {
   insert_sales_glass_draft?: Maybe<Sales_Glass_Draft_Mutation_Response>;
   /** insert a single row into the table: "sales.glass_draft" */
   insert_sales_glass_draft_one?: Maybe<Sales_Glass_Draft>;
+  /** insert data into the table: "sales.invoice" */
+  insert_sales_invoice?: Maybe<Sales_Invoice_Mutation_Response>;
+  /** insert data into the table: "sales.invoice_delivery" */
+  insert_sales_invoice_delivery?: Maybe<Sales_Invoice_Delivery_Mutation_Response>;
+  /** insert a single row into the table: "sales.invoice_delivery" */
+  insert_sales_invoice_delivery_one?: Maybe<Sales_Invoice_Delivery>;
+  /** insert a single row into the table: "sales.invoice" */
+  insert_sales_invoice_one?: Maybe<Sales_Invoice>;
   /** insert data into the table: "sales.order" */
   insert_sales_order?: Maybe<Sales_Order_Mutation_Response>;
   /** insert data into the table: "sales.order_delivery_status" */
@@ -5475,6 +5491,14 @@ export type Mutation_Root = {
   update_sales_glass_draft?: Maybe<Sales_Glass_Draft_Mutation_Response>;
   /** update single row of the table: "sales.glass_draft" */
   update_sales_glass_draft_by_pk?: Maybe<Sales_Glass_Draft>;
+  /** update data of the table: "sales.invoice" */
+  update_sales_invoice?: Maybe<Sales_Invoice_Mutation_Response>;
+  /** update single row of the table: "sales.invoice" */
+  update_sales_invoice_by_pk?: Maybe<Sales_Invoice>;
+  /** update data of the table: "sales.invoice_delivery" */
+  update_sales_invoice_delivery?: Maybe<Sales_Invoice_Delivery_Mutation_Response>;
+  /** update single row of the table: "sales.invoice_delivery" */
+  update_sales_invoice_delivery_by_pk?: Maybe<Sales_Invoice_Delivery>;
   /** update data of the table: "sales.order" */
   update_sales_order?: Maybe<Sales_Order_Mutation_Response>;
   /** update single row of the table: "sales.order" */
@@ -6039,6 +6063,31 @@ export type Mutation_RootDelete_Sales_Glass_DraftArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Sales_Glass_Draft_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_InvoiceArgs = {
+  where: Sales_Invoice_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Invoice_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Invoice_DeliveryArgs = {
+  where: Sales_Invoice_Delivery_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Invoice_Delivery_By_PkArgs = {
+  delivery_id: Scalars['uuid'];
+  invoice_id: Scalars['uuid'];
 };
 
 
@@ -6790,6 +6839,34 @@ export type Mutation_RootInsert_Sales_Glass_DraftArgs = {
 export type Mutation_RootInsert_Sales_Glass_Draft_OneArgs = {
   object: Sales_Glass_Draft_Insert_Input;
   on_conflict?: Maybe<Sales_Glass_Draft_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_InvoiceArgs = {
+  objects: Array<Sales_Invoice_Insert_Input>;
+  on_conflict?: Maybe<Sales_Invoice_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Invoice_DeliveryArgs = {
+  objects: Array<Sales_Invoice_Delivery_Insert_Input>;
+  on_conflict?: Maybe<Sales_Invoice_Delivery_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Invoice_Delivery_OneArgs = {
+  object: Sales_Invoice_Delivery_Insert_Input;
+  on_conflict?: Maybe<Sales_Invoice_Delivery_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Invoice_OneArgs = {
+  object: Sales_Invoice_Insert_Input;
+  on_conflict?: Maybe<Sales_Invoice_On_Conflict>;
 };
 
 
@@ -7606,6 +7683,34 @@ export type Mutation_RootUpdate_Sales_Glass_DraftArgs = {
 export type Mutation_RootUpdate_Sales_Glass_Draft_By_PkArgs = {
   _set?: Maybe<Sales_Glass_Draft_Set_Input>;
   pk_columns: Sales_Glass_Draft_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_InvoiceArgs = {
+  _set?: Maybe<Sales_Invoice_Set_Input>;
+  where: Sales_Invoice_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Invoice_By_PkArgs = {
+  _set?: Maybe<Sales_Invoice_Set_Input>;
+  pk_columns: Sales_Invoice_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Invoice_DeliveryArgs = {
+  _set?: Maybe<Sales_Invoice_Delivery_Set_Input>;
+  where: Sales_Invoice_Delivery_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Invoice_Delivery_By_PkArgs = {
+  _set?: Maybe<Sales_Invoice_Delivery_Set_Input>;
+  pk_columns: Sales_Invoice_Delivery_Pk_Columns_Input;
 };
 
 
@@ -10025,6 +10130,10 @@ export type Product_Product = {
   product_companies: Array<Product_Product_Companies>;
   /** An aggregated array relationship */
   product_companies_aggregate: Product_Product_Companies_Aggregate;
+  /** An array relationship */
+  product_drafts: Array<Sales_Product_Draft>;
+  /** An aggregated array relationship */
+  product_drafts_aggregate: Sales_Product_Draft_Aggregate;
   /** An object relationship */
   product_unit: Product_Product_Unit;
   /** An object relationship */
@@ -10070,6 +10179,26 @@ export type Product_ProductProduct_Companies_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Product_Product_Companies_Order_By>>;
   where?: Maybe<Product_Product_Companies_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.product" */
+export type Product_ProductProduct_DraftsArgs = {
+  distinct_on?: Maybe<Array<Sales_Product_Draft_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Product_Draft_Order_By>>;
+  where?: Maybe<Sales_Product_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.product" */
+export type Product_ProductProduct_Drafts_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Product_Draft_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Product_Draft_Order_By>>;
+  where?: Maybe<Sales_Product_Draft_Bool_Exp>;
 };
 
 /** columns and relationships of "product.product_accessory_view" */
@@ -10419,6 +10548,7 @@ export type Product_Product_Bool_Exp = {
   priceMax?: Maybe<Float_Comparison_Exp>;
   priceMin?: Maybe<Float_Comparison_Exp>;
   product_companies?: Maybe<Product_Product_Companies_Bool_Exp>;
+  product_drafts?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_unit?: Maybe<Product_Product_Unit_Bool_Exp>;
   service?: Maybe<Product_Service_Bool_Exp>;
   unit?: Maybe<Product_Product_Unit_Enum_Comparison_Exp>;
@@ -11337,6 +11467,7 @@ export type Product_Product_Insert_Input = {
   priceMax?: Maybe<Scalars['Float']>;
   priceMin?: Maybe<Scalars['Float']>;
   product_companies?: Maybe<Product_Product_Companies_Arr_Rel_Insert_Input>;
+  product_drafts?: Maybe<Sales_Product_Draft_Arr_Rel_Insert_Input>;
   product_unit?: Maybe<Product_Product_Unit_Obj_Rel_Insert_Input>;
   service?: Maybe<Product_Service_Obj_Rel_Insert_Input>;
   unit?: Maybe<Product_Product_Unit_Enum>;
@@ -11414,6 +11545,7 @@ export type Product_Product_Order_By = {
   priceMax?: Maybe<Order_By>;
   priceMin?: Maybe<Order_By>;
   product_companies_aggregate?: Maybe<Product_Product_Companies_Aggregate_Order_By>;
+  product_drafts_aggregate?: Maybe<Sales_Product_Draft_Aggregate_Order_By>;
   product_unit?: Maybe<Product_Product_Unit_Order_By>;
   service?: Maybe<Product_Service_Order_By>;
   unit?: Maybe<Order_By>;
@@ -14040,6 +14172,18 @@ export type Query_Root = {
   sales_glass_draft_aggregate: Sales_Glass_Draft_Aggregate;
   /** fetch data from the table: "sales.glass_draft" using primary key columns */
   sales_glass_draft_by_pk?: Maybe<Sales_Glass_Draft>;
+  /** fetch data from the table: "sales.invoice" */
+  sales_invoice: Array<Sales_Invoice>;
+  /** fetch aggregated fields from the table: "sales.invoice" */
+  sales_invoice_aggregate: Sales_Invoice_Aggregate;
+  /** fetch data from the table: "sales.invoice" using primary key columns */
+  sales_invoice_by_pk?: Maybe<Sales_Invoice>;
+  /** fetch data from the table: "sales.invoice_delivery" */
+  sales_invoice_delivery: Array<Sales_Invoice_Delivery>;
+  /** fetch aggregated fields from the table: "sales.invoice_delivery" */
+  sales_invoice_delivery_aggregate: Sales_Invoice_Delivery_Aggregate;
+  /** fetch data from the table: "sales.invoice_delivery" using primary key columns */
+  sales_invoice_delivery_by_pk?: Maybe<Sales_Invoice_Delivery>;
   /** fetch data from the table: "sales.order" */
   sales_order: Array<Sales_Order>;
   /** fetch aggregated fields from the table: "sales.order" */
@@ -15406,6 +15550,59 @@ export type Query_RootSales_Glass_Draft_By_PkArgs = {
 
 
 /** query root */
+export type Query_RootSales_InvoiceArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Order_By>>;
+  where?: Maybe<Sales_Invoice_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Invoice_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Order_By>>;
+  where?: Maybe<Sales_Invoice_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Invoice_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootSales_Invoice_DeliveryArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Delivery_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Delivery_Order_By>>;
+  where?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Invoice_Delivery_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Delivery_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Delivery_Order_By>>;
+  where?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Invoice_Delivery_By_PkArgs = {
+  delivery_id: Scalars['uuid'];
+  invoice_id: Scalars['uuid'];
+};
+
+
+/** query root */
 export type Query_RootSales_OrderArgs = {
   distinct_on?: Maybe<Array<Sales_Order_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -16206,6 +16403,7 @@ export type Sales_Delivery = {
   /** An aggregated array relationship */
   delivery_lines_aggregate: Sales_Delivery_Line_Aggregate;
   id: Scalars['uuid'];
+  isReturned: Scalars['Boolean'];
   order: Scalars['Int'];
   /** An object relationship */
   orderObject: Sales_Order;
@@ -16309,6 +16507,7 @@ export type Sales_Delivery_Bool_Exp = {
   customer?: Maybe<Contact_Customer_Bool_Exp>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  isReturned?: Maybe<Boolean_Comparison_Exp>;
   order?: Maybe<Int_Comparison_Exp>;
   orderObject?: Maybe<Sales_Order_Bool_Exp>;
   payment_method?: Maybe<String_Comparison_Exp>;
@@ -16337,6 +16536,7 @@ export type Sales_Delivery_Insert_Input = {
   customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
+  isReturned?: Maybe<Scalars['Boolean']>;
   order?: Maybe<Scalars['Int']>;
   orderObject?: Maybe<Sales_Order_Obj_Rel_Insert_Input>;
   payment_method?: Maybe<Scalars['String']>;
@@ -16348,18 +16548,16 @@ export type Sales_Delivery_Insert_Input = {
 export type Sales_Delivery_Line = {
   __typename?: 'sales_delivery_line';
   amount: Scalars['numeric'];
-  company_name: Scalars['String'];
-  delivered: Scalars['Int'];
+  delivered: Scalars['numeric'];
   delivery: Scalars['uuid'];
   /** An object relationship */
   deliveryByDelivery: Sales_Delivery;
   id: Scalars['uuid'];
-  isReturned: Scalars['Boolean'];
   product: Scalars['uuid'];
   /** An object relationship */
   product_draft: Sales_Product_Draft;
   product_label?: Maybe<Scalars['String']>;
-  quantity: Scalars['Int'];
+  quantity: Scalars['numeric'];
 };
 
 /** aggregated selection of "sales.delivery_line" */
@@ -16434,16 +16632,14 @@ export type Sales_Delivery_Line_Bool_Exp = {
   _not?: Maybe<Sales_Delivery_Line_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Delivery_Line_Bool_Exp>>>;
   amount?: Maybe<Numeric_Comparison_Exp>;
-  company_name?: Maybe<String_Comparison_Exp>;
-  delivered?: Maybe<Int_Comparison_Exp>;
+  delivered?: Maybe<Numeric_Comparison_Exp>;
   delivery?: Maybe<Uuid_Comparison_Exp>;
   deliveryByDelivery?: Maybe<Sales_Delivery_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
-  isReturned?: Maybe<Boolean_Comparison_Exp>;
   product?: Maybe<Uuid_Comparison_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_label?: Maybe<String_Comparison_Exp>;
-  quantity?: Maybe<Int_Comparison_Exp>;
+  quantity?: Maybe<Numeric_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.delivery_line" */
@@ -16455,42 +16651,38 @@ export enum Sales_Delivery_Line_Constraint {
 /** input type for incrementing integer column in table "sales.delivery_line" */
 export type Sales_Delivery_Line_Inc_Input = {
   amount?: Maybe<Scalars['numeric']>;
-  delivered?: Maybe<Scalars['Int']>;
-  quantity?: Maybe<Scalars['Int']>;
+  delivered?: Maybe<Scalars['numeric']>;
+  quantity?: Maybe<Scalars['numeric']>;
 };
 
 /** input type for inserting data into table "sales.delivery_line" */
 export type Sales_Delivery_Line_Insert_Input = {
   amount?: Maybe<Scalars['numeric']>;
-  company_name?: Maybe<Scalars['String']>;
-  delivered?: Maybe<Scalars['Int']>;
+  delivered?: Maybe<Scalars['numeric']>;
   delivery?: Maybe<Scalars['uuid']>;
   deliveryByDelivery?: Maybe<Sales_Delivery_Obj_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
-  isReturned?: Maybe<Scalars['Boolean']>;
   product?: Maybe<Scalars['uuid']>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   product_label?: Maybe<Scalars['String']>;
-  quantity?: Maybe<Scalars['Int']>;
+  quantity?: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate max on columns */
 export type Sales_Delivery_Line_Max_Fields = {
   __typename?: 'sales_delivery_line_max_fields';
   amount?: Maybe<Scalars['numeric']>;
-  company_name?: Maybe<Scalars['String']>;
-  delivered?: Maybe<Scalars['Int']>;
+  delivered?: Maybe<Scalars['numeric']>;
   delivery?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   product?: Maybe<Scalars['uuid']>;
   product_label?: Maybe<Scalars['String']>;
-  quantity?: Maybe<Scalars['Int']>;
+  quantity?: Maybe<Scalars['numeric']>;
 };
 
 /** order by max() on columns of table "sales.delivery_line" */
 export type Sales_Delivery_Line_Max_Order_By = {
   amount?: Maybe<Order_By>;
-  company_name?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   delivery?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -16503,19 +16695,17 @@ export type Sales_Delivery_Line_Max_Order_By = {
 export type Sales_Delivery_Line_Min_Fields = {
   __typename?: 'sales_delivery_line_min_fields';
   amount?: Maybe<Scalars['numeric']>;
-  company_name?: Maybe<Scalars['String']>;
-  delivered?: Maybe<Scalars['Int']>;
+  delivered?: Maybe<Scalars['numeric']>;
   delivery?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   product?: Maybe<Scalars['uuid']>;
   product_label?: Maybe<Scalars['String']>;
-  quantity?: Maybe<Scalars['Int']>;
+  quantity?: Maybe<Scalars['numeric']>;
 };
 
 /** order by min() on columns of table "sales.delivery_line" */
 export type Sales_Delivery_Line_Min_Order_By = {
   amount?: Maybe<Order_By>;
-  company_name?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   delivery?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -16549,12 +16739,10 @@ export type Sales_Delivery_Line_On_Conflict = {
 /** ordering options when selecting data from "sales.delivery_line" */
 export type Sales_Delivery_Line_Order_By = {
   amount?: Maybe<Order_By>;
-  company_name?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   delivery?: Maybe<Order_By>;
   deliveryByDelivery?: Maybe<Sales_Delivery_Order_By>;
   id?: Maybe<Order_By>;
-  isReturned?: Maybe<Order_By>;
   product?: Maybe<Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   product_label?: Maybe<Order_By>;
@@ -16571,15 +16759,11 @@ export enum Sales_Delivery_Line_Select_Column {
   /** column name */
   Amount = 'amount',
   /** column name */
-  CompanyName = 'company_name',
-  /** column name */
   Delivered = 'delivered',
   /** column name */
   Delivery = 'delivery',
   /** column name */
   Id = 'id',
-  /** column name */
-  IsReturned = 'isReturned',
   /** column name */
   Product = 'product',
   /** column name */
@@ -16591,14 +16775,12 @@ export enum Sales_Delivery_Line_Select_Column {
 /** input type for updating data in table "sales.delivery_line" */
 export type Sales_Delivery_Line_Set_Input = {
   amount?: Maybe<Scalars['numeric']>;
-  company_name?: Maybe<Scalars['String']>;
-  delivered?: Maybe<Scalars['Int']>;
+  delivered?: Maybe<Scalars['numeric']>;
   delivery?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
-  isReturned?: Maybe<Scalars['Boolean']>;
   product?: Maybe<Scalars['uuid']>;
   product_label?: Maybe<Scalars['String']>;
-  quantity?: Maybe<Scalars['Int']>;
+  quantity?: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate stddev on columns */
@@ -16650,8 +16832,8 @@ export type Sales_Delivery_Line_Stddev_Samp_Order_By = {
 export type Sales_Delivery_Line_Sum_Fields = {
   __typename?: 'sales_delivery_line_sum_fields';
   amount?: Maybe<Scalars['numeric']>;
-  delivered?: Maybe<Scalars['Int']>;
-  quantity?: Maybe<Scalars['Int']>;
+  delivered?: Maybe<Scalars['numeric']>;
+  quantity?: Maybe<Scalars['numeric']>;
 };
 
 /** order by sum() on columns of table "sales.delivery_line" */
@@ -16666,15 +16848,11 @@ export enum Sales_Delivery_Line_Update_Column {
   /** column name */
   Amount = 'amount',
   /** column name */
-  CompanyName = 'company_name',
-  /** column name */
   Delivered = 'delivered',
   /** column name */
   Delivery = 'delivery',
   /** column name */
   Id = 'id',
-  /** column name */
-  IsReturned = 'isReturned',
   /** column name */
   Product = 'product',
   /** column name */
@@ -16810,6 +16988,7 @@ export type Sales_Delivery_Order_By = {
   customer?: Maybe<Contact_Customer_Order_By>;
   delivery_lines_aggregate?: Maybe<Sales_Delivery_Line_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
+  isReturned?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
   orderObject?: Maybe<Sales_Order_Order_By>;
   payment_method?: Maybe<Order_By>;
@@ -16833,6 +17012,8 @@ export enum Sales_Delivery_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  IsReturned = 'isReturned',
+  /** column name */
   Order = 'order',
   /** column name */
   PaymentMethod = 'payment_method',
@@ -16848,6 +17029,7 @@ export type Sales_Delivery_Set_Input = {
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
+  isReturned?: Maybe<Scalars['Boolean']>;
   order?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
@@ -16908,6 +17090,8 @@ export enum Sales_Delivery_Update_Column {
   Contact = 'contact',
   /** column name */
   Id = 'id',
+  /** column name */
+  IsReturned = 'isReturned',
   /** column name */
   Order = 'order',
   /** column name */
@@ -17646,6 +17830,389 @@ export enum Sales_Glass_Draft_Update_Column {
   Id = 'id',
   /** column name */
   ProductdraftId = 'productdraft_id'
+}
+
+/** columns and relationships of "sales.invoice" */
+export type Sales_Invoice = {
+  __typename?: 'sales_invoice';
+  client?: Maybe<Scalars['uuid']>;
+  /** An object relationship */
+  clientObj?: Maybe<Contact_Customer>;
+  company?: Maybe<Scalars['uuid']>;
+  /** An object relationship */
+  companyObj?: Maybe<Management_Company>;
+  contact?: Maybe<Scalars['uuid']>;
+  /** An object relationship */
+  contactObj?: Maybe<Contact_Contact>;
+  date: Scalars['date'];
+  /** An array relationship */
+  deliveries: Array<Sales_Invoice_Delivery>;
+  /** An aggregated array relationship */
+  deliveries_aggregate: Sales_Invoice_Delivery_Aggregate;
+  id: Scalars['uuid'];
+  payment_method: Scalars['String'];
+};
+
+
+/** columns and relationships of "sales.invoice" */
+export type Sales_InvoiceDeliveriesArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Delivery_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Delivery_Order_By>>;
+  where?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.invoice" */
+export type Sales_InvoiceDeliveries_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Delivery_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Delivery_Order_By>>;
+  where?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
+};
+
+/** aggregated selection of "sales.invoice" */
+export type Sales_Invoice_Aggregate = {
+  __typename?: 'sales_invoice_aggregate';
+  aggregate?: Maybe<Sales_Invoice_Aggregate_Fields>;
+  nodes: Array<Sales_Invoice>;
+};
+
+/** aggregate fields of "sales.invoice" */
+export type Sales_Invoice_Aggregate_Fields = {
+  __typename?: 'sales_invoice_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Sales_Invoice_Max_Fields>;
+  min?: Maybe<Sales_Invoice_Min_Fields>;
+};
+
+
+/** aggregate fields of "sales.invoice" */
+export type Sales_Invoice_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Sales_Invoice_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "sales.invoice" */
+export type Sales_Invoice_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Sales_Invoice_Max_Order_By>;
+  min?: Maybe<Sales_Invoice_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "sales.invoice" */
+export type Sales_Invoice_Arr_Rel_Insert_Input = {
+  data: Array<Sales_Invoice_Insert_Input>;
+  on_conflict?: Maybe<Sales_Invoice_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "sales.invoice". All fields are combined with a logical 'AND'. */
+export type Sales_Invoice_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Sales_Invoice_Bool_Exp>>>;
+  _not?: Maybe<Sales_Invoice_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Sales_Invoice_Bool_Exp>>>;
+  client?: Maybe<Uuid_Comparison_Exp>;
+  clientObj?: Maybe<Contact_Customer_Bool_Exp>;
+  company?: Maybe<Uuid_Comparison_Exp>;
+  companyObj?: Maybe<Management_Company_Bool_Exp>;
+  contact?: Maybe<Uuid_Comparison_Exp>;
+  contactObj?: Maybe<Contact_Contact_Bool_Exp>;
+  date?: Maybe<Date_Comparison_Exp>;
+  deliveries?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  payment_method?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "sales.invoice" */
+export enum Sales_Invoice_Constraint {
+  /** unique or primary key constraint */
+  InvoicePkey = 'invoice_pkey'
+}
+
+/** columns and relationships of "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery = {
+  __typename?: 'sales_invoice_delivery';
+  delivery_id: Scalars['uuid'];
+  invoice_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Aggregate = {
+  __typename?: 'sales_invoice_delivery_aggregate';
+  aggregate?: Maybe<Sales_Invoice_Delivery_Aggregate_Fields>;
+  nodes: Array<Sales_Invoice_Delivery>;
+};
+
+/** aggregate fields of "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Aggregate_Fields = {
+  __typename?: 'sales_invoice_delivery_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Sales_Invoice_Delivery_Max_Fields>;
+  min?: Maybe<Sales_Invoice_Delivery_Min_Fields>;
+};
+
+
+/** aggregate fields of "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Sales_Invoice_Delivery_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Sales_Invoice_Delivery_Max_Order_By>;
+  min?: Maybe<Sales_Invoice_Delivery_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Arr_Rel_Insert_Input = {
+  data: Array<Sales_Invoice_Delivery_Insert_Input>;
+  on_conflict?: Maybe<Sales_Invoice_Delivery_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "sales.invoice_delivery". All fields are combined with a logical 'AND'. */
+export type Sales_Invoice_Delivery_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Sales_Invoice_Delivery_Bool_Exp>>>;
+  _not?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Sales_Invoice_Delivery_Bool_Exp>>>;
+  delivery_id?: Maybe<Uuid_Comparison_Exp>;
+  invoice_id?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "sales.invoice_delivery" */
+export enum Sales_Invoice_Delivery_Constraint {
+  /** unique or primary key constraint */
+  InvoiceDeliveryPkey = 'invoice_delivery_pkey'
+}
+
+/** input type for inserting data into table "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Insert_Input = {
+  delivery_id?: Maybe<Scalars['uuid']>;
+  invoice_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Sales_Invoice_Delivery_Max_Fields = {
+  __typename?: 'sales_invoice_delivery_max_fields';
+  delivery_id?: Maybe<Scalars['uuid']>;
+  invoice_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Max_Order_By = {
+  delivery_id?: Maybe<Order_By>;
+  invoice_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Sales_Invoice_Delivery_Min_Fields = {
+  __typename?: 'sales_invoice_delivery_min_fields';
+  delivery_id?: Maybe<Scalars['uuid']>;
+  invoice_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Min_Order_By = {
+  delivery_id?: Maybe<Order_By>;
+  invoice_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Mutation_Response = {
+  __typename?: 'sales_invoice_delivery_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Sales_Invoice_Delivery>;
+};
+
+/** input type for inserting object relation for remote table "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Obj_Rel_Insert_Input = {
+  data: Sales_Invoice_Delivery_Insert_Input;
+  on_conflict?: Maybe<Sales_Invoice_Delivery_On_Conflict>;
+};
+
+/** on conflict condition type for table "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_On_Conflict = {
+  constraint: Sales_Invoice_Delivery_Constraint;
+  update_columns: Array<Sales_Invoice_Delivery_Update_Column>;
+  where?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Order_By = {
+  delivery_id?: Maybe<Order_By>;
+  invoice_id?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Pk_Columns_Input = {
+  delivery_id: Scalars['uuid'];
+  invoice_id: Scalars['uuid'];
+};
+
+/** select columns of table "sales.invoice_delivery" */
+export enum Sales_Invoice_Delivery_Select_Column {
+  /** column name */
+  DeliveryId = 'delivery_id',
+  /** column name */
+  InvoiceId = 'invoice_id'
+}
+
+/** input type for updating data in table "sales.invoice_delivery" */
+export type Sales_Invoice_Delivery_Set_Input = {
+  delivery_id?: Maybe<Scalars['uuid']>;
+  invoice_id?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "sales.invoice_delivery" */
+export enum Sales_Invoice_Delivery_Update_Column {
+  /** column name */
+  DeliveryId = 'delivery_id',
+  /** column name */
+  InvoiceId = 'invoice_id'
+}
+
+/** input type for inserting data into table "sales.invoice" */
+export type Sales_Invoice_Insert_Input = {
+  client?: Maybe<Scalars['uuid']>;
+  clientObj?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
+  company?: Maybe<Scalars['uuid']>;
+  companyObj?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
+  contact?: Maybe<Scalars['uuid']>;
+  contactObj?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
+  date?: Maybe<Scalars['date']>;
+  deliveries?: Maybe<Sales_Invoice_Delivery_Arr_Rel_Insert_Input>;
+  id?: Maybe<Scalars['uuid']>;
+  payment_method?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Sales_Invoice_Max_Fields = {
+  __typename?: 'sales_invoice_max_fields';
+  client?: Maybe<Scalars['uuid']>;
+  company?: Maybe<Scalars['uuid']>;
+  contact?: Maybe<Scalars['uuid']>;
+  date?: Maybe<Scalars['date']>;
+  id?: Maybe<Scalars['uuid']>;
+  payment_method?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "sales.invoice" */
+export type Sales_Invoice_Max_Order_By = {
+  client?: Maybe<Order_By>;
+  company?: Maybe<Order_By>;
+  contact?: Maybe<Order_By>;
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  payment_method?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Sales_Invoice_Min_Fields = {
+  __typename?: 'sales_invoice_min_fields';
+  client?: Maybe<Scalars['uuid']>;
+  company?: Maybe<Scalars['uuid']>;
+  contact?: Maybe<Scalars['uuid']>;
+  date?: Maybe<Scalars['date']>;
+  id?: Maybe<Scalars['uuid']>;
+  payment_method?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "sales.invoice" */
+export type Sales_Invoice_Min_Order_By = {
+  client?: Maybe<Order_By>;
+  company?: Maybe<Order_By>;
+  contact?: Maybe<Order_By>;
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  payment_method?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "sales.invoice" */
+export type Sales_Invoice_Mutation_Response = {
+  __typename?: 'sales_invoice_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Sales_Invoice>;
+};
+
+/** input type for inserting object relation for remote table "sales.invoice" */
+export type Sales_Invoice_Obj_Rel_Insert_Input = {
+  data: Sales_Invoice_Insert_Input;
+  on_conflict?: Maybe<Sales_Invoice_On_Conflict>;
+};
+
+/** on conflict condition type for table "sales.invoice" */
+export type Sales_Invoice_On_Conflict = {
+  constraint: Sales_Invoice_Constraint;
+  update_columns: Array<Sales_Invoice_Update_Column>;
+  where?: Maybe<Sales_Invoice_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "sales.invoice" */
+export type Sales_Invoice_Order_By = {
+  client?: Maybe<Order_By>;
+  clientObj?: Maybe<Contact_Customer_Order_By>;
+  company?: Maybe<Order_By>;
+  companyObj?: Maybe<Management_Company_Order_By>;
+  contact?: Maybe<Order_By>;
+  contactObj?: Maybe<Contact_Contact_Order_By>;
+  date?: Maybe<Order_By>;
+  deliveries_aggregate?: Maybe<Sales_Invoice_Delivery_Aggregate_Order_By>;
+  id?: Maybe<Order_By>;
+  payment_method?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "sales.invoice" */
+export type Sales_Invoice_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "sales.invoice" */
+export enum Sales_Invoice_Select_Column {
+  /** column name */
+  Client = 'client',
+  /** column name */
+  Company = 'company',
+  /** column name */
+  Contact = 'contact',
+  /** column name */
+  Date = 'date',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  PaymentMethod = 'payment_method'
+}
+
+/** input type for updating data in table "sales.invoice" */
+export type Sales_Invoice_Set_Input = {
+  client?: Maybe<Scalars['uuid']>;
+  company?: Maybe<Scalars['uuid']>;
+  contact?: Maybe<Scalars['uuid']>;
+  date?: Maybe<Scalars['date']>;
+  id?: Maybe<Scalars['uuid']>;
+  payment_method?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "sales.invoice" */
+export enum Sales_Invoice_Update_Column {
+  /** column name */
+  Client = 'client',
+  /** column name */
+  Company = 'company',
+  /** column name */
+  Contact = 'contact',
+  /** column name */
+  Date = 'date',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  PaymentMethod = 'payment_method'
 }
 
 /** columns and relationships of "sales.order" */
@@ -19019,7 +19586,6 @@ export type Sales_Payment_Stddev_Samp_Fields = {
   order_id?: Maybe<Scalars['Float']>;
 };
 
-
 /** order by stddev_samp() on columns of table "sales.payment" */
 export type Sales_Payment_Stddev_Samp_Order_By = {
   amount?: Maybe<Order_By>;
@@ -19932,6 +20498,8 @@ export enum Sales_Product_Type_Constraint {
 export enum Sales_Product_Type_Enum {
   /** accessory */
   Accessoire = 'Accessoire',
+  /** customerProduct */
+  ArticleClient = 'Article_Client',
   /** consumable */
   Consommable = 'Consommable',
   /** service */
@@ -23363,6 +23931,18 @@ export type Subscription_Root = {
   sales_glass_draft_aggregate: Sales_Glass_Draft_Aggregate;
   /** fetch data from the table: "sales.glass_draft" using primary key columns */
   sales_glass_draft_by_pk?: Maybe<Sales_Glass_Draft>;
+  /** fetch data from the table: "sales.invoice" */
+  sales_invoice: Array<Sales_Invoice>;
+  /** fetch aggregated fields from the table: "sales.invoice" */
+  sales_invoice_aggregate: Sales_Invoice_Aggregate;
+  /** fetch data from the table: "sales.invoice" using primary key columns */
+  sales_invoice_by_pk?: Maybe<Sales_Invoice>;
+  /** fetch data from the table: "sales.invoice_delivery" */
+  sales_invoice_delivery: Array<Sales_Invoice_Delivery>;
+  /** fetch aggregated fields from the table: "sales.invoice_delivery" */
+  sales_invoice_delivery_aggregate: Sales_Invoice_Delivery_Aggregate;
+  /** fetch data from the table: "sales.invoice_delivery" using primary key columns */
+  sales_invoice_delivery_by_pk?: Maybe<Sales_Invoice_Delivery>;
   /** fetch data from the table: "sales.order" */
   sales_order: Array<Sales_Order>;
   /** fetch aggregated fields from the table: "sales.order" */
@@ -24729,6 +25309,59 @@ export type Subscription_RootSales_Glass_Draft_By_PkArgs = {
 
 
 /** subscription root */
+export type Subscription_RootSales_InvoiceArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Order_By>>;
+  where?: Maybe<Sales_Invoice_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Invoice_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Order_By>>;
+  where?: Maybe<Sales_Invoice_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Invoice_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Invoice_DeliveryArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Delivery_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Delivery_Order_By>>;
+  where?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Invoice_Delivery_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Delivery_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Delivery_Order_By>>;
+  where?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Invoice_Delivery_By_PkArgs = {
+  delivery_id: Scalars['uuid'];
+  invoice_id: Scalars['uuid'];
+};
+
+
+/** subscription root */
 export type Subscription_RootSales_OrderArgs = {
   distinct_on?: Maybe<Array<Sales_Order_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -24752,6 +25385,111 @@ export type Subscription_RootSales_Order_AggregateArgs = {
 export type Subscription_RootSales_Order_By_PkArgs = {
   id: Scalars['Int'];
 };
+
+
+/** subscription root */
+export type Subscription_RootSales_Order_Delivery_StatusArgs = {
+  distinct_on?: Maybe<Array<Sales_Order_Delivery_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Order_Delivery_Status_Order_By>>;
+  where?: Maybe<Sales_Order_Delivery_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Order_Delivery_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Order_Delivery_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Order_Delivery_Status_Order_By>>;
+  where?: Maybe<Sales_Order_Delivery_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Order_Delivery_Status_By_PkArgs = {
+  key: Scalars['String'];
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_PaymentArgs = {
+  distinct_on?: Maybe<Array<Sales_Payment_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Payment_Order_By>>;
+  where?: Maybe<Sales_Payment_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Payment_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Payment_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Payment_Order_By>>;
+  where?: Maybe<Sales_Payment_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Payment_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Payment_MethodArgs = {
+  distinct_on?: Maybe<Array<Sales_Payment_Method_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Payment_Method_Order_By>>;
+  where?: Maybe<Sales_Payment_Method_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Payment_Method_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Payment_Method_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Payment_Method_Order_By>>;
+  where?: Maybe<Sales_Payment_Method_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Payment_Method_By_PkArgs = {
+  key: Scalars['String'];
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Payment_StatusArgs = {
+  distinct_on?: Maybe<Array<Sales_Payment_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Payment_Status_Order_By>>;
+  where?: Maybe<Sales_Payment_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Payment_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Payment_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Payment_Status_Order_By>>;
+  where?: Maybe<Sales_Payment_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Payment_Status_By_PkArgs = {
+  key: Scalars['String'];
+};
+
 
 /** subscription root */
 export type Subscription_RootSales_Product_DraftArgs = {
@@ -26988,6 +27726,7 @@ export type InsertDeliveryMutationVariables = Exact<{
   client: Scalars['uuid'];
   company: Scalars['uuid'];
   contact: Scalars['uuid'];
+  isReturned?: Maybe<Scalars['Boolean']>;
   delivery_lines?: Array<Sales_Delivery_Line_Insert_Input>;
   payment_method: Scalars['String'];
 }>;
@@ -26997,7 +27736,7 @@ export type InsertDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_delivery_one?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date' | 'order'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
@@ -27152,6 +27891,7 @@ export type UpdateDeliveryMutationVariables = Exact<{
   contact?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   client?: Maybe<Scalars['uuid']>;
+  isReturned?: Maybe<Scalars['Boolean']>;
   predicted_date?: Maybe<Scalars['date']>;
   status: Scalars['String'];
 }>;
@@ -27161,19 +27901,17 @@ export type UpdateDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'company' | 'payment_method' | 'predicted_date' | 'client' | 'contact'>
+    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'company' | 'payment_method' | 'isReturned' | 'predicted_date' | 'client' | 'contact'>
   )> }
 );
 
 export type UpdateDeliveryLineMutationVariables = Exact<{
   amount?: Maybe<Scalars['numeric']>;
-  company_name?: Maybe<Scalars['String']>;
-  delivered?: Maybe<Scalars['Int']>;
+  delivered?: Maybe<Scalars['numeric']>;
   id: Scalars['uuid'];
-  isReturned?: Maybe<Scalars['Boolean']>;
   product: Scalars['uuid'];
   product_label?: Maybe<Scalars['String']>;
-  quantity?: Maybe<Scalars['Int']>;
+  quantity?: Maybe<Scalars['numeric']>;
 }>;
 
 
@@ -27181,7 +27919,7 @@ export type UpdateDeliveryLineMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_line_by_pk?: Maybe<(
     { __typename?: 'sales_delivery_line' }
-    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'company_name' | 'delivered' | 'isReturned' | 'product' | 'product_label' | 'quantity'>
+    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'product_label' | 'quantity'>
   )> }
 );
 
@@ -27192,7 +27930,7 @@ export type GetAllDeliveryQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery: Array<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date'>
+    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
@@ -27231,7 +27969,7 @@ export type GetAllOrdersQuery = (
   { __typename?: 'query_root' }
   & { sales_order: Array<(
     { __typename?: 'sales_order' }
-    & Pick<Sales_Order, 'id' | 'draft_id' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline' | 'delivery_status' | 'payment_status'>
+    & Pick<Sales_Order, 'delivery_status' | 'payment_status' | 'id' | 'draft_id' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
@@ -27269,10 +28007,10 @@ export type GetDeliveryByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date' | 'order'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order'>
     & { delivery_lines: Array<(
       { __typename?: 'sales_delivery_line' }
-      & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'company_name' | 'delivered' | 'isReturned' | 'product' | 'quantity' | 'product_label'>
+      & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'quantity' | 'product_label'>
     )> }
   )> }
 );
@@ -27460,7 +28198,7 @@ export const GetAccessoriesSubstancesDocument = gql`
   })
   export class GetAccessoriesSubstancesGQL extends Apollo.Query<GetAccessoriesSubstancesQuery, GetAccessoriesSubstancesQueryVariables> {
     document = GetAccessoriesSubstancesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27488,7 +28226,7 @@ export const GetGlassesSubstancesDocument = gql`
   })
   export class GetGlassesSubstancesGQL extends Apollo.Query<GetGlassesSubstancesQuery, GetGlassesSubstancesQueryVariables> {
     document = GetGlassesSubstancesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27507,7 +28245,7 @@ export const GetShortCompaniesDocument = gql`
   })
   export class GetShortCompaniesGQL extends Apollo.Query<GetShortCompaniesQuery, GetShortCompaniesQueryVariables> {
     document = GetShortCompaniesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27526,7 +28264,7 @@ export const GetShortProvidersDocument = gql`
   })
   export class GetShortProvidersGQL extends Apollo.Query<GetShortProvidersQuery, GetShortProvidersQueryVariables> {
     document = GetShortProvidersDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27545,7 +28283,7 @@ export const GeShortSalePointsDocument = gql`
   })
   export class GeShortSalePointsGQL extends Apollo.Query<GeShortSalePointsQuery, GeShortSalePointsQueryVariables> {
     document = GeShortSalePointsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27576,7 +28314,7 @@ export const GetShortSubstancesDocument = gql`
   })
   export class GetShortSubstancesGQL extends Apollo.Query<GetShortSubstancesQuery, GetShortSubstancesQueryVariables> {
     document = GetShortSubstancesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27596,7 +28334,7 @@ export const GetShortWArehousesDocument = gql`
   })
   export class GetShortWArehousesGQL extends Apollo.Query<GetShortWArehousesQuery, GetShortWArehousesQueryVariables> {
     document = GetShortWArehousesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27619,7 +28357,7 @@ export const GetProductsDocument = gql`
   })
   export class GetProductsGQL extends Apollo.Query<GetProductsQuery, GetProductsQueryVariables> {
     document = GetProductsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27644,7 +28382,7 @@ export const AddContactAddressDocument = gql`
   })
   export class AddContactAddressGQL extends Apollo.Mutation<AddContactAddressMutation, AddContactAddressMutationVariables> {
     document = AddContactAddressDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27669,7 +28407,7 @@ export const AddCustomerAddressDocument = gql`
   })
   export class AddCustomerAddressGQL extends Apollo.Mutation<AddCustomerAddressMutation, AddCustomerAddressMutationVariables> {
     document = AddCustomerAddressDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27696,7 +28434,7 @@ export const AddCustomerContactDocument = gql`
   })
   export class AddCustomerContactGQL extends Apollo.Mutation<AddCustomerContactMutation, AddCustomerContactMutationVariables> {
     document = AddCustomerContactDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27721,7 +28459,7 @@ export const AddProviderAddressDocument = gql`
   })
   export class AddProviderAddressGQL extends Apollo.Mutation<AddProviderAddressMutation, AddProviderAddressMutationVariables> {
     document = AddProviderAddressDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27748,7 +28486,7 @@ export const AddProviderContactDocument = gql`
   })
   export class AddProviderContactGQL extends Apollo.Mutation<AddProviderContactMutation, AddProviderContactMutationVariables> {
     document = AddProviderContactDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27775,7 +28513,7 @@ export const AffectCustomerContactDocument = gql`
   })
   export class AffectCustomerContactGQL extends Apollo.Mutation<AffectCustomerContactMutation, AffectCustomerContactMutationVariables> {
     document = AffectCustomerContactDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27802,7 +28540,7 @@ export const AffectProviderContactDocument = gql`
   })
   export class AffectProviderContactGQL extends Apollo.Mutation<AffectProviderContactMutation, AffectProviderContactMutationVariables> {
     document = AffectProviderContactDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27821,7 +28559,7 @@ export const DeleteContactDocument = gql`
   })
   export class DeleteContactGQL extends Apollo.Mutation<DeleteContactMutation, DeleteContactMutationVariables> {
     document = DeleteContactDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27840,7 +28578,7 @@ export const DeleteContactAddressDocument = gql`
   })
   export class DeleteContactAddressGQL extends Apollo.Mutation<DeleteContactAddressMutation, DeleteContactAddressMutationVariables> {
     document = DeleteContactAddressDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27859,7 +28597,7 @@ export const DeleteCustomerDocument = gql`
   })
   export class DeleteCustomerGQL extends Apollo.Mutation<DeleteCustomerMutation, DeleteCustomerMutationVariables> {
     document = DeleteCustomerDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27878,7 +28616,7 @@ export const DeleteCustomerAddressDocument = gql`
   })
   export class DeleteCustomerAddressGQL extends Apollo.Mutation<DeleteCustomerAddressMutation, DeleteCustomerAddressMutationVariables> {
     document = DeleteCustomerAddressDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27897,7 +28635,7 @@ export const DeleteCustomerContactDocument = gql`
   })
   export class DeleteCustomerContactGQL extends Apollo.Mutation<DeleteCustomerContactMutation, DeleteCustomerContactMutationVariables> {
     document = DeleteCustomerContactDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27917,7 +28655,7 @@ export const DeleteManyContactsDocument = gql`
   })
   export class DeleteManyContactsGQL extends Apollo.Mutation<DeleteManyContactsMutation, DeleteManyContactsMutationVariables> {
     document = DeleteManyContactsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27937,7 +28675,7 @@ export const DeleteManyCustomersDocument = gql`
   })
   export class DeleteManyCustomersGQL extends Apollo.Mutation<DeleteManyCustomersMutation, DeleteManyCustomersMutationVariables> {
     document = DeleteManyCustomersDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27957,7 +28695,7 @@ export const DeleteManyProvidersDocument = gql`
   })
   export class DeleteManyProvidersGQL extends Apollo.Mutation<DeleteManyProvidersMutation, DeleteManyProvidersMutationVariables> {
     document = DeleteManyProvidersDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27976,7 +28714,7 @@ export const DeleteProviderDocument = gql`
   })
   export class DeleteProviderGQL extends Apollo.Mutation<DeleteProviderMutation, DeleteProviderMutationVariables> {
     document = DeleteProviderDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -27995,7 +28733,7 @@ export const DeleteProviderAddressDocument = gql`
   })
   export class DeleteProviderAddressGQL extends Apollo.Mutation<DeleteProviderAddressMutation, DeleteProviderAddressMutationVariables> {
     document = DeleteProviderAddressDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28014,7 +28752,7 @@ export const DeleteProviderContactDocument = gql`
   })
   export class DeleteProviderContactGQL extends Apollo.Mutation<DeleteProviderContactMutation, DeleteProviderContactMutationVariables> {
     document = DeleteProviderContactDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28039,7 +28777,7 @@ export const InsertContactDocument = gql`
   })
   export class InsertContactGQL extends Apollo.Mutation<InsertContactMutation, InsertContactMutationVariables> {
     document = InsertContactDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28066,7 +28804,7 @@ export const InsertCustomerDocument = gql`
   })
   export class InsertCustomerGQL extends Apollo.Mutation<InsertCustomerMutation, InsertCustomerMutationVariables> {
     document = InsertCustomerDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28091,7 +28829,7 @@ export const InsertProviderDocument = gql`
   })
   export class InsertProviderGQL extends Apollo.Mutation<InsertProviderMutation, InsertProviderMutationVariables> {
     document = InsertProviderDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28117,7 +28855,7 @@ export const UpdateContactDocument = gql`
   })
   export class UpdateContactGQL extends Apollo.Mutation<UpdateContactMutation, UpdateContactMutationVariables> {
     document = UpdateContactDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28135,7 +28873,7 @@ export const UpdateContactAddressesDocument = gql`
   })
   export class UpdateContactAddressesGQL extends Apollo.Mutation<UpdateContactAddressesMutation, UpdateContactAddressesMutationVariables> {
     document = UpdateContactAddressesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28163,7 +28901,7 @@ export const UpdateCustomerDocument = gql`
   })
   export class UpdateCustomerGQL extends Apollo.Mutation<UpdateCustomerMutation, UpdateCustomerMutationVariables> {
     document = UpdateCustomerDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28189,7 +28927,7 @@ export const UpdateProviderDocument = gql`
   })
   export class UpdateProviderGQL extends Apollo.Mutation<UpdateProviderMutation, UpdateProviderMutationVariables> {
     document = UpdateProviderDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28212,7 +28950,7 @@ export const GetAllContactsDocument = gql`
   })
   export class GetAllContactsGQL extends Apollo.Query<GetAllContactsQuery, GetAllContactsQueryVariables> {
     document = GetAllContactsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28237,7 +28975,7 @@ export const GetAllCustomersDocument = gql`
   })
   export class GetAllCustomersGQL extends Apollo.Query<GetAllCustomersQuery, GetAllCustomersQueryVariables> {
     document = GetAllCustomersDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28260,7 +28998,7 @@ export const GetAllProvidersDocument = gql`
   })
   export class GetAllProvidersGQL extends Apollo.Query<GetAllProvidersQuery, GetAllProvidersQueryVariables> {
     document = GetAllProvidersDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28309,7 +29047,7 @@ export const GetContactByIdDocument = gql`
   })
   export class GetContactByIdGQL extends Apollo.Query<GetContactByIdQuery, GetContactByIdQueryVariables> {
     document = GetContactByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28355,7 +29093,7 @@ export const GetCustomerByIdDocument = gql`
   })
   export class GetCustomerByIdGQL extends Apollo.Query<GetCustomerByIdQuery, GetCustomerByIdQueryVariables> {
     document = GetCustomerByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28398,7 +29136,7 @@ export const GetProviderByIdDocument = gql`
   })
   export class GetProviderByIdGQL extends Apollo.Query<GetProviderByIdQuery, GetProviderByIdQueryVariables> {
     document = GetProviderByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28418,7 +29156,7 @@ export const DeleteManyWarehousesDocument = gql`
   })
   export class DeleteManyWarehousesGQL extends Apollo.Mutation<DeleteManyWarehousesMutation, DeleteManyWarehousesMutationVariables> {
     document = DeleteManyWarehousesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28446,7 +29184,7 @@ export const InsertTranfserDocument = gql`
   })
   export class InsertTranfserGQL extends Apollo.Mutation<InsertTranfserMutation, InsertTranfserMutationVariables> {
     document = InsertTranfserDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28477,7 +29215,7 @@ export const InsertTransferOrderDocument = gql`
   })
   export class InsertTransferOrderGQL extends Apollo.Mutation<InsertTransferOrderMutation, InsertTransferOrderMutationVariables> {
     document = InsertTransferOrderDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28506,7 +29244,7 @@ export const InsertWarehouseDocument = gql`
   })
   export class InsertWarehouseGQL extends Apollo.Mutation<InsertWarehouseMutation, InsertWarehouseMutationVariables> {
     document = InsertWarehouseDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28550,7 +29288,7 @@ export const GetAccessoryWarehousesByIdDocument = gql`
   })
   export class GetAccessoryWarehousesByIdGQL extends Apollo.Query<GetAccessoryWarehousesByIdQuery, GetAccessoryWarehousesByIdQueryVariables> {
     document = GetAccessoryWarehousesByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28582,7 +29320,7 @@ ${Product_Product_Accessory_ViewFragmentFragmentDoc}`;
   })
   export class GetAllAccessoriesStockGQL extends Apollo.Query<GetAllAccessoriesStockQuery, GetAllAccessoriesStockQueryVariables> {
     document = GetAllAccessoriesStockDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28614,7 +29352,7 @@ ${Product_Product_Consumable_ViewFragmentFragmentDoc}`;
   })
   export class GetAllConsumablesStockGQL extends Apollo.Query<GetAllConsumablesStockQuery, GetAllConsumablesStockQueryVariables> {
     document = GetAllConsumablesStockDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28650,7 +29388,7 @@ export const GetAllGlassesStockDocument = gql`
   })
   export class GetAllGlassesStockGQL extends Apollo.Query<GetAllGlassesStockQuery, GetAllGlassesStockQueryVariables> {
     document = GetAllGlassesStockDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28695,7 +29433,7 @@ export const GetAllOrdersDetailsDocument = gql`
   })
   export class GetAllOrdersDetailsGQL extends Apollo.Query<GetAllOrdersDetailsQuery, GetAllOrdersDetailsQueryVariables> {
     document = GetAllOrdersDetailsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28724,7 +29462,7 @@ export const GetAllTransfersOrdersDocument = gql`
   })
   export class GetAllTransfersOrdersGQL extends Apollo.Query<GetAllTransfersOrdersQuery, GetAllTransfersOrdersQueryVariables> {
     document = GetAllTransfersOrdersDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28750,7 +29488,7 @@ ${Management_SalesPointFragmentFragmentDoc}`;
   })
   export class GetAllWarehousesGQL extends Apollo.Query<GetAllWarehousesQuery, GetAllWarehousesQueryVariables> {
     document = GetAllWarehousesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28793,7 +29531,7 @@ export const GetConsumableWarehousesByIdDocument = gql`
   })
   export class GetConsumableWarehousesByIdGQL extends Apollo.Query<GetConsumableWarehousesByIdQuery, GetConsumableWarehousesByIdQueryVariables> {
     document = GetConsumableWarehousesByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28836,7 +29574,7 @@ export const GetGlassWarehousesByIdDocument = gql`
   })
   export class GetGlassWarehousesByIdGQL extends Apollo.Query<GetGlassWarehousesByIdQuery, GetGlassWarehousesByIdQueryVariables> {
     document = GetGlassWarehousesByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28902,7 +29640,7 @@ ${Product_Product_Glass_ViewFragmentFragmentDoc}`;
   })
   export class GetTransferOrderByIdGQL extends Apollo.Query<GetTransferOrderByIdQuery, GetTransferOrderByIdQueryVariables> {
     document = GetTransferOrderByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28933,7 +29671,7 @@ export const GetWarehouseByIdDocument = gql`
   })
   export class GetWarehouseByIdGQL extends Apollo.Query<GetWarehouseByIdQuery, GetWarehouseByIdQueryVariables> {
     document = GetWarehouseByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28952,7 +29690,7 @@ export const DeleteCompanyDocument = gql`
   })
   export class DeleteCompanyGQL extends Apollo.Mutation<DeleteCompanyMutation, DeleteCompanyMutationVariables> {
     document = DeleteCompanyDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28971,7 +29709,7 @@ export const DeleteSalePointDocument = gql`
   })
   export class DeleteSalePointGQL extends Apollo.Mutation<DeleteSalePointMutation, DeleteSalePointMutationVariables> {
     document = DeleteSalePointDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -28990,7 +29728,7 @@ export const DeleteUserDocument = gql`
   })
   export class DeleteUserGQL extends Apollo.Mutation<DeleteUserMutation, DeleteUserMutationVariables> {
     document = DeleteUserDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29018,7 +29756,7 @@ export const InsertCompanyDocument = gql`
   })
   export class InsertCompanyGQL extends Apollo.Mutation<InsertCompanyMutation, InsertCompanyMutationVariables> {
     document = InsertCompanyDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29043,7 +29781,7 @@ export const InsertSalePointDocument = gql`
   })
   export class InsertSalePointGQL extends Apollo.Mutation<InsertSalePointMutation, InsertSalePointMutationVariables> {
     document = InsertSalePointDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29078,7 +29816,7 @@ export const InsertUserDocument = gql`
   })
   export class InsertUserGQL extends Apollo.Mutation<InsertUserMutation, InsertUserMutationVariables> {
     document = InsertUserDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29107,7 +29845,7 @@ export const UpdateCompanyDocument = gql`
   })
   export class UpdateCompanyGQL extends Apollo.Mutation<UpdateCompanyMutation, UpdateCompanyMutationVariables> {
     document = UpdateCompanyDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29133,7 +29871,7 @@ export const UpdateSalePointDocument = gql`
   })
   export class UpdateSalePointGQL extends Apollo.Mutation<UpdateSalePointMutation, UpdateSalePointMutationVariables> {
     document = UpdateSalePointDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29168,7 +29906,7 @@ export const UpdateUserDocument = gql`
   })
   export class UpdateUserGQL extends Apollo.Mutation<UpdateUserMutation, UpdateUserMutationVariables> {
     document = UpdateUserDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29194,7 +29932,7 @@ export const GetAllCompaniesDocument = gql`
   })
   export class GetAllCompaniesGQL extends Apollo.Query<GetAllCompaniesQuery, GetAllCompaniesQueryVariables> {
     document = GetAllCompaniesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29217,7 +29955,7 @@ export const GetAllSalesPointsDocument = gql`
   })
   export class GetAllSalesPointsGQL extends Apollo.Query<GetAllSalesPointsQuery, GetAllSalesPointsQueryVariables> {
     document = GetAllSalesPointsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29242,7 +29980,7 @@ export const GetAllUsersDocument = gql`
   })
   export class GetAllUsersGQL extends Apollo.Query<GetAllUsersQuery, GetAllUsersQueryVariables> {
     document = GetAllUsersDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29273,7 +30011,7 @@ export const GetCompanyByIdDocument = gql`
   })
   export class GetCompanyByIdGQL extends Apollo.Query<GetCompanyByIdQuery, GetCompanyByIdQueryVariables> {
     document = GetCompanyByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29312,7 +30050,7 @@ export const GetSalePointByIdDocument = gql`
   })
   export class GetSalePointByIdGQL extends Apollo.Query<GetSalePointByIdQuery, GetSalePointByIdQueryVariables> {
     document = GetSalePointByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29354,7 +30092,7 @@ export const GetUserByIdDocument = gql`
   })
   export class GetUserByIdGQL extends Apollo.Query<GetUserByIdQuery, GetUserByIdQueryVariables> {
     document = GetUserByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29372,7 +30110,7 @@ export const AddGlassColorDocument = gql`
   })
   export class AddGlassColorGQL extends Apollo.Mutation<AddGlassColorMutation, AddGlassColorMutationVariables> {
     document = AddGlassColorDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29390,7 +30128,7 @@ export const AddGlassTypeDocument = gql`
   })
   export class AddGlassTypeGQL extends Apollo.Mutation<AddGlassTypeMutation, AddGlassTypeMutationVariables> {
     document = AddGlassTypeDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29408,7 +30146,7 @@ export const DeleteCustomerProductDocument = gql`
   })
   export class DeleteCustomerProductGQL extends Apollo.Mutation<DeleteCustomerProductMutation, DeleteCustomerProductMutationVariables> {
     document = DeleteCustomerProductDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29426,7 +30164,7 @@ export const DeleteManyDocument = gql`
   })
   export class DeleteManyGQL extends Apollo.Mutation<DeleteManyMutation, DeleteManyMutationVariables> {
     document = DeleteManyDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29444,7 +30182,7 @@ export const DeleteManyCustomerProductsDocument = gql`
   })
   export class DeleteManyCustomerProductsGQL extends Apollo.Mutation<DeleteManyCustomerProductsMutation, DeleteManyCustomerProductsMutationVariables> {
     document = DeleteManyCustomerProductsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29462,7 +30200,7 @@ export const DeleteOneDocument = gql`
   })
   export class DeleteOneGQL extends Apollo.Mutation<DeleteOneMutation, DeleteOneMutationVariables> {
     document = DeleteOneDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29496,7 +30234,7 @@ export const InsertAccessoryDocument = gql`
   })
   export class InsertAccessoryGQL extends Apollo.Mutation<InsertAccessoryMutation, InsertAccessoryMutationVariables> {
     document = InsertAccessoryDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29529,7 +30267,7 @@ export const InsertConsumableDocument = gql`
   })
   export class InsertConsumableGQL extends Apollo.Mutation<InsertConsumableMutation, InsertConsumableMutationVariables> {
     document = InsertConsumableDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29551,7 +30289,7 @@ export const InsertCustomerProductDocument = gql`
   })
   export class InsertCustomerProductGQL extends Apollo.Mutation<InsertCustomerProductMutation, InsertCustomerProductMutationVariables> {
     document = InsertCustomerProductDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29586,7 +30324,7 @@ export const InsertGlassDocument = gql`
   })
   export class InsertGlassGQL extends Apollo.Mutation<InsertGlassMutation, InsertGlassMutationVariables> {
     document = InsertGlassDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29617,7 +30355,7 @@ export const InsertServiceDocument = gql`
   })
   export class InsertServiceGQL extends Apollo.Mutation<InsertServiceMutation, InsertServiceMutationVariables> {
     document = InsertServiceDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29640,7 +30378,7 @@ export const InsertServiceConfigDocument = gql`
   })
   export class InsertServiceConfigGQL extends Apollo.Mutation<InsertServiceConfigMutation, InsertServiceConfigMutationVariables> {
     document = InsertServiceConfigDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29676,7 +30414,7 @@ export const GetAccessoryByIdDocument = gql`
   })
   export class GetAccessoryByIdGQL extends Apollo.Query<GetAccessoryByIdQuery, GetAccessoryByIdQueryVariables> {
     document = GetAccessoryByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29708,7 +30446,7 @@ export const GetAllAccessoriesDocument = gql`
   })
   export class GetAllAccessoriesGQL extends Apollo.Query<GetAllAccessoriesQuery, GetAllAccessoriesQueryVariables> {
     document = GetAllAccessoriesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29739,7 +30477,7 @@ export const GetAllConsumablesDocument = gql`
   })
   export class GetAllConsumablesGQL extends Apollo.Query<GetAllConsumablesQuery, GetAllConsumablesQueryVariables> {
     document = GetAllConsumablesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29759,7 +30497,7 @@ export const GetAllCustomerProductsDocument = gql`
   })
   export class GetAllCustomerProductsGQL extends Apollo.Query<GetAllCustomerProductsQuery, GetAllCustomerProductsQueryVariables> {
     document = GetAllCustomerProductsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29790,7 +30528,7 @@ export const GetAllGlassesDocument = gql`
   })
   export class GetAllGlassesGQL extends Apollo.Query<GetAllGlassesQuery, GetAllGlassesQueryVariables> {
     document = GetAllGlassesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29826,7 +30564,7 @@ export const GetAllServicesDocument = gql`
   })
   export class GetAllServicesGQL extends Apollo.Query<GetAllServicesQuery, GetAllServicesQueryVariables> {
     document = GetAllServicesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29847,7 +30585,7 @@ export const GetAllServiceConfigDocument = gql`
   })
   export class GetAllServiceConfigGQL extends Apollo.Query<GetAllServiceConfigQuery, GetAllServiceConfigQueryVariables> {
     document = GetAllServiceConfigDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29882,7 +30620,7 @@ export const GetConsumableByIdDocument = gql`
   })
   export class GetConsumableByIdGQL extends Apollo.Query<GetConsumableByIdQuery, GetConsumableByIdQueryVariables> {
     document = GetConsumableByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29917,7 +30655,7 @@ export const GetGlassByIdDocument = gql`
   })
   export class GetGlassByIdGQL extends Apollo.Query<GetGlassByIdQuery, GetGlassByIdQueryVariables> {
     document = GetGlassByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29935,7 +30673,7 @@ export const GetGlassColorsDocument = gql`
   })
   export class GetGlassColorsGQL extends Apollo.Query<GetGlassColorsQuery, GetGlassColorsQueryVariables> {
     document = GetGlassColorsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29953,7 +30691,7 @@ export const GetGlassTypesDocument = gql`
   })
   export class GetGlassTypesGQL extends Apollo.Query<GetGlassTypesQuery, GetGlassTypesQueryVariables> {
     document = GetGlassTypesDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -29989,7 +30727,7 @@ export const GetServiceConfigByIdDocument = gql`
   })
   export class GetServiceConfigByIdGQL extends Apollo.Query<GetServiceConfigByIdQuery, GetServiceConfigByIdQueryVariables> {
     document = GetServiceConfigByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30007,7 +30745,7 @@ export const DeleteDeliveryDocument = gql`
   })
   export class DeleteDeliveryGQL extends Apollo.Mutation<DeleteDeliveryMutation, DeleteDeliveryMutationVariables> {
     document = DeleteDeliveryDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30025,7 +30763,7 @@ export const DeleteDraftsDocument = gql`
   })
   export class DeleteDraftsGQL extends Apollo.Mutation<DeleteDraftsMutation, DeleteDraftsMutationVariables> {
     document = DeleteDraftsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30043,7 +30781,7 @@ export const DeleteOrdersDocument = gql`
   })
   export class DeleteOrdersGQL extends Apollo.Mutation<DeleteOrdersMutation, DeleteOrdersMutationVariables> {
     document = DeleteOrdersDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30061,7 +30799,7 @@ export const DeleteProductDraftDocument = gql`
   })
   export class DeleteProductDraftGQL extends Apollo.Mutation<DeleteProductDraftMutation, DeleteProductDraftMutationVariables> {
     document = DeleteProductDraftDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30096,7 +30834,7 @@ export const InsertAccessoryDraftDocument = gql`
   })
   export class InsertAccessoryDraftGQL extends Apollo.Mutation<InsertAccessoryDraftMutation, InsertAccessoryDraftMutationVariables> {
     document = InsertAccessoryDraftDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30131,15 +30869,15 @@ export const InsertConsumableDraftDocument = gql`
   })
   export class InsertConsumableDraftGQL extends Apollo.Mutation<InsertConsumableDraftMutation, InsertConsumableDraftMutationVariables> {
     document = InsertConsumableDraftDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
 export const InsertDeliveryDocument = gql`
-    mutation InsertDelivery($order: Int!, $status: String!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!) {
+    mutation InsertDelivery($order: Int!, $status: String!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $isReturned: Boolean, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!) {
   insert_sales_delivery_one(
-    object: {order: $order, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, status: $status, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact}
+    object: {order: $order, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, isReturned: $isReturned, status: $status, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact}
   ) {
     id
     status
@@ -30149,6 +30887,7 @@ export const InsertDeliveryDocument = gql`
     contact
     payment_method
     predicted_date
+    isReturned
     order
     client: customer {
       name
@@ -30168,7 +30907,7 @@ export const InsertDeliveryDocument = gql`
   })
   export class InsertDeliveryGQL extends Apollo.Mutation<InsertDeliveryMutation, InsertDeliveryMutationVariables> {
     document = InsertDeliveryDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30186,7 +30925,7 @@ export const InsertDraftDocument = gql`
   })
   export class InsertDraftGQL extends Apollo.Mutation<InsertDraftMutation, InsertDraftMutationVariables> {
     document = InsertDraftDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30223,7 +30962,7 @@ export const InsertGlassDraftDocument = gql`
   })
   export class InsertGlassDraftGQL extends Apollo.Mutation<InsertGlassDraftMutation, InsertGlassDraftMutationVariables> {
     document = InsertGlassDraftDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30264,7 +31003,7 @@ export const InsertOrderDocument = gql`
   })
   export class InsertOrderGQL extends Apollo.Mutation<InsertOrderMutation, InsertOrderMutationVariables> {
     document = InsertOrderDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30300,7 +31039,7 @@ export const InsertQuotationDocument = gql`
   })
   export class InsertQuotationGQL extends Apollo.Mutation<InsertQuotationMutation, InsertQuotationMutationVariables> {
     document = InsertQuotationDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30335,22 +31074,23 @@ export const InsertServiceDraftDocument = gql`
   })
   export class InsertServiceDraftGQL extends Apollo.Mutation<InsertServiceDraftMutation, InsertServiceDraftMutationVariables> {
     document = InsertServiceDraftDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
 export const UpdateDeliveryDocument = gql`
-    mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact: uuid, $company: uuid, $client: uuid, $predicted_date: date, $status: String!) {
+    mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact: uuid, $company: uuid, $client: uuid, $isReturned: Boolean, $predicted_date: date, $status: String!) {
   update_sales_delivery_by_pk(
     pk_columns: {id: $id}
-    _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, status: $status}
+    _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, isReturned: $isReturned, status: $status}
   ) {
     id
     order
     status
     company
     payment_method
+    isReturned
     predicted_date
     client
     contact
@@ -30363,22 +31103,20 @@ export const UpdateDeliveryDocument = gql`
   })
   export class UpdateDeliveryGQL extends Apollo.Mutation<UpdateDeliveryMutation, UpdateDeliveryMutationVariables> {
     document = UpdateDeliveryDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
 export const UpdateDeliveryLineDocument = gql`
-    mutation UpdateDeliveryLine($amount: numeric, $company_name: String, $delivered: Int, $id: uuid!, $isReturned: Boolean, $product: uuid!, $product_label: String, $quantity: Int) {
+    mutation UpdateDeliveryLine($amount: numeric, $delivered: numeric, $id: uuid!, $product: uuid!, $product_label: String, $quantity: numeric) {
   update_sales_delivery_line_by_pk(
     pk_columns: {id: $id}
-    _set: {amount: $amount, company_name: $company_name, delivered: $delivered, id: $id, isReturned: $isReturned, product: $product, product_label: $product_label, quantity: $quantity}
+    _set: {amount: $amount, delivered: $delivered, id: $id, product: $product, product_label: $product_label, quantity: $quantity}
   ) {
     id
     amount
-    company_name
     delivered
-    isReturned
     product
     product_label
     quantity
@@ -30391,7 +31129,7 @@ export const UpdateDeliveryLineDocument = gql`
   })
   export class UpdateDeliveryLineGQL extends Apollo.Mutation<UpdateDeliveryLineMutation, UpdateDeliveryLineMutationVariables> {
     document = UpdateDeliveryLineDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30407,6 +31145,7 @@ export const GetAllDeliveryDocument = gql`
     }
     payment_method
     predicted_date
+    isReturned
     client: customer {
       name
       mail
@@ -30425,7 +31164,7 @@ export const GetAllDeliveryDocument = gql`
   })
   export class GetAllDeliveryGQL extends Apollo.Query<GetAllDeliveryQuery, GetAllDeliveryQueryVariables> {
     document = GetAllDeliveryDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30452,7 +31191,7 @@ export const GetAllDraftsDocument = gql`
   })
   export class GetAllDraftsGQL extends Apollo.Query<GetAllDraftsQuery, GetAllDraftsQueryVariables> {
     document = GetAllDraftsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30488,7 +31227,7 @@ export const GetAllOrdersDocument = gql`
   })
   export class GetAllOrdersGQL extends Apollo.Query<GetAllOrdersQuery, GetAllOrdersQueryVariables> {
     document = GetAllOrdersDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30524,7 +31263,7 @@ export const GetAllQuotationsDocument = gql`
   })
   export class GetAllQuotationsGQL extends Apollo.Query<GetAllQuotationsQuery, GetAllQuotationsQueryVariables> {
     document = GetAllQuotationsDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30539,13 +31278,12 @@ export const GetDeliveryByIdDocument = gql`
     contact
     payment_method
     predicted_date
+    isReturned
     order
     delivery_lines {
       id
       amount
-      company_name
       delivered
-      isReturned
       product
       quantity
       product_label
@@ -30559,7 +31297,7 @@ export const GetDeliveryByIdDocument = gql`
   })
   export class GetDeliveryByIdGQL extends Apollo.Query<GetDeliveryByIdQuery, GetDeliveryByIdQueryVariables> {
     document = GetDeliveryByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30601,7 +31339,7 @@ export const GetDraftByIdDocument = gql`
   })
   export class GetDraftByIdGQL extends Apollo.Query<GetDraftByIdQuery, GetDraftByIdQueryVariables> {
     document = GetDraftByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30643,7 +31381,7 @@ export const GetOrderByIdDocument = gql`
   })
   export class GetOrderByIdGQL extends Apollo.Query<GetOrderByIdQuery, GetOrderByIdQueryVariables> {
     document = GetOrderByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30675,7 +31413,7 @@ export const GetProductsByTypeDocument = gql`
   })
   export class GetProductsByTypeGQL extends Apollo.Query<GetProductsByTypeQuery, GetProductsByTypeQueryVariables> {
     document = GetProductsByTypeDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30707,7 +31445,7 @@ export const GetProductsGroupDocument = gql`
   })
   export class GetProductsGroupGQL extends Apollo.Query<GetProductsGroupQuery, GetProductsGroupQueryVariables> {
     document = GetProductsGroupDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -30742,7 +31480,7 @@ export const GetQuotationByIdDocument = gql`
   })
   export class GetQuotationByIdGQL extends Apollo.Query<GetQuotationByIdQuery, GetQuotationByIdQueryVariables> {
     document = GetQuotationByIdDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
