@@ -9,6 +9,7 @@ export interface DeliveryForm extends MetaData {
   order: number;
   status: DeliveryStatus | string;
   predicted_date: Date;
+  isReturned: boolean;
   client: {
     name: string
     mail?: string
@@ -29,6 +30,7 @@ export interface InsertedDeliveryForm extends MetaData {
   order: number;
   status: DeliveryStatus;
   predicted_date: Date;
+  isReturned: boolean;
   client: string;
   company: string;
   contact: string;
@@ -42,9 +44,7 @@ export interface DeliveryLine {
   product: any;
   quantity: number;
   delivered: number;
-  company_name: string;
   product_label?: string;
   amount?: number;
-  isReturned: boolean;
   toDeliver?: number; // For Form purpose only
 }

@@ -19,9 +19,8 @@ export class DeliveryLineComponent implements OnInit {
         product: elem.id,
         quantity: elem.quantity,
         delivered: 0,
-        company_name: elem.company_name,
+        amount: 0,
         toDeliver: 0,
-        isReturned: false,
         product_label: elem.label,
       }));
     else this.deliveryLines = [
@@ -38,19 +37,12 @@ export class DeliveryLineComponent implements OnInit {
   public deliveryLines: Array<DeliveryLine> = [];
   displayedColumns: Array<Column> = [
     { title: 'Article', key: 'product_label', type: ColumnType.normal },
-    { title: 'Demande', key: 'qte', type: ColumnType.template, withRow: true },
+    { title: 'Livrer', key: 'qte', type: ColumnType.template, withRow: true },
     { title: 'Reste', key: 'rest', type: ColumnType.template, withRow: true },
-    { title: 'Livré', key: 'delivered', type: ColumnType.template },
-    { title: 'Société', key: 'company_name', type: ColumnType.normal },
+    { title: 'Déja Livré', key: 'delivered', type: ColumnType.template },
     {
       title: 'Montant',
       key: 'amount',
-      type: ColumnType.template,
-      withRow: true,
-    },
-    {
-      title: 'Retourné ?',
-      key: 'isReturned',
       type: ColumnType.template,
       withRow: true,
     },

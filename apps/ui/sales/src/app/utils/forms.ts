@@ -19,6 +19,7 @@ export type deliveryFormType = {
   order: number;
   predicted_date: Date;
   status: DeliveryStatus;
+  isReturned: boolean;
   company: string;
   client: string;
   contact: string;
@@ -43,6 +44,13 @@ const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?
     name: "predicted_date",
     label: "Date prévue",
     value: data?.predicted_date,
+    inputType: "text",
+  },
+  {
+    type: "checkbox",
+    name: "isReturned",
+    label: "Retourné ?",
+    value: data?.isReturned,
     inputType: "text",
   },
   {

@@ -7,13 +7,12 @@ query GetDeliveryById($id: uuid!) {
     contact
     payment_method
     predicted_date
+    isReturned
     order
     delivery_lines {
       id
       amount
-      company_name
       delivered
-      isReturned
       product
       quantity
       product_label

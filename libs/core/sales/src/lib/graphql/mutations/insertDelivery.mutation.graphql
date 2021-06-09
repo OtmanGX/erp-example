@@ -5,10 +5,11 @@ mutation InsertDelivery(
   $order: Int!
   $status: String!
   $predicted_date: date
-  $client: uuid!,
-  $company: uuid!,
-  $contact: uuid!,
-  $delivery_lines: [sales_delivery_line_insert_input!]!= []
+  $client: uuid!
+  $company: uuid!
+  $contact: uuid!
+  $isReturned: Boolean
+  $delivery_lines: [sales_delivery_line_insert_input!]! = []
   $payment_method: String!
 ) {
   insert_sales_delivery_one(
@@ -17,6 +18,7 @@ mutation InsertDelivery(
       company: $company
       payment_method: $payment_method
       predicted_date: $predicted_date
+      isReturned: $isReturned
       status: $status
       client: $client
       delivery_lines: { data: $delivery_lines }
@@ -25,12 +27,13 @@ mutation InsertDelivery(
   ) {
     id
     status
-    company: companyObject{
+    company: companyObject {
       name
     }
     contact
     payment_method
     predicted_date
+    isReturned
     order
     client: customer {
       name
