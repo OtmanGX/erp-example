@@ -8,6 +8,7 @@ import { PurchaseComponent } from './purchase.component';
 import { PopDeliveryComponent } from './pages/purchase/pop-delivery/pop-delivery.component'
 import { PurchaseDeliveryComponent } from './pages/purchase/purchase-delivery.component'
 import { StoreSharedModule} from "@tanglass-erp/store/shared";
+import { PurchaseReturnedComponent } from '@TanglassUi/purchase/pages/purchase-returned/purchase-returned.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
         { path: '', component: PurchaseDeliveryComponent },
       ],
       data: { title: 'Réception', breadcrumb: "" }
+    },
+    {
+      path: 'returned',
+      component: PurchaseReturnedComponent
     }
   ]
 }
@@ -29,6 +34,7 @@ const routes: Routes = [
     PurchaseComponent,
     PurchaseDeliveryComponent,
     PopDeliveryComponent,
+    PurchaseReturnedComponent,
    // DeliveryCardComponent
   ],
   imports: [

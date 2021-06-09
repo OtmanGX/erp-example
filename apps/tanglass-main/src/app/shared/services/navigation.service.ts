@@ -117,9 +117,8 @@ export class NavigationService {
       icon: 'assignment_ind',
       tooltip: 'Pages',
       sub: [
-        { name: 'Commande transfert', state: 'inventory/transfert' },
-        { name: 'Transferts réalisés', state: 'inventory/transfert' }
-
+        { name: "Commande transfert", state: "inventory/transfer" },
+        { name: "Transferts réalisés", state: "inventory/transferred" },
       ]
     },
     {
@@ -128,8 +127,8 @@ export class NavigationService {
       icon: 'assignment_ind',
       tooltip: 'Pages',
       sub: [
-        { name: 'Réception fournisseur', state: 'purchase/reception' },
-        { name: 'Retour fournisseur', state: 'purchase/reception' }
+        { name: "Réception fournisseur", state: "purchase/reception" },
+        { name: "Retour fournisseur", state: "purchase/returned" },
       ]
     },
     // *** Product ***
