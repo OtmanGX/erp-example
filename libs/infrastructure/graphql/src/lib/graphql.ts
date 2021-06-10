@@ -17835,12 +17835,12 @@ export enum Sales_Glass_Draft_Update_Column {
 /** columns and relationships of "sales.invoice" */
 export type Sales_Invoice = {
   __typename?: 'sales_invoice';
-  client?: Maybe<Scalars['uuid']>;
+  client: Scalars['uuid'];
   /** An object relationship */
-  clientObj?: Maybe<Contact_Customer>;
-  company?: Maybe<Scalars['uuid']>;
+  clientObj: Contact_Customer;
+  company: Scalars['uuid'];
   /** An object relationship */
-  companyObj?: Maybe<Management_Company>;
+  companyObj: Management_Company;
   contact?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   contactObj?: Maybe<Contact_Contact>;
@@ -27938,10 +27938,10 @@ export type DeleteInvoicesMutation = (
 
 export type InsertInvoiceMutationVariables = Exact<{
   client: Scalars['uuid'];
-  contact: Scalars['uuid'];
+  contact?: Maybe<Scalars['uuid']>;
   company: Scalars['uuid'];
-  payment_method?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['date']>;
+  payment_method: Scalars['String'];
+  date: Scalars['date'];
   deliveries?: Array<Sales_Invoice_Delivery_Insert_Input>;
 }>;
 
@@ -27951,13 +27951,13 @@ export type InsertInvoiceMutation = (
   & { insert_sales_invoice_one?: Maybe<(
     { __typename?: 'sales_invoice' }
     & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method'>
-    & { client?: Maybe<(
+    & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
-    )>, company?: Maybe<(
+    ), company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'id' | 'name'>
-    )>, contact?: Maybe<(
+    ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
     )>, deliveries: Array<(
@@ -27969,9 +27969,9 @@ export type InsertInvoiceMutation = (
 
 export type UpdateInvoiceMutationVariables = Exact<{
   id: Scalars['uuid'];
-  client: Scalars['uuid'];
-  company: Scalars['uuid'];
-  contact: Scalars['uuid'];
+  client?: Maybe<Scalars['uuid']>;
+  company?: Maybe<Scalars['uuid']>;
+  contact?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   payment_method?: Maybe<Scalars['String']>;
 }>;
@@ -27982,13 +27982,13 @@ export type UpdateInvoiceMutation = (
   & { update_sales_invoice_by_pk?: Maybe<(
     { __typename?: 'sales_invoice' }
     & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method'>
-    & { client?: Maybe<(
+    & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
-    )>, company?: Maybe<(
+    ), company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'id' | 'name'>
-    )>, contact?: Maybe<(
+    ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
     )>, deliveries: Array<(
@@ -28192,13 +28192,13 @@ export type GetAllInvoicesQuery = (
   & { sales_invoice: Array<(
     { __typename?: 'sales_invoice' }
     & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method'>
-    & { client?: Maybe<(
+    & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
-    )>, company?: Maybe<(
+    ), company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'id' | 'name'>
-    )>, contact?: Maybe<(
+    ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
     )>, deliveries: Array<(
@@ -31269,7 +31269,7 @@ export const DeleteInvoicesDocument = gql`
     }
   }
 export const InsertInvoiceDocument = gql`
-    mutation InsertInvoice($client: uuid!, $contact: uuid!, $company: uuid!, $payment_method: String, $date: date, $deliveries: [sales_invoice_delivery_insert_input!]! = []) {
+    mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $deliveries: [sales_invoice_delivery_insert_input!]! = []) {
   insert_sales_invoice_one(
     object: {client: $client, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}}
   ) {
@@ -31307,7 +31307,7 @@ export const InsertInvoiceDocument = gql`
     }
   }
 export const UpdateInvoiceDocument = gql`
-    mutation UpdateInvoice($id: uuid!, $client: uuid!, $company: uuid!, $contact: uuid!, $date: date, $payment_method: String) {
+    mutation UpdateInvoice($id: uuid!, $client: uuid, $company: uuid, $contact: uuid, $date: date, $payment_method: String) {
   update_sales_invoice_by_pk(
     _set: {client: $client, company: $company, contact: $contact, date: $date, payment_method: $payment_method}
     pk_columns: {id: $id}
