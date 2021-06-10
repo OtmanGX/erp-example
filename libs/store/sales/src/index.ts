@@ -2,6 +2,15 @@ export * from './lib/+state/orders/orders.actions';
 export * from './lib/+state/orders/orders.reducer';
 export * from './lib/+state/orders/orders.selectors';
 import { DeliveryStatus } from '@tanglass-erp/core/sales';
+
+import * as InvoiceFeature from './lib/+state/invoice/invoice.reducer';
+
+export {
+  InvoiceFeature,
+};
+
+
+export * from './lib/+state/invoice/invoice.facade';
 export * from './lib/+state/payments/payments.actions';
 
 export * from './lib/+state/payments/payments.reducer';

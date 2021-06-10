@@ -26,7 +26,7 @@ export interface InsertedInvoice {
   client: string;
   payment_method: PaymentMethod | string;
   company: string;
-  contact: string;
+  contact?: string;
   date: Date;
   deliveries: Array<{
     delivery_id: string

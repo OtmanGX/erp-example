@@ -1,8 +1,8 @@
 mutation UpdateInvoice(
   $id: uuid!
-  $client: uuid!
-  $company: uuid!
-  $contact: uuid!
+  $client: uuid
+  $company: uuid
+  $contact: uuid
   $date: date
   $payment_method: String
 ) {

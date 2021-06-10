@@ -63,9 +63,9 @@ export class DeliveryEffects {
           map((data) => {
             this.router.navigate(['/sales/delivery']);
             this.notificationService.showNotifToast({
-              message: 'Ajoutée avec succès',
+              message: 'Ajouté avec succès',
               operation: 'success',
-              title: 'Ventes',
+              title: 'Bons de livraison',
               time: new Date(),
               icon: 'checked',
               route: 'sales/delivery',
@@ -120,7 +120,7 @@ export class DeliveryEffects {
         this.deliveryService.deleteMany(action.ids).pipe(
           map((data) => {
               this.notificationService.showNotifToast({
-                message: 'Supprimée avec succès',
+                message: 'Supprimé avec succès',
                 operation: 'info',
                 title: 'Livraison',
                 icon: 'closed',
