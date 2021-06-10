@@ -59,10 +59,6 @@ export class DeliveryService {
         return this.updateDeliveryLineGQL.mutate(deliveryLine);
       })
     );
-
-    // return this.updateDeliveryLineGQL.mutate(e);
-    // console.log(deliveryOnly)
-    // return this.updateDeliveryGQL.mutate(deliveryOnly);
   }
 
   deleteMany(ids: string[]) {
