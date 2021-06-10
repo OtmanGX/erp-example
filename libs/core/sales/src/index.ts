@@ -7,5 +7,7 @@ export * from './lib/models/product';
 export * from './lib/services/quotation.service';
 export * from './lib/services/order.service';
 export * from './lib/services/delivery.service';
+export * from './lib/services/invoice.service';
 export * from './lib/models/delivery';
+export * from './lib/models/invoice';
 export * from './lib/enums/delivery';

@@ -1,0 +1,13 @@
+query GetInvoiceById($id: uuid!) {
+  sales_invoice_by_pk(id: $id) {
+    id
+    client
+    company
+    contact
+    date
+    deliveries {
+      delivery_id
+    }
+    payment_method
+  }
+}

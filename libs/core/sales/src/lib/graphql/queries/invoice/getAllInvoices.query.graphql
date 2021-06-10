@@ -1,0 +1,23 @@
+query GetAllInvoices {
+  sales_invoice {
+    id
+    client: clientObj {
+      name
+      mail
+    }
+    company: companyObj{
+      id
+      name
+    }
+    contact: contactObj {
+      mail
+      name
+      phone
+    }
+    date
+    payment_method
+    deliveries {
+      delivery_id
+    }
+  }
+}
