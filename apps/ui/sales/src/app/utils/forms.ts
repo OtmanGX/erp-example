@@ -1,9 +1,15 @@
 import { MAXNUMBER, REQUIRED } from '@tanglass-erp/material';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Glass, Accessory, Service, Consumable,CustomerProduct } from "@TanglassStore/product/index";
+import { Glass, Accessory, Service, Consumable, CustomerProduct } from "@TanglassStore/product/index";
 import { Intermediate_Data, DraftItem } from "./models";
-import { DeliveryStatus, InsertedDeliveryForm, PaymentMethod } from '@tanglass-erp/core/sales';
+import {
+  DeliveryForm,
+  DeliveryStatus,
+  InsertedDeliveryForm,
+  PaymentMethod,
+  UpdatedInvoice
+} from '@tanglass-erp/core/sales';
 
 type ListObservable = Observable<any> | Array<any>;
 
@@ -25,6 +31,70 @@ export type deliveryFormType = {
   contact: string;
   payment_method: PaymentMethod;
 }
+
+const regConfigInvoice = (data?: UpdatedInvoice | null, deliveries?: any, clients?, companies?, contacts?) => [
+  {
+    type: "selectSearch",
+    name: "deliveries",
+    label: "N° des livraisons",
+    inputType: "text",
+    value: data?.deliveries.map(value => value.delivery_id),
+    filterFields: ['id', 'company.name'],
+    fieldsToShow: ['id', 'company.name'],
+    multiple: true,
+    disabled: data !== null,
+    options: deliveries,
+    validations: [REQUIRED]
+  },
+  {
+    type: "date",
+    name: "date",
+    label: "Date de facture",
+    value: data?.date || new Date(),
+    inputType: "text",
+    validations: [REQUIRED]
+  },
+  {
+    type: "select",
+    name: "company",
+    label: "Société",
+    inputType: "text",
+    options: companies,
+    value: data?.company,
+    validations: [REQUIRED]
+  },
+  {
+    type: "selectSearch",
+    name: "client",
+    label: "Client",
+    filterFields: ['name', 'phone'],
+    fieldsToShow: ['name', 'phone'],
+    inputType: "text",
+    options: clients,
+    value: data?.client,
+    validations: [REQUIRED]
+  },
+  {
+    type: "selectSearch",
+    name: "contact",
+    label: "Contact",
+    filterFields: ['name', 'code'],
+    fieldsToShow: ['name', 'code'],
+    inputType: "text",
+    options: contacts,
+    value: data?.contact
+  },
+  {
+    type: "select",
+    name: "payment_method",
+    label: "Méthode de paiement",
+    inputType: "text",
+    options: Object.values(PaymentMethod).map(e => ({key: e, value: e})),
+    value: data?.payment_method,
+    validations: [REQUIRED]
+  }
+  ];
+
 
 const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?, companies?, contacts?) => [
   {
@@ -50,7 +120,7 @@ const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?
     type: "date",
     name: "predicted_date",
     label: "Date prévue",
-    value: data?.predicted_date,
+    value: data?.predicted_date || new Date(),
     inputType: "text",
   },
   {
@@ -479,5 +549,6 @@ export {
   regConfigServiceItem,
   regConfigConsumableItem,
   regConfigCustomerItem,
-  regConfigDelivery
+  regConfigDelivery,
+  regConfigInvoice
 };

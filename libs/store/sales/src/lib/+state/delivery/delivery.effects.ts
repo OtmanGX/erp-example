@@ -92,15 +92,17 @@ export class DeliveryEffects {
       ofType(DeliveryActions.updateDelivery),
       mergeMap((action) =>
         this.deliveryService.updateDelivery(action.delivery).pipe(
-          map((data: Array<any>) =>
-            DeliveryActions.updateDeliverySuccess({
-              delivery: {
-                ...data[0].data.update_sales_delivery_by_pk,
-                delivery_lines: data
-                  .slice(1, data.length)
-                  .map((e) => e.data.update_sales_delivery_line_by_pk),
-              },
-            })
+          map((data: Array<any>) => {
+            this.router.navigate(['sales/invoice']);
+              return DeliveryActions.updateDeliverySuccess({
+                delivery: {
+                  ...data[0].data.update_sales_delivery_by_pk,
+                  delivery_lines: data
+                    .slice(1, data.length)
+                    .map((e) => e.data.update_sales_delivery_line_by_pk),
+                },
+              })
+            }
           ),
           tap((e) => this.router.navigate(['/sales/delivery'])),
           catchError((error) => {

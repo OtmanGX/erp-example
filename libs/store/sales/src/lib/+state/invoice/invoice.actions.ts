@@ -25,7 +25,7 @@ export const loadInvoiceById = createAction(
 
 export const loadInvoiceByIdSuccess = createAction(
   '[Invoice] Load Invoice By Id Success',
-  props<{ invoice: InsertedInvoice }>()
+  props<{ invoice: UpdatedInvoice }>()
 );
 
 export const loadInvoiceByIdFailure = createAction(

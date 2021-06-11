@@ -6,14 +6,18 @@ import * as fromDelivery from './delivery.reducer';
 import * as DeliverySelectors from './delivery.selectors';
 import * as DeliveryActions from './delivery.actions';
 import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
-import { filter } from 'rxjs/operators';
+import { filter, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class DeliveryFacade {
   loaded$ = this.store.pipe(select(DeliverySelectors.getDeliveryLoaded));
-  allDelivery$ = this.store.pipe(select(DeliverySelectors.getAllDelivery));
-  selectedDelivery$ = this.store.pipe(select(DeliverySelectors.getSelectedEntity))
-    .pipe(filter(e => !!e));
+  allDelivery$ = this.loaded$.pipe(
+    filter((e) => !!e),
+    switchMap(() => this.store.pipe(select(DeliverySelectors.getAllDelivery)))
+  );
+  selectedDelivery$ = this.store
+    .pipe(select(DeliverySelectors.getSelectedEntity))
+    .pipe(filter((e) => !!e));
 
   constructor(private store: Store<fromDelivery.DeliveryPartialState>) {}
 
@@ -26,18 +30,18 @@ export class DeliveryFacade {
   }
 
   loadDeliveryById(id: string) {
-    this.dispatch(DeliveryActions.loadDeliveryById({id}));
+    this.dispatch(DeliveryActions.loadDeliveryById({ id }));
   }
 
   addDelivery(delivery: InsertedDeliveryForm) {
-    this.dispatch(DeliveryActions.addDelivery({delivery}));
+    this.dispatch(DeliveryActions.addDelivery({ delivery }));
   }
 
   updateDelivery(delivery: InsertedDeliveryForm) {
-    this.dispatch(DeliveryActions.updateDelivery({delivery}));
+    this.dispatch(DeliveryActions.updateDelivery({ delivery }));
   }
 
   removeDelivery(ids: string[]) {
-    this.dispatch(DeliveryActions.removeDelivery({ids}));
+    this.dispatch(DeliveryActions.removeDelivery({ ids }));
   }
 }

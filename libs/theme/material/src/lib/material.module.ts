@@ -126,7 +126,7 @@ const OTHER_COMPONENTS = [
   DialogBodyComponent,
   FicheCardComponent,
   ListItemComponent,
-  ConfirmDialogComponent
+  ConfirmDialogComponent,
 ];
 
 @NgModule({

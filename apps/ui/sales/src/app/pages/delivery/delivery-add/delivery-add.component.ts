@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
+import { DynamicFormComponent, FieldConfig, PageForm } from '@tanglass-erp/material';
 import { deliveryFormType, regConfigDelivery } from '@TanglassUi/sales/utils/forms';
 import { DeliveryFacade, DraftFacade, Order, OrdersFacade } from '@tanglass-erp/store/sales';
 import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
@@ -11,7 +11,7 @@ import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/custome
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
 import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { DeliveryLineComponent } from '@TanglassUi/sales/pages/components/delivery-line/delivery-line.component';
+import { DeliveryLineComponent } from '@TanglassUi/sales/components/delivery-line/delivery-line.component';
 import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 
 
@@ -21,7 +21,8 @@ import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
   styleUrls: ['./delivery-add.component.scss']
 })
 export class DeliveryAddComponent
-  implements OnInit, OnDestroy, AfterViewInit {
+  extends PageForm
+  implements AfterViewInit {
   @ViewChild('table', { read: DeliveryLineComponent }) table;
   @ViewChild('form', { read: DynamicFormComponent, static: false }) form;
 
@@ -39,9 +40,7 @@ export class DeliveryAddComponent
     map(val => val['product_drafts'])
   );
 
-  // Id for update reason
-  deliveryId: string;
-  delivery: InsertedDeliveryForm = null;
+  data: InsertedDeliveryForm = null;
 
   commandData = [];
 
@@ -52,25 +51,23 @@ export class DeliveryAddComponent
     private draftFacade: DraftFacade,
     private ordersFacade: OrdersFacade,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
-
-    this.deliveryId = this.activatedRoute.snapshot.paramMap.get('id');
-
+    public activatedRoute: ActivatedRoute) {
+    super(activatedRoute);
   }
 
   ngOnInit(): void {
-    this.dispatchActions();
-    if (this.deliveryId) {
-      this.deliveryFacade.loadDeliveryById(this.deliveryId);
+    super.ngOnInit();
+    if (this.id) {
+      this.deliveryFacade.loadDeliveryById(this.id);
       this.deliveryFacade.selectedDelivery$.subscribe(value => {
-      this.delivery = <InsertedDeliveryForm> value;
-        this.buildForm()
+      this.data = <InsertedDeliveryForm> value;
+      this.buildForm()
       })
     } else this.buildForm();
   }
 
   ngAfterViewInit(): void {
-    if (this.deliveryId)
+    if (this.id)
       return
     const orderField = this.form.getField('order');
     const companyField = this.form.getField('company');
@@ -117,7 +114,7 @@ export class DeliveryAddComponent
 
   buildForm() {
     this.regConfig = regConfigDelivery(
-      this.delivery,
+      this.data,
       this.orders$,
       this.customers$,
       this.companies$.pipe(map(e => e.map(company => ({ key: company.id, value: company.name })))),
@@ -130,15 +127,16 @@ export class DeliveryAddComponent
       ...value,
       delivery_lines: this.table.submitValue()
     };
-    if (this.deliveryId)
+    if (this.id)
       this.deliveryFacade.updateDelivery({
         ...deliveryToInsert,
-        id: this.deliveryId
+        id: this.id
       });
     else this.deliveryFacade.addDelivery(deliveryToInsert);
   }
 
   ngOnDestroy(): void {
+    super.ngOnDestroy();
     this.ordersFacade.clearSelection();
     this.draftFacade.clearState();
   }

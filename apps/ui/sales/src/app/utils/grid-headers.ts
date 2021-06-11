@@ -138,6 +138,51 @@ export const deliveryHeaders = [
   },
 ];
 
+
+export const invoiceHeaders = [
+  {
+    headerName: 'Facture',
+    children: [
+      {
+        field: 'id',
+        headerName: 'ID',
+        type: 'linkColumn',
+        cellRendererParams: (params) => ({
+          link: ['update', {id : params?.data?.id}],
+        }),
+      },
+      {
+        field: 'date',
+        headerName: 'Date de facture',
+        type: 'dateColumn',
+      },
+      {
+        field: 'payment_method',
+        headerName: 'Méthode de paiment',
+      },
+    ],
+  },
+  {
+    headerName: 'Société',
+    children: [{ field: 'company.name', headerName: 'Nom' }],
+  },
+  {
+    headerName: 'Client',
+    children: [
+      { field: 'client.name', headerName: 'Nom', type: 'textColumn' },
+      { field: 'client.mail', headerName: 'E-mail', type: 'textColumn' },
+    ],
+  },
+  {
+    headerName: 'Contact',
+    children: [
+      { field: 'contact.name', headerName: 'Nom', type: 'textColumn' },
+      { field: 'contact.mail', headerName: 'E-mail', type: 'textColumn' },
+      { field: 'contact.phone', headerName: 'Phone', type: 'textColumn' },
+    ],
+  },
+];
+
 export const ProductDraftHeaders = [
   { field: 'id', headerName: 'ID. ' },
   { field: 'product_code', headerName: 'Code' },
