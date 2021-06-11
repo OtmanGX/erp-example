@@ -6,6 +6,7 @@ export * from './lib/interfaces/card-config';
 export * from './lib/interfaces/Column';
 export * from './lib/abstracts/formDialog';
 export * from './lib/abstracts/ModelCard';
+export * from './lib/abstracts/page-form';
 export * from './lib/components/form/dynamic-form.component';
 export * from './lib/components/confirm-dialog/confirm-dialog.component';
 export * from './lib/components/table/table.component';

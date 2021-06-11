@@ -1,7 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FieldConfig } from '@tanglass-erp/material';
-import { Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 @Component({

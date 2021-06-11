@@ -206,6 +206,13 @@ export class NavigationService {
       icon: 'assignment_ind',
       tooltip: 'Livraison',
       state: 'sales/delivery'
+    },
+    {
+      name: 'Factures',
+      type: 'link',
+      icon: 'assignment_ind',
+      tooltip: 'Factures',
+      state: 'sales/invoice'
     }
   ];
 

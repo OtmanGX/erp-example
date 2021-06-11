@@ -19,9 +19,14 @@ import { CreateOrderComponent } from "./pages/order/create-order/create-order.co
 import { AmountsOrderComponent } from "./pages/order/amounts-order/amounts-order.component";
 import { DeliveryListComponent } from '@TanglassUi/sales/pages/delivery/delivery-list/delivery-list.component';
 import { DeliveryAddComponent } from '@TanglassUi/sales/pages/delivery/delivery-add/delivery-add.component';
-import { DeliveryLineComponent } from '@TanglassUi/sales/pages/components/delivery-line/delivery-line.component';
+import { DeliveryLineComponent } from '@TanglassUi/sales/components/delivery-line/delivery-line.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { OrderCardComponent } from "./pages/order/order-card/order-card.component";
+import { InvoiceListComponent } from '@TanglassUi/sales/pages/invoice/invoice-list/invoice-list.component';
+import { InvoiceAddComponent } from '@TanglassUi/sales/pages/invoice/invoice-add/invoice-add.component';
+import { InvoiceReadyComponent } from '@TanglassUi/sales/pages/invoice/invoice-ready/invoice-ready.component';
+import { DeliveriesAccordionComponent } from '@TanglassUi/sales/components/deliveries-accordion/deliveries-accordion.component';
+
 @NgModule({
   declarations: [
     SalesComponent,
@@ -37,7 +42,11 @@ import { OrderCardComponent } from "./pages/order/order-card/order-card.componen
     DeliveryListComponent,
     DeliveryAddComponent,
     DeliveryLineComponent,
-    OrderCardComponent
+    OrderCardComponent,
+    InvoiceListComponent,
+    InvoiceAddComponent,
+    InvoiceReadyComponent,
+    DeliveriesAccordionComponent
   ],
   imports: [
     CommonModule,

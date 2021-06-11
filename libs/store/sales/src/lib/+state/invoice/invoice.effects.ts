@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as InvoiceActions from './invoice.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { InvoiceService } from '@tanglass-erp/core/sales';
+import { InsertedInvoice, InvoiceService, UpdatedInvoice } from '@tanglass-erp/core/sales';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class InvoiceEffects {
@@ -27,7 +28,10 @@ export class InvoiceEffects {
     ofType(InvoiceActions.loadInvoiceById),
     mergeMap(action => this.service.getOneById(action.id)
       .pipe(
-        map(data => InvoiceActions.loadInvoiceByIdSuccess({invoice: data.data.sales_invoice_by_pk})),
+        map(data => {
+          const {__typename, ...invoice} = data.data.sales_invoice_by_pk;
+          return InvoiceActions.loadInvoiceByIdSuccess({invoice: <UpdatedInvoice> invoice})
+        }),
         catchError(error => {
           this.notificationService.showToast('error', 'Erreur de chargement', error);
           return of(InvoiceActions.loadInvoiceByIdFailure({error}));
@@ -47,10 +51,11 @@ export class InvoiceEffects {
             operation: 'success',
             title: 'Factures',
             time: new Date(),
-            icon: 'checked',
+            icon: 'recipt',
             route: 'sales/invoice',
             color: 'primary'
           })
+          this.router.navigate(['sales/invoice/ready'], {state: {data: action.invoice}});
           return InvoiceActions.addInvoiceSuccess({invoice: data.data.insert_sales_invoice_one})
         }),
         catchError(error => {
@@ -67,6 +72,7 @@ export class InvoiceEffects {
     mergeMap(action => this.service.updateOne(action.invoice)
       .pipe(
         map(data => {
+          this.router.navigate(['sales/invoice']);
           this.notificationService.showNotifToast({
             message: 'Mise à jour avec succès',
             operation: 'info',
@@ -74,7 +80,7 @@ export class InvoiceEffects {
             time: new Date(),
             icon: 'checked',
             route: 'sales/invoice',
-            color: 'primary'
+            color: 'accent'
           })
           return InvoiceActions.updateInvoiceSuccess({invoice: data.data.update_sales_invoice_by_pk})
         }),
@@ -99,7 +105,7 @@ export class InvoiceEffects {
             time: new Date(),
             icon: 'close',
             route: 'sales/invoice',
-            color: 'primary'
+            color: 'warn'
           })
           return InvoiceActions.deleteInvoicesSuccess({ids: action.ids})
         }),
@@ -114,6 +120,7 @@ export class InvoiceEffects {
   constructor(
     private actions$: Actions,
     private service: InvoiceService,
+    private router: Router,
     private notificationService: NotificationFacadeService,
   ) {}
 }
