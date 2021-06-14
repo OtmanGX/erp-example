@@ -48,6 +48,7 @@
   <div *ngIf="item.quantity - item.delivered">
     <mat-form-field>
       <input
+        #qteInput
         matInput
         type="number"
         [(ngModel)]="item.toDeliver"
@@ -56,6 +57,9 @@
         [min]="0"
         [max]="item.quantity - item.delivered"
       />
+      <button mat-icon-button matSuffix (click)="setMax(qteInput)">
+        <mat-icon style="font-size: 1.5rem">{{qteInput.value==qteInput.max?'clear_all':'done_all'}}</mat-icon>
+      </button>
     </mat-form-field>
   </div>
 </ng-template>

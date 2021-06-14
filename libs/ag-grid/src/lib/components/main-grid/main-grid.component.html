@@ -40,8 +40,9 @@
       <ng-container *ngFor="let item of extraActions">
         <button
           *ngIf="permissions[item.event]"
-          (click)="triggerAction(item.event)"
+          (click)="triggerAction(item.event, getSelectedRows())"
           mat-icon-button
+          [disabled]="item.selectToShow && selectedData.length === 0"
           [matTooltip]="item.tooltip"
         >
           <mat-icon [color]="item.color">

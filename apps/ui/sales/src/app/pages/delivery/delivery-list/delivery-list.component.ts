@@ -25,6 +25,14 @@ export class DeliveryListComponent implements GridView {
     INVOICE: true,
   };
   mainGrid: MainGridComponent;
+  extraActions: GroupButton[] = [
+    {
+      event: 'INVOICE',
+      icon: 'receipt',
+      tooltip: 'Générer la facture',
+      selectToShow: true
+    },
+  ];
   constructor(private router: Router, private deliveryFacade: DeliveryFacade) {
     this.setColumnDefs();
   }
@@ -48,6 +56,9 @@ export class DeliveryListComponent implements GridView {
         this.deliveryFacade.removeDelivery(event.data.map((e) => e.id));
         break;
       case 'INVOICE':
+        this.router.navigate(['sales/invoice/add'], {
+          state: { deliveries: event.data.map((e) => ({delivery_id: e.id})) },
+        });
         break;
     }
   }
@@ -59,15 +70,15 @@ export class DeliveryListComponent implements GridView {
         field: 'id',
         headerName: 'Action',
         type: 'editColumn',
-        cellRendererParams: () => ({
-          extra: [
-            {
-              event: 'INVOICE',
-              icon: 'receipt',
-              tooltip: 'facture',
-            },
-          ] as GroupButton[],
-        }),
+        // cellRendererParams: () => ({
+        //   extra: [
+        //     {
+        //       event: 'INVOICE',
+        //       icon: 'receipt',
+        //       tooltip: 'facture',
+        //     },
+        //   ] as GroupButton[],
+        // }),
       },
     ];
   }

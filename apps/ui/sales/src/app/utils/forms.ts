@@ -4,11 +4,9 @@ import { map } from 'rxjs/operators';
 import { Glass, Accessory, Service, Consumable, CustomerProduct } from "@TanglassStore/product/index";
 import { Intermediate_Data, DraftItem } from "./models";
 import {
-  DeliveryForm,
   DeliveryStatus,
-  InsertedDeliveryForm,
+  InsertedDeliveryForm, InsertedInvoice,
   PaymentMethod,
-  UpdatedInvoice
 } from '@tanglass-erp/core/sales';
 
 type ListObservable = Observable<any> | Array<any>;
@@ -32,17 +30,17 @@ export type deliveryFormType = {
   payment_method: PaymentMethod;
 }
 
-const regConfigInvoice = (data?: UpdatedInvoice | null, deliveries?: any, clients?, companies?, contacts?) => [
+const regConfigInvoice = (data?: InsertedInvoice | null, deliveries?: any, clients?, companies?, contacts?) => [
   {
     type: "selectSearch",
     name: "deliveries",
     label: "N° des livraisons",
     inputType: "text",
-    value: data?.deliveries.map(value => value.delivery_id),
+    value: data?.deliveries?.map(value => value.delivery_id),
     filterFields: ['id', 'company.name'],
     fieldsToShow: ['id', 'company.name'],
     multiple: true,
-    disabled: data !== null,
+    disabled: data?.id != null,
     options: deliveries,
     validations: [REQUIRED]
   },

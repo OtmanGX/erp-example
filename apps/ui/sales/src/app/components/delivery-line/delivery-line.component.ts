@@ -29,6 +29,8 @@ export class DeliveryLineComponent implements OnInit {
     this.table;
   }
 
+  // input
+  clear: boolean = false;
   public get data() {
     return this._data;
   }
@@ -68,5 +70,9 @@ export class DeliveryLineComponent implements OnInit {
       return wanted;
     });
     return returnedValue;
+  }
+
+  setMax(input: HTMLInputElement) {
+    input.value = input.value !== input.max ? input.max:'0';
   }
 }
