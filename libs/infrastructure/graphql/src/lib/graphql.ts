@@ -18243,6 +18243,10 @@ export type Sales_Order = {
   /** An object relationship */
   paymentStatusByPaymentStatus: Sales_Payment_Status;
   payment_status: Scalars['String'];
+  /** An array relationship */
+  payments: Array<Sales_Payment>;
+  /** An aggregated array relationship */
+  payments_aggregate: Sales_Payment_Aggregate;
   total_ht: Scalars['numeric'];
   total_tax: Scalars['numeric'];
   total_ttc: Scalars['numeric'];
@@ -18266,6 +18270,26 @@ export type Sales_OrderDeliveries_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Sales_Delivery_Order_By>>;
   where?: Maybe<Sales_Delivery_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.order" */
+export type Sales_OrderPaymentsArgs = {
+  distinct_on?: Maybe<Array<Sales_Payment_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Payment_Order_By>>;
+  where?: Maybe<Sales_Payment_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.order" */
+export type Sales_OrderPayments_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Payment_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Payment_Order_By>>;
+  where?: Maybe<Sales_Payment_Bool_Exp>;
 };
 
 /** aggregated selection of "sales.order" */
@@ -18359,6 +18383,7 @@ export type Sales_Order_Bool_Exp = {
   order_delivery_status?: Maybe<Sales_Order_Delivery_Status_Bool_Exp>;
   paymentStatusByPaymentStatus?: Maybe<Sales_Payment_Status_Bool_Exp>;
   payment_status?: Maybe<String_Comparison_Exp>;
+  payments?: Maybe<Sales_Payment_Bool_Exp>;
   total_ht?: Maybe<Numeric_Comparison_Exp>;
   total_tax?: Maybe<Numeric_Comparison_Exp>;
   total_ttc?: Maybe<Numeric_Comparison_Exp>;
@@ -18597,6 +18622,7 @@ export type Sales_Order_Insert_Input = {
   order_delivery_status?: Maybe<Sales_Order_Delivery_Status_Obj_Rel_Insert_Input>;
   paymentStatusByPaymentStatus?: Maybe<Sales_Payment_Status_Obj_Rel_Insert_Input>;
   payment_status?: Maybe<Scalars['String']>;
+  payments?: Maybe<Sales_Payment_Arr_Rel_Insert_Input>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
@@ -18708,6 +18734,7 @@ export type Sales_Order_Order_By = {
   order_delivery_status?: Maybe<Sales_Order_Delivery_Status_Order_By>;
   paymentStatusByPaymentStatus?: Maybe<Sales_Payment_Status_Order_By>;
   payment_status?: Maybe<Order_By>;
+  payments_aggregate?: Maybe<Sales_Payment_Aggregate_Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -18927,6 +18954,7 @@ export type Sales_Order_Variance_Order_By = {
 export type Sales_Payment = {
   __typename?: 'sales_payment';
   amount: Scalars['numeric'];
+  comment?: Maybe<Scalars['String']>;
   /** An object relationship */
   company: Management_Company;
   company_id: Scalars['uuid'];
@@ -18939,6 +18967,7 @@ export type Sales_Payment = {
   /** An object relationship */
   order: Sales_Order;
   order_id: Scalars['Int'];
+  paper_ref?: Maybe<Scalars['String']>;
   /** An object relationship */
   paymentMethod: Sales_Payment_Method;
   payment_method: Scalars['String'];
@@ -19014,6 +19043,7 @@ export type Sales_Payment_Bool_Exp = {
   _not?: Maybe<Sales_Payment_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Payment_Bool_Exp>>>;
   amount?: Maybe<Numeric_Comparison_Exp>;
+  comment?: Maybe<String_Comparison_Exp>;
   company?: Maybe<Management_Company_Bool_Exp>;
   company_id?: Maybe<Uuid_Comparison_Exp>;
   customer?: Maybe<Contact_Customer_Bool_Exp>;
@@ -19023,6 +19053,7 @@ export type Sales_Payment_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
   order?: Maybe<Sales_Order_Bool_Exp>;
   order_id?: Maybe<Int_Comparison_Exp>;
+  paper_ref?: Maybe<String_Comparison_Exp>;
   paymentMethod?: Maybe<Sales_Payment_Method_Bool_Exp>;
   payment_method?: Maybe<String_Comparison_Exp>;
 };
@@ -19042,6 +19073,7 @@ export type Sales_Payment_Inc_Input = {
 /** input type for inserting data into table "sales.payment" */
 export type Sales_Payment_Insert_Input = {
   amount?: Maybe<Scalars['numeric']>;
+  comment?: Maybe<Scalars['String']>;
   company?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
   company_id?: Maybe<Scalars['uuid']>;
   customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
@@ -19051,6 +19083,7 @@ export type Sales_Payment_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
   order?: Maybe<Sales_Order_Obj_Rel_Insert_Input>;
   order_id?: Maybe<Scalars['Int']>;
+  paper_ref?: Maybe<Scalars['String']>;
   paymentMethod?: Maybe<Sales_Payment_Method_Obj_Rel_Insert_Input>;
   payment_method?: Maybe<Scalars['String']>;
 };
@@ -19059,24 +19092,28 @@ export type Sales_Payment_Insert_Input = {
 export type Sales_Payment_Max_Fields = {
   __typename?: 'sales_payment_max_fields';
   amount?: Maybe<Scalars['numeric']>;
+  comment?: Maybe<Scalars['String']>;
   company_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   deadline?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   order_id?: Maybe<Scalars['Int']>;
+  paper_ref?: Maybe<Scalars['String']>;
   payment_method?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "sales.payment" */
 export type Sales_Payment_Max_Order_By = {
   amount?: Maybe<Order_By>;
+  comment?: Maybe<Order_By>;
   company_id?: Maybe<Order_By>;
   customer_id?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   deadline?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   order_id?: Maybe<Order_By>;
+  paper_ref?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
 };
 
@@ -19084,7 +19121,31 @@ export type Sales_Payment_Max_Order_By = {
 export type Sales_Payment_Method = {
   __typename?: 'sales_payment_method';
   key: Scalars['String'];
+  /** An array relationship */
+  payments: Array<Sales_Payment>;
+  /** An aggregated array relationship */
+  payments_aggregate: Sales_Payment_Aggregate;
   value: Scalars['String'];
+};
+
+
+/** columns and relationships of "sales.payment_method" */
+export type Sales_Payment_MethodPaymentsArgs = {
+  distinct_on?: Maybe<Array<Sales_Payment_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Payment_Order_By>>;
+  where?: Maybe<Sales_Payment_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.payment_method" */
+export type Sales_Payment_MethodPayments_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Payment_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Payment_Order_By>>;
+  where?: Maybe<Sales_Payment_Bool_Exp>;
 };
 
 /** aggregated selection of "sales.payment_method" */
@@ -19128,6 +19189,7 @@ export type Sales_Payment_Method_Bool_Exp = {
   _not?: Maybe<Sales_Payment_Method_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Payment_Method_Bool_Exp>>>;
   key?: Maybe<String_Comparison_Exp>;
+  payments?: Maybe<Sales_Payment_Bool_Exp>;
   value?: Maybe<String_Comparison_Exp>;
 };
 
@@ -19142,6 +19204,7 @@ export enum Sales_Payment_Method_Constraint {
 /** input type for inserting data into table "sales.payment_method" */
 export type Sales_Payment_Method_Insert_Input = {
   key?: Maybe<Scalars['String']>;
+  payments?: Maybe<Sales_Payment_Arr_Rel_Insert_Input>;
   value?: Maybe<Scalars['String']>;
 };
 
@@ -19196,6 +19259,7 @@ export type Sales_Payment_Method_On_Conflict = {
 /** ordering options when selecting data from "sales.payment_method" */
 export type Sales_Payment_Method_Order_By = {
   key?: Maybe<Order_By>;
+  payments_aggregate?: Maybe<Sales_Payment_Aggregate_Order_By>;
   value?: Maybe<Order_By>;
 };
 
@@ -19230,24 +19294,28 @@ export enum Sales_Payment_Method_Update_Column {
 export type Sales_Payment_Min_Fields = {
   __typename?: 'sales_payment_min_fields';
   amount?: Maybe<Scalars['numeric']>;
+  comment?: Maybe<Scalars['String']>;
   company_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   deadline?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   order_id?: Maybe<Scalars['Int']>;
+  paper_ref?: Maybe<Scalars['String']>;
   payment_method?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "sales.payment" */
 export type Sales_Payment_Min_Order_By = {
   amount?: Maybe<Order_By>;
+  comment?: Maybe<Order_By>;
   company_id?: Maybe<Order_By>;
   customer_id?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   deadline?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   order_id?: Maybe<Order_By>;
+  paper_ref?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
 };
 
@@ -19276,6 +19344,7 @@ export type Sales_Payment_On_Conflict = {
 /** ordering options when selecting data from "sales.payment" */
 export type Sales_Payment_Order_By = {
   amount?: Maybe<Order_By>;
+  comment?: Maybe<Order_By>;
   company?: Maybe<Management_Company_Order_By>;
   company_id?: Maybe<Order_By>;
   customer?: Maybe<Contact_Customer_Order_By>;
@@ -19285,6 +19354,7 @@ export type Sales_Payment_Order_By = {
   id?: Maybe<Order_By>;
   order?: Maybe<Sales_Order_Order_By>;
   order_id?: Maybe<Order_By>;
+  paper_ref?: Maybe<Order_By>;
   paymentMethod?: Maybe<Sales_Payment_Method_Order_By>;
   payment_method?: Maybe<Order_By>;
 };
@@ -19299,6 +19369,8 @@ export enum Sales_Payment_Select_Column {
   /** column name */
   Amount = 'amount',
   /** column name */
+  Comment = 'comment',
+  /** column name */
   CompanyId = 'company_id',
   /** column name */
   CustomerId = 'customer_id',
@@ -19311,18 +19383,22 @@ export enum Sales_Payment_Select_Column {
   /** column name */
   OrderId = 'order_id',
   /** column name */
+  PaperRef = 'paper_ref',
+  /** column name */
   PaymentMethod = 'payment_method'
 }
 
 /** input type for updating data in table "sales.payment" */
 export type Sales_Payment_Set_Input = {
   amount?: Maybe<Scalars['numeric']>;
+  comment?: Maybe<Scalars['String']>;
   company_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   deadline?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   order_id?: Maybe<Scalars['Int']>;
+  paper_ref?: Maybe<Scalars['String']>;
   payment_method?: Maybe<Scalars['String']>;
 };
 
@@ -19556,6 +19632,8 @@ export enum Sales_Payment_Update_Column {
   /** column name */
   Amount = 'amount',
   /** column name */
+  Comment = 'comment',
+  /** column name */
   CompanyId = 'company_id',
   /** column name */
   CustomerId = 'customer_id',
@@ -19567,6 +19645,8 @@ export enum Sales_Payment_Update_Column {
   Id = 'id',
   /** column name */
   OrderId = 'order_id',
+  /** column name */
+  PaperRef = 'paper_ref',
   /** column name */
   PaymentMethod = 'payment_method'
 }
@@ -27583,6 +27663,19 @@ export type DeleteOrdersMutation = (
   )> }
 );
 
+export type DeletePaymentMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeletePaymentMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_payment_by_pk?: Maybe<(
+    { __typename?: 'sales_payment' }
+    & Pick<Sales_Payment, 'id'>
+  )> }
+);
+
 export type DeleteProductDraftMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -27819,6 +27912,8 @@ export type InsertPaymentMutationVariables = Exact<{
   deadline?: Maybe<Scalars['date']>;
   order_id?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
+  comment?: Maybe<Scalars['String']>;
+  paper_ref?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -27826,13 +27921,10 @@ export type InsertPaymentMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_payment_one?: Maybe<(
     { __typename?: 'sales_payment' }
-    & Pick<Sales_Payment, 'amount' | 'date' | 'deadline' | 'id' | 'order_id' | 'payment_method'>
+    & Pick<Sales_Payment, 'amount' | 'date' | 'deadline' | 'id' | 'order_id' | 'customer_id' | 'payment_method'>
     & { company: (
       { __typename?: 'management_company' }
-      & Pick<Management_Company, 'id' | 'name'>
-    ), customer: (
-      { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'code' | 'phone' | 'name' | 'id'>
+      & Pick<Management_Company, 'name' | 'id'>
     ) }
   )> }
 );
@@ -28115,27 +28207,14 @@ export type GetPaymentQueryVariables = Exact<{
 
 export type GetPaymentQuery = (
   { __typename?: 'query_root' }
-  & { sales_payment_aggregate: (
-    { __typename?: 'sales_payment_aggregate' }
-    & { nodes: Array<(
-      { __typename?: 'sales_payment' }
-      & Pick<Sales_Payment, 'amount' | 'date' | 'deadline' | 'id' | 'payment_method' | 'order_id'>
-      & { company: (
-        { __typename?: 'management_company' }
-        & Pick<Management_Company, 'id' | 'name'>
-      ), customer: (
-        { __typename?: 'contact_customer' }
-        & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
-      ) }
-    )>, aggregate?: Maybe<(
-      { __typename?: 'sales_payment_aggregate_fields' }
-      & Pick<Sales_Payment_Aggregate_Fields, 'count'>
-      & { sum?: Maybe<(
-        { __typename?: 'sales_payment_sum_fields' }
-        & Pick<Sales_Payment_Sum_Fields, 'amount'>
-      )> }
-    )> }
-  ) }
+  & { sales_payment: Array<(
+    { __typename?: 'sales_payment' }
+    & Pick<Sales_Payment, 'amount' | 'customer_id' | 'date' | 'deadline' | 'id' | 'payment_method' | 'order_id'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ) }
+  )> }
 );
 
 export type GetProductsByTypeQueryVariables = Exact<{
@@ -30886,6 +30965,24 @@ export const DeleteOrdersDocument = gql`
       super(apollo);
     }
   }
+export const DeletePaymentDocument = gql`
+    mutation DeletePayment($id: uuid!) {
+  delete_sales_payment_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeletePaymentGQL extends Apollo.Mutation<DeletePaymentMutation, DeletePaymentMutationVariables> {
+    document = DeletePaymentDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const DeleteProductDraftDocument = gql`
     mutation DeleteProductDraft($id: uuid!) {
   delete_sales_product_draft_by_pk(id: $id) {
@@ -31182,9 +31279,9 @@ export const InsertOrderDocument = gql`
     }
   }
 export const InsertPaymentDocument = gql`
-    mutation InsertPayment($amount: numeric, $company_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $order_id: Int, $payment_method: String) {
+    mutation InsertPayment($amount: numeric, $company_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $order_id: Int, $payment_method: String, $comment: String = "", $paper_ref: String = "") {
   insert_sales_payment_one(
-    object: {amount: $amount, company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, order_id: $order_id, payment_method: $payment_method}
+    object: {amount: $amount, company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, order_id: $order_id, payment_method: $payment_method, comment: $comment, paper_ref: $paper_ref}
   ) {
     amount
     date
@@ -31192,15 +31289,10 @@ export const InsertPaymentDocument = gql`
     id
     order_id
     company {
-      id
-      name
-    }
-    customer {
-      code
-      phone
       name
       id
     }
+    customer_id
     payment_method
   }
 }
@@ -31636,30 +31728,18 @@ export const GetOrderByIdDocument = gql`
   }
 export const GetPaymentDocument = gql`
     query GetPayment($order_id: Int!) {
-  sales_payment_aggregate(where: {order_id: {_eq: $order_id}}) {
-    nodes {
-      amount
-      company {
-        id
-        name
-      }
-      customer {
-        code
-        name
-        phone
-      }
-      date
-      deadline
+  sales_payment(where: {order_id: {_eq: $order_id}}) {
+    amount
+    company {
+      name
       id
-      payment_method
-      order_id
     }
-    aggregate {
-      sum {
-        amount
-      }
-      count(columns: amount)
-    }
+    customer_id
+    date
+    deadline
+    id
+    payment_method
+    order_id
   }
 }
     `;

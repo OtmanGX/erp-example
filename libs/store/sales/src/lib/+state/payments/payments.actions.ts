@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { PaymentsEntity } from './payments.models';
+import { Payment as PaymentsEntity } from "@tanglass-erp/core/sales";
 
 export const loadPayments = createAction('[Payments] Load Payments');
 
@@ -20,37 +20,92 @@ export const loadPaymentsFailure = createAction(
 /****************************************************************** */
 
 export const loadPaymentById = createAction(
-  '[payment Card Component] Load payment  By Id',
+  '[payment  ] Load payment  By Id',
   props<{ id:any }>()
   );
 
 
 export const loadPaymentByIdSuccess = createAction(
-  '[payment Effect] Load  By Id Success',
+  '[payment ] Load  By Id Success',
   props<{ payment: PaymentsEntity }>()
 );
 
 export const loadPaymentByIdFailure = createAction(
-  '[payment Effect] Load payment By Id Failure',
+  '[payment ] Load payment By Id Failure',
   props<{ error: any }>()
 );
 
+
+/****************************************************************** */
+/*****LOAD ORDER PAYMENTS ** */
+/****************************************************************** */
+
+export const loadOrderPayments = createAction(
+  '[payment  ] Load Order Payments ',
+  props<{ order_id:number }>()
+  );
+
+
+export const loadOrderPaymentsSuccess = createAction(
+  '[payment ] Load Order Payments Success',
+  props<{ payments: PaymentsEntity[] }>()
+);
+
+export const loadOrderPaymentsFailure = createAction(
+  '[payment ] Load Order Payments  Failure',
+  props<{ error: any }>()
+);
 
 /****************************************************************** */
 /*****ADD INDIVIDUAL PAYMENT ** */
 /****************************************************************** */
 
 export const addPayment = createAction(
-  '[List  Payment Component] Add  Payment',
+  '[  Payment ] Add  Payment',
   props<{ payment: PaymentsEntity }>()
 );
 
 export const addPaymentSuccess = createAction(
-  '[  Payment Effect] Add   Payment Success',
+  '[  Payment ] Add   Payment Success',
   props<{ payment: PaymentsEntity }>()
 );
 
 export const addPaymentFailure = createAction(
-  '[  Payment Effect] Add   Payment Failure',
+  '[  Payment ] Add   Payment Failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****UPDATE INDIVIDUAL PAYMENT ** */
+/****************************************************************** */
+
+export const updatePayment = createAction(
+  '[Payment] Update Payment',
+  props<{ Payment: PaymentsEntity }>()
+);
+export const updatePaymentSuccess = createAction(
+  '[Payment ] Update Payment Success',
+  props<{ Payment: PaymentsEntity }>()
+);
+export const updatePaymentFailure = createAction(
+  '[Payment ] Update Payment failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****REMOVE INDIVIDUAL PAYMENT ** */
+/****************************************************************** */
+
+export const removePayment = createAction(
+  '[Payment ] Delete Payment',
+  props<{ PaymentId: string }>()
+);
+export const removePaymentSuccess = createAction(
+  '[Payment ] Delete Payment Success',
+  props<{ PaymentId: string }>()
+);
+export const removePaymentFailure = createAction(
+  '[Payment ] Delete Payment failure',
   props<{ error: any }>()
 );

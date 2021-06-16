@@ -44,7 +44,7 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
   }
 
   ngOnChanges() {
-    this.facade.loadAllProducts(this.draftData)
+    this.draftData?this.facade.loadAllProducts(this.draftData):null;
     this.productsSub = this.products$.subscribe(
       items => {
         this.facade.updateAmounts()
@@ -101,13 +101,11 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
   }
   deleteArticle(item: any) {
     this.facade.removeProduct(item.id);
-    this.dataSourceArticles.splice(item, 1);
     this.facade.updateAmounts()
     this.articlesTable.render()
   }
   deleteGlass(item: any) {
     this.facade.removeProduct(item.id);
-    this.dataSourceGlass.splice(item, 1);
     this.facade.updateAmounts()
     this.glassTable.render()
   }

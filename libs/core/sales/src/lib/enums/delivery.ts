@@ -8,5 +8,5 @@ export enum PaymentMethod {
   CHECK = 'Chèque',
   CASH = 'Espèce',
   TRANSFER = 'Virement',
-  
+  INSTRUMENT='Effet'
 }

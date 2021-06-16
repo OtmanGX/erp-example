@@ -565,7 +565,7 @@ const regConfigPayment = (
     },
     {
       type: 'input',
-      name: 'label',
+      name: 'comment',
       label: 'Libellé',
       inputType: 'text',
       value: data?.data?.label,
@@ -579,10 +579,17 @@ const regConfigPayment = (
       value: data?.data?.amount,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
-
+    {
+      type: 'input',
+      name: 'paper_ref',
+      label: 'Référence',
+      inputType: 'text',
+      value: data?.data?.paper_ref,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
     {
       type: "selectSearch",
-      name: "customer",
+      name: "customer_id",
       label: "Client",
       inputType: "text",
       value: data?.customers ?? [],
@@ -599,7 +606,7 @@ const regConfigPayment = (
     },
     {
       type: "date",
-      name: "expected_date",
+      name: "deadline",
       label: "Date d'échéance ",
       value: data?.expected_date,
       inputType: "text",

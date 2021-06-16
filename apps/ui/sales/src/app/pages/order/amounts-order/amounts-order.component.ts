@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild,Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { ProductDraftFacade, Amount } from "@tanglass-erp/store/sales";
+import { ProductDraftFacade, Amount, PaymentsFacade } from "@tanglass-erp/store/sales";
 import { debounceTime } from 'rxjs/operators';
-import {displayedAmountsColumns  } from "../../../utils/grid-headers";
-import {Column, ColumnType } from '@tanglass-erp/material';
+import { displayedAmountsColumns } from "../../../utils/grid-headers";
+import { Column, ColumnType } from '@tanglass-erp/material';
 import { MatDialog } from '@angular/material/dialog';
-import {PopPaymentComponent  } from "../payment/payment.component";
+import { PopPaymentComponent } from "../payment/payment.component";
 import { Operations } from '@tanglass-erp/ag-grid';
 
 @Component({
@@ -14,42 +14,45 @@ import { Operations } from '@tanglass-erp/ag-grid';
   styleUrls: ['./amounts-order.component.scss']
 })
 export class AmountsOrderComponent implements OnInit {
-  displayedColumns: Array<Column> =displayedAmountsColumns;
-  dataSource: Amount[];
-  amountsByCompanySub = this.facade.amounts$;
+  displayedColumns: Array<Column> = displayedAmountsColumns;
+  dataSource: Amount[] = [];
+  amountsByCompanySub = this.productFacade.amounts$;
+  payments
+  orderPayments$ = this.paymentFacade.orderPayments$;
+
   @ViewChild(MatTable, { static: true }) table: MatTable<Amount>;
   @Input() isCardMode: boolean = false;
+  @Input() order_id: number;
 
   constructor(
     private dialog: MatDialog,
-    private facade: ProductDraftFacade,
+    private productFacade: ProductDraftFacade,
+    private paymentFacade: PaymentsFacade,
   ) { }
 
   ngOnInit(): void {
-    this.facade.amounts$.pipe(debounceTime(500)).subscribe(
-      data =>
-      {  this.dataSource =data??[] ;}
+    this.order_id ? this.paymentFacade.loadOrderPayments(this.order_id) : null;
+    this.productFacade.amounts$.subscribe(
+      data => this.dataSource = data ?? []
     )
   }
 
-  ngOnChanges() {
-  }
- 
+
+
   openDialog(action, data = {}) {
     const dialogRef = this.dialog.open(PopPaymentComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
       data: data
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-
+          console.log('add',result)
+          this.paymentFacade.addPayment({...result,order_id:this.order_id})
         } else { } // Update
       }
     });
   }
-
 }

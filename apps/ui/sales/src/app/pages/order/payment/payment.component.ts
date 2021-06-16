@@ -20,7 +20,7 @@ export class PopPaymentComponent extends FormDialog {
   listCompanies = this.facade.allShortCompany$
     .pipe(map(item => item.map(company => ({ key: company.id, value: company.name })))
     );
-    customers$ = this.store.select(CustomerSelectors.getAllCustomers);
+  customers$ = this.store.select(CustomerSelectors.getAllCustomers);
 
   constructor(
     public dialogRef: MatDialogRef<PopPaymentComponent>,
@@ -36,9 +36,9 @@ export class PopPaymentComponent extends FormDialog {
       this.title = "Éditer Paiement";
     }
     this.store.dispatch(CustomerActions.loadCustomers());
-
     this.facade.loadAllShortCompanies();
     this.regConfig = regConfigPayment(this.data,this.customers$, this.listCompanies);
   }
+
 
 }
