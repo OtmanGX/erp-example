@@ -19,7 +19,7 @@ export class DeliveryLineComponent implements OnInit {
         product: elem.id,
         quantity: elem.quantity - (elem?.delivered || 0),
         delivered: 0,
-        amount: 0,
+        amount: elem.total_price,
         toDeliver: 0,
         product_label: elem.label,
       }));
@@ -72,7 +72,7 @@ export class DeliveryLineComponent implements OnInit {
     return returnedValue;
   }
 
-  setMax(input: HTMLInputElement) {
-    input.value = input.value !== input.max ? input.max:'0';
+  setMax(input: HTMLInputElement, row) {
+    row.toDeliver = row.toDeliver !== parseFloat(input.max) ? parseFloat(input.max): 0;
   }
 }

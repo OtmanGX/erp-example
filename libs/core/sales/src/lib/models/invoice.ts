@@ -15,6 +15,9 @@ export interface Invoice {
   };
   payment_method: PaymentMethod | string;
   date: Date;
+  amount_ttc: number
+  amount_ht: number
+  tva_rate: number
   deliveries?: Array<{
     delivery_id: string
   }>

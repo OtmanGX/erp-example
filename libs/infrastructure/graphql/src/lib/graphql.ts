@@ -5003,6 +5003,14 @@ export type Mutation_Root = {
   delete_sales_accessory_draft?: Maybe<Sales_Accessory_Draft_Mutation_Response>;
   /** delete single row from the table: "sales.accessory_draft" */
   delete_sales_accessory_draft_by_pk?: Maybe<Sales_Accessory_Draft>;
+  /** delete data from the table: "sales.amount" */
+  delete_sales_amount?: Maybe<Sales_Amount_Mutation_Response>;
+  /** delete single row from the table: "sales.amount" */
+  delete_sales_amount_by_pk?: Maybe<Sales_Amount>;
+  /** delete data from the table: "sales.attachment_type" */
+  delete_sales_attachment_type?: Maybe<Sales_Attachment_Type_Mutation_Response>;
+  /** delete single row from the table: "sales.attachment_type" */
+  delete_sales_attachment_type_by_pk?: Maybe<Sales_Attachment_Type>;
   /** delete data from the table: "sales.consumable_draft" */
   delete_sales_consumable_draft?: Maybe<Sales_Consumable_Draft_Mutation_Response>;
   /** delete single row from the table: "sales.consumable_draft" */
@@ -5235,6 +5243,14 @@ export type Mutation_Root = {
   insert_sales_accessory_draft?: Maybe<Sales_Accessory_Draft_Mutation_Response>;
   /** insert a single row into the table: "sales.accessory_draft" */
   insert_sales_accessory_draft_one?: Maybe<Sales_Accessory_Draft>;
+  /** insert data into the table: "sales.amount" */
+  insert_sales_amount?: Maybe<Sales_Amount_Mutation_Response>;
+  /** insert a single row into the table: "sales.amount" */
+  insert_sales_amount_one?: Maybe<Sales_Amount>;
+  /** insert data into the table: "sales.attachment_type" */
+  insert_sales_attachment_type?: Maybe<Sales_Attachment_Type_Mutation_Response>;
+  /** insert a single row into the table: "sales.attachment_type" */
+  insert_sales_attachment_type_one?: Maybe<Sales_Attachment_Type>;
   /** insert data into the table: "sales.consumable_draft" */
   insert_sales_consumable_draft?: Maybe<Sales_Consumable_Draft_Mutation_Response>;
   /** insert a single row into the table: "sales.consumable_draft" */
@@ -5467,6 +5483,14 @@ export type Mutation_Root = {
   update_sales_accessory_draft?: Maybe<Sales_Accessory_Draft_Mutation_Response>;
   /** update single row of the table: "sales.accessory_draft" */
   update_sales_accessory_draft_by_pk?: Maybe<Sales_Accessory_Draft>;
+  /** update data of the table: "sales.amount" */
+  update_sales_amount?: Maybe<Sales_Amount_Mutation_Response>;
+  /** update single row of the table: "sales.amount" */
+  update_sales_amount_by_pk?: Maybe<Sales_Amount>;
+  /** update data of the table: "sales.attachment_type" */
+  update_sales_attachment_type?: Maybe<Sales_Attachment_Type_Mutation_Response>;
+  /** update single row of the table: "sales.attachment_type" */
+  update_sales_attachment_type_by_pk?: Maybe<Sales_Attachment_Type>;
   /** update data of the table: "sales.consumable_draft" */
   update_sales_consumable_draft?: Maybe<Sales_Consumable_Draft_Mutation_Response>;
   /** update single row of the table: "sales.consumable_draft" */
@@ -5991,6 +6015,30 @@ export type Mutation_RootDelete_Sales_Accessory_DraftArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Sales_Accessory_Draft_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_AmountArgs = {
+  where: Sales_Amount_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Amount_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Attachment_TypeArgs = {
+  where: Sales_Attachment_Type_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Attachment_Type_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 
@@ -6755,6 +6803,34 @@ export type Mutation_RootInsert_Sales_Accessory_DraftArgs = {
 export type Mutation_RootInsert_Sales_Accessory_Draft_OneArgs = {
   object: Sales_Accessory_Draft_Insert_Input;
   on_conflict?: Maybe<Sales_Accessory_Draft_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_AmountArgs = {
+  objects: Array<Sales_Amount_Insert_Input>;
+  on_conflict?: Maybe<Sales_Amount_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Amount_OneArgs = {
+  object: Sales_Amount_Insert_Input;
+  on_conflict?: Maybe<Sales_Amount_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Attachment_TypeArgs = {
+  objects: Array<Sales_Attachment_Type_Insert_Input>;
+  on_conflict?: Maybe<Sales_Attachment_Type_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Attachment_Type_OneArgs = {
+  object: Sales_Attachment_Type_Insert_Input;
+  on_conflict?: Maybe<Sales_Attachment_Type_On_Conflict>;
 };
 
 
@@ -7597,6 +7673,36 @@ export type Mutation_RootUpdate_Sales_Accessory_Draft_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Sales_AmountArgs = {
+  _inc?: Maybe<Sales_Amount_Inc_Input>;
+  _set?: Maybe<Sales_Amount_Set_Input>;
+  where: Sales_Amount_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Amount_By_PkArgs = {
+  _inc?: Maybe<Sales_Amount_Inc_Input>;
+  _set?: Maybe<Sales_Amount_Set_Input>;
+  pk_columns: Sales_Amount_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Attachment_TypeArgs = {
+  _set?: Maybe<Sales_Attachment_Type_Set_Input>;
+  where: Sales_Attachment_Type_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Attachment_Type_By_PkArgs = {
+  _set?: Maybe<Sales_Attachment_Type_Set_Input>;
+  pk_columns: Sales_Attachment_Type_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Sales_Consumable_DraftArgs = {
   _set?: Maybe<Sales_Consumable_Draft_Set_Input>;
   where: Sales_Consumable_Draft_Bool_Exp;
@@ -7688,6 +7794,7 @@ export type Mutation_RootUpdate_Sales_Glass_Draft_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Sales_InvoiceArgs = {
+  _inc?: Maybe<Sales_Invoice_Inc_Input>;
   _set?: Maybe<Sales_Invoice_Set_Input>;
   where: Sales_Invoice_Bool_Exp;
 };
@@ -7695,6 +7802,7 @@ export type Mutation_RootUpdate_Sales_InvoiceArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Sales_Invoice_By_PkArgs = {
+  _inc?: Maybe<Sales_Invoice_Inc_Input>;
   _set?: Maybe<Sales_Invoice_Set_Input>;
   pk_columns: Sales_Invoice_Pk_Columns_Input;
 };
@@ -14136,6 +14244,18 @@ export type Query_Root = {
   sales_accessory_draft_aggregate: Sales_Accessory_Draft_Aggregate;
   /** fetch data from the table: "sales.accessory_draft" using primary key columns */
   sales_accessory_draft_by_pk?: Maybe<Sales_Accessory_Draft>;
+  /** fetch data from the table: "sales.amount" */
+  sales_amount: Array<Sales_Amount>;
+  /** fetch aggregated fields from the table: "sales.amount" */
+  sales_amount_aggregate: Sales_Amount_Aggregate;
+  /** fetch data from the table: "sales.amount" using primary key columns */
+  sales_amount_by_pk?: Maybe<Sales_Amount>;
+  /** fetch data from the table: "sales.attachment_type" */
+  sales_attachment_type: Array<Sales_Attachment_Type>;
+  /** fetch aggregated fields from the table: "sales.attachment_type" */
+  sales_attachment_type_aggregate: Sales_Attachment_Type_Aggregate;
+  /** fetch data from the table: "sales.attachment_type" using primary key columns */
+  sales_attachment_type_by_pk?: Maybe<Sales_Attachment_Type>;
   /** fetch data from the table: "sales.consumable_draft" */
   sales_consumable_draft: Array<Sales_Consumable_Draft>;
   /** fetch aggregated fields from the table: "sales.consumable_draft" */
@@ -15394,6 +15514,58 @@ export type Query_RootSales_Accessory_Draft_By_PkArgs = {
 
 
 /** query root */
+export type Query_RootSales_AmountArgs = {
+  distinct_on?: Maybe<Array<Sales_Amount_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Amount_Order_By>>;
+  where?: Maybe<Sales_Amount_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Amount_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Amount_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Amount_Order_By>>;
+  where?: Maybe<Sales_Amount_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Amount_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootSales_Attachment_TypeArgs = {
+  distinct_on?: Maybe<Array<Sales_Attachment_Type_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Attachment_Type_Order_By>>;
+  where?: Maybe<Sales_Attachment_Type_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Attachment_Type_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Attachment_Type_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Attachment_Type_Order_By>>;
+  where?: Maybe<Sales_Attachment_Type_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Attachment_Type_By_PkArgs = {
+  key: Scalars['String'];
+};
+
+
+/** query root */
 export type Query_RootSales_Consumable_DraftArgs = {
   distinct_on?: Maybe<Array<Sales_Consumable_Draft_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -16215,6 +16387,504 @@ export enum Sales_Accessory_Draft_Update_Column {
   Id = 'id',
   /** column name */
   ProductdraftId = 'productdraft_id'
+}
+
+/** columns and relationships of "sales.amount" */
+export type Sales_Amount = {
+  __typename?: 'sales_amount';
+  attachment_type: Scalars['String'];
+  company_id: Scalars['uuid'];
+  id: Scalars['uuid'];
+  total_ht: Scalars['numeric'];
+  total_ttc: Scalars['numeric'];
+  total_tva: Scalars['numeric'];
+  type?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "sales.amount" */
+export type Sales_Amount_Aggregate = {
+  __typename?: 'sales_amount_aggregate';
+  aggregate?: Maybe<Sales_Amount_Aggregate_Fields>;
+  nodes: Array<Sales_Amount>;
+};
+
+/** aggregate fields of "sales.amount" */
+export type Sales_Amount_Aggregate_Fields = {
+  __typename?: 'sales_amount_aggregate_fields';
+  avg?: Maybe<Sales_Amount_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Sales_Amount_Max_Fields>;
+  min?: Maybe<Sales_Amount_Min_Fields>;
+  stddev?: Maybe<Sales_Amount_Stddev_Fields>;
+  stddev_pop?: Maybe<Sales_Amount_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Sales_Amount_Stddev_Samp_Fields>;
+  sum?: Maybe<Sales_Amount_Sum_Fields>;
+  var_pop?: Maybe<Sales_Amount_Var_Pop_Fields>;
+  var_samp?: Maybe<Sales_Amount_Var_Samp_Fields>;
+  variance?: Maybe<Sales_Amount_Variance_Fields>;
+};
+
+
+/** aggregate fields of "sales.amount" */
+export type Sales_Amount_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Sales_Amount_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "sales.amount" */
+export type Sales_Amount_Aggregate_Order_By = {
+  avg?: Maybe<Sales_Amount_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Sales_Amount_Max_Order_By>;
+  min?: Maybe<Sales_Amount_Min_Order_By>;
+  stddev?: Maybe<Sales_Amount_Stddev_Order_By>;
+  stddev_pop?: Maybe<Sales_Amount_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Sales_Amount_Stddev_Samp_Order_By>;
+  sum?: Maybe<Sales_Amount_Sum_Order_By>;
+  var_pop?: Maybe<Sales_Amount_Var_Pop_Order_By>;
+  var_samp?: Maybe<Sales_Amount_Var_Samp_Order_By>;
+  variance?: Maybe<Sales_Amount_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "sales.amount" */
+export type Sales_Amount_Arr_Rel_Insert_Input = {
+  data: Array<Sales_Amount_Insert_Input>;
+  on_conflict?: Maybe<Sales_Amount_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Sales_Amount_Avg_Fields = {
+  __typename?: 'sales_amount_avg_fields';
+  total_ht?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
+  total_tva?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "sales.amount" */
+export type Sales_Amount_Avg_Order_By = {
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "sales.amount". All fields are combined with a logical 'AND'. */
+export type Sales_Amount_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Sales_Amount_Bool_Exp>>>;
+  _not?: Maybe<Sales_Amount_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Sales_Amount_Bool_Exp>>>;
+  attachment_type?: Maybe<String_Comparison_Exp>;
+  company_id?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  total_ht?: Maybe<Numeric_Comparison_Exp>;
+  total_ttc?: Maybe<Numeric_Comparison_Exp>;
+  total_tva?: Maybe<Numeric_Comparison_Exp>;
+  type?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "sales.amount" */
+export enum Sales_Amount_Constraint {
+  /** unique or primary key constraint */
+  AmountPkey = 'amount_pkey'
+}
+
+/** input type for incrementing integer column in table "sales.amount" */
+export type Sales_Amount_Inc_Input = {
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
+  total_tva?: Maybe<Scalars['numeric']>;
+};
+
+/** input type for inserting data into table "sales.amount" */
+export type Sales_Amount_Insert_Input = {
+  attachment_type?: Maybe<Scalars['String']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
+  total_tva?: Maybe<Scalars['numeric']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Sales_Amount_Max_Fields = {
+  __typename?: 'sales_amount_max_fields';
+  attachment_type?: Maybe<Scalars['String']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
+  total_tva?: Maybe<Scalars['numeric']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "sales.amount" */
+export type Sales_Amount_Max_Order_By = {
+  attachment_type?: Maybe<Order_By>;
+  company_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Sales_Amount_Min_Fields = {
+  __typename?: 'sales_amount_min_fields';
+  attachment_type?: Maybe<Scalars['String']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
+  total_tva?: Maybe<Scalars['numeric']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "sales.amount" */
+export type Sales_Amount_Min_Order_By = {
+  attachment_type?: Maybe<Order_By>;
+  company_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "sales.amount" */
+export type Sales_Amount_Mutation_Response = {
+  __typename?: 'sales_amount_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Sales_Amount>;
+};
+
+/** input type for inserting object relation for remote table "sales.amount" */
+export type Sales_Amount_Obj_Rel_Insert_Input = {
+  data: Sales_Amount_Insert_Input;
+  on_conflict?: Maybe<Sales_Amount_On_Conflict>;
+};
+
+/** on conflict condition type for table "sales.amount" */
+export type Sales_Amount_On_Conflict = {
+  constraint: Sales_Amount_Constraint;
+  update_columns: Array<Sales_Amount_Update_Column>;
+  where?: Maybe<Sales_Amount_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "sales.amount" */
+export type Sales_Amount_Order_By = {
+  attachment_type?: Maybe<Order_By>;
+  company_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "sales.amount" */
+export type Sales_Amount_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "sales.amount" */
+export enum Sales_Amount_Select_Column {
+  /** column name */
+  AttachmentType = 'attachment_type',
+  /** column name */
+  CompanyId = 'company_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  TotalHt = 'total_ht',
+  /** column name */
+  TotalTtc = 'total_ttc',
+  /** column name */
+  TotalTva = 'total_tva',
+  /** column name */
+  Type = 'type'
+}
+
+/** input type for updating data in table "sales.amount" */
+export type Sales_Amount_Set_Input = {
+  attachment_type?: Maybe<Scalars['String']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
+  total_tva?: Maybe<Scalars['numeric']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Sales_Amount_Stddev_Fields = {
+  __typename?: 'sales_amount_stddev_fields';
+  total_ht?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
+  total_tva?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "sales.amount" */
+export type Sales_Amount_Stddev_Order_By = {
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Sales_Amount_Stddev_Pop_Fields = {
+  __typename?: 'sales_amount_stddev_pop_fields';
+  total_ht?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
+  total_tva?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "sales.amount" */
+export type Sales_Amount_Stddev_Pop_Order_By = {
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Sales_Amount_Stddev_Samp_Fields = {
+  __typename?: 'sales_amount_stddev_samp_fields';
+  total_ht?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
+  total_tva?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "sales.amount" */
+export type Sales_Amount_Stddev_Samp_Order_By = {
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Sales_Amount_Sum_Fields = {
+  __typename?: 'sales_amount_sum_fields';
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
+  total_tva?: Maybe<Scalars['numeric']>;
+};
+
+/** order by sum() on columns of table "sales.amount" */
+export type Sales_Amount_Sum_Order_By = {
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+};
+
+/** update columns of table "sales.amount" */
+export enum Sales_Amount_Update_Column {
+  /** column name */
+  AttachmentType = 'attachment_type',
+  /** column name */
+  CompanyId = 'company_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  TotalHt = 'total_ht',
+  /** column name */
+  TotalTtc = 'total_ttc',
+  /** column name */
+  TotalTva = 'total_tva',
+  /** column name */
+  Type = 'type'
+}
+
+/** aggregate var_pop on columns */
+export type Sales_Amount_Var_Pop_Fields = {
+  __typename?: 'sales_amount_var_pop_fields';
+  total_ht?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
+  total_tva?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "sales.amount" */
+export type Sales_Amount_Var_Pop_Order_By = {
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Sales_Amount_Var_Samp_Fields = {
+  __typename?: 'sales_amount_var_samp_fields';
+  total_ht?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
+  total_tva?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "sales.amount" */
+export type Sales_Amount_Var_Samp_Order_By = {
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Sales_Amount_Variance_Fields = {
+  __typename?: 'sales_amount_variance_fields';
+  total_ht?: Maybe<Scalars['Float']>;
+  total_ttc?: Maybe<Scalars['Float']>;
+  total_tva?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "sales.amount" */
+export type Sales_Amount_Variance_Order_By = {
+  total_ht?: Maybe<Order_By>;
+  total_ttc?: Maybe<Order_By>;
+  total_tva?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "sales.attachment_type" */
+export type Sales_Attachment_Type = {
+  __typename?: 'sales_attachment_type';
+  key: Scalars['String'];
+  value: Scalars['String'];
+};
+
+/** aggregated selection of "sales.attachment_type" */
+export type Sales_Attachment_Type_Aggregate = {
+  __typename?: 'sales_attachment_type_aggregate';
+  aggregate?: Maybe<Sales_Attachment_Type_Aggregate_Fields>;
+  nodes: Array<Sales_Attachment_Type>;
+};
+
+/** aggregate fields of "sales.attachment_type" */
+export type Sales_Attachment_Type_Aggregate_Fields = {
+  __typename?: 'sales_attachment_type_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Sales_Attachment_Type_Max_Fields>;
+  min?: Maybe<Sales_Attachment_Type_Min_Fields>;
+};
+
+
+/** aggregate fields of "sales.attachment_type" */
+export type Sales_Attachment_Type_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Sales_Attachment_Type_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "sales.attachment_type" */
+export type Sales_Attachment_Type_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Sales_Attachment_Type_Max_Order_By>;
+  min?: Maybe<Sales_Attachment_Type_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "sales.attachment_type" */
+export type Sales_Attachment_Type_Arr_Rel_Insert_Input = {
+  data: Array<Sales_Attachment_Type_Insert_Input>;
+  on_conflict?: Maybe<Sales_Attachment_Type_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "sales.attachment_type". All fields are combined with a logical 'AND'. */
+export type Sales_Attachment_Type_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Sales_Attachment_Type_Bool_Exp>>>;
+  _not?: Maybe<Sales_Attachment_Type_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Sales_Attachment_Type_Bool_Exp>>>;
+  key?: Maybe<String_Comparison_Exp>;
+  value?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "sales.attachment_type" */
+export enum Sales_Attachment_Type_Constraint {
+  /** unique or primary key constraint */
+  AttachmentTypePkey = 'attachment_type_pkey',
+  /** unique or primary key constraint */
+  AttachmentTypeValueKey = 'attachment_type_value_key'
+}
+
+/** input type for inserting data into table "sales.attachment_type" */
+export type Sales_Attachment_Type_Insert_Input = {
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Sales_Attachment_Type_Max_Fields = {
+  __typename?: 'sales_attachment_type_max_fields';
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "sales.attachment_type" */
+export type Sales_Attachment_Type_Max_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Sales_Attachment_Type_Min_Fields = {
+  __typename?: 'sales_attachment_type_min_fields';
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "sales.attachment_type" */
+export type Sales_Attachment_Type_Min_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "sales.attachment_type" */
+export type Sales_Attachment_Type_Mutation_Response = {
+  __typename?: 'sales_attachment_type_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Sales_Attachment_Type>;
+};
+
+/** input type for inserting object relation for remote table "sales.attachment_type" */
+export type Sales_Attachment_Type_Obj_Rel_Insert_Input = {
+  data: Sales_Attachment_Type_Insert_Input;
+  on_conflict?: Maybe<Sales_Attachment_Type_On_Conflict>;
+};
+
+/** on conflict condition type for table "sales.attachment_type" */
+export type Sales_Attachment_Type_On_Conflict = {
+  constraint: Sales_Attachment_Type_Constraint;
+  update_columns: Array<Sales_Attachment_Type_Update_Column>;
+  where?: Maybe<Sales_Attachment_Type_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "sales.attachment_type" */
+export type Sales_Attachment_Type_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "sales.attachment_type" */
+export type Sales_Attachment_Type_Pk_Columns_Input = {
+  key: Scalars['String'];
+};
+
+/** select columns of table "sales.attachment_type" */
+export enum Sales_Attachment_Type_Select_Column {
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "sales.attachment_type" */
+export type Sales_Attachment_Type_Set_Input = {
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "sales.attachment_type" */
+export enum Sales_Attachment_Type_Update_Column {
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
 }
 
 /** columns and relationships of "sales.consumable_draft" */
@@ -17835,6 +18505,8 @@ export enum Sales_Glass_Draft_Update_Column {
 /** columns and relationships of "sales.invoice" */
 export type Sales_Invoice = {
   __typename?: 'sales_invoice';
+  amount_ht: Scalars['numeric'];
+  amount_ttc: Scalars['numeric'];
   client: Scalars['uuid'];
   /** An object relationship */
   clientObj: Contact_Customer;
@@ -17851,6 +18523,7 @@ export type Sales_Invoice = {
   deliveries_aggregate: Sales_Invoice_Delivery_Aggregate;
   id: Scalars['uuid'];
   payment_method: Scalars['String'];
+  tva_rate: Scalars['numeric'];
 };
 
 
@@ -17883,9 +18556,17 @@ export type Sales_Invoice_Aggregate = {
 /** aggregate fields of "sales.invoice" */
 export type Sales_Invoice_Aggregate_Fields = {
   __typename?: 'sales_invoice_aggregate_fields';
+  avg?: Maybe<Sales_Invoice_Avg_Fields>;
   count?: Maybe<Scalars['Int']>;
   max?: Maybe<Sales_Invoice_Max_Fields>;
   min?: Maybe<Sales_Invoice_Min_Fields>;
+  stddev?: Maybe<Sales_Invoice_Stddev_Fields>;
+  stddev_pop?: Maybe<Sales_Invoice_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Sales_Invoice_Stddev_Samp_Fields>;
+  sum?: Maybe<Sales_Invoice_Sum_Fields>;
+  var_pop?: Maybe<Sales_Invoice_Var_Pop_Fields>;
+  var_samp?: Maybe<Sales_Invoice_Var_Samp_Fields>;
+  variance?: Maybe<Sales_Invoice_Variance_Fields>;
 };
 
 
@@ -17897,9 +18578,17 @@ export type Sales_Invoice_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "sales.invoice" */
 export type Sales_Invoice_Aggregate_Order_By = {
+  avg?: Maybe<Sales_Invoice_Avg_Order_By>;
   count?: Maybe<Order_By>;
   max?: Maybe<Sales_Invoice_Max_Order_By>;
   min?: Maybe<Sales_Invoice_Min_Order_By>;
+  stddev?: Maybe<Sales_Invoice_Stddev_Order_By>;
+  stddev_pop?: Maybe<Sales_Invoice_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Sales_Invoice_Stddev_Samp_Order_By>;
+  sum?: Maybe<Sales_Invoice_Sum_Order_By>;
+  var_pop?: Maybe<Sales_Invoice_Var_Pop_Order_By>;
+  var_samp?: Maybe<Sales_Invoice_Var_Samp_Order_By>;
+  variance?: Maybe<Sales_Invoice_Variance_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "sales.invoice" */
@@ -17908,11 +18597,28 @@ export type Sales_Invoice_Arr_Rel_Insert_Input = {
   on_conflict?: Maybe<Sales_Invoice_On_Conflict>;
 };
 
+/** aggregate avg on columns */
+export type Sales_Invoice_Avg_Fields = {
+  __typename?: 'sales_invoice_avg_fields';
+  amount_ht?: Maybe<Scalars['Float']>;
+  amount_ttc?: Maybe<Scalars['Float']>;
+  tva_rate?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "sales.invoice" */
+export type Sales_Invoice_Avg_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
+};
+
 /** Boolean expression to filter rows from the table "sales.invoice". All fields are combined with a logical 'AND'. */
 export type Sales_Invoice_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Sales_Invoice_Bool_Exp>>>;
   _not?: Maybe<Sales_Invoice_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Invoice_Bool_Exp>>>;
+  amount_ht?: Maybe<Numeric_Comparison_Exp>;
+  amount_ttc?: Maybe<Numeric_Comparison_Exp>;
   client?: Maybe<Uuid_Comparison_Exp>;
   clientObj?: Maybe<Contact_Customer_Bool_Exp>;
   company?: Maybe<Uuid_Comparison_Exp>;
@@ -17923,6 +18629,7 @@ export type Sales_Invoice_Bool_Exp = {
   deliveries?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   payment_method?: Maybe<String_Comparison_Exp>;
+  tva_rate?: Maybe<Numeric_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.invoice" */
@@ -18076,8 +18783,17 @@ export enum Sales_Invoice_Delivery_Update_Column {
   InvoiceId = 'invoice_id'
 }
 
+/** input type for incrementing integer column in table "sales.invoice" */
+export type Sales_Invoice_Inc_Input = {
+  amount_ht?: Maybe<Scalars['numeric']>;
+  amount_ttc?: Maybe<Scalars['numeric']>;
+  tva_rate?: Maybe<Scalars['numeric']>;
+};
+
 /** input type for inserting data into table "sales.invoice" */
 export type Sales_Invoice_Insert_Input = {
+  amount_ht?: Maybe<Scalars['numeric']>;
+  amount_ttc?: Maybe<Scalars['numeric']>;
   client?: Maybe<Scalars['uuid']>;
   clientObj?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
   company?: Maybe<Scalars['uuid']>;
@@ -18088,48 +18804,61 @@ export type Sales_Invoice_Insert_Input = {
   deliveries?: Maybe<Sales_Invoice_Delivery_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
+  tva_rate?: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate max on columns */
 export type Sales_Invoice_Max_Fields = {
   __typename?: 'sales_invoice_max_fields';
+  amount_ht?: Maybe<Scalars['numeric']>;
+  amount_ttc?: Maybe<Scalars['numeric']>;
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
+  tva_rate?: Maybe<Scalars['numeric']>;
 };
 
 /** order by max() on columns of table "sales.invoice" */
 export type Sales_Invoice_Max_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
   client?: Maybe<Order_By>;
   company?: Maybe<Order_By>;
   contact?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Sales_Invoice_Min_Fields = {
   __typename?: 'sales_invoice_min_fields';
+  amount_ht?: Maybe<Scalars['numeric']>;
+  amount_ttc?: Maybe<Scalars['numeric']>;
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
+  tva_rate?: Maybe<Scalars['numeric']>;
 };
 
 /** order by min() on columns of table "sales.invoice" */
 export type Sales_Invoice_Min_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
   client?: Maybe<Order_By>;
   company?: Maybe<Order_By>;
   contact?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "sales.invoice" */
@@ -18156,6 +18885,8 @@ export type Sales_Invoice_On_Conflict = {
 
 /** ordering options when selecting data from "sales.invoice" */
 export type Sales_Invoice_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
   client?: Maybe<Order_By>;
   clientObj?: Maybe<Contact_Customer_Order_By>;
   company?: Maybe<Order_By>;
@@ -18166,6 +18897,7 @@ export type Sales_Invoice_Order_By = {
   deliveries_aggregate?: Maybe<Sales_Invoice_Delivery_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "sales.invoice" */
@@ -18176,6 +18908,10 @@ export type Sales_Invoice_Pk_Columns_Input = {
 /** select columns of table "sales.invoice" */
 export enum Sales_Invoice_Select_Column {
   /** column name */
+  AmountHt = 'amount_ht',
+  /** column name */
+  AmountTtc = 'amount_ttc',
+  /** column name */
   Client = 'client',
   /** column name */
   Company = 'company',
@@ -18186,21 +18922,90 @@ export enum Sales_Invoice_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  PaymentMethod = 'payment_method'
+  PaymentMethod = 'payment_method',
+  /** column name */
+  TvaRate = 'tva_rate'
 }
 
 /** input type for updating data in table "sales.invoice" */
 export type Sales_Invoice_Set_Input = {
+  amount_ht?: Maybe<Scalars['numeric']>;
+  amount_ttc?: Maybe<Scalars['numeric']>;
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
+  tva_rate?: Maybe<Scalars['numeric']>;
+};
+
+/** aggregate stddev on columns */
+export type Sales_Invoice_Stddev_Fields = {
+  __typename?: 'sales_invoice_stddev_fields';
+  amount_ht?: Maybe<Scalars['Float']>;
+  amount_ttc?: Maybe<Scalars['Float']>;
+  tva_rate?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "sales.invoice" */
+export type Sales_Invoice_Stddev_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Sales_Invoice_Stddev_Pop_Fields = {
+  __typename?: 'sales_invoice_stddev_pop_fields';
+  amount_ht?: Maybe<Scalars['Float']>;
+  amount_ttc?: Maybe<Scalars['Float']>;
+  tva_rate?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "sales.invoice" */
+export type Sales_Invoice_Stddev_Pop_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Sales_Invoice_Stddev_Samp_Fields = {
+  __typename?: 'sales_invoice_stddev_samp_fields';
+  amount_ht?: Maybe<Scalars['Float']>;
+  amount_ttc?: Maybe<Scalars['Float']>;
+  tva_rate?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "sales.invoice" */
+export type Sales_Invoice_Stddev_Samp_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Sales_Invoice_Sum_Fields = {
+  __typename?: 'sales_invoice_sum_fields';
+  amount_ht?: Maybe<Scalars['numeric']>;
+  amount_ttc?: Maybe<Scalars['numeric']>;
+  tva_rate?: Maybe<Scalars['numeric']>;
+};
+
+/** order by sum() on columns of table "sales.invoice" */
+export type Sales_Invoice_Sum_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
 };
 
 /** update columns of table "sales.invoice" */
 export enum Sales_Invoice_Update_Column {
+  /** column name */
+  AmountHt = 'amount_ht',
+  /** column name */
+  AmountTtc = 'amount_ttc',
   /** column name */
   Client = 'client',
   /** column name */
@@ -18212,8 +19017,55 @@ export enum Sales_Invoice_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  PaymentMethod = 'payment_method'
+  PaymentMethod = 'payment_method',
+  /** column name */
+  TvaRate = 'tva_rate'
 }
+
+/** aggregate var_pop on columns */
+export type Sales_Invoice_Var_Pop_Fields = {
+  __typename?: 'sales_invoice_var_pop_fields';
+  amount_ht?: Maybe<Scalars['Float']>;
+  amount_ttc?: Maybe<Scalars['Float']>;
+  tva_rate?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "sales.invoice" */
+export type Sales_Invoice_Var_Pop_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Sales_Invoice_Var_Samp_Fields = {
+  __typename?: 'sales_invoice_var_samp_fields';
+  amount_ht?: Maybe<Scalars['Float']>;
+  amount_ttc?: Maybe<Scalars['Float']>;
+  tva_rate?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "sales.invoice" */
+export type Sales_Invoice_Var_Samp_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Sales_Invoice_Variance_Fields = {
+  __typename?: 'sales_invoice_variance_fields';
+  amount_ht?: Maybe<Scalars['Float']>;
+  amount_ttc?: Maybe<Scalars['Float']>;
+  tva_rate?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "sales.invoice" */
+export type Sales_Invoice_Variance_Order_By = {
+  amount_ht?: Maybe<Order_By>;
+  amount_ttc?: Maybe<Order_By>;
+  tva_rate?: Maybe<Order_By>;
+};
 
 /** columns and relationships of "sales.order" */
 export type Sales_Order = {
@@ -18954,6 +19806,7 @@ export type Sales_Order_Variance_Order_By = {
 export type Sales_Payment = {
   __typename?: 'sales_payment';
   amount: Scalars['numeric'];
+  comment?: Maybe<Scalars['String']>;
   /** An object relationship */
   company: Management_Company;
   company_id: Scalars['uuid'];
@@ -18961,13 +19814,14 @@ export type Sales_Payment = {
   customer: Contact_Customer;
   customer_id: Scalars['uuid'];
   date: Scalars['date'];
-  deadline: Scalars['date'];
+  deadline?: Maybe<Scalars['date']>;
   id: Scalars['uuid'];
   /** An object relationship */
   order: Sales_Order;
   order_id: Scalars['Int'];
+  paper_ref?: Maybe<Scalars['String']>;
   /** An object relationship */
-  paymentMethodByPaymentMethod: Sales_Payment_Method;
+  paymentMethod: Sales_Payment_Method;
   payment_method: Scalars['String'];
 };
 
@@ -19041,6 +19895,7 @@ export type Sales_Payment_Bool_Exp = {
   _not?: Maybe<Sales_Payment_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Payment_Bool_Exp>>>;
   amount?: Maybe<Numeric_Comparison_Exp>;
+  comment?: Maybe<String_Comparison_Exp>;
   company?: Maybe<Management_Company_Bool_Exp>;
   company_id?: Maybe<Uuid_Comparison_Exp>;
   customer?: Maybe<Contact_Customer_Bool_Exp>;
@@ -19050,7 +19905,8 @@ export type Sales_Payment_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
   order?: Maybe<Sales_Order_Bool_Exp>;
   order_id?: Maybe<Int_Comparison_Exp>;
-  paymentMethodByPaymentMethod?: Maybe<Sales_Payment_Method_Bool_Exp>;
+  paper_ref?: Maybe<String_Comparison_Exp>;
+  paymentMethod?: Maybe<Sales_Payment_Method_Bool_Exp>;
   payment_method?: Maybe<String_Comparison_Exp>;
 };
 
@@ -19069,6 +19925,7 @@ export type Sales_Payment_Inc_Input = {
 /** input type for inserting data into table "sales.payment" */
 export type Sales_Payment_Insert_Input = {
   amount?: Maybe<Scalars['numeric']>;
+  comment?: Maybe<Scalars['String']>;
   company?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
   company_id?: Maybe<Scalars['uuid']>;
   customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
@@ -19078,7 +19935,8 @@ export type Sales_Payment_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
   order?: Maybe<Sales_Order_Obj_Rel_Insert_Input>;
   order_id?: Maybe<Scalars['Int']>;
-  paymentMethodByPaymentMethod?: Maybe<Sales_Payment_Method_Obj_Rel_Insert_Input>;
+  paper_ref?: Maybe<Scalars['String']>;
+  paymentMethod?: Maybe<Sales_Payment_Method_Obj_Rel_Insert_Input>;
   payment_method?: Maybe<Scalars['String']>;
 };
 
@@ -19086,24 +19944,28 @@ export type Sales_Payment_Insert_Input = {
 export type Sales_Payment_Max_Fields = {
   __typename?: 'sales_payment_max_fields';
   amount?: Maybe<Scalars['numeric']>;
+  comment?: Maybe<Scalars['String']>;
   company_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   deadline?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   order_id?: Maybe<Scalars['Int']>;
+  paper_ref?: Maybe<Scalars['String']>;
   payment_method?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "sales.payment" */
 export type Sales_Payment_Max_Order_By = {
   amount?: Maybe<Order_By>;
+  comment?: Maybe<Order_By>;
   company_id?: Maybe<Order_By>;
   customer_id?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   deadline?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   order_id?: Maybe<Order_By>;
+  paper_ref?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
 };
 
@@ -19284,24 +20146,28 @@ export enum Sales_Payment_Method_Update_Column {
 export type Sales_Payment_Min_Fields = {
   __typename?: 'sales_payment_min_fields';
   amount?: Maybe<Scalars['numeric']>;
+  comment?: Maybe<Scalars['String']>;
   company_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   deadline?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   order_id?: Maybe<Scalars['Int']>;
+  paper_ref?: Maybe<Scalars['String']>;
   payment_method?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "sales.payment" */
 export type Sales_Payment_Min_Order_By = {
   amount?: Maybe<Order_By>;
+  comment?: Maybe<Order_By>;
   company_id?: Maybe<Order_By>;
   customer_id?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   deadline?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   order_id?: Maybe<Order_By>;
+  paper_ref?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
 };
 
@@ -19330,6 +20196,7 @@ export type Sales_Payment_On_Conflict = {
 /** ordering options when selecting data from "sales.payment" */
 export type Sales_Payment_Order_By = {
   amount?: Maybe<Order_By>;
+  comment?: Maybe<Order_By>;
   company?: Maybe<Management_Company_Order_By>;
   company_id?: Maybe<Order_By>;
   customer?: Maybe<Contact_Customer_Order_By>;
@@ -19339,7 +20206,8 @@ export type Sales_Payment_Order_By = {
   id?: Maybe<Order_By>;
   order?: Maybe<Sales_Order_Order_By>;
   order_id?: Maybe<Order_By>;
-  paymentMethodByPaymentMethod?: Maybe<Sales_Payment_Method_Order_By>;
+  paper_ref?: Maybe<Order_By>;
+  paymentMethod?: Maybe<Sales_Payment_Method_Order_By>;
   payment_method?: Maybe<Order_By>;
 };
 
@@ -19353,6 +20221,8 @@ export enum Sales_Payment_Select_Column {
   /** column name */
   Amount = 'amount',
   /** column name */
+  Comment = 'comment',
+  /** column name */
   CompanyId = 'company_id',
   /** column name */
   CustomerId = 'customer_id',
@@ -19365,18 +20235,22 @@ export enum Sales_Payment_Select_Column {
   /** column name */
   OrderId = 'order_id',
   /** column name */
+  PaperRef = 'paper_ref',
+  /** column name */
   PaymentMethod = 'payment_method'
 }
 
 /** input type for updating data in table "sales.payment" */
 export type Sales_Payment_Set_Input = {
   amount?: Maybe<Scalars['numeric']>;
+  comment?: Maybe<Scalars['String']>;
   company_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   deadline?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   order_id?: Maybe<Scalars['Int']>;
+  paper_ref?: Maybe<Scalars['String']>;
   payment_method?: Maybe<Scalars['String']>;
 };
 
@@ -19610,6 +20484,8 @@ export enum Sales_Payment_Update_Column {
   /** column name */
   Amount = 'amount',
   /** column name */
+  Comment = 'comment',
+  /** column name */
   CompanyId = 'company_id',
   /** column name */
   CustomerId = 'customer_id',
@@ -19621,6 +20497,8 @@ export enum Sales_Payment_Update_Column {
   Id = 'id',
   /** column name */
   OrderId = 'order_id',
+  /** column name */
+  PaperRef = 'paper_ref',
   /** column name */
   PaymentMethod = 'payment_method'
 }
@@ -23895,6 +24773,18 @@ export type Subscription_Root = {
   sales_accessory_draft_aggregate: Sales_Accessory_Draft_Aggregate;
   /** fetch data from the table: "sales.accessory_draft" using primary key columns */
   sales_accessory_draft_by_pk?: Maybe<Sales_Accessory_Draft>;
+  /** fetch data from the table: "sales.amount" */
+  sales_amount: Array<Sales_Amount>;
+  /** fetch aggregated fields from the table: "sales.amount" */
+  sales_amount_aggregate: Sales_Amount_Aggregate;
+  /** fetch data from the table: "sales.amount" using primary key columns */
+  sales_amount_by_pk?: Maybe<Sales_Amount>;
+  /** fetch data from the table: "sales.attachment_type" */
+  sales_attachment_type: Array<Sales_Attachment_Type>;
+  /** fetch aggregated fields from the table: "sales.attachment_type" */
+  sales_attachment_type_aggregate: Sales_Attachment_Type_Aggregate;
+  /** fetch data from the table: "sales.attachment_type" using primary key columns */
+  sales_attachment_type_by_pk?: Maybe<Sales_Attachment_Type>;
   /** fetch data from the table: "sales.consumable_draft" */
   sales_consumable_draft: Array<Sales_Consumable_Draft>;
   /** fetch aggregated fields from the table: "sales.consumable_draft" */
@@ -25149,6 +26039,58 @@ export type Subscription_RootSales_Accessory_Draft_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootSales_Accessory_Draft_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_AmountArgs = {
+  distinct_on?: Maybe<Array<Sales_Amount_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Amount_Order_By>>;
+  where?: Maybe<Sales_Amount_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Amount_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Amount_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Amount_Order_By>>;
+  where?: Maybe<Sales_Amount_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Amount_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Attachment_TypeArgs = {
+  distinct_on?: Maybe<Array<Sales_Attachment_Type_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Attachment_Type_Order_By>>;
+  where?: Maybe<Sales_Attachment_Type_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Attachment_Type_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Attachment_Type_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Attachment_Type_Order_By>>;
+  where?: Maybe<Sales_Attachment_Type_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Attachment_Type_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 
@@ -27950,7 +28892,7 @@ export type InsertInvoiceMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_invoice_one?: Maybe<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method'>
+    & Pick<Sales_Invoice, 'id' | 'date' | 'amount_ttc' | 'amount_ht' | 'tva_rate' | 'payment_method'>
     & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
@@ -27981,7 +28923,7 @@ export type UpdateInvoiceMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_invoice_by_pk?: Maybe<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method'>
+    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'tva_rate'>
     & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
@@ -28191,7 +29133,7 @@ export type GetAllInvoicesQuery = (
   { __typename?: 'query_root' }
   & { sales_invoice: Array<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method'>
+    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'tva_rate' | 'amount_ttc' | 'amount_ht'>
     & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
@@ -31271,7 +32213,7 @@ export const DeleteInvoicesDocument = gql`
 export const InsertInvoiceDocument = gql`
     mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $deliveries: [sales_invoice_delivery_insert_input!]! = []) {
   insert_sales_invoice_one(
-    object: {client: $client, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}}
+    object: {client: $client, amount_ttc: 0, amount_ht: 0, tva_rate: 0, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}}
   ) {
     id
     client: clientObj {
@@ -31288,6 +32230,9 @@ export const InsertInvoiceDocument = gql`
       phone
     }
     date
+    amount_ttc
+    amount_ht
+    tva_rate
     payment_method
     deliveries {
       delivery_id
@@ -31328,6 +32273,9 @@ export const UpdateInvoiceDocument = gql`
     }
     date
     payment_method
+    amount_ttc
+    amount_ht
+    tva_rate
     deliveries {
       delivery_id
     }
@@ -31718,6 +32666,9 @@ export const GetAllInvoicesDocument = gql`
     deliveries {
       delivery_id
     }
+    tva_rate
+    amount_ttc
+    amount_ht
   }
 }
     `;
