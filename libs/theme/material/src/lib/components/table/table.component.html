@@ -1,5 +1,5 @@
 <!--<div class="m-2 mat-elevation-z8">-->
-  <mat-form-field class="w-50 m-12">
+  <mat-form-field class="w-50 m-12" *ngIf='withFilter'>
     <input #filterInput matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">
     <button mat-icon-button matSuffix (click)="clearFilter(filterInput)"
             [ngStyle]="filterInput.value === ''?{display: 'none'}:{}"
@@ -8,7 +8,7 @@
     </button>
   </mat-form-field>
   <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="data">
-    <ng-container matColumnDef="select">
+    <ng-container  *ngIf='withCheckbox'  matColumnDef="select" >
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox (change)="$event ? masterToggle() : null"
                       [checked]="selection.hasValue() && isAllSelected()"
@@ -21,7 +21,7 @@
                       [checked]="selection.isSelected(row)">
         </mat-checkbox>
       </td>
-      <td mat-footer-cell *matFooterCellDef> Total {{data?.length}}</td>
+        <td   mat-footer-cell *matFooterCellDef> Total {{data?.length}}</td>
       <ng-content #status></ng-content>
     </ng-container>
 

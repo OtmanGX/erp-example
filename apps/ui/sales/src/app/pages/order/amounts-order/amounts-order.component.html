@@ -4,16 +4,12 @@
     </button>
     <span>Montants!</span>
     <span class="example-spacer"></span>
+    <button *ngIf="!isCardMode" mat-flat-button (click)="openDialog()" color="primary" style="width: 12em">
+      Ajouter Réglement
+    </button>
 </mat-toolbar>
 <app-table #amountTable [data]="dataSource" 
-[templates]="{ action: action }"
-  [columnsToShow]="displayedColumns">
+  [columnsToShow]="displayedColumns"
+  [withCheckbox]=false
+  >
 </app-table>
-<ng-template #action let-item="data">
-  <button *ngIf="!isCardMode" mat-stroked-button color="primary" (click)="addPayment()">
-    <mat-icon   color="primary" class="example-icon" aria-hidden="false" aria-label="Example add icon">
-      add_circle
-    </mat-icon>
-    paiement
-  </button>
-</ng-template>

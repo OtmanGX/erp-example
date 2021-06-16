@@ -1,0 +1,27 @@
+query GetPayment($order_id: Int!) {
+  sales_payment_aggregate(where: {order_id: {_eq: $order_id}}) {
+    nodes {
+      amount
+      company {
+        id
+        name
+      }
+      customer {
+        code
+        name
+        phone
+      }
+      date
+      deadline
+      id
+      payment_method
+      order_id
+    }
+    aggregate {
+      sum {
+        amount
+      }
+      count(columns: amount)
+    }
+  }
+}

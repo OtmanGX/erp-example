@@ -30,6 +30,10 @@ export class TableComponent<T> implements AfterViewInit, OnInit {
   @Input() columnsToShow: Array<Column>;
   @Input() columnsToCompare;
   @Input() templates;
+  @Input() withFilter:boolean=true;
+  @Input() withCheckbox:boolean=true;
+
+
   @Output() deleteRows = new EventEmitter<Array<string>>();
   @Output() renameRow = new EventEmitter<{id,name}>();
   column_type = ColumnType;
@@ -51,7 +55,8 @@ export class TableComponent<T> implements AfterViewInit, OnInit {
     // this.dataSource = new TableDataSource(this.columnsToCompare);
     this.selection = new SelectionModel<T>(allowMultiSelect, initialSelection);
     /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-    this.displayedColumns = ['select', ...this.columnsToShow.map(item => item.key)];
+    this.withCheckbox ? this.displayedColumns = ['select', ...this.columnsToShow.map(item => item.key)]:
+    this.displayedColumns = [ ...this.columnsToShow.map(item => item.key)];
   }
 
   ngAfterViewInit() {

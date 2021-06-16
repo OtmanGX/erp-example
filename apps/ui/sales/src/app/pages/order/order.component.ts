@@ -55,5 +55,4 @@ export class OrderComponent implements GridView {
     ];
   }
 
-
 }

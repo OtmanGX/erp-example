@@ -1,0 +1,21 @@
+mutation InsertPayment($amount: numeric , $company_id: uuid , $customer_id: uuid , $date: date ,
+  $deadline: date, $order_id: Int, $payment_method: String ) {
+  insert_sales_payment_one(object: {amount: $amount, company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, order_id: $order_id, payment_method: $payment_method}) {
+    amount
+    date
+    deadline
+    id
+    order_id
+    company {
+      id
+      name
+    }
+    customer {
+      code
+      phone
+      name
+      id
+    }
+    payment_method
+  }
+}

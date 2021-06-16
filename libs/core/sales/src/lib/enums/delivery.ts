@@ -7,5 +7,6 @@ export enum DeliveryStatus {
 export enum PaymentMethod {
   CHECK = 'Chèque',
   CASH = 'Espèce',
-  TRANSFER = 'Virement'
+  TRANSFER = 'Virement',
+  
 }
