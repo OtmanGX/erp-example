@@ -11,14 +11,14 @@ import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.ac
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
 import {
   DeliveryFacade,
-  DeliveryForm,
-  InvoiceFacade,
+  DeliveryForm, DeliveryStatus,
+  InvoiceFacade
 } from '@tanglass-erp/store/sales';
 import { Store } from '@ngrx/store';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
-import { map, take } from 'rxjs/operators';
+import { filter, map, take } from 'rxjs/operators';
 import { of, combineLatest } from 'rxjs';
 import { Location } from '@angular/common';
 
@@ -53,7 +53,11 @@ export class InvoiceAddComponent extends PageForm {
   companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany);
   customers$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
-  deliveries$ = this.deliveryFacade.allDelivery$;
+  deliveries$ = this.deliveryFacade.allDelivery$.pipe(
+    map(
+      e => e.filter(item => item.status === DeliveryStatus.NOT_INVOICED)
+    )
+  );
   deliveries: DeliveryForm[];
   selectedDeliveries: DeliveryForm[] = [];
 

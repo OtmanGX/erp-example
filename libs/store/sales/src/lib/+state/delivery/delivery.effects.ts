@@ -94,6 +94,15 @@ export class DeliveryEffects {
         this.deliveryService.updateDelivery(action.delivery).pipe(
           map((data: Array<any>) => {
             this.router.navigate(['sales/invoice']);
+            this.notificationService.showNotifToast({
+              message: 'Mise à jour avec succès',
+              operation: 'success',
+              title: 'Bons de livraison',
+              time: new Date(),
+              icon: 'checked',
+              route: 'sales/delivery',
+              color: 'primary'
+            })
               return DeliveryActions.updateDeliverySuccess({
                 delivery: {
                   ...data[0].data.update_sales_delivery_by_pk,

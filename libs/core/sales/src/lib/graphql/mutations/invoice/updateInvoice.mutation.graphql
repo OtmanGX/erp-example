@@ -7,7 +7,13 @@ mutation UpdateInvoice(
   $payment_method: String
 ) {
   update_sales_invoice_by_pk(
-    _set: { client: $client, company: $company, contact: $contact, date: $date, payment_method: $payment_method }
+    _set: {
+      client: $client
+      company: $company
+      contact: $contact
+      date: $date
+      payment_method: $payment_method
+    }
     pk_columns: { id: $id }
   ) {
     id
@@ -15,7 +21,7 @@ mutation UpdateInvoice(
       name
       mail
     }
-    company: companyObj{
+    company: companyObj {
       id
       name
     }
@@ -26,6 +32,9 @@ mutation UpdateInvoice(
     }
     date
     payment_method
+    amount_ttc
+    amount_ht
+    tva_rate
     deliveries {
       delivery_id
     }
