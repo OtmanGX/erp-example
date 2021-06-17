@@ -26,6 +26,7 @@ import { InvoiceListComponent } from '@TanglassUi/sales/pages/invoice/invoice-li
 import { InvoiceAddComponent } from '@TanglassUi/sales/pages/invoice/invoice-add/invoice-add.component';
 import { InvoiceReadyComponent } from '@TanglassUi/sales/pages/invoice/invoice-ready/invoice-ready.component';
 import { DeliveriesAccordionComponent } from '@TanglassUi/sales/components/deliveries-accordion/deliveries-accordion.component';
+import { InvoiceStatusComponent } from '@TanglassUi/sales/utils/grid-headers';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { DeliveriesAccordionComponent } from '@TanglassUi/sales/components/deliv
     InvoiceListComponent,
     InvoiceAddComponent,
     InvoiceReadyComponent,
-    DeliveriesAccordionComponent
+    DeliveriesAccordionComponent,
   ],
   imports: [
     CommonModule,

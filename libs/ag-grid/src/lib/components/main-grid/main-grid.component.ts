@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { DatePipe } from '@angular/common';
-import { MatEditComponent } from '../mat-edit.component';
+import { MatEditComponent } from '../cell-renderers/mat-edit.component';
 import { Observable } from 'rxjs';
 import { GridObjectRenderComponentComponent } from '../grid-object-render-component/grid-object-render-component.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -15,7 +15,7 @@ import { ExportBottomSheetComponent } from '../export-bottom-sheet/export-bottom
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '@tanglass-erp/material';
-import { LinkComponent } from '../link.component';
+import { LinkComponent } from '../cell-renderers/link.component';
 import { Operations } from '../../enums/operations';
 import { GridPermissions } from '../../interfaces/grid-permissions';
 import { GroupButton } from '../../interfaces/group-button';

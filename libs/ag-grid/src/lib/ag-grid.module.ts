@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { MainGridComponent } from './components/main-grid/main-grid.component';
-import { MatEditComponent } from './components/mat-edit.component';
+import { MatEditComponent } from './components/cell-renderers/mat-edit.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { MaterialModule } from '@tanglass-erp/material';
 import 'ag-grid-enterprise';
 import { ExportBottomSheetComponent } from './components/export-bottom-sheet/export-bottom-sheet.component';
-import { LinkComponent } from './components/link.component';
+import { LinkComponent } from './components/cell-renderers/link.component';
 import { RouterModule } from '@angular/router';
+import { DefaultCellRendererComponent } from './components/cell-renderers/default-cell-renderer.component';
 
 
 

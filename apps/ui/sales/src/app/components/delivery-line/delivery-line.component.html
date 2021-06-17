@@ -28,7 +28,7 @@
 
 <ng-template let-item="data" #rest>
   <div [ngClass]="item.quantity - item.delivered ? 'text-danger' : 'text-success'">
-    {{ item.quantity - item.delivered }}
+    {{ item.quantity }}
   </div>
 </ng-template>
 

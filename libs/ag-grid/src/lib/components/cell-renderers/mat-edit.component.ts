@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
-import { Operations } from '../enums/operations';
-import { GroupButton } from '../interfaces/group-button';
+import { Operations } from '../../enums/operations';
+import { GroupButton } from '../../interfaces/group-button';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
-import { GridPermissions } from '../interfaces/grid-permissions';
+import { GridPermissions } from '../../interfaces/grid-permissions';
 
 @Component({
   selector: 'ngx-mat-edit',

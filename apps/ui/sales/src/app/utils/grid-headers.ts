@@ -1,5 +1,7 @@
-
+import { Component } from '@angular/core';
 import {Column, ColumnType } from '@tanglass-erp/material';
+import { DefaultCellRendererComponent } from '@tanglass-erp/ag-grid';
+import { DeliveryStatus } from '@tanglass-erp/core/sales';
 
 export const action=    {
   title: 'Action',
@@ -7,6 +9,21 @@ export const action=    {
   type: ColumnType.template,
   withRow: true,
 }
+
+
+
+@Component({
+  template: `<span [class]='get_class()'>{{value}}</span>`,
+})
+export class InvoiceStatusComponent extends DefaultCellRendererComponent {
+  stat_class = ''
+
+  get_class() {
+    if (this.value === DeliveryStatus.INVOICED) return 'text-success';
+    return ''
+  }
+}
+
 
 
 export const displayedAmountsColumns: Array<Column> = [
@@ -35,7 +52,7 @@ export const ProductGlassHeaders: Array<Column> = [
 ];
 
 export const ProductHeaders: Array<Column> = [
-    //{ field: 'id', headerName: 'ID. ' },
+     //{ field: 'id', headerName: 'ID. ' },
     { key: 'product_code', title: 'Code' ,type: ColumnType.normal },
     { key: 'label', title: 'Désignation' ,type: ColumnType.normal },
     { key: 'quantity', title: 'Quantité' ,type: ColumnType.normal },
@@ -104,7 +121,7 @@ export const deliveryHeaders = [
           link: ['update', {id : params?.data?.id}],
         }),
       },
-      { field: 'status', headerName: 'Etat' },
+      { field: 'status', headerName: 'Etat', cellRendererFramework: InvoiceStatusComponent },
       { field: 'order', headerName: 'N° Commande', type: 'textColumn' },
       {
         field: 'predicted_date',

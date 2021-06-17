@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
-import { Operations } from '../enums/operations';
+import { Operations } from '../../enums/operations';
 
 @Component({
   selector: 'ngx-mat-edit',
