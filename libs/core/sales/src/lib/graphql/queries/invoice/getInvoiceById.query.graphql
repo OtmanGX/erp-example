@@ -9,5 +9,13 @@ query GetInvoiceById($id: uuid!) {
       delivery_id
     }
     payment_method
+    invoice_lines{
+      id
+      unit_price
+      product_code
+      product_label
+      quantity
+      total
+    }
   }
 }
