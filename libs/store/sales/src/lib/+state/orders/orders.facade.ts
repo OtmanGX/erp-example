@@ -7,7 +7,7 @@ import * as OrdersSelectors from './orders.selectors';
 import * as OrdersActions from './orders.actions';
 import { filter } from 'rxjs/operators';
 import  {Order  } from "@tanglass-erp/core/sales";
-
+import { PaymentsFacade } from "../payments/payments.facade";
 @Injectable()
 export class OrdersFacade {
   loaded$ = this.store.pipe(select(OrdersSelectors.getOrdersLoaded));
@@ -18,7 +18,8 @@ export class OrdersFacade {
     filter((val) => !!val)
   );
   orderById$=this.store.pipe(select(OrdersSelectors.getSelectedOrder))
-  constructor(private store: Store<fromOrders.OrdersPartialState>) {}
+  constructor(private store: Store<fromOrders.OrdersPartialState>,
+   public paymentsFacade:PaymentsFacade) {}
 
   dispatch(action: Action) {
     this.store.dispatch(action);
@@ -27,11 +28,8 @@ export class OrdersFacade {
     this.dispatch(OrdersActions.loadOrders());
   }
 
-  loadSelectedOrder(id) {
-    this.dispatch(OrdersActions.loadOrderById({ id }));
-  }
-
   loadOrderById(id){
+    this.paymentsFacade.loadOrderPayments({order_id:id})
     this.dispatch(OrdersActions.loadOrderById({id}))
   }
 

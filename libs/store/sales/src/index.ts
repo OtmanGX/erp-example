@@ -17,7 +17,6 @@ export * from './lib/+state/payments/payments.reducer';
 
 export * from './lib/+state/payments/payments.selectors';
 
-export * from './lib/+state/payments/payments.models';
 
 export * from './lib/+state/payments/payments.facade';
 
@@ -54,4 +53,5 @@ export {
   DeliveryLine,
   DeliveryStatus,
   PaymentMethod,
+  
 } from '@tanglass-erp/core/sales';

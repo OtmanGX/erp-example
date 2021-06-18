@@ -7,7 +7,7 @@ import { takeWhile } from 'rxjs/operators';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
-import {of  } from "rxjs";
+import { of } from "rxjs";
 @Component({
   selector: 'ngx-order-card',
   templateUrl: './order-card.component.html',
@@ -17,9 +17,9 @@ export class OrderCardComponent extends ModelCardComponent {
   title = "Commande CARD";
   id: string;
   data$ = this.facade.orderById$
-  .pipe(takeUntil(this._onDestroy));
-  draftID$;
-  isCardMode:boolean=true;
+    .pipe(takeUntil(this._onDestroy));
+  draftID$; order_id
+  isCardMode: boolean = true;
   constructor(
     public activatedRoute: ActivatedRoute,
     protected facade: OrdersFacade
@@ -33,8 +33,11 @@ export class OrderCardComponent extends ModelCardComponent {
 
   passData(data) {
     this.data$.subscribe(
-      data=>this.draftID$=data?.draft_id
-    ) 
+      data => {
+        this.draftID$ = data?.draft_id;
+        this.order_id = data?.id
+      }
+    )
     return [
       {
         label: "Infos Générales",
@@ -49,21 +52,20 @@ export class OrderCardComponent extends ModelCardComponent {
             { label: 'Tél', value: data?.customer.phone },
             { label: 'Date', value: data?.date },
             { label: 'Date limite ', value: data?.deadline, },
-            { label: 'Livraison', value: [data?.delivery_status],type: 'chips' },
-            { label: 'Paiement', value: [data?.payment_status] ,type: 'chips'},
+            { label: 'Livraison', value: [data?.delivery_status], type: 'chips' },
+            { label: 'Paiement', value: [data?.payment_status], type: 'chips' },
             { label: 'Réf ', value: data?.draft_id },
           ]
       },
     ];
   }
-  afterComplete() {}
-  edit(){
-    this.isCardMode=false;
+  afterComplete() { }
+  edit() {
+    this.isCardMode = false;
   }
-  save(){}
-  cancel(){}
-  print(){}
-  launch(){}
-  pay(){}
+  save() { }
+  cancel() { }
+  print() { }
+  launch() { }
 }
 

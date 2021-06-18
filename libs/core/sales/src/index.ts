@@ -4,6 +4,7 @@ export * from './lib/models/draft';
 export * from './lib/models/order';
 export * from './lib/models/quotation';
 export * from './lib/models/product';
+export * from './lib/models/payment';
 export * from './lib/services/quotation.service';
 export * from './lib/services/order.service';
 export * from './lib/services/delivery.service';
@@ -11,3 +12,4 @@ export * from './lib/services/invoice.service';
 export * from './lib/models/delivery';
 export * from './lib/models/invoice';
 export * from './lib/enums/delivery';
+export * from './lib/services/payment.service'

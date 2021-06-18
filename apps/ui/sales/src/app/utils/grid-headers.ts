@@ -33,6 +33,7 @@ export const displayedAmountsColumns: Array<Column> = [
   { key: 'total_TTC', title: 'Total TTC' ,type: ColumnType.normal },
   { key: 'received', title: 'Reçu' ,type: ColumnType.normal },
   { key: 'debt', title: 'Reste' ,type: ColumnType.normal },
+  
 ];
 
 export const ProductGlassHeaders: Array<Column> = [

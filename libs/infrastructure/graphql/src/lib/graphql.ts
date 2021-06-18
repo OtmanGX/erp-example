@@ -29081,6 +29081,19 @@ export type DeleteOrdersMutation = (
   )> }
 );
 
+export type DeletePaymentMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeletePaymentMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_payment_by_pk?: Maybe<(
+    { __typename?: 'sales_payment' }
+    & Pick<Sales_Payment, 'id'>
+  )> }
+);
+
 export type DeleteProductDraftMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -29305,6 +29318,31 @@ export type InsertOrderMutation = (
     )>, customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+    ) }
+  )> }
+);
+
+export type InsertPaymentMutationVariables = Exact<{
+  amount?: Maybe<Scalars['numeric']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  customer_id?: Maybe<Scalars['uuid']>;
+  date?: Maybe<Scalars['date']>;
+  deadline?: Maybe<Scalars['date']>;
+  order_id?: Maybe<Scalars['Int']>;
+  payment_method?: Maybe<Scalars['String']>;
+  comment?: Maybe<Scalars['String']>;
+  paper_ref?: Maybe<Scalars['String']>;
+}>;
+
+
+export type InsertPaymentMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_payment_one?: Maybe<(
+    { __typename?: 'sales_payment' }
+    & Pick<Sales_Payment, 'amount' | 'date' | 'deadline' | 'id' | 'order_id' | 'customer_id' | 'payment_method'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
     ) }
   )> }
 );
@@ -29571,6 +29609,23 @@ export type GetOrderByIdQuery = (
     )>, customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'id' | 'name' | 'phone' | 'code'>
+    ) }
+  )> }
+);
+
+export type GetPaymentQueryVariables = Exact<{
+  order_id: Scalars['Int'];
+}>;
+
+
+export type GetPaymentQuery = (
+  { __typename?: 'query_root' }
+  & { sales_payment: Array<(
+    { __typename?: 'sales_payment' }
+    & Pick<Sales_Payment, 'amount' | 'customer_id' | 'date' | 'deadline' | 'id' | 'payment_method' | 'order_id'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
     ) }
   )> }
 );
@@ -32343,6 +32398,24 @@ export const DeleteOrdersDocument = gql`
       super(apollo);
     }
   }
+export const DeletePaymentDocument = gql`
+    mutation DeletePayment($id: uuid!) {
+  delete_sales_payment_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeletePaymentGQL extends Apollo.Mutation<DeletePaymentMutation, DeletePaymentMutationVariables> {
+    document = DeletePaymentDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const DeleteProductDraftDocument = gql`
     mutation DeleteProductDraft($id: uuid!) {
   delete_sales_product_draft_by_pk(id: $id) {
@@ -32633,6 +32706,36 @@ export const InsertOrderDocument = gql`
   })
   export class InsertOrderGQL extends Apollo.Mutation<InsertOrderMutation, InsertOrderMutationVariables> {
     document = InsertOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertPaymentDocument = gql`
+    mutation InsertPayment($amount: numeric, $company_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $order_id: Int, $payment_method: String, $comment: String = "", $paper_ref: String = "") {
+  insert_sales_payment_one(
+    object: {amount: $amount, company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, order_id: $order_id, payment_method: $payment_method, comment: $comment, paper_ref: $paper_ref}
+  ) {
+    amount
+    date
+    deadline
+    id
+    order_id
+    company {
+      name
+      id
+    }
+    customer_id
+    payment_method
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertPaymentGQL extends Apollo.Mutation<InsertPaymentMutation, InsertPaymentMutationVariables> {
+    document = InsertPaymentDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -33052,6 +33155,34 @@ export const GetOrderByIdDocument = gql`
   })
   export class GetOrderByIdGQL extends Apollo.Query<GetOrderByIdQuery, GetOrderByIdQueryVariables> {
     document = GetOrderByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetPaymentDocument = gql`
+    query GetPayment($order_id: Int!) {
+  sales_payment(where: {order_id: {_eq: $order_id}}) {
+    amount
+    company {
+      name
+      id
+    }
+    customer_id
+    date
+    deadline
+    id
+    payment_method
+    order_id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetPaymentGQL extends Apollo.Query<GetPaymentQuery, GetPaymentQueryVariables> {
+    document = GetPaymentDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

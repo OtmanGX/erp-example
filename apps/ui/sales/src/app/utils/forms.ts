@@ -154,7 +154,7 @@ const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?
     name: "payment_method",
     label: "Méthode de paiement",
     inputType: "text",
-    options: Object.values(PaymentMethod).map(e => ({key: e, value: e})),
+    options: Object.values(PaymentMethod).map(e => ({ key: e, value: e })),
     value: data?.payment_method
   },
   {
@@ -164,9 +164,9 @@ const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?
     inputType: "text",
     // disabled: true,
     value: data?.status,
-    options: Object.values(DeliveryStatus).map(e => ({key: e, value: e}))
+    options: Object.values(DeliveryStatus).map(e => ({ key: e, value: e }))
   },
-  ];
+];
 
 const regConfigDraftInfos = (
   data?,
@@ -293,65 +293,65 @@ const regConfigGlassItem = (
   ];
 
 
-  const regConfigCustomerItem = (
-    customerProducts: Observable<CustomerProduct[]>,
-    data?: Intermediate_Data,
-    limit?: number
-  ) => [
-      {
-        type: "selectSearch",
-        name: "product_code",
-        label: "Code",
-        inputType: "text",
-        value: data.data?.product_code,
-        filterFields: ['id', 'label'],
-        fieldsToShow: ['id', 'label'],
-        options: customerProducts.pipe(
-          map(item => item.map(product => ({ id: product.code, label: product.label })))),
+const regConfigCustomerItem = (
+  customerProducts: Observable<CustomerProduct[]>,
+  data?: Intermediate_Data,
+  limit?: number
+) => [
+    {
+      type: "selectSearch",
+      name: "product_code",
+      label: "Code",
+      inputType: "text",
+      value: data.data?.product_code,
+      filterFields: ['id', 'label'],
+      fieldsToShow: ['id', 'label'],
+      options: customerProducts.pipe(
+        map(item => item.map(product => ({ id: product.code, label: product.label })))),
 
-      },
-      {
-        type: 'input',
-        name: 'label',
-        label: 'Désignation',
-        inputType: 'text',
-        value: data?.data?.label,
-        validations: [REQUIRED, MAXNUMBER(limit)],
-      },
-      {
-        type: 'input',
-        name: 'width',
-        label: 'Largeur',
-        inputType: 'number',
-        value: data?.data?.width,
-        validations: [REQUIRED, MAXNUMBER(limit)],
-      },
-      {
-        type: 'input',
-        name: 'heigth',
-        label: 'Hauteur',
-        inputType: 'number',
-        value: data?.data?.heigth,
-        validations: [REQUIRED, MAXNUMBER(limit)],
-      },
-      {
-        type: 'input',
-        name: 'count',
-        label: 'N° de piéces',
-        inputType: 'number',
-        value: data?.data?.count,
-        validations: [REQUIRED, MAXNUMBER(limit)],
-      },
+    },
+    {
+      type: 'input',
+      name: 'label',
+      label: 'Désignation',
+      inputType: 'text',
+      value: data?.data?.label,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: 'input',
+      name: 'width',
+      label: 'Largeur',
+      inputType: 'number',
+      value: data?.data?.width,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: 'input',
+      name: 'heigth',
+      label: 'Hauteur',
+      inputType: 'number',
+      value: data?.data?.heigth,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: 'input',
+      name: 'count',
+      label: 'N° de piéces',
+      inputType: 'number',
+      value: data?.data?.count,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
 
-      {
-        type: 'input',
-        name: 'unit',
-        label: 'Unité',
-        inputType: 'text',
-        value: data?.data?.unit,
-        validations: [REQUIRED, MAXNUMBER(limit)],
-      },
-    ];
+    {
+      type: 'input',
+      name: 'unit',
+      label: 'Unité',
+      inputType: 'text',
+      value: data?.data?.unit,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+  ];
 
 
 const regConfigAccessoireItem = (
@@ -541,6 +541,79 @@ const regConfigConsumableItem = (
     },
 
   ];
+
+
+const regConfigPayment = (
+  data,
+  customers,
+  companies,
+  limit?: number
+) => [
+
+    {
+      type: "select", name: "company_id", label: "En faveur de",
+      inputType: "text", value: data?.data?.company_name,
+      options: companies,
+      validations: [REQUIRED],
+    },
+    {
+      type: "select",
+      name: "payment_method",
+      label: "Méthode de paiement",
+      inputType: "text",
+      options: Object.values(PaymentMethod).map(e => ({ key: e, value: e })),
+      value: data?.payment_method
+    },
+    {
+      type: 'input',
+      name: 'comment',
+      label: 'Libellé',
+      inputType: 'text',
+      value: data?.data?.label,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: 'input',
+      name: 'amount',
+      label: 'Montant',
+      inputType: 'number',
+      value: data?.data?.amount,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: 'input',
+      name: 'paper_ref',
+      label: 'Référence',
+      inputType: 'text',
+      value: data?.data?.paper_ref,
+      validations: [REQUIRED, MAXNUMBER(limit)],
+    },
+    {
+      type: "selectSearch",
+      name: "customer_id",
+      label: "Client",
+      inputType: "text",
+      value: data?.customers ?? [],
+      filterFields: ['name', 'phone'],
+      fieldsToShow: ['name', 'phone'],
+      options: customers
+    },
+    {
+      type: "date",
+      name: "date",
+      label: "Date ",
+      value: data?.date,
+      inputType: "text",
+    },
+    {
+      type: "date",
+      name: "deadline",
+      label: "Date d'échéance ",
+      value: data?.expected_date,
+      inputType: "text",
+    },
+
+  ];
 export {
   regConfigDraftInfos,
   regConfigGlassItem,
@@ -549,5 +622,6 @@ export {
   regConfigConsumableItem,
   regConfigCustomerItem,
   regConfigDelivery,
-  regConfigInvoice
+  regConfigInvoice,
+  regConfigPayment,
 };
