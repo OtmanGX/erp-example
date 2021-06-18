@@ -43,7 +43,7 @@ export const addInvoice = createAction(
 
 export const addInvoiceSuccess = createAction(
   '[Invoice] add Invoice Success',
-  props<{ invoice: Invoice }>()
+  props<{ invoice: InsertedInvoice }>()
 );
 
 export const addInvoiceFailure = createAction(

@@ -5043,6 +5043,10 @@ export type Mutation_Root = {
   delete_sales_invoice_delivery?: Maybe<Sales_Invoice_Delivery_Mutation_Response>;
   /** delete single row from the table: "sales.invoice_delivery" */
   delete_sales_invoice_delivery_by_pk?: Maybe<Sales_Invoice_Delivery>;
+  /** delete data from the table: "sales.invoice_line" */
+  delete_sales_invoice_line?: Maybe<Sales_Invoice_Line_Mutation_Response>;
+  /** delete single row from the table: "sales.invoice_line" */
+  delete_sales_invoice_line_by_pk?: Maybe<Sales_Invoice_Line>;
   /** delete data from the table: "sales.order" */
   delete_sales_order?: Maybe<Sales_Order_Mutation_Response>;
   /** delete single row from the table: "sales.order" */
@@ -5281,6 +5285,10 @@ export type Mutation_Root = {
   insert_sales_invoice_delivery?: Maybe<Sales_Invoice_Delivery_Mutation_Response>;
   /** insert a single row into the table: "sales.invoice_delivery" */
   insert_sales_invoice_delivery_one?: Maybe<Sales_Invoice_Delivery>;
+  /** insert data into the table: "sales.invoice_line" */
+  insert_sales_invoice_line?: Maybe<Sales_Invoice_Line_Mutation_Response>;
+  /** insert a single row into the table: "sales.invoice_line" */
+  insert_sales_invoice_line_one?: Maybe<Sales_Invoice_Line>;
   /** insert a single row into the table: "sales.invoice" */
   insert_sales_invoice_one?: Maybe<Sales_Invoice>;
   /** insert data into the table: "sales.order" */
@@ -5523,6 +5531,10 @@ export type Mutation_Root = {
   update_sales_invoice_delivery?: Maybe<Sales_Invoice_Delivery_Mutation_Response>;
   /** update single row of the table: "sales.invoice_delivery" */
   update_sales_invoice_delivery_by_pk?: Maybe<Sales_Invoice_Delivery>;
+  /** update data of the table: "sales.invoice_line" */
+  update_sales_invoice_line?: Maybe<Sales_Invoice_Line_Mutation_Response>;
+  /** update single row of the table: "sales.invoice_line" */
+  update_sales_invoice_line_by_pk?: Maybe<Sales_Invoice_Line>;
   /** update data of the table: "sales.order" */
   update_sales_order?: Maybe<Sales_Order_Mutation_Response>;
   /** update single row of the table: "sales.order" */
@@ -6136,6 +6148,18 @@ export type Mutation_RootDelete_Sales_Invoice_DeliveryArgs = {
 export type Mutation_RootDelete_Sales_Invoice_Delivery_By_PkArgs = {
   delivery_id: Scalars['uuid'];
   invoice_id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Invoice_LineArgs = {
+  where: Sales_Invoice_Line_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Invoice_Line_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -6936,6 +6960,20 @@ export type Mutation_RootInsert_Sales_Invoice_DeliveryArgs = {
 export type Mutation_RootInsert_Sales_Invoice_Delivery_OneArgs = {
   object: Sales_Invoice_Delivery_Insert_Input;
   on_conflict?: Maybe<Sales_Invoice_Delivery_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Invoice_LineArgs = {
+  objects: Array<Sales_Invoice_Line_Insert_Input>;
+  on_conflict?: Maybe<Sales_Invoice_Line_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Invoice_Line_OneArgs = {
+  object: Sales_Invoice_Line_Insert_Input;
+  on_conflict?: Maybe<Sales_Invoice_Line_On_Conflict>;
 };
 
 
@@ -7819,6 +7857,22 @@ export type Mutation_RootUpdate_Sales_Invoice_DeliveryArgs = {
 export type Mutation_RootUpdate_Sales_Invoice_Delivery_By_PkArgs = {
   _set?: Maybe<Sales_Invoice_Delivery_Set_Input>;
   pk_columns: Sales_Invoice_Delivery_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Invoice_LineArgs = {
+  _inc?: Maybe<Sales_Invoice_Line_Inc_Input>;
+  _set?: Maybe<Sales_Invoice_Line_Set_Input>;
+  where: Sales_Invoice_Line_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Invoice_Line_By_PkArgs = {
+  _inc?: Maybe<Sales_Invoice_Line_Inc_Input>;
+  _set?: Maybe<Sales_Invoice_Line_Set_Input>;
+  pk_columns: Sales_Invoice_Line_Pk_Columns_Input;
 };
 
 
@@ -14304,6 +14358,12 @@ export type Query_Root = {
   sales_invoice_delivery_aggregate: Sales_Invoice_Delivery_Aggregate;
   /** fetch data from the table: "sales.invoice_delivery" using primary key columns */
   sales_invoice_delivery_by_pk?: Maybe<Sales_Invoice_Delivery>;
+  /** fetch data from the table: "sales.invoice_line" */
+  sales_invoice_line: Array<Sales_Invoice_Line>;
+  /** fetch aggregated fields from the table: "sales.invoice_line" */
+  sales_invoice_line_aggregate: Sales_Invoice_Line_Aggregate;
+  /** fetch data from the table: "sales.invoice_line" using primary key columns */
+  sales_invoice_line_by_pk?: Maybe<Sales_Invoice_Line>;
   /** fetch data from the table: "sales.order" */
   sales_order: Array<Sales_Order>;
   /** fetch aggregated fields from the table: "sales.order" */
@@ -15771,6 +15831,32 @@ export type Query_RootSales_Invoice_Delivery_AggregateArgs = {
 export type Query_RootSales_Invoice_Delivery_By_PkArgs = {
   delivery_id: Scalars['uuid'];
   invoice_id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootSales_Invoice_LineArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Line_Order_By>>;
+  where?: Maybe<Sales_Invoice_Line_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Invoice_Line_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Line_Order_By>>;
+  where?: Maybe<Sales_Invoice_Line_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Invoice_Line_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -18522,6 +18608,10 @@ export type Sales_Invoice = {
   /** An aggregated array relationship */
   deliveries_aggregate: Sales_Invoice_Delivery_Aggregate;
   id: Scalars['uuid'];
+  /** An array relationship */
+  invoice_lines: Array<Sales_Invoice_Line>;
+  /** An aggregated array relationship */
+  invoice_lines_aggregate: Sales_Invoice_Line_Aggregate;
   payment_method: Scalars['String'];
   tva_rate: Scalars['numeric'];
 };
@@ -18544,6 +18634,26 @@ export type Sales_InvoiceDeliveries_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Sales_Invoice_Delivery_Order_By>>;
   where?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.invoice" */
+export type Sales_InvoiceInvoice_LinesArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Line_Order_By>>;
+  where?: Maybe<Sales_Invoice_Line_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.invoice" */
+export type Sales_InvoiceInvoice_Lines_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Line_Order_By>>;
+  where?: Maybe<Sales_Invoice_Line_Bool_Exp>;
 };
 
 /** aggregated selection of "sales.invoice" */
@@ -18628,6 +18738,7 @@ export type Sales_Invoice_Bool_Exp = {
   date?: Maybe<Date_Comparison_Exp>;
   deliveries?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  invoice_lines?: Maybe<Sales_Invoice_Line_Bool_Exp>;
   payment_method?: Maybe<String_Comparison_Exp>;
   tva_rate?: Maybe<Numeric_Comparison_Exp>;
 };
@@ -18803,8 +18914,366 @@ export type Sales_Invoice_Insert_Input = {
   date?: Maybe<Scalars['date']>;
   deliveries?: Maybe<Sales_Invoice_Delivery_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
+  invoice_lines?: Maybe<Sales_Invoice_Line_Arr_Rel_Insert_Input>;
   payment_method?: Maybe<Scalars['String']>;
   tva_rate?: Maybe<Scalars['numeric']>;
+};
+
+/** columns and relationships of "sales.invoice_line" */
+export type Sales_Invoice_Line = {
+  __typename?: 'sales_invoice_line';
+  id: Scalars['uuid'];
+  /** An object relationship */
+  invoice: Sales_Invoice;
+  invoice_id: Scalars['uuid'];
+  product_code: Scalars['String'];
+  product_label: Scalars['String'];
+  quantity: Scalars['numeric'];
+  total: Scalars['numeric'];
+  unit_price: Scalars['numeric'];
+};
+
+/** aggregated selection of "sales.invoice_line" */
+export type Sales_Invoice_Line_Aggregate = {
+  __typename?: 'sales_invoice_line_aggregate';
+  aggregate?: Maybe<Sales_Invoice_Line_Aggregate_Fields>;
+  nodes: Array<Sales_Invoice_Line>;
+};
+
+/** aggregate fields of "sales.invoice_line" */
+export type Sales_Invoice_Line_Aggregate_Fields = {
+  __typename?: 'sales_invoice_line_aggregate_fields';
+  avg?: Maybe<Sales_Invoice_Line_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Sales_Invoice_Line_Max_Fields>;
+  min?: Maybe<Sales_Invoice_Line_Min_Fields>;
+  stddev?: Maybe<Sales_Invoice_Line_Stddev_Fields>;
+  stddev_pop?: Maybe<Sales_Invoice_Line_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Sales_Invoice_Line_Stddev_Samp_Fields>;
+  sum?: Maybe<Sales_Invoice_Line_Sum_Fields>;
+  var_pop?: Maybe<Sales_Invoice_Line_Var_Pop_Fields>;
+  var_samp?: Maybe<Sales_Invoice_Line_Var_Samp_Fields>;
+  variance?: Maybe<Sales_Invoice_Line_Variance_Fields>;
+};
+
+
+/** aggregate fields of "sales.invoice_line" */
+export type Sales_Invoice_Line_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Sales_Invoice_Line_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Aggregate_Order_By = {
+  avg?: Maybe<Sales_Invoice_Line_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Sales_Invoice_Line_Max_Order_By>;
+  min?: Maybe<Sales_Invoice_Line_Min_Order_By>;
+  stddev?: Maybe<Sales_Invoice_Line_Stddev_Order_By>;
+  stddev_pop?: Maybe<Sales_Invoice_Line_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Sales_Invoice_Line_Stddev_Samp_Order_By>;
+  sum?: Maybe<Sales_Invoice_Line_Sum_Order_By>;
+  var_pop?: Maybe<Sales_Invoice_Line_Var_Pop_Order_By>;
+  var_samp?: Maybe<Sales_Invoice_Line_Var_Samp_Order_By>;
+  variance?: Maybe<Sales_Invoice_Line_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "sales.invoice_line" */
+export type Sales_Invoice_Line_Arr_Rel_Insert_Input = {
+  data: Array<Sales_Invoice_Line_Insert_Input>;
+  on_conflict?: Maybe<Sales_Invoice_Line_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Sales_Invoice_Line_Avg_Fields = {
+  __typename?: 'sales_invoice_line_avg_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  total?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Avg_Order_By = {
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "sales.invoice_line". All fields are combined with a logical 'AND'. */
+export type Sales_Invoice_Line_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Sales_Invoice_Line_Bool_Exp>>>;
+  _not?: Maybe<Sales_Invoice_Line_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Sales_Invoice_Line_Bool_Exp>>>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  invoice?: Maybe<Sales_Invoice_Bool_Exp>;
+  invoice_id?: Maybe<Uuid_Comparison_Exp>;
+  product_code?: Maybe<String_Comparison_Exp>;
+  product_label?: Maybe<String_Comparison_Exp>;
+  quantity?: Maybe<Numeric_Comparison_Exp>;
+  total?: Maybe<Numeric_Comparison_Exp>;
+  unit_price?: Maybe<Numeric_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "sales.invoice_line" */
+export enum Sales_Invoice_Line_Constraint {
+  /** unique or primary key constraint */
+  InvoiceLinePkey = 'invoice_line_pkey'
+}
+
+/** input type for incrementing integer column in table "sales.invoice_line" */
+export type Sales_Invoice_Line_Inc_Input = {
+  quantity?: Maybe<Scalars['numeric']>;
+  total?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
+};
+
+/** input type for inserting data into table "sales.invoice_line" */
+export type Sales_Invoice_Line_Insert_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  invoice?: Maybe<Sales_Invoice_Obj_Rel_Insert_Input>;
+  invoice_id?: Maybe<Scalars['uuid']>;
+  product_code?: Maybe<Scalars['String']>;
+  product_label?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['numeric']>;
+  total?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
+};
+
+/** aggregate max on columns */
+export type Sales_Invoice_Line_Max_Fields = {
+  __typename?: 'sales_invoice_line_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  invoice_id?: Maybe<Scalars['uuid']>;
+  product_code?: Maybe<Scalars['String']>;
+  product_label?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['numeric']>;
+  total?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
+};
+
+/** order by max() on columns of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  invoice_id?: Maybe<Order_By>;
+  product_code?: Maybe<Order_By>;
+  product_label?: Maybe<Order_By>;
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Sales_Invoice_Line_Min_Fields = {
+  __typename?: 'sales_invoice_line_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  invoice_id?: Maybe<Scalars['uuid']>;
+  product_code?: Maybe<Scalars['String']>;
+  product_label?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['numeric']>;
+  total?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
+};
+
+/** order by min() on columns of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  invoice_id?: Maybe<Order_By>;
+  product_code?: Maybe<Order_By>;
+  product_label?: Maybe<Order_By>;
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "sales.invoice_line" */
+export type Sales_Invoice_Line_Mutation_Response = {
+  __typename?: 'sales_invoice_line_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Sales_Invoice_Line>;
+};
+
+/** input type for inserting object relation for remote table "sales.invoice_line" */
+export type Sales_Invoice_Line_Obj_Rel_Insert_Input = {
+  data: Sales_Invoice_Line_Insert_Input;
+  on_conflict?: Maybe<Sales_Invoice_Line_On_Conflict>;
+};
+
+/** on conflict condition type for table "sales.invoice_line" */
+export type Sales_Invoice_Line_On_Conflict = {
+  constraint: Sales_Invoice_Line_Constraint;
+  update_columns: Array<Sales_Invoice_Line_Update_Column>;
+  where?: Maybe<Sales_Invoice_Line_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "sales.invoice_line" */
+export type Sales_Invoice_Line_Order_By = {
+  id?: Maybe<Order_By>;
+  invoice?: Maybe<Sales_Invoice_Order_By>;
+  invoice_id?: Maybe<Order_By>;
+  product_code?: Maybe<Order_By>;
+  product_label?: Maybe<Order_By>;
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "sales.invoice_line" */
+export type Sales_Invoice_Line_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "sales.invoice_line" */
+export enum Sales_Invoice_Line_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InvoiceId = 'invoice_id',
+  /** column name */
+  ProductCode = 'product_code',
+  /** column name */
+  ProductLabel = 'product_label',
+  /** column name */
+  Quantity = 'quantity',
+  /** column name */
+  Total = 'total',
+  /** column name */
+  UnitPrice = 'unit_price'
+}
+
+/** input type for updating data in table "sales.invoice_line" */
+export type Sales_Invoice_Line_Set_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  invoice_id?: Maybe<Scalars['uuid']>;
+  product_code?: Maybe<Scalars['String']>;
+  product_label?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['numeric']>;
+  total?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
+};
+
+/** aggregate stddev on columns */
+export type Sales_Invoice_Line_Stddev_Fields = {
+  __typename?: 'sales_invoice_line_stddev_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  total?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Stddev_Order_By = {
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Sales_Invoice_Line_Stddev_Pop_Fields = {
+  __typename?: 'sales_invoice_line_stddev_pop_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  total?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Stddev_Pop_Order_By = {
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Sales_Invoice_Line_Stddev_Samp_Fields = {
+  __typename?: 'sales_invoice_line_stddev_samp_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  total?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Stddev_Samp_Order_By = {
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Sales_Invoice_Line_Sum_Fields = {
+  __typename?: 'sales_invoice_line_sum_fields';
+  quantity?: Maybe<Scalars['numeric']>;
+  total?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
+};
+
+/** order by sum() on columns of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Sum_Order_By = {
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
+};
+
+/** update columns of table "sales.invoice_line" */
+export enum Sales_Invoice_Line_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InvoiceId = 'invoice_id',
+  /** column name */
+  ProductCode = 'product_code',
+  /** column name */
+  ProductLabel = 'product_label',
+  /** column name */
+  Quantity = 'quantity',
+  /** column name */
+  Total = 'total',
+  /** column name */
+  UnitPrice = 'unit_price'
+}
+
+/** aggregate var_pop on columns */
+export type Sales_Invoice_Line_Var_Pop_Fields = {
+  __typename?: 'sales_invoice_line_var_pop_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  total?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Var_Pop_Order_By = {
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Sales_Invoice_Line_Var_Samp_Fields = {
+  __typename?: 'sales_invoice_line_var_samp_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  total?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Var_Samp_Order_By = {
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Sales_Invoice_Line_Variance_Fields = {
+  __typename?: 'sales_invoice_line_variance_fields';
+  quantity?: Maybe<Scalars['Float']>;
+  total?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "sales.invoice_line" */
+export type Sales_Invoice_Line_Variance_Order_By = {
+  quantity?: Maybe<Order_By>;
+  total?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** aggregate max on columns */
@@ -18896,6 +19365,7 @@ export type Sales_Invoice_Order_By = {
   date?: Maybe<Order_By>;
   deliveries_aggregate?: Maybe<Sales_Invoice_Delivery_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
+  invoice_lines_aggregate?: Maybe<Sales_Invoice_Line_Aggregate_Order_By>;
   payment_method?: Maybe<Order_By>;
   tva_rate?: Maybe<Order_By>;
 };
@@ -24833,6 +25303,12 @@ export type Subscription_Root = {
   sales_invoice_delivery_aggregate: Sales_Invoice_Delivery_Aggregate;
   /** fetch data from the table: "sales.invoice_delivery" using primary key columns */
   sales_invoice_delivery_by_pk?: Maybe<Sales_Invoice_Delivery>;
+  /** fetch data from the table: "sales.invoice_line" */
+  sales_invoice_line: Array<Sales_Invoice_Line>;
+  /** fetch aggregated fields from the table: "sales.invoice_line" */
+  sales_invoice_line_aggregate: Sales_Invoice_Line_Aggregate;
+  /** fetch data from the table: "sales.invoice_line" using primary key columns */
+  sales_invoice_line_by_pk?: Maybe<Sales_Invoice_Line>;
   /** fetch data from the table: "sales.order" */
   sales_order: Array<Sales_Order>;
   /** fetch aggregated fields from the table: "sales.order" */
@@ -26300,6 +26776,32 @@ export type Subscription_RootSales_Invoice_Delivery_AggregateArgs = {
 export type Subscription_RootSales_Invoice_Delivery_By_PkArgs = {
   delivery_id: Scalars['uuid'];
   invoice_id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Invoice_LineArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Line_Order_By>>;
+  where?: Maybe<Sales_Invoice_Line_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Invoice_Line_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Invoice_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Invoice_Line_Order_By>>;
+  where?: Maybe<Sales_Invoice_Line_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Invoice_Line_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -28922,6 +29424,7 @@ export type InsertInvoiceMutationVariables = Exact<{
   company: Scalars['uuid'];
   payment_method: Scalars['String'];
   date: Scalars['date'];
+  invoice_lines?: Array<Sales_Invoice_Line_Insert_Input>;
   deliveries?: Array<Sales_Invoice_Delivery_Insert_Input>;
 }>;
 
@@ -28930,19 +29433,13 @@ export type InsertInvoiceMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_invoice_one?: Maybe<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'date' | 'amount_ttc' | 'amount_ht' | 'tva_rate' | 'payment_method'>
-    & { client: (
-      { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'name' | 'mail'>
-    ), company: (
-      { __typename?: 'management_company' }
-      & Pick<Management_Company, 'id' | 'name'>
-    ), contact?: Maybe<(
-      { __typename?: 'contact_contact' }
-      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
-    )>, deliveries: Array<(
+    & Pick<Sales_Invoice, 'id' | 'client' | 'company' | 'contact' | 'date' | 'payment_method'>
+    & { deliveries: Array<(
       { __typename?: 'sales_invoice_delivery' }
       & Pick<Sales_Invoice_Delivery, 'delivery_id'>
+    )>, invoice_lines: Array<(
+      { __typename?: 'sales_invoice_line' }
+      & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'quantity' | 'total'>
     )> }
   )> }
 );
@@ -29205,6 +29702,23 @@ export type GetAllInvoicesQuery = (
   )> }
 );
 
+export type GetDeliveryLinesQueryVariables = Exact<{
+  deliveries?: Array<Scalars['uuid']>;
+}>;
+
+
+export type GetDeliveryLinesQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery_line: Array<(
+    { __typename?: 'sales_delivery_line' }
+    & Pick<Sales_Delivery_Line, 'product_label' | 'delivered' | 'amount'>
+    & { product_draft: (
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'product_code' | 'price'>
+    ) }
+  )> }
+);
+
 export type GetInvoiceByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -29218,6 +29732,9 @@ export type GetInvoiceByIdQuery = (
     & { deliveries: Array<(
       { __typename?: 'sales_invoice_delivery' }
       & Pick<Sales_Invoice_Delivery, 'delivery_id'>
+    )>, invoice_lines: Array<(
+      { __typename?: 'sales_invoice_line' }
+      & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'quantity' | 'total'>
     )> }
   )> }
 );
@@ -32314,31 +32831,26 @@ export const DeleteInvoicesDocument = gql`
     }
   }
 export const InsertInvoiceDocument = gql`
-    mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $deliveries: [sales_invoice_delivery_insert_input!]! = []) {
+    mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $invoice_lines: [sales_invoice_line_insert_input!]! = [], $deliveries: [sales_invoice_delivery_insert_input!]! = []) {
   insert_sales_invoice_one(
-    object: {client: $client, amount_ttc: 0, amount_ht: 0, tva_rate: 0, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}}
+    object: {client: $client, amount_ttc: 0, amount_ht: 0, tva_rate: 0, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}, invoice_lines: {data: $invoice_lines}}
   ) {
     id
-    client: clientObj {
-      name
-      mail
-    }
-    company: companyObj {
-      id
-      name
-    }
-    contact: contactObj {
-      mail
-      name
-      phone
-    }
+    client
+    company
+    contact
     date
-    amount_ttc
-    amount_ht
-    tva_rate
-    payment_method
     deliveries {
       delivery_id
+    }
+    payment_method
+    invoice_lines {
+      id
+      unit_price
+      product_code
+      product_label
+      quantity
+      total
     }
   }
 }
@@ -32814,6 +33326,30 @@ export const GetAllInvoicesDocument = gql`
       super(apollo);
     }
   }
+export const GetDeliveryLinesDocument = gql`
+    query getDeliveryLines($deliveries: [uuid!]! = []) {
+  sales_delivery_line(where: {delivery: {_in: $deliveries}, delivered: {_neq: 0}}) {
+    product_label
+    delivered
+    product_draft {
+      product_code
+      price
+    }
+    amount
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetDeliveryLinesGQL extends Apollo.Query<GetDeliveryLinesQuery, GetDeliveryLinesQueryVariables> {
+    document = GetDeliveryLinesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetInvoiceByIdDocument = gql`
     query GetInvoiceById($id: uuid!) {
   sales_invoice_by_pk(id: $id) {
@@ -32826,6 +33362,14 @@ export const GetInvoiceByIdDocument = gql`
       delivery_id
     }
     payment_method
+    invoice_lines {
+      id
+      unit_price
+      product_code
+      product_label
+      quantity
+      total
+    }
   }
 }
     `;

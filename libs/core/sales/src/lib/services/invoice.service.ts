@@ -5,9 +5,11 @@ import {
   UpdateInvoiceGQL,
   GetAllInvoicesGQL,
   GetInvoiceByIdGQL,
-  DeleteInvoicesGQL
+  DeleteInvoicesGQL,
+  GetDeliveryLinesGQL
 } from '@tanglass-erp/infrastructure/graphql';
-import { InsertedInvoice, UpdatedInvoice } from '@tanglass-erp/core/sales';
+import { InsertedInvoice, InvoiceLine, UpdatedInvoice } from '@tanglass-erp/core/sales';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +20,8 @@ export class InvoiceService {
     private updateInvoiceGQL: UpdateInvoiceGQL,
     private getAllInvoicesGQL: GetAllInvoicesGQL,
     private getInvoiceByIdGQL: GetInvoiceByIdGQL,
-    private deleteInvoicesGQL: DeleteInvoicesGQL
+    private deleteInvoicesGQL: DeleteInvoicesGQL,
+    private getDeliveryLinesGQL: GetDeliveryLinesGQL
   ) {}
 
   getAll() {
@@ -40,4 +43,30 @@ export class InvoiceService {
   deleteMany(ids: string[]) {
     return this.deleteInvoicesGQL.mutate({ids});
   }
+
+  prepareInvoiceLines(deliveries: string[]) {
+    const invoiceLinesMap = new Map<String, InvoiceLine>();
+    return this.getDeliveryLinesGQL.fetch({deliveries})
+      .pipe(map(
+        data => {
+          const deliveryLines = data.data.sales_delivery_line;
+          deliveryLines.forEach(delivery => {
+            const key = delivery.product_draft.product_code;
+            const item = invoiceLinesMap.get(delivery.product_draft.product_code);
+            if (!item)
+              invoiceLinesMap.set(key, {
+                product_code: key,
+                unit_price: delivery.product_draft.price,
+                total: delivery.amount,
+                quantity: delivery.delivered,
+                product_label: delivery.product_label
+              })
+            else
+              item.quantity += delivery.delivered;
+          })
+          return [...invoiceLinesMap.values()]
+        }
+      ));
+  }
+
 }

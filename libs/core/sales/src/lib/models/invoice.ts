@@ -27,15 +27,26 @@ export interface Invoice {
 export interface InsertedInvoice {
   id?: string;
   client: string;
-  payment_method: PaymentMethod;
+  payment_method: PaymentMethod | string;
   company: string;
   contact?: string;
   date: Date;
   deliveries: Array<{
     delivery_id: string
   }>
+  invoice_lines: Array<InvoiceLine>
 }
 
 export interface UpdatedInvoice extends InsertedInvoice {
   id: string;
+}
+
+export interface InvoiceLine {
+  id?: string;
+  invoice_id?: string;
+  product_code: string;
+  product_label: string;
+  quantity: number;
+  unit_price: number;
+  total: number;
 }

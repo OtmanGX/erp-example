@@ -56,9 +56,7 @@ export class DeliveryListComponent implements GridView {
         this.deliveryFacade.removeDelivery(event.data.map((e) => e.id));
         break;
       case 'INVOICE':
-        this.router.navigate(['sales/invoice/add'], {
-          state: { deliveries: event.data.map((e) => ({delivery_id: e.id})) },
-        });
+        this.deliveryFacade.deliveryToInvoice(event.data);
         break;
     }
   }

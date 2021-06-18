@@ -162,6 +162,7 @@ const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?
     name: "status",
     label: "Etat",
     inputType: "text",
+    // disabled: true,
     value: data?.status,
     options: Object.values(DeliveryStatus).map(e => ({ key: e, value: e }))
   },

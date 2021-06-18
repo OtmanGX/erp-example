@@ -1,26 +1,42 @@
-mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $deliveries: [sales_invoice_delivery_insert_input!]!=[]) {
-  insert_sales_invoice_one(object: {client: $client, amount_ttc: 0, amount_ht:0, tva_rate:0,contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}}) {
+mutation InsertInvoice(
+  $client: uuid!
+  $contact: uuid
+  $company: uuid!
+  $payment_method: String!
+  $date: date!
+  $invoice_lines: [sales_invoice_line_insert_input!]! = []
+  $deliveries: [sales_invoice_delivery_insert_input!]! = []
+) {
+  insert_sales_invoice_one(
+    object: {
+      client: $client
+      amount_ttc: 0
+      amount_ht: 0
+      tva_rate: 0
+      contact: $contact
+      company: $company
+      payment_method: $payment_method
+      date: $date
+      deliveries: { data: $deliveries }
+      invoice_lines: { data: $invoice_lines }
+    }
+  ) {
     id
-    client: clientObj {
-      name
-      mail
-    }
-    company: companyObj{
-      id
-      name
-    }
-    contact: contactObj {
-      mail
-      name
-      phone
-    }
+    client
+    company
+    contact
     date
-    amount_ttc
-    amount_ht
-    tva_rate
-    payment_method
     deliveries {
       delivery_id
+    }
+    payment_method
+    invoice_lines{
+      id
+      unit_price
+      product_code
+      product_label
+      quantity
+      total
     }
   }
 }

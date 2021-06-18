@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 
 import * as fromDelivery from './delivery.reducer';
 import * as DeliverySelectors from './delivery.selectors';
 import * as DeliveryActions from './delivery.actions';
-import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
+import {
+  DeliveryForm,
+  DeliveryStatus,
+  InsertedDeliveryForm,
+} from '@tanglass-erp/core/sales';
 import { filter, switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { NotificationFacadeService } from '@tanglass-erp/store/app';
 
 @Injectable()
 export class DeliveryFacade {
@@ -19,7 +25,11 @@ export class DeliveryFacade {
     .pipe(select(DeliverySelectors.getSelectedEntity))
     .pipe(filter((e) => !!e));
 
-  constructor(private store: Store<fromDelivery.DeliveryPartialState>) {}
+  constructor(
+    private store: Store<fromDelivery.DeliveryPartialState>,
+    private router: Router,
+    private notificationService: NotificationFacadeService
+  ) {}
 
   dispatch(action: Action) {
     this.store.dispatch(action);
@@ -43,5 +53,20 @@ export class DeliveryFacade {
 
   removeDelivery(ids: string[]) {
     this.dispatch(DeliveryActions.removeDelivery({ ids }));
+  }
+
+  //  Other
+  deliveryToInvoice(data: Array<DeliveryForm>) {
+    if (!data.every((e) => e.status === DeliveryStatus.NOT_INVOICED)) {
+      this.notificationService.showToast(
+        'warning',
+        'Facture',
+        'Assurez-vous que tous les bons de livraisons séléctionnés ne sont pas encore facturés'
+      );
+      return;
+    }
+    this.router.navigate(['sales/invoice/add'], {
+      state: { deliveries: data.map((e) => ({ delivery_id: e.id })) },
+    });
   }
 }
