@@ -96,7 +96,7 @@ export class ProductDraftEffects {
       mergeMap((action) =>
         this.ProductService.removeProduct(action.productId).pipe(
           map((data) =>
-            ProductActions.removeProductSuccess({ productId: data.data.delete_sales_product_draft_by_pk })
+            ProductActions.removeProductSuccess({ productId: data.data.delete_sales_product_draft_by_pk.id })
           ),
           catchError((error) =>
             of(ProductActions.removeProductFailure({ error }))

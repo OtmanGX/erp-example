@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Product_draft } from "@tanglass-erp/core/sales";
+import { StringDecoder } from 'string_decoder';
 
 
 
@@ -121,7 +122,24 @@ export const addAccessoryFailure = createAction(
   props<{ error: any }>()
 );
 
+/****************************************************************** */
+/*****ADD INDIVIDUAL Accessory ** */
+/****************************************************************** */
 
+export const addCustomerItem = createAction(
+  '[order  products] Add  Customer Item',
+  props<{ customer_item: Product_draft }>()
+);
+
+export const addCustomerItemSuccess = createAction(
+  '[  order  products] Add   Customer Item Success',
+  props<{ customer_item: Product_draft }>()
+);
+
+export const addCustomerItemFailure = createAction(
+  '[  order  products] Add   Customer Item Failure',
+  props<{ error: any }>()
+);
 
 /****************************************************************** */
 /*****REMOVE INDIVIDUAL    Product** */
@@ -129,11 +147,11 @@ export const addAccessoryFailure = createAction(
 
 export const removeProduct= createAction(
   '[List   Product Component] Delete  Product',
-  props<{ productId: any }>()
+  props<{ productId: string }>()
 );
 export const removeProductSuccess = createAction(
   '[ Product Effect] Delete  Product Success',
-  props<{ productId: any }>()
+  props<{ productId: string }>()
 );
 export const removeProductFailure = createAction(
   '[  Product Effect] Delete   Product failure',

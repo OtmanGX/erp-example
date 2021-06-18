@@ -5,13 +5,14 @@ import { OrderService } from '@tanglass-erp/core/sales';
 
 import * as fromOrders from './orders.reducer';
 import * as OrdersActions from './orders.actions';
-
+import { Router } from '@angular/router';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { NotificationFacadeService } from '@tanglass-erp/store/app';
 
 @Injectable()
 export class OrdersEffects {
-  loadOrderssDraft$ = createEffect(() => {
+  loadOrdersDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(OrdersActions.loadOrders),
       mergeMap((action) =>
@@ -44,7 +45,10 @@ export class OrdersEffects {
       mergeMap((action) =>
         this.orderService.insertOne(action.Order).pipe(
           map((data) =>
-          OrdersActions.addOrderSuccess({Order: data.data.insert_sales_order_one})
+         { 
+         // this.router.navigate(['/sales/order/${data.data.insert_sales_order_one.id}']);
+ 
+          return OrdersActions.addOrderSuccess({Order: data.data.insert_sales_order_one})}
           ),
           catchError((error) =>
             of(OrdersActions.addOrderFailure({ error }))
@@ -73,5 +77,10 @@ export class OrdersEffects {
 
 
 
-  constructor(private actions$: Actions,private orderService:OrderService) {}
+  constructor(
+    private actions$: Actions,
+    private orderService:OrderService,
+    private router: Router,
+    private notificationService: NotificationFacadeService,
+    ) {}
 }

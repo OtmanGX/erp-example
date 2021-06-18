@@ -66,15 +66,15 @@ export const addDraftFailure = createAction(
 /****************************************************************** */
 
 export const updateDraft = createAction(
-  '[List drafts Component] Update Draft',
+  '[ drafts ] Update Draft',
   props<{ draft: Draft }>()
 );
 export const updateDraftSuccess = createAction(
-  '[Draft Effect] Update Draft Success',
+  '[Draft ] Update Draft Success',
   props<{ draft: Draft }>()
 );
 export const updateDraftFailure = createAction(
-  '[Draft Effect] Update Draft failure',
+  '[Draft ] Update Draft failure',
   props<{ error: any }>()
 );
 
@@ -83,15 +83,15 @@ export const updateDraftFailure = createAction(
 /****************************************************************** */
 
 export const removeDrafts = createAction(
-  '[List drafts Component] Delete Draft',
+  '[ Draft ] Delete Draft',
   props<{ ids: number[] }>()
 );
 export const removeDraftSuccess = createAction(
-  '[Draft Effect] Delete Draft Success',
+  '[Draft ] Delete Draft Success',
   props<{ ids: number[] }>()
 );
 export const removeDraftFailure = createAction(
-  '[Draft Effect] Delete Draft failure',
+  '[Draft ] Delete Draft failure',
   props<{ error: any }>()
 );
 

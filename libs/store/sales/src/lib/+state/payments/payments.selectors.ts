@@ -38,6 +38,11 @@ export const getSelectedPaymentId = createSelector(
   (state: PaymentState) => state.selectedId
 );
 
+export const getSelectedOrderPayments = createSelector(
+  getPaymentsState,
+  (state: PaymentState) => state.selectedPayments
+);
+
 export const getSelectedPayment = createSelector(
   getPaymentsEntities,
   getSelectedPaymentId,

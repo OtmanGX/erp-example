@@ -8,7 +8,10 @@
     Ajouter Verre
   </button>
 </mat-toolbar>
-<app-table #glassTable [data]="dataSourceGlass" [templates]="{ action: action }" [columnsToShow]="glassesColumns">
+<app-table #glassTable [data]="dataSourceGlass" [templates]="{ action: action }" 
+[withCheckbox]=false
+[withFilter]=false
+[columnsToShow]="glassesColumns">
 </app-table>
 
 <ng-template #action let-item="data">
@@ -34,7 +37,9 @@
 </mat-toolbar>
 
 <app-table #articlesTable [data]="dataSourceArticles" [templates]="{ action: action2 }"
-  [columnsToShow]="displayedColumns">
+  [columnsToShow]="displayedColumns"
+  [withCheckbox]=false
+  [withFilter]=false>
 </app-table>
 
 <ng-template #action2 let-item="data">
