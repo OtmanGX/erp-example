@@ -7,7 +7,6 @@
       qte: qte,
       rest: rest,
       stock_state: state,
-      amount: amount
     }"
     [columnsToShow]="displayedColumns"
   >
@@ -32,17 +31,6 @@
   </div>
 </ng-template>
 
-<ng-template let-item="data" #amount>
-  <mat-form-field>
-    <input
-      matInput
-      type="number"
-      name="amount"
-      [(ngModel)]="item.amount"
-      [min]="0"
-    />
-  </mat-form-field>
-</ng-template>
 
 <ng-template let-item="data" #qte>
   <div *ngIf="item.quantity - item.delivered">
@@ -52,6 +40,7 @@
         matInput
         type="number"
         [(ngModel)]="item.toDeliver"
+        (ngModelChange)='calculateAmount(item)'
         name="toDeliver"
         [value]="0"
         [min]="0"

@@ -9159,7 +9159,10 @@ export type Product_Customer_Product = {
   __typename?: 'product_customer_product';
   code: Scalars['String'];
   label: Scalars['String'];
+  /** An object relationship */
+  product_unit?: Maybe<Product_Product_Unit>;
   thickness: Scalars['Int'];
+  unit?: Maybe<Product_Product_Unit_Enum>;
 };
 
 /** aggregated selection of "product.customer_product" */
@@ -9231,7 +9234,9 @@ export type Product_Customer_Product_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Product_Customer_Product_Bool_Exp>>>;
   code?: Maybe<String_Comparison_Exp>;
   label?: Maybe<String_Comparison_Exp>;
+  product_unit?: Maybe<Product_Product_Unit_Bool_Exp>;
   thickness?: Maybe<Int_Comparison_Exp>;
+  unit?: Maybe<Product_Product_Unit_Enum_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "product.customer_product" */
@@ -9249,7 +9254,9 @@ export type Product_Customer_Product_Inc_Input = {
 export type Product_Customer_Product_Insert_Input = {
   code?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
+  product_unit?: Maybe<Product_Product_Unit_Obj_Rel_Insert_Input>;
   thickness?: Maybe<Scalars['Int']>;
+  unit?: Maybe<Product_Product_Unit_Enum>;
 };
 
 /** aggregate max on columns */
@@ -9308,7 +9315,9 @@ export type Product_Customer_Product_On_Conflict = {
 export type Product_Customer_Product_Order_By = {
   code?: Maybe<Order_By>;
   label?: Maybe<Order_By>;
+  product_unit?: Maybe<Product_Product_Unit_Order_By>;
   thickness?: Maybe<Order_By>;
+  unit?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "product.customer_product" */
@@ -9323,7 +9332,9 @@ export enum Product_Customer_Product_Select_Column {
   /** column name */
   Label = 'label',
   /** column name */
-  Thickness = 'thickness'
+  Thickness = 'thickness',
+  /** column name */
+  Unit = 'unit'
 }
 
 /** input type for updating data in table "product.customer_product" */
@@ -9331,6 +9342,7 @@ export type Product_Customer_Product_Set_Input = {
   code?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
   thickness?: Maybe<Scalars['Int']>;
+  unit?: Maybe<Product_Product_Unit_Enum>;
 };
 
 /** aggregate stddev on columns */
@@ -9384,7 +9396,9 @@ export enum Product_Customer_Product_Update_Column {
   /** column name */
   Label = 'label',
   /** column name */
-  Thickness = 'thickness'
+  Thickness = 'thickness',
+  /** column name */
+  Unit = 'unit'
 }
 
 /** aggregate var_pop on columns */
@@ -11807,12 +11821,36 @@ export type Product_Product_Sum_Order_By = {
 /** columns and relationships of "product.product_unit" */
 export type Product_Product_Unit = {
   __typename?: 'product_product_unit';
+  /** An array relationship */
+  customer_products: Array<Product_Customer_Product>;
+  /** An aggregated array relationship */
+  customer_products_aggregate: Product_Customer_Product_Aggregate;
   description: Scalars['String'];
   /** An array relationship */
   products: Array<Product_Product>;
   /** An aggregated array relationship */
   products_aggregate: Product_Product_Aggregate;
   unit: Scalars['String'];
+};
+
+
+/** columns and relationships of "product.product_unit" */
+export type Product_Product_UnitCustomer_ProductsArgs = {
+  distinct_on?: Maybe<Array<Product_Customer_Product_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Customer_Product_Order_By>>;
+  where?: Maybe<Product_Customer_Product_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.product_unit" */
+export type Product_Product_UnitCustomer_Products_AggregateArgs = {
+  distinct_on?: Maybe<Array<Product_Customer_Product_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Product_Customer_Product_Order_By>>;
+  where?: Maybe<Product_Customer_Product_Bool_Exp>;
 };
 
 
@@ -11875,6 +11913,7 @@ export type Product_Product_Unit_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Product_Product_Unit_Bool_Exp>>>;
   _not?: Maybe<Product_Product_Unit_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Product_Product_Unit_Bool_Exp>>>;
+  customer_products?: Maybe<Product_Customer_Product_Bool_Exp>;
   description?: Maybe<String_Comparison_Exp>;
   products?: Maybe<Product_Product_Bool_Exp>;
   unit?: Maybe<String_Comparison_Exp>;
@@ -11908,6 +11947,7 @@ export type Product_Product_Unit_Enum_Comparison_Exp = {
 
 /** input type for inserting data into table "product.product_unit" */
 export type Product_Product_Unit_Insert_Input = {
+  customer_products?: Maybe<Product_Customer_Product_Arr_Rel_Insert_Input>;
   description?: Maybe<Scalars['String']>;
   products?: Maybe<Product_Product_Arr_Rel_Insert_Input>;
   unit?: Maybe<Scalars['String']>;
@@ -11963,6 +12003,7 @@ export type Product_Product_Unit_On_Conflict = {
 
 /** ordering options when selecting data from "product.product_unit" */
 export type Product_Product_Unit_Order_By = {
+  customer_products_aggregate?: Maybe<Product_Customer_Product_Aggregate_Order_By>;
   description?: Maybe<Order_By>;
   products_aggregate?: Maybe<Product_Product_Aggregate_Order_By>;
   unit?: Maybe<Order_By>;
@@ -17314,6 +17355,7 @@ export type Sales_Delivery_Line = {
   product_draft: Sales_Product_Draft;
   product_label?: Maybe<Scalars['String']>;
   quantity: Scalars['numeric'];
+  unit_price: Scalars['numeric'];
 };
 
 /** aggregated selection of "sales.delivery_line" */
@@ -17373,6 +17415,7 @@ export type Sales_Delivery_Line_Avg_Fields = {
   amount?: Maybe<Scalars['Float']>;
   delivered?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "sales.delivery_line" */
@@ -17380,6 +17423,7 @@ export type Sales_Delivery_Line_Avg_Order_By = {
   amount?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "sales.delivery_line". All fields are combined with a logical 'AND'. */
@@ -17396,6 +17440,7 @@ export type Sales_Delivery_Line_Bool_Exp = {
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_label?: Maybe<String_Comparison_Exp>;
   quantity?: Maybe<Numeric_Comparison_Exp>;
+  unit_price?: Maybe<Numeric_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.delivery_line" */
@@ -17409,6 +17454,7 @@ export type Sales_Delivery_Line_Inc_Input = {
   amount?: Maybe<Scalars['numeric']>;
   delivered?: Maybe<Scalars['numeric']>;
   quantity?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
 };
 
 /** input type for inserting data into table "sales.delivery_line" */
@@ -17422,6 +17468,7 @@ export type Sales_Delivery_Line_Insert_Input = {
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   product_label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate max on columns */
@@ -17434,6 +17481,7 @@ export type Sales_Delivery_Line_Max_Fields = {
   product?: Maybe<Scalars['uuid']>;
   product_label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
 };
 
 /** order by max() on columns of table "sales.delivery_line" */
@@ -17445,6 +17493,7 @@ export type Sales_Delivery_Line_Max_Order_By = {
   product?: Maybe<Order_By>;
   product_label?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -17457,6 +17506,7 @@ export type Sales_Delivery_Line_Min_Fields = {
   product?: Maybe<Scalars['uuid']>;
   product_label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
 };
 
 /** order by min() on columns of table "sales.delivery_line" */
@@ -17468,6 +17518,7 @@ export type Sales_Delivery_Line_Min_Order_By = {
   product?: Maybe<Order_By>;
   product_label?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "sales.delivery_line" */
@@ -17503,6 +17554,7 @@ export type Sales_Delivery_Line_Order_By = {
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   product_label?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "sales.delivery_line" */
@@ -17525,7 +17577,9 @@ export enum Sales_Delivery_Line_Select_Column {
   /** column name */
   ProductLabel = 'product_label',
   /** column name */
-  Quantity = 'quantity'
+  Quantity = 'quantity',
+  /** column name */
+  UnitPrice = 'unit_price'
 }
 
 /** input type for updating data in table "sales.delivery_line" */
@@ -17537,6 +17591,7 @@ export type Sales_Delivery_Line_Set_Input = {
   product?: Maybe<Scalars['uuid']>;
   product_label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate stddev on columns */
@@ -17545,6 +17600,7 @@ export type Sales_Delivery_Line_Stddev_Fields = {
   amount?: Maybe<Scalars['Float']>;
   delivered?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "sales.delivery_line" */
@@ -17552,6 +17608,7 @@ export type Sales_Delivery_Line_Stddev_Order_By = {
   amount?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -17560,6 +17617,7 @@ export type Sales_Delivery_Line_Stddev_Pop_Fields = {
   amount?: Maybe<Scalars['Float']>;
   delivered?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "sales.delivery_line" */
@@ -17567,6 +17625,7 @@ export type Sales_Delivery_Line_Stddev_Pop_Order_By = {
   amount?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -17575,6 +17634,7 @@ export type Sales_Delivery_Line_Stddev_Samp_Fields = {
   amount?: Maybe<Scalars['Float']>;
   delivered?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "sales.delivery_line" */
@@ -17582,6 +17642,7 @@ export type Sales_Delivery_Line_Stddev_Samp_Order_By = {
   amount?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
@@ -17590,6 +17651,7 @@ export type Sales_Delivery_Line_Sum_Fields = {
   amount?: Maybe<Scalars['numeric']>;
   delivered?: Maybe<Scalars['numeric']>;
   quantity?: Maybe<Scalars['numeric']>;
+  unit_price?: Maybe<Scalars['numeric']>;
 };
 
 /** order by sum() on columns of table "sales.delivery_line" */
@@ -17597,6 +17659,7 @@ export type Sales_Delivery_Line_Sum_Order_By = {
   amount?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** update columns of table "sales.delivery_line" */
@@ -17614,7 +17677,9 @@ export enum Sales_Delivery_Line_Update_Column {
   /** column name */
   ProductLabel = 'product_label',
   /** column name */
-  Quantity = 'quantity'
+  Quantity = 'quantity',
+  /** column name */
+  UnitPrice = 'unit_price'
 }
 
 /** aggregate var_pop on columns */
@@ -17623,6 +17688,7 @@ export type Sales_Delivery_Line_Var_Pop_Fields = {
   amount?: Maybe<Scalars['Float']>;
   delivered?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "sales.delivery_line" */
@@ -17630,6 +17696,7 @@ export type Sales_Delivery_Line_Var_Pop_Order_By = {
   amount?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
@@ -17638,6 +17705,7 @@ export type Sales_Delivery_Line_Var_Samp_Fields = {
   amount?: Maybe<Scalars['Float']>;
   delivered?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "sales.delivery_line" */
@@ -17645,6 +17713,7 @@ export type Sales_Delivery_Line_Var_Samp_Order_By = {
   amount?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -17653,6 +17722,7 @@ export type Sales_Delivery_Line_Variance_Fields = {
   amount?: Maybe<Scalars['Float']>;
   delivered?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
+  unit_price?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "sales.delivery_line" */
@@ -17660,6 +17730,7 @@ export type Sales_Delivery_Line_Variance_Order_By = {
   amount?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  unit_price?: Maybe<Order_By>;
 };
 
 /** aggregate max on columns */
@@ -29177,6 +29248,7 @@ export type UpdateDeliveryLineMutationVariables = Exact<{
   id: Scalars['uuid'];
   product: Scalars['uuid'];
   product_label?: Maybe<Scalars['String']>;
+  unit_price?: Maybe<Scalars['numeric']>;
   quantity?: Maybe<Scalars['numeric']>;
 }>;
 
@@ -29185,7 +29257,7 @@ export type UpdateDeliveryLineMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_line_by_pk?: Maybe<(
     { __typename?: 'sales_delivery_line' }
-    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'product_label' | 'quantity'>
+    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'product_label' | 'quantity' | 'unit_price'>
   )> }
 );
 
@@ -29508,7 +29580,7 @@ export type GetDeliveryByIdQuery = (
     & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order'>
     & { delivery_lines: Array<(
       { __typename?: 'sales_delivery_line' }
-      & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'quantity' | 'product_label'>
+      & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'quantity' | 'product_label' | 'unit_price'>
     )> }
   )> }
 );
@@ -32520,10 +32592,10 @@ export const UpdateDeliveryDocument = gql`
     }
   }
 export const UpdateDeliveryLineDocument = gql`
-    mutation UpdateDeliveryLine($amount: numeric, $delivered: numeric, $id: uuid!, $product: uuid!, $product_label: String, $quantity: numeric) {
+    mutation UpdateDeliveryLine($amount: numeric, $delivered: numeric, $id: uuid!, $product: uuid!, $product_label: String, $unit_price: numeric, $quantity: numeric) {
   update_sales_delivery_line_by_pk(
     pk_columns: {id: $id}
-    _set: {amount: $amount, delivered: $delivered, id: $id, product: $product, product_label: $product_label, quantity: $quantity}
+    _set: {amount: $amount, delivered: $delivered, id: $id, product: $product, product_label: $product_label, unit_price: $unit_price, quantity: $quantity}
   ) {
     id
     amount
@@ -32531,6 +32603,7 @@ export const UpdateDeliveryLineDocument = gql`
     product
     product_label
     quantity
+    unit_price
   }
 }
     `;
@@ -32962,6 +33035,7 @@ export const GetDeliveryByIdDocument = gql`
       product
       quantity
       product_label
+      unit_price
     }
   }
 }

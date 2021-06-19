@@ -42,6 +42,7 @@ export interface InsertedDeliveryForm extends MetaData {
 export interface DeliveryLine {
   id?: string;
   product: any;
+  unit_price: number;
   quantity: number;
   delivered: number;
   product_label?: string;

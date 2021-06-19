@@ -16,6 +16,7 @@ query GetDeliveryById($id: uuid!) {
       product
       quantity
       product_label
+      unit_price
     }
   }
 }

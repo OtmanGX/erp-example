@@ -19,7 +19,8 @@ export class DeliveryLineComponent implements OnInit {
         product: elem.id,
         quantity: elem.quantity - (elem?.delivered || 0),
         delivered: 0,
-        amount: elem.total_price,
+        unit_price: elem.price,
+        amount: 0,
         toDeliver: 0,
         product_label: elem.label,
       }));
@@ -45,8 +46,7 @@ export class DeliveryLineComponent implements OnInit {
     {
       title: 'Montant',
       key: 'amount',
-      type: ColumnType.template,
-      withRow: true,
+      type: ColumnType.normal
     },
     { title: 'Etat de stock', key: 'stock_state', type: ColumnType.template },
   ];
@@ -74,5 +74,9 @@ export class DeliveryLineComponent implements OnInit {
 
   setMax(input: HTMLInputElement, row) {
     row.toDeliver = row.toDeliver !== parseFloat(input.max) ? parseFloat(input.max): 0;
+  }
+
+  calculateAmount(item: DeliveryLine) {
+    item.amount = (item.delivered+item.toDeliver)*item.unit_price
   }
 }
