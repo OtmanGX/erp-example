@@ -18,5 +18,6 @@ query getAllDelivery {
       name
       phone
     }
+    amount_ttc
   }
 }

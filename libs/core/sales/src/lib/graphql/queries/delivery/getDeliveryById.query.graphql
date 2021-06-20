@@ -18,5 +18,8 @@ query GetDeliveryById($id: uuid!) {
       product_label
       unit_price
     }
+    amount_ttc
+    amount_tva
+    amount_ht
   }
 }

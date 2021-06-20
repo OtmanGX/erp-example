@@ -6,7 +6,7 @@
       delivered: delivered,
       qte: qte,
       rest: rest,
-      stock_state: state,
+      stock_state: state
     }"
     [columnsToShow]="displayedColumns"
   >
@@ -47,7 +47,9 @@
         [max]="item.quantity - item.delivered"
       />
       <button mat-icon-button matSuffix (click)="setMax(qteInput, item)">
-        <mat-icon style="font-size: 1.5rem">{{item.toDeliver==qteInput.max?'clear_all':'done_all'}}</mat-icon>
+        <mat-icon style="font-size: 1.5rem">
+          {{item.toDeliver==qteInput.max?'clear_all':'done_all'}}
+        </mat-icon>
       </button>
     </mat-form-field>
   </div>

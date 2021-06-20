@@ -33,7 +33,10 @@ export class InvoiceService {
   }
 
   insertOne(invoice: InsertedInvoice) {
-    return this.insertInvoiceGQL.mutate(invoice);
+    return this.insertInvoiceGQL.mutate({
+      ...invoice,
+      deliveries_ids: invoice.deliveries.map(e => e.delivery_id)
+    });
   }
 
   updateOne(invoice: UpdatedInvoice) {

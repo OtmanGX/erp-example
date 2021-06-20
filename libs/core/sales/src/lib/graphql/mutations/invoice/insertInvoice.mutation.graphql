@@ -6,6 +6,7 @@ mutation InsertInvoice(
   $date: date!
   $invoice_lines: [sales_invoice_line_insert_input!]! = []
   $deliveries: [sales_invoice_delivery_insert_input!]! = []
+  $deliveries_ids: [uuid!]! = []
 ) {
   insert_sales_invoice_one(
     object: {
@@ -38,5 +39,9 @@ mutation InsertInvoice(
       quantity
       total
     }
+  }
+
+  update_sales_delivery(where: {id: {_in: $deliveries_ids}}, _set: {status: "Facturé"}) {
+    affected_rows
   }
 }
