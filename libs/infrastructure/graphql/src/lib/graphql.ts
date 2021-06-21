@@ -27960,10 +27960,10 @@ export type GetAccessoriesSubstancesQuery = (
       & { productAccessory?: Maybe<(
         { __typename?: 'product_product_accessory_view' }
         & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'substanceid' | 'unit'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type GetGlassesSubstancesQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -27980,10 +27980,10 @@ export type GetGlassesSubstancesQuery = (
       & { productGlass?: Maybe<(
         { __typename?: 'product_product_glass_view' }
         & Pick<Product_Product_Glass_View, 'code' | 'label' | 'substanceid' | 'unit'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type GetShortCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -27993,8 +27993,8 @@ export type GetShortCompaniesQuery = (
   & { management_company: Array<(
     { __typename?: 'management_company' }
     & Pick<Management_Company, 'id' | 'name'>
-    )> }
-  );
+  )> }
+);
 
 export type GetShortProvidersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28004,8 +28004,8 @@ export type GetShortProvidersQuery = (
   & { contact_provider: Array<(
     { __typename?: 'contact_provider' }
     & Pick<Contact_Provider, 'code' | 'name'>
-    )> }
-  );
+  )> }
+);
 
 export type GeShortSalePointsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28015,8 +28015,8 @@ export type GeShortSalePointsQuery = (
   & { management_salesPoint: Array<(
     { __typename?: 'management_salesPoint' }
     & Pick<Management_SalesPoint, 'name' | 'id'>
-    )> }
-  );
+  )> }
+);
 
 export type GetShortSubstancesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28029,15 +28029,15 @@ export type GetShortSubstancesQuery = (
     & { glass?: Maybe<(
       { __typename?: 'product_glass' }
       & Pick<Product_Glass, 'substanceid'>
-      )>, consumable?: Maybe<(
+    )>, consumable?: Maybe<(
       { __typename?: 'product_consumable' }
       & Pick<Product_Consumable, 'substanceid'>
-      )>, accessory?: Maybe<(
+    )>, accessory?: Maybe<(
       { __typename?: 'product_accessory' }
       & Pick<Product_Accessory, 'substanceid'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type GetShortWArehousesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28047,8 +28047,8 @@ export type GetShortWArehousesQuery = (
   & { stock_warehouse: Array<(
     { __typename?: 'stock_warehouse' }
     & Pick<Stock_Warehouse, 'name' | 'id' | 'companyid'>
-    )> }
-  );
+  )> }
+);
 
 export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28058,8 +28058,8 @@ export type GetProductsQuery = (
   & { product_product: Array<(
     { __typename?: 'product_product' }
     & Pick<Product_Product, 'code' | 'label' | 'price' | 'priceMax' | 'priceMin' | 'unit'>
-    )> }
-  );
+  )> }
+);
 
 export type AddContactAddressMutationVariables = Exact<{
   address: Contact_Address_Insert_Input;
@@ -28074,9 +28074,9 @@ export type AddContactAddressMutation = (
     & { address: (
       { __typename?: 'contact_address' }
       & Pick<Contact_Address, 'address' | 'city' | 'id' | 'zip'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type AddCustomerAddressMutationVariables = Exact<{
   address: Contact_Address_Insert_Input;
@@ -28091,9 +28091,9 @@ export type AddCustomerAddressMutation = (
     & { address: (
       { __typename?: 'contact_address' }
       & Pick<Contact_Address, 'address' | 'city' | 'id' | 'zip'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type AddCustomerContactMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -28108,9 +28108,9 @@ export type AddCustomerContactMutation = (
     & { contact: (
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'code' | 'mail' | 'name' | 'note' | 'phone' | 'id'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type AddProviderAddressMutationVariables = Exact<{
   address: Contact_Address_Insert_Input;
@@ -28125,9 +28125,9 @@ export type AddProviderAddressMutation = (
     & { address: (
       { __typename?: 'contact_address' }
       & Pick<Contact_Address, 'address' | 'city' | 'id' | 'zip'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type AddProviderContactMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -28142,9 +28142,9 @@ export type AddProviderContactMutation = (
     & { contact: (
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'code' | 'mail' | 'name' | 'note' | 'phone' | 'id'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type AffectCustomerContactMutationVariables = Exact<{
   affectedContacts: Array<Contact_Customer_Contact_Insert_Input>;
@@ -28160,10 +28160,10 @@ export type AffectCustomerContactMutation = (
       & { contact: (
         { __typename?: 'contact_contact' }
         & Pick<Contact_Contact, 'code' | 'id' | 'mail' | 'name' | 'note' | 'phone'>
-        ) }
-      )> }
+      ) }
     )> }
-  );
+  )> }
+);
 
 export type AffectProviderContactMutationVariables = Exact<{
   affectedContacts: Array<Contact_Provider_Contact_Insert_Input>;
@@ -28179,10 +28179,10 @@ export type AffectProviderContactMutation = (
       & { contact: (
         { __typename?: 'contact_contact' }
         & Pick<Contact_Contact, 'code' | 'id' | 'mail' | 'name' | 'note' | 'phone'>
-        ) }
-      )> }
+      ) }
     )> }
-  );
+  )> }
+);
 
 export type DeleteContactMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -28194,8 +28194,8 @@ export type DeleteContactMutation = (
   & { delete_contact_contact_by_pk?: Maybe<(
     { __typename?: 'contact_contact' }
     & Pick<Contact_Contact, 'id' | 'name'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteContactAddressMutationVariables = Exact<{
   addressid: Scalars['uuid'];
@@ -28208,8 +28208,8 @@ export type DeleteContactAddressMutation = (
   & { delete_contact_contact_address_by_pk?: Maybe<(
     { __typename?: 'contact_contact_address' }
     & Pick<Contact_Contact_Address, 'addressid' | 'contactid'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteCustomerMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -28221,8 +28221,8 @@ export type DeleteCustomerMutation = (
   & { delete_contact_customer_by_pk?: Maybe<(
     { __typename?: 'contact_customer' }
     & Pick<Contact_Customer, 'id' | 'name'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteCustomerAddressMutationVariables = Exact<{
   addressid: Scalars['uuid'];
@@ -28235,8 +28235,8 @@ export type DeleteCustomerAddressMutation = (
   & { delete_contact_customer_address_by_pk?: Maybe<(
     { __typename?: 'contact_customer_address' }
     & Pick<Contact_Customer_Address, 'addressid' | 'customerid'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteCustomerContactMutationVariables = Exact<{
   contactid: Scalars['uuid'];
@@ -28249,8 +28249,8 @@ export type DeleteCustomerContactMutation = (
   & { delete_contact_customer_contact_by_pk?: Maybe<(
     { __typename?: 'contact_customer_contact' }
     & Pick<Contact_Customer_Contact, 'contactid' | 'customerid'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteManyContactsMutationVariables = Exact<{
   ids?: Maybe<Array<Scalars['uuid']>>;
@@ -28264,9 +28264,9 @@ export type DeleteManyContactsMutation = (
     & { returning: Array<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'id'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type DeleteManyCustomersMutationVariables = Exact<{
   ids: Array<Scalars['uuid']>;
@@ -28280,9 +28280,9 @@ export type DeleteManyCustomersMutation = (
     & { returning: Array<(
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'id'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type DeleteManyProvidersMutationVariables = Exact<{
   ids?: Maybe<Array<Scalars['uuid']>>;
@@ -28296,9 +28296,9 @@ export type DeleteManyProvidersMutation = (
     & { returning: Array<(
       { __typename?: 'contact_provider' }
       & Pick<Contact_Provider, 'id'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type DeleteProviderMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -28310,8 +28310,8 @@ export type DeleteProviderMutation = (
   & { delete_contact_provider_by_pk?: Maybe<(
     { __typename?: 'contact_provider' }
     & Pick<Contact_Provider, 'id' | 'name'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteProviderAddressMutationVariables = Exact<{
   addressid: Scalars['uuid'];
@@ -28324,8 +28324,8 @@ export type DeleteProviderAddressMutation = (
   & { delete_contact_provider_address_by_pk?: Maybe<(
     { __typename?: 'contact_provider_address' }
     & Pick<Contact_Provider_Address, 'addressid' | 'providerid'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteProviderContactMutationVariables = Exact<{
   contactid: Scalars['uuid'];
@@ -28338,8 +28338,8 @@ export type DeleteProviderContactMutation = (
   & { delete_contact_provider_contact_by_pk?: Maybe<(
     { __typename?: 'contact_provider_contact' }
     & Pick<Contact_Provider_Contact, 'contactid' | 'providerid'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertContactMutationVariables = Exact<{
   code?: Maybe<Scalars['String']>;
@@ -28358,8 +28358,8 @@ export type InsertContactMutation = (
   & { insert_contact_contact_one?: Maybe<(
     { __typename?: 'contact_contact' }
     & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertCustomerMutationVariables = Exact<{
   FAX?: Maybe<Scalars['String']>;
@@ -28382,8 +28382,8 @@ export type InsertCustomerMutation = (
   & { insert_contact_customer_one?: Maybe<(
     { __typename?: 'contact_customer' }
     & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertProviderMutationVariables = Exact<{
   FAX?: Maybe<Scalars['String']>;
@@ -28403,8 +28403,8 @@ export type InsertProviderMutation = (
   & { insert_contact_provider_one?: Maybe<(
     { __typename?: 'contact_provider' }
     & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
-    )> }
-  );
+  )> }
+);
 
 export type UpdateContactMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -28421,8 +28421,8 @@ export type UpdateContactMutation = (
   & { update_contact_contact_by_pk?: Maybe<(
     { __typename?: 'contact_contact' }
     & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
-    )> }
-  );
+  )> }
+);
 
 export type UpdateContactAddressesMutationVariables = Exact<{
   contactAddresses: Array<Contact_Contact_Address_Insert_Input>;
@@ -28434,8 +28434,8 @@ export type UpdateContactAddressesMutation = (
   & { insert_contact_contact_address?: Maybe<(
     { __typename?: 'contact_contact_address_mutation_response' }
     & Pick<Contact_Contact_Address_Mutation_Response, 'affected_rows'>
-    )> }
-  );
+  )> }
+);
 
 export type UpdateCustomerMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -28457,8 +28457,8 @@ export type UpdateCustomerMutation = (
   & { update_contact_customer_by_pk?: Maybe<(
     { __typename?: 'contact_customer' }
     & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
-    )> }
-  );
+  )> }
+);
 
 export type UpdateProviderMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -28477,8 +28477,8 @@ export type UpdateProviderMutation = (
   & { update_contact_provider_by_pk?: Maybe<(
     { __typename?: 'contact_provider' }
     & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
-    )> }
-  );
+  )> }
+);
 
 export type GetAllContactsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28488,8 +28488,8 @@ export type GetAllContactsQuery = (
   & { contact_contact: Array<(
     { __typename?: 'contact_contact' }
     & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
-    )> }
-  );
+  )> }
+);
 
 export type GetAllCustomersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28499,8 +28499,8 @@ export type GetAllCustomersQuery = (
   & { contact_customer: Array<(
     { __typename?: 'contact_customer' }
     & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
-    )> }
-  );
+  )> }
+);
 
 export type GetAllProvidersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28510,8 +28510,8 @@ export type GetAllProvidersQuery = (
   & { contact_provider: Array<(
     { __typename?: 'contact_provider' }
     & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
-    )> }
-  );
+  )> }
+);
 
 export type GetContactByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -28526,15 +28526,15 @@ export type GetContactByIdQuery = (
     & { addresses: Array<(
       { __typename?: 'contact_contact_addresses_view' }
       & Pick<Contact_Contact_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
-      )>, cutomers: Array<(
+    )>, cutomers: Array<(
       { __typename?: 'contact_contact_customers_view' }
       & Pick<Contact_Contact_Customers_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
-      )>, providers: Array<(
+    )>, providers: Array<(
       { __typename?: 'contact_contact_providers_view' }
       & Pick<Contact_Contact_Providers_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type GetCustomerByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -28549,12 +28549,12 @@ export type GetCustomerByIdQuery = (
     & { addresses: Array<(
       { __typename?: 'contact_customer_addresses_view' }
       & Pick<Contact_Customer_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
-      )>, contacts: Array<(
+    )>, contacts: Array<(
       { __typename?: 'contact_customer_contacts_view' }
       & Pick<Contact_Customer_Contacts_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type GetProviderByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -28569,12 +28569,12 @@ export type GetProviderByIdQuery = (
     & { contacts: Array<(
       { __typename?: 'contact_provider_contacts_view' }
       & Pick<Contact_Provider_Contacts_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
-      )>, addresses: Array<(
+    )>, addresses: Array<(
       { __typename?: 'contact_provider_addresses_view' }
       & Pick<Contact_Provider_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type DeleteManyWarehousesMutationVariables = Exact<{
   ids?: Maybe<Array<Scalars['uuid']>>;
@@ -28588,9 +28588,9 @@ export type DeleteManyWarehousesMutation = (
     & { returning: Array<(
       { __typename?: 'stock_warehouse' }
       & Pick<Stock_Warehouse, 'id'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type InsertTranfserMutationVariables = Exact<{
   date?: Maybe<Scalars['date']>;
@@ -28607,8 +28607,8 @@ export type InsertTranfserMutation = (
   & { createTransferItem?: Maybe<(
     { __typename?: 'InsertItemTranfserOutput' }
     & Pick<InsertItemTranfserOutput, 'date' | 'id' | 'quantity' | 'status'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertTransferOrderMutationVariables = Exact<{
   date: Scalars['date'];
@@ -28627,12 +28627,12 @@ export type InsertTransferOrderMutation = (
     & { fromwarehouse: (
       { __typename?: 'stock_warehouse' }
       & Pick<Stock_Warehouse, 'name' | 'id'>
-      ), towarehouse: (
+    ), towarehouse: (
       { __typename?: 'stock_warehouse' }
       & Pick<Stock_Warehouse, 'name' | 'id'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type InsertWarehouseMutationVariables = Exact<{
   companyid: Scalars['uuid'];
@@ -28649,12 +28649,12 @@ export type InsertWarehouseMutation = (
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
-      ), salesPoint?: Maybe<(
+    ), salesPoint?: Maybe<(
       { __typename?: 'management_salesPoint' }
       & Pick<Management_SalesPoint, 'name' | 'id'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type GetAccessoryWarehousesByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -28671,14 +28671,14 @@ export type GetAccessoryWarehousesByIdQuery = (
       & { sum?: Maybe<(
         { __typename?: 'stock_warehouse_substance_sum_fields' }
         & Pick<Stock_Warehouse_Substance_Sum_Fields, 'quantity'>
-        )>, max?: Maybe<(
+      )>, max?: Maybe<(
         { __typename?: 'stock_warehouse_substance_max_fields' }
         & Pick<Stock_Warehouse_Substance_Max_Fields, 'quantity'>
-        )>, min?: Maybe<(
+      )>, min?: Maybe<(
         { __typename?: 'stock_warehouse_substance_min_fields' }
         & Pick<Stock_Warehouse_Substance_Min_Fields, 'quantity'>
-        )> }
-      )>, nodes: Array<(
+      )> }
+    )>, nodes: Array<(
       { __typename?: 'stock_warehouse_substance' }
       & Pick<Stock_Warehouse_Substance, 'quantity' | 'quantity_min'>
       & { substance: (
@@ -28686,14 +28686,14 @@ export type GetAccessoryWarehousesByIdQuery = (
         & { productAccessory?: Maybe<(
           { __typename?: 'product_product_accessory_view' }
           & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
-          )> }
-        ), warehouse: (
+        )> }
+      ), warehouse: (
         { __typename?: 'stock_warehouse' }
         & Pick<Stock_Warehouse, 'name'>
-        ) }
-      )> }
-    ) }
-  );
+      ) }
+    )> }
+  ) }
+);
 
 export type GetAllAccessoriesStockQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28706,24 +28706,24 @@ export type GetAllAccessoriesStockQuery = (
     & { warehouse: (
       { __typename?: 'stock_warehouse' }
       & Stock_WarehouseFragmentFragment
-      ), substance: (
+    ), substance: (
       { __typename?: 'product_substance' }
       & Pick<Product_Substance, 'id'>
       & { productAccessory?: Maybe<(
         { __typename?: 'product_product_accessory_view' }
         & Product_Product_Accessory_ViewFragmentFragment
-        )>, accessory?: Maybe<(
+      )>, accessory?: Maybe<(
         { __typename?: 'product_accessory' }
         & Pick<Product_Accessory, 'category' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type Product_Product_Accessory_ViewFragmentFragment = (
   { __typename?: 'product_product_accessory_view' }
   & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
-  );
+);
 
 export type GetAllConsumablesStockQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28736,24 +28736,24 @@ export type GetAllConsumablesStockQuery = (
     & { warehouse: (
       { __typename?: 'stock_warehouse' }
       & Stock_WarehouseFragmentFragment
-      ), substance: (
+    ), substance: (
       { __typename?: 'product_substance' }
       & Pick<Product_Substance, 'id'>
       & { productConsumable?: Maybe<(
         { __typename?: 'product_product_consumable_view' }
         & Product_Product_Consumable_ViewFragmentFragment
-        )>, consomable?: Maybe<(
+      )>, consomable?: Maybe<(
         { __typename?: 'product_consumable' }
         & Pick<Product_Consumable, 'category' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type Product_Product_Consumable_ViewFragmentFragment = (
   { __typename?: 'product_product_consumable_view' }
   & Pick<Product_Product_Consumable_View, 'code' | 'label' | 'price' | 'unit'>
-  );
+);
 
 export type GetAllGlassesStockQueryVariables = Exact<{
   type?: Maybe<Product_Substance_Type_Enum_Comparison_Exp>;
@@ -28768,19 +28768,19 @@ export type GetAllGlassesStockQuery = (
     & { warehouse: (
       { __typename?: 'stock_warehouse' }
       & Stock_WarehouseFragmentFragment
-      ), substance: (
+    ), substance: (
       { __typename?: 'product_substance' }
       & Pick<Product_Substance, 'id'>
       & { productGlass?: Maybe<(
         { __typename?: 'product_product_glass_view' }
         & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
-        )>, glass?: Maybe<(
+      )>, glass?: Maybe<(
         { __typename?: 'product_glass' }
         & Pick<Product_Glass, 'thickness' | 'type' | 'color' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type Stock_WarehouseFragmentFragment = (
   { __typename?: 'stock_warehouse' }
@@ -28788,16 +28788,16 @@ export type Stock_WarehouseFragmentFragment = (
   & { company: (
     { __typename?: 'management_company' }
     & Pick<Management_Company, 'name' | 'id'>
-    ), salesPoint?: Maybe<(
+  ), salesPoint?: Maybe<(
     { __typename?: 'management_salesPoint' }
     & Pick<Management_SalesPoint, 'name' | 'id'>
-    )> }
-  );
+  )> }
+);
 
 export type Product_ProductGlassFragmentFragment = (
   { __typename?: 'product_product_accessory_view' }
   & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
-  );
+);
 
 export type GetAllOrdersDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28812,23 +28812,23 @@ export type GetAllOrdersDetailsQuery = (
       & { productGlass?: Maybe<(
         { __typename?: 'product_product_glass_view' }
         & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
-        )>, productAccessory?: Maybe<(
+      )>, productAccessory?: Maybe<(
         { __typename?: 'product_product_accessory_view' }
         & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
-        )> }
-      ), transfer_order: (
+      )> }
+    ), transfer_order: (
       { __typename?: 'stock_transfer_order' }
       & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline'>
       & { fromwarehouse: (
         { __typename?: 'stock_warehouse' }
         & Pick<Stock_Warehouse, 'name'>
-        ), towarehouse: (
+      ), towarehouse: (
         { __typename?: 'stock_warehouse' }
         & Pick<Stock_Warehouse, 'name'>
-        ) }
       ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type GetAllTransfersOrdersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28841,12 +28841,12 @@ export type GetAllTransfersOrdersQuery = (
     & { fromwarehouse: (
       { __typename?: 'stock_warehouse' }
       & Pick<Stock_Warehouse, 'name' | 'id'>
-      ), towarehouse: (
+    ), towarehouse: (
       { __typename?: 'stock_warehouse' }
       & Pick<Stock_Warehouse, 'name' | 'id'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type GetAllWarehousesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -28859,22 +28859,22 @@ export type GetAllWarehousesQuery = (
     & { company: (
       { __typename?: 'management_company' }
       & Management_CompanyFragmentFragment
-      ), salesPoint?: Maybe<(
+    ), salesPoint?: Maybe<(
       { __typename?: 'management_salesPoint' }
       & Management_SalesPointFragmentFragment
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type Management_SalesPointFragmentFragment = (
   { __typename?: 'management_salesPoint' }
   & Pick<Management_SalesPoint, 'name' | 'id'>
-  );
+);
 
 export type Management_CompanyFragmentFragment = (
   { __typename?: 'management_company' }
   & Pick<Management_Company, 'name' | 'id'>
-  );
+);
 
 export type GetConsumableWarehousesByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -28891,14 +28891,14 @@ export type GetConsumableWarehousesByIdQuery = (
       & { sum?: Maybe<(
         { __typename?: 'stock_warehouse_substance_sum_fields' }
         & Pick<Stock_Warehouse_Substance_Sum_Fields, 'quantity'>
-        )>, max?: Maybe<(
+      )>, max?: Maybe<(
         { __typename?: 'stock_warehouse_substance_max_fields' }
         & Pick<Stock_Warehouse_Substance_Max_Fields, 'quantity'>
-        )>, min?: Maybe<(
+      )>, min?: Maybe<(
         { __typename?: 'stock_warehouse_substance_min_fields' }
         & Pick<Stock_Warehouse_Substance_Min_Fields, 'quantity'>
-        )> }
-      )>, nodes: Array<(
+      )> }
+    )>, nodes: Array<(
       { __typename?: 'stock_warehouse_substance' }
       & Pick<Stock_Warehouse_Substance, 'quantity'>
       & { substance: (
@@ -28906,14 +28906,14 @@ export type GetConsumableWarehousesByIdQuery = (
         & { productConsumable?: Maybe<(
           { __typename?: 'product_product_consumable_view' }
           & Pick<Product_Product_Consumable_View, 'code' | 'label' | 'price'>
-          )> }
-        ), warehouse: (
+        )> }
+      ), warehouse: (
         { __typename?: 'stock_warehouse' }
         & Pick<Stock_Warehouse, 'name' | 'id'>
-        ) }
-      )> }
-    ) }
-  );
+      ) }
+    )> }
+  ) }
+);
 
 export type GetGlassWarehousesByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -28930,14 +28930,14 @@ export type GetGlassWarehousesByIdQuery = (
       & { sum?: Maybe<(
         { __typename?: 'stock_warehouse_substance_sum_fields' }
         & Pick<Stock_Warehouse_Substance_Sum_Fields, 'quantity'>
-        )>, max?: Maybe<(
+      )>, max?: Maybe<(
         { __typename?: 'stock_warehouse_substance_max_fields' }
         & Pick<Stock_Warehouse_Substance_Max_Fields, 'quantity'>
-        )>, min?: Maybe<(
+      )>, min?: Maybe<(
         { __typename?: 'stock_warehouse_substance_min_fields' }
         & Pick<Stock_Warehouse_Substance_Min_Fields, 'quantity'>
-        )> }
-      )>, nodes: Array<(
+      )> }
+    )>, nodes: Array<(
       { __typename?: 'stock_warehouse_substance' }
       & Pick<Stock_Warehouse_Substance, 'quantity'>
       & { substance: (
@@ -28945,14 +28945,14 @@ export type GetGlassWarehousesByIdQuery = (
         & { productGlass?: Maybe<(
           { __typename?: 'product_product_glass_view' }
           & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price'>
-          )> }
-        ), warehouse: (
+        )> }
+      ), warehouse: (
         { __typename?: 'stock_warehouse' }
         & Pick<Stock_Warehouse, 'name' | 'id'>
-        ) }
-      )> }
-    ) }
-  );
+      ) }
+    )> }
+  ) }
+);
 
 export type GetTransferOrderByIdQueryVariables = Exact<{
   id: Scalars['Int'];
@@ -28967,10 +28967,10 @@ export type GetTransferOrderByIdQuery = (
     & { fromwarehouse: (
       { __typename?: 'stock_warehouse' }
       & Pick<Stock_Warehouse, 'name'>
-      ), towarehouse: (
+    ), towarehouse: (
       { __typename?: 'stock_warehouse' }
       & Pick<Stock_Warehouse, 'name'>
-      ), order_items_aggregate: (
+    ), order_items_aggregate: (
       { __typename?: 'stock_order_item_aggregate' }
       & { aggregate?: Maybe<(
         { __typename?: 'stock_order_item_aggregate_fields' }
@@ -28978,8 +28978,8 @@ export type GetTransferOrderByIdQuery = (
         & { sum?: Maybe<(
           { __typename?: 'stock_order_item_sum_fields' }
           & Pick<Stock_Order_Item_Sum_Fields, 'quantity'>
-          )> }
-        )>, nodes: Array<(
+        )> }
+      )>, nodes: Array<(
         { __typename?: 'stock_order_item' }
         & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
         & { substance: (
@@ -28987,32 +28987,32 @@ export type GetTransferOrderByIdQuery = (
           & { productAccessory?: Maybe<(
             { __typename?: 'product_product_accessory_view' }
             & Product_Product_Accessory_ViewFragmentFragment
-            )>, productGlass?: Maybe<(
+          )>, productGlass?: Maybe<(
             { __typename?: 'product_product_glass_view' }
             & Product_Product_Glass_ViewFragmentFragment
-            )> }
-          ), item_tranfers_aggregate: (
+          )> }
+        ), item_tranfers_aggregate: (
           { __typename?: 'stock_item_tranfer_aggregate' }
           & { aggregate?: Maybe<(
             { __typename?: 'stock_item_tranfer_aggregate_fields' }
             & { sum?: Maybe<(
               { __typename?: 'stock_item_tranfer_sum_fields' }
               & Pick<Stock_Item_Tranfer_Sum_Fields, 'quantity'>
-              )> }
-            )>, nodes: Array<(
+            )> }
+          )>, nodes: Array<(
             { __typename?: 'stock_item_tranfer' }
             & Pick<Stock_Item_Tranfer, 'quantity' | 'status' | 'id' | 'date'>
-            )> }
-          ) }
-        )> }
-      ) }
-    )> }
-  );
+          )> }
+        ) }
+      )> }
+    ) }
+  )> }
+);
 
 export type Product_Product_Glass_ViewFragmentFragment = (
   { __typename?: 'product_product_glass_view' }
   & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
-  );
+);
 
 export type GetWarehouseByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -29027,17 +29027,17 @@ export type GetWarehouseByIdQuery = (
     & { salesPoint?: Maybe<(
       { __typename?: 'management_salesPoint' }
       & Pick<Management_SalesPoint, 'name' | 'id'>
-      )>, company: (
+    )>, company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type Product_ProductFragmentFragment = (
   { __typename?: 'product_product' }
   & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price'>
-  );
+);
 
 export type DeleteCompanyMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -29049,8 +29049,8 @@ export type DeleteCompanyMutation = (
   & { delete_management_company_by_pk?: Maybe<(
     { __typename?: 'management_company' }
     & Pick<Management_Company, 'name' | 'id'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteSalePointMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -29062,8 +29062,8 @@ export type DeleteSalePointMutation = (
   & { delete_management_salesPoint_by_pk?: Maybe<(
     { __typename?: 'management_salesPoint' }
     & Pick<Management_SalesPoint, 'name' | 'id'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteUserMutationVariables = Exact<{
   id: Scalars['String'];
@@ -29075,8 +29075,8 @@ export type DeleteUserMutation = (
   & { delete_management_userProfile_by_pk?: Maybe<(
     { __typename?: 'management_userProfile' }
     & Pick<Management_UserProfile, 'username' | 'id'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertCompanyMutationVariables = Exact<{
   CNSS: Scalars['String'];
@@ -29096,8 +29096,8 @@ export type InsertCompanyMutation = (
   & { insert_management_company_one?: Maybe<(
     { __typename?: 'management_company' }
     & Pick<Management_Company, 'id' | 'name' | 'phone' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertSalePointMutationVariables = Exact<{
   address: Scalars['String'];
@@ -29113,8 +29113,8 @@ export type InsertSalePointMutation = (
   & { insert_management_salesPoint_one?: Maybe<(
     { __typename?: 'management_salesPoint' }
     & Pick<Management_SalesPoint, 'id' | 'address' | 'email' | 'fax' | 'name' | 'phone'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertUserMutationVariables = Exact<{
   email: Scalars['String'];
@@ -29135,8 +29135,8 @@ export type InsertUserMutation = (
   & { SignUp?: Maybe<(
     { __typename?: 'SignUpOutput' }
     & Pick<SignUpOutput, 'CIN' | 'active' | 'firstname' | 'id' | 'lastname' | 'phone' | 'username'>
-    )> }
-  );
+  )> }
+);
 
 export type UpdateCompanyMutationVariables = Exact<{
   CNSS?: Maybe<Scalars['String']>;
@@ -29157,8 +29157,8 @@ export type UpdateCompanyMutation = (
   & { update_management_company_by_pk?: Maybe<(
     { __typename?: 'management_company' }
     & Pick<Management_Company, 'id' | 'name' | 'phone' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email'>
-    )> }
-  );
+  )> }
+);
 
 export type UpdateSalePointMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -29175,8 +29175,8 @@ export type UpdateSalePointMutation = (
   & { update_management_salesPoint_by_pk?: Maybe<(
     { __typename?: 'management_salesPoint' }
     & Pick<Management_SalesPoint, 'id' | 'address' | 'email' | 'fax' | 'name' | 'phone'>
-    )> }
-  );
+  )> }
+);
 
 export type UpdateUserMutationVariables = Exact<{
   CIN?: Maybe<Scalars['String']>;
@@ -29200,12 +29200,12 @@ export type UpdateUserMutation = (
     & { user_role: (
       { __typename?: 'management_user_role' }
       & Pick<Management_User_Role, 'name' | 'description'>
-      ), SalesPoint?: Maybe<(
+    ), SalesPoint?: Maybe<(
       { __typename?: 'management_salesPoint' }
       & Pick<Management_SalesPoint, 'name' | 'phone' | 'address'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type GetAllCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29215,8 +29215,8 @@ export type GetAllCompaniesQuery = (
   & { management_company: Array<(
     { __typename?: 'management_company' }
     & Pick<Management_Company, 'id' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email' | 'name' | 'phone'>
-    )> }
-  );
+  )> }
+);
 
 export type GetAllSalesPointsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29226,8 +29226,8 @@ export type GetAllSalesPointsQuery = (
   & { management_salesPoint: Array<(
     { __typename?: 'management_salesPoint' }
     & Pick<Management_SalesPoint, 'address' | 'email' | 'fax' | 'id' | 'name' | 'phone'>
-    )> }
-  );
+  )> }
+);
 
 export type GetAllUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29237,8 +29237,8 @@ export type GetAllUsersQuery = (
   & { management_userProfile: Array<(
     { __typename?: 'management_userProfile' }
     & Pick<Management_UserProfile, 'CIN' | 'active' | 'firstname' | 'id' | 'lastname' | 'phone' | 'role' | 'username'>
-    )> }
-  );
+  )> }
+);
 
 export type GetCompanyByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -29250,8 +29250,8 @@ export type GetCompanyByIdQuery = (
   & { management_company_by_pk?: Maybe<(
     { __typename?: 'management_company' }
     & Pick<Management_Company, 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email' | 'name' | 'phone' | 'website' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'id'>
-    )> }
-  );
+  )> }
+);
 
 export type GetSalePointByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -29269,10 +29269,10 @@ export type GetSalePointByIdQuery = (
       & { user_role: (
         { __typename?: 'management_user_role' }
         & Pick<Management_User_Role, 'name' | 'description'>
-        ) }
-      )> }
+      ) }
     )> }
-  );
+  )> }
+);
 
 export type GetUserByIdQueryVariables = Exact<{
   id: Scalars['String'];
@@ -29287,12 +29287,12 @@ export type GetUserByIdQuery = (
     & { user_role: (
       { __typename?: 'management_user_role' }
       & Pick<Management_User_Role, 'description' | 'name'>
-      ), SalesPoint?: Maybe<(
+    ), SalesPoint?: Maybe<(
       { __typename?: 'management_salesPoint' }
       & Pick<Management_SalesPoint, 'name' | 'phone' | 'address'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type AddGlassColorMutationVariables = Exact<{
   color?: Maybe<Scalars['String']>;
@@ -29304,8 +29304,8 @@ export type AddGlassColorMutation = (
   & { insert_product_glassColor_one?: Maybe<(
     { __typename?: 'product_glassColor' }
     & Pick<Product_GlassColor, 'color'>
-    )> }
-  );
+  )> }
+);
 
 export type AddGlassTypeMutationVariables = Exact<{
   type?: Maybe<Scalars['String']>;
@@ -29317,8 +29317,8 @@ export type AddGlassTypeMutation = (
   & { insert_product_glassType_one?: Maybe<(
     { __typename?: 'product_glassType' }
     & Pick<Product_GlassType, 'type'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteManyMutationVariables = Exact<{
   codes?: Maybe<Array<Scalars['String']>>;
@@ -29330,8 +29330,8 @@ export type DeleteManyMutation = (
   & { delete_product_product?: Maybe<(
     { __typename?: 'product_product_mutation_response' }
     & Pick<Product_Product_Mutation_Response, 'affected_rows'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteOneMutationVariables = Exact<{
   code: Scalars['String'];
@@ -29343,8 +29343,8 @@ export type DeleteOneMutation = (
   & { delete_product_product_by_pk?: Maybe<(
     { __typename?: 'product_product' }
     & Pick<Product_Product, 'code'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertAccessoryMutationVariables = Exact<{
   product: Product_Product_Insert_Input;
@@ -29365,10 +29365,10 @@ export type InsertAccessoryMutation = (
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'name' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type InsertConsumableMutationVariables = Exact<{
   product: Product_Product_Insert_Input;
@@ -29388,10 +29388,10 @@ export type InsertConsumableMutation = (
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'name' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type InsertCustomerProductMutationVariables = Exact<{
   code?: Maybe<Scalars['String']>;
@@ -29411,9 +29411,9 @@ export type InsertCustomerProductMutation = (
     & { product: (
       { __typename?: 'product_product' }
       & Pick<Product_Product, 'code' | 'label' | 'unit'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type InsertGlassMutationVariables = Exact<{
   thickness?: Maybe<Scalars['Int']>;
@@ -29433,10 +29433,10 @@ export type InsertGlassMutation = (
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'name' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type InsertServiceMutationVariables = Exact<{
   serviceConfigid?: Maybe<Scalars['uuid']>;
@@ -29455,10 +29455,10 @@ export type InsertServiceMutation = (
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'id' | 'name'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type InsertServiceConfigMutationVariables = Exact<{
   labelFactory?: Maybe<Scalars['String']>;
@@ -29472,8 +29472,8 @@ export type InsertServiceConfigMutation = (
   & { insert_product_serviceConfig_one?: Maybe<(
     { __typename?: 'product_serviceConfig' }
     & Pick<Product_ServiceConfig, 'labelFactory' | 'name' | 'id' | 'params'>
-    )> }
-  );
+  )> }
+);
 
 export type GetAccessoryByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -29491,10 +29491,10 @@ export type GetAccessoryByIdQuery = (
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'name' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllAccessoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29510,10 +29510,10 @@ export type GetAllAccessoriesQuery = (
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'name' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllConsumablesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29529,10 +29529,10 @@ export type GetAllConsumablesQuery = (
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'name' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllCustomerProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29545,9 +29545,9 @@ export type GetAllCustomerProductsQuery = (
     & { product: (
       { __typename?: 'product_product' }
       & Pick<Product_Product, 'code' | 'label' | 'unit'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type GetAllGlassesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29563,10 +29563,10 @@ export type GetAllGlassesQuery = (
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'name' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllServicesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29579,16 +29579,16 @@ export type GetAllServicesQuery = (
     & { serviceConfig?: Maybe<(
       { __typename?: 'product_serviceConfig' }
       & Pick<Product_ServiceConfig, 'labelFactory' | 'id' | 'name' | 'params'>
-      )>, product: (
+    )>, product: (
       { __typename?: 'product_product' }
       & Pick<Product_Product, 'code' | 'label' | 'price' | 'priceMax' | 'priceMin' | 'unit'>
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'name' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllServiceConfigQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29598,8 +29598,8 @@ export type GetAllServiceConfigQuery = (
   & { product_serviceConfig: Array<(
     { __typename?: 'product_serviceConfig' }
     & Pick<Product_ServiceConfig, 'labelFactory' | 'name' | 'id' | 'params'>
-    )> }
-  );
+  )> }
+);
 
 export type GetConsumableByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -29617,10 +29617,10 @@ export type GetConsumableByIdQuery = (
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'name' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type GetGlassByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -29638,10 +29638,10 @@ export type GetGlassByIdQuery = (
       & { companies: Array<(
         { __typename?: 'product_product_companies_view' }
         & Pick<Product_Product_Companies_View, 'name' | 'id'>
-        )> }
-      ) }
-    )> }
-  );
+      )> }
+    ) }
+  )> }
+);
 
 export type GetGlassColorsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29651,8 +29651,8 @@ export type GetGlassColorsQuery = (
   & { product_glassColor: Array<(
     { __typename?: 'product_glassColor' }
     & Pick<Product_GlassColor, 'color'>
-    )> }
-  );
+  )> }
+);
 
 export type GetGlassTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -29662,8 +29662,8 @@ export type GetGlassTypesQuery = (
   & { product_glassType: Array<(
     { __typename?: 'product_glassType' }
     & Pick<Product_GlassType, 'type'>
-    )> }
-  );
+  )> }
+);
 
 export type GetServiceConfigByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -29684,11 +29684,11 @@ export type GetServiceConfigByIdQuery = (
         & { companies: Array<(
           { __typename?: 'product_product_companies_view' }
           & Pick<Product_Product_Companies_View, 'name' | 'id'>
-          )> }
-        ) }
-      )> }
+        )> }
+      ) }
     )> }
-  );
+  )> }
+);
 
 export type DeleteDeliveryMutationVariables = Exact<{
   ids?: Array<Scalars['uuid']>;
@@ -29700,8 +29700,8 @@ export type DeleteDeliveryMutation = (
   & { delete_sales_delivery?: Maybe<(
     { __typename?: 'sales_delivery_mutation_response' }
     & Pick<Sales_Delivery_Mutation_Response, 'affected_rows'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertDeliveryMutationVariables = Exact<{
   order: Scalars['Int'];
@@ -29713,6 +29713,9 @@ export type InsertDeliveryMutationVariables = Exact<{
   isReturned?: Maybe<Scalars['Boolean']>;
   delivery_lines?: Array<Sales_Delivery_Line_Insert_Input>;
   payment_method: Scalars['String'];
+  amount_ttc?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
+  amount_ht?: Maybe<Scalars['numeric']>;
 }>;
 
 
@@ -29720,19 +29723,19 @@ export type InsertDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_delivery_one?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order' | 'amount_ttc'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
-      ), client: (
+    ), client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
-      ), contactByContact?: Maybe<(
+    ), contactByContact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type UpdateDeliveryMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -29743,6 +29746,9 @@ export type UpdateDeliveryMutationVariables = Exact<{
   isReturned?: Maybe<Scalars['Boolean']>;
   predicted_date?: Maybe<Scalars['date']>;
   status: Scalars['String'];
+  amount_ttc?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
+  amount_ht?: Maybe<Scalars['numeric']>;
 }>;
 
 
@@ -29750,9 +29756,9 @@ export type UpdateDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'company' | 'payment_method' | 'isReturned' | 'predicted_date' | 'client' | 'contact'>
-    )> }
-  );
+    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'company' | 'payment_method' | 'isReturned' | 'predicted_date' | 'client' | 'contact' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
+  )> }
+);
 
 export type UpdateDeliveryLineMutationVariables = Exact<{
   amount?: Maybe<Scalars['numeric']>;
@@ -29760,6 +29766,7 @@ export type UpdateDeliveryLineMutationVariables = Exact<{
   id: Scalars['uuid'];
   product: Scalars['uuid'];
   product_label?: Maybe<Scalars['String']>;
+  unit_price?: Maybe<Scalars['numeric']>;
   quantity?: Maybe<Scalars['numeric']>;
 }>;
 
@@ -29768,9 +29775,9 @@ export type UpdateDeliveryLineMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_line_by_pk?: Maybe<(
     { __typename?: 'sales_delivery_line' }
-    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'product_label' | 'quantity'>
-    )> }
-  );
+    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'product_label' | 'quantity' | 'unit_price'>
+  )> }
+);
 
 export type DeleteDraftsMutationVariables = Exact<{
   ids?: Array<Scalars['Int']>;
@@ -29782,8 +29789,8 @@ export type DeleteDraftsMutation = (
   & { delete_sales_draft?: Maybe<(
     { __typename?: 'sales_draft_mutation_response' }
     & Pick<Sales_Draft_Mutation_Response, 'affected_rows'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertDraftMutationVariables = Exact<{
   status?: Maybe<Scalars['String']>;
@@ -29795,8 +29802,8 @@ export type InsertDraftMutation = (
   & { insert_sales_draft_one?: Maybe<(
     { __typename?: 'sales_draft' }
     & Pick<Sales_Draft, 'id'>
-    )> }
-  );
+  )> }
+);
 
 export type DeleteInvoicesMutationVariables = Exact<{
   ids?: Array<Scalars['uuid']>;
@@ -29808,8 +29815,8 @@ export type DeleteInvoicesMutation = (
   & { delete_sales_invoice?: Maybe<(
     { __typename?: 'sales_invoice_mutation_response' }
     & Pick<Sales_Invoice_Mutation_Response, 'affected_rows'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertInvoiceMutationVariables = Exact<{
   client: Scalars['uuid'];
@@ -29819,6 +29826,10 @@ export type InsertInvoiceMutationVariables = Exact<{
   date: Scalars['date'];
   invoice_lines?: Array<Sales_Invoice_Line_Insert_Input>;
   deliveries?: Array<Sales_Invoice_Delivery_Insert_Input>;
+  deliveries_ids?: Array<Scalars['uuid']>;
+  amount_ttc?: Maybe<Scalars['numeric']>;
+  amount_ht?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
 }>;
 
 
@@ -29826,16 +29837,19 @@ export type InsertInvoiceMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_invoice_one?: Maybe<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'client' | 'company' | 'contact' | 'date' | 'payment_method'>
+    & Pick<Sales_Invoice, 'id' | 'client' | 'company' | 'contact' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva'>
     & { deliveries: Array<(
       { __typename?: 'sales_invoice_delivery' }
       & Pick<Sales_Invoice_Delivery, 'delivery_id'>
-      )>, invoice_lines: Array<(
+    )>, invoice_lines: Array<(
       { __typename?: 'sales_invoice_line' }
       & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'quantity' | 'total'>
-      )> }
     )> }
-  );
+  )>, update_sales_delivery?: Maybe<(
+    { __typename?: 'sales_delivery_mutation_response' }
+    & Pick<Sales_Delivery_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type UpdateInvoiceMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -29855,18 +29869,18 @@ export type UpdateInvoiceMutation = (
     & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
-      ), company: (
+    ), company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'id' | 'name'>
-      ), contact?: Maybe<(
+    ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
-      )>, deliveries: Array<(
+    )>, deliveries: Array<(
       { __typename?: 'sales_invoice_delivery' }
       & Pick<Sales_Invoice_Delivery, 'delivery_id'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type DeleteOrdersMutationVariables = Exact<{
   ids?: Array<Scalars['Int']>;
@@ -29878,8 +29892,8 @@ export type DeleteOrdersMutation = (
   & { delete_sales_order?: Maybe<(
     { __typename?: 'sales_order_mutation_response' }
     & Pick<Sales_Order_Mutation_Response, 'affected_rows'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertOrderMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
@@ -29904,15 +29918,15 @@ export type InsertOrderMutation = (
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
-      ), contact?: Maybe<(
+    ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'code' | 'name'>
-      )>, customer: (
+    )>, customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type DeletePaymentMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -29924,8 +29938,8 @@ export type DeletePaymentMutation = (
   & { delete_sales_payment_by_pk?: Maybe<(
     { __typename?: 'sales_payment' }
     & Pick<Sales_Payment, 'id'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertPaymentMutationVariables = Exact<{
   amount?: Maybe<Scalars['numeric']>;
@@ -29948,9 +29962,9 @@ export type InsertPaymentMutation = (
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type DeleteProductDraftMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -29962,8 +29976,8 @@ export type DeleteProductDraftMutation = (
   & { delete_sales_product_draft_by_pk?: Maybe<(
     { __typename?: 'sales_product_draft' }
     & Pick<Sales_Product_Draft, 'id'>
-    )> }
-  );
+  )> }
+);
 
 export type InsertAccessoryDraftMutationVariables = Exact<{
   warehouse_id?: Maybe<Scalars['uuid']>;
@@ -29988,9 +30002,9 @@ export type InsertAccessoryDraftMutation = (
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
       & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type InsertConsumableDraftMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
@@ -30017,9 +30031,9 @@ export type InsertConsumableDraftMutation = (
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
       & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type InsertGlassDraftMutationVariables = Exact<{
   heigth?: Maybe<Scalars['numeric']>;
@@ -30049,9 +30063,9 @@ export type InsertGlassDraftMutation = (
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
       & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'company_id' | 'count'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type InsertServiceDraftMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
@@ -30078,9 +30092,9 @@ export type InsertServiceDraftMutation = (
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
       & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type InsertQuotationMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
@@ -30104,12 +30118,12 @@ export type InsertQuotationMutation = (
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
-      ), customer: (
+    ), customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type GetAllDeliveryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -30118,19 +30132,19 @@ export type GetAllDeliveryQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery: Array<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned'>
+    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
-      ), client: (
+    ), client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
-      ), contact?: Maybe<(
+    ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type GetDeliveryByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -30141,13 +30155,13 @@ export type GetDeliveryByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
     & { delivery_lines: Array<(
       { __typename?: 'sales_delivery_line' }
-      & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'quantity' | 'product_label'>
-      )> }
+      & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'quantity' | 'product_label' | 'unit_price'>
     )> }
-  );
+  )> }
+);
 
 export type GetAllDraftsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -30160,12 +30174,12 @@ export type GetAllDraftsQuery = (
     & { company?: Maybe<(
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
-      )>, customer?: Maybe<(
+    )>, customer?: Maybe<(
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'phone'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type GetDraftByIdQueryVariables = Exact<{
   id: Scalars['Int'];
@@ -30180,15 +30194,15 @@ export type GetDraftByIdQuery = (
     & { company?: Maybe<(
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
-      )>, customer?: Maybe<(
+    )>, customer?: Maybe<(
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'id' | 'name'>
-      )>, product_drafts: Array<(
+    )>, product_drafts: Array<(
       { __typename?: 'sales_product_draft' }
       & Pick<Sales_Product_Draft, 'id' | 'product_code' | 'label' | 'quantity' | 'm2' | 'ml' | 'unit' | 'width' | 'heigth' | 'price' | 'total_price' | 'company_name'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type GetAllInvoicesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -30201,18 +30215,31 @@ export type GetAllInvoicesQuery = (
     & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
-      ), company: (
+    ), company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'id' | 'name'>
-      ), contact?: Maybe<(
+    ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
-      )>, deliveries: Array<(
+    )>, deliveries: Array<(
       { __typename?: 'sales_invoice_delivery' }
       & Pick<Sales_Invoice_Delivery, 'delivery_id'>
-      )> }
     )> }
-  );
+  )> }
+);
+
+export type GetDeliveriesAmountsQueryVariables = Exact<{
+  ids?: Maybe<Array<Scalars['uuid']>>;
+}>;
+
+
+export type GetDeliveriesAmountsQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery: Array<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'amount_ht' | 'amount_ttc' | 'amount_tva'>
+  )> }
+);
 
 export type GetDeliveryLinesQueryVariables = Exact<{
   deliveries?: Array<Scalars['uuid']>;
@@ -30223,13 +30250,13 @@ export type GetDeliveryLinesQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery_line: Array<(
     { __typename?: 'sales_delivery_line' }
-    & Pick<Sales_Delivery_Line, 'product_label' | 'delivered' | 'amount'>
+    & Pick<Sales_Delivery_Line, 'product_label' | 'delivered' | 'amount' | 'unit_price'>
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
-      & Pick<Sales_Product_Draft, 'product_code' | 'price'>
-      ) }
-    )> }
-  );
+      & Pick<Sales_Product_Draft, 'product_code'>
+    ) }
+  )> }
+);
 
 export type GetInvoiceByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -30244,12 +30271,12 @@ export type GetInvoiceByIdQuery = (
     & { deliveries: Array<(
       { __typename?: 'sales_invoice_delivery' }
       & Pick<Sales_Invoice_Delivery, 'delivery_id'>
-      )>, invoice_lines: Array<(
+    )>, invoice_lines: Array<(
       { __typename?: 'sales_invoice_line' }
       & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'quantity' | 'total'>
-      )> }
     )> }
-  );
+  )> }
+);
 
 export type GetAllOrdersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -30262,12 +30289,12 @@ export type GetAllOrdersQuery = (
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
-      ), customer: (
+    ), customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type GetOrderByIdQueryVariables = Exact<{
   id: Scalars['Int'];
@@ -30282,15 +30309,15 @@ export type GetOrderByIdQuery = (
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
-      ), contact?: Maybe<(
+    ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'code' | 'name' | 'phone' | 'id'>
-      )>, customer: (
+    )>, customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'id' | 'name' | 'phone' | 'code'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type GetPaymentQueryVariables = Exact<{
   order_id: Scalars['Int'];
@@ -30305,9 +30332,9 @@ export type GetPaymentQuery = (
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type GetProductsByTypeQueryVariables = Exact<{
   draft_id: Scalars['Int'];
@@ -30320,8 +30347,8 @@ export type GetProductsByTypeQuery = (
   & { sales_product_draft: Array<(
     { __typename?: 'sales_product_draft' }
     & Pick<Sales_Product_Draft, 'company_id' | 'company_name' | 'draft_id' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
-    )> }
-  );
+  )> }
+);
 
 export type GetProductsGroupQueryVariables = Exact<{
   draft_id: Scalars['Int'];
@@ -30334,8 +30361,8 @@ export type GetProductsGroupQuery = (
   & { sales_product_draft: Array<(
     { __typename?: 'sales_product_draft' }
     & Pick<Sales_Product_Draft, 'company_id' | 'company_name' | 'draft_id' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
-    )> }
-  );
+  )> }
+);
 
 export type GetAllQuotationsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -30348,12 +30375,12 @@ export type GetAllQuotationsQuery = (
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
-      ), customer: (
+    ), customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export type GetQuotationByIdQueryVariables = Exact<{
   id: Scalars['Int'];
@@ -30368,31 +30395,1129 @@ export type GetQuotationByIdQuery = (
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
-      ), customer: (
+    ), customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'id' | 'name' | 'phone' | 'code'>
-      ) }
-    )> }
-  );
+    ) }
+  )> }
+);
 
 export const Product_Product_Accessory_ViewFragmentFragmentDoc = gql`
-  fragment product_product_accessory_viewFragment on product_product_accessory_view {
-    code
-    label
-    price
-    unit
-  }
-`;
+    fragment product_product_accessory_viewFragment on product_product_accessory_view {
+  code
+  label
+  price
+  unit
+}
+    `;
 export const Product_Product_Consumable_ViewFragmentFragmentDoc = gql`
-  fragment product_product_consumable_viewFragment on product_product_consumable_view {
+    fragment product_product_consumable_viewFragment on product_product_consumable_view {
+  code
+  label
+  price
+  unit
+}
+    `;
+export const Stock_WarehouseFragmentFragmentDoc = gql`
+    fragment stock_warehouseFragment on stock_warehouse {
+  name
+  id
+  company {
+    name
+    id
+  }
+  salesPoint {
+    name
+    id
+  }
+}
+    `;
+export const Product_ProductGlassFragmentFragmentDoc = gql`
+    fragment product_productGlassFragment on product_product_accessory_view {
+  code
+  label
+  price
+  unit
+}
+    `;
+export const Management_SalesPointFragmentFragmentDoc = gql`
+    fragment management_salesPointFragment on management_salesPoint {
+  name
+  id
+}
+    `;
+export const Management_CompanyFragmentFragmentDoc = gql`
+    fragment management_companyFragment on management_company {
+  name
+  id
+}
+    `;
+export const Product_Product_Glass_ViewFragmentFragmentDoc = gql`
+    fragment product_product_glass_viewFragment on product_product_glass_view {
+  code
+  label
+  price
+  unit
+}
+    `;
+export const Product_ProductFragmentFragmentDoc = gql`
+    fragment product_productFragment on product_product {
+  code
+  label
+  unit
+  price
+}
+    `;
+export const GetAccessoriesSubstancesDocument = gql`
+    query GetAccessoriesSubstances($id: uuid!) {
+  stock_warehouse_substance(
+    where: {warehouseid: {_eq: $id}, substance: {type: {_eq: accessory}}}
+  ) {
+    quantity
+    substance {
+      productAccessory {
+        code
+        label
+        substanceid
+        unit
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAccessoriesSubstancesGQL extends Apollo.Query<GetAccessoriesSubstancesQuery, GetAccessoriesSubstancesQueryVariables> {
+    document = GetAccessoriesSubstancesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetGlassesSubstancesDocument = gql`
+    query GetGlassesSubstances($id: uuid!) {
+  stock_warehouse_substance(
+    where: {warehouseid: {_eq: $id}, substance: {type: {_eq: glass}}}
+  ) {
+    quantity
+    substance {
+      productGlass {
+        code
+        label
+        substanceid
+        unit
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetGlassesSubstancesGQL extends Apollo.Query<GetGlassesSubstancesQuery, GetGlassesSubstancesQueryVariables> {
+    document = GetGlassesSubstancesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetShortCompaniesDocument = gql`
+    query GetShortCompanies {
+  management_company {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortCompaniesGQL extends Apollo.Query<GetShortCompaniesQuery, GetShortCompaniesQueryVariables> {
+    document = GetShortCompaniesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetShortProvidersDocument = gql`
+    query GetShortProviders {
+  contact_provider {
+    code
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortProvidersGQL extends Apollo.Query<GetShortProvidersQuery, GetShortProvidersQueryVariables> {
+    document = GetShortProvidersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GeShortSalePointsDocument = gql`
+    query GeShortSalePoints {
+  management_salesPoint {
+    name
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GeShortSalePointsGQL extends Apollo.Query<GeShortSalePointsQuery, GeShortSalePointsQueryVariables> {
+    document = GeShortSalePointsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetShortSubstancesDocument = gql`
+    query GetShortSubstances {
+  product_product {
+    label
+    code
+    glass {
+      substanceid
+    }
+    consumable {
+      substanceid
+    }
+    accessory {
+      substanceid
+    }
+    price
+    priceMax
+    priceMin
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortSubstancesGQL extends Apollo.Query<GetShortSubstancesQuery, GetShortSubstancesQueryVariables> {
+    document = GetShortSubstancesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetShortWArehousesDocument = gql`
+    query GetShortWArehouses {
+  stock_warehouse {
+    name
+    id
+    companyid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortWArehousesGQL extends Apollo.Query<GetShortWArehousesQuery, GetShortWArehousesQueryVariables> {
+    document = GetShortWArehousesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetProductsDocument = gql`
+    query GetProducts {
+  product_product(where: {_not: {consumable: {category: {_eq: MP}}}}) {
     code
     label
     price
+    priceMax
+    priceMin
     unit
   }
-`;
-export const Stock_WarehouseFragmentFragmentDoc = gql`
-  fragment stock_warehouseFragment on stock_warehouse {
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetProductsGQL extends Apollo.Query<GetProductsQuery, GetProductsQueryVariables> {
+    document = GetProductsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddContactAddressDocument = gql`
+    mutation AddContactAddress($address: contact_address_insert_input!, $id: uuid) {
+  insert_contact_contact_address_one(
+    object: {address: {data: $address}, contactid: $id}
+  ) {
+    address {
+      address
+      city
+      id
+      zip
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddContactAddressGQL extends Apollo.Mutation<AddContactAddressMutation, AddContactAddressMutationVariables> {
+    document = AddContactAddressDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddCustomerAddressDocument = gql`
+    mutation AddCustomerAddress($address: contact_address_insert_input!, $id: uuid) {
+  insert_contact_customer_address_one(
+    object: {address: {data: $address}, customerid: $id}
+  ) {
+    address {
+      address
+      city
+      id
+      zip
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddCustomerAddressGQL extends Apollo.Mutation<AddCustomerAddressMutation, AddCustomerAddressMutationVariables> {
+    document = AddCustomerAddressDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddCustomerContactDocument = gql`
+    mutation AddCustomerContact($id: uuid!, $contact: contact_contact_insert_input!) {
+  insert_contact_customer_contact_one(
+    object: {customerid: $id, contact: {data: $contact}}
+  ) {
+    contact {
+      code
+      mail
+      name
+      note
+      phone
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddCustomerContactGQL extends Apollo.Mutation<AddCustomerContactMutation, AddCustomerContactMutationVariables> {
+    document = AddCustomerContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddProviderAddressDocument = gql`
+    mutation AddProviderAddress($address: contact_address_insert_input!, $id: uuid) {
+  insert_contact_provider_address_one(
+    object: {address: {data: $address}, providerid: $id}
+  ) {
+    address {
+      address
+      city
+      id
+      zip
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddProviderAddressGQL extends Apollo.Mutation<AddProviderAddressMutation, AddProviderAddressMutationVariables> {
+    document = AddProviderAddressDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddProviderContactDocument = gql`
+    mutation AddProviderContact($id: uuid!, $contact: contact_contact_insert_input!) {
+  insert_contact_provider_contact_one(
+    object: {providerid: $id, contact: {data: $contact}}
+  ) {
+    contact {
+      code
+      mail
+      name
+      note
+      phone
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddProviderContactGQL extends Apollo.Mutation<AddProviderContactMutation, AddProviderContactMutationVariables> {
+    document = AddProviderContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AffectCustomerContactDocument = gql`
+    mutation AffectCustomerContact($affectedContacts: [contact_customer_contact_insert_input!]!) {
+  insert_contact_customer_contact(objects: $affectedContacts) {
+    returning {
+      contact {
+        code
+        id
+        mail
+        name
+        note
+        phone
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AffectCustomerContactGQL extends Apollo.Mutation<AffectCustomerContactMutation, AffectCustomerContactMutationVariables> {
+    document = AffectCustomerContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AffectProviderContactDocument = gql`
+    mutation AffectProviderContact($affectedContacts: [contact_provider_contact_insert_input!]!) {
+  insert_contact_provider_contact(objects: $affectedContacts) {
+    returning {
+      contact {
+        code
+        id
+        mail
+        name
+        note
+        phone
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AffectProviderContactGQL extends Apollo.Mutation<AffectProviderContactMutation, AffectProviderContactMutationVariables> {
+    document = AffectProviderContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteContactDocument = gql`
+    mutation DeleteContact($id: uuid!) {
+  delete_contact_contact_by_pk(id: $id) {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteContactGQL extends Apollo.Mutation<DeleteContactMutation, DeleteContactMutationVariables> {
+    document = DeleteContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteContactAddressDocument = gql`
+    mutation DeleteContactAddress($addressid: uuid!, $id: uuid!) {
+  delete_contact_contact_address_by_pk(addressid: $addressid, contactid: $id) {
+    addressid
+    contactid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteContactAddressGQL extends Apollo.Mutation<DeleteContactAddressMutation, DeleteContactAddressMutationVariables> {
+    document = DeleteContactAddressDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteCustomerDocument = gql`
+    mutation DeleteCustomer($id: uuid!) {
+  delete_contact_customer_by_pk(id: $id) {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteCustomerGQL extends Apollo.Mutation<DeleteCustomerMutation, DeleteCustomerMutationVariables> {
+    document = DeleteCustomerDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteCustomerAddressDocument = gql`
+    mutation DeleteCustomerAddress($addressid: uuid!, $id: uuid!) {
+  delete_contact_customer_address_by_pk(addressid: $addressid, customerid: $id) {
+    addressid
+    customerid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteCustomerAddressGQL extends Apollo.Mutation<DeleteCustomerAddressMutation, DeleteCustomerAddressMutationVariables> {
+    document = DeleteCustomerAddressDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteCustomerContactDocument = gql`
+    mutation DeleteCustomerContact($contactid: uuid!, $id: uuid!) {
+  delete_contact_customer_contact_by_pk(contactid: $contactid, customerid: $id) {
+    contactid
+    customerid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteCustomerContactGQL extends Apollo.Mutation<DeleteCustomerContactMutation, DeleteCustomerContactMutationVariables> {
+    document = DeleteCustomerContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyContactsDocument = gql`
+    mutation DeleteManyContacts($ids: [uuid!]) {
+  delete_contact_contact(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyContactsGQL extends Apollo.Mutation<DeleteManyContactsMutation, DeleteManyContactsMutationVariables> {
+    document = DeleteManyContactsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyCustomersDocument = gql`
+    mutation DeleteManyCustomers($ids: [uuid!]!) {
+  delete_contact_customer(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyCustomersGQL extends Apollo.Mutation<DeleteManyCustomersMutation, DeleteManyCustomersMutationVariables> {
+    document = DeleteManyCustomersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyProvidersDocument = gql`
+    mutation DeleteManyProviders($ids: [uuid!]) {
+  delete_contact_provider(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyProvidersGQL extends Apollo.Mutation<DeleteManyProvidersMutation, DeleteManyProvidersMutationVariables> {
+    document = DeleteManyProvidersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteProviderDocument = gql`
+    mutation DeleteProvider($id: uuid!) {
+  delete_contact_provider_by_pk(id: $id) {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteProviderGQL extends Apollo.Mutation<DeleteProviderMutation, DeleteProviderMutationVariables> {
+    document = DeleteProviderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteProviderAddressDocument = gql`
+    mutation DeleteProviderAddress($addressid: uuid!, $id: uuid!) {
+  delete_contact_provider_address_by_pk(addressid: $addressid, providerid: $id) {
+    addressid
+    providerid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteProviderAddressGQL extends Apollo.Mutation<DeleteProviderAddressMutation, DeleteProviderAddressMutationVariables> {
+    document = DeleteProviderAddressDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteProviderContactDocument = gql`
+    mutation DeleteProviderContact($contactid: uuid!, $id: uuid!) {
+  delete_contact_provider_contact_by_pk(contactid: $contactid, providerid: $id) {
+    contactid
+    providerid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteProviderContactGQL extends Apollo.Mutation<DeleteProviderContactMutation, DeleteProviderContactMutationVariables> {
+    document = DeleteProviderContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertContactDocument = gql`
+    mutation InsertContact($code: String, $mail: String, $name: String, $note: String, $phone: String, $addresses: [contact_contact_address_insert_input!]! = [], $customers: [contact_customer_contact_insert_input!]! = [], $providers: [contact_provider_contact_insert_input!]! = []) {
+  insert_contact_contact_one(
+    object: {code: $code, mail: $mail, name: $name, note: $note, phone: $phone, contact_addresses: {data: $addresses}, contact_customers: {data: $customers}, contact_providers: {data: $providers}}
+  ) {
+    id
+    code
+    mail
+    name
+    note
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertContactGQL extends Apollo.Mutation<InsertContactMutation, InsertContactMutationVariables> {
+    document = InsertContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertCustomerDocument = gql`
+    mutation InsertCustomer($FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $addresses: [contact_customer_address_insert_input!]! = [], $ICE: String, $IF: String, $type: String, $contacts: [contact_customer_contact_insert_input!]! = []) {
+  insert_contact_customer_one(
+    object: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, customer_addresses: {data: $addresses}, ICE: $ICE, IF: $IF, type: $type, customer_contacts: {data: $contacts}}
+  ) {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    type
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertCustomerGQL extends Apollo.Mutation<InsertCustomerMutation, InsertCustomerMutationVariables> {
+    document = InsertCustomerDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertProviderDocument = gql`
+    mutation InsertProvider($FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $addresses: [contact_provider_address_insert_input!]! = [], $contacts: [contact_provider_contact_insert_input!]! = []) {
+  insert_contact_provider_one(
+    object: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, provider_addresses: {data: $addresses}, provider_contacts: {data: $contacts}}
+  ) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertProviderGQL extends Apollo.Mutation<InsertProviderMutation, InsertProviderMutationVariables> {
+    document = InsertProviderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateContactDocument = gql`
+    mutation updateContact($id: uuid!, $code: String, $mail: String, $name: String, $note: String, $phone: String) {
+  update_contact_contact_by_pk(
+    pk_columns: {id: $id}
+    _set: {code: $code, mail: $mail, name: $name, note: $note, phone: $phone}
+  ) {
+    id
+    code
+    mail
+    name
+    note
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateContactGQL extends Apollo.Mutation<UpdateContactMutation, UpdateContactMutationVariables> {
+    document = UpdateContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateContactAddressesDocument = gql`
+    mutation updateContactAddresses($contactAddresses: [contact_contact_address_insert_input!]!) {
+  insert_contact_contact_address(objects: $contactAddresses) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateContactAddressesGQL extends Apollo.Mutation<UpdateContactAddressesMutation, UpdateContactAddressesMutationVariables> {
+    document = UpdateContactAddressesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateCustomerDocument = gql`
+    mutation updateCustomer($id: uuid!, $FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $ICE: String, $IF: String, $type: String) {
+  update_contact_customer_by_pk(
+    pk_columns: {id: $id}
+    _set: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, ICE: $ICE, IF: $IF, type: $type}
+  ) {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    type
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateCustomerGQL extends Apollo.Mutation<UpdateCustomerMutation, UpdateCustomerMutationVariables> {
+    document = UpdateCustomerDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateProviderDocument = gql`
+    mutation updateProvider($id: uuid!, $FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String) {
+  update_contact_provider_by_pk(
+    pk_columns: {id: $id}
+    _set: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website}
+  ) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateProviderGQL extends Apollo.Mutation<UpdateProviderMutation, UpdateProviderMutationVariables> {
+    document = UpdateProviderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllContactsDocument = gql`
+    query GetAllContacts {
+  contact_contact {
+    id
+    code
+    mail
+    name
+    note
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllContactsGQL extends Apollo.Query<GetAllContactsQuery, GetAllContactsQueryVariables> {
+    document = GetAllContactsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllCustomersDocument = gql`
+    query GetAllCustomers {
+  contact_customer {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    type
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllCustomersGQL extends Apollo.Query<GetAllCustomersQuery, GetAllCustomersQueryVariables> {
+    document = GetAllCustomersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllProvidersDocument = gql`
+    query GetAllProviders {
+  contact_provider {
+    id
+    code
+    name
+    note
+    phone
+    mail
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllProvidersGQL extends Apollo.Query<GetAllProvidersQuery, GetAllProvidersQueryVariables> {
+    document = GetAllProvidersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetContactByIdDocument = gql`
+    query GetContactById($id: uuid!) {
+  contact_contact_by_pk(id: $id) {
+    id
+    code
+    mail
+    name
+    phone
+    note
+    addresses {
+      id
+      address
+      city
+      zip
+    }
+    cutomers {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    providers {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    createdAt
+    createdBy
+    updatedBy
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetContactByIdGQL extends Apollo.Query<GetContactByIdQuery, GetContactByIdQueryVariables> {
+    document = GetContactByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetCustomerByIdDocument = gql`
+    query GetCustomerById($id: uuid!) {
+  contact_customer_by_pk(id: $id) {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    note
+    website
+    FAX
+    type
+    addresses {
+      id
+      address
+      city
+      zip
+    }
+    contacts {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    createdAt
+    createdBy
+    updatedBy
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCustomerByIdGQL extends Apollo.Query<GetCustomerByIdQuery, GetCustomerByIdQueryVariables> {
+    document = GetCustomerByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetProviderByIdDocument = gql`
+    query GetProviderById($id: uuid!) {
+  contact_provider_by_pk(id: $id) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+    FAX
+    website
+    contacts {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    addresses {
+      id
+      address
+      city
+      zip
+    }
+    createdAt
+    createdBy
+    updatedAt
+    updatedBy
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetProviderByIdGQL extends Apollo.Query<GetProviderByIdQuery, GetProviderByIdQueryVariables> {
+    document = GetProviderByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyWarehousesDocument = gql`
+    mutation DeleteManyWarehouses($ids: [uuid!]) {
+  delete_stock_warehouse(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyWarehousesGQL extends Apollo.Mutation<DeleteManyWarehousesMutation, DeleteManyWarehousesMutationVariables> {
+    document = DeleteManyWarehousesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertTranfserDocument = gql`
+    mutation InsertTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String, $substanceid: uuid, $warehouseid: uuid) {
+  createTransferItem(
+    date: $date
+    order_itemid: $order_itemid
+    quantity: $quantity
+    status: $status
+    substanceid: $substanceid
+    warehouseid: $warehouseid
+  ) {
+    date
+    id
+    quantity
+    status
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertTranfserGQL extends Apollo.Mutation<InsertTranfserMutation, InsertTranfserMutationVariables> {
+    document = InsertTranfserDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertTransferOrderDocument = gql`
+    mutation InsertTransferOrder($date: date!, $deadline: date, $fromWarehouseid: uuid!, $toWarehouseid: uuid!, $substances: [stock_order_item_insert_input!]!) {
+  insert_stock_transfer_order_one(
+    object: {date: $date, deadline: $deadline, fromWarehouseid: $fromWarehouseid, toWarehouseid: $toWarehouseid, order_items: {data: $substances, on_conflict: {constraint: accessoryTranferOrder_pkey, update_columns: substanceid}}}
+  ) {
+    date
+    deadline
+    fromwarehouse {
+      name
+      id
+    }
+    towarehouse {
+      name
+      id
+    }
+    status
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertTransferOrderGQL extends Apollo.Mutation<InsertTransferOrderMutation, InsertTransferOrderMutationVariables> {
+    document = InsertTransferOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertWarehouseDocument = gql`
+    mutation InsertWarehouse($companyid: uuid!, $name: String!, $salesPointid: uuid) {
+  insert_stock_warehouse_one(
+    object: {companyid: $companyid, name: $name, salesPointid: $salesPointid}
+  ) {
     name
     id
     company {
@@ -30404,2471 +31529,1446 @@ export const Stock_WarehouseFragmentFragmentDoc = gql`
       id
     }
   }
-`;
-export const Product_ProductGlassFragmentFragmentDoc = gql`
-  fragment product_productGlassFragment on product_product_accessory_view {
-    code
-    label
-    price
-    unit
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertWarehouseGQL extends Apollo.Mutation<InsertWarehouseMutation, InsertWarehouseMutationVariables> {
+    document = InsertWarehouseDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
   }
-`;
-export const Management_SalesPointFragmentFragmentDoc = gql`
-  fragment management_salesPointFragment on management_salesPoint {
-    name
-    id
-  }
-`;
-export const Management_CompanyFragmentFragmentDoc = gql`
-  fragment management_companyFragment on management_company {
-    name
-    id
-  }
-`;
-export const Product_Product_Glass_ViewFragmentFragmentDoc = gql`
-  fragment product_product_glass_viewFragment on product_product_glass_view {
-    code
-    label
-    price
-    unit
-  }
-`;
-export const Product_ProductFragmentFragmentDoc = gql`
-  fragment product_productFragment on product_product {
-    code
-    label
-    unit
-    price
-  }
-`;
-export const GetAccessoriesSubstancesDocument = gql`
-  query GetAccessoriesSubstances($id: uuid!) {
-    stock_warehouse_substance(
-      where: {warehouseid: {_eq: $id}, substance: {type: {_eq: accessory}}}
-    ) {
+export const GetAccessoryWarehousesByIdDocument = gql`
+    query GetAccessoryWarehousesById($id: uuid!) {
+  stock_warehouse_substance_aggregate(where: {substance: {id: {_eq: $id}}}) {
+    aggregate {
+      sum {
+        quantity
+      }
+      max {
+        quantity
+      }
+      min {
+        quantity
+      }
+      count
+    }
+    nodes {
       quantity
+      quantity_min
       substance {
         productAccessory {
           code
           label
-          substanceid
+          price
           unit
         }
       }
+      warehouse {
+        name
+      }
     }
   }
-`;
+}
+    `;
 
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAccessoriesSubstancesGQL extends Apollo.Query<GetAccessoriesSubstancesQuery, GetAccessoriesSubstancesQueryVariables> {
-  document = GetAccessoriesSubstancesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAccessoryWarehousesByIdGQL extends Apollo.Query<GetAccessoryWarehousesByIdQuery, GetAccessoryWarehousesByIdQueryVariables> {
+    document = GetAccessoryWarehousesByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllAccessoriesStockDocument = gql`
+    query GetAllAccessoriesStock {
+  stock_warehouse_substance(where: {substance: {type: {_eq: accessory}}}) {
+    quantity
+    warehouse {
+      ...stock_warehouseFragment
+    }
+    substance {
+      productAccessory {
+        ...product_product_accessory_viewFragment
+      }
+      accessory {
+        category
+        id
+      }
+      id
+    }
   }
 }
-export const GetGlassesSubstancesDocument = gql`
-  query GetGlassesSubstances($id: uuid!) {
-    stock_warehouse_substance(
-      where: {warehouseid: {_eq: $id}, substance: {type: {_eq: glass}}}
-    ) {
+    ${Stock_WarehouseFragmentFragmentDoc}
+${Product_Product_Accessory_ViewFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllAccessoriesStockGQL extends Apollo.Query<GetAllAccessoriesStockQuery, GetAllAccessoriesStockQueryVariables> {
+    document = GetAllAccessoriesStockDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllConsumablesStockDocument = gql`
+    query GetAllConsumablesStock {
+  stock_warehouse_substance(where: {substance: {type: {_eq: consumable}}}) {
+    quantity
+    warehouse {
+      ...stock_warehouseFragment
+    }
+    substance {
+      productConsumable {
+        ...product_product_consumable_viewFragment
+      }
+      consomable {
+        category
+        id
+      }
+      id
+    }
+  }
+}
+    ${Stock_WarehouseFragmentFragmentDoc}
+${Product_Product_Consumable_ViewFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllConsumablesStockGQL extends Apollo.Query<GetAllConsumablesStockQuery, GetAllConsumablesStockQueryVariables> {
+    document = GetAllConsumablesStockDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllGlassesStockDocument = gql`
+    query GetAllGlassesStock($type: product_substance_type_enum_comparison_exp = {_eq: glass}) {
+  stock_warehouse_substance(where: {substance: {type: $type}}) {
+    quantity
+    warehouse {
+      ...stock_warehouseFragment
+    }
+    substance {
+      productGlass {
+        code
+        label
+        price
+        unit
+      }
+      glass {
+        thickness
+        type
+        color
+        id
+      }
+      id
+    }
+  }
+}
+    ${Stock_WarehouseFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllGlassesStockGQL extends Apollo.Query<GetAllGlassesStockQuery, GetAllGlassesStockQueryVariables> {
+    document = GetAllGlassesStockDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllOrdersDetailsDocument = gql`
+    query GetAllOrdersDetails {
+  stock_order_item {
+    quantity
+    status
+    substance {
+      productGlass {
+        code
+        label
+        price
+        unit
+      }
+      productAccessory {
+        code
+        label
+        price
+        unit
+      }
+    }
+    id
+    transfer_order {
+      id
+      date
+      deadline
+      fromwarehouse {
+        name
+      }
+      towarehouse {
+        name
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllOrdersDetailsGQL extends Apollo.Query<GetAllOrdersDetailsQuery, GetAllOrdersDetailsQueryVariables> {
+    document = GetAllOrdersDetailsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllTransfersOrdersDocument = gql`
+    query GetAllTransfersOrders {
+  stock_transfer_order {
+    date
+    deadline
+    fromwarehouse {
+      name
+      id
+    }
+    towarehouse {
+      name
+      id
+    }
+    status
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllTransfersOrdersGQL extends Apollo.Query<GetAllTransfersOrdersQuery, GetAllTransfersOrdersQueryVariables> {
+    document = GetAllTransfersOrdersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllWarehousesDocument = gql`
+    query GetAllWarehouses {
+  stock_warehouse {
+    id
+    name
+    company {
+      ...management_companyFragment
+    }
+    salesPoint {
+      ...management_salesPointFragment
+    }
+  }
+}
+    ${Management_CompanyFragmentFragmentDoc}
+${Management_SalesPointFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllWarehousesGQL extends Apollo.Query<GetAllWarehousesQuery, GetAllWarehousesQueryVariables> {
+    document = GetAllWarehousesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetConsumableWarehousesByIdDocument = gql`
+    query GetConsumableWarehousesById($id: uuid!) {
+  stock_warehouse_substance_aggregate(where: {substance: {id: {_eq: $id}}}) {
+    aggregate {
+      sum {
+        quantity
+      }
+      max {
+        quantity
+      }
+      min {
+        quantity
+      }
+      count
+    }
+    nodes {
+      quantity
+      substance {
+        productConsumable {
+          code
+          label
+          price
+        }
+      }
+      warehouse {
+        name
+        id
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetConsumableWarehousesByIdGQL extends Apollo.Query<GetConsumableWarehousesByIdQuery, GetConsumableWarehousesByIdQueryVariables> {
+    document = GetConsumableWarehousesByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetGlassWarehousesByIdDocument = gql`
+    query GetGlassWarehousesById($id: uuid!) {
+  stock_warehouse_substance_aggregate(where: {substance: {id: {_eq: $id}}}) {
+    aggregate {
+      sum {
+        quantity
+      }
+      max {
+        quantity
+      }
+      min {
+        quantity
+      }
+      count
+    }
+    nodes {
       quantity
       substance {
         productGlass {
           code
           label
-          substanceid
-          unit
+          price
+        }
+      }
+      warehouse {
+        name
+        id
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetGlassWarehousesByIdGQL extends Apollo.Query<GetGlassWarehousesByIdQuery, GetGlassWarehousesByIdQueryVariables> {
+    document = GetGlassWarehousesByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetTransferOrderByIdDocument = gql`
+    query GetTransferOrderById($id: Int!) {
+  stock_transfer_order_by_pk(id: $id) {
+    id
+    date
+    deadline
+    createdAt
+    createdBy
+    updatedAt
+    updatedBy
+    status
+    fromwarehouse {
+      name
+    }
+    towarehouse {
+      name
+    }
+    order_items_aggregate {
+      aggregate {
+        count(columns: id)
+        sum {
+          quantity
+        }
+      }
+      nodes {
+        quantity
+        status
+        id
+        substance {
+          productAccessory {
+            ...product_product_accessory_viewFragment
+          }
+          productGlass {
+            ...product_product_glass_viewFragment
+          }
+        }
+        item_tranfers_aggregate {
+          aggregate {
+            sum {
+              quantity
+            }
+          }
+          nodes {
+            quantity
+            status
+            id
+            date
+          }
         }
       }
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetGlassesSubstancesGQL extends Apollo.Query<GetGlassesSubstancesQuery, GetGlassesSubstancesQueryVariables> {
-  document = GetGlassesSubstancesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
 }
-export const GetShortCompaniesDocument = gql`
-  query GetShortCompanies {
-    management_company {
-      id
-      name
+    ${Product_Product_Accessory_ViewFragmentFragmentDoc}
+${Product_Product_Glass_ViewFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetTransferOrderByIdGQL extends Apollo.Query<GetTransferOrderByIdQuery, GetTransferOrderByIdQueryVariables> {
+    document = GetTransferOrderByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetShortCompaniesGQL extends Apollo.Query<GetShortCompaniesQuery, GetShortCompaniesQueryVariables> {
-  document = GetShortCompaniesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+export const GetWarehouseByIdDocument = gql`
+    query GetWarehouseById($id: uuid!) {
+  stock_warehouse_by_pk(id: $id) {
+    id
+    name
+    salesPoint {
+      name
+      id
+    }
+    company {
+      name
+      id
+    }
+    createdAt
+    createdBy
+    updatedAt
+    updatedBy
   }
 }
-export const GetShortProvidersDocument = gql`
-  query GetShortProviders {
-    contact_provider {
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetWarehouseByIdGQL extends Apollo.Query<GetWarehouseByIdQuery, GetWarehouseByIdQueryVariables> {
+    document = GetWarehouseByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteCompanyDocument = gql`
+    mutation DeleteCompany($id: uuid!) {
+  delete_management_company_by_pk(id: $id) {
+    name
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteCompanyGQL extends Apollo.Mutation<DeleteCompanyMutation, DeleteCompanyMutationVariables> {
+    document = DeleteCompanyDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteSalePointDocument = gql`
+    mutation DeleteSalePoint($id: uuid!) {
+  delete_management_salesPoint_by_pk(id: $id) {
+    name
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteSalePointGQL extends Apollo.Mutation<DeleteSalePointMutation, DeleteSalePointMutationVariables> {
+    document = DeleteSalePointDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteUserDocument = gql`
+    mutation DeleteUser($id: String!) {
+  delete_management_userProfile_by_pk(id: $id) {
+    username
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteUserGQL extends Apollo.Mutation<DeleteUserMutation, DeleteUserMutationVariables> {
+    document = DeleteUserDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertCompanyDocument = gql`
+    mutation InsertCompany($CNSS: String!, $ICE: String!, $IF: String!, $RC: String!, $address: String!, $email: String, $name: String!, $phone: String!, $website: String) {
+  insert_management_company_one(
+    object: {CNSS: $CNSS, ICE: $ICE, IF: $IF, RC: $RC, address: $address, email: $email, name: $name, phone: $phone, website: $website}
+  ) {
+    id
+    name
+    phone
+    CNSS
+    ICE
+    IF
+    RC
+    address
+    email
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertCompanyGQL extends Apollo.Mutation<InsertCompanyMutation, InsertCompanyMutationVariables> {
+    document = InsertCompanyDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertSalePointDocument = gql`
+    mutation InsertSalePoint($address: String!, $email: String, $name: String!, $phone: String!, $fax: String) {
+  insert_management_salesPoint_one(
+    object: {address: $address, email: $email, name: $name, phone: $phone, fax: $fax}
+  ) {
+    id
+    address
+    email
+    fax
+    name
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertSalePointGQL extends Apollo.Mutation<InsertSalePointMutation, InsertSalePointMutationVariables> {
+    document = InsertSalePointDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertUserDocument = gql`
+    mutation InsertUser($email: String!, $CIN: String, $active: Boolean = true, $firstname: String, $lastname: String, $password: String!, $phone: String, $role: String!, $SalesPointsid: uuid, $username: String) {
+  SignUp(
+    email: $email
+    role: $role
+    firstname: $firstname
+    CIN: $CIN
+    active: $active
+    lastname: $lastname
+    password: $password
+    phone: $phone
+    SalesPointsid: $SalesPointsid
+    username: $username
+  ) {
+    CIN
+    active
+    firstname
+    id
+    lastname
+    phone
+    username
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertUserGQL extends Apollo.Mutation<InsertUserMutation, InsertUserMutationVariables> {
+    document = InsertUserDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateCompanyDocument = gql`
+    mutation UpdateCompany($CNSS: String, $ICE: String, $IF: String, $RC: String, $address: String, $email: String, $name: String, $phone: String, $website: String, $id: uuid!) {
+  update_management_company_by_pk(
+    pk_columns: {id: $id}
+    _set: {CNSS: $CNSS, ICE: $ICE, IF: $IF, RC: $RC, address: $address, email: $email, name: $name, phone: $phone, website: $website}
+  ) {
+    id
+    name
+    phone
+    CNSS
+    ICE
+    IF
+    RC
+    address
+    email
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateCompanyGQL extends Apollo.Mutation<UpdateCompanyMutation, UpdateCompanyMutationVariables> {
+    document = UpdateCompanyDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateSalePointDocument = gql`
+    mutation UpdateSalePoint($id: uuid!, $address: String = "", $email: String = "", $fax: String = "", $name: String = "", $phone: String = "") {
+  update_management_salesPoint_by_pk(
+    pk_columns: {id: $id}
+    _set: {address: $address, email: $email, fax: $fax, id: $id, name: $name, phone: $phone}
+  ) {
+    id
+    address
+    email
+    fax
+    name
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateSalePointGQL extends Apollo.Mutation<UpdateSalePointMutation, UpdateSalePointMutationVariables> {
+    document = UpdateSalePointDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateUserDocument = gql`
+    mutation UpdateUser($CIN: String, $SalesPointsid: uuid, $active: Boolean = true, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = admin, $id: String!) {
+  update_management_userProfile_by_pk(
+    pk_columns: {id: $id}
+    _set: {CIN: $CIN, SalesPointsid: $SalesPointsid, active: $active, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}
+  ) {
+    id
+    active
+    firstname
+    lastname
+    phone
+    username
+    user_role {
+      name
+      description
+    }
+    SalesPoint {
+      name
+      phone
+      address
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateUserGQL extends Apollo.Mutation<UpdateUserMutation, UpdateUserMutationVariables> {
+    document = UpdateUserDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllCompaniesDocument = gql`
+    query GetAllCompanies {
+  management_company {
+    id
+    CNSS
+    ICE
+    IF
+    RC
+    address
+    email
+    name
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllCompaniesGQL extends Apollo.Query<GetAllCompaniesQuery, GetAllCompaniesQueryVariables> {
+    document = GetAllCompaniesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllSalesPointsDocument = gql`
+    query GetAllSalesPoints {
+  management_salesPoint {
+    address
+    email
+    fax
+    id
+    name
+    phone
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllSalesPointsGQL extends Apollo.Query<GetAllSalesPointsQuery, GetAllSalesPointsQueryVariables> {
+    document = GetAllSalesPointsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllUsersDocument = gql`
+    query GetAllUsers {
+  management_userProfile {
+    CIN
+    active
+    firstname
+    id
+    lastname
+    phone
+    role
+    username
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllUsersGQL extends Apollo.Query<GetAllUsersQuery, GetAllUsersQueryVariables> {
+    document = GetAllUsersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetCompanyByIdDocument = gql`
+    query GetCompanyById($id: uuid!) {
+  management_company_by_pk(id: $id) {
+    CNSS
+    ICE
+    IF
+    RC
+    address
+    email
+    name
+    phone
+    website
+    createdAt
+    createdBy
+    updatedAt
+    updatedBy
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCompanyByIdGQL extends Apollo.Query<GetCompanyByIdQuery, GetCompanyByIdQueryVariables> {
+    document = GetCompanyByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetSalePointByIdDocument = gql`
+    query GetSalePointById($id: uuid!) {
+  management_salesPoint_by_pk(id: $id) {
+    id
+    address
+    email
+    fax
+    name
+    phone
+    usersProfiles {
+      id
+      active
+      firstname
+      lastname
+      phone
+      username
+      user_role {
+        name
+        description
+      }
+    }
+    createdBy
+    updatedBy
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetSalePointByIdGQL extends Apollo.Query<GetSalePointByIdQuery, GetSalePointByIdQueryVariables> {
+    document = GetSalePointByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetUserByIdDocument = gql`
+    query getUserById($id: String!) {
+  management_userProfile_by_pk(id: $id) {
+    CIN
+    active
+    createdAt
+    createdBy
+    email
+    firstname
+    id
+    joinUs
+    lastname
+    leftUs
+    phone
+    role
+    updatedAt
+    updatedBy
+    username
+    user_role {
+      description
+      name
+    }
+    SalesPoint {
+      name
+      phone
+      address
+    }
+    SalesPointsid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetUserByIdGQL extends Apollo.Query<GetUserByIdQuery, GetUserByIdQueryVariables> {
+    document = GetUserByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddGlassColorDocument = gql`
+    mutation AddGlassColor($color: String) {
+  insert_product_glassColor_one(object: {color: $color}) {
+    color
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddGlassColorGQL extends Apollo.Mutation<AddGlassColorMutation, AddGlassColorMutationVariables> {
+    document = AddGlassColorDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddGlassTypeDocument = gql`
+    mutation AddGlassType($type: String) {
+  insert_product_glassType_one(object: {type: $type}) {
+    type
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddGlassTypeGQL extends Apollo.Mutation<AddGlassTypeMutation, AddGlassTypeMutationVariables> {
+    document = AddGlassTypeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyDocument = gql`
+    mutation DeleteMany($codes: [String!]) {
+  delete_product_product(where: {code: {_in: $codes}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyGQL extends Apollo.Mutation<DeleteManyMutation, DeleteManyMutationVariables> {
+    document = DeleteManyDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteOneDocument = gql`
+    mutation DeleteOne($code: String!) {
+  delete_product_product_by_pk(code: $code) {
+    code
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteOneGQL extends Apollo.Mutation<DeleteOneMutation, DeleteOneMutationVariables> {
+    document = DeleteOneDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertAccessoryDocument = gql`
+    mutation InsertAccessory($product: product_product_insert_input!, $quota: numeric, $category: product_accessoryTypes_enum = ACCESSOIRE, $subctance: product_substance_insert_input! = {type: accessory}) {
+  insert_product_accessory_one(
+    object: {product: {data: $product}, quota: $quota, category: $category, substance: {data: $subctance}}
+  ) {
+    id
+    category
+    quota
+    product {
       code
-      name
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetShortProvidersGQL extends Apollo.Query<GetShortProvidersQuery, GetShortProvidersQueryVariables> {
-  document = GetShortProvidersDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GeShortSalePointsDocument = gql`
-  query GeShortSalePoints {
-    management_salesPoint {
-      name
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GeShortSalePointsGQL extends Apollo.Query<GeShortSalePointsQuery, GeShortSalePointsQueryVariables> {
-  document = GeShortSalePointsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetShortSubstancesDocument = gql`
-  query GetShortSubstances {
-    product_product {
       label
-      code
-      glass {
-        substanceid
-      }
-      consumable {
-        substanceid
-      }
-      accessory {
-        substanceid
-      }
+      unit
       price
       priceMax
       priceMin
+      companies {
+        name
+        id
+      }
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetShortSubstancesGQL extends Apollo.Query<GetShortSubstancesQuery, GetShortSubstancesQueryVariables> {
-  document = GetShortSubstancesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
 }
-export const GetShortWArehousesDocument = gql`
-  query GetShortWArehouses {
-    stock_warehouse {
-      name
-      id
-      companyid
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertAccessoryGQL extends Apollo.Mutation<InsertAccessoryMutation, InsertAccessoryMutationVariables> {
+    document = InsertAccessoryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetShortWArehousesGQL extends Apollo.Query<GetShortWArehousesQuery, GetShortWArehousesQueryVariables> {
-  document = GetShortWArehousesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+export const InsertConsumableDocument = gql`
+    mutation InsertConsumable($product: product_product_insert_input!, $category: product_consumableCategory_enum, $subsctance: product_substance_insert_input! = {type: consumable}) {
+  insert_product_consumable_one(
+    object: {product: {data: $product}, category: $category, substance: {data: $subsctance}}
+  ) {
+    id
+    product {
+      code
+      label
+      price
+      unit
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+    category
   }
 }
-export const GetProductsDocument = gql`
-  query GetProducts {
-    product_product(where: {_not: {consumable: {category: {_eq: MP}}}}) {
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertConsumableGQL extends Apollo.Mutation<InsertConsumableMutation, InsertConsumableMutationVariables> {
+    document = InsertConsumableDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertCustomerProductDocument = gql`
+    mutation InsertCustomerProduct($code: String, $label: String, $price: Float = 0, $priceMax: Float = 0, $priceMin: Float = 0, $thickness: numeric) {
+  insert_product_customer_product_one(
+    object: {product: {data: {code: $code, label: $label, unit: m2, price: $price, priceMax: $priceMax, priceMin: $priceMin}}, thickness: $thickness}
+  ) {
+    id
+    thickness
+    product {
+      code
+      label
+      unit
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertCustomerProductGQL extends Apollo.Mutation<InsertCustomerProductMutation, InsertCustomerProductMutationVariables> {
+    document = InsertCustomerProductDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertGlassDocument = gql`
+    mutation InsertGlass($thickness: Int, $subsctance: product_substance_insert_input! = {type: glass}, $product: product_product_insert_input!) {
+  insert_product_glass_one(
+    object: {thickness: $thickness, product: {data: $product}, substance: {data: $subsctance}}
+  ) {
+    color
+    id
+    thickness
+    type
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertGlassGQL extends Apollo.Mutation<InsertGlassMutation, InsertGlassMutationVariables> {
+    document = InsertGlassDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertServiceDocument = gql`
+    mutation InsertService($serviceConfigid: uuid, $product: product_product_insert_input!, $paramValues: jsonb) {
+  insert_product_service_one(
+    object: {serviceConfigid: $serviceConfigid, product: {data: $product}, paramValues: $paramValues}
+  ) {
+    product {
       code
       label
       price
       priceMax
       priceMin
       unit
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetProductsGQL extends Apollo.Query<GetProductsQuery, GetProductsQueryVariables> {
-  document = GetProductsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AddContactAddressDocument = gql`
-  mutation AddContactAddress($address: contact_address_insert_input!, $id: uuid) {
-    insert_contact_contact_address_one(
-      object: {address: {data: $address}, contactid: $id}
-    ) {
-      address {
-        address
-        city
+      companies {
         id
-        zip
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AddContactAddressGQL extends Apollo.Mutation<AddContactAddressMutation, AddContactAddressMutationVariables> {
-  document = AddContactAddressDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AddCustomerAddressDocument = gql`
-  mutation AddCustomerAddress($address: contact_address_insert_input!, $id: uuid) {
-    insert_contact_customer_address_one(
-      object: {address: {data: $address}, customerid: $id}
-    ) {
-      address {
-        address
-        city
-        id
-        zip
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AddCustomerAddressGQL extends Apollo.Mutation<AddCustomerAddressMutation, AddCustomerAddressMutationVariables> {
-  document = AddCustomerAddressDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AddCustomerContactDocument = gql`
-  mutation AddCustomerContact($id: uuid!, $contact: contact_contact_insert_input!) {
-    insert_contact_customer_contact_one(
-      object: {customerid: $id, contact: {data: $contact}}
-    ) {
-      contact {
-        code
-        mail
-        name
-        note
-        phone
-        id
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AddCustomerContactGQL extends Apollo.Mutation<AddCustomerContactMutation, AddCustomerContactMutationVariables> {
-  document = AddCustomerContactDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AddProviderAddressDocument = gql`
-  mutation AddProviderAddress($address: contact_address_insert_input!, $id: uuid) {
-    insert_contact_provider_address_one(
-      object: {address: {data: $address}, providerid: $id}
-    ) {
-      address {
-        address
-        city
-        id
-        zip
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AddProviderAddressGQL extends Apollo.Mutation<AddProviderAddressMutation, AddProviderAddressMutationVariables> {
-  document = AddProviderAddressDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AddProviderContactDocument = gql`
-  mutation AddProviderContact($id: uuid!, $contact: contact_contact_insert_input!) {
-    insert_contact_provider_contact_one(
-      object: {providerid: $id, contact: {data: $contact}}
-    ) {
-      contact {
-        code
-        mail
-        name
-        note
-        phone
-        id
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AddProviderContactGQL extends Apollo.Mutation<AddProviderContactMutation, AddProviderContactMutationVariables> {
-  document = AddProviderContactDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AffectCustomerContactDocument = gql`
-  mutation AffectCustomerContact($affectedContacts: [contact_customer_contact_insert_input!]!) {
-    insert_contact_customer_contact(objects: $affectedContacts) {
-      returning {
-        contact {
-          code
-          id
-          mail
-          name
-          note
-          phone
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AffectCustomerContactGQL extends Apollo.Mutation<AffectCustomerContactMutation, AffectCustomerContactMutationVariables> {
-  document = AffectCustomerContactDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AffectProviderContactDocument = gql`
-  mutation AffectProviderContact($affectedContacts: [contact_provider_contact_insert_input!]!) {
-    insert_contact_provider_contact(objects: $affectedContacts) {
-      returning {
-        contact {
-          code
-          id
-          mail
-          name
-          note
-          phone
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AffectProviderContactGQL extends Apollo.Mutation<AffectProviderContactMutation, AffectProviderContactMutationVariables> {
-  document = AffectProviderContactDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteContactDocument = gql`
-  mutation DeleteContact($id: uuid!) {
-    delete_contact_contact_by_pk(id: $id) {
-      id
-      name
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteContactGQL extends Apollo.Mutation<DeleteContactMutation, DeleteContactMutationVariables> {
-  document = DeleteContactDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteContactAddressDocument = gql`
-  mutation DeleteContactAddress($addressid: uuid!, $id: uuid!) {
-    delete_contact_contact_address_by_pk(addressid: $addressid, contactid: $id) {
-      addressid
-      contactid
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteContactAddressGQL extends Apollo.Mutation<DeleteContactAddressMutation, DeleteContactAddressMutationVariables> {
-  document = DeleteContactAddressDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteCustomerDocument = gql`
-  mutation DeleteCustomer($id: uuid!) {
-    delete_contact_customer_by_pk(id: $id) {
-      id
-      name
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteCustomerGQL extends Apollo.Mutation<DeleteCustomerMutation, DeleteCustomerMutationVariables> {
-  document = DeleteCustomerDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteCustomerAddressDocument = gql`
-  mutation DeleteCustomerAddress($addressid: uuid!, $id: uuid!) {
-    delete_contact_customer_address_by_pk(addressid: $addressid, customerid: $id) {
-      addressid
-      customerid
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteCustomerAddressGQL extends Apollo.Mutation<DeleteCustomerAddressMutation, DeleteCustomerAddressMutationVariables> {
-  document = DeleteCustomerAddressDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteCustomerContactDocument = gql`
-  mutation DeleteCustomerContact($contactid: uuid!, $id: uuid!) {
-    delete_contact_customer_contact_by_pk(contactid: $contactid, customerid: $id) {
-      contactid
-      customerid
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteCustomerContactGQL extends Apollo.Mutation<DeleteCustomerContactMutation, DeleteCustomerContactMutationVariables> {
-  document = DeleteCustomerContactDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteManyContactsDocument = gql`
-  mutation DeleteManyContacts($ids: [uuid!]) {
-    delete_contact_contact(where: {id: {_in: $ids}}) {
-      returning {
-        id
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteManyContactsGQL extends Apollo.Mutation<DeleteManyContactsMutation, DeleteManyContactsMutationVariables> {
-  document = DeleteManyContactsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteManyCustomersDocument = gql`
-  mutation DeleteManyCustomers($ids: [uuid!]!) {
-    delete_contact_customer(where: {id: {_in: $ids}}) {
-      returning {
-        id
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteManyCustomersGQL extends Apollo.Mutation<DeleteManyCustomersMutation, DeleteManyCustomersMutationVariables> {
-  document = DeleteManyCustomersDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteManyProvidersDocument = gql`
-  mutation DeleteManyProviders($ids: [uuid!]) {
-    delete_contact_provider(where: {id: {_in: $ids}}) {
-      returning {
-        id
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteManyProvidersGQL extends Apollo.Mutation<DeleteManyProvidersMutation, DeleteManyProvidersMutationVariables> {
-  document = DeleteManyProvidersDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteProviderDocument = gql`
-  mutation DeleteProvider($id: uuid!) {
-    delete_contact_provider_by_pk(id: $id) {
-      id
-      name
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteProviderGQL extends Apollo.Mutation<DeleteProviderMutation, DeleteProviderMutationVariables> {
-  document = DeleteProviderDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteProviderAddressDocument = gql`
-  mutation DeleteProviderAddress($addressid: uuid!, $id: uuid!) {
-    delete_contact_provider_address_by_pk(addressid: $addressid, providerid: $id) {
-      addressid
-      providerid
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteProviderAddressGQL extends Apollo.Mutation<DeleteProviderAddressMutation, DeleteProviderAddressMutationVariables> {
-  document = DeleteProviderAddressDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteProviderContactDocument = gql`
-  mutation DeleteProviderContact($contactid: uuid!, $id: uuid!) {
-    delete_contact_provider_contact_by_pk(contactid: $contactid, providerid: $id) {
-      contactid
-      providerid
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteProviderContactGQL extends Apollo.Mutation<DeleteProviderContactMutation, DeleteProviderContactMutationVariables> {
-  document = DeleteProviderContactDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertContactDocument = gql`
-  mutation InsertContact($code: String, $mail: String, $name: String, $note: String, $phone: String, $addresses: [contact_contact_address_insert_input!]! = [], $customers: [contact_customer_contact_insert_input!]! = [], $providers: [contact_provider_contact_insert_input!]! = []) {
-    insert_contact_contact_one(
-      object: {code: $code, mail: $mail, name: $name, note: $note, phone: $phone, contact_addresses: {data: $addresses}, contact_customers: {data: $customers}, contact_providers: {data: $providers}}
-    ) {
-      id
-      code
-      mail
-      name
-      note
-      phone
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertContactGQL extends Apollo.Mutation<InsertContactMutation, InsertContactMutationVariables> {
-  document = InsertContactDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertCustomerDocument = gql`
-  mutation InsertCustomer($FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $addresses: [contact_customer_address_insert_input!]! = [], $ICE: String, $IF: String, $type: String, $contacts: [contact_customer_contact_insert_input!]! = []) {
-    insert_contact_customer_one(
-      object: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, customer_addresses: {data: $addresses}, ICE: $ICE, IF: $IF, type: $type, customer_contacts: {data: $contacts}}
-    ) {
-      id
-      ICE
-      IF
-      code
-      mail
-      name
-      phone
-      type
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertCustomerGQL extends Apollo.Mutation<InsertCustomerMutation, InsertCustomerMutationVariables> {
-  document = InsertCustomerDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertProviderDocument = gql`
-  mutation InsertProvider($FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $addresses: [contact_provider_address_insert_input!]! = [], $contacts: [contact_provider_contact_insert_input!]! = []) {
-    insert_contact_provider_one(
-      object: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, provider_addresses: {data: $addresses}, provider_contacts: {data: $contacts}}
-    ) {
-      id
-      code
-      name
-      note
-      phone
-      mail
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertProviderGQL extends Apollo.Mutation<InsertProviderMutation, InsertProviderMutationVariables> {
-  document = InsertProviderDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const UpdateContactDocument = gql`
-  mutation updateContact($id: uuid!, $code: String, $mail: String, $name: String, $note: String, $phone: String) {
-    update_contact_contact_by_pk(
-      pk_columns: {id: $id}
-      _set: {code: $code, mail: $mail, name: $name, note: $note, phone: $phone}
-    ) {
-      id
-      code
-      mail
-      name
-      note
-      phone
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateContactGQL extends Apollo.Mutation<UpdateContactMutation, UpdateContactMutationVariables> {
-  document = UpdateContactDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const UpdateContactAddressesDocument = gql`
-  mutation updateContactAddresses($contactAddresses: [contact_contact_address_insert_input!]!) {
-    insert_contact_contact_address(objects: $contactAddresses) {
-      affected_rows
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateContactAddressesGQL extends Apollo.Mutation<UpdateContactAddressesMutation, UpdateContactAddressesMutationVariables> {
-  document = UpdateContactAddressesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const UpdateCustomerDocument = gql`
-  mutation updateCustomer($id: uuid!, $FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String, $ICE: String, $IF: String, $type: String) {
-    update_contact_customer_by_pk(
-      pk_columns: {id: $id}
-      _set: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website, ICE: $ICE, IF: $IF, type: $type}
-    ) {
-      id
-      ICE
-      IF
-      code
-      mail
-      name
-      phone
-      type
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateCustomerGQL extends Apollo.Mutation<UpdateCustomerMutation, UpdateCustomerMutationVariables> {
-  document = UpdateCustomerDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const UpdateProviderDocument = gql`
-  mutation updateProvider($id: uuid!, $FAX: String, $code: String, $mail: String, $name: String, $note: String, $phone: String, $website: String) {
-    update_contact_provider_by_pk(
-      pk_columns: {id: $id}
-      _set: {FAX: $FAX, code: $code, mail: $mail, name: $name, note: $note, phone: $phone, website: $website}
-    ) {
-      id
-      code
-      name
-      note
-      phone
-      mail
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateProviderGQL extends Apollo.Mutation<UpdateProviderMutation, UpdateProviderMutationVariables> {
-  document = UpdateProviderDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllContactsDocument = gql`
-  query GetAllContacts {
-    contact_contact {
-      id
-      code
-      mail
-      name
-      note
-      phone
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllContactsGQL extends Apollo.Query<GetAllContactsQuery, GetAllContactsQueryVariables> {
-  document = GetAllContactsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllCustomersDocument = gql`
-  query GetAllCustomers {
-    contact_customer {
-      id
-      ICE
-      IF
-      code
-      mail
-      name
-      phone
-      type
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllCustomersGQL extends Apollo.Query<GetAllCustomersQuery, GetAllCustomersQueryVariables> {
-  document = GetAllCustomersDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllProvidersDocument = gql`
-  query GetAllProviders {
-    contact_provider {
-      id
-      code
-      name
-      note
-      phone
-      mail
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllProvidersGQL extends Apollo.Query<GetAllProvidersQuery, GetAllProvidersQueryVariables> {
-  document = GetAllProvidersDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetContactByIdDocument = gql`
-  query GetContactById($id: uuid!) {
-    contact_contact_by_pk(id: $id) {
-      id
-      code
-      mail
-      name
-      phone
-      note
-      addresses {
-        id
-        address
-        city
-        zip
-      }
-      cutomers {
-        id
-        code
-        name
-        phone
-        mail
-        note
-      }
-      providers {
-        id
-        code
-        name
-        phone
-        mail
-        note
-      }
-      createdAt
-      createdBy
-      updatedBy
-      updatedAt
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetContactByIdGQL extends Apollo.Query<GetContactByIdQuery, GetContactByIdQueryVariables> {
-  document = GetContactByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetCustomerByIdDocument = gql`
-  query GetCustomerById($id: uuid!) {
-    contact_customer_by_pk(id: $id) {
-      id
-      ICE
-      IF
-      code
-      mail
-      name
-      phone
-      note
-      website
-      FAX
-      type
-      addresses {
-        id
-        address
-        city
-        zip
-      }
-      contacts {
-        id
-        code
-        name
-        phone
-        mail
-        note
-      }
-      createdAt
-      createdBy
-      updatedBy
-      updatedAt
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetCustomerByIdGQL extends Apollo.Query<GetCustomerByIdQuery, GetCustomerByIdQueryVariables> {
-  document = GetCustomerByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetProviderByIdDocument = gql`
-  query GetProviderById($id: uuid!) {
-    contact_provider_by_pk(id: $id) {
-      id
-      code
-      name
-      note
-      phone
-      mail
-      FAX
-      website
-      contacts {
-        id
-        code
-        name
-        phone
-        mail
-        note
-      }
-      addresses {
-        id
-        address
-        city
-        zip
-      }
-      createdAt
-      createdBy
-      updatedAt
-      updatedBy
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetProviderByIdGQL extends Apollo.Query<GetProviderByIdQuery, GetProviderByIdQueryVariables> {
-  document = GetProviderByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteManyWarehousesDocument = gql`
-  mutation DeleteManyWarehouses($ids: [uuid!]) {
-    delete_stock_warehouse(where: {id: {_in: $ids}}) {
-      returning {
-        id
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteManyWarehousesGQL extends Apollo.Mutation<DeleteManyWarehousesMutation, DeleteManyWarehousesMutationVariables> {
-  document = DeleteManyWarehousesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertTranfserDocument = gql`
-  mutation InsertTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String, $substanceid: uuid, $warehouseid: uuid) {
-    createTransferItem(
-      date: $date
-      order_itemid: $order_itemid
-      quantity: $quantity
-      status: $status
-      substanceid: $substanceid
-      warehouseid: $warehouseid
-    ) {
-      date
-      id
-      quantity
-      status
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertTranfserGQL extends Apollo.Mutation<InsertTranfserMutation, InsertTranfserMutationVariables> {
-  document = InsertTranfserDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertTransferOrderDocument = gql`
-  mutation InsertTransferOrder($date: date!, $deadline: date, $fromWarehouseid: uuid!, $toWarehouseid: uuid!, $substances: [stock_order_item_insert_input!]!) {
-    insert_stock_transfer_order_one(
-      object: {date: $date, deadline: $deadline, fromWarehouseid: $fromWarehouseid, toWarehouseid: $toWarehouseid, order_items: {data: $substances, on_conflict: {constraint: accessoryTranferOrder_pkey, update_columns: substanceid}}}
-    ) {
-      date
-      deadline
-      fromwarehouse {
-        name
-        id
-      }
-      towarehouse {
-        name
-        id
-      }
-      status
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertTransferOrderGQL extends Apollo.Mutation<InsertTransferOrderMutation, InsertTransferOrderMutationVariables> {
-  document = InsertTransferOrderDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertWarehouseDocument = gql`
-  mutation InsertWarehouse($companyid: uuid!, $name: String!, $salesPointid: uuid) {
-    insert_stock_warehouse_one(
-      object: {companyid: $companyid, name: $name, salesPointid: $salesPointid}
-    ) {
-      name
-      id
-      company {
-        name
-        id
-      }
-      salesPoint {
-        name
-        id
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertWarehouseGQL extends Apollo.Mutation<InsertWarehouseMutation, InsertWarehouseMutationVariables> {
-  document = InsertWarehouseDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAccessoryWarehousesByIdDocument = gql`
-  query GetAccessoryWarehousesById($id: uuid!) {
-    stock_warehouse_substance_aggregate(where: {substance: {id: {_eq: $id}}}) {
-      aggregate {
-        sum {
-          quantity
-        }
-        max {
-          quantity
-        }
-        min {
-          quantity
-        }
-        count
-      }
-      nodes {
-        quantity
-        quantity_min
-        substance {
-          productAccessory {
-            code
-            label
-            price
-            unit
-          }
-        }
-        warehouse {
-          name
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAccessoryWarehousesByIdGQL extends Apollo.Query<GetAccessoryWarehousesByIdQuery, GetAccessoryWarehousesByIdQueryVariables> {
-  document = GetAccessoryWarehousesByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllAccessoriesStockDocument = gql`
-  query GetAllAccessoriesStock {
-    stock_warehouse_substance(where: {substance: {type: {_eq: accessory}}}) {
-      quantity
-      warehouse {
-        ...stock_warehouseFragment
-      }
-      substance {
-        productAccessory {
-          ...product_product_accessory_viewFragment
-        }
-        accessory {
-          category
-          id
-        }
-        id
-      }
-    }
-  }
-  ${Stock_WarehouseFragmentFragmentDoc}
-${Product_Product_Accessory_ViewFragmentFragmentDoc}`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllAccessoriesStockGQL extends Apollo.Query<GetAllAccessoriesStockQuery, GetAllAccessoriesStockQueryVariables> {
-  document = GetAllAccessoriesStockDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllConsumablesStockDocument = gql`
-  query GetAllConsumablesStock {
-    stock_warehouse_substance(where: {substance: {type: {_eq: consumable}}}) {
-      quantity
-      warehouse {
-        ...stock_warehouseFragment
-      }
-      substance {
-        productConsumable {
-          ...product_product_consumable_viewFragment
-        }
-        consomable {
-          category
-          id
-        }
-        id
-      }
-    }
-  }
-  ${Stock_WarehouseFragmentFragmentDoc}
-${Product_Product_Consumable_ViewFragmentFragmentDoc}`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllConsumablesStockGQL extends Apollo.Query<GetAllConsumablesStockQuery, GetAllConsumablesStockQueryVariables> {
-  document = GetAllConsumablesStockDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllGlassesStockDocument = gql`
-  query GetAllGlassesStock($type: product_substance_type_enum_comparison_exp = {_eq: glass}) {
-    stock_warehouse_substance(where: {substance: {type: $type}}) {
-      quantity
-      warehouse {
-        ...stock_warehouseFragment
-      }
-      substance {
-        productGlass {
-          code
-          label
-          price
-          unit
-        }
-        glass {
-          thickness
-          type
-          color
-          id
-        }
-        id
-      }
-    }
-  }
-${Stock_WarehouseFragmentFragmentDoc}`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllGlassesStockGQL extends Apollo.Query<GetAllGlassesStockQuery, GetAllGlassesStockQueryVariables> {
-  document = GetAllGlassesStockDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllOrdersDetailsDocument = gql`
-  query GetAllOrdersDetails {
-    stock_order_item {
-      quantity
-      status
-      substance {
-        productGlass {
-          code
-          label
-          price
-          unit
-        }
-        productAccessory {
-          code
-          label
-          price
-          unit
-        }
-      }
-      id
-      transfer_order {
-        id
-        date
-        deadline
-        fromwarehouse {
-          name
-        }
-        towarehouse {
-          name
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllOrdersDetailsGQL extends Apollo.Query<GetAllOrdersDetailsQuery, GetAllOrdersDetailsQueryVariables> {
-  document = GetAllOrdersDetailsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllTransfersOrdersDocument = gql`
-  query GetAllTransfersOrders {
-    stock_transfer_order {
-      date
-      deadline
-      fromwarehouse {
-        name
-        id
-      }
-      towarehouse {
-        name
-        id
-      }
-      status
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllTransfersOrdersGQL extends Apollo.Query<GetAllTransfersOrdersQuery, GetAllTransfersOrdersQueryVariables> {
-  document = GetAllTransfersOrdersDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllWarehousesDocument = gql`
-  query GetAllWarehouses {
-    stock_warehouse {
-      id
-      name
-      company {
-        ...management_companyFragment
-      }
-      salesPoint {
-        ...management_salesPointFragment
-      }
-    }
-  }
-  ${Management_CompanyFragmentFragmentDoc}
-${Management_SalesPointFragmentFragmentDoc}`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllWarehousesGQL extends Apollo.Query<GetAllWarehousesQuery, GetAllWarehousesQueryVariables> {
-  document = GetAllWarehousesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetConsumableWarehousesByIdDocument = gql`
-  query GetConsumableWarehousesById($id: uuid!) {
-    stock_warehouse_substance_aggregate(where: {substance: {id: {_eq: $id}}}) {
-      aggregate {
-        sum {
-          quantity
-        }
-        max {
-          quantity
-        }
-        min {
-          quantity
-        }
-        count
-      }
-      nodes {
-        quantity
-        substance {
-          productConsumable {
-            code
-            label
-            price
-          }
-        }
-        warehouse {
-          name
-          id
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetConsumableWarehousesByIdGQL extends Apollo.Query<GetConsumableWarehousesByIdQuery, GetConsumableWarehousesByIdQueryVariables> {
-  document = GetConsumableWarehousesByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetGlassWarehousesByIdDocument = gql`
-  query GetGlassWarehousesById($id: uuid!) {
-    stock_warehouse_substance_aggregate(where: {substance: {id: {_eq: $id}}}) {
-      aggregate {
-        sum {
-          quantity
-        }
-        max {
-          quantity
-        }
-        min {
-          quantity
-        }
-        count
-      }
-      nodes {
-        quantity
-        substance {
-          productGlass {
-            code
-            label
-            price
-          }
-        }
-        warehouse {
-          name
-          id
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetGlassWarehousesByIdGQL extends Apollo.Query<GetGlassWarehousesByIdQuery, GetGlassWarehousesByIdQueryVariables> {
-  document = GetGlassWarehousesByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetTransferOrderByIdDocument = gql`
-  query GetTransferOrderById($id: Int!) {
-    stock_transfer_order_by_pk(id: $id) {
-      id
-      date
-      deadline
-      createdAt
-      createdBy
-      updatedAt
-      updatedBy
-      status
-      fromwarehouse {
         name
       }
-      towarehouse {
-        name
-      }
-      order_items_aggregate {
-        aggregate {
-          count(columns: id)
-          sum {
-            quantity
-          }
-        }
-        nodes {
-          quantity
-          status
-          id
-          substance {
-            productAccessory {
-              ...product_product_accessory_viewFragment
-            }
-            productGlass {
-              ...product_product_glass_viewFragment
-            }
-          }
-          item_tranfers_aggregate {
-            aggregate {
-              sum {
-                quantity
-              }
-            }
-            nodes {
-              quantity
-              status
-              id
-              date
-            }
-          }
-        }
-      }
     }
   }
-  ${Product_Product_Accessory_ViewFragmentFragmentDoc}
-${Product_Product_Glass_ViewFragmentFragmentDoc}`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetTransferOrderByIdGQL extends Apollo.Query<GetTransferOrderByIdQuery, GetTransferOrderByIdQueryVariables> {
-  document = GetTransferOrderByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
 }
-export const GetWarehouseByIdDocument = gql`
-  query GetWarehouseById($id: uuid!) {
-    stock_warehouse_by_pk(id: $id) {
-      id
-      name
-      salesPoint {
-        name
-        id
-      }
-      company {
-        name
-        id
-      }
-      createdAt
-      createdBy
-      updatedAt
-      updatedBy
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertServiceGQL extends Apollo.Mutation<InsertServiceMutation, InsertServiceMutationVariables> {
+    document = InsertServiceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetWarehouseByIdGQL extends Apollo.Query<GetWarehouseByIdQuery, GetWarehouseByIdQueryVariables> {
-  document = GetWarehouseByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteCompanyDocument = gql`
-  mutation DeleteCompany($id: uuid!) {
-    delete_management_company_by_pk(id: $id) {
-      name
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteCompanyGQL extends Apollo.Mutation<DeleteCompanyMutation, DeleteCompanyMutationVariables> {
-  document = DeleteCompanyDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteSalePointDocument = gql`
-  mutation DeleteSalePoint($id: uuid!) {
-    delete_management_salesPoint_by_pk(id: $id) {
-      name
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteSalePointGQL extends Apollo.Mutation<DeleteSalePointMutation, DeleteSalePointMutationVariables> {
-  document = DeleteSalePointDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteUserDocument = gql`
-  mutation DeleteUser($id: String!) {
-    delete_management_userProfile_by_pk(id: $id) {
-      username
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteUserGQL extends Apollo.Mutation<DeleteUserMutation, DeleteUserMutationVariables> {
-  document = DeleteUserDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertCompanyDocument = gql`
-  mutation InsertCompany($CNSS: String!, $ICE: String!, $IF: String!, $RC: String!, $address: String!, $email: String, $name: String!, $phone: String!, $website: String) {
-    insert_management_company_one(
-      object: {CNSS: $CNSS, ICE: $ICE, IF: $IF, RC: $RC, address: $address, email: $email, name: $name, phone: $phone, website: $website}
-    ) {
-      id
-      name
-      phone
-      CNSS
-      ICE
-      IF
-      RC
-      address
-      email
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertCompanyGQL extends Apollo.Mutation<InsertCompanyMutation, InsertCompanyMutationVariables> {
-  document = InsertCompanyDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertSalePointDocument = gql`
-  mutation InsertSalePoint($address: String!, $email: String, $name: String!, $phone: String!, $fax: String) {
-    insert_management_salesPoint_one(
-      object: {address: $address, email: $email, name: $name, phone: $phone, fax: $fax}
-    ) {
-      id
-      address
-      email
-      fax
-      name
-      phone
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertSalePointGQL extends Apollo.Mutation<InsertSalePointMutation, InsertSalePointMutationVariables> {
-  document = InsertSalePointDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertUserDocument = gql`
-  mutation InsertUser($email: String!, $CIN: String, $active: Boolean = true, $firstname: String, $lastname: String, $password: String!, $phone: String, $role: String!, $SalesPointsid: uuid, $username: String) {
-    SignUp(
-      email: $email
-      role: $role
-      firstname: $firstname
-      CIN: $CIN
-      active: $active
-      lastname: $lastname
-      password: $password
-      phone: $phone
-      SalesPointsid: $SalesPointsid
-      username: $username
-    ) {
-      CIN
-      active
-      firstname
-      id
-      lastname
-      phone
-      username
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertUserGQL extends Apollo.Mutation<InsertUserMutation, InsertUserMutationVariables> {
-  document = InsertUserDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const UpdateCompanyDocument = gql`
-  mutation UpdateCompany($CNSS: String, $ICE: String, $IF: String, $RC: String, $address: String, $email: String, $name: String, $phone: String, $website: String, $id: uuid!) {
-    update_management_company_by_pk(
-      pk_columns: {id: $id}
-      _set: {CNSS: $CNSS, ICE: $ICE, IF: $IF, RC: $RC, address: $address, email: $email, name: $name, phone: $phone, website: $website}
-    ) {
-      id
-      name
-      phone
-      CNSS
-      ICE
-      IF
-      RC
-      address
-      email
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateCompanyGQL extends Apollo.Mutation<UpdateCompanyMutation, UpdateCompanyMutationVariables> {
-  document = UpdateCompanyDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const UpdateSalePointDocument = gql`
-  mutation UpdateSalePoint($id: uuid!, $address: String = "", $email: String = "", $fax: String = "", $name: String = "", $phone: String = "") {
-    update_management_salesPoint_by_pk(
-      pk_columns: {id: $id}
-      _set: {address: $address, email: $email, fax: $fax, id: $id, name: $name, phone: $phone}
-    ) {
-      id
-      address
-      email
-      fax
-      name
-      phone
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateSalePointGQL extends Apollo.Mutation<UpdateSalePointMutation, UpdateSalePointMutationVariables> {
-  document = UpdateSalePointDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const UpdateUserDocument = gql`
-  mutation UpdateUser($CIN: String, $SalesPointsid: uuid, $active: Boolean = true, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = admin, $id: String!) {
-    update_management_userProfile_by_pk(
-      pk_columns: {id: $id}
-      _set: {CIN: $CIN, SalesPointsid: $SalesPointsid, active: $active, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}
-    ) {
-      id
-      active
-      firstname
-      lastname
-      phone
-      username
-      user_role {
-        name
-        description
-      }
-      SalesPoint {
-        name
-        phone
-        address
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateUserGQL extends Apollo.Mutation<UpdateUserMutation, UpdateUserMutationVariables> {
-  document = UpdateUserDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllCompaniesDocument = gql`
-  query GetAllCompanies {
-    management_company {
-      id
-      CNSS
-      ICE
-      IF
-      RC
-      address
-      email
-      name
-      phone
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllCompaniesGQL extends Apollo.Query<GetAllCompaniesQuery, GetAllCompaniesQueryVariables> {
-  document = GetAllCompaniesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllSalesPointsDocument = gql`
-  query GetAllSalesPoints {
-    management_salesPoint {
-      address
-      email
-      fax
-      id
-      name
-      phone
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllSalesPointsGQL extends Apollo.Query<GetAllSalesPointsQuery, GetAllSalesPointsQueryVariables> {
-  document = GetAllSalesPointsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllUsersDocument = gql`
-  query GetAllUsers {
-    management_userProfile {
-      CIN
-      active
-      firstname
-      id
-      lastname
-      phone
-      role
-      username
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllUsersGQL extends Apollo.Query<GetAllUsersQuery, GetAllUsersQueryVariables> {
-  document = GetAllUsersDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetCompanyByIdDocument = gql`
-  query GetCompanyById($id: uuid!) {
-    management_company_by_pk(id: $id) {
-      CNSS
-      ICE
-      IF
-      RC
-      address
-      email
-      name
-      phone
-      website
-      createdAt
-      createdBy
-      updatedAt
-      updatedBy
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetCompanyByIdGQL extends Apollo.Query<GetCompanyByIdQuery, GetCompanyByIdQueryVariables> {
-  document = GetCompanyByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetSalePointByIdDocument = gql`
-  query GetSalePointById($id: uuid!) {
-    management_salesPoint_by_pk(id: $id) {
-      id
-      address
-      email
-      fax
-      name
-      phone
-      usersProfiles {
-        id
-        active
-        firstname
-        lastname
-        phone
-        username
-        user_role {
-          name
-          description
-        }
-      }
-      createdBy
-      updatedBy
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetSalePointByIdGQL extends Apollo.Query<GetSalePointByIdQuery, GetSalePointByIdQueryVariables> {
-  document = GetSalePointByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetUserByIdDocument = gql`
-  query getUserById($id: String!) {
-    management_userProfile_by_pk(id: $id) {
-      CIN
-      active
-      createdAt
-      createdBy
-      email
-      firstname
-      id
-      joinUs
-      lastname
-      leftUs
-      phone
-      role
-      updatedAt
-      updatedBy
-      username
-      user_role {
-        description
-        name
-      }
-      SalesPoint {
-        name
-        phone
-        address
-      }
-      SalesPointsid
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetUserByIdGQL extends Apollo.Query<GetUserByIdQuery, GetUserByIdQueryVariables> {
-  document = GetUserByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AddGlassColorDocument = gql`
-  mutation AddGlassColor($color: String) {
-    insert_product_glassColor_one(object: {color: $color}) {
-      color
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AddGlassColorGQL extends Apollo.Mutation<AddGlassColorMutation, AddGlassColorMutationVariables> {
-  document = AddGlassColorDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AddGlassTypeDocument = gql`
-  mutation AddGlassType($type: String) {
-    insert_product_glassType_one(object: {type: $type}) {
-      type
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AddGlassTypeGQL extends Apollo.Mutation<AddGlassTypeMutation, AddGlassTypeMutationVariables> {
-  document = AddGlassTypeDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteManyDocument = gql`
-  mutation DeleteMany($codes: [String!]) {
-    delete_product_product(where: {code: {_in: $codes}}) {
-      affected_rows
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteManyGQL extends Apollo.Mutation<DeleteManyMutation, DeleteManyMutationVariables> {
-  document = DeleteManyDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteOneDocument = gql`
-  mutation DeleteOne($code: String!) {
-    delete_product_product_by_pk(code: $code) {
-      code
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteOneGQL extends Apollo.Mutation<DeleteOneMutation, DeleteOneMutationVariables> {
-  document = DeleteOneDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertAccessoryDocument = gql`
-  mutation InsertAccessory($product: product_product_insert_input!, $quota: numeric, $category: product_accessoryTypes_enum = ACCESSOIRE, $subctance: product_substance_insert_input! = {type: accessory}) {
-    insert_product_accessory_one(
-      object: {product: {data: $product}, quota: $quota, category: $category, substance: {data: $subctance}}
-    ) {
-      id
-      category
-      quota
-      product {
-        code
-        label
-        unit
-        price
-        priceMax
-        priceMin
-        companies {
-          name
-          id
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertAccessoryGQL extends Apollo.Mutation<InsertAccessoryMutation, InsertAccessoryMutationVariables> {
-  document = InsertAccessoryDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertConsumableDocument = gql`
-  mutation InsertConsumable($product: product_product_insert_input!, $category: product_consumableCategory_enum, $subsctance: product_substance_insert_input! = {type: consumable}) {
-    insert_product_consumable_one(
-      object: {product: {data: $product}, category: $category, substance: {data: $subsctance}}
-    ) {
-      id
-      product {
-        code
-        label
-        price
-        unit
-        priceMax
-        priceMin
-        companies {
-          name
-          id
-        }
-      }
-      category
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertConsumableGQL extends Apollo.Mutation<InsertConsumableMutation, InsertConsumableMutationVariables> {
-  document = InsertConsumableDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertCustomerProductDocument = gql`
-  mutation InsertCustomerProduct($code: String, $label: String, $price: Float = 0, $priceMax: Float = 0, $priceMin: Float = 0, $thickness: numeric) {
-    insert_product_customer_product_one(
-      object: {product: {data: {code: $code, label: $label, unit: m2, price: $price, priceMax: $priceMax, priceMin: $priceMin}}, thickness: $thickness}
-    ) {
-      id
-      thickness
-      product {
-        code
-        label
-        unit
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertCustomerProductGQL extends Apollo.Mutation<InsertCustomerProductMutation, InsertCustomerProductMutationVariables> {
-  document = InsertCustomerProductDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertGlassDocument = gql`
-  mutation InsertGlass($thickness: Int, $subsctance: product_substance_insert_input! = {type: glass}, $product: product_product_insert_input!) {
-    insert_product_glass_one(
-      object: {thickness: $thickness, product: {data: $product}, substance: {data: $subsctance}}
-    ) {
-      color
-      id
-      thickness
-      type
-      product {
-        code
-        label
-        unit
-        price
-        priceMax
-        priceMin
-        companies {
-          name
-          id
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertGlassGQL extends Apollo.Mutation<InsertGlassMutation, InsertGlassMutationVariables> {
-  document = InsertGlassDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertServiceDocument = gql`
-  mutation InsertService($serviceConfigid: uuid, $product: product_product_insert_input!, $paramValues: jsonb) {
-    insert_product_service_one(
-      object: {serviceConfigid: $serviceConfigid, product: {data: $product}, paramValues: $paramValues}
-    ) {
-      product {
-        code
-        label
-        price
-        priceMax
-        priceMin
-        unit
-        companies {
-          id
-          name
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertServiceGQL extends Apollo.Mutation<InsertServiceMutation, InsertServiceMutationVariables> {
-  document = InsertServiceDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
 export const InsertServiceConfigDocument = gql`
-  mutation InsertServiceConfig($labelFactory: String, $name: String, $params: jsonb) {
-    insert_product_serviceConfig_one(
-      object: {labelFactory: $labelFactory, name: $name, params: $params}
-    ) {
-      labelFactory
-      name
-      id
-      params
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertServiceConfigGQL extends Apollo.Mutation<InsertServiceConfigMutation, InsertServiceConfigMutationVariables> {
-  document = InsertServiceConfigDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    mutation InsertServiceConfig($labelFactory: String, $name: String, $params: jsonb) {
+  insert_product_serviceConfig_one(
+    object: {labelFactory: $labelFactory, name: $name, params: $params}
+  ) {
+    labelFactory
+    name
+    id
+    params
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertServiceConfigGQL extends Apollo.Mutation<InsertServiceConfigMutation, InsertServiceConfigMutationVariables> {
+    document = InsertServiceConfigDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAccessoryByIdDocument = gql`
-  query GetAccessoryById($id: uuid!) {
-    product_accessory_by_pk(id: $id) {
-      createdAt
-      createdBy
-      id
-      category
-      product {
-        code
-        unit
-        label
-        price
-        priceMax
-        priceMin
-        companies {
-          name
-          id
-        }
-      }
-      quota
-      updatedAt
-      updatedBy
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAccessoryByIdGQL extends Apollo.Query<GetAccessoryByIdQuery, GetAccessoryByIdQueryVariables> {
-  document = GetAccessoryByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllAccessoriesDocument = gql`
-  query GetAllAccessories {
-    product_accessory {
-      id
-      category
-      quota
-      product {
-        code
-        label
-        unit
-        price
-        priceMax
-        priceMin
-        companies {
-          name
-          id
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllAccessoriesGQL extends Apollo.Query<GetAllAccessoriesQuery, GetAllAccessoriesQueryVariables> {
-  document = GetAllAccessoriesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllConsumablesDocument = gql`
-  query GetAllConsumables {
-    product_consumable {
-      id
-      category
-      product {
-        code
-        label
-        unit
-        price
-        priceMax
-        priceMin
-        companies {
-          name
-          id
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllConsumablesGQL extends Apollo.Query<GetAllConsumablesQuery, GetAllConsumablesQueryVariables> {
-  document = GetAllConsumablesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllCustomerProductsDocument = gql`
-  query GetAllCustomerProducts {
-    product_customer_product {
-      id
-      thickness
-      product {
-        code
-        label
-        unit
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllCustomerProductsGQL extends Apollo.Query<GetAllCustomerProductsQuery, GetAllCustomerProductsQueryVariables> {
-  document = GetAllCustomerProductsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllGlassesDocument = gql`
-  query GetAllGlasses {
-    product_glass {
-      id
-      thickness
-      product {
-        code
-        label
-        unit
-        price
-        priceMax
-        priceMin
-        companies {
-          name
-          id
-        }
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllGlassesGQL extends Apollo.Query<GetAllGlassesQuery, GetAllGlassesQueryVariables> {
-  document = GetAllGlassesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllServicesDocument = gql`
-  query GetAllServices {
-    product_service {
-      paramValues
-      serviceConfig {
-        labelFactory
+    query GetAccessoryById($id: uuid!) {
+  product_accessory_by_pk(id: $id) {
+    createdAt
+    createdBy
+    id
+    category
+    product {
+      code
+      unit
+      label
+      price
+      priceMax
+      priceMin
+      companies {
+        name
         id
-        name
-        params
       }
-      product {
-        code
-        label
-        price
-        priceMax
-        priceMin
-        unit
-        companies {
-          name
-          id
-        }
+    }
+    quota
+    updatedAt
+    updatedBy
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAccessoryByIdGQL extends Apollo.Query<GetAccessoryByIdQuery, GetAccessoryByIdQueryVariables> {
+    document = GetAccessoryByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllAccessoriesDocument = gql`
+    query GetAllAccessories {
+  product_accessory {
+    id
+    category
+    quota
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
       }
     }
   }
-`;
+}
+    `;
 
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllServicesGQL extends Apollo.Query<GetAllServicesQuery, GetAllServicesQueryVariables> {
-  document = GetAllServicesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllAccessoriesGQL extends Apollo.Query<GetAllAccessoriesQuery, GetAllAccessoriesQueryVariables> {
+    document = GetAllAccessoriesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllConsumablesDocument = gql`
+    query GetAllConsumables {
+  product_consumable {
+    id
+    category
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllConsumablesGQL extends Apollo.Query<GetAllConsumablesQuery, GetAllConsumablesQueryVariables> {
+    document = GetAllConsumablesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllCustomerProductsDocument = gql`
+    query GetAllCustomerProducts {
+  product_customer_product {
+    id
+    thickness
+    product {
+      code
+      label
+      unit
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllCustomerProductsGQL extends Apollo.Query<GetAllCustomerProductsQuery, GetAllCustomerProductsQueryVariables> {
+    document = GetAllCustomerProductsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllGlassesDocument = gql`
+    query GetAllGlasses {
+  product_glass {
+    id
+    thickness
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllGlassesGQL extends Apollo.Query<GetAllGlassesQuery, GetAllGlassesQueryVariables> {
+    document = GetAllGlassesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllServicesDocument = gql`
+    query GetAllServices {
+  product_service {
+    paramValues
+    serviceConfig {
+      labelFactory
+      id
+      name
+      params
+    }
+    product {
+      code
+      label
+      price
+      priceMax
+      priceMin
+      unit
+      companies {
+        name
+        id
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllServicesGQL extends Apollo.Query<GetAllServicesQuery, GetAllServicesQueryVariables> {
+    document = GetAllServicesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAllServiceConfigDocument = gql`
-  query GetAllServiceConfig {
-    product_serviceConfig {
-      labelFactory
-      name
-      id
-      params
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllServiceConfigGQL extends Apollo.Query<GetAllServiceConfigQuery, GetAllServiceConfigQueryVariables> {
-  document = GetAllServiceConfigDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    query GetAllServiceConfig {
+  product_serviceConfig {
+    labelFactory
+    name
+    id
+    params
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllServiceConfigGQL extends Apollo.Query<GetAllServiceConfigQuery, GetAllServiceConfigQueryVariables> {
+    document = GetAllServiceConfigDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetConsumableByIdDocument = gql`
-  query GetConsumableById($id: uuid!) {
-    product_consumable_by_pk(id: $id) {
-      category
-      createdAt
-      createdBy
-      id
-      product {
-        code
-        label
-        unit
-        price
-        priceMax
-        priceMin
-        companies {
-          name
-          id
-        }
+    query GetConsumableById($id: uuid!) {
+  product_consumable_by_pk(id: $id) {
+    category
+    createdAt
+    createdBy
+    id
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
       }
-      updatedAt
-      updatedBy
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetConsumableByIdGQL extends Apollo.Query<GetConsumableByIdQuery, GetConsumableByIdQueryVariables> {
-  document = GetConsumableByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    updatedAt
+    updatedBy
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetConsumableByIdGQL extends Apollo.Query<GetConsumableByIdQuery, GetConsumableByIdQueryVariables> {
+    document = GetConsumableByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetGlassByIdDocument = gql`
-  query getGlassById($id: uuid!) {
-    product_glass_by_pk(id: $id) {
-      createdBy
-      createdAt
-      id
+    query getGlassById($id: uuid!) {
+  product_glass_by_pk(id: $id) {
+    createdBy
+    createdAt
+    id
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+    thickness
+    updatedAt
+    updatedBy
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetGlassByIdGQL extends Apollo.Query<GetGlassByIdQuery, GetGlassByIdQueryVariables> {
+    document = GetGlassByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetGlassColorsDocument = gql`
+    query GetGlassColors {
+  product_glassColor {
+    color
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetGlassColorsGQL extends Apollo.Query<GetGlassColorsQuery, GetGlassColorsQueryVariables> {
+    document = GetGlassColorsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetGlassTypesDocument = gql`
+    query GetGlassTypes {
+  product_glassType {
+    type
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetGlassTypesGQL extends Apollo.Query<GetGlassTypesQuery, GetGlassTypesQueryVariables> {
+    document = GetGlassTypesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetServiceConfigByIdDocument = gql`
+    query GetServiceConfigById($id: uuid!) {
+  product_serviceConfig_by_pk(id: $id) {
+    id
+    labelFactory
+    name
+    params
+    services(where: {serviceConfigid: {_eq: $id}}) {
       product {
         code
         label
@@ -32881,1114 +32981,1080 @@ export const GetGlassByIdDocument = gql`
           id
         }
       }
-      thickness
-      updatedAt
-      updatedBy
+      paramValues
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetGlassByIdGQL extends Apollo.Query<GetGlassByIdQuery, GetGlassByIdQueryVariables> {
-  document = GetGlassByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
 }
-export const GetGlassColorsDocument = gql`
-  query GetGlassColors {
-    product_glassColor {
-      color
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetServiceConfigByIdGQL extends Apollo.Query<GetServiceConfigByIdQuery, GetServiceConfigByIdQueryVariables> {
+    document = GetServiceConfigByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetGlassColorsGQL extends Apollo.Query<GetGlassColorsQuery, GetGlassColorsQueryVariables> {
-  document = GetGlassColorsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetGlassTypesDocument = gql`
-  query GetGlassTypes {
-    product_glassType {
-      type
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetGlassTypesGQL extends Apollo.Query<GetGlassTypesQuery, GetGlassTypesQueryVariables> {
-  document = GetGlassTypesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetServiceConfigByIdDocument = gql`
-  query GetServiceConfigById($id: uuid!) {
-    product_serviceConfig_by_pk(id: $id) {
-      id
-      labelFactory
-      name
-      params
-      services(where: {serviceConfigid: {_eq: $id}}) {
-        product {
-          code
-          label
-          unit
-          price
-          priceMax
-          priceMin
-          companies {
-            name
-            id
-          }
-        }
-        paramValues
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetServiceConfigByIdGQL extends Apollo.Query<GetServiceConfigByIdQuery, GetServiceConfigByIdQueryVariables> {
-  document = GetServiceConfigByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
 export const DeleteDeliveryDocument = gql`
-  mutation DeleteDelivery($ids: [uuid!]! = []) {
-    delete_sales_delivery(where: {id: {_in: $ids}}) {
-      affected_rows
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteDeliveryGQL extends Apollo.Mutation<DeleteDeliveryMutation, DeleteDeliveryMutationVariables> {
-  document = DeleteDeliveryDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    mutation DeleteDelivery($ids: [uuid!]! = []) {
+  delete_sales_delivery(where: {id: {_in: $ids}}) {
+    affected_rows
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteDeliveryGQL extends Apollo.Mutation<DeleteDeliveryMutation, DeleteDeliveryMutationVariables> {
+    document = DeleteDeliveryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertDeliveryDocument = gql`
-  mutation InsertDelivery($order: Int!, $status: String!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $isReturned: Boolean, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!) {
-    insert_sales_delivery_one(
-      object: {order: $order, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, isReturned: $isReturned, status: $status, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact}
-    ) {
-      id
-      status
-      company: companyObject {
-        name
-      }
-      contact
-      payment_method
-      predicted_date
-      isReturned
-      order
-      client: customer {
-        name
-        mail
-      }
-      contactByContact {
-        mail
-        name
-        phone
-      }
+    mutation InsertDelivery($order: Int!, $status: String!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $isReturned: Boolean, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
+  insert_sales_delivery_one(
+    object: {order: $order, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, isReturned: $isReturned, status: $status, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
+  ) {
+    id
+    status
+    company: companyObject {
+      name
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertDeliveryGQL extends Apollo.Mutation<InsertDeliveryMutation, InsertDeliveryMutationVariables> {
-  document = InsertDeliveryDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    contact
+    payment_method
+    predicted_date
+    isReturned
+    order
+    client: customer {
+      name
+      mail
+    }
+    contactByContact {
+      mail
+      name
+      phone
+    }
+    amount_ttc
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertDeliveryGQL extends Apollo.Mutation<InsertDeliveryMutation, InsertDeliveryMutationVariables> {
+    document = InsertDeliveryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const UpdateDeliveryDocument = gql`
-  mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact: uuid, $company: uuid, $client: uuid, $isReturned: Boolean, $predicted_date: date, $status: String!) {
-    update_sales_delivery_by_pk(
-      pk_columns: {id: $id}
-      _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, isReturned: $isReturned, status: $status}
-    ) {
-      id
-      order
-      status
-      company
-      payment_method
-      isReturned
-      predicted_date
-      client
-      contact
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateDeliveryGQL extends Apollo.Mutation<UpdateDeliveryMutation, UpdateDeliveryMutationVariables> {
-  document = UpdateDeliveryDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact: uuid, $company: uuid, $client: uuid, $isReturned: Boolean, $predicted_date: date, $status: String!, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
+  update_sales_delivery_by_pk(
+    pk_columns: {id: $id}
+    _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, isReturned: $isReturned, status: $status, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
+  ) {
+    id
+    order
+    status
+    company
+    payment_method
+    isReturned
+    predicted_date
+    client
+    contact
+    amount_ttc
+    amount_tva
+    amount_ht
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateDeliveryGQL extends Apollo.Mutation<UpdateDeliveryMutation, UpdateDeliveryMutationVariables> {
+    document = UpdateDeliveryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const UpdateDeliveryLineDocument = gql`
-  mutation UpdateDeliveryLine($amount: numeric, $delivered: numeric, $id: uuid!, $product: uuid!, $product_label: String, $quantity: numeric) {
-    update_sales_delivery_line_by_pk(
-      pk_columns: {id: $id}
-      _set: {amount: $amount, delivered: $delivered, id: $id, product: $product, product_label: $product_label, quantity: $quantity}
-    ) {
+    mutation UpdateDeliveryLine($amount: numeric, $delivered: numeric, $id: uuid!, $product: uuid!, $product_label: String, $unit_price: numeric, $quantity: numeric) {
+  update_sales_delivery_line_by_pk(
+    pk_columns: {id: $id}
+    _set: {amount: $amount, delivered: $delivered, id: $id, product: $product, product_label: $product_label, unit_price: $unit_price, quantity: $quantity}
+  ) {
+    id
+    amount
+    delivered
+    product
+    product_label
+    quantity
+    unit_price
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateDeliveryLineGQL extends Apollo.Mutation<UpdateDeliveryLineMutation, UpdateDeliveryLineMutationVariables> {
+    document = UpdateDeliveryLineDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteDraftsDocument = gql`
+    mutation deleteDrafts($ids: [Int!]! = []) {
+  delete_sales_draft(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteDraftsGQL extends Apollo.Mutation<DeleteDraftsMutation, DeleteDraftsMutationVariables> {
+    document = DeleteDraftsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertDraftDocument = gql`
+    mutation InsertDraft($status: String = "draft") {
+  insert_sales_draft_one(object: {status: $status}) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertDraftGQL extends Apollo.Mutation<InsertDraftMutation, InsertDraftMutationVariables> {
+    document = InsertDraftDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteInvoicesDocument = gql`
+    mutation deleteInvoices($ids: [uuid!]! = []) {
+  delete_sales_invoice(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteInvoicesGQL extends Apollo.Mutation<DeleteInvoicesMutation, DeleteInvoicesMutationVariables> {
+    document = DeleteInvoicesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertInvoiceDocument = gql`
+    mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $invoice_lines: [sales_invoice_line_insert_input!]! = [], $deliveries: [sales_invoice_delivery_insert_input!]! = [], $deliveries_ids: [uuid!]! = [], $amount_ttc: numeric, $amount_ht: numeric, $amount_tva: numeric) {
+  insert_sales_invoice_one(
+    object: {client: $client, amount_ttc: $amount_ttc, amount_ht: $amount_ht, amount_tva: $amount_tva, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}, invoice_lines: {data: $invoice_lines}}
+  ) {
+    id
+    client
+    company
+    contact
+    date
+    deliveries {
+      delivery_id
+    }
+    payment_method
+    invoice_lines {
+      id
+      unit_price
+      product_code
+      product_label
+      quantity
+      total
+    }
+    amount_ttc
+    amount_ht
+    amount_tva
+  }
+  update_sales_delivery(
+    where: {id: {_in: $deliveries_ids}}
+    _set: {status: "Facturé"}
+  ) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertInvoiceGQL extends Apollo.Mutation<InsertInvoiceMutation, InsertInvoiceMutationVariables> {
+    document = InsertInvoiceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateInvoiceDocument = gql`
+    mutation UpdateInvoice($id: uuid!, $client: uuid, $company: uuid, $contact: uuid, $date: date, $payment_method: String) {
+  update_sales_invoice_by_pk(
+    _set: {client: $client, company: $company, contact: $contact, date: $date, payment_method: $payment_method}
+    pk_columns: {id: $id}
+  ) {
+    id
+    client: clientObj {
+      name
+      mail
+    }
+    company: companyObj {
+      id
+      name
+    }
+    contact: contactObj {
+      mail
+      name
+      phone
+    }
+    date
+    payment_method
+    amount_ttc
+    amount_ht
+    amount_tva
+    deliveries {
+      delivery_id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateInvoiceGQL extends Apollo.Mutation<UpdateInvoiceMutation, UpdateInvoiceMutationVariables> {
+    document = UpdateInvoiceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteOrdersDocument = gql`
+    mutation deleteOrders($ids: [Int!]! = []) {
+  delete_sales_order(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteOrdersGQL extends Apollo.Mutation<DeleteOrdersMutation, DeleteOrdersMutationVariables> {
+    document = DeleteOrdersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertOrderDocument = gql`
+    mutation InsertOrder($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré") {
+  insert_sales_order_one(
+    object: {company_id: $company_id, contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, delivery_status: $delivery_status, payment_status: $payment_status}
+  ) {
+    company {
+      name
+      id
+    }
+    contact {
+      code
+      name
+    }
+    customer {
+      code
+      name
+      phone
+    }
+    date
+    deadline
+    draft_id
+    id
+    delivery_status
+    payment_status
+    total_ht
+    total_tax
+    total_ttc
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertOrderGQL extends Apollo.Mutation<InsertOrderMutation, InsertOrderMutationVariables> {
+    document = InsertOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeletePaymentDocument = gql`
+    mutation DeletePayment($id: uuid!) {
+  delete_sales_payment_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeletePaymentGQL extends Apollo.Mutation<DeletePaymentMutation, DeletePaymentMutationVariables> {
+    document = DeletePaymentDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertPaymentDocument = gql`
+    mutation InsertPayment($amount: numeric, $company_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $order_id: Int, $payment_method: String, $comment: String = "", $paper_ref: String = "") {
+  insert_sales_payment_one(
+    object: {amount: $amount, company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, order_id: $order_id, payment_method: $payment_method, comment: $comment, paper_ref: $paper_ref}
+  ) {
+    amount
+    date
+    deadline
+    id
+    order_id
+    company {
+      name
+      id
+    }
+    customer_id
+    payment_method
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertPaymentGQL extends Apollo.Mutation<InsertPaymentMutation, InsertPaymentMutationVariables> {
+    document = InsertPaymentDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteProductDraftDocument = gql`
+    mutation DeleteProductDraft($id: uuid!) {
+  delete_sales_product_draft_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteProductDraftGQL extends Apollo.Mutation<DeleteProductDraftMutation, DeleteProductDraftMutationVariables> {
+    document = DeleteProductDraftDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertAccessoryDraftDocument = gql`
+    mutation InsertAccessoryDraft($warehouse_id: uuid, $company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $draft_id: Int) {
+  insert_sales_accessory_draft_one(
+    object: {product_draft: {data: {company_id: $company_id, warehouse_id: $warehouse_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id}}}
+  ) {
+    id
+    product_draft {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      total_price
+      type
+      unit
+      width
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertAccessoryDraftGQL extends Apollo.Mutation<InsertAccessoryDraftMutation, InsertAccessoryDraftMutationVariables> {
+    document = InsertAccessoryDraftDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertConsumableDraftDocument = gql`
+    mutation InsertConsumableDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $draft_id: Int, $dependent_id: uuid, $m2: numeric, $ml: numeric) {
+  insert_sales_consumable_draft_one(
+    object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, company_name: $company_name, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id, m2: $m2, ml: $ml}}, dependent_id: $dependent_id}
+  ) {
+    id
+    product_draft {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      total_price
+      type
+      unit
+      width
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertConsumableDraftGQL extends Apollo.Mutation<InsertConsumableDraftMutation, InsertConsumableDraftMutationVariables> {
+    document = InsertConsumableDraftDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertGlassDraftDocument = gql`
+    mutation insertGlassDraft($heigth: numeric, $label: String, $m2: numeric, $ml: numeric, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $width: numeric, $draft_id: Int, $count: numeric, $warehouse_id: uuid, $company_id: uuid, $company_name: String) {
+  insert_sales_glass_draft_one(
+    object: {product_draft: {data: {heigth: $heigth, label: $label, m2: $m2, ml: $ml, price: $price, product_code: $product_code, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, width: $width, draft_id: $draft_id, count: $count, warehouse_id: $warehouse_id, company_id: $company_id, company_name: $company_name}}}
+  ) {
+    id
+    product_draft {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      total_price
+      type
+      unit
+      width
+      company_id
+      count
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertGlassDraftGQL extends Apollo.Mutation<InsertGlassDraftMutation, InsertGlassDraftMutationVariables> {
+    document = InsertGlassDraftDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertServiceDraftDocument = gql`
+    mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int) {
+  insert_sales_service_draft_one(
+    object: {product_draft: {data: {company_id: $company_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id}}, dependent_id: $dependent_id}
+  ) {
+    id
+    product_draft {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      total_price
+      type
+      unit
+      width
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertServiceDraftGQL extends Apollo.Mutation<InsertServiceDraftMutation, InsertServiceDraftMutationVariables> {
+    document = InsertServiceDraftDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertQuotationDocument = gql`
+    mutation InsertQuotation($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $status: String, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric) {
+  insert_sales_quotation_one(
+    object: {company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, status: $status, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, contact_id: $contact_id}
+  ) {
+    company {
+      name
+      id
+    }
+    customer {
+      code
+      name
+      phone
+    }
+    date
+    deadline
+    draft_id
+    id
+    status
+    total_ht
+    total_tax
+    total_ttc
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertQuotationGQL extends Apollo.Mutation<InsertQuotationMutation, InsertQuotationMutationVariables> {
+    document = InsertQuotationDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllDeliveryDocument = gql`
+    query getAllDelivery {
+  sales_delivery {
+    id
+    order
+    status
+    company: companyObject {
+      name
+    }
+    payment_method
+    predicted_date
+    isReturned
+    client: customer {
+      name
+      mail
+    }
+    contact: contactByContact {
+      mail
+      name
+      phone
+    }
+    amount_ttc
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllDeliveryGQL extends Apollo.Query<GetAllDeliveryQuery, GetAllDeliveryQueryVariables> {
+    document = GetAllDeliveryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetDeliveryByIdDocument = gql`
+    query GetDeliveryById($id: uuid!) {
+  sales_delivery_by_pk(id: $id) {
+    id
+    status
+    client
+    company
+    contact
+    payment_method
+    predicted_date
+    isReturned
+    order
+    delivery_lines {
       id
       amount
       delivered
       product
-      product_label
       quantity
+      product_label
+      unit_price
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateDeliveryLineGQL extends Apollo.Mutation<UpdateDeliveryLineMutation, UpdateDeliveryLineMutationVariables> {
-  document = UpdateDeliveryLineDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    amount_ttc
+    amount_tva
+    amount_ht
   }
 }
-export const DeleteDraftsDocument = gql`
-  mutation deleteDrafts($ids: [Int!]! = []) {
-    delete_sales_draft(where: {id: {_in: $ids}}) {
-      affected_rows
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetDeliveryByIdGQL extends Apollo.Query<GetDeliveryByIdQuery, GetDeliveryByIdQueryVariables> {
+    document = GetDeliveryByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteDraftsGQL extends Apollo.Mutation<DeleteDraftsMutation, DeleteDraftsMutationVariables> {
-  document = DeleteDraftsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertDraftDocument = gql`
-  mutation InsertDraft($status: String = "draft") {
-    insert_sales_draft_one(object: {status: $status}) {
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertDraftGQL extends Apollo.Mutation<InsertDraftMutation, InsertDraftMutationVariables> {
-  document = InsertDraftDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteInvoicesDocument = gql`
-  mutation deleteInvoices($ids: [uuid!]! = []) {
-    delete_sales_invoice(where: {id: {_in: $ids}}) {
-      affected_rows
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteInvoicesGQL extends Apollo.Mutation<DeleteInvoicesMutation, DeleteInvoicesMutationVariables> {
-  document = DeleteInvoicesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertInvoiceDocument = gql`
-  mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $invoice_lines: [sales_invoice_line_insert_input!]! = [], $deliveries: [sales_invoice_delivery_insert_input!]! = []) {
-    insert_sales_invoice_one(
-      object: {client: $client, amount_ttc: 0, amount_ht: 0, amount_tva: 0, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}, invoice_lines: {data: $invoice_lines}}
-    ) {
-      id
-      client
-      company
-      contact
-      date
-      deliveries {
-        delivery_id
-      }
-      payment_method
-      invoice_lines {
-        id
-        unit_price
-        product_code
-        product_label
-        quantity
-        total
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertInvoiceGQL extends Apollo.Mutation<InsertInvoiceMutation, InsertInvoiceMutationVariables> {
-  document = InsertInvoiceDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const UpdateInvoiceDocument = gql`
-  mutation UpdateInvoice($id: uuid!, $client: uuid, $company: uuid, $contact: uuid, $date: date, $payment_method: String) {
-    update_sales_invoice_by_pk(
-      _set: {client: $client, company: $company, contact: $contact, date: $date, payment_method: $payment_method}
-      pk_columns: {id: $id}
-    ) {
-      id
-      client: clientObj {
-        name
-        mail
-      }
-      company: companyObj {
-        id
-        name
-      }
-      contact: contactObj {
-        mail
-        name
-        phone
-      }
-      date
-      payment_method
-      amount_ttc
-      amount_ht
-      amount_tva
-      deliveries {
-        delivery_id
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateInvoiceGQL extends Apollo.Mutation<UpdateInvoiceMutation, UpdateInvoiceMutationVariables> {
-  document = UpdateInvoiceDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteOrdersDocument = gql`
-  mutation deleteOrders($ids: [Int!]! = []) {
-    delete_sales_order(where: {id: {_in: $ids}}) {
-      affected_rows
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteOrdersGQL extends Apollo.Mutation<DeleteOrdersMutation, DeleteOrdersMutationVariables> {
-  document = DeleteOrdersDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertOrderDocument = gql`
-  mutation InsertOrder($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré") {
-    insert_sales_order_one(
-      object: {company_id: $company_id, contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, delivery_status: $delivery_status, payment_status: $payment_status}
-    ) {
-      company {
-        name
-        id
-      }
-      contact {
-        code
-        name
-      }
-      customer {
-        code
-        name
-        phone
-      }
-      date
-      deadline
-      draft_id
-      id
-      delivery_status
-      payment_status
-      total_ht
-      total_tax
-      total_ttc
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertOrderGQL extends Apollo.Mutation<InsertOrderMutation, InsertOrderMutationVariables> {
-  document = InsertOrderDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeletePaymentDocument = gql`
-  mutation DeletePayment($id: uuid!) {
-    delete_sales_payment_by_pk(id: $id) {
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeletePaymentGQL extends Apollo.Mutation<DeletePaymentMutation, DeletePaymentMutationVariables> {
-  document = DeletePaymentDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertPaymentDocument = gql`
-  mutation InsertPayment($amount: numeric, $company_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $order_id: Int, $payment_method: String, $comment: String = "", $paper_ref: String = "") {
-    insert_sales_payment_one(
-      object: {amount: $amount, company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, order_id: $order_id, payment_method: $payment_method, comment: $comment, paper_ref: $paper_ref}
-    ) {
-      amount
-      date
-      deadline
-      id
-      order_id
-      company {
-        name
-        id
-      }
-      customer_id
-      payment_method
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertPaymentGQL extends Apollo.Mutation<InsertPaymentMutation, InsertPaymentMutationVariables> {
-  document = InsertPaymentDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const DeleteProductDraftDocument = gql`
-  mutation DeleteProductDraft($id: uuid!) {
-    delete_sales_product_draft_by_pk(id: $id) {
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DeleteProductDraftGQL extends Apollo.Mutation<DeleteProductDraftMutation, DeleteProductDraftMutationVariables> {
-  document = DeleteProductDraftDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertAccessoryDraftDocument = gql`
-  mutation InsertAccessoryDraft($warehouse_id: uuid, $company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $draft_id: Int) {
-    insert_sales_accessory_draft_one(
-      object: {product_draft: {data: {company_id: $company_id, warehouse_id: $warehouse_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id}}}
-    ) {
-      id
-      product_draft {
-        company_name
-        heigth
-        id
-        label
-        m2
-        ml
-        price
-        product_code
-        quantity
-        total_price
-        type
-        unit
-        width
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertAccessoryDraftGQL extends Apollo.Mutation<InsertAccessoryDraftMutation, InsertAccessoryDraftMutationVariables> {
-  document = InsertAccessoryDraftDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertConsumableDraftDocument = gql`
-  mutation InsertConsumableDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $draft_id: Int, $dependent_id: uuid, $m2: numeric, $ml: numeric) {
-    insert_sales_consumable_draft_one(
-      object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, company_name: $company_name, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id, m2: $m2, ml: $ml}}, dependent_id: $dependent_id}
-    ) {
-      id
-      product_draft {
-        company_name
-        heigth
-        id
-        label
-        m2
-        ml
-        price
-        product_code
-        quantity
-        total_price
-        type
-        unit
-        width
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertConsumableDraftGQL extends Apollo.Mutation<InsertConsumableDraftMutation, InsertConsumableDraftMutationVariables> {
-  document = InsertConsumableDraftDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertGlassDraftDocument = gql`
-  mutation insertGlassDraft($heigth: numeric, $label: String, $m2: numeric, $ml: numeric, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $width: numeric, $draft_id: Int, $count: numeric, $warehouse_id: uuid, $company_id: uuid, $company_name: String) {
-    insert_sales_glass_draft_one(
-      object: {product_draft: {data: {heigth: $heigth, label: $label, m2: $m2, ml: $ml, price: $price, product_code: $product_code, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, width: $width, draft_id: $draft_id, count: $count, warehouse_id: $warehouse_id, company_id: $company_id, company_name: $company_name}}}
-    ) {
-      id
-      product_draft {
-        company_name
-        heigth
-        id
-        label
-        m2
-        ml
-        price
-        product_code
-        quantity
-        total_price
-        type
-        unit
-        width
-        company_id
-        count
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertGlassDraftGQL extends Apollo.Mutation<InsertGlassDraftMutation, InsertGlassDraftMutationVariables> {
-  document = InsertGlassDraftDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertServiceDraftDocument = gql`
-  mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int) {
-    insert_sales_service_draft_one(
-      object: {product_draft: {data: {company_id: $company_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id}}, dependent_id: $dependent_id}
-    ) {
-      id
-      product_draft {
-        company_name
-        heigth
-        id
-        label
-        m2
-        ml
-        price
-        product_code
-        quantity
-        total_price
-        type
-        unit
-        width
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertServiceDraftGQL extends Apollo.Mutation<InsertServiceDraftMutation, InsertServiceDraftMutationVariables> {
-  document = InsertServiceDraftDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const InsertQuotationDocument = gql`
-  mutation InsertQuotation($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $status: String, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric) {
-    insert_sales_quotation_one(
-      object: {company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, status: $status, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, contact_id: $contact_id}
-    ) {
-      company {
-        name
-        id
-      }
-      customer {
-        code
-        name
-        phone
-      }
-      date
-      deadline
-      draft_id
-      id
-      status
-      total_ht
-      total_tax
-      total_ttc
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InsertQuotationGQL extends Apollo.Mutation<InsertQuotationMutation, InsertQuotationMutationVariables> {
-  document = InsertQuotationDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetAllDeliveryDocument = gql`
-  query getAllDelivery {
-    sales_delivery {
-      id
-      order
-      status
-      company: companyObject {
-        name
-      }
-      payment_method
-      predicted_date
-      isReturned
-      client: customer {
-        name
-        mail
-      }
-      contact: contactByContact {
-        mail
-        name
-        phone
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllDeliveryGQL extends Apollo.Query<GetAllDeliveryQuery, GetAllDeliveryQueryVariables> {
-  document = GetAllDeliveryDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const GetDeliveryByIdDocument = gql`
-  query GetDeliveryById($id: uuid!) {
-    sales_delivery_by_pk(id: $id) {
-      id
-      status
-      client
-      company
-      contact
-      payment_method
-      predicted_date
-      isReturned
-      order
-      delivery_lines {
-        id
-        amount
-        delivered
-        product
-        quantity
-        product_label
-      }
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetDeliveryByIdGQL extends Apollo.Query<GetDeliveryByIdQuery, GetDeliveryByIdQueryVariables> {
-  document = GetDeliveryByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
 export const GetAllDraftsDocument = gql`
-  query GetAllDrafts {
-    sales_draft {
-      id
-      company {
-        name
-      }
-      customer {
-        name
-        phone
-      }
-      date
-      status
+    query GetAllDrafts {
+  sales_draft {
+    id
+    company {
+      name
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllDraftsGQL extends Apollo.Query<GetAllDraftsQuery, GetAllDraftsQueryVariables> {
-  document = GetAllDraftsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    customer {
+      name
+      phone
+    }
+    date
+    status
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllDraftsGQL extends Apollo.Query<GetAllDraftsQuery, GetAllDraftsQueryVariables> {
+    document = GetAllDraftsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetDraftByIdDocument = gql`
-  query GetDraftById($id: Int!) {
-    sales_draft_by_pk(id: $id) {
-      company {
-        name
-      }
-      customer {
-        code
-        id
-        name
-      }
-      date
+    query GetDraftById($id: Int!) {
+  sales_draft_by_pk(id: $id) {
+    company {
+      name
+    }
+    customer {
+      code
       id
-      status
-      product_drafts {
-        id
-        product_code
-        label
-        quantity
-        m2
-        ml
-        unit
-        width
-        heigth
-        price
-        total_price
-        company_name
-      }
+      name
+    }
+    date
+    id
+    status
+    product_drafts {
+      id
+      product_code
+      label
+      quantity
+      m2
+      ml
+      unit
+      width
+      heigth
+      price
+      total_price
+      company_name
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetDraftByIdGQL extends Apollo.Query<GetDraftByIdQuery, GetDraftByIdQueryVariables> {
-  document = GetDraftByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetDraftByIdGQL extends Apollo.Query<GetDraftByIdQuery, GetDraftByIdQueryVariables> {
+    document = GetDraftByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAllInvoicesDocument = gql`
-  query GetAllInvoices {
-    sales_invoice {
-      id
-      client: clientObj {
-        name
-        mail
-      }
-      company: companyObj {
-        id
-        name
-      }
-      contact: contactObj {
-        mail
-        name
-        phone
-      }
-      date
-      payment_method
-      deliveries {
-        delivery_id
-      }
-      amount_tva
-      amount_ttc
-      amount_ht
+    query GetAllInvoices {
+  sales_invoice {
+    id
+    client: clientObj {
+      name
+      mail
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllInvoicesGQL extends Apollo.Query<GetAllInvoicesQuery, GetAllInvoicesQueryVariables> {
-  document = GetAllInvoicesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    company: companyObj {
+      id
+      name
+    }
+    contact: contactObj {
+      mail
+      name
+      phone
+    }
+    date
+    payment_method
+    deliveries {
+      delivery_id
+    }
+    amount_tva
+    amount_ttc
+    amount_ht
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllInvoicesGQL extends Apollo.Query<GetAllInvoicesQuery, GetAllInvoicesQueryVariables> {
+    document = GetAllInvoicesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetDeliveriesAmountsDocument = gql`
+    query getDeliveriesAmounts($ids: [uuid!]) {
+  sales_delivery(where: {id: {_in: $ids}}) {
+    amount_ht
+    amount_ttc
+    amount_tva
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetDeliveriesAmountsGQL extends Apollo.Query<GetDeliveriesAmountsQuery, GetDeliveriesAmountsQueryVariables> {
+    document = GetDeliveriesAmountsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetDeliveryLinesDocument = gql`
-  query getDeliveryLines($deliveries: [uuid!]! = []) {
-    sales_delivery_line(where: {delivery: {_in: $deliveries}, delivered: {_neq: 0}}) {
-      product_label
-      delivered
-      product_draft {
-        product_code
-        price
-      }
-      amount
+    query getDeliveryLines($deliveries: [uuid!]! = []) {
+  sales_delivery_line(where: {delivery: {_in: $deliveries}, delivered: {_neq: 0}}) {
+    product_label
+    delivered
+    product_draft {
+      product_code
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetDeliveryLinesGQL extends Apollo.Query<GetDeliveryLinesQuery, GetDeliveryLinesQueryVariables> {
-  document = GetDeliveryLinesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    amount
+    unit_price
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetDeliveryLinesGQL extends Apollo.Query<GetDeliveryLinesQuery, GetDeliveryLinesQueryVariables> {
+    document = GetDeliveryLinesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetInvoiceByIdDocument = gql`
-  query GetInvoiceById($id: uuid!) {
-    sales_invoice_by_pk(id: $id) {
+    query GetInvoiceById($id: uuid!) {
+  sales_invoice_by_pk(id: $id) {
+    id
+    client
+    company
+    contact
+    date
+    deliveries {
+      delivery_id
+    }
+    payment_method
+    invoice_lines {
       id
-      client
-      company
-      contact
-      date
-      deliveries {
-        delivery_id
-      }
-      payment_method
-      invoice_lines {
-        id
-        unit_price
-        product_code
-        product_label
-        quantity
-        total
-      }
+      unit_price
+      product_code
+      product_label
+      quantity
+      total
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetInvoiceByIdGQL extends Apollo.Query<GetInvoiceByIdQuery, GetInvoiceByIdQueryVariables> {
-  document = GetInvoiceByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetInvoiceByIdGQL extends Apollo.Query<GetInvoiceByIdQuery, GetInvoiceByIdQueryVariables> {
+    document = GetInvoiceByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAllOrdersDocument = gql`
-  query GetAllOrders {
-    sales_order {
-      company {
-        name
-        id
-      }
-      customer {
-        code
-        id
-        name
-        phone
-      }
-      delivery_status
-      payment_status
+    query GetAllOrders {
+  sales_order {
+    company {
+      name
       id
-      draft_id
-      total_ht
-      total_tax
-      total_ttc
-      date
-      deadline
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllOrdersGQL extends Apollo.Query<GetAllOrdersQuery, GetAllOrdersQueryVariables> {
-  document = GetAllOrdersDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    customer {
+      code
+      id
+      name
+      phone
+    }
+    delivery_status
+    payment_status
+    id
+    draft_id
+    total_ht
+    total_tax
+    total_ttc
+    date
+    deadline
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllOrdersGQL extends Apollo.Query<GetAllOrdersQuery, GetAllOrdersQueryVariables> {
+    document = GetAllOrdersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetOrderByIdDocument = gql`
-  query GetOrderById($id: Int!) {
-    sales_order_by_pk(id: $id) {
-      company {
-        name
-        id
-      }
-      contact {
-        code
-        name
-        phone
-        id
-      }
-      customer {
-        id
-        name
-        phone
-        code
-      }
-      date
-      deadline
-      draft_id
+    query GetOrderById($id: Int!) {
+  sales_order_by_pk(id: $id) {
+    company {
+      name
       id
-      delivery_status
-      payment_status
-      total_ht
-      total_tax
-      total_ttc
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetOrderByIdGQL extends Apollo.Query<GetOrderByIdQuery, GetOrderByIdQueryVariables> {
-  document = GetOrderByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    contact {
+      code
+      name
+      phone
+      id
+    }
+    customer {
+      id
+      name
+      phone
+      code
+    }
+    date
+    deadline
+    draft_id
+    id
+    delivery_status
+    payment_status
+    total_ht
+    total_tax
+    total_ttc
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetOrderByIdGQL extends Apollo.Query<GetOrderByIdQuery, GetOrderByIdQueryVariables> {
+    document = GetOrderByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetPaymentDocument = gql`
-  query GetPayment($order_id: Int!) {
-    sales_payment(where: {order_id: {_eq: $order_id}}) {
-      amount
-      company {
-        name
-        id
-      }
-      customer_id
-      date
-      deadline
+    query GetPayment($order_id: Int!) {
+  sales_payment(where: {order_id: {_eq: $order_id}}) {
+    amount
+    company {
+      name
       id
-      payment_method
-      order_id
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetPaymentGQL extends Apollo.Query<GetPaymentQuery, GetPaymentQueryVariables> {
-  document = GetPaymentDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    customer_id
+    date
+    deadline
+    id
+    payment_method
+    order_id
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetPaymentGQL extends Apollo.Query<GetPaymentQuery, GetPaymentQueryVariables> {
+    document = GetPaymentDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetProductsByTypeDocument = gql`
-  query GetProductsByType($draft_id: Int!, $type: sales_product_type_enum) {
-    sales_product_draft(where: {draft_id: {_eq: $draft_id}, type: {_eq: $type}}) {
-      company_id
-      company_name
-      draft_id
-      heigth
-      id
-      label
-      m2
-      ml
-      price
-      product_code
-      quantity
-      total_price
-      type
-      unit
-      width
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetProductsByTypeGQL extends Apollo.Query<GetProductsByTypeQuery, GetProductsByTypeQueryVariables> {
-  document = GetProductsByTypeDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    query GetProductsByType($draft_id: Int!, $type: sales_product_type_enum) {
+  sales_product_draft(where: {draft_id: {_eq: $draft_id}, type: {_eq: $type}}) {
+    company_id
+    company_name
+    draft_id
+    heigth
+    id
+    label
+    m2
+    ml
+    price
+    product_code
+    quantity
+    total_price
+    type
+    unit
+    width
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetProductsByTypeGQL extends Apollo.Query<GetProductsByTypeQuery, GetProductsByTypeQueryVariables> {
+    document = GetProductsByTypeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetProductsGroupDocument = gql`
-  query GetProductsGroup($draft_id: Int!, $_nin: [sales_product_type_enum!]) {
-    sales_product_draft(where: {draft_id: {_eq: $draft_id}, type: {_nin: $_nin}}) {
-      company_id
-      company_name
-      draft_id
-      heigth
-      id
-      label
-      m2
-      ml
-      price
-      product_code
-      quantity
-      total_price
-      type
-      unit
-      width
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetProductsGroupGQL extends Apollo.Query<GetProductsGroupQuery, GetProductsGroupQueryVariables> {
-  document = GetProductsGroupDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    query GetProductsGroup($draft_id: Int!, $_nin: [sales_product_type_enum!]) {
+  sales_product_draft(where: {draft_id: {_eq: $draft_id}, type: {_nin: $_nin}}) {
+    company_id
+    company_name
+    draft_id
+    heigth
+    id
+    label
+    m2
+    ml
+    price
+    product_code
+    quantity
+    total_price
+    type
+    unit
+    width
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetProductsGroupGQL extends Apollo.Query<GetProductsGroupQuery, GetProductsGroupQueryVariables> {
+    document = GetProductsGroupDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAllQuotationsDocument = gql`
-  query GetAllQuotations {
-    sales_quotation {
-      company {
-        name
-        id
-      }
-      customer {
-        code
-        id
-        name
-        phone
-      }
-      status
+    query GetAllQuotations {
+  sales_quotation {
+    company {
+      name
       id
-      total_ht
-      total_tax
-      total_ttc
-      date
-      deadline
-      draft_id
-      contact_id
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAllQuotationsGQL extends Apollo.Query<GetAllQuotationsQuery, GetAllQuotationsQueryVariables> {
-  document = GetAllQuotationsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    customer {
+      code
+      id
+      name
+      phone
+    }
+    status
+    id
+    total_ht
+    total_tax
+    total_ttc
+    date
+    deadline
+    draft_id
+    contact_id
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllQuotationsGQL extends Apollo.Query<GetAllQuotationsQuery, GetAllQuotationsQueryVariables> {
+    document = GetAllQuotationsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetQuotationByIdDocument = gql`
-  query GetQuotationById($id: Int!) {
-    sales_quotation_by_pk(id: $id) {
-      company {
-        name
-        id
-      }
-      customer {
-        id
-        name
-        phone
-        code
-      }
-      date
-      deadline
-      draft_id
+    query GetQuotationById($id: Int!) {
+  sales_quotation_by_pk(id: $id) {
+    company {
+      name
       id
-      status
-      total_ht
-      total_tax
-      total_ttc
     }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class GetQuotationByIdGQL extends Apollo.Query<GetQuotationByIdQuery, GetQuotationByIdQueryVariables> {
-  document = GetQuotationByIdDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    customer {
+      id
+      name
+      phone
+      code
+    }
+    date
+    deadline
+    draft_id
+    id
+    status
+    total_ht
+    total_tax
+    total_ttc
   }
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetQuotationByIdGQL extends Apollo.Query<GetQuotationByIdQuery, GetQuotationByIdQueryVariables> {
+    document = GetQuotationByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
