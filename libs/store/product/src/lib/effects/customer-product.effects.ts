@@ -47,7 +47,7 @@ export class CutomerProductEffects {
       mergeMap((action) =>
         this.customerProductService.removeOne(action.customerProductId).pipe(
           map((data) =>
-          CustomerProductActions.removeCustomerProductuccess({customerProductId: data.data.delete_product_customer_product_by_pk})
+          CustomerProductActions.removeCustomerProductuccess({customerProductId: data.data.delete_product_product_by_pk})
           ),
           catchError((error) =>
             of(CustomerProductActions.removeCustomerProductFailure({ error }))
@@ -56,7 +56,21 @@ export class CutomerProductEffects {
       )
     )
   });
-
+  removeManyCustomersItems$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CustomerProductActions.removeCustomerItems),
+      mergeMap((action) =>
+        this.customerProductService.removeMany( action.ids ).pipe(
+          map((data) =>
+          CustomerProductActions.removeCustomerItemsSuccess({  ids: action.ids  })
+          ),
+          catchError((error) =>
+            of(CustomerProductActions.removeCustomerItemsFailure({ error }))
+          )
+        )
+      )
+    )
+  });
 
 
 

@@ -177,27 +177,27 @@ const regConfigDraftInfos = (
 
     {
       type: "selectSearch",
-      name: "customers",
+      name: "customer_id",
       label: "Clients",
       inputType: "text",
-      value: data?.customers ?? [],
+      value: data?.customer_id ,
       filterFields: ['name', 'phone'],
       fieldsToShow: ['name', 'phone'],
       options: customers
     },
     {
-      type: "selectSearch", name: "contacts",
-      label: "Contacts", inputType: "text", value: data?.contacts ?? [],
+      type: "selectSearch", name: "contact_id",
+      label: "Contacts", inputType: "text", value: data?.contact_id ,
       filterFields: ['name', 'code'],
       fieldsToShow: ['name', 'code'],
       options: contacts
     },
     {
       type: 'select',
-      name: 'company',
+      name: 'company_id',
       label: 'Société',
       inputType: 'text',
-      value: data?.company,
+      value: data?.company_id,
       options: companies,
       validations: [REQUIRED],
     },
@@ -207,6 +207,14 @@ const regConfigDraftInfos = (
       label: 'Date',
       inputType: 'text',
       value: data?.date,
+    },
+    {
+      type: 'date',
+      name: 'deadline',
+      label: 'Délai',
+      inputType: 'text',
+      value: data?.deadline
+      ,
     },
   ];
 
@@ -268,19 +276,19 @@ const regConfigGlassItem = (
       label: 'P.U',
       inputType: 'number',
       value: data?.data?.price,
-      validations: [REQUIRED, MAXNUMBER(limit)],
+      //validations: [REQUIRED, MAXNUMBER(limit)],
     },
     {
       type: "select", name: "company_id", label: "Société",
       inputType: "text", value: data?.data?.company_name,
       options: companies,
-      validations: [REQUIRED],
+      //validations: [REQUIRED],
     },
     {
       type: "select", name: "warehouse_id", label: "Stock",
-      inputType: "text", value: data?.data?.warehouse_id ?? [],
+      inputType: "text", value: data?.data?.warehouse_id ,
       options: warehouses,
-      validations: [REQUIRED],
+      //validations: [REQUIRED],
     },
     {
       type: 'input',
@@ -307,7 +315,7 @@ const regConfigCustomerItem = (
       filterFields: ['id', 'label'],
       fieldsToShow: ['id', 'label'],
       options: customerProducts.pipe(
-        map(item => item.map(product => ({ id: product.code, label: product.label })))),
+        map(item => item.map(product => ({ id: product.product.code, label: product.product.label })))),
 
     },
     {
@@ -372,7 +380,6 @@ const regConfigAccessoireItem = (
       options: accessories.pipe(
         map(item => item.map(accessory => ({ id: accessory.product.code, label: accessory.product.label })))),
     },
-
     {
       type: 'input',
       name: 'label',
@@ -417,6 +424,7 @@ const regConfigAccessoireItem = (
       value: data?.data?.unit,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
+  
   ];
 const regConfigServiceItem = (
   services: Observable<Service[]>,
@@ -509,7 +517,7 @@ const regConfigConsumableItem = (
       label: 'Quantité',
       inputType: 'number',
       value: data?.data?.quantity,
-      options: ((data.row.ml || data.row.m2) ? getGlassQuantities(data.row) : null) ?? [],
+      options: ((data.row.ml || data.row.m2) ? getGlassQuantities(data.row) : null) ,
     },
     {
       type: 'input',
@@ -519,15 +527,10 @@ const regConfigConsumableItem = (
       value: data?.data?.price,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
-    {
-      type: "select", name: "company_id", label: "Société",
-      inputType: "text", value: data?.data?.company_name,
-      options: companies,
-      validations: [REQUIRED],
-    },
+
     {
       type: "select", name: "warehouse_id", label: "Stock",
-      inputType: "text", value: data?.data?.warehouse_id ?? [],
+      inputType: "text", value: data?.data?.warehouse_id ,
       options: warehouses,
       //validations: [REQUIRED],
     },
@@ -593,7 +596,7 @@ const regConfigPayment = (
       name: "customer_id",
       label: "Client",
       inputType: "text",
-      value: data?.customers ?? [],
+      value: data?.customers ,
       filterFields: ['name', 'phone'],
       fieldsToShow: ['name', 'phone'],
       options: customers

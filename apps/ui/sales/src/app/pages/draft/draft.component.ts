@@ -53,6 +53,5 @@ export class DraftComponent implements GridView {
       { field: 'id', headerName: 'Action', type: "editColumn" }
     ];
   }
-
-
+  
 }

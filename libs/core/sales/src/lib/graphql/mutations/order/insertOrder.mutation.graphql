@@ -1,0 +1,26 @@
+mutation InsertOrder($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré") {
+  insert_sales_order_one(object: {company_id: $company_id, contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, delivery_status: $delivery_status, payment_status: $payment_status}) {
+    company {
+      name
+      id
+    }
+    contact {
+      code
+      name
+    }
+    customer {
+      code
+      name
+      phone
+    }
+    date
+    deadline
+    draft_id
+    id
+    delivery_status
+    payment_status
+    total_ht
+    total_tax
+    total_ttc
+  }
+}

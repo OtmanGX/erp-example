@@ -14,12 +14,22 @@ export interface Order {
     total_ht: number;
 }
 
+export interface insertOrder{
+    id: number;
+    draft_id: number;
+    customer_id: string;
+    contact_id?: string;
+    date?: Date;
+    deadline?: Date;
+    company_id: string;
+    total_ttc: number;
+    total_tax: number;
+    total_ht: number;
+}
 
 
 export interface OrdersSum{
-
         total_ht:number;
         total_tax:number;
         total_ttc:number
-
 }

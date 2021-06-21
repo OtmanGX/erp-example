@@ -68,11 +68,15 @@ const ServiceReducer = createReducer<State>(
     }
   )
   ),
+  on(ServiceConfigActions.removeManyServices, (state, action) =>
+  serviceConfigAdapter.removeMany(action.ids, state)
+  ),
   on(ServiceConfigActions.loadServiceConfigByIdFailure,
      ServiceConfigActions.loadServiceConfigsFailure,
      ServiceConfigActions.removeServiceConfigFailure,
      ServiceConfigActions.updateServiceConfigFailure,
      ServiceConfigActions.addServiceConfigFailure,
+     ServiceConfigActions.removeManyServicesFailure,
      (state, { error }) => ({
     ...state,
     error,

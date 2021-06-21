@@ -47,6 +47,7 @@ export class ListGlasseComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.store.dispatch(GlassActions.removeGlasses({ ids: event.data.map((e) => e.id) }));
         break;
       // ...
     }

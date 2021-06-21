@@ -73,7 +73,21 @@ export class ConsumableEffects {
       )
     )
   });
-
+  removeManyConsumables$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ConsumableActions.removeConsumables),
+      mergeMap((action) =>
+        this.consumableService.removeMany(action.ids).pipe(
+          map((data) =>
+          ConsumableActions.removeConsumablesSuccess({  ids: action.ids  })
+          ),
+          catchError((error) =>
+            of(ConsumableActions.removeConsumablesFailure({ error }))
+          )
+        )
+      )
+    )
+  });
 
   constructor(private actions$: Actions,
               private consumableService: ConsumableService) {}

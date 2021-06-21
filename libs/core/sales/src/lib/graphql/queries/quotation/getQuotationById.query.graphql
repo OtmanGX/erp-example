@@ -1,0 +1,22 @@
+query GetQuotationById($id: Int!) {
+  sales_quotation_by_pk(id: $id) {
+    company {
+      name
+      id
+    }
+    customer {
+      id
+      name
+      phone
+      code
+    }
+    date
+    deadline
+    draft_id
+    id
+    status
+    total_ht
+    total_tax
+    total_ttc
+  }
+}
