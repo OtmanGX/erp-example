@@ -12,7 +12,7 @@ mutation InsertInvoice(
       client: $client
       amount_ttc: 0
       amount_ht: 0
-      tva_rate: 0
+      amount_tva : 0
       contact: $contact
       company: $company
       payment_method: $payment_method

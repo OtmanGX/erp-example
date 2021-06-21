@@ -55,11 +55,15 @@ const ConsumableReducer = createReducer<State>(
   on(ConsumablesActions.removeConsumableSuccess, (state, action) =>
      consumableAdapter.removeOne(action.consumableId, state)
   ),
+  on(ConsumablesActions.removeConsumables, (state, action) =>
+  consumableAdapter.removeMany(action.ids, state)
+),
   on(ConsumablesActions.loadConsumablesFailure,
      ConsumablesActions.updateConsumableFailure,
      ConsumablesActions.addConsumableFailure,
      ConsumablesActions.loadConsumableByIdFailure,
      ConsumablesActions.removeConsumableFailure,
+     ConsumablesActions.removeConsumablesFailure,
      (state, { error }) => ({
     ...state,
     error,

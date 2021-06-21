@@ -17,7 +17,7 @@ export interface Invoice {
   date: Date;
   amount_ttc: number
   amount_ht: number
-  tva_rate: number
+  amount_tva: number
   deliveries?: Array<{
     delivery_id: string
   }>

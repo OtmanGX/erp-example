@@ -1,0 +1,23 @@
+query GetAllOrders {
+  sales_order {
+      company {
+        name
+        id
+      }
+      customer {
+        code
+        id
+        name
+        phone
+      }
+      delivery_status
+      payment_status
+      id
+      draft_id
+      total_ht
+      total_tax
+      total_ttc
+      date
+      deadline
+  }
+}

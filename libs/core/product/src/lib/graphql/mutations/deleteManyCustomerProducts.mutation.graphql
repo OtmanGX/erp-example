@@ -1,5 +1,0 @@
-mutation DeleteManyCustomerProducts($codes: [String!]) {
-  delete_product_customer_product(where: {code: {_in: $codes}}) {
-    affected_rows
-  }
-}

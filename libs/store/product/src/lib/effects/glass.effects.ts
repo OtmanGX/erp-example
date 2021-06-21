@@ -107,6 +107,22 @@ export class GlassEffects {
     )
   });
 
+  removeManyGlasses$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GlassActions.removeGlasses),
+      mergeMap((action) =>
+        this.glassService.removeMany(action.ids).pipe(
+          map((data) =>
+          GlassActions.removeGlassesSuccess({  ids: action.ids })
+          ),
+          catchError((error) =>
+            of(GlassActions.removeGlassesFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
 
   constructor(private actions$: Actions,
               private glassService: GlassService) {}

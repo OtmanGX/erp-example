@@ -109,3 +109,21 @@ export const addNewItemFailure = createAction(
   '[ServiceConfig Effect] add new Item to ServiceConfig failure',
   props<{ error: any }>()
 );
+
+
+/****************************************************************** */
+/*****REMOVE MANY Services ** */
+/****************************************************************** */
+
+export const removeManyServices = createAction(
+  '[Services Component] Delete ManyServices',
+  props<{ ids: string[] }>()
+);
+export const removeManyServicesSuccess = createAction(
+  '[ServicesEffect] Delete ManyServices Success',
+  props<{ ids: string[] }>()
+);
+export const removeManyServicesFailure = createAction(
+  '[Services Effect] Delete ManyServices failure',
+  props<{ error: any }>()
+);

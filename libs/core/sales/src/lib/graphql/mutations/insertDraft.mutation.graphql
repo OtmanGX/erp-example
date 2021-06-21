@@ -1,5 +1,0 @@
-mutation InsertDraft($status: String = "draft") {
-  insert_sales_draft_one(object: {status: $status}) {
-    id
-  }
-}

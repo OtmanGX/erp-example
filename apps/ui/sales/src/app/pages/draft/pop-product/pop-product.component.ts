@@ -38,17 +38,15 @@ export class PopProductComponent extends FormDialog implements AfterViewInit, On
     this.warehouses = this.data.warehouses;
   }
 
-  ngOnInit(): void {
-    this.buildForm();
-  }
   ngAfterViewInit(): void {
 
     this.productForm.get('product_code')?.valueChanges?.subscribe(
       (val) => {
-        const found = this.products?.find(element => element.product?.code == val)
-        this.productForm.controls['price'].setValue(found?.product?.price);
-        this.productForm.controls['label'].setValue(found?.product?.label);
-        this.productForm.controls['unit'].setValue(found?.product?.unit);
+        console.log(val)
+        const found = this.products?.find(element => element.product?.code == val  ||element?.code == val)
+        this.productForm.controls['price']?.setValue(found?.product?.price);
+        this.productForm.controls['label'].setValue(found?.product?.label|| found?.label);
+        this.productForm.controls['unit'].setValue(found?.product?.unit||found?.unit);
       }
     )
     this.productForm.get('company_id')?.valueChanges?.subscribe(
@@ -86,16 +84,18 @@ export class PopProductComponent extends FormDialog implements AfterViewInit, On
     this.getItems(this.type);
   }
   getItems(type) {
+    //this.productForm.reset();
     switch (type) {
       case ProductsTypes.glass: {
         this.store.dispatch(productStore.loadGlasses());
         this.glasses$.subscribe(data => this.products = data)
-        this.regConfig = regConfigs.regConfigGlassItem(this.glasses$,this.companies, this.warehouses, this.data);
+        this.regConfig = regConfigs.regConfigGlassItem(this.glasses$,this.companies,
+        this.warehouses, this.data);
         break
       }
       case ProductsTypes.customerPorduct: {
         this.store.dispatch(productStore.loadCustomerProducts());
-        this.glasses$.subscribe(data => this.products = data)
+        this.customerItems$.subscribe(data => this.products = data)
         this.regConfig = regConfigs.regConfigCustomerItem(this.customerItems$, this.data);
         break
       }
@@ -122,6 +122,7 @@ export class PopProductComponent extends FormDialog implements AfterViewInit, On
 
   submitForm() {
     this.formValue = { ...this.formValue, ...this.productForm.value, type: this.type };
+    console.log(this.formValue)
     this.submit(this.formValue);
   }
 

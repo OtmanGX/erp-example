@@ -75,7 +75,22 @@ export class ServiceEffects {
       )
     )
   });
+ removeManyItems$= createEffect(() => {
+  return this.actions$.pipe(
+    ofType(ServiceActions.removeManyServices),
+    mergeMap((action) =>
+      this.serviceConfigService.removeManyItems(action.ids).pipe(
+        map((data) =>
+         ServiceActions.removeManyServicesSuccess({ ids: action.ids})
 
+        ),
+        catchError((error) =>
+          of(ServiceActions.removeManyServicesFailure({ error }))
+        )
+      )
+    )
+  )
+});
 
   constructor(private actions$: Actions,
               private serviceConfigService: ServicesConfigService) {

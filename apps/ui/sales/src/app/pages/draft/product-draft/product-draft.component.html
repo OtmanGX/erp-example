@@ -19,7 +19,7 @@
     <mat-icon>add_circle</mat-icon>
     service
   </button>
-  <button *ngIf="!isCardMode" mat-stroked-button color="primary" (click)="deleteGlass(item)">
+  <button *ngIf="!isCardMode" mat-stroked-button color="primary" (click)="delete(item)">
     <mat-icon>delete</mat-icon>
     delete
   </button>
@@ -43,7 +43,7 @@
 </app-table>
 
 <ng-template #action2 let-item="data">
-  <button *ngIf="!isCardMode" mat-stroked-button color="primary" (click)="deleteArticle(item)">
+  <button *ngIf="!isCardMode" mat-stroked-button color="primary" (click)="delete(item)">
     <mat-icon   color="primary" class="example-icon" aria-hidden="false" aria-label="Example delete icon">
       delete
     </mat-icon>

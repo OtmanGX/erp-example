@@ -33,8 +33,8 @@ const GlassHeaders = [
 
 const CustomerProductHeaders = [
 
-    { field: 'code', headerName: 'Code', type: "textColumn"},
-    { field: 'label', headerName: 'Désignation', type: "textColumn"},
+    { field: 'product.code', headerName: 'Code', type: "textColumn"},
+    { field: 'product.label', headerName: 'Désignation', type: "textColumn"},
     { field: 'thickness', headerName: 'Epaisseur', type: "textColumn"},
   ];
 

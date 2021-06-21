@@ -92,3 +92,22 @@ export const removeAccessoryFailure = createAction(
   '[Accessory Effect] Delete Accessory failure',
   props<{ error: any }>()
 );
+
+
+/****************************************************************** */
+/*****REMOVE MANY Accessories ** */
+/****************************************************************** */
+
+export const removeAccessories = createAction(
+  '[List accessories ] Delete Accessories',
+  props<{ ids: string[] }>()
+);
+export const removeAccessoriesSuccess = createAction(
+  '[Accessory ] Delete Accessories Success',
+  props<{ids: string[]   }>()
+);
+export const removeAccessoriesFailure = createAction(
+  '[Accessory ] Delete Accessories failure',
+  props<{ error: any }>()
+);
+

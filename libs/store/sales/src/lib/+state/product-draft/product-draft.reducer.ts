@@ -64,7 +64,9 @@ const productReducer = createReducer(
     (state, action) => 
     productAdapter.removeOne<ProductState>(action.productId, state)
   ),
-
+  on(ProductActions.clearItemsState,
+    (state) => productAdapter.removeAll(initialProductState)
+    ),
 
   on(ProductActions.loadProductsFailure,
     ProductActions.addGlassFailure,

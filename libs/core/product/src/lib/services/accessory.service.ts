@@ -8,11 +8,6 @@ import {
   InsertAccessoryMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 import {  insertedAccessory } from "../models/accessory.model";
-import {
-  Product_Product_Unit_Enum,
-  Product_AccessoryTypes_Enum,
-  Product_ConsumableCategory_Enum
-} from "@tanglass-erp/infrastructure/graphql";
 import { adaptProduct } from '../utils/dataAdapter';
 
 @Injectable({
@@ -66,6 +61,7 @@ this.getOneById("eb6c4f62-a1ec-401e-a206-1274353a6245").subscribe(o=>console.log
   }
 
   removeMany(codes: string[]) {
+  
     return this.deleteMany.mutate({codes})
   }
 

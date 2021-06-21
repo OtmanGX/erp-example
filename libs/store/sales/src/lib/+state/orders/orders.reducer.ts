@@ -40,9 +40,15 @@ const ordersReducer = createReducer(
   on(OrdersActions.removeOrderSuccess, (state, {ids}) =>
     ordersAdapter.removeMany(ids, state)
   ),
-  on(OrdersActions.loadOrderByIdSuccess,
-    (state, {Order}) => ({...state, selectedOrder: Order})
-  ),
+  on( OrdersActions.loadOrderByIdSuccess,
+    (state, action)  => (
+      {
+        ...state,
+        error: null,
+        selectedOrder: action.Order,
+      }
+    )
+),
   on(OrdersActions.addOrderSuccess,
     (state, action) => ordersAdapter.addOne(action.Order, state)
   ),
