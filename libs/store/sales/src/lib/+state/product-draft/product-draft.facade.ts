@@ -6,8 +6,7 @@ import { map, reduce } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { Amount } from "./products-draft.models";
 import { PaymentsFacade } from "../payments/payments.facade";
-import { Payment, Payment as PaymentsEntity } from "@tanglass-erp/core/sales";
-import { validate } from 'graphql';
+import { Payment as PaymentsEntity } from "@tanglass-erp/core/sales";
 
 @Injectable()
 export class ProductDraftFacade {
@@ -21,7 +20,7 @@ export class ProductDraftFacade {
     select(ProductDraftSelectors.getSelectedProduct)
   );
   amounts$ = new BehaviorSubject<Amount[]>([new Amount()]);
-  orderCompanies
+  orderCompanies;
   constructor(
     private store: Store,
     public paymentsFacade: PaymentsFacade
@@ -32,7 +31,7 @@ export class ProductDraftFacade {
   loadAllProducts(draft_id: number) {
     this.dispatch(ProductsActions.loadProducts({ draft_id }));
   }
-  addGlass(product) {
+  addGlass(product):void {
     let glass = {
       ...product,
       count: parseInt(product.count),
@@ -43,32 +42,32 @@ export class ProductDraftFacade {
     }
     this.dispatch(ProductsActions.addGlass({ glass }));
   }
-  addCustomerProduct(product) {
+  addCustomerProduct(product):void {
     let customer_item = {
       ...product,
       count: parseInt(product.count),
       quantity: parseFloat(product.heigth) * parseFloat(product.width) * parseFloat(product.count),
       m2: parseFloat(product.heigth) * parseFloat(product.width) * parseFloat(product.count),
       ml: 2 * (parseFloat(product.heigth) + parseFloat(product.width)) * product.count,
-      total_price: 0
+      total_price:0,
     }
     this.dispatch(ProductsActions.addCustomerItem({ customer_item }));
   }
-  addAccessory(product) {
+  addAccessory(product):void {
     let accessory = {
       ...product,
       total_price: product.quantity * product.price,
     }
     this.dispatch(ProductsActions.addAccessory({ accessory }))
   }
-  addConsumable(product) {
+  addConsumable(product):void {
     let consumable = {
       ...product,
       total_price: product.quantity * product.price,
     }
     this.dispatch(ProductsActions.addConsumable({ consumable }))
   }
-  addService(product) {
+  addService(product):void {
     let service = {
       ...product,
       total_price: product.quantity * product.price,
@@ -76,7 +75,7 @@ export class ProductDraftFacade {
     this.dispatch(ProductsActions.addService({ service }))
 
   }
-  updateCompanyAmount(company: string) {
+  updateCompanyAmount(company: string):Amount {
     let amount: Amount;
     this.allProduct$.pipe(map(
       products => {
@@ -102,13 +101,13 @@ export class ProductDraftFacade {
     )).subscribe(data => amount = data)
     return amount
   }
-  getCompanies() {
+  getCompanies():void {
     this.allProduct$.subscribe(
       products => {
         this.orderCompanies = [... new Set(products.map(product => product.company_name))]
       })
   }
-  updateAmounts() {
+  updateAmounts():void {
     let amounts: Amount[] = []
     this.getCompanies();
     this.orderCompanies?.forEach(element => {
@@ -125,9 +124,11 @@ export class ProductDraftFacade {
    
     this.amounts$.next(amounts);
   }
-  removeProduct(productId) {
+  removeProduct(productId):void {
     this.dispatch(ProductsActions.removeProduct({ productId }));
     this.updateAmounts()
   }
-
+  clearState() {
+    this.dispatch(ProductsActions.clearItemsState());
+  }
 }

@@ -121,3 +121,23 @@ export const loadColorsFailure = createAction(
   '[Glass Effect] Load colors of Glass failure',
   props<{ error: any }>()
 );
+
+
+
+/****************************************************************** */
+/*****REMOVE MANY Glasses ** */
+/****************************************************************** */
+
+export const removeGlasses = createAction(
+  '[List Glasses ] Delete Glasses',
+  props<{ ids: string[] }>()
+);
+export const removeGlassesSuccess = createAction(
+  '[Glasses ] Delete Glasses Success',
+  props<{ ids: string[]}>()
+);
+export const removeGlassesFailure = createAction(
+  '[Glasses ] Delete Glasses failure',
+  props<{ error: any }>()
+);
+

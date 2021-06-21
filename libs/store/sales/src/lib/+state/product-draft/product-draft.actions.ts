@@ -159,3 +159,4 @@ export const removeProductFailure = createAction(
 );
 
 
+export const clearItemsState = createAction('[order items] Clear order Items State');

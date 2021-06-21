@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdersFacade } from "@tanglass-erp/store/sales";
+import { OrdersFacade,DraftFacade } from "@tanglass-erp/store/sales";
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 import { Location } from '@angular/common';
@@ -22,7 +22,10 @@ export class OrderCardComponent extends ModelCardComponent {
   isCardMode: boolean = true;
   constructor(
     public activatedRoute: ActivatedRoute,
-    protected facade: OrdersFacade
+    protected facade: OrdersFacade,
+    private draftFacade: DraftFacade,
+    private ordersFacade: OrdersFacade,
+    
   ) {
     super(activatedRoute);
   }
@@ -67,5 +70,10 @@ export class OrderCardComponent extends ModelCardComponent {
   cancel() { }
   print() { }
   launch() { }
+
+  ngOnDestroy(): void {
+    this.ordersFacade.clearSelection();
+    this.draftFacade.clearState();
+  }
 }
 

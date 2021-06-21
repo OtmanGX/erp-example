@@ -40,7 +40,6 @@ const CustomerProductReducer = createReducer<State>(
         })
   ),
 
-
   on( customerProductsActions.loadCustomerProductByIdSuccess,
     (state, action)  => (
       {
@@ -59,10 +58,14 @@ const CustomerProductReducer = createReducer<State>(
   on(customerProductsActions.removeCustomerProductuccess, (state, action) =>
   customerProductAdapter.removeOne(action.customerProductId, state)
   ),
+  on(customerProductsActions.removeCustomerItems, (state, action) =>
+  customerProductAdapter.removeMany(action.ids, state)
+  ),
   on(customerProductsActions.loadCustomerProductsFailure,
     customerProductsActions.loadCustomerProductByIdFailure,
     customerProductsActions.addCustomerProductFailure,
     customerProductsActions.removeCustomerProductFailure,
+    customerProductsActions.removeCustomerItemsFailure,
     (state, { error }) => ({
    ...state,
    error,

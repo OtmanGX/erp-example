@@ -4,7 +4,7 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import {
   FormGroup,
@@ -84,6 +84,7 @@ export class DynamicFormComponent implements OnInit {
       this.form.addControl(group.name, this.createControl(group.fields));
     });
   }
+
 
   /***
    *

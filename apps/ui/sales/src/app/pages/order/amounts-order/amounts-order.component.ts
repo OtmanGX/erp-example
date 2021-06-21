@@ -18,7 +18,6 @@ export class AmountsOrderComponent implements OnInit {
   dataSource: Amount[] = [];
   amountsByCompanySub = this.productFacade.amounts$;
   payments
-  orderPayments$ = this.paymentFacade.orderPayments$;
 
   @ViewChild(MatTable, { static: true }) table: MatTable<Amount>;
   @Input() isCardMode: boolean = false;
@@ -37,8 +36,6 @@ export class AmountsOrderComponent implements OnInit {
     )
   }
 
-
-
   openDialog(action, data = {}) {
     const dialogRef = this.dialog.open(PopPaymentComponent, {
       width: '1000px',
@@ -49,7 +46,6 @@ export class AmountsOrderComponent implements OnInit {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-          console.log('add',result)
           this.paymentFacade.addPayment({...result,order_id:this.order_id})
         } else { } // Update
       }

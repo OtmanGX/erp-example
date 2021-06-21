@@ -95,6 +95,7 @@ export class ServiceCardComponent extends ModelCardComponent implements GridView
           this.openDialog(event.action, event.data);
           break;
         case Operations.delete:
+          this.store.dispatch(ServiceGroupActions.removeManyServices({ ids: event.data.map((e) => e.id) }));
           break;
         // ...
       }

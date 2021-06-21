@@ -5,6 +5,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { OrderHeaders } from '../../utils/grid-headers';
 import { Router } from '@angular/router';
 import { OrdersFacade } from "@tanglass-erp/store/sales";
+import { DeliveryFacade, DraftFacade, Order } from '@tanglass-erp/store/sales';
 
 @Component({
   selector: 'ngx-order',
@@ -22,6 +23,7 @@ export class OrderComponent implements GridView {
     public dialog: MatDialog,
     private router: Router,
     private facade: OrdersFacade,
+    private draftFacade: DraftFacade,
   ) {
     this.setColumnDefs();
   }
@@ -54,5 +56,6 @@ export class OrderComponent implements GridView {
       { field: 'id', headerName: 'Action', type: "editColumn" }
     ];
   }
+
 
 }
