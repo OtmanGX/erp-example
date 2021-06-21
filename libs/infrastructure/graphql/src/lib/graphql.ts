@@ -17291,8 +17291,8 @@ export type Sales_Delivery = {
   orderObject: Sales_Order;
   payment_method: Scalars['String'];
   predicted_date: Scalars['date'];
-  /** A computed field, executes function "sales.delivery_ref" */
   ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
   status: Scalars['String'];
 };
 
@@ -17374,6 +17374,7 @@ export type Sales_Delivery_Avg_Fields = {
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
   order?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "sales.delivery" */
@@ -17382,6 +17383,7 @@ export type Sales_Delivery_Avg_Order_By = {
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "sales.delivery". All fields are combined with a logical 'AND'. */
@@ -17405,6 +17407,8 @@ export type Sales_Delivery_Bool_Exp = {
   orderObject?: Maybe<Sales_Order_Bool_Exp>;
   payment_method?: Maybe<String_Comparison_Exp>;
   predicted_date?: Maybe<Date_Comparison_Exp>;
+  ref?: Maybe<String_Comparison_Exp>;
+  ref_num?: Maybe<Int_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
 };
 
@@ -17420,6 +17424,7 @@ export type Sales_Delivery_Inc_Input = {
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
   order?: Maybe<Scalars['Int']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "sales.delivery" */
@@ -17440,6 +17445,8 @@ export type Sales_Delivery_Insert_Input = {
   orderObject?: Maybe<Sales_Order_Obj_Rel_Insert_Input>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -17848,6 +17855,8 @@ export type Sales_Delivery_Max_Fields = {
   order?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -17863,6 +17872,8 @@ export type Sales_Delivery_Max_Order_By = {
   order?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
   predicted_date?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -17879,6 +17890,8 @@ export type Sales_Delivery_Min_Fields = {
   order?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -17894,6 +17907,8 @@ export type Sales_Delivery_Min_Order_By = {
   order?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
   predicted_date?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -17937,6 +17952,8 @@ export type Sales_Delivery_Order_By = {
   orderObject?: Maybe<Sales_Order_Order_By>;
   payment_method?: Maybe<Order_By>;
   predicted_date?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -17970,6 +17987,10 @@ export enum Sales_Delivery_Select_Column {
   /** column name */
   PredictedDate = 'predicted_date',
   /** column name */
+  Ref = 'ref',
+  /** column name */
+  RefNum = 'ref_num',
+  /** column name */
   Status = 'status'
 }
 
@@ -17986,6 +18007,8 @@ export type Sales_Delivery_Set_Input = {
   order?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -17996,6 +18019,7 @@ export type Sales_Delivery_Stddev_Fields = {
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
   order?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "sales.delivery" */
@@ -18004,6 +18028,7 @@ export type Sales_Delivery_Stddev_Order_By = {
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -18013,6 +18038,7 @@ export type Sales_Delivery_Stddev_Pop_Fields = {
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
   order?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "sales.delivery" */
@@ -18021,6 +18047,7 @@ export type Sales_Delivery_Stddev_Pop_Order_By = {
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -18030,6 +18057,7 @@ export type Sales_Delivery_Stddev_Samp_Fields = {
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
   order?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "sales.delivery" */
@@ -18038,6 +18066,7 @@ export type Sales_Delivery_Stddev_Samp_Order_By = {
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
@@ -18047,6 +18076,7 @@ export type Sales_Delivery_Sum_Fields = {
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
   order?: Maybe<Scalars['Int']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "sales.delivery" */
@@ -18055,6 +18085,7 @@ export type Sales_Delivery_Sum_Order_By = {
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** update columns of table "sales.delivery" */
@@ -18082,6 +18113,10 @@ export enum Sales_Delivery_Update_Column {
   /** column name */
   PredictedDate = 'predicted_date',
   /** column name */
+  Ref = 'ref',
+  /** column name */
+  RefNum = 'ref_num',
+  /** column name */
   Status = 'status'
 }
 
@@ -18092,6 +18127,7 @@ export type Sales_Delivery_Var_Pop_Fields = {
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
   order?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "sales.delivery" */
@@ -18100,6 +18136,7 @@ export type Sales_Delivery_Var_Pop_Order_By = {
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
@@ -18109,6 +18146,7 @@ export type Sales_Delivery_Var_Samp_Fields = {
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
   order?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "sales.delivery" */
@@ -18117,6 +18155,7 @@ export type Sales_Delivery_Var_Samp_Order_By = {
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -18126,6 +18165,7 @@ export type Sales_Delivery_Variance_Fields = {
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
   order?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "sales.delivery" */
@@ -18134,6 +18174,7 @@ export type Sales_Delivery_Variance_Order_By = {
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "sales.draft" */
@@ -18837,6 +18878,8 @@ export type Sales_Invoice = {
   /** An aggregated array relationship */
   invoice_lines_aggregate: Sales_Invoice_Line_Aggregate;
   payment_method: Scalars['String'];
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 
@@ -18936,6 +18979,7 @@ export type Sales_Invoice_Avg_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "sales.invoice" */
@@ -18943,6 +18987,7 @@ export type Sales_Invoice_Avg_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "sales.invoice". All fields are combined with a logical 'AND'. */
@@ -18964,6 +19009,8 @@ export type Sales_Invoice_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
   invoice_lines?: Maybe<Sales_Invoice_Line_Bool_Exp>;
   payment_method?: Maybe<String_Comparison_Exp>;
+  ref?: Maybe<String_Comparison_Exp>;
+  ref_num?: Maybe<Int_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.invoice" */
@@ -19122,6 +19169,7 @@ export type Sales_Invoice_Inc_Input = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "sales.invoice" */
@@ -19140,6 +19188,8 @@ export type Sales_Invoice_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
   invoice_lines?: Maybe<Sales_Invoice_Line_Arr_Rel_Insert_Input>;
   payment_method?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 /** columns and relationships of "sales.invoice_line" */
@@ -19511,6 +19561,8 @@ export type Sales_Invoice_Max_Fields = {
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 /** order by max() on columns of table "sales.invoice" */
@@ -19524,6 +19576,8 @@ export type Sales_Invoice_Max_Order_By = {
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -19538,6 +19592,8 @@ export type Sales_Invoice_Min_Fields = {
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 /** order by min() on columns of table "sales.invoice" */
@@ -19551,6 +19607,8 @@ export type Sales_Invoice_Min_Order_By = {
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "sales.invoice" */
@@ -19591,6 +19649,8 @@ export type Sales_Invoice_Order_By = {
   id?: Maybe<Order_By>;
   invoice_lines_aggregate?: Maybe<Sales_Invoice_Line_Aggregate_Order_By>;
   payment_method?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "sales.invoice" */
@@ -19617,7 +19677,11 @@ export enum Sales_Invoice_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  PaymentMethod = 'payment_method'
+  PaymentMethod = 'payment_method',
+  /** column name */
+  Ref = 'ref',
+  /** column name */
+  RefNum = 'ref_num'
 }
 
 /** input type for updating data in table "sales.invoice" */
@@ -19631,6 +19695,8 @@ export type Sales_Invoice_Set_Input = {
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 /** aggregate stddev on columns */
@@ -19639,6 +19705,7 @@ export type Sales_Invoice_Stddev_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "sales.invoice" */
@@ -19646,6 +19713,7 @@ export type Sales_Invoice_Stddev_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -19654,6 +19722,7 @@ export type Sales_Invoice_Stddev_Pop_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "sales.invoice" */
@@ -19661,6 +19730,7 @@ export type Sales_Invoice_Stddev_Pop_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -19669,6 +19739,7 @@ export type Sales_Invoice_Stddev_Samp_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "sales.invoice" */
@@ -19676,6 +19747,7 @@ export type Sales_Invoice_Stddev_Samp_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
@@ -19684,6 +19756,7 @@ export type Sales_Invoice_Sum_Fields = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "sales.invoice" */
@@ -19691,6 +19764,7 @@ export type Sales_Invoice_Sum_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** update columns of table "sales.invoice" */
@@ -19712,7 +19786,11 @@ export enum Sales_Invoice_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  PaymentMethod = 'payment_method'
+  PaymentMethod = 'payment_method',
+  /** column name */
+  Ref = 'ref',
+  /** column name */
+  RefNum = 'ref_num'
 }
 
 /** aggregate var_pop on columns */
@@ -19721,6 +19799,7 @@ export type Sales_Invoice_Var_Pop_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "sales.invoice" */
@@ -19728,6 +19807,7 @@ export type Sales_Invoice_Var_Pop_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
@@ -19736,6 +19816,7 @@ export type Sales_Invoice_Var_Samp_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "sales.invoice" */
@@ -19743,6 +19824,7 @@ export type Sales_Invoice_Var_Samp_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -19751,6 +19833,7 @@ export type Sales_Invoice_Variance_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "sales.invoice" */
@@ -19758,6 +19841,7 @@ export type Sales_Invoice_Variance_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "sales.order" */
