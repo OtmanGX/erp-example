@@ -32,9 +32,9 @@ export class DraftItem {
     product_code: string;
     label: string;
     unit: string;
-    price: number;
+    price?: number;
     quantity:number;
-    total_price: number=0;
+    total_price?: number=0;
     company_name?: string;
     warehouse_id?:string;
   }

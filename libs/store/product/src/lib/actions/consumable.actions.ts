@@ -92,3 +92,21 @@ export const removeConsumableFailure = createAction(
   '[Consumable Effect] Delete Consumable failure',
   props<{ error: any }>()
 );
+
+
+/****************************************************************** */
+/*****REMOVE MANY Consumables ** */
+/****************************************************************** */
+
+export const removeConsumables = createAction(
+  '[List Consumables ] Delete Consumables',
+  props<{ ids: string[] }>()
+);
+export const removeConsumablesSuccess = createAction(
+  '[Consumables ] Delete Consumables Success',
+  props<{ ids:string[]}>()
+);
+export const removeConsumablesFailure = createAction(
+  '[Consumables ] Delete Consumables failure',
+  props<{ error: any }>()
+);

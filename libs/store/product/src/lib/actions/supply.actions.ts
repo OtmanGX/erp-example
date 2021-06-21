@@ -91,3 +91,21 @@ export const removeSupplyFailure = createAction(
   '[Supply Effect] Delete Supply failure',
   props<{ error: any }>()
 );
+
+
+/****************************************************************** */
+/*****REMOVE MANY Supplies ** */
+/****************************************************************** */
+
+export const removeSupplies = createAction(
+  '[List Supplies ] Delete Supplies',
+  props<{ ids: string[] }>()
+);
+export const removeSuppliesSuccess = createAction(
+  '[Supplies ] Delete Supplies Success',
+  props<{ ids: string[] }>()
+);
+export const removeSuppliesFailure = createAction(
+  '[Supplies ] Delete Supplies failure',
+  props<{ error: any }>()
+);

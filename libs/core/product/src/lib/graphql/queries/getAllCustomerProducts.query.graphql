@@ -1,7 +1,11 @@
 query GetAllCustomerProducts {
   product_customer_product {
     id
-    productcode
     thickness
+    product {
+      code
+      label
+      unit
+    }
   }
 }

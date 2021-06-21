@@ -1,5 +1,0 @@
-mutation DeleteCustomerProduct($id: uuid!) {
-  delete_product_customer_product_by_pk(id: $id) {
-    id
-  }
-}

@@ -94,6 +94,25 @@ export const removeCustomerProductFailure = createAction(
 );
 
 
+/****************************************************************** */
+/*****REMOVE MANY Customers Items ** */
+/****************************************************************** */
+
+export const removeCustomerItems = createAction(
+  '[List CustomerItems ] Delete CustomerItems',
+  props<{ ids: string[] }>()
+);
+export const removeCustomerItemsSuccess = createAction(
+  '[CustomerItems ] Delete CustomerItems Success',
+  props<{ ids:  string[] }>()
+);
+export const removeCustomerItemsFailure = createAction(
+  '[CustomerItems ] Delete CustomerItems failure',
+  props<{ error: any }>()
+);
+
+
+
 
 
 

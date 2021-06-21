@@ -18,9 +18,8 @@ import { Subscription } from 'rxjs';
 export class ProductDraftComponent implements OnInit, OnDestroy {
   @ViewChild('glassTable') glassTable: TableComponent<DraftItem>;
   @ViewChild('articlesTable', { read: TableComponent, static: false }) articlesTable: TableComponent<DraftItem>;
-
-  displayedColumns: Array<Column>=ProductHeaders
-  glassesColumns: Array<Column>=  ProductGlassHeaders
+  displayedColumns: Array<Column> = ProductHeaders
+  glassesColumns: Array<Column> = ProductGlassHeaders
   dataSourceGlass = [];
   dataSourceArticles = [];
   regConfig: FieldConfig[];
@@ -31,7 +30,7 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
   companiesSub: Subscription;
   warehousesSub: Subscription;
   @ViewChild(MatTable, { static: true }) table: MatTable<DraftItem>;
-  @Input() draftData;
+  @Input() draftData: number;
   @Input() isCardMode: boolean = false;
   constructor(
     public dialog: MatDialog,
@@ -41,15 +40,14 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sharedfacade.loadAllShortCompanies();
     this.sharedfacade.loadAllShortWarehouses();
+    this.draftData ? this.facade.loadAllProducts(this.draftData) : null;
   }
-
   ngOnChanges() {
-    this.draftData?this.facade.loadAllProducts(this.draftData):null;
     this.productsSub = this.products$.subscribe(
       items => {
         this.facade.updateAmounts()
-        this.dataSourceGlass = items.filter(item => item.type == ProductsTypes.glass);
-        this.dataSourceArticles = items.filter(item => item.type !== ProductsTypes.glass);
+        this.dataSourceGlass = items.filter(item => item.type == ProductsTypes.glass||item.type ==ProductsTypes.customerPorduct);
+        this.dataSourceArticles = items.filter(item => item.type !== ProductsTypes.glass&&item.type !== ProductsTypes.customerPorduct);
       }
     )
   }
@@ -68,6 +66,11 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
           this.facade.addGlass({ ...result, draft_id: this.draftData })
           break;
         }
+        case  ProductsTypes.customerPorduct: {
+          console.log('fgdfgfdg')
+          this.facade.addGlass({ ...result, draft_id: this.draftData })
+          break;
+        }
         case ProductsTypes.accessory: {
           this.facade.addAccessory({ ...result, draft_id: this.draftData })
           break;
@@ -80,10 +83,6 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
           this.facade.addConsumable({ ...result, draft_id: this.draftData })
           break;
         }
-        case ProductsTypes.customerPorduct: {
-          this.facade.addCustomerProduct({ ...result, draft_id: this.draftData })
-          break;
-        }
         default: {
           break;
         }
@@ -93,21 +92,10 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
     this.glassTable.render();
   }
   delete(item: DraftItem) {
-    // this.facade.removeProduct(item.id);
-    // this.articlesTable.render();
-    // this.glassTable.render();
-    // this.facade.updateAmounts()
-
-  }
-  deleteArticle(item: any) {
     this.facade.removeProduct(item.id);
-    this.facade.updateAmounts()
-    this.articlesTable.render()
-  }
-  deleteGlass(item: any) {
-    this.facade.removeProduct(item.id);
-    this.facade.updateAmounts()
-    this.glassTable.render()
+    this.articlesTable.render();
+    this.glassTable.render();
+    this.facade.updateAmounts();
   }
   ngOnDestroy() {
     this.productsSub?.unsubscribe();

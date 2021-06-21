@@ -44,6 +44,8 @@ export class ListAccessoriesComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.store.dispatch(AccessoryActions.removeAccessories({ ids: event.data.map((e) => e.id) }));
+
         break;
       // ...
     }

@@ -73,6 +73,9 @@ on( GlassesActions.loadTypesSuccess,
   on(GlassesActions.removeGlassesuccess, (state, action) =>
      glassAdapter.removeOne(action.glassId, state)
   ),
+  on(GlassesActions.removeGlasses, (state, action) =>
+  glassAdapter.removeMany(action.ids, state)
+),
   on(GlassesActions.loadGlassesFailure,
     GlassesActions.loadTypesFailure,
     GlassesActions.loadColorsFailure,
@@ -80,6 +83,7 @@ on( GlassesActions.loadTypesSuccess,
      GlassesActions.addGlassFailure,
      GlassesActions.loadGlassByIdFailure,
      GlassesActions.removeGlassFailure,
+     GlassesActions.removeGlassesFailure,
      (state, { error }) => ({
     ...state,
     error,

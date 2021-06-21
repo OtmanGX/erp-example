@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   GetAllCustomerProductsGQL,
   InsertCustomerProductGQL,
-  DeleteCustomerProductGQL,
-  DeleteManyCustomerProductsGQL,
+  DeleteOneGQL,
+  DeleteManyGQL,
 } from '@tanglass-erp/infrastructure/graphql';
 import { CustomerProduct } from "../models/customerProduct.model";
 
@@ -16,8 +16,8 @@ export class CustomerProductService {
   constructor(
     private getAllGQL: GetAllCustomerProductsGQL,
     private insertOneGQL: InsertCustomerProductGQL,
-    private deleteOneGQL: DeleteCustomerProductGQL,
-    private deleteMany:DeleteManyCustomerProductsGQL,
+    private deleteOneGQL: DeleteOneGQL,
+    private deleteMany:DeleteManyGQL
   ) {}
 
   getAll() {
@@ -29,11 +29,11 @@ export class CustomerProductService {
     return this.insertOneGQL.mutate(createdOne)
   }
 
-  removeOne(id: string) {
-    return this.deleteOneGQL.mutate({ id })
+  removeOne(code: string) {
+    return this.deleteOneGQL.mutate({ code })
   }
 
-  removeMany(ids: string[]) {
-    return this.deleteMany.mutate({ids})
+  removeMany(codes: string[]) {
+    return this.deleteMany.mutate({codes})
   }
 }

@@ -33,15 +33,11 @@ export class DraftService {
   }
 
   getAll() {
-
-
     return this.getAllDraftsGQL.watch().valueChanges
-
   }
 
   getOneById(id: number) {
     return this.getDraftByIdGQL.watch({ id }).valueChanges
-
   }
 
   insertOne() {
@@ -77,7 +73,6 @@ export class DraftService {
 
   getDraftAccessories(draft_id) {
     return  this.getProductsByTypeGQL.watch({ draft_id, type: Sales_Product_Type_Enum.Accessoire }).valueChanges
-
   }
 
   //Get just the Consumables in a draft (order or quotation)

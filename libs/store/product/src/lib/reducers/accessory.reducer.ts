@@ -55,11 +55,15 @@ const AccessoryReducer = createReducer<State>(
   on(AccessoriesActions.removeAccessorySuccess, (state, action) =>
     accessoryAdapter.removeOne(action.accessoryId, state)
   ),
+  on(AccessoriesActions.removeAccessoriesSuccess, (state, action) =>
+    accessoryAdapter.removeMany(action.ids, state)
+  ),
   on(AccessoriesActions.loadAccessoriesFailure,
      AccessoriesActions.updateAccessoryFailure,
      AccessoriesActions.addAccessoryFailure,
      AccessoriesActions.loadAccessoryByIdFailure,
      AccessoriesActions.removeAccessoryFailure,
+     AccessoriesActions.removeAccessoriesFailure,
      (state, { error }) => ({
     ...state,
     error,

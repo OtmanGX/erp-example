@@ -15,7 +15,7 @@ export class AccessoryEffects {
       mergeMap(() =>
         this.accessorieservice.getAll().pipe(
           map((data) =>
-          AccessoriesActions.loadAccessoriesSuccess({accessories: data.data.product_accessory})
+            AccessoriesActions.loadAccessoriesSuccess({ accessories: data.data.product_accessory })
           ),
           catchError((error) =>
             of(AccessoriesActions.loadAccessoriesFailure({ error }))
@@ -31,7 +31,7 @@ export class AccessoryEffects {
       mergeMap((action) =>
         this.accessorieservice.insertOne(action.accessory).pipe(
           map((data) =>
-          AccessoriesActions.addAccessorySuccess({accessory: data.data.insert_product_accessory_one})
+            AccessoriesActions.addAccessorySuccess({ accessory: data.data.insert_product_accessory_one })
           ),
           catchError((error) =>
             of(AccessoriesActions.addAccessoryFailure({ error }))
@@ -48,7 +48,7 @@ export class AccessoryEffects {
       mergeMap((action) =>
         this.accessorieservice.getOneById(action.id).pipe(
           map((data) =>
-          AccessoriesActions.loadAccessoryByIdSuccess({accessory: data.data.product_accessory_by_pk})
+            AccessoriesActions.loadAccessoryByIdSuccess({ accessory: data.data.product_accessory_by_pk })
           ),
           catchError((error) =>
             of(AccessoriesActions.loadAccessoryByIdFailure({ error }))
@@ -64,7 +64,7 @@ export class AccessoryEffects {
       mergeMap((action) =>
         this.accessorieservice.removeOne(action.accessoryId).pipe(
           map((data) =>
-          AccessoriesActions.removeAccessorySuccess({accessoryId: data.data.delete_product_product_by_pk})
+            AccessoriesActions.removeAccessorySuccess({ accessoryId: data.data.delete_product_product_by_pk })
           ),
           catchError((error) =>
             of(AccessoriesActions.removeAccessoryFailure({ error }))
@@ -74,7 +74,22 @@ export class AccessoryEffects {
     )
   });
 
+  removeManyAccessories$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccessoriesActions.removeAccessories),
+      mergeMap((action) =>
+        this.accessorieservice.removeMany(action.ids).pipe(
+          map((data) =>
+            AccessoriesActions.removeAccessoriesSuccess({ ids: action.ids})
+          ),
+          catchError((error) =>
+            of(AccessoriesActions.removeAccessoriesFailure({ error }))
+          )
+        )
+      )
+    )
+  });
 
   constructor(private actions$: Actions,
-              private accessorieservice: AccessoryService) {}
+    private accessorieservice: AccessoryService) { }
 }

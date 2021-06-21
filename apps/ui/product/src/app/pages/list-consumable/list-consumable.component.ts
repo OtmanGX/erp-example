@@ -48,6 +48,7 @@ export class ListConsumableComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.store.dispatch(ConsumableActions.removeConsumables({ ids: event.data.map((e) => e.id) }));
         break;
       // ...
     }
