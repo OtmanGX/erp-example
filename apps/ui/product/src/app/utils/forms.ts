@@ -215,13 +215,7 @@ const regConfigServiceConsumable = (data?, services: ListObservable = []) => [
 const regConfigCustomerProduct = (data?: CustomerProduct) => [
 
   {
-    type: "input", label: "code", inputType: "text", name: "code", value: data?.code,
-    validations: [
-      REQUIRED
-    ]
-  },
-  {
-    type: "input", label: "Désignation", inputType: "text", name: "label", value: data?.label,
+    type: "input", label: "code", inputType: "text", name: "productcode", value: data?.productcode,
     validations: [
       REQUIRED
     ]

@@ -133,7 +133,7 @@ export const deliveryHeaders = [
         field: 'amount_ttc',
         headerName: 'Montant TTC',
         type: 'numberColumn',
-        valueGetter: (params) => parseFloat(params.value.toFixed(2))
+        valueFormatter: (params) => params.value.toFixed(2)
       },
       {
         field: 'isReturned',

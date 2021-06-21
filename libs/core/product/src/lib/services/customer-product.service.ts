@@ -24,18 +24,16 @@ export class CustomerProductService {
     return this.getAllGQL.watch().valueChanges
   }
 
- 
+
   insertOne(createdOne: CustomerProduct) {
     return this.insertOneGQL.mutate(createdOne)
   }
 
-  removeOne(code: string) {
-    return this.deleteOneGQL.mutate({ code })
+  removeOne(id: string) {
+    return this.deleteOneGQL.mutate({ id })
   }
 
-  removeMany(codes: string[]) {
-    return this.deleteMany.mutate({codes})
+  removeMany(ids: string[]) {
+    return this.deleteMany.mutate({ids})
   }
-
-
 }

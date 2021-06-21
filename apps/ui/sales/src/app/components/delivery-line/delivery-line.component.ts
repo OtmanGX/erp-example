@@ -74,6 +74,7 @@ export class DeliveryLineComponent implements OnInit {
 
   setMax(input: HTMLInputElement, row) {
     row.toDeliver = row.toDeliver !== parseFloat(input.max) ? parseFloat(input.max): 0;
+    this.calculateAmount(row);
   }
 
   calculateAmount(item: DeliveryLine) {

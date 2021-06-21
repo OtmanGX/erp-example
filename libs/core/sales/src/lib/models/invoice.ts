@@ -17,7 +17,7 @@ export interface Invoice {
   date: Date;
   amount_ttc: number
   amount_ht: number
-  tva_rate: number
+  amount_tva: number
   deliveries?: Array<{
     delivery_id: string
   }>
@@ -35,6 +35,9 @@ export interface InsertedInvoice {
     delivery_id: string
   }>
   invoice_lines: Array<InvoiceLine>
+  amount_ttc: number
+  amount_ht: number
+  amount_tva: number
 }
 
 export interface UpdatedInvoice extends InsertedInvoice {

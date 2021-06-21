@@ -4,8 +4,8 @@ query getDeliveryLines($deliveries: [uuid!]!=[]) {
     delivered
     product_draft {
       product_code
-      price
     }
     amount
+    unit_price
   }
 }

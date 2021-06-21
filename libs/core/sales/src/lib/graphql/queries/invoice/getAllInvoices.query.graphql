@@ -19,7 +19,7 @@ query GetAllInvoices {
     deliveries {
       delivery_id
     }
-    tva_rate
+    amount_tva
     amount_ttc
     amount_ht
   }

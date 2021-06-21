@@ -1,6 +1,7 @@
 <form #f="ngForm">
   <app-table
     #table
+    [withCheckbox]='false'
     [data]="deliveryLines"
     [templates]="{
       delivered: delivered,

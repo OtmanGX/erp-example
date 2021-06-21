@@ -1,7 +1,6 @@
-mutation InsertCustomerProduct($code: String, $label: String, $thickness: Int) {
-  insert_product_customer_product_one(object: {code: $code, label: $label, thickness: $thickness}) {
-    code
-    label
+mutation InsertCustomerProduct($productcode: String, $thickness: numeric) {
+  insert_product_customer_product_one(object: {productcode: $productcode, thickness: $thickness}) {
+    productcode
     thickness
   }
 }
