@@ -18816,6 +18816,7 @@ export type Sales_Invoice = {
   __typename?: 'sales_invoice';
   amount_ht: Scalars['numeric'];
   amount_ttc: Scalars['numeric'];
+  amount_tva: Scalars['numeric'];
   client: Scalars['uuid'];
   /** An object relationship */
   clientObj: Contact_Customer;
@@ -18836,7 +18837,6 @@ export type Sales_Invoice = {
   /** An aggregated array relationship */
   invoice_lines_aggregate: Sales_Invoice_Line_Aggregate;
   payment_method: Scalars['String'];
-  tva_rate: Scalars['numeric'];
 };
 
 
@@ -18935,14 +18935,14 @@ export type Sales_Invoice_Avg_Fields = {
   __typename?: 'sales_invoice_avg_fields';
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
-  tva_rate?: Maybe<Scalars['Float']>;
+  amount_tva?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "sales.invoice" */
 export type Sales_Invoice_Avg_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "sales.invoice". All fields are combined with a logical 'AND'. */
@@ -18952,6 +18952,7 @@ export type Sales_Invoice_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Sales_Invoice_Bool_Exp>>>;
   amount_ht?: Maybe<Numeric_Comparison_Exp>;
   amount_ttc?: Maybe<Numeric_Comparison_Exp>;
+  amount_tva?: Maybe<Numeric_Comparison_Exp>;
   client?: Maybe<Uuid_Comparison_Exp>;
   clientObj?: Maybe<Contact_Customer_Bool_Exp>;
   company?: Maybe<Uuid_Comparison_Exp>;
@@ -18963,7 +18964,6 @@ export type Sales_Invoice_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
   invoice_lines?: Maybe<Sales_Invoice_Line_Bool_Exp>;
   payment_method?: Maybe<String_Comparison_Exp>;
-  tva_rate?: Maybe<Numeric_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.invoice" */
@@ -19121,13 +19121,14 @@ export enum Sales_Invoice_Delivery_Update_Column {
 export type Sales_Invoice_Inc_Input = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
-  tva_rate?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
 };
 
 /** input type for inserting data into table "sales.invoice" */
 export type Sales_Invoice_Insert_Input = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
   client?: Maybe<Scalars['uuid']>;
   clientObj?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
   company?: Maybe<Scalars['uuid']>;
@@ -19139,7 +19140,6 @@ export type Sales_Invoice_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
   invoice_lines?: Maybe<Sales_Invoice_Line_Arr_Rel_Insert_Input>;
   payment_method?: Maybe<Scalars['String']>;
-  tva_rate?: Maybe<Scalars['numeric']>;
 };
 
 /** columns and relationships of "sales.invoice_line" */
@@ -19504,26 +19504,26 @@ export type Sales_Invoice_Max_Fields = {
   __typename?: 'sales_invoice_max_fields';
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
-  tva_rate?: Maybe<Scalars['numeric']>;
 };
 
 /** order by max() on columns of table "sales.invoice" */
 export type Sales_Invoice_Max_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
   client?: Maybe<Order_By>;
   company?: Maybe<Order_By>;
   contact?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -19531,26 +19531,26 @@ export type Sales_Invoice_Min_Fields = {
   __typename?: 'sales_invoice_min_fields';
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
-  tva_rate?: Maybe<Scalars['numeric']>;
 };
 
 /** order by min() on columns of table "sales.invoice" */
 export type Sales_Invoice_Min_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
   client?: Maybe<Order_By>;
   company?: Maybe<Order_By>;
   contact?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "sales.invoice" */
@@ -19579,6 +19579,7 @@ export type Sales_Invoice_On_Conflict = {
 export type Sales_Invoice_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
   client?: Maybe<Order_By>;
   clientObj?: Maybe<Contact_Customer_Order_By>;
   company?: Maybe<Order_By>;
@@ -19590,7 +19591,6 @@ export type Sales_Invoice_Order_By = {
   id?: Maybe<Order_By>;
   invoice_lines_aggregate?: Maybe<Sales_Invoice_Line_Aggregate_Order_By>;
   payment_method?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "sales.invoice" */
@@ -19605,6 +19605,8 @@ export enum Sales_Invoice_Select_Column {
   /** column name */
   AmountTtc = 'amount_ttc',
   /** column name */
+  AmountTva = 'amount_tva',
+  /** column name */
   Client = 'client',
   /** column name */
   Company = 'company',
@@ -19615,22 +19617,20 @@ export enum Sales_Invoice_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  PaymentMethod = 'payment_method',
-  /** column name */
-  TvaRate = 'tva_rate'
+  PaymentMethod = 'payment_method'
 }
 
 /** input type for updating data in table "sales.invoice" */
 export type Sales_Invoice_Set_Input = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
-  tva_rate?: Maybe<Scalars['numeric']>;
 };
 
 /** aggregate stddev on columns */
@@ -19638,14 +19638,14 @@ export type Sales_Invoice_Stddev_Fields = {
   __typename?: 'sales_invoice_stddev_fields';
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
-  tva_rate?: Maybe<Scalars['Float']>;
+  amount_tva?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "sales.invoice" */
 export type Sales_Invoice_Stddev_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -19653,14 +19653,14 @@ export type Sales_Invoice_Stddev_Pop_Fields = {
   __typename?: 'sales_invoice_stddev_pop_fields';
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
-  tva_rate?: Maybe<Scalars['Float']>;
+  amount_tva?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "sales.invoice" */
 export type Sales_Invoice_Stddev_Pop_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -19668,14 +19668,14 @@ export type Sales_Invoice_Stddev_Samp_Fields = {
   __typename?: 'sales_invoice_stddev_samp_fields';
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
-  tva_rate?: Maybe<Scalars['Float']>;
+  amount_tva?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "sales.invoice" */
 export type Sales_Invoice_Stddev_Samp_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
@@ -19683,14 +19683,14 @@ export type Sales_Invoice_Sum_Fields = {
   __typename?: 'sales_invoice_sum_fields';
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
-  tva_rate?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
 };
 
 /** order by sum() on columns of table "sales.invoice" */
 export type Sales_Invoice_Sum_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
 };
 
 /** update columns of table "sales.invoice" */
@@ -19700,6 +19700,8 @@ export enum Sales_Invoice_Update_Column {
   /** column name */
   AmountTtc = 'amount_ttc',
   /** column name */
+  AmountTva = 'amount_tva',
+  /** column name */
   Client = 'client',
   /** column name */
   Company = 'company',
@@ -19710,9 +19712,7 @@ export enum Sales_Invoice_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  PaymentMethod = 'payment_method',
-  /** column name */
-  TvaRate = 'tva_rate'
+  PaymentMethod = 'payment_method'
 }
 
 /** aggregate var_pop on columns */
@@ -19720,14 +19720,14 @@ export type Sales_Invoice_Var_Pop_Fields = {
   __typename?: 'sales_invoice_var_pop_fields';
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
-  tva_rate?: Maybe<Scalars['Float']>;
+  amount_tva?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "sales.invoice" */
 export type Sales_Invoice_Var_Pop_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
@@ -19735,14 +19735,14 @@ export type Sales_Invoice_Var_Samp_Fields = {
   __typename?: 'sales_invoice_var_samp_fields';
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
-  tva_rate?: Maybe<Scalars['Float']>;
+  amount_tva?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "sales.invoice" */
 export type Sales_Invoice_Var_Samp_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -19750,14 +19750,14 @@ export type Sales_Invoice_Variance_Fields = {
   __typename?: 'sales_invoice_variance_fields';
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
-  tva_rate?: Maybe<Scalars['Float']>;
+  amount_tva?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "sales.invoice" */
 export type Sales_Invoice_Variance_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
-  tva_rate?: Maybe<Order_By>;
+  amount_tva?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "sales.order" */
@@ -29767,7 +29767,7 @@ export type UpdateInvoiceMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_invoice_by_pk?: Maybe<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'tva_rate'>
+    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva'>
     & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
@@ -30113,7 +30113,7 @@ export type GetAllInvoicesQuery = (
   { __typename?: 'query_root' }
   & { sales_invoice: Array<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'tva_rate' | 'amount_ttc' | 'amount_ht'>
+    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_tva' | 'amount_ttc' | 'amount_ht'>
     & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
@@ -33054,7 +33054,7 @@ export const DeleteInvoicesDocument = gql`
 export const InsertInvoiceDocument = gql`
     mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $invoice_lines: [sales_invoice_line_insert_input!]! = [], $deliveries: [sales_invoice_delivery_insert_input!]! = []) {
   insert_sales_invoice_one(
-    object: {client: $client, amount_ttc: 0, amount_ht: 0, tva_rate: 0, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}, invoice_lines: {data: $invoice_lines}}
+    object: {client: $client, amount_ttc: 0, amount_ht: 0, amount_tva: 0, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}, invoice_lines: {data: $invoice_lines}}
   ) {
     id
     client
@@ -33111,7 +33111,7 @@ export const UpdateInvoiceDocument = gql`
     payment_method
     amount_ttc
     amount_ht
-    tva_rate
+    amount_tva
     deliveries {
       delivery_id
     }
@@ -33592,7 +33592,7 @@ export const GetAllInvoicesDocument = gql`
     deliveries {
       delivery_id
     }
-    tva_rate
+    amount_tva
     amount_ttc
     amount_ht
   }

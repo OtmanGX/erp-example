@@ -34,7 +34,7 @@ mutation UpdateInvoice(
     payment_method
     amount_ttc
     amount_ht
-    tva_rate
+    amount_tva
     deliveries {
       delivery_id
     }
