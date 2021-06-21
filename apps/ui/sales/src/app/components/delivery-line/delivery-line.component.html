@@ -1,13 +1,13 @@
 <form #f="ngForm">
   <app-table
     #table
+    [withCheckbox]='false'
     [data]="deliveryLines"
     [templates]="{
       delivered: delivered,
       qte: qte,
       rest: rest,
-      stock_state: state,
-      amount: amount
+      stock_state: state
     }"
     [columnsToShow]="displayedColumns"
   >
@@ -32,17 +32,6 @@
   </div>
 </ng-template>
 
-<ng-template let-item="data" #amount>
-  <mat-form-field>
-    <input
-      matInput
-      type="number"
-      name="amount"
-      [(ngModel)]="item.amount"
-      [min]="0"
-    />
-  </mat-form-field>
-</ng-template>
 
 <ng-template let-item="data" #qte>
   <div *ngIf="item.quantity - item.delivered">
@@ -52,13 +41,16 @@
         matInput
         type="number"
         [(ngModel)]="item.toDeliver"
+        (ngModelChange)='calculateAmount(item)'
         name="toDeliver"
         [value]="0"
         [min]="0"
         [max]="item.quantity - item.delivered"
       />
       <button mat-icon-button matSuffix (click)="setMax(qteInput, item)">
-        <mat-icon style="font-size: 1.5rem">{{item.toDeliver==qteInput.max?'clear_all':'done_all'}}</mat-icon>
+        <mat-icon style="font-size: 1.5rem">
+          {{item.toDeliver==qteInput.max?'clear_all':'done_all'}}
+        </mat-icon>
       </button>
     </mat-form-field>
   </div>

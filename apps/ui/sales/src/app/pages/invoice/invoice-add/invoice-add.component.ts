@@ -117,6 +117,9 @@ export class InvoiceAddComponent extends PageForm {
       this.invoiceFacade.addOne({
         ...formValue,
         deliveries: formValue.deliveries.map((e) => ({ delivery_id: e })),
+        amount_ttc: 0,
+        amount_ht: 0,
+        amount_tva: 0
       });
     else
       this.invoiceFacade.update({

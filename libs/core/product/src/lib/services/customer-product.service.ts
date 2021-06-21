@@ -24,7 +24,7 @@ export class CustomerProductService {
     return this.getAllGQL.watch().valueChanges
   }
 
- 
+
   insertOne(createdOne: CustomerProduct) {
     return this.insertOneGQL.mutate(createdOne)
   }
@@ -36,5 +36,4 @@ export class CustomerProductService {
   removeMany(codes: string[]) {
     return this.deleteMany.mutate({codes})
   }
-
 }

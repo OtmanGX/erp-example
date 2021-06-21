@@ -7,7 +7,6 @@ import * as InvoiceSelectors from './invoice.selectors';
 import * as InvoiceActions from './invoice.actions';
 import { InsertedInvoice, UpdatedInvoice } from '@tanglass-erp/core/sales';
 import { filter, switchMap } from 'rxjs/operators';
-import { DeliveryFacade } from '../delivery/delivery.facade';
 
 @Injectable()
 export class InvoiceFacade {
@@ -23,7 +22,6 @@ export class InvoiceFacade {
 
   constructor(
     private store: Store<fromInvoice.InvoicePartialState>,
-    private deliveryFacade: DeliveryFacade
     ) {}
 
   dispatch(action: Action) {

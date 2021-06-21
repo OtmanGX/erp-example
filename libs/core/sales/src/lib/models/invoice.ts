@@ -35,6 +35,9 @@ export interface InsertedInvoice {
     delivery_id: string
   }>
   invoice_lines: Array<InvoiceLine>
+  amount_ttc: number
+  amount_ht: number
+  amount_tva: number
 }
 
 export interface UpdatedInvoice extends InsertedInvoice {

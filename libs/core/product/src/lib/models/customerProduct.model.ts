@@ -9,9 +9,8 @@ export interface CustomerProduct {
         label: string;
     }
 }
-export interface insertCustomerItem{
+export interface insertCustomerItem {
     code:string;
     label:string;
     thickness:number
 }
-

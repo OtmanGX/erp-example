@@ -312,11 +312,10 @@ const regConfigCustomerItem = (
       label: "Code",
       inputType: "text",
       value: data.data?.product_code,
-      filterFields: ['id', 'label'],
-      fieldsToShow: ['id', 'label'],
+      filterFields: ['id', 'code'],
+      fieldsToShow: ['id', 'code'],
       options: customerProducts.pipe(
         map(item => item.map(product => ({ id: product.product.code, label: product.product.label })))),
-
     },
     {
       type: 'input',
@@ -424,7 +423,7 @@ const regConfigAccessoireItem = (
       value: data?.data?.unit,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
-  
+
   ];
 const regConfigServiceItem = (
   services: Observable<Service[]>,

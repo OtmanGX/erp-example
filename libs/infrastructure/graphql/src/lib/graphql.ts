@@ -29713,6 +29713,9 @@ export type InsertDeliveryMutationVariables = Exact<{
   isReturned?: Maybe<Scalars['Boolean']>;
   delivery_lines?: Array<Sales_Delivery_Line_Insert_Input>;
   payment_method: Scalars['String'];
+  amount_ttc?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
+  amount_ht?: Maybe<Scalars['numeric']>;
 }>;
 
 
@@ -29720,7 +29723,7 @@ export type InsertDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_delivery_one?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order' | 'amount_ttc'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
@@ -29743,6 +29746,9 @@ export type UpdateDeliveryMutationVariables = Exact<{
   isReturned?: Maybe<Scalars['Boolean']>;
   predicted_date?: Maybe<Scalars['date']>;
   status: Scalars['String'];
+  amount_ttc?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
+  amount_ht?: Maybe<Scalars['numeric']>;
 }>;
 
 
@@ -29750,7 +29756,7 @@ export type UpdateDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'company' | 'payment_method' | 'isReturned' | 'predicted_date' | 'client' | 'contact'>
+    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'company' | 'payment_method' | 'isReturned' | 'predicted_date' | 'client' | 'contact' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
   )> }
 );
 
@@ -29760,6 +29766,7 @@ export type UpdateDeliveryLineMutationVariables = Exact<{
   id: Scalars['uuid'];
   product: Scalars['uuid'];
   product_label?: Maybe<Scalars['String']>;
+  unit_price?: Maybe<Scalars['numeric']>;
   quantity?: Maybe<Scalars['numeric']>;
 }>;
 
@@ -29768,7 +29775,7 @@ export type UpdateDeliveryLineMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_line_by_pk?: Maybe<(
     { __typename?: 'sales_delivery_line' }
-    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'product_label' | 'quantity'>
+    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'product_label' | 'quantity' | 'unit_price'>
   )> }
 );
 
@@ -29819,6 +29826,10 @@ export type InsertInvoiceMutationVariables = Exact<{
   date: Scalars['date'];
   invoice_lines?: Array<Sales_Invoice_Line_Insert_Input>;
   deliveries?: Array<Sales_Invoice_Delivery_Insert_Input>;
+  deliveries_ids?: Array<Scalars['uuid']>;
+  amount_ttc?: Maybe<Scalars['numeric']>;
+  amount_ht?: Maybe<Scalars['numeric']>;
+  amount_tva?: Maybe<Scalars['numeric']>;
 }>;
 
 
@@ -29826,7 +29837,7 @@ export type InsertInvoiceMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_invoice_one?: Maybe<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'client' | 'company' | 'contact' | 'date' | 'payment_method'>
+    & Pick<Sales_Invoice, 'id' | 'client' | 'company' | 'contact' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva'>
     & { deliveries: Array<(
       { __typename?: 'sales_invoice_delivery' }
       & Pick<Sales_Invoice_Delivery, 'delivery_id'>
@@ -29834,6 +29845,9 @@ export type InsertInvoiceMutation = (
       { __typename?: 'sales_invoice_line' }
       & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'quantity' | 'total'>
     )> }
+  )>, update_sales_delivery?: Maybe<(
+    { __typename?: 'sales_delivery_mutation_response' }
+    & Pick<Sales_Delivery_Mutation_Response, 'affected_rows'>
   )> }
 );
 
@@ -30118,7 +30132,7 @@ export type GetAllDeliveryQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery: Array<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned'>
+    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
@@ -30141,10 +30155,10 @@ export type GetDeliveryByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
     & { delivery_lines: Array<(
       { __typename?: 'sales_delivery_line' }
-      & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'quantity' | 'product_label'>
+      & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'quantity' | 'product_label' | 'unit_price'>
     )> }
   )> }
 );
@@ -30214,6 +30228,19 @@ export type GetAllInvoicesQuery = (
   )> }
 );
 
+export type GetDeliveriesAmountsQueryVariables = Exact<{
+  ids?: Maybe<Array<Scalars['uuid']>>;
+}>;
+
+
+export type GetDeliveriesAmountsQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery: Array<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'amount_ht' | 'amount_ttc' | 'amount_tva'>
+  )> }
+);
+
 export type GetDeliveryLinesQueryVariables = Exact<{
   deliveries?: Array<Scalars['uuid']>;
 }>;
@@ -30223,10 +30250,10 @@ export type GetDeliveryLinesQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery_line: Array<(
     { __typename?: 'sales_delivery_line' }
-    & Pick<Sales_Delivery_Line, 'product_label' | 'delivered' | 'amount'>
+    & Pick<Sales_Delivery_Line, 'product_label' | 'delivered' | 'amount' | 'unit_price'>
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
-      & Pick<Sales_Product_Draft, 'product_code' | 'price'>
+      & Pick<Sales_Product_Draft, 'product_code'>
     ) }
   )> }
 );
@@ -32989,9 +33016,9 @@ export const DeleteDeliveryDocument = gql`
     }
   }
 export const InsertDeliveryDocument = gql`
-    mutation InsertDelivery($order: Int!, $status: String!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $isReturned: Boolean, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!) {
+    mutation InsertDelivery($order: Int!, $status: String!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $isReturned: Boolean, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
   insert_sales_delivery_one(
-    object: {order: $order, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, isReturned: $isReturned, status: $status, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact}
+    object: {order: $order, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, isReturned: $isReturned, status: $status, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
   ) {
     id
     status
@@ -33012,6 +33039,7 @@ export const InsertDeliveryDocument = gql`
       name
       phone
     }
+    amount_ttc
   }
 }
     `;
@@ -33027,10 +33055,10 @@ export const InsertDeliveryDocument = gql`
     }
   }
 export const UpdateDeliveryDocument = gql`
-    mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact: uuid, $company: uuid, $client: uuid, $isReturned: Boolean, $predicted_date: date, $status: String!) {
+    mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact: uuid, $company: uuid, $client: uuid, $isReturned: Boolean, $predicted_date: date, $status: String!, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
   update_sales_delivery_by_pk(
     pk_columns: {id: $id}
-    _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, isReturned: $isReturned, status: $status}
+    _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, isReturned: $isReturned, status: $status, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
   ) {
     id
     order
@@ -33041,6 +33069,9 @@ export const UpdateDeliveryDocument = gql`
     predicted_date
     client
     contact
+    amount_ttc
+    amount_tva
+    amount_ht
   }
 }
     `;
@@ -33056,10 +33087,10 @@ export const UpdateDeliveryDocument = gql`
     }
   }
 export const UpdateDeliveryLineDocument = gql`
-    mutation UpdateDeliveryLine($amount: numeric, $delivered: numeric, $id: uuid!, $product: uuid!, $product_label: String, $quantity: numeric) {
+    mutation UpdateDeliveryLine($amount: numeric, $delivered: numeric, $id: uuid!, $product: uuid!, $product_label: String, $unit_price: numeric, $quantity: numeric) {
   update_sales_delivery_line_by_pk(
     pk_columns: {id: $id}
-    _set: {amount: $amount, delivered: $delivered, id: $id, product: $product, product_label: $product_label, quantity: $quantity}
+    _set: {amount: $amount, delivered: $delivered, id: $id, product: $product, product_label: $product_label, unit_price: $unit_price, quantity: $quantity}
   ) {
     id
     amount
@@ -33067,6 +33098,7 @@ export const UpdateDeliveryLineDocument = gql`
     product
     product_label
     quantity
+    unit_price
   }
 }
     `;
@@ -33136,9 +33168,9 @@ export const DeleteInvoicesDocument = gql`
     }
   }
 export const InsertInvoiceDocument = gql`
-    mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $invoice_lines: [sales_invoice_line_insert_input!]! = [], $deliveries: [sales_invoice_delivery_insert_input!]! = []) {
+    mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $invoice_lines: [sales_invoice_line_insert_input!]! = [], $deliveries: [sales_invoice_delivery_insert_input!]! = [], $deliveries_ids: [uuid!]! = [], $amount_ttc: numeric, $amount_ht: numeric, $amount_tva: numeric) {
   insert_sales_invoice_one(
-    object: {client: $client, amount_ttc: 0, amount_ht: 0, amount_tva: 0, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}, invoice_lines: {data: $invoice_lines}}
+    object: {client: $client, amount_ttc: $amount_ttc, amount_ht: $amount_ht, amount_tva: $amount_tva, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}, invoice_lines: {data: $invoice_lines}}
   ) {
     id
     client
@@ -33157,6 +33189,15 @@ export const InsertInvoiceDocument = gql`
       quantity
       total
     }
+    amount_ttc
+    amount_ht
+    amount_tva
+  }
+  update_sales_delivery(
+    where: {id: {_in: $deliveries_ids}}
+    _set: {status: "Facturé"}
+  ) {
+    affected_rows
   }
 }
     `;
@@ -33537,6 +33578,7 @@ export const GetAllDeliveryDocument = gql`
       name
       phone
     }
+    amount_ttc
   }
 }
     `;
@@ -33570,7 +33612,11 @@ export const GetDeliveryByIdDocument = gql`
       product
       quantity
       product_label
+      unit_price
     }
+    amount_ttc
+    amount_tva
+    amount_ht
   }
 }
     `;
@@ -33693,6 +33739,26 @@ export const GetAllInvoicesDocument = gql`
       super(apollo);
     }
   }
+export const GetDeliveriesAmountsDocument = gql`
+    query getDeliveriesAmounts($ids: [uuid!]) {
+  sales_delivery(where: {id: {_in: $ids}}) {
+    amount_ht
+    amount_ttc
+    amount_tva
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetDeliveriesAmountsGQL extends Apollo.Query<GetDeliveriesAmountsQuery, GetDeliveriesAmountsQueryVariables> {
+    document = GetDeliveriesAmountsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetDeliveryLinesDocument = gql`
     query getDeliveryLines($deliveries: [uuid!]! = []) {
   sales_delivery_line(where: {delivery: {_in: $deliveries}, delivered: {_neq: 0}}) {
@@ -33700,9 +33766,9 @@ export const GetDeliveryLinesDocument = gql`
     delivered
     product_draft {
       product_code
-      price
     }
     amount
+    unit_price
   }
 }
     `;

@@ -7,6 +7,9 @@ mutation UpdateDelivery(
   $isReturned: Boolean
   $predicted_date: date
   $status: String!
+  $amount_ttc: numeric
+  $amount_tva: numeric
+  $amount_ht: numeric
 ) {
   update_sales_delivery_by_pk(
     pk_columns: {id: $id}
@@ -18,6 +21,9 @@ mutation UpdateDelivery(
       predicted_date: $predicted_date
       isReturned: $isReturned
       status: $status
+      amount_ttc: $amount_ttc
+      amount_tva: $amount_tva
+      amount_ht: $amount_ht
     }
   ) {
     id
@@ -29,5 +35,8 @@ mutation UpdateDelivery(
     predicted_date
     client
     contact
+    amount_ttc
+    amount_tva
+    amount_ht
   }
 }

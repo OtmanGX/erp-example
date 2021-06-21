@@ -7,6 +7,7 @@ import * as DeliverySelectors from './delivery.selectors';
 import * as DeliveryActions from './delivery.actions';
 import {
   DeliveryForm,
+  DeliveryLine,
   DeliveryStatus,
   InsertedDeliveryForm,
 } from '@tanglass-erp/core/sales';
@@ -53,6 +54,18 @@ export class DeliveryFacade {
 
   removeDelivery(ids: string[]) {
     this.dispatch(DeliveryActions.removeDelivery({ ids }));
+  }
+
+  calculateAmounts(delivery_lines: DeliveryLine[]) {
+    const amount_ttc = delivery_lines
+      .reduce((acc, curr) => acc + curr.amount, 0);
+    const amount_tva = (amount_ttc/6);
+    const amount_ht = amount_ttc*(5/6);
+    return {
+      amount_ttc,
+      amount_tva,
+      amount_ht
+    }
   }
 
   //  Other
