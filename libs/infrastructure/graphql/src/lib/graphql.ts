@@ -30196,6 +30196,31 @@ export type GetAllDeliveryQuery = (
   )> }
 );
 
+export type GetDeliveriesByQueryVariables = Exact<{
+  dateStart?: Maybe<Scalars['date']>;
+  dateEnd?: Maybe<Scalars['date']>;
+  status?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetDeliveriesByQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery: Array<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc' | 'amount_tva' | 'amount_ht' | 'ref' | 'created_at' | 'updated_at'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'mail'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
+    )> }
+  )> }
+);
+
 export type GetDeliveryByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -33648,6 +33673,49 @@ export const GetAllDeliveryDocument = gql`
   })
   export class GetAllDeliveryGQL extends Apollo.Query<GetAllDeliveryQuery, GetAllDeliveryQueryVariables> {
     document = GetAllDeliveryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetDeliveriesByDocument = gql`
+    query getDeliveriesBy($dateStart: date, $dateEnd: date, $status: String) {
+  sales_delivery(
+    where: {created_at: {_gte: $dateStart, _lte: $dateEnd}, status: {_eq: $status}}
+  ) {
+    id
+    order
+    status
+    company: companyObject {
+      name
+    }
+    payment_method
+    predicted_date
+    isReturned
+    client: customer {
+      name
+      mail
+    }
+    contact: contactByContact {
+      mail
+      name
+      phone
+    }
+    amount_ttc
+    amount_tva
+    amount_ht
+    ref
+    created_at
+    updated_at
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetDeliveriesByGQL extends Apollo.Query<GetDeliveriesByQuery, GetDeliveriesByQueryVariables> {
+    document = GetDeliveriesByDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

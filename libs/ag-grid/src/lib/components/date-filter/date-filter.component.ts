@@ -2,13 +2,15 @@ import { Component, Inject, OnInit } from '@angular/core';
 
 import * as _moment from 'moment';
 
-import {default as _rollupMoment, Moment} from 'moment';
-import {fr} from "date-fns/locale";
+// FP variation:
+import addMonths from 'date-fns/fp/addMonths';
+import { default as _rollupMoment, Moment } from 'moment';
+import { fr } from 'date-fns/locale';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-
+import { addWeeks, addYears, endOfWeek, startOfWeek } from 'date-fns/fp';
+import { dateType } from '../../interfaces/date';
 
 const moment = _rollupMoment || _moment;
-
 
 @Component({
   selector: 'ngx-date-filter',
@@ -16,7 +18,7 @@ const moment = _rollupMoment || _moment;
   styleUrls: ['./date-filter.component.scss'],
 })
 export class DateFilterComponent implements OnInit {
-  months:Array<string> = [];
+  months: Array<string> = [];
   weeks;
   date = moment();
 
@@ -25,15 +27,16 @@ export class DateFilterComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     for (let i = 0; i < 12; i++) {
-      this.months.push( fr.localize.month(i, { width: 'abbreviated' }) )
+      this.months.push(fr.localize.month(i, { width: 'abbreviated' }));
     }
-    this.weeks = Array(52).fill(0).map((x,i)=>i+1);
+    this.weeks = Array(52)
+      .fill(0)
+      .map((x, i) => i + 1);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  closePopup(data?: {date: Date, dateText: String}) {
+  closePopup(data?: dateType) {
     this.dialogRef.close(data);
   }
 
@@ -42,19 +45,26 @@ export class DateFilterComponent implements OnInit {
   }
 
   async fetchMonth(year, month) {
-    const date = new Date(year=year, month=month);
-    this.closePopup({date, dateText: `${year} ${this.months[month]}`})
+    const dateStart = new Date(year, month);
+    const dateEnd = addMonths(1, dateStart);
+    this.closePopup({ dateStart, dateEnd, dateText: `${year} ${this.months[month]}` });
+  }
+
+  async fetchTrimester(year, trimester) {
+    const dateStart = new Date(year, (trimester-1)*3);
+    const dateEnd = addMonths(3, dateStart);
+    this.closePopup({ dateStart, dateEnd, dateText: `${year} Trimestre ${trimester}` });
   }
 
   async fetchYear(year) {
-    const date = new Date(year=year);
-    this.closePopup({date, dateText: year})
-
+    const dateStart = new Date(year);
+    const dateEnd = addYears(1, dateStart);
+    this.closePopup({ dateStart, dateEnd, dateText: year });
   }
 
   async fetchWeek(year, week) {
-    const date = new Date(year, 0, 7*(week-1));
-    this.closePopup({date, dateText: `${year}, Semaine ${week}`})
+    const dateStart = startOfWeek(addWeeks(week-1,new Date(year)));
+    const dateEnd = endOfWeek(dateStart);
+    this.closePopup({ dateStart, dateEnd, dateText: `${year}, Semaine ${week}` });
   }
-
 }

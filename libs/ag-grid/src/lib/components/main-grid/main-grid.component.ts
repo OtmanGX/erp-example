@@ -20,6 +20,7 @@ import { Operations } from '../../enums/operations';
 import { GridPermissions } from '../../interfaces/grid-permissions';
 import { GroupButton } from '../../interfaces/group-button';
 import { DateFilterComponent } from '../date-filter/date-filter.component';
+import { dateType } from '../../interfaces/date';
 
 @Component({
   selector: 'ngx-main-grid',
@@ -49,7 +50,7 @@ export class MainGridComponent {
       add: true,
       update: true,
       delete: true,
-      ...perms
+      ...perms,
     };
   }
 
@@ -71,8 +72,8 @@ export class MainGridComponent {
   context;
   hide = false; // For Search reset  button
 
-  date = new Date(); // For filter
-  dateText= this.date.getFullYear();
+  @Input()
+  dateText;
 
   // Formatters
   dateFormatter = (params) =>
@@ -180,19 +181,19 @@ export class MainGridComponent {
       },
       {
         statusPanel: 'agTotalRowCountComponent',
-        align: 'center'
+        align: 'center',
       },
       { statusPanel: 'agFilteredRowCountComponent' },
       { statusPanel: 'agSelectedRowCountComponent' },
-      { statusPanel: 'agAggregationComponent' }
-    ]
+      { statusPanel: 'agAggregationComponent' },
+    ],
   };
 
   constructor(
     public datepipe: DatePipe,
     private _bottomSheet: MatBottomSheet,
     public dialog: MatDialog,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     this.context = {
       componentParent: this,
@@ -264,10 +265,13 @@ export class MainGridComponent {
   openFilterDateDialog(): void {
     const dialogRef = this.dialog.open(DateFilterComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: dateType) => {
       if (result) {
         this.dateText = result.dateText;
-        this.triggerAction(this.operations.dateChange, result.date);
+        this.triggerAction(this.operations.dateChange, {
+          dateStart: result.dateStart,
+          dateEnd: result.dateEnd,
+        });
       }
     });
   }
