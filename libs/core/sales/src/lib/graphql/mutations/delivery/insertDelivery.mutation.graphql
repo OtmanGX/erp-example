@@ -3,7 +3,6 @@
 # Try out GraphQL queries here after you create tables
 mutation InsertDelivery(
   $order: Int!
-  $status: String!
   $predicted_date: date
   $client: uuid!
   $company: uuid!
@@ -22,7 +21,6 @@ mutation InsertDelivery(
       payment_method: $payment_method
       predicted_date: $predicted_date
       isReturned: $isReturned
-      status: $status
       client: $client
       delivery_lines: { data: $delivery_lines }
       contact: $contact
@@ -51,5 +49,7 @@ mutation InsertDelivery(
       phone
     }
     amount_ttc
+    amount_tva
+    amount_ht
   }
 }

@@ -22,5 +22,8 @@ query GetAllInvoices {
     amount_tva
     amount_ttc
     amount_ht
+    ref
+    created_at
+    updated_at
   }
 }

@@ -1,13 +1,9 @@
 import { MAXNUMBER, REQUIRED } from '@tanglass-erp/material';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Glass, Accessory, Service, Consumable, CustomerProduct } from "@TanglassStore/product/index";
-import { Intermediate_Data, DraftItem } from "./models";
-import {
-  DeliveryStatus,
-  InsertedDeliveryForm, InsertedInvoice,
-  PaymentMethod,
-} from '@tanglass-erp/core/sales';
+import { Accessory, Consumable, CustomerProduct, Glass, Service } from '@TanglassStore/product/index';
+import { DraftItem, Intermediate_Data } from './models';
+import { DeliveryStatus, InsertedDeliveryForm, InsertedInvoice, PaymentMethod } from '@tanglass-erp/core/sales';
 
 type ListObservable = Observable<any> | Array<any>;
 
@@ -162,8 +158,8 @@ const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?
     name: "status",
     label: "Etat",
     inputType: "text",
-    // disabled: true,
-    value: data?.status,
+    disabled: true,
+    value: data?.status || DeliveryStatus.NOT_INVOICED,
     options: Object.values(DeliveryStatus).map(e => ({ key: e, value: e }))
   },
 ];

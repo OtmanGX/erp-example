@@ -43,13 +43,13 @@ export class DeliveryLineComponent implements OnInit {
     { title: 'Livrer', key: 'qte', type: ColumnType.template, withRow: true },
     { title: 'Reste', key: 'rest', type: ColumnType.template, withRow: true },
     { title: 'Déja Livré', key: 'delivered', type: ColumnType.template },
+    { title: 'Quantité', key: 'quantity', type: ColumnType.normal },
+    { title: 'Prix unitaire', key: 'unit_price', type: ColumnType.normal },
     {
       title: 'Montant',
       key: 'amount',
       type: ColumnType.normal
-    },
-    { title: 'Etat de stock', key: 'stock_state', type: ColumnType.template },
-  ];
+    }];
   constructor() {}
 
   ngOnInit(): void {

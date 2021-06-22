@@ -6,21 +6,14 @@
     [templates]="{
       delivered: delivered,
       qte: qte,
-      rest: rest,
-      stock_state: state
-    }"
+      rest: rest
+      }"
     [columnsToShow]="displayedColumns"
   >
   </app-table>
 </form>
 
 <!--      Templates-->
-<ng-template let-item="data" #state>
-  <!--  <mat-icon [color]="item?'primary':'warn'" [matTooltip]="item?'Disponible':'Rupture de stock'">-->
-  <!--    {{item?'check_box':'dangerous'}}-->
-  <!--  </mat-icon>-->
-  <mat-icon matTooltip="Disponible">check_box</mat-icon>
-</ng-template>
 
 <ng-template let-item="data" #delivered>
   <div class="text-success">{{ item }}</div>

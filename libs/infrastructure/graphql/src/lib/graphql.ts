@@ -17278,6 +17278,7 @@ export type Sales_Delivery = {
   contact?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   contactByContact?: Maybe<Contact_Contact>;
+  created_at: Scalars['date'];
   /** An object relationship */
   customer: Contact_Customer;
   /** An array relationship */
@@ -17294,6 +17295,7 @@ export type Sales_Delivery = {
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
   status: Scalars['String'];
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 
@@ -17399,6 +17401,7 @@ export type Sales_Delivery_Bool_Exp = {
   companyObject?: Maybe<Management_Company_Bool_Exp>;
   contact?: Maybe<Uuid_Comparison_Exp>;
   contactByContact?: Maybe<Contact_Contact_Bool_Exp>;
+  created_at?: Maybe<Date_Comparison_Exp>;
   customer?: Maybe<Contact_Customer_Bool_Exp>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
@@ -17410,6 +17413,7 @@ export type Sales_Delivery_Bool_Exp = {
   ref?: Maybe<String_Comparison_Exp>;
   ref_num?: Maybe<Int_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.delivery" */
@@ -17437,6 +17441,7 @@ export type Sales_Delivery_Insert_Input = {
   companyObject?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
   contact?: Maybe<Scalars['uuid']>;
   contactByContact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
+  created_at?: Maybe<Scalars['date']>;
   customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
@@ -17448,6 +17453,7 @@ export type Sales_Delivery_Insert_Input = {
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** columns and relationships of "sales.delivery_line" */
@@ -17851,6 +17857,7 @@ export type Sales_Delivery_Max_Fields = {
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   order?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
@@ -17858,6 +17865,7 @@ export type Sales_Delivery_Max_Fields = {
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by max() on columns of table "sales.delivery" */
@@ -17868,6 +17876,7 @@ export type Sales_Delivery_Max_Order_By = {
   client?: Maybe<Order_By>;
   company?: Maybe<Order_By>;
   contact?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
@@ -17875,6 +17884,7 @@ export type Sales_Delivery_Max_Order_By = {
   ref?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -17886,6 +17896,7 @@ export type Sales_Delivery_Min_Fields = {
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   order?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
@@ -17893,6 +17904,7 @@ export type Sales_Delivery_Min_Fields = {
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by min() on columns of table "sales.delivery" */
@@ -17903,6 +17915,7 @@ export type Sales_Delivery_Min_Order_By = {
   client?: Maybe<Order_By>;
   company?: Maybe<Order_By>;
   contact?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   order?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
@@ -17910,6 +17923,7 @@ export type Sales_Delivery_Min_Order_By = {
   ref?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "sales.delivery" */
@@ -17944,6 +17958,7 @@ export type Sales_Delivery_Order_By = {
   companyObject?: Maybe<Management_Company_Order_By>;
   contact?: Maybe<Order_By>;
   contactByContact?: Maybe<Contact_Contact_Order_By>;
+  created_at?: Maybe<Order_By>;
   customer?: Maybe<Contact_Customer_Order_By>;
   delivery_lines_aggregate?: Maybe<Sales_Delivery_Line_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
@@ -17955,6 +17970,7 @@ export type Sales_Delivery_Order_By = {
   ref?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "sales.delivery" */
@@ -17977,6 +17993,8 @@ export enum Sales_Delivery_Select_Column {
   /** column name */
   Contact = 'contact',
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   Id = 'id',
   /** column name */
   IsReturned = 'isReturned',
@@ -17991,7 +18009,9 @@ export enum Sales_Delivery_Select_Column {
   /** column name */
   RefNum = 'ref_num',
   /** column name */
-  Status = 'status'
+  Status = 'status',
+  /** column name */
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "sales.delivery" */
@@ -18002,6 +18022,7 @@ export type Sales_Delivery_Set_Input = {
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   isReturned?: Maybe<Scalars['Boolean']>;
   order?: Maybe<Scalars['Int']>;
@@ -18010,6 +18031,7 @@ export type Sales_Delivery_Set_Input = {
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate stddev on columns */
@@ -18103,6 +18125,8 @@ export enum Sales_Delivery_Update_Column {
   /** column name */
   Contact = 'contact',
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   Id = 'id',
   /** column name */
   IsReturned = 'isReturned',
@@ -18117,7 +18141,9 @@ export enum Sales_Delivery_Update_Column {
   /** column name */
   RefNum = 'ref_num',
   /** column name */
-  Status = 'status'
+  Status = 'status',
+  /** column name */
+  UpdatedAt = 'updated_at'
 }
 
 /** aggregate var_pop on columns */
@@ -18867,6 +18893,7 @@ export type Sales_Invoice = {
   contact?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   contactObj?: Maybe<Contact_Contact>;
+  created_at?: Maybe<Scalars['timestamptz']>;
   date: Scalars['date'];
   /** An array relationship */
   deliveries: Array<Sales_Invoice_Delivery>;
@@ -18880,6 +18907,7 @@ export type Sales_Invoice = {
   payment_method: Scalars['String'];
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 
@@ -19004,6 +19032,7 @@ export type Sales_Invoice_Bool_Exp = {
   companyObj?: Maybe<Management_Company_Bool_Exp>;
   contact?: Maybe<Uuid_Comparison_Exp>;
   contactObj?: Maybe<Contact_Contact_Bool_Exp>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
   date?: Maybe<Date_Comparison_Exp>;
   deliveries?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
@@ -19011,6 +19040,7 @@ export type Sales_Invoice_Bool_Exp = {
   payment_method?: Maybe<String_Comparison_Exp>;
   ref?: Maybe<String_Comparison_Exp>;
   ref_num?: Maybe<Int_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.invoice" */
@@ -19183,6 +19213,7 @@ export type Sales_Invoice_Insert_Input = {
   companyObj?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
   contact?: Maybe<Scalars['uuid']>;
   contactObj?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
+  created_at?: Maybe<Scalars['timestamptz']>;
   date?: Maybe<Scalars['date']>;
   deliveries?: Maybe<Sales_Invoice_Delivery_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
@@ -19190,6 +19221,7 @@ export type Sales_Invoice_Insert_Input = {
   payment_method?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** columns and relationships of "sales.invoice_line" */
@@ -19558,11 +19590,13 @@ export type Sales_Invoice_Max_Fields = {
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by max() on columns of table "sales.invoice" */
@@ -19573,11 +19607,13 @@ export type Sales_Invoice_Max_Order_By = {
   client?: Maybe<Order_By>;
   company?: Maybe<Order_By>;
   contact?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -19589,11 +19625,13 @@ export type Sales_Invoice_Min_Fields = {
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by min() on columns of table "sales.invoice" */
@@ -19604,11 +19642,13 @@ export type Sales_Invoice_Min_Order_By = {
   client?: Maybe<Order_By>;
   company?: Maybe<Order_By>;
   contact?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "sales.invoice" */
@@ -19644,6 +19684,7 @@ export type Sales_Invoice_Order_By = {
   companyObj?: Maybe<Management_Company_Order_By>;
   contact?: Maybe<Order_By>;
   contactObj?: Maybe<Contact_Contact_Order_By>;
+  created_at?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   deliveries_aggregate?: Maybe<Sales_Invoice_Delivery_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
@@ -19651,6 +19692,7 @@ export type Sales_Invoice_Order_By = {
   payment_method?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "sales.invoice" */
@@ -19673,6 +19715,8 @@ export enum Sales_Invoice_Select_Column {
   /** column name */
   Contact = 'contact',
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   Date = 'date',
   /** column name */
   Id = 'id',
@@ -19681,7 +19725,9 @@ export enum Sales_Invoice_Select_Column {
   /** column name */
   Ref = 'ref',
   /** column name */
-  RefNum = 'ref_num'
+  RefNum = 'ref_num',
+  /** column name */
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "sales.invoice" */
@@ -19692,11 +19738,13 @@ export type Sales_Invoice_Set_Input = {
   client?: Maybe<Scalars['uuid']>;
   company?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate stddev on columns */
@@ -19782,6 +19830,8 @@ export enum Sales_Invoice_Update_Column {
   /** column name */
   Contact = 'contact',
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   Date = 'date',
   /** column name */
   Id = 'id',
@@ -19790,7 +19840,9 @@ export enum Sales_Invoice_Update_Column {
   /** column name */
   Ref = 'ref',
   /** column name */
-  RefNum = 'ref_num'
+  RefNum = 'ref_num',
+  /** column name */
+  UpdatedAt = 'updated_at'
 }
 
 /** aggregate var_pop on columns */
@@ -29705,7 +29757,6 @@ export type DeleteDeliveryMutation = (
 
 export type InsertDeliveryMutationVariables = Exact<{
   order: Scalars['Int'];
-  status: Scalars['String'];
   predicted_date?: Maybe<Scalars['date']>;
   client: Scalars['uuid'];
   company: Scalars['uuid'];
@@ -29723,7 +29774,7 @@ export type InsertDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_delivery_one?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order' | 'amount_ttc'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
@@ -29745,7 +29796,6 @@ export type UpdateDeliveryMutationVariables = Exact<{
   client?: Maybe<Scalars['uuid']>;
   isReturned?: Maybe<Scalars['Boolean']>;
   predicted_date?: Maybe<Scalars['date']>;
-  status: Scalars['String'];
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
   amount_ht?: Maybe<Scalars['numeric']>;
@@ -29865,7 +29915,7 @@ export type UpdateInvoiceMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_invoice_by_pk?: Maybe<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva'>
+    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva' | 'ref' | 'created_at' | 'updated_at'>
     & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
@@ -30132,7 +30182,7 @@ export type GetAllDeliveryQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery: Array<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc'>
+    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc' | 'amount_tva' | 'amount_ht' | 'ref' | 'created_at' | 'updated_at'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
@@ -30211,7 +30261,7 @@ export type GetAllInvoicesQuery = (
   { __typename?: 'query_root' }
   & { sales_invoice: Array<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_tva' | 'amount_ttc' | 'amount_ht'>
+    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_tva' | 'amount_ttc' | 'amount_ht' | 'ref' | 'created_at' | 'updated_at'>
     & { client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
@@ -33016,9 +33066,9 @@ export const DeleteDeliveryDocument = gql`
     }
   }
 export const InsertDeliveryDocument = gql`
-    mutation InsertDelivery($order: Int!, $status: String!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $isReturned: Boolean, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
+    mutation InsertDelivery($order: Int!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $isReturned: Boolean, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
   insert_sales_delivery_one(
-    object: {order: $order, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, isReturned: $isReturned, status: $status, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
+    object: {order: $order, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, isReturned: $isReturned, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
   ) {
     id
     status
@@ -33040,6 +33090,8 @@ export const InsertDeliveryDocument = gql`
       phone
     }
     amount_ttc
+    amount_tva
+    amount_ht
   }
 }
     `;
@@ -33055,10 +33107,10 @@ export const InsertDeliveryDocument = gql`
     }
   }
 export const UpdateDeliveryDocument = gql`
-    mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact: uuid, $company: uuid, $client: uuid, $isReturned: Boolean, $predicted_date: date, $status: String!, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
+    mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact: uuid, $company: uuid, $client: uuid, $isReturned: Boolean, $predicted_date: date, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
   update_sales_delivery_by_pk(
     pk_columns: {id: $id}
-    _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, isReturned: $isReturned, status: $status, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
+    _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, isReturned: $isReturned, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
   ) {
     id
     order
@@ -33240,6 +33292,9 @@ export const UpdateInvoiceDocument = gql`
     deliveries {
       delivery_id
     }
+    ref
+    created_at
+    updated_at
   }
 }
     `;
@@ -33579,6 +33634,11 @@ export const GetAllDeliveryDocument = gql`
       phone
     }
     amount_ttc
+    amount_tva
+    amount_ht
+    ref
+    created_at
+    updated_at
   }
 }
     `;
@@ -33725,6 +33785,9 @@ export const GetAllInvoicesDocument = gql`
     amount_tva
     amount_ttc
     amount_ht
+    ref
+    created_at
+    updated_at
   }
 }
     `;

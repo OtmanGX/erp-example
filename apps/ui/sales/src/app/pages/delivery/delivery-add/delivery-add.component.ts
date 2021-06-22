@@ -32,7 +32,11 @@ export class DeliveryAddComponent
   companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany);
   customers$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
-  orders$ = this.ordersFacade.allOrders$;
+  orders$ = this.ordersFacade.allOrders$.pipe(
+    map(
+      e => e.filter(item => item.delivery_status !== 'livré')
+    )
+  );
   selectedOrder$ = this.ordersFacade.selectedOrder$;
   selectedOrder: Order;
   orderLines$ = this.draftFacade.draftLoadedById$.pipe(

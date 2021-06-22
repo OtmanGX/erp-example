@@ -19,5 +19,10 @@ query getAllDelivery {
       phone
     }
     amount_ttc
+    amount_tva
+    amount_ht
+    ref
+    created_at
+    updated_at
   }
 }

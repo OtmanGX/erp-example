@@ -1,7 +1,8 @@
 import { Company } from '@tanglass-erp/core/product';
 import { PaymentMethod } from '@tanglass-erp/core/sales';
+import { MetaData } from '@tanglass-erp/core/common';
 
-export interface Invoice {
+export interface Invoice extends MetaData {
   id?: string;
   client: {
     name: string
@@ -15,6 +16,7 @@ export interface Invoice {
   };
   payment_method: PaymentMethod | string;
   date: Date;
+  ref?: String;
   amount_ttc: number
   amount_ht: number
   amount_tva: number
