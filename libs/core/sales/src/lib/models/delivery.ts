@@ -19,9 +19,12 @@ export interface DeliveryForm extends MetaData {
     mail?: string
     phone: string
   };
+  ref?: String;
   // delivery_lines: DeliveryLine[];
   payment_method: PaymentMethod | string;
-  amount_ttc: number;
+  amount_ttc: number
+  amount_ht: number
+  amount_tva: number
 }
 
 

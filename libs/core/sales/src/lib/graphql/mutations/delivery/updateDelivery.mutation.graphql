@@ -6,7 +6,6 @@ mutation UpdateDelivery(
   $client: uuid
   $isReturned: Boolean
   $predicted_date: date
-  $status: String!
   $amount_ttc: numeric
   $amount_tva: numeric
   $amount_ht: numeric
@@ -20,7 +19,6 @@ mutation UpdateDelivery(
       client: $client
       predicted_date: $predicted_date
       isReturned: $isReturned
-      status: $status
       amount_ttc: $amount_ttc
       amount_tva: $amount_tva
       amount_ht: $amount_ht

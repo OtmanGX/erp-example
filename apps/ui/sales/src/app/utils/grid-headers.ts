@@ -123,6 +123,7 @@ export const deliveryHeaders = [
         }),
       },
       { field: 'status', headerName: 'Etat', cellRendererFramework: InvoiceStatusComponent },
+      { field: 'ref', headerName: 'Référence', type: 'textColumn' },
       { field: 'order', headerName: 'N° Commande', type: 'textColumn' },
       {
         field: 'predicted_date',
@@ -130,8 +131,25 @@ export const deliveryHeaders = [
         type: 'dateColumn',
       },
       {
+        field: 'created_at',
+        headerName: 'Date de création',
+        type: 'dateColumn',
+      },
+      {
         field: 'amount_ttc',
         headerName: 'Montant TTC',
+        type: 'numberColumn',
+        valueFormatter: (params) => params.value.toFixed(2)
+      },
+      {
+        field: 'amount_tva',
+        headerName: 'Montant TVA',
+        type: 'numberColumn',
+        valueFormatter: (params) => params.value.toFixed(2)
+      },
+      {
+        field: 'amount_ht',
+        headerName: 'Montant HT',
         type: 'numberColumn',
         valueFormatter: (params) => params.value.toFixed(2)
       },
@@ -175,6 +193,7 @@ export const invoiceHeaders = [
           link: ['update', {id : params?.data?.id}],
         }),
       },
+      { field: 'ref', headerName: 'Référence', type: 'textColumn' },
       {
         field: 'date',
         headerName: 'Date de facture',
@@ -183,6 +202,24 @@ export const invoiceHeaders = [
       {
         field: 'payment_method',
         headerName: 'Méthode de paiment',
+      },
+      {
+        field: 'amount_ttc',
+        headerName: 'Montant TTC',
+        type: 'numberColumn',
+        valueFormatter: (params) => params.value.toFixed(2)
+      },
+      {
+        field: 'amount_tva',
+        headerName: 'Montant TVA',
+        type: 'numberColumn',
+        valueFormatter: (params) => params.value.toFixed(2)
+      },
+      {
+        field: 'amount_ht',
+        headerName: 'Montant HT',
+        type: 'numberColumn',
+        valueFormatter: (params) => params.value.toFixed(2)
       },
     ],
   },
