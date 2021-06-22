@@ -30196,12 +30196,14 @@ export type GetAllDeliveryQuery = (
   )> }
 );
 
-export type GetDeliveriesByDateQueryVariables = Exact<{
-  date?: Maybe<Scalars['date']>;
+export type GetDeliveriesByQueryVariables = Exact<{
+  dateStart?: Maybe<Scalars['date']>;
+  dateEnd?: Maybe<Scalars['date']>;
+  status?: Maybe<Scalars['String']>;
 }>;
 
 
-export type GetDeliveriesByDateQuery = (
+export type GetDeliveriesByQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery: Array<(
     { __typename?: 'sales_delivery' }
@@ -33676,9 +33678,11 @@ export const GetAllDeliveryDocument = gql`
       super(apollo);
     }
   }
-export const GetDeliveriesByDateDocument = gql`
-    query getDeliveriesByDate($date: date) {
-  sales_delivery(where: {created_at: {_gte: $date}}) {
+export const GetDeliveriesByDocument = gql`
+    query getDeliveriesBy($dateStart: date, $dateEnd: date, $status: String) {
+  sales_delivery(
+    where: {created_at: {_gte: $dateStart, _lte: $dateEnd}, status: {_eq: $status}}
+  ) {
     id
     order
     status
@@ -33710,8 +33714,8 @@ export const GetDeliveriesByDateDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class GetDeliveriesByDateGQL extends Apollo.Query<GetDeliveriesByDateQuery, GetDeliveriesByDateQueryVariables> {
-    document = GetDeliveriesByDateDocument;
+  export class GetDeliveriesByGQL extends Apollo.Query<GetDeliveriesByQuery, GetDeliveriesByQueryVariables> {
+    document = GetDeliveriesByDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

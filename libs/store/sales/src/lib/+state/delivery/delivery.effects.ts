@@ -16,22 +16,27 @@ export class DeliveryEffects {
   loadDelivery$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DeliveryActions.loadDelivery),
-      mergeMap((action) => {
-        let req = this.deliveryService.getAll();
-        if (action.date) req = this.deliveryService.getByDate(action.date);
-        return req.pipe(
-          map((data) =>
-            DeliveryActions.loadDeliverySuccess({
-              delivery: data.data.sales_delivery,
+      mergeMap((action) => this.deliveryService
+          .getBy({
+            dateStart: action.dateStart,
+            dateEnd: action.dateEnd,
+            status: action.status,
+          })
+          .pipe(
+            map((data) =>
+              DeliveryActions.loadDeliverySuccess({
+                delivery: data.data.sales_delivery,
+              })
+            ),
+            catchError((error) => {
+              this.notificationService.showToast(
+                'error',
+                'Erreur de chargement',
+                error
+              );
+              return of(DeliveryActions.loadDeliveryFailure({ error }));
             })
-          ),
-          catchError((error) => {
-              this.notificationService.showToast('error', 'Erreur de chargement', error);
-              return of(DeliveryActions.loadDeliveryFailure({ error }))
-            }
           )
-        )
-      }
       )
     )
   );
@@ -42,17 +47,19 @@ export class DeliveryEffects {
       mergeMap((action) =>
         this.deliveryService.getOneById(<string>action.id).pipe(
           map((data) => {
-            const {__typename, ...delivery} = data.data.sales_delivery_by_pk;
+            const { __typename, ...delivery } = data.data.sales_delivery_by_pk;
             return DeliveryActions.loadDeliveryByIdSuccess({
-              delivery: <InsertedDeliveryForm> delivery,
-            })
-          }
-          ),
+              delivery: <InsertedDeliveryForm>delivery,
+            });
+          }),
           catchError((error) => {
-            this.notificationService.showToast('error', 'Erreur de chargement', error);
-            return of(DeliveryActions.loadDeliveryByIdFailure({ error }))
-          }
-          )
+            this.notificationService.showToast(
+              'error',
+              'Erreur de chargement',
+              error
+            );
+            return of(DeliveryActions.loadDeliveryByIdFailure({ error }));
+          })
         )
       )
     )
@@ -72,23 +79,24 @@ export class DeliveryEffects {
               time: new Date(),
               icon: 'checked',
               route: 'sales/delivery',
-              color: 'primary'
-            })
+              color: 'primary',
+            });
             return DeliveryActions.addDeliverySuccess({
-              delivery: <DeliveryForm>data.data.insert_sales_delivery_one
-              ,
+              delivery: <DeliveryForm>data.data.insert_sales_delivery_one,
             });
           }),
           catchError((error) => {
-            this.notificationService.showToast('error', 'Erreur d\'ajout', error);
-            return of(DeliveryActions.addDeliveryFailure({ error }))
-          }
-          )
+            this.notificationService.showToast(
+              'error',
+              "Erreur d'ajout",
+              error
+            );
+            return of(DeliveryActions.addDeliveryFailure({ error }));
+          })
         )
       )
     )
   );
-
 
   updateDelivery$ = createEffect(() =>
     this.actions$.pipe(
@@ -104,24 +112,26 @@ export class DeliveryEffects {
               time: new Date(),
               icon: 'checked',
               route: 'sales/delivery',
-              color: 'primary'
-            })
-              return DeliveryActions.updateDeliverySuccess({
-                delivery: {
-                  ...data[0].data.update_sales_delivery_by_pk,
-                  delivery_lines: data
-                    .slice(1, data.length)
-                    .map((e) => e.data.update_sales_delivery_line_by_pk),
-                },
-              })
-            }
-          ),
+              color: 'primary',
+            });
+            return DeliveryActions.updateDeliverySuccess({
+              delivery: {
+                ...data[0].data.update_sales_delivery_by_pk,
+                delivery_lines: data
+                  .slice(1, data.length)
+                  .map((e) => e.data.update_sales_delivery_line_by_pk),
+              },
+            });
+          }),
           tap((e) => this.router.navigate(['/sales/delivery'])),
           catchError((error) => {
-            this.notificationService.showToast('error', 'Erreur de mise à jour', error);
-            return of(DeliveryActions.updateDeliveryFailure({ error }))
-          }
-          )
+            this.notificationService.showToast(
+              'error',
+              'Erreur de mise à jour',
+              error
+            );
+            return of(DeliveryActions.updateDeliveryFailure({ error }));
+          })
         )
       )
     )
@@ -133,22 +143,24 @@ export class DeliveryEffects {
       mergeMap((action) =>
         this.deliveryService.deleteMany(action.ids).pipe(
           map((data) => {
-              this.notificationService.showNotifToast({
-                message: 'Supprimé avec succès',
-                operation: 'info',
-                title: 'Livraison',
-                icon: 'closed',
-                route: 'sales/delivery',
-                color: 'warn'
-              })
-              return DeliveryActions.removeDeliverySuccess({ ids: action.ids })
-            }
-          ),
+            this.notificationService.showNotifToast({
+              message: 'Supprimé avec succès',
+              operation: 'info',
+              title: 'Livraison',
+              icon: 'closed',
+              route: 'sales/delivery',
+              color: 'warn',
+            });
+            return DeliveryActions.removeDeliverySuccess({ ids: action.ids });
+          }),
           catchError((error) => {
-            this.notificationService.showToast('error', 'Erreur de suppression', error);
-            return of(DeliveryActions.removeDeliveryFailure({ error }))
-          }
-          )
+            this.notificationService.showToast(
+              'error',
+              'Erreur de suppression',
+              error
+            );
+            return of(DeliveryActions.removeDeliveryFailure({ error }));
+          })
         )
       )
     )
@@ -158,6 +170,6 @@ export class DeliveryEffects {
     private router: Router,
     private actions$: Actions,
     private deliveryService: DeliveryService,
-    private notificationService: NotificationFacadeService,
+    private notificationService: NotificationFacadeService
   ) {}
 }

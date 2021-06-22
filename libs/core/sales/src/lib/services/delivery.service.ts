@@ -7,11 +7,11 @@ import {
   UpdateDeliveryLineGQL,
   UpdateDeliveryGQL,
   DeleteDeliveryGQL,
-  GetDeliveriesByDateGQL,
+  GetDeliveriesByGQL,
   UpdateDeliveryLineMutationVariables,
   UpdateDeliveryMutationVariables,
 } from '@tanglass-erp/infrastructure/graphql';
-import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
+import { deliveryFilter, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 import { combineLatest } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -24,15 +24,15 @@ export class DeliveryService {
     private updateDeliveryLineGQL: UpdateDeliveryLineGQL,
     private updateDeliveryGQL: UpdateDeliveryGQL,
     private deleteDeliveryGQL: DeleteDeliveryGQL,
-    private getDeliveriesByDateGQL: GetDeliveriesByDateGQL
+    private getDeliveriesByGQL: GetDeliveriesByGQL
   ) {}
 
   getAll() {
     return this.getAllDeliveryGQL.watch().valueChanges;
   }
 
-  getByDate(date: Date) {
-    return this.getDeliveriesByDateGQL.fetch({date});
+  getBy(params: deliveryFilter) {
+    return this.getDeliveriesByGQL.fetch(params);
   }
 
   getOneById(id: string) {

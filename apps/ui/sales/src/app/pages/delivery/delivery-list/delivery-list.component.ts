@@ -10,6 +10,9 @@ import { deliveryHeaders } from '@TanglassUi/sales/utils/grid-headers';
 import { Router } from '@angular/router';
 import { DeliveryFacade } from '@tanglass-erp/store/sales';
 import { GridPermissions } from '@tanglass-erp/ag-grid';
+import startOfMonth from 'date-fns/fp/startOfMonth'
+import { fr } from 'date-fns/locale';
+
 
 @Component({
   selector: 'ngx-delivery-list',
@@ -33,12 +36,18 @@ export class DeliveryListComponent implements GridView {
       selectToShow: true
     },
   ];
+  dateText: string;
+
   constructor(private router: Router, private deliveryFacade: DeliveryFacade) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
-    this.deliveryFacade.loadDeliveries();
+    const date = new Date();
+    this.dateText = date.getFullYear() + ' ' + fr.localize.month(date.getMonth(), { width: 'abbreviated' });
+    this.deliveryFacade.loadDeliveries({
+      dateStart: startOfMonth(date)
+    });
   }
 
   ngAfterViewInit(): void {}
@@ -60,7 +69,6 @@ export class DeliveryListComponent implements GridView {
         break;
       case Operations.dateChange:
         this.deliveryFacade.loadDeliveries(event.data);
-        console.log(event.data);
         break;
     }
   }

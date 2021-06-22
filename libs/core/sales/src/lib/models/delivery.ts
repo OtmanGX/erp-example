@@ -55,3 +55,9 @@ export interface DeliveryLine {
   amount?: number;
   toDeliver?: number; // For Form purpose only
 }
+
+export type deliveryFilter = {
+  dateStart?: Date,
+  dateEnd?: Date,
+  status?: string
+}

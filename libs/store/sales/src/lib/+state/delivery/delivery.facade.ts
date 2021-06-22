@@ -6,10 +6,11 @@ import * as fromDelivery from './delivery.reducer';
 import * as DeliverySelectors from './delivery.selectors';
 import * as DeliveryActions from './delivery.actions';
 import {
+  deliveryFilter,
   DeliveryForm,
   DeliveryLine,
   DeliveryStatus,
-  InsertedDeliveryForm,
+  InsertedDeliveryForm
 } from '@tanglass-erp/core/sales';
 import { filter, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -36,8 +37,8 @@ export class DeliveryFacade {
     this.store.dispatch(action);
   }
 
-  loadDeliveries(date?:Date, notInvoiced?: boolean) {
-    this.dispatch(DeliveryActions.loadDelivery({date, notInvoiced}));
+  loadDeliveries(params: deliveryFilter) {
+    this.dispatch(DeliveryActions.loadDelivery(params));
   }
 
   loadDeliveryById(id: string) {

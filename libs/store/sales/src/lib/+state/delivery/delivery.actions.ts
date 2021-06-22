@@ -4,7 +4,7 @@ import { DeliveryForm, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 
 // Load all
 export const loadDelivery = createAction('[Delivery] Load Delivery',
-  props<{date?: Date, notInvoiced?: boolean}>());
+  props<{dateStart?: Date,dateEnd?: Date, status?: string}>());
 
 export const loadDeliverySuccess = createAction(
   '[Delivery] Load Delivery Success',

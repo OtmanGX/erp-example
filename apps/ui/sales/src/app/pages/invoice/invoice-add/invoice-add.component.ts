@@ -1,25 +1,17 @@
 import { Component, ViewChild } from '@angular/core';
-import {
-  DynamicFormComponent,
-  FieldConfig,
-  PageForm,
-} from '@tanglass-erp/material';
+import { DynamicFormComponent, FieldConfig, PageForm } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
 import { regConfigInvoice } from '@TanglassUi/sales/utils/forms';
 import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
-import {
-  DeliveryFacade,
-  DeliveryForm, DeliveryStatus,
-  InvoiceFacade
-} from '@tanglass-erp/store/sales';
+import { DeliveryFacade, DeliveryForm, DeliveryStatus, InvoiceFacade } from '@tanglass-erp/store/sales';
 import { Store } from '@ngrx/store';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
 import { map, take } from 'rxjs/operators';
-import { of, combineLatest } from 'rxjs';
+import { combineLatest, of } from 'rxjs';
 import { Location } from '@angular/common';
 
 @Component({
@@ -53,11 +45,8 @@ export class InvoiceAddComponent extends PageForm {
   companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany);
   customers$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
-  deliveries$ = this.deliveryFacade.allDelivery$.pipe(
-    map(
-      e => e.filter(item => item.status === DeliveryStatus.NOT_INVOICED)
-    )
-  );
+  deliveries$ = this.deliveryFacade.allDelivery$
+    .pipe(map(e => e.filter(value => value.status === DeliveryStatus.NOT_INVOICED)));
   deliveries: DeliveryForm[];
   selectedDeliveries: DeliveryForm[] = [];
 
@@ -84,7 +73,7 @@ export class InvoiceAddComponent extends PageForm {
 
   dispatchActions(): void {
     this.deliveryFacade.loaded$.pipe(take(1)).subscribe((value) => {
-      if (!value) this.deliveryFacade.loadDeliveries();
+      if (!value) this.deliveryFacade.loadDeliveries({status: DeliveryStatus.NOT_INVOICED});
     });
     if (this.id) this.invoiceFacade.loadById(this.id);
     this.store.dispatch(ShortCompanieActions.loadShortCompany());
