@@ -3,7 +3,8 @@ import { DeliveryForm, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 
 
 // Load all
-export const loadDelivery = createAction('[Delivery] Load Delivery');
+export const loadDelivery = createAction('[Delivery] Load Delivery',
+  props<{date?: Date, notInvoiced?: boolean}>());
 
 export const loadDeliverySuccess = createAction(
   '[Delivery] Load Delivery Success',

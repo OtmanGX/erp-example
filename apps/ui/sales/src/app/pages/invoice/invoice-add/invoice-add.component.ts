@@ -84,7 +84,7 @@ export class InvoiceAddComponent extends PageForm {
 
   dispatchActions(): void {
     this.deliveryFacade.loaded$.pipe(take(1)).subscribe((value) => {
-      if (!value) this.deliveryFacade.loadAllDelivery();
+      if (!value) this.deliveryFacade.loadDeliveries();
     });
     if (this.id) this.invoiceFacade.loadById(this.id);
     this.store.dispatch(ShortCompanieActions.loadShortCompany());

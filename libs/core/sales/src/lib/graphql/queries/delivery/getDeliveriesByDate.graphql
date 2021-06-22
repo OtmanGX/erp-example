@@ -1,0 +1,28 @@
+query getDeliveriesByDate($date: date) {
+  sales_delivery(where: {created_at: {_gte: $date}}) {
+    id
+    order
+    status
+    company: companyObject{
+      name
+    }
+    payment_method
+    predicted_date
+    isReturned
+    client: customer {
+      name
+      mail
+    }
+    contact: contactByContact {
+      mail
+      name
+      phone
+    }
+    amount_ttc
+    amount_tva
+    amount_ht
+    ref
+    created_at
+    updated_at
+  }
+}

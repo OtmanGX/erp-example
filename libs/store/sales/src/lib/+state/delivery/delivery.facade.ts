@@ -36,8 +36,8 @@ export class DeliveryFacade {
     this.store.dispatch(action);
   }
 
-  loadAllDelivery() {
-    this.dispatch(DeliveryActions.loadDelivery());
+  loadDeliveries(date?:Date, notInvoiced?: boolean) {
+    this.dispatch(DeliveryActions.loadDelivery({date, notInvoiced}));
   }
 
   loadDeliveryById(id: string) {

@@ -7,6 +7,7 @@ import {
   UpdateDeliveryLineGQL,
   UpdateDeliveryGQL,
   DeleteDeliveryGQL,
+  GetDeliveriesByDateGQL,
   UpdateDeliveryLineMutationVariables,
   UpdateDeliveryMutationVariables,
 } from '@tanglass-erp/infrastructure/graphql';
@@ -22,11 +23,16 @@ export class DeliveryService {
     private getAllDeliveryGQL: GetAllDeliveryGQL,
     private updateDeliveryLineGQL: UpdateDeliveryLineGQL,
     private updateDeliveryGQL: UpdateDeliveryGQL,
-    private deleteDeliveryGQL: DeleteDeliveryGQL
+    private deleteDeliveryGQL: DeleteDeliveryGQL,
+    private getDeliveriesByDateGQL: GetDeliveriesByDateGQL
   ) {}
 
   getAll() {
     return this.getAllDeliveryGQL.watch().valueChanges;
+  }
+
+  getByDate(date: Date) {
+    return this.getDeliveriesByDateGQL.fetch({date});
   }
 
   getOneById(id: string) {

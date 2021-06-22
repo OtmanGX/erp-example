@@ -16,19 +16,22 @@ export class DeliveryEffects {
   loadDelivery$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DeliveryActions.loadDelivery),
-      mergeMap(() =>
-        this.deliveryService.getAll().pipe(
+      mergeMap((action) => {
+        let req = this.deliveryService.getAll();
+        if (action.date) req = this.deliveryService.getByDate(action.date);
+        return req.pipe(
           map((data) =>
-              DeliveryActions.loadDeliverySuccess({
-                delivery: data.data.sales_delivery,
-              })
+            DeliveryActions.loadDeliverySuccess({
+              delivery: data.data.sales_delivery,
+            })
           ),
           catchError((error) => {
-            this.notificationService.showToast('error', 'Erreur de chargement', error);
-            return of(DeliveryActions.loadDeliveryFailure({ error }))
-          }
+              this.notificationService.showToast('error', 'Erreur de chargement', error);
+              return of(DeliveryActions.loadDeliveryFailure({ error }))
+            }
           )
         )
+      }
       )
     )
   );

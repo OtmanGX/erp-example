@@ -38,7 +38,7 @@ export class DeliveryListComponent implements GridView {
   }
 
   ngOnInit(): void {
-    this.deliveryFacade.loadAllDelivery();
+    this.deliveryFacade.loadDeliveries();
   }
 
   ngAfterViewInit(): void {}
@@ -59,6 +59,7 @@ export class DeliveryListComponent implements GridView {
         this.deliveryFacade.deliveryToInvoice(event.data);
         break;
       case Operations.dateChange:
+        this.deliveryFacade.loadDeliveries(event.data);
         console.log(event.data);
         break;
     }
