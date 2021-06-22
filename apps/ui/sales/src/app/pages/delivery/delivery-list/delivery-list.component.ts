@@ -58,6 +58,9 @@ export class DeliveryListComponent implements GridView {
       case 'INVOICE':
         this.deliveryFacade.deliveryToInvoice(event.data);
         break;
+      case Operations.dateChange:
+        console.log(event.data);
+        break;
     }
   }
 

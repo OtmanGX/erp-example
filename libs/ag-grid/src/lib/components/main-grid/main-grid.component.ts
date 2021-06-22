@@ -19,6 +19,7 @@ import { LinkComponent } from '../cell-renderers/link.component';
 import { Operations } from '../../enums/operations';
 import { GridPermissions } from '../../interfaces/grid-permissions';
 import { GroupButton } from '../../interfaces/group-button';
+import { DateFilterComponent } from '../date-filter/date-filter.component';
 
 @Component({
   selector: 'ngx-main-grid',
@@ -61,12 +62,17 @@ export class MainGridComponent {
   @Input() rowGroupPanelShow = 'always';
   @Input() height = '500px';
   @Input() width = '100%';
+  @Input()
+  withDateFilter: boolean = false;
   @Output() triggerEvent = new EventEmitter<{ action: string; data?: any }>();
   private gridApi: any;
   private gridColumnApi: any;
   selectedData = new Array();
   context;
   hide = false; // For Search reset  button
+
+  date = new Date(); // For filter
+  dateText= this.date.getFullYear();
 
   // Formatters
   dateFormatter = (params) =>
@@ -166,27 +172,27 @@ export class MainGridComponent {
     ],
   };
 
-  statusBar: {
+  statusBar = {
     statusPanels: [
       {
-        statusPanel: 'agTotalAndFilteredRowCountComponent';
-        align: 'left';
+        statusPanel: 'agTotalAndFilteredRowCountComponent',
+        align: 'left',
       },
       {
-        statusPanel: 'agTotalRowCountComponent';
-        align: 'center';
+        statusPanel: 'agTotalRowCountComponent',
+        align: 'center'
       },
       { statusPanel: 'agFilteredRowCountComponent' },
       { statusPanel: 'agSelectedRowCountComponent' },
       { statusPanel: 'agAggregationComponent' }
-    ];
+    ]
   };
 
   constructor(
     public datepipe: DatePipe,
     private _bottomSheet: MatBottomSheet,
     public dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     this.context = {
       componentParent: this,
@@ -253,6 +259,17 @@ export class MainGridComponent {
 
   exportExcel() {
     this.gridApi.exportDataAsExcel();
+  }
+
+  openFilterDateDialog(): void {
+    const dialogRef = this.dialog.open(DateFilterComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dateText = result.dateText;
+        this.triggerAction(this.operations.dateChange, result.date);
+      }
+    });
   }
 
   deleteDialog() {

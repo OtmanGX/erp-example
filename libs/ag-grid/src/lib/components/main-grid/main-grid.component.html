@@ -58,9 +58,22 @@
           fontIcon="fa-file-excel"
         ></mat-icon>
       </button>
+
+
     </div>
 
     <div class="spacer"></div>
+
+  <!--    Date Filter-->
+    <ng-container *ngIf='withDateFilter'>
+    <mat-chip-list>
+      <mat-chip (click)='openFilterDateDialog()'>{{dateText}}</mat-chip>
+    </mat-chip-list>
+    <button (click)='openFilterDateDialog()' mat-icon-button matTooltip="Filtrer par date">
+      <mat-icon>calendar_today</mat-icon>
+    </button>
+    </ng-container>
+
     <mat-form-field
       style="font-size: 12px"
       appearance="outline"
@@ -116,6 +129,7 @@
     localeText="AG_GRID_LOCALE_FR"
     (gridReady)="onGridReady($event)"
     [rowGroupPanelShow]="rowGroupPanelShow"
+    [statusBar]="statusBar"
     rowSelection="multiple"
   >
   </ag-grid-angular>

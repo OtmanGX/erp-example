@@ -9,6 +9,8 @@ import { ExportBottomSheetComponent } from './components/export-bottom-sheet/exp
 import { LinkComponent } from './components/cell-renderers/link.component';
 import { RouterModule } from '@angular/router';
 import { DefaultCellRendererComponent } from './components/cell-renderers/default-cell-renderer.component';
+import { DateFilterComponent } from './components/date-filter/date-filter.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -18,9 +20,9 @@ export const MODULES = [
 ];
 
 @NgModule({
-  declarations: [MainGridComponent, MatEditComponent, ExportBottomSheetComponent, LinkComponent],
+  declarations: [MainGridComponent, MatEditComponent, ExportBottomSheetComponent, LinkComponent, DateFilterComponent],
   imports: [...MODULES, AgGridModule.withComponents(
-    [MatEditComponent, LinkComponent]), RouterModule],
+    [MatEditComponent, LinkComponent]), RouterModule, MatTabsModule],
   exports: [...MODULES, MainGridComponent],
   providers: [DatePipe]
 })

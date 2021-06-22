@@ -31,7 +31,7 @@ export class InvoiceService {
   ) {}
 
   getAll() {
-    return this.getAllInvoicesGQL.watch().valueChanges;
+    return this.getAllInvoicesGQL.fetch();
   }
 
   getOneById(id: string) {
