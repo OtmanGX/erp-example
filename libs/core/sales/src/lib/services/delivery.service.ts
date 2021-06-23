@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import {
   InsertDeliveryGQL,
   GetDeliveryByIdGQL,
-  GetAllDeliveryGQL,
   UpdateDeliveryLineGQL,
   UpdateDeliveryGQL,
   DeleteDeliveryGQL,
@@ -20,16 +19,11 @@ export class DeliveryService {
   constructor(
     private insertDeliveryGQL: InsertDeliveryGQL,
     private getDeliveryByIdGQL: GetDeliveryByIdGQL,
-    private getAllDeliveryGQL: GetAllDeliveryGQL,
     private updateDeliveryLineGQL: UpdateDeliveryLineGQL,
     private updateDeliveryGQL: UpdateDeliveryGQL,
     private deleteDeliveryGQL: DeleteDeliveryGQL,
     private getDeliveriesByGQL: GetDeliveriesByGQL
   ) {}
-
-  getAll() {
-    return this.getAllDeliveryGQL.watch().valueChanges;
-  }
 
   getBy(params: deliveryFilter) {
     return this.getDeliveriesByGQL.fetch(params);

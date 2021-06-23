@@ -4,6 +4,8 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { InvoiceFacade } from '@tanglass-erp/store/sales';
 import { invoiceHeaders } from '@TanglassUi/sales/utils/grid-headers';
 import { Router } from '@angular/router';
+import { fr } from 'date-fns/locale';
+import startOfMonth from 'date-fns/fp/startOfMonth';
 
 @Component({
   selector: 'ngx-invoice-list',
@@ -16,12 +18,18 @@ export class InvoiceListComponent implements GridView {
   columnId = 'id';
   data$ = this.invoiceFacade.allInvoices$;
   mainGrid: MainGridComponent;
+  dateText: string;
+
   constructor(private router: Router, private invoiceFacade: InvoiceFacade) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
-    this.invoiceFacade.loadAll();
+    const date = new Date();
+    this.dateText = date.getFullYear() + ' ' + fr.localize.month(date.getMonth(), { width: 'abbreviated' });
+    this.invoiceFacade.loadAll({
+      dateStart: startOfMonth(date)
+    });
   }
 
   eventTriggering(event) {
@@ -34,6 +42,10 @@ export class InvoiceListComponent implements GridView {
         break;
       case Operations.delete:
         this.invoiceFacade.deleteMany(event.data.map((e) => e.id));
+        break;
+      case Operations.dateChange:
+        this.invoiceFacade.loadAll(event.data);
+        break;
     }
   }
 

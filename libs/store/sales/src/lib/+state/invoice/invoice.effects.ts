@@ -16,8 +16,11 @@ export class InvoiceEffects {
   loadinvoices$ = createEffect(() =>
     this.actions$.pipe(
       ofType(InvoiceActions.loadInvoices),
-      mergeMap(() =>
-        this.service.getAll().pipe(
+      mergeMap((action) =>
+        this.service.getAll({
+          dateStart: action.dateStart,
+          dateEnd: action.dateEnd,
+        }).pipe(
           map((data) =>
             InvoiceActions.loadInvoicesSuccess({
               invoices: data.data.sales_invoice,

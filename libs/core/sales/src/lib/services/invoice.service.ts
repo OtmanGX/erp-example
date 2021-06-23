@@ -10,9 +10,9 @@ import {
   GetDeliveriesAmountsGQL,
 } from '@tanglass-erp/infrastructure/graphql';
 import {
-  InsertedInvoice,
+  InsertedInvoice, invoiceFilter,
   InvoiceLine,
-  UpdatedInvoice,
+  UpdatedInvoice
 } from '@tanglass-erp/core/sales';
 import { map, mergeMap, take } from 'rxjs/operators';
 
@@ -30,8 +30,8 @@ export class InvoiceService {
     private getDeliveriesAmountsGQL: GetDeliveriesAmountsGQL
   ) {}
 
-  getAll() {
-    return this.getAllInvoicesGQL.fetch();
+  getAll(params:invoiceFilter = {}) {
+    return this.getAllInvoicesGQL.fetch(params);
   }
 
   getOneById(id: string) {

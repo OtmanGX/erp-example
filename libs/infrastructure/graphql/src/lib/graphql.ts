@@ -30175,27 +30175,6 @@ export type InsertQuotationMutation = (
   )> }
 );
 
-export type GetAllDeliveryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetAllDeliveryQuery = (
-  { __typename?: 'query_root' }
-  & { sales_delivery: Array<(
-    { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc' | 'amount_tva' | 'amount_ht' | 'ref' | 'created_at' | 'updated_at'>
-    & { company: (
-      { __typename?: 'management_company' }
-      & Pick<Management_Company, 'name'>
-    ), client: (
-      { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'name' | 'mail'>
-    ), contact?: Maybe<(
-      { __typename?: 'contact_contact' }
-      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
-    )> }
-  )> }
-);
-
 export type GetDeliveriesByQueryVariables = Exact<{
   dateStart?: Maybe<Scalars['date']>;
   dateEnd?: Maybe<Scalars['date']>;
@@ -30279,7 +30258,10 @@ export type GetDraftByIdQuery = (
   )> }
 );
 
-export type GetAllInvoicesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAllInvoicesQueryVariables = Exact<{
+  dateStart?: Maybe<Scalars['date']>;
+  dateEnd?: Maybe<Scalars['date']>;
+}>;
 
 
 export type GetAllInvoicesQuery = (
@@ -33637,47 +33619,6 @@ export const InsertQuotationDocument = gql`
       super(apollo);
     }
   }
-export const GetAllDeliveryDocument = gql`
-    query getAllDelivery {
-  sales_delivery {
-    id
-    order
-    status
-    company: companyObject {
-      name
-    }
-    payment_method
-    predicted_date
-    isReturned
-    client: customer {
-      name
-      mail
-    }
-    contact: contactByContact {
-      mail
-      name
-      phone
-    }
-    amount_ttc
-    amount_tva
-    amount_ht
-    ref
-    created_at
-    updated_at
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class GetAllDeliveryGQL extends Apollo.Query<GetAllDeliveryQuery, GetAllDeliveryQueryVariables> {
-    document = GetAllDeliveryDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const GetDeliveriesByDocument = gql`
     query getDeliveriesBy($dateStart: date, $dateEnd: date, $status: String) {
   sales_delivery(
@@ -33829,8 +33770,8 @@ export const GetDraftByIdDocument = gql`
     }
   }
 export const GetAllInvoicesDocument = gql`
-    query GetAllInvoices {
-  sales_invoice {
+    query GetAllInvoices($dateStart: date, $dateEnd: date) {
+  sales_invoice(where: {date: {_gte: $dateStart, _lte: $dateEnd}}) {
     id
     client: clientObj {
       name

@@ -5,7 +5,7 @@ import { select, Store, Action } from '@ngrx/store';
 import * as fromInvoice from './invoice.reducer';
 import * as InvoiceSelectors from './invoice.selectors';
 import * as InvoiceActions from './invoice.actions';
-import { InsertedInvoice, UpdatedInvoice } from '@tanglass-erp/core/sales';
+import { InsertedInvoice, invoiceFilter, UpdatedInvoice } from '@tanglass-erp/core/sales';
 import { filter, switchMap } from 'rxjs/operators';
 
 @Injectable()
@@ -28,8 +28,8 @@ export class InvoiceFacade {
     this.store.dispatch(action);
   }
 
-  loadAll() {
-    this.dispatch(InvoiceActions.loadInvoices());
+  loadAll(params: invoiceFilter) {
+    this.dispatch(InvoiceActions.loadInvoices(params));
   }
 
   loadById(id: string) {
