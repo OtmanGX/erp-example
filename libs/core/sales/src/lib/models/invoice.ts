@@ -55,3 +55,9 @@ export interface InvoiceLine {
   unit_price: number;
   total: number;
 }
+
+
+export type invoiceFilter = {
+  dateStart?: Date,
+  dateEnd?: Date,
+}

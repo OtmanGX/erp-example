@@ -1,8 +1,15 @@
 import { createAction, props } from '@ngrx/store';
-import { InsertedDeliveryForm, InsertedInvoice, Invoice, UpdatedInvoice } from '@tanglass-erp/core/sales';
+import {
+  InsertedDeliveryForm,
+  InsertedInvoice,
+  Invoice,
+  invoiceFilter,
+  UpdatedInvoice
+} from '@tanglass-erp/core/sales';
 
 export const loadInvoices = createAction(
-  '[Invoice] Load Invoice'
+  '[Invoice] Load Invoice',
+  props<invoiceFilter>()
 );
 
 export const loadInvoicesSuccess = createAction(

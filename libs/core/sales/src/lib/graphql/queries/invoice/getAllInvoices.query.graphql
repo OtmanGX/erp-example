@@ -1,5 +1,5 @@
-query GetAllInvoices {
-  sales_invoice {
+query GetAllInvoices($dateStart: date, $dateEnd: date) {
+  sales_invoice(where: {date: {_gte: $dateStart, _lte: $dateEnd}}) {
     id
     client: clientObj {
       name
