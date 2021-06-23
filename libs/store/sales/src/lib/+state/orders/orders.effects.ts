@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
+import { ProductDraftFacade } from "../product-draft/product-draft.facade";
 
 @Injectable()
 export class OrdersEffects {
@@ -44,11 +45,11 @@ export class OrdersEffects {
       ofType(OrdersActions.addOrder),
       mergeMap((action) =>
         this.orderService.insertOne(action.Order).pipe(
-          map((data) =>
-         { 
-         // this.router.navigate(['/sales/order/${data.data.insert_sales_order_one.id}']);
- 
-          return OrdersActions.addOrderSuccess({Order: data.data.insert_sales_order_one})}
+          map((data) => {
+            // this.router.navigate(['/sales/order/${data.data.insert_sales_order_one.id}']);
+
+            return OrdersActions.addOrderSuccess({ Order: data.data.insert_sales_order_one })
+          }
           ),
           catchError((error) =>
             of(OrdersActions.addOrderFailure({ error }))
@@ -64,9 +65,11 @@ export class OrdersEffects {
       ofType(OrdersActions.loadOrderById),
       mergeMap((action) =>
         this.orderService.getOneById(action.id).pipe(
-          map((data) =>
-          OrdersActions.loadOrderByIdSuccess({Order: data.data.sales_order_by_pk})
-          ),
+          map((data) => {
+           // this.productDraftFacade.loadSelectedProducts(data.data.sales_order_by_pk.draft_id)
+           
+            return OrdersActions.loadOrderByIdSuccess({ Order: data.data.sales_order_by_pk })
+          }),
           catchError((error) =>
             of(OrdersActions.loadOrderByIdFailure({ error }))
           )
@@ -79,8 +82,9 @@ export class OrdersEffects {
 
   constructor(
     private actions$: Actions,
-    private orderService:OrderService,
+    private orderService: OrderService,
     private router: Router,
     private notificationService: NotificationFacadeService,
-    ) {}
+    private productDraftFacade: ProductDraftFacade
+  ) { }
 }

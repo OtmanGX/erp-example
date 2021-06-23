@@ -159,4 +159,21 @@ export const removeProductFailure = createAction(
 );
 
 
-export const clearItemsState = createAction('[order items] Clear order Items State');
+export const resetState = createAction('[Products ] Clear  Products State');
+
+
+export const loadSelectedProducts = createAction(
+  '[Products] Load Selected Products',
+  props<{ draft_id: number }>()
+
+);
+
+export const loadSelectedProductsSuccess = createAction(
+  '[Products] Load Selected Products Success',
+  props<{ products: Product_draft[] }>()
+);
+
+export const loadSelectedProductsFailure = createAction(
+  '[Products] Load Selected Products Failure',
+  props<{ error: any }>()
+);

@@ -9,17 +9,18 @@ import { ProductDraftFacade } from "./product-draft.facade";
 export class ProductDraftEffects {
 
 
-  loadProductsDraft$ = createEffect(() => {
+  loadSelectedProducts$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ProductActions.loadProducts),
+      ofType(ProductActions.loadSelectedProducts),
       mergeMap((action) =>
         this.ProductService.getDraftPorducts(action.draft_id).pipe(
-          map((data) =>
-            ProductActions.loadProductsSuccess({ products: data.data.sales_product_draft }),
-
+          map((data) => {
+            console.log('products loading...', data)
+            return ProductActions.loadSelectedProductsSuccess({ products: data.data.sales_product_draft })
+          }
           ),
           catchError((error) =>
-            of(ProductActions.loadProductsFailure({ error }))
+            of(ProductActions.loadSelectedProductsFailure({ error }))
           )
         )
       )
@@ -88,7 +89,7 @@ export class ProductDraftEffects {
       )
     )
   });
- 
+
 
 
   removeProductDraft$ = createEffect(() => {

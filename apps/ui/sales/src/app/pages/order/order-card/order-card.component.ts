@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdersFacade,DraftFacade } from "@tanglass-erp/store/sales";
+import { OrdersFacade,DraftFacade, Order } from "@tanglass-erp/store/sales";
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 import { Location } from '@angular/common';
@@ -16,9 +16,8 @@ import { of } from "rxjs";
 export class OrderCardComponent extends ModelCardComponent {
   title = "Commande CARD";
   id: string;
-  data$ = this.facade.orderById$
+  data$ = this.facade.selectedOrders$
     .pipe(takeUntil(this._onDestroy));
-  draftID$; order_id
   isCardMode: boolean = true;
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -34,13 +33,7 @@ export class OrderCardComponent extends ModelCardComponent {
     this.facade.loadOrderById(this.id);
   }
 
-  passData(data) {
-    this.data$.subscribe(
-      data => {
-        this.draftID$ = data?.draft_id;
-        this.order_id = data?.id
-      }
-    )
+  passData(data:Order) {
     return [
       {
         label: "Infos Générales",
@@ -72,8 +65,8 @@ export class OrderCardComponent extends ModelCardComponent {
   launch() { }
 
   ngOnDestroy(): void {
-    this.ordersFacade.clearSelection();
-    this.draftFacade.clearState();
+    // this.ordersFacade.clearSelection();
+    // this.draftFacade.clearState();
   }
 }
 

@@ -36,6 +36,10 @@ export const getSelectedIdProduct = createSelector(
   getProductState,
   (state: ProductState) => state.selectedId
 );
+export const getSelectedProducts = createSelector(
+  getProductState,
+  (state: ProductState) => state.selectedProducts
+);
 
 export const getSelectedProduct = createSelector(
   getProductEntities,

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { ProductDraftFacade, Amount, PaymentsFacade } from "@tanglass-erp/store/sales";
+import { ProductDraftFacade, Amount, PaymentsFacade, OrdersFacade } from "@tanglass-erp/store/sales";
 import { debounceTime } from 'rxjs/operators';
 import { displayedAmountsColumns } from "../../../utils/grid-headers";
 import { Column, ColumnType } from '@tanglass-erp/material';
@@ -18,18 +18,20 @@ export class AmountsOrderComponent implements OnInit {
   dataSource: Amount[] = [];
   amountsByCompanySub = this.productFacade.amounts$;
   payments
+  order_id
 
   @ViewChild(MatTable, { static: true }) table: MatTable<Amount>;
   @Input() isCardMode: boolean = false;
-  @Input() order_id: number;
 
   constructor(
     private dialog: MatDialog,
     private productFacade: ProductDraftFacade,
     private paymentFacade: PaymentsFacade,
+    private orderFacade:OrdersFacade,
   ) { }
 
   ngOnInit(): void {
+    this.orderFacade.selectedOrderId$.subscribe(id=>this.order_id=id)
     this.order_id ? this.paymentFacade.loadOrderPayments(this.order_id) : null;
     this.productFacade.amounts$.subscribe(
       data => this.dataSource = data ?? []

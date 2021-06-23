@@ -14,6 +14,7 @@ import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.
 import { map } from 'rxjs/operators';
 import { DraftFacade } from "@tanglass-erp/store/sales";
 import { Subscription } from 'rxjs';
+import { id } from 'date-fns/locale';
 @Component({
   selector: 'ngx-create-draft',
   templateUrl: './create-draft.component.html',
@@ -25,8 +26,7 @@ export class CreateDraftComponent implements OnInit {
   companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany);
   customer$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
-  data = this.facade.selectedDraft$;
-  draftID$;
+  draft_id
   dataSub: Subscription
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
@@ -40,7 +40,7 @@ export class CreateDraftComponent implements OnInit {
     this.facade.createDraft();
     this.store.dispatch(ShortCompanieActions.loadShortCompany());
     this.buildForm();
-    this.dataSub = this.data.subscribe(data => this.draftID$ = data?.id)
+    this.dataSub = this.facade.selectedDraft$.subscribe(id => this.draft_id = id)
   }
 
   buildForm(): void {

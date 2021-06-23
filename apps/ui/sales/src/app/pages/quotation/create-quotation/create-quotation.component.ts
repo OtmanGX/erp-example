@@ -24,12 +24,11 @@ export class CreateQuotationComponent implements OnInit {
   companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany);
   customer$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
-  data = this.draftFacade.selectedDraft$;
+  draft_id 
   @ViewChild('quotation_form', { read: DynamicFormComponent }) quotationFormComponent: DynamicFormComponent;
   get quotationForm() {
     return this.quotationFormComponent?.form;
   }
-  draftID$;
   constructor(
     private quotationFacade: QuotationFacade,
     private draftFacade: DraftFacade,
@@ -52,14 +51,14 @@ export class CreateQuotationComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(ShortCompanieActions.loadShortCompany());
     this.buildForm();
-    this.dataSub = this.data.subscribe(data => this.draftID$ = data?.id)
+    this.dataSub = this.draftFacade.selectedDraft$.subscribe(id => this.draft_id = id)
 
   }
   save() {
     this.productDraftFacade.amounts$.subscribe(
       value => this.quotationFacade.addQuotation({
         ...this.quotationForm.value,
-        draft_id: this.draftID$,
+        draft_id: this.draft_id,
         total_ttc: value[value.length - 1].total_TTC,
         total_tax: value[value.length - 1].total_TVA,
         total_ht: value[value.length - 1].total_HT,

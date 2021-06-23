@@ -27,7 +27,7 @@ export const loadDraftFailure = createAction(
 
 export const loadDraftById = createAction(
   '[Draft Card Component] Load Draft By Id',
-  props<{ id:any }>()
+  props<{ id:number }>()
   );
 
 
@@ -96,3 +96,8 @@ export const removeDraftFailure = createAction(
 );
 
 export const clearDraftState = createAction('[Draft] Clear Draft State');
+
+export const selectDraft = createAction(
+  '[Draft ] Select Draft ',
+  props<{ id: number}>()
+);

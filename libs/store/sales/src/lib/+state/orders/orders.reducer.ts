@@ -52,10 +52,7 @@ const ordersReducer = createReducer(
   on(OrdersActions.addOrderSuccess,
     (state, action) => ordersAdapter.addOne(action.Order, state)
   ),
-  on(OrdersActions.loadOrdersFailure, (state, { error }) => ({
-    ...state,
-    error,
-  })),
+
   on(OrdersActions.selectOrder, (state, { id }) => ({
     ...state,
     selectedId: id,

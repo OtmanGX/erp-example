@@ -8,7 +8,8 @@ import { Amount } from "./products-draft.models";
 export const PRODUCT_FEATURE_KEY = 'product';
 
 export interface ProductState extends EntityState<Product_draft> {
-  selectedId?: string | number; // which Product record has been selected
+  selectedId?: string ; // which Product record has been selected
+  selectedProducts?:Product_draft[],
   loaded: boolean; // has the Product list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -19,15 +20,12 @@ export interface ProductPartialState {
 
 export const productAdapter: EntityAdapter<Product_draft> = createEntityAdapter<
   Product_draft
->(
-  {
-    selectId: (product: Product_draft) => product.id,
-  }
-);
+>();
 
 export const initialProductState: ProductState = productAdapter.getInitialState({
   // set initial required properties
   selectedId: null,
+  selectedProducts:[],
   loaded: false,
   error: null,
 
@@ -41,32 +39,53 @@ const productReducer = createReducer(
     loaded: false,
     error: null,
   })),
-
-  on(ProductActions.loadProductsSuccess, (state, action) =>
-    productAdapter.setAll(action.products, { ...state, loaded: true })
+  on(ProductActions.loadSelectedProducts, (state) => ({
+    ...state,
+    loaded: false,
+    error: null,
+  })),
+  on(ProductActions.loadProductsSuccess, (state, {products}) =>
+    productAdapter.setAll(products,
+      {
+        ...state,
+        loaded: true
+      })
   ),
+  on(ProductActions.loadSelectedProductsSuccess, (state, {products}) =>
+  ({...state, selectedProducts: products})
+),
 
   on(ProductActions.addGlassSuccess,
-    (state, action) => productAdapter.addOne<ProductState>(action.glass, state)
+    (state, action) => productAdapter.addOne<ProductState>(
+      action.glass,
+      state)
   ),
   on(ProductActions.addAccessorySuccess,
-    (state, action) => productAdapter.addOne<ProductState>(action.accessory, state)
+    (state, action) => productAdapter.addOne<ProductState>(
+      action.accessory,
+      state)
   ),
 
   on(ProductActions.addConsumableSuccess,
-    (state, action) => productAdapter.addOne<ProductState>(action.consumable, state)
+    (state, action) => productAdapter.addOne<ProductState>(
+      action.consumable,
+      state)
   ),
 
   on(ProductActions.addServiceSuccess,
-    (state, action) => productAdapter.addOne<ProductState>(action.service, state)
+    (state, action) => productAdapter.addOne<ProductState>(
+      action.service,
+      state)
   ),
   on(ProductActions.removeProductSuccess,
-    (state, action) => 
-    productAdapter.removeOne<ProductState>(action.productId, state)
+    (state, action) =>
+      productAdapter.removeOne<ProductState>(
+        action.productId,
+        state)
   ),
-  on(ProductActions.clearItemsState,
+  on(ProductActions.resetState,
     (state) => productAdapter.removeAll(initialProductState)
-    ),
+  ),
 
   on(ProductActions.loadProductsFailure,
     ProductActions.addGlassFailure,
@@ -74,6 +93,7 @@ const productReducer = createReducer(
     ProductActions.addConsumableFailure,
     ProductActions.addServiceFailure,
     ProductActions.removeProductFailure,
+    ProductActions.loadSelectedProductsFailure,
     (state, { error }) => ({
       ...state,
       error,

@@ -12,12 +12,13 @@ import { PaymentsFacade } from "../payments/payments.facade";
 export class OrdersFacade {
   loaded$ = this.store.pipe(select(OrdersSelectors.getOrdersLoaded));
   allOrders$ = this.store.pipe(select(OrdersSelectors.getAllOrders));
-  selectedOrders$ = this.store.pipe(select(OrdersSelectors.getSelected));
+  selectedOrders$ = this.store.pipe(select(OrdersSelectors.getSelectedOrder));
   selectedOrder$ = this.store.pipe(
     select(OrdersSelectors.getSelected),
     filter((val) => !!val)
   );
-  orderById$=this.store.pipe(select(OrdersSelectors.getSelectedOrder))
+  selectedOrderId$=this.store.pipe(select(OrdersSelectors.getSelectedId))
+  
   constructor(private store: Store<fromOrders.OrdersPartialState>,
    public paymentsFacade:PaymentsFacade) {}
 

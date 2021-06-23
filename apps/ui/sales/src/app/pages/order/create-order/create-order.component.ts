@@ -28,8 +28,7 @@ export class CreateOrderComponent implements OnInit {
   customer$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
   dataSub: Subscription;
-  data = this.draftFacade.selectedDraft$;
-  draftID$;
+  draft_id;
   @ViewChild('order_form', { read: DynamicFormComponent }) orderFormComponent: DynamicFormComponent;
   get orderForm() {
     return this.orderFormComponent?.form;
@@ -56,7 +55,7 @@ export class CreateOrderComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(ShortCompanieActions.loadShortCompany());
     this.buildForm();
-    this.dataSub = this.data.subscribe(data => this.draftID$ = data?.id)
+    this.dataSub = this.draftFacade.selectedDraft$.subscribe(id => this.draft_id = id)
   }
 
   ngOnChanges() {
@@ -66,7 +65,7 @@ export class CreateOrderComponent implements OnInit {
     this.productDraftFacade.amounts$.subscribe(
       value => this.ordersFacade.addOrder({
         ...this.orderForm.value,
-        draft_id: this.draftID$,
+        draft_id: this.draft_id,
         total_ttc: value[value.length - 1].total_TTC,
         total_tax: value[value.length - 1].total_TVA,
         total_ht: value[value.length - 1].total_HT,
@@ -78,7 +77,7 @@ export class CreateOrderComponent implements OnInit {
     this.dataSub.unsubscribe()
   }
   ngOnDestroy(): void {
-    this.ordersFacade.clearSelection();
-    this.draftFacade.clearState();
+    // this.ordersFacade.clearSelection();
+    // this.draftFacade.clearState();
   }
 }

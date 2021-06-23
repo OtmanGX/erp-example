@@ -16,6 +16,9 @@ export class ProductDraftFacade {
   allProduct$ = this.store.pipe(
     select(ProductDraftSelectors.getAllProduct)
   );
+  selectedProducts$=this.store.pipe(
+    select(ProductDraftSelectors.getSelectedProducts)
+  )
   selectedProduct$ = this.store.pipe(
     select(ProductDraftSelectors.getSelectedProduct)
   );
@@ -28,8 +31,8 @@ export class ProductDraftFacade {
   dispatch(action: Action) {
     this.store.dispatch(action);
   }
-  loadAllProducts(draft_id: number) {
-    this.dispatch(ProductsActions.loadProducts({ draft_id }));
+  loadSelectedProducts(draft_id: number) {
+    this.dispatch(ProductsActions.loadSelectedProducts({ draft_id }));
   }
   addGlass(product):void {
     let glass = {
@@ -128,7 +131,7 @@ export class ProductDraftFacade {
     this.dispatch(ProductsActions.removeProduct({ productId }));
     this.updateAmounts()
   }
-  clearState() {
-    this.dispatch(ProductsActions.clearItemsState());
+  resetState() {
+    this.dispatch(ProductsActions.resetState());
   }
 }

@@ -7,6 +7,7 @@ import * as QuotationActions from './quotation.actions';
 import { QuotationService } from '@tanglass-erp/core/sales';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ProductDraftFacade } from "../product-draft/product-draft.facade";
 
 @Injectable()
 export class QuotationEffects {
@@ -16,7 +17,7 @@ export class QuotationEffects {
       mergeMap((action) =>
         this.quotationService.getAll().pipe(
           map((data) =>
-          QuotationActions.loadQuotationsSuccess({ quotations: data.data.sales_quotation })
+            QuotationActions.loadQuotationsSuccess({ quotations: data.data.sales_quotation })
           ),
           catchError((error) =>
             of(QuotationActions.loadQuotationsFailure({ error }))
@@ -33,7 +34,7 @@ export class QuotationEffects {
       mergeMap((action) =>
         this.quotationService.insertOne(action.Quotation).pipe(
           map((data) =>
-          QuotationActions.addQuotationSuccess({Quotation: data.data.insert_sales_quotation_one})
+            QuotationActions.addQuotationSuccess({ Quotation: data.data.insert_sales_quotation_one })
           ),
           catchError((error) =>
             of(QuotationActions.addQuotationFailure({ error }))
@@ -49,9 +50,11 @@ export class QuotationEffects {
       ofType(QuotationActions.loadQuotationById),
       mergeMap((action) =>
         this.quotationService.getOneById(action.id).pipe(
-          map((data) =>
-          QuotationActions.loadQuotationByIdSuccess({Quotation: data.data.sales_quotation_by_pk})
-          ),
+          map((data) => {
+            this.productDraftFacade.loadSelectedProducts(data.data.sales_quotation_by_pk.draft_id)
+
+            return QuotationActions.loadQuotationByIdSuccess({ Quotation: data.data.sales_quotation_by_pk })
+          }),
           catchError((error) =>
             of(QuotationActions.loadQuotationByIdFailure({ error }))
           )
@@ -60,5 +63,7 @@ export class QuotationEffects {
     )
   });
 
-  constructor(private actions$: Actions, private quotationService:QuotationService) {}
+  constructor(private actions$: Actions,
+    private quotationService: QuotationService,
+    private productDraftFacade: ProductDraftFacade) { }
 }
