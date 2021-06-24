@@ -26,7 +26,7 @@
 
     <mat-form-field class="mt-3 mr-2">
       <mat-label>
-        Choisir le mois
+        Choisir l'année
       </mat-label>
       <input matInput #monthYear placeholder="2020" [value]="date.year()">
     </mat-form-field>
@@ -51,7 +51,7 @@
 
     <mat-form-field class="mt-3 mr-2">
       <mat-label>
-        Choisir le trimestre
+        Choisir l'année
       </mat-label>
       <input matInput #trimesterYear placeholder="2020" [value]="date.year()">
     </mat-form-field>
@@ -64,7 +64,7 @@
       </mat-select>
     </mat-form-field>
 
-    <button mat-raised-button color="accent" (click)="fetchTrimester(monthYear.value, trimesterTrimester.value)">Valider</button>
+    <button mat-raised-button color="accent" (click)="fetchTrimester(trimesterYear.value, trimesterTrimester.value)">Valider</button>
     <br>
 
   </mat-tab>
