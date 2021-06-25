@@ -37,6 +37,8 @@ export class DraftItem {
     total_price?: number=0;
     company_name?: string;
     warehouse_id?:string;
+    substance_id?:string;
+     
   }
 
   export class Intermediate_Data{

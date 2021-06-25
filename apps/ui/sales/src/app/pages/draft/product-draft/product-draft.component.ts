@@ -10,6 +10,7 @@ import { ProductsTypes } from "../../../utils/enums";
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { OrdersFacade, DraftFacade } from "@tanglass-erp/store/sales";
 @Component({
   selector: 'ngx-product-draft',
   templateUrl: './product-draft.component.html',
@@ -23,34 +24,33 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
   dataSourceGlass = [];
   dataSourceArticles = [];
   regConfig: FieldConfig[];
-  products$ = this.facade.allProduct$;
+  draft_id;
   companies$ = this.sharedfacade.allShortCompany$.pipe(map(item => item.map(company => ({ key: company.id, value: company.name }))));
   warehouses$ = this.sharedfacade.allShortWarehouse$.pipe(map(item => item.map(warehouse => ({ key: warehouse.id, value: warehouse.name, company_id: warehouse.companyid }))));
   productsSub: Subscription;
   companiesSub: Subscription;
   warehousesSub: Subscription;
   @ViewChild(MatTable, { static: true }) table: MatTable<DraftItem>;
-  @Input() draftData: number;
   @Input() isCardMode: boolean = false;
   constructor(
     public dialog: MatDialog,
     private facade: ProductDraftFacade,
     private sharedfacade: SharedFacade,
+    private draft_facade: DraftFacade,
   ) { }
   ngOnInit(): void {
-    this.sharedfacade.loadAllShortCompanies();
-    this.sharedfacade.loadAllShortWarehouses();
-    this.draftData ? this.facade.loadAllProducts(this.draftData) : null;
-  }
-  ngOnChanges() {
-    this.productsSub = this.products$.subscribe(
+    this.draft_facade.selectedDraft$.subscribe(id =>this.draft_id = id)
+    this.productsSub = this.facade.allProduct$.subscribe(
       items => {
         this.facade.updateAmounts()
-        this.dataSourceGlass = items.filter(item => item.type == ProductsTypes.glass||item.type ==ProductsTypes.customerPorduct);
-        this.dataSourceArticles = items.filter(item => item.type !== ProductsTypes.glass&&item.type !== ProductsTypes.customerPorduct);
+        this.dataSourceGlass = items.filter(item => item.type == ProductsTypes.glass || item.type == ProductsTypes.customerPorduct);
+        this.dataSourceArticles = items.filter(item => item.type !== ProductsTypes.glass && item.type !== ProductsTypes.customerPorduct);
       }
-    )
+    )      
+    this.sharedfacade.loadAllShortCompanies()
+    this.sharedfacade.loadAllShortWarehouses()                                                                                                                                                                                                                                                                                                                                                                           
   }
+
   openDialog(action, product_type: string, row?: DraftItem) {
     let companies; let warehouses
     this.companiesSub = this.companies$.subscribe(val => companies = val)
@@ -63,24 +63,23 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       switch (result?.type) {
         case ProductsTypes.glass: {
-          this.facade.addGlass({ ...result, draft_id: this.draftData })
+          this.facade.addGlass({ ...result, draft_id: this.draft_id })
           break;
         }
-        case  ProductsTypes.customerPorduct: {
-          console.log('fgdfgfdg')
-          this.facade.addGlass({ ...result, draft_id: this.draftData })
+        case ProductsTypes.customerPorduct: {
+          this.facade.addCustomerProduct({ ...result, draft_id: this.draft_id })
           break;
         }
         case ProductsTypes.accessory: {
-          this.facade.addAccessory({ ...result, draft_id: this.draftData })
+          this.facade.addAccessory({ ...result, draft_id: this.draft_id })
           break;
         }
         case ProductsTypes.service: {
-          this.facade.addService({ ...result, draft_id: this.draftData })
+          this.facade.addService({ ...result, draft_id: this.draft_id })
           break;
         }
         case ProductsTypes.consumable: {
-          this.facade.addConsumable({ ...result, draft_id: this.draftData })
+          this.facade.addConsumable({ ...result, draft_id: this.draft_id })
           break;
         }
         default: {

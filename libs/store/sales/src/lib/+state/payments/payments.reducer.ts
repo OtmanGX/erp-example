@@ -44,6 +44,9 @@ const paymentsReducer = createReducer(
     (state, action) =>paymentsAdapter.addOne(action.payment,
       state)
   ),
+  on(PaymentsActions.setOrderPayments, (state, { payments }) =>
+  paymentsAdapter.setAll(payments, { ...state, loaded: true })
+  ),
   on(PaymentsActions.loadPaymentsFailure,
     PaymentsActions.loadOrderPaymentsFailure,
     PaymentsActions.addPaymentFailure,

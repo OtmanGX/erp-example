@@ -158,5 +158,25 @@ export const removeProductFailure = createAction(
   props<{ error: any }>()
 );
 
+// export const loadSelectedProducts = createAction(
+//   '[Products] Load Selected Products',
+//   props<{ draft_id: number }>()
 
-export const clearItemsState = createAction('[order items] Clear order Items State');
+// );
+
+// export const loadSelectedProductsSuccess = createAction(
+//   '[Products] Load Selected Products Success',
+//   props<{ products: Product_draft[] }>()
+// );
+
+// export const loadSelectedProductsFailure = createAction(
+//   '[Products] Load Selected Products Failure',
+//   props<{ error: any }>()
+// );
+
+
+export const setProductsState = createAction(
+  '[Products]  Set  Products Success ',
+  props<{ products: Product_draft[] }>()
+);
+

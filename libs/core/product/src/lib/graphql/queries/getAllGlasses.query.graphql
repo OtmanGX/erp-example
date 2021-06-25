@@ -9,10 +9,11 @@ query GetAllGlasses {
       price
       priceMax
       priceMin
-     companies {
+      companies {
         name
         id
       }
     }
+    substanceid
   }
 }

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as DraftActions from './draft.actions';
+import * as ProductsActions from '../product-draft/product-draft.actions';
 
 import { DraftService } from '@tanglass-erp/core/sales';
-import { mergeMap, map, catchError, take } from 'rxjs/operators';
+import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-
+import { ProductDraftFacade } from "../product-draft/product-draft.facade";
 
 
 @Injectable()
@@ -17,9 +18,10 @@ export class DraftEffects {
       ofType(DraftActions.addDraft),
       mergeMap((action) =>
         this.draftervice.insertOne().pipe(
-          map((data) =>
-            DraftActions.addDraftSuccess({ draft: data.data.insert_sales_draft_one })
-          ),
+          map((data) => {
+            this.productDraftFacade.setDraftProducts([])
+            return DraftActions.addDraftSuccess({ draft: data.data.insert_sales_draft_one })
+          }),
           catchError((error) =>
             of(DraftActions.addDraftFailure({ error }))
           )
@@ -29,14 +31,13 @@ export class DraftEffects {
   });
 
   loadDraftById$ = createEffect(() => {
-    return this.actions$.pipe(
+    return  this.actions$.pipe(
       ofType(DraftActions.loadDraftById),
       mergeMap((action) =>
         this.draftervice.getOneById(action.id).pipe(
-          take(1),
-          map((data) =>
-            DraftActions.loadDraftByIdSuccess({ draft: data.data.sales_draft_by_pk })
-          ),
+          map((data) => {
+            return DraftActions.loadDraftByIdSuccess({ draft: data.data.sales_draft_by_pk })
+          }),
           catchError((error) =>
             of(DraftActions.loadDraftByIdFailure({ error }))
           )
@@ -79,5 +80,6 @@ export class DraftEffects {
 
 
   constructor(private actions$: Actions,
-    private draftervice: DraftService) { }
+    private draftervice: DraftService,
+    private productDraftFacade: ProductDraftFacade) { }
 }

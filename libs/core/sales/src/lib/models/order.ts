@@ -1,4 +1,6 @@
 import { SalesCustomer, SalesCompany } from "./quotation";
+import { Product_draft } from "./product";
+
 export interface Order {
     id: number;
     draft_id: number;
@@ -12,6 +14,8 @@ export interface Order {
     total_ttc: number;
     total_tax: number;
     total_ht: number;
+    products?:Product_draft[]
+
 }
 
 export interface insertOrder{

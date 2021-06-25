@@ -8,8 +8,15 @@
       Ajouter Réglement
     </button>
 </mat-toolbar>
-<app-table #amountTable [data]="dataSource" 
-  [columnsToShow]="displayedColumns"
+<app-table *ngIf="isCardMode" #amountTable [data]="dataSource" 
+  [columnsToShow]="displayedColumns_CardMode"
   [withCheckbox]=false
+  [withFilter]=false
+  >
+</app-table>
+<app-table *ngIf="!isCardMode" #amountTable [data]="dataSource" 
+  [columnsToShow]="displayedColumns_EditMode"
+  [withCheckbox]=false
+  [withFilter]=false
   >
 </app-table>

@@ -31,11 +31,17 @@ export const displayedAmountsColumns: Array<Column> = [
   { key: 'total_HT', title: 'Total Hors Taxe' ,type: ColumnType.normal },
   { key: 'total_TVA', title: 'Total TVA' ,type: ColumnType.normal },
   { key: 'total_TTC', title: 'Total TTC' ,type: ColumnType.normal },
-  { key: 'received', title: 'Reçu' ,type: ColumnType.normal },
-  { key: 'debt', title: 'Reste' ,type: ColumnType.normal },
-
 ];
 
+
+export const displayedAmounts_PaymentsColumns: Array<Column> = [
+  { key: 'company', title: 'Société' ,type: ColumnType.normal },
+  { key: 'total_HT', title: 'Total Hors Taxe' ,type: ColumnType.normal },
+  { key: 'total_TVA', title: 'Total TVA' ,type: ColumnType.normal },
+  { key: 'total_TTC', title: 'Total TTC' ,type: ColumnType.normal },
+  { key: 'received', title: 'Reçu' ,type: ColumnType.normal },
+  { key: 'debt', title: 'Reste' ,type: ColumnType.normal },
+];
 export const ProductGlassHeaders: Array<Column> = [
    // { field: 'id', headerName: 'ID. ' },
     { key: 'product_code', title: 'Code',type: ColumnType.normal},
