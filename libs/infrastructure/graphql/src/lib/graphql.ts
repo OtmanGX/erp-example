@@ -22620,6 +22620,9 @@ export type Sales_Quotation = {
   id: Scalars['Int'];
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
+  /** An object relationship */
+  salepoint: Management_SalesPoint;
+  salepoint_id: Scalars['uuid'];
   status: Scalars['String'];
   total_ht: Scalars['numeric'];
   total_tax: Scalars['numeric'];
@@ -22715,6 +22718,8 @@ export type Sales_Quotation_Bool_Exp = {
   id?: Maybe<Int_Comparison_Exp>;
   ref?: Maybe<String_Comparison_Exp>;
   ref_num?: Maybe<Int_Comparison_Exp>;
+  salepoint?: Maybe<Management_SalesPoint_Bool_Exp>;
+  salepoint_id?: Maybe<Uuid_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
   total_ht?: Maybe<Numeric_Comparison_Exp>;
   total_tax?: Maybe<Numeric_Comparison_Exp>;
@@ -22751,6 +22756,8 @@ export type Sales_Quotation_Insert_Input = {
   id?: Maybe<Scalars['Int']>;
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
+  salepoint?: Maybe<Management_SalesPoint_Obj_Rel_Insert_Input>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
@@ -22769,6 +22776,7 @@ export type Sales_Quotation_Max_Fields = {
   id?: Maybe<Scalars['Int']>;
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
@@ -22786,6 +22794,7 @@ export type Sales_Quotation_Max_Order_By = {
   id?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
+  salepoint_id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
@@ -22804,6 +22813,7 @@ export type Sales_Quotation_Min_Fields = {
   id?: Maybe<Scalars['Int']>;
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
@@ -22821,6 +22831,7 @@ export type Sales_Quotation_Min_Order_By = {
   id?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
+  salepoint_id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
@@ -22863,6 +22874,8 @@ export type Sales_Quotation_Order_By = {
   id?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
+  salepoint?: Maybe<Management_SalesPoint_Order_By>;
+  salepoint_id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
@@ -22895,6 +22908,8 @@ export enum Sales_Quotation_Select_Column {
   /** column name */
   RefNum = 'ref_num',
   /** column name */
+  SalepointId = 'salepoint_id',
+  /** column name */
   Status = 'status',
   /** column name */
   TotalHt = 'total_ht',
@@ -22915,6 +22930,7 @@ export type Sales_Quotation_Set_Input = {
   id?: Maybe<Scalars['Int']>;
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
@@ -23025,6 +23041,8 @@ export enum Sales_Quotation_Update_Column {
   Ref = 'ref',
   /** column name */
   RefNum = 'ref_num',
+  /** column name */
+  SalepointId = 'salepoint_id',
   /** column name */
   Status = 'status',
   /** column name */
@@ -30528,6 +30546,7 @@ export type DeleteQuotationsMutation = (
 
 export type InsertQuotationMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   contact_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
@@ -30544,13 +30563,16 @@ export type InsertQuotationMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_quotation_one?: Maybe<(
     { __typename?: 'sales_quotation' }
-    & Pick<Sales_Quotation, 'date' | 'deadline' | 'draft_id' | 'id' | 'status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & Pick<Sales_Quotation, 'status' | 'id' | 'ref' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline' | 'draft_id' | 'contact_id'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
     ), customer: (
       { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+      & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
     ) }
   )> }
 );
@@ -30834,13 +30856,16 @@ export type GetAllQuotationsQuery = (
   { __typename?: 'query_root' }
   & { sales_quotation: Array<(
     { __typename?: 'sales_quotation' }
-    & Pick<Sales_Quotation, 'status' | 'id' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline' | 'draft_id' | 'contact_id'>
+    & Pick<Sales_Quotation, 'status' | 'id' | 'ref' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline' | 'draft_id' | 'contact_id'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
     ), customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
     ) }
   )> }
 );
@@ -34017,9 +34042,9 @@ export const DeleteQuotationsDocument = gql`
     }
   }
 export const InsertQuotationDocument = gql`
-    mutation InsertQuotation($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $status: String, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric) {
+    mutation InsertQuotation($company_id: uuid, $salepoint_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $status: String, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric) {
   insert_sales_quotation_one(
-    object: {company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, status: $status, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, contact_id: $contact_id}
+    object: {company_id: $company_id, salepoint_id: $salepoint_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, status: $status, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, contact_id: $contact_id}
   ) {
     company {
       name
@@ -34027,17 +34052,23 @@ export const InsertQuotationDocument = gql`
     }
     customer {
       code
+      id
       name
       phone
     }
-    date
-    deadline
-    draft_id
-    id
     status
+    id
+    ref
     total_ht
     total_tax
     total_ttc
+    date
+    deadline
+    draft_id
+    contact_id
+    salepoint {
+      name
+    }
   }
 }
     `;
@@ -34562,6 +34593,7 @@ export const GetAllQuotationsDocument = gql`
     }
     status
     id
+    ref
     total_ht
     total_tax
     total_ttc
@@ -34569,6 +34601,9 @@ export const GetAllQuotationsDocument = gql`
     deadline
     draft_id
     contact_id
+    salepoint {
+      name
+    }
   }
 }
     `;

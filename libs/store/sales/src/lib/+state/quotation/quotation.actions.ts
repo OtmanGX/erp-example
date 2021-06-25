@@ -41,12 +41,12 @@ export const loadQuotationByIdFailure = createAction(
 
 export const addQuotation = createAction(
   '[Quotation Component] Add Quotation',
-  props<{ Quotation: Quotation }>()
+  props<{ quotation: Quotation }>()
 );
 
 export const addQuotationSuccess = createAction(
   '[Quotation Effect] Add Quotation Success',
-  props<{ Quotation: Quotation }>()
+  props<{ quotation: Quotation }>()
 );
 
 export const addQuotationFailure = createAction(

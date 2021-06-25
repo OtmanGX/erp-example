@@ -31,7 +31,7 @@ export class QuotationEffects {
     return this.actions$.pipe(
       ofType(QuotationActions.addQuotation),
       mergeMap((action) =>
-        this.quotationService.insertOne(action.Quotation).pipe(
+        this.quotationService.insertOne(action.quotation).pipe(
           map((data) => {
             this.notificationService.showNotifToast({
               message: 'Ajouté avec succès',
@@ -42,7 +42,7 @@ export class QuotationEffects {
               route: 'sales/quotation',
               color: 'primary',
             });
-              return QuotationActions.addQuotationSuccess({Quotation: data.data.insert_sales_quotation_one})
+              return QuotationActions.addQuotationSuccess({quotation: data.data.insert_sales_quotation_one})
             }
           ),
           catchError((error) =>

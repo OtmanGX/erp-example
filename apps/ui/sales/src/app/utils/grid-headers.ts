@@ -74,13 +74,14 @@ export const ProductHeaders: Array<Column> = [
 
 export const QuotationHeaders = [
   {
-    field: 'id', headerName: 'Référence', type: "linkColumn",
+    field: 'id', headerName: 'id', type: "linkColumn",
     cellRendererParams: (params) => (
       {
         link: `${params?.data?.id}`,
       }
     )
   },
+    { field: 'ref', headerName: 'Référence', type: "textColumn" },
     { field: 'customer.name', headerName: 'Client', type: "textColumn" },
     { field: 'customer.phone', headerName: 'Phone.N°', type: "textColumn" },
     { field: 'date', headerName: 'Date', type: "textColumn" },

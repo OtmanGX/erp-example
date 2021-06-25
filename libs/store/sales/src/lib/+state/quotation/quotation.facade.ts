@@ -22,7 +22,7 @@ export class QuotationFacade {
     this.dispatch(QuotationsActions.loadQuotations());
   }
   addQuotation(quotation:Quotation) {
-
+    this.dispatch(QuotationsActions.addQuotation({quotation}));
   }
 
   removeMany(ids: number[]) {

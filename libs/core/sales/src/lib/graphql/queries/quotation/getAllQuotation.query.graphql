@@ -12,6 +12,7 @@ query GetAllQuotations  {
       }
       status
       id
+      ref
       total_ht
       total_tax
       total_ttc
@@ -19,5 +20,8 @@ query GetAllQuotations  {
       deadline
       draft_id
       contact_id
+      salepoint {
+        name
+      }
     }
   }

@@ -39,7 +39,7 @@ const quotationReducer = createReducer(
     (state, {Quotation}) => ({...state, draftLoadedById: Quotation})
   ),
   on(QuotationActions.addQuotationSuccess,
-    (state, action) => quotationAdapter.addOne(action.Quotation, state)
+    (state, action) => quotationAdapter.addOne(action.quotation, state)
   ),
   on(QuotationActions.deleteQuotationsSuccess,
     (state, action) =>
