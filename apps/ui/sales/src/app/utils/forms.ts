@@ -169,6 +169,7 @@ const regConfigDraftInfos = (
   customers: any = [],
   contacts: any = [],
   companies: any = [],
+  salepoints: any = []
 ) => [
 
     {
@@ -197,6 +198,15 @@ const regConfigDraftInfos = (
       options: companies,
       validations: [REQUIRED],
     },
+  {
+    type: "select",
+    name: "salepoint_id",
+    label: "Point de vente",
+    inputType: "text",
+    options: salepoints,
+    value: data?.salepoint_id,
+    validations: []
+  },
     {
       type: 'date',
       name: 'date',

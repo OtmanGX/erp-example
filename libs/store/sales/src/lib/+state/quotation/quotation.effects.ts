@@ -7,6 +7,8 @@ import * as QuotationActions from './quotation.actions';
 import { QuotationService } from '@tanglass-erp/core/sales';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
+import { NotificationFacadeService } from '@tanglass-erp/store/app';
 
 @Injectable()
 export class QuotationEffects {
@@ -32,8 +34,18 @@ export class QuotationEffects {
       ofType(QuotationActions.addQuotation),
       mergeMap((action) =>
         this.quotationService.insertOne(action.Quotation).pipe(
-          map((data) =>
-          QuotationActions.addQuotationSuccess({Quotation: data.data.insert_sales_quotation_one})
+          map((data) => {
+            this.notificationService.showNotifToast({
+              message: 'Ajouté avec succès',
+              operation: 'success',
+              title: 'Devis',
+              time: new Date(),
+              icon: 'check',
+              route: 'sales/quotation',
+              color: 'primary',
+            });
+              return QuotationActions.addQuotationSuccess({Quotation: data.data.insert_sales_quotation_one})
+            }
           ),
           catchError((error) =>
             of(QuotationActions.addQuotationFailure({ error }))
@@ -60,5 +72,37 @@ export class QuotationEffects {
     )
   });
 
-  constructor(private actions$: Actions, private quotationService:QuotationService) {}
+
+  deleteMany$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(QuotationActions.deleteQuotations),
+      mergeMap(({ids}) =>
+        this.quotationService.deleteMany(ids).pipe(
+          map((data) => {
+            this.notificationService.showNotifToast({
+              message: 'Supprimé avec succès',
+              operation: 'info',
+              title: 'Devis',
+              icon: 'closed',
+              route: 'sales/quotation',
+              color: 'warn',
+            });
+              return QuotationActions.deleteQuotationsSuccess({ids})
+            }
+          ),
+          catchError((error) =>
+            of(QuotationActions.deleteQuotationsFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
+  constructor(
+    private actions$: Actions,
+    private quotationService:QuotationService,
+    private router: Router,
+    private notificationService: NotificationFacadeService
+
+  ) {}
 }

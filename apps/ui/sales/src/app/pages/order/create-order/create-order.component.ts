@@ -5,7 +5,8 @@ import { DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
 import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';
-
+import * as SalePointActions from '@TanglassStore/shared/lib/+state/short-salePoint.actions';
+import * as SalePointSelectors from '@TanglassStore/shared/lib/+state/short-salePoint.selectors';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
@@ -25,6 +26,7 @@ export class CreateOrderComponent implements OnInit {
 
   regConfig: FieldConfig[];
   companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany);
+  salepoints$ = this.store.select(SalePointSelectors.getAllShortSalePoint);
   customer$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
   dataSub: Subscription;
@@ -42,16 +44,19 @@ export class CreateOrderComponent implements OnInit {
     private productDraftFacade: ProductDraftFacade,
   ) { }
   buildForm(): void {
-    let data
+    let data;
     this.regConfig = regConfigDraftInfos(
       data,
       this.customer$,
       this.contacts$,
       this.companies$.pipe(map(item => item.map(company =>
         ({ key: company.id, value: company.name })))),
+      this.salepoints$.pipe(map(item => item.map(sp => ({key: sp.id, value: sp.name}))))
     );
     this.store.dispatch(CustomerActions.loadCustomers());
     this.store.dispatch(ContactActions.loadContacts());
+    this.store.dispatch(SalePointActions.loadShortSalePoint());
+
   }
   ngOnInit(): void {
     this.store.dispatch(ShortCompanieActions.loadShortCompany());

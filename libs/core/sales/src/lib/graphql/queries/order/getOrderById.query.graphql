@@ -20,10 +20,11 @@ query GetOrderById($id: Int!) {
     deadline
     draft_id
     id
-    delivery_status 
-    payment_status 
+    delivery_status
+    payment_status
     total_ht
     total_tax
     total_ttc
+    salepoint_id
   }
 }
