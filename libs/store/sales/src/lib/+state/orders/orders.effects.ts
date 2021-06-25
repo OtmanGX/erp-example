@@ -82,12 +82,20 @@ export class OrdersEffects {
       ofType(OrdersActions.loadOrderById),
       switchMap((action) =>
         this.orderService.getOneById(action.id).pipe(
+<<<<<<< HEAD
           map((data) => {
             this.draftFacade.selectDraftId(data.data.sales_order_by_pk.draft_id)
             this.productDraftFacade.setDraftProducts(data.data.sales_order_by_pk.draft.product_drafts)
             this.paymentFacade.setOrderPayments(data.data.sales_order_by_pk.payments)
             return OrdersActions.loadOrderByIdSuccess({ Order: data.data.sales_order_by_pk })
           }),
+=======
+          map((data) =>
+            OrdersActions.loadOrderByIdSuccess({
+              Order: data.data.sales_order_by_pk,
+            })
+          ),
+>>>>>>> 2d0cfc5ef4f46402b987a2a151311c772ac50f0e
           catchError((error) =>
             of(OrdersActions.loadOrderByIdFailure({ error }))
           )
@@ -100,6 +108,7 @@ export class OrdersEffects {
     private actions$: Actions,
     private orderService: OrderService,
     private router: Router,
+<<<<<<< HEAD
     private notificationService: NotificationFacadeService,
     private productDraftFacade: ProductDraftFacade,
     private draftFacade:DraftFacade,
@@ -107,4 +116,8 @@ export class OrdersEffects {
     private store:Store,
   ) { }
 
+=======
+    private notificationService: NotificationFacadeService
+  ) {}
+>>>>>>> 2d0cfc5ef4f46402b987a2a151311c772ac50f0e
 }

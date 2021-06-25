@@ -33973,6 +33973,24 @@ export const DeleteQuotationsDocument = gql`
       super(apollo);
     }
   }
+export const DeleteQuotationsDocument = gql`
+    mutation deleteQuotations($ids: [Int!]! = []) {
+  delete_sales_quotation(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteQuotationsGQL extends Apollo.Mutation<DeleteQuotationsMutation, DeleteQuotationsMutationVariables> {
+    document = DeleteQuotationsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertQuotationDocument = gql`
     mutation InsertQuotation($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $status: String, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric) {
   insert_sales_quotation_one(
@@ -34348,6 +34366,7 @@ export const GetOrderByIdDocument = gql`
     total_ht
     total_tax
     total_ttc
+<<<<<<< HEAD
     draft {
       product_drafts {
         id
@@ -34397,6 +34416,8 @@ export const GetOrderByIdDocument = gql`
       total_ttc
       total_tva
     }
+=======
+>>>>>>> 2d0cfc5ef4f46402b987a2a151311c772ac50f0e
     salepoint_id
   }
 }

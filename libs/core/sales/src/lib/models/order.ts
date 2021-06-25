@@ -1,7 +1,11 @@
 import { SalesCustomer, SalesCompany } from "./quotation";
+<<<<<<< HEAD
 import { Product_draft } from "./product";
 import { ShortFeauture } from '@tanglass-erp/core/common';
 
+=======
+import { ShortFeauture } from '@tanglass-erp/core/common';
+>>>>>>> 2d0cfc5ef4f46402b987a2a151311c772ac50f0e
 export interface Order {
     id: number;
     draft_id: number;
