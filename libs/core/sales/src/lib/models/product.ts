@@ -1,4 +1,4 @@
-export interface Product_draft{
+export interface Product_draft {
     id:string;
     draft_id?:number;
     product_code?:string;
@@ -19,4 +19,3 @@ export interface Product_draft{
     type?;
     substance_id?:string;
 }
-

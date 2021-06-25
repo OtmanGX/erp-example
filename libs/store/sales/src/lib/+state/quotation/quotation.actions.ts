@@ -1,7 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { Quotation } from "@tanglass-erp/core/sales";
+import { invoiceFilter, Quotation } from '@tanglass-erp/core/sales';
 
-export const loadQuotations = createAction('[Quotations] Load Quotations');
+export const loadQuotations = createAction('[Quotations] Load Quotations',
+  props<invoiceFilter>()
+);
 
 export const loadQuotationsSuccess = createAction(
   '[Quotations] Load Quotations Success',
@@ -41,15 +43,36 @@ export const loadQuotationByIdFailure = createAction(
 
 export const addQuotation = createAction(
   '[Quotation Component] Add Quotation',
-  props<{ Quotation: Quotation }>()
+  props<{ quotation: Quotation }>()
 );
 
 export const addQuotationSuccess = createAction(
   '[Quotation Effect] Add Quotation Success',
-  props<{ Quotation: Quotation }>()
+  props<{ quotation: Quotation }>()
 );
 
 export const addQuotationFailure = createAction(
   '[Quotation Effect] Add Quotation Failure',
+  props<{ error: any }>()
+);
+
+
+
+/****************************************************************** */
+/*****Delete Quotations ** */
+/****************************************************************** */
+
+export const deleteQuotations = createAction(
+  '[Quotation Component] Delete Quotations',
+  props<{ ids: number[] }>()
+);
+
+export const deleteQuotationsSuccess = createAction(
+  '[Quotation Effect] Delete Quotations Success',
+  props<{ ids: number[] }>()
+);
+
+export const deleteQuotationsFailure = createAction(
+  '[Quotation Effect] Delete Quotations Failure',
   props<{ error: any }>()
 );

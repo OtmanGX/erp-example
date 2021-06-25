@@ -8,7 +8,7 @@ import * as OrdersActions from './orders.actions';
 import { filter, map } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 
-import { Order } from "@tanglass-erp/core/sales";
+import { invoiceFilter, Order } from '@tanglass-erp/core/sales';
 import { PaymentsFacade } from "../payments/payments.facade";
 import { ProductDraftFacade } from '../product-draft/product-draft.facade';
 @Injectable()
@@ -31,8 +31,8 @@ export class OrdersFacade {
   dispatch(action: Action) {
     this.store.dispatch(action);
   }
-  loadAllOrders() {
-    this.dispatch(OrdersActions.loadOrders());
+  loadAllOrders(params: invoiceFilter) {
+    this.dispatch(OrdersActions.loadOrders(params));
   }
 
   loadOrderById(id) {

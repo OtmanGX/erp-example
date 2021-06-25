@@ -5,8 +5,9 @@ import {
   GetOrderByIdGQL,
   DeleteOrdersGQL,
   InsertOrderMutationVariables
-  
+
 } from '@tanglass-erp/infrastructure/graphql';
+import { invoiceFilter } from '../models/invoice';
 
 @Injectable({
   providedIn: 'root',
@@ -19,14 +20,14 @@ export class OrderService {
     private getOrderByIdGQL: GetOrderByIdGQL
   ) {}
 
-  getAll() {
-    return this.getAllOrdersGQL.watch().valueChanges;
+  getAll(params:invoiceFilter = {}) {
+    return this.getAllOrdersGQL.watch(params).valueChanges;
   }
 
   removeMany(ids: number[]) {
     return this.deleteOrdersGQL.mutate({ids});
   }
-  
+
 
   getOneById(id: number) {
     return this.getOrderByIdGQL.fetch({id})

@@ -20118,6 +20118,11 @@ export type Sales_Order = {
   payments: Array<Sales_Payment>;
   /** An aggregated array relationship */
   payments_aggregate: Sales_Payment_Aggregate;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
+  /** An object relationship */
+  salepoint: Management_SalesPoint;
+  salepoint_id: Scalars['uuid'];
   total_ht: Scalars['numeric'];
   total_tax: Scalars['numeric'];
   total_ttc: Scalars['numeric'];
@@ -20239,6 +20244,7 @@ export type Sales_Order_Avg_Fields = {
   __typename?: 'sales_order_avg_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -20248,6 +20254,7 @@ export type Sales_Order_Avg_Fields = {
 export type Sales_Order_Avg_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -20276,6 +20283,10 @@ export type Sales_Order_Bool_Exp = {
   paymentStatusByPaymentStatus?: Maybe<Sales_Payment_Status_Bool_Exp>;
   payment_status?: Maybe<String_Comparison_Exp>;
   payments?: Maybe<Sales_Payment_Bool_Exp>;
+  ref?: Maybe<String_Comparison_Exp>;
+  ref_num?: Maybe<Int_Comparison_Exp>;
+  salepoint?: Maybe<Management_SalesPoint_Bool_Exp>;
+  salepoint_id?: Maybe<Uuid_Comparison_Exp>;
   total_ht?: Maybe<Numeric_Comparison_Exp>;
   total_tax?: Maybe<Numeric_Comparison_Exp>;
   total_ttc?: Maybe<Numeric_Comparison_Exp>;
@@ -20493,6 +20504,7 @@ export enum Sales_Order_Delivery_Status_Update_Column {
 export type Sales_Order_Inc_Input = {
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  ref_num?: Maybe<Scalars['Int']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
@@ -20518,6 +20530,10 @@ export type Sales_Order_Insert_Input = {
   paymentStatusByPaymentStatus?: Maybe<Sales_Payment_Status_Obj_Rel_Insert_Input>;
   payment_status?: Maybe<Scalars['String']>;
   payments?: Maybe<Sales_Payment_Arr_Rel_Insert_Input>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
+  salepoint?: Maybe<Management_SalesPoint_Obj_Rel_Insert_Input>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
@@ -20535,6 +20551,9 @@ export type Sales_Order_Max_Fields = {
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   payment_status?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
@@ -20551,6 +20570,9 @@ export type Sales_Order_Max_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_status?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
+  salepoint_id?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -20568,6 +20590,9 @@ export type Sales_Order_Min_Fields = {
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   payment_status?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
@@ -20584,6 +20609,9 @@ export type Sales_Order_Min_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_status?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
+  salepoint_id?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -20631,6 +20659,10 @@ export type Sales_Order_Order_By = {
   paymentStatusByPaymentStatus?: Maybe<Sales_Payment_Status_Order_By>;
   payment_status?: Maybe<Order_By>;
   payments_aggregate?: Maybe<Sales_Payment_Aggregate_Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
+  salepoint?: Maybe<Management_SalesPoint_Order_By>;
+  salepoint_id?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -20662,6 +20694,12 @@ export enum Sales_Order_Select_Column {
   /** column name */
   PaymentStatus = 'payment_status',
   /** column name */
+  Ref = 'ref',
+  /** column name */
+  RefNum = 'ref_num',
+  /** column name */
+  SalepointId = 'salepoint_id',
+  /** column name */
   TotalHt = 'total_ht',
   /** column name */
   TotalTax = 'total_tax',
@@ -20680,6 +20718,9 @@ export type Sales_Order_Set_Input = {
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   payment_status?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
@@ -20690,6 +20731,7 @@ export type Sales_Order_Stddev_Fields = {
   __typename?: 'sales_order_stddev_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -20699,6 +20741,7 @@ export type Sales_Order_Stddev_Fields = {
 export type Sales_Order_Stddev_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -20709,6 +20752,7 @@ export type Sales_Order_Stddev_Pop_Fields = {
   __typename?: 'sales_order_stddev_pop_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -20718,6 +20762,7 @@ export type Sales_Order_Stddev_Pop_Fields = {
 export type Sales_Order_Stddev_Pop_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -20728,6 +20773,7 @@ export type Sales_Order_Stddev_Samp_Fields = {
   __typename?: 'sales_order_stddev_samp_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -20737,6 +20783,7 @@ export type Sales_Order_Stddev_Samp_Fields = {
 export type Sales_Order_Stddev_Samp_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -20747,6 +20794,7 @@ export type Sales_Order_Sum_Fields = {
   __typename?: 'sales_order_sum_fields';
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  ref_num?: Maybe<Scalars['Int']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
@@ -20756,6 +20804,7 @@ export type Sales_Order_Sum_Fields = {
 export type Sales_Order_Sum_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -20782,6 +20831,12 @@ export enum Sales_Order_Update_Column {
   /** column name */
   PaymentStatus = 'payment_status',
   /** column name */
+  Ref = 'ref',
+  /** column name */
+  RefNum = 'ref_num',
+  /** column name */
+  SalepointId = 'salepoint_id',
+  /** column name */
   TotalHt = 'total_ht',
   /** column name */
   TotalTax = 'total_tax',
@@ -20794,6 +20849,7 @@ export type Sales_Order_Var_Pop_Fields = {
   __typename?: 'sales_order_var_pop_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -20803,6 +20859,7 @@ export type Sales_Order_Var_Pop_Fields = {
 export type Sales_Order_Var_Pop_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -20813,6 +20870,7 @@ export type Sales_Order_Var_Samp_Fields = {
   __typename?: 'sales_order_var_samp_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -20822,6 +20880,7 @@ export type Sales_Order_Var_Samp_Fields = {
 export type Sales_Order_Var_Samp_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -20832,6 +20891,7 @@ export type Sales_Order_Variance_Fields = {
   __typename?: 'sales_order_variance_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -20841,6 +20901,7 @@ export type Sales_Order_Variance_Fields = {
 export type Sales_Order_Variance_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -22557,6 +22618,11 @@ export type Sales_Quotation = {
   draft: Sales_Draft;
   draft_id: Scalars['Int'];
   id: Scalars['Int'];
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
+  /** An object relationship */
+  salepoint: Management_SalesPoint;
+  salepoint_id: Scalars['uuid'];
   status: Scalars['String'];
   total_ht: Scalars['numeric'];
   total_tax: Scalars['numeric'];
@@ -22619,6 +22685,7 @@ export type Sales_Quotation_Avg_Fields = {
   __typename?: 'sales_quotation_avg_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -22628,6 +22695,7 @@ export type Sales_Quotation_Avg_Fields = {
 export type Sales_Quotation_Avg_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -22648,6 +22716,10 @@ export type Sales_Quotation_Bool_Exp = {
   draft?: Maybe<Sales_Draft_Bool_Exp>;
   draft_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
+  ref?: Maybe<String_Comparison_Exp>;
+  ref_num?: Maybe<Int_Comparison_Exp>;
+  salepoint?: Maybe<Management_SalesPoint_Bool_Exp>;
+  salepoint_id?: Maybe<Uuid_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
   total_ht?: Maybe<Numeric_Comparison_Exp>;
   total_tax?: Maybe<Numeric_Comparison_Exp>;
@@ -22664,6 +22736,7 @@ export enum Sales_Quotation_Constraint {
 export type Sales_Quotation_Inc_Input = {
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  ref_num?: Maybe<Scalars['Int']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
@@ -22681,6 +22754,10 @@ export type Sales_Quotation_Insert_Input = {
   draft?: Maybe<Sales_Draft_Obj_Rel_Insert_Input>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
+  salepoint?: Maybe<Management_SalesPoint_Obj_Rel_Insert_Input>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
@@ -22697,6 +22774,9 @@ export type Sales_Quotation_Max_Fields = {
   deadline?: Maybe<Scalars['date']>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
@@ -22712,6 +22792,9 @@ export type Sales_Quotation_Max_Order_By = {
   deadline?: Maybe<Order_By>;
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
+  salepoint_id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
@@ -22728,6 +22811,9 @@ export type Sales_Quotation_Min_Fields = {
   deadline?: Maybe<Scalars['date']>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
@@ -22743,6 +22829,9 @@ export type Sales_Quotation_Min_Order_By = {
   deadline?: Maybe<Order_By>;
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
+  salepoint_id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
@@ -22783,6 +22872,10 @@ export type Sales_Quotation_Order_By = {
   draft?: Maybe<Sales_Draft_Order_By>;
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
+  salepoint?: Maybe<Management_SalesPoint_Order_By>;
+  salepoint_id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
@@ -22811,6 +22904,12 @@ export enum Sales_Quotation_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Ref = 'ref',
+  /** column name */
+  RefNum = 'ref_num',
+  /** column name */
+  SalepointId = 'salepoint_id',
+  /** column name */
   Status = 'status',
   /** column name */
   TotalHt = 'total_ht',
@@ -22829,6 +22928,9 @@ export type Sales_Quotation_Set_Input = {
   deadline?: Maybe<Scalars['date']>;
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
@@ -22840,6 +22942,7 @@ export type Sales_Quotation_Stddev_Fields = {
   __typename?: 'sales_quotation_stddev_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -22849,6 +22952,7 @@ export type Sales_Quotation_Stddev_Fields = {
 export type Sales_Quotation_Stddev_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -22859,6 +22963,7 @@ export type Sales_Quotation_Stddev_Pop_Fields = {
   __typename?: 'sales_quotation_stddev_pop_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -22868,6 +22973,7 @@ export type Sales_Quotation_Stddev_Pop_Fields = {
 export type Sales_Quotation_Stddev_Pop_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -22878,6 +22984,7 @@ export type Sales_Quotation_Stddev_Samp_Fields = {
   __typename?: 'sales_quotation_stddev_samp_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -22887,6 +22994,7 @@ export type Sales_Quotation_Stddev_Samp_Fields = {
 export type Sales_Quotation_Stddev_Samp_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -22897,6 +23005,7 @@ export type Sales_Quotation_Sum_Fields = {
   __typename?: 'sales_quotation_sum_fields';
   draft_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  ref_num?: Maybe<Scalars['Int']>;
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
@@ -22906,6 +23015,7 @@ export type Sales_Quotation_Sum_Fields = {
 export type Sales_Quotation_Sum_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -22928,6 +23038,12 @@ export enum Sales_Quotation_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Ref = 'ref',
+  /** column name */
+  RefNum = 'ref_num',
+  /** column name */
+  SalepointId = 'salepoint_id',
+  /** column name */
   Status = 'status',
   /** column name */
   TotalHt = 'total_ht',
@@ -22942,6 +23058,7 @@ export type Sales_Quotation_Var_Pop_Fields = {
   __typename?: 'sales_quotation_var_pop_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -22951,6 +23068,7 @@ export type Sales_Quotation_Var_Pop_Fields = {
 export type Sales_Quotation_Var_Pop_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -22961,6 +23079,7 @@ export type Sales_Quotation_Var_Samp_Fields = {
   __typename?: 'sales_quotation_var_samp_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -22970,6 +23089,7 @@ export type Sales_Quotation_Var_Samp_Fields = {
 export type Sales_Quotation_Var_Samp_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -22980,6 +23100,7 @@ export type Sales_Quotation_Variance_Fields = {
   __typename?: 'sales_quotation_variance_fields';
   draft_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
   total_ht?: Maybe<Scalars['Float']>;
   total_tax?: Maybe<Scalars['Float']>;
   total_ttc?: Maybe<Scalars['Float']>;
@@ -22989,6 +23110,7 @@ export type Sales_Quotation_Variance_Fields = {
 export type Sales_Quotation_Variance_Order_By = {
   draft_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   total_ht?: Maybe<Order_By>;
   total_tax?: Maybe<Order_By>;
   total_ttc?: Maybe<Order_By>;
@@ -30203,6 +30325,7 @@ export type DeleteOrdersMutation = (
 
 export type InsertOrderMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   contact_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
@@ -30230,6 +30353,9 @@ export type InsertOrderMutation = (
     )>, customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
     ) }
   )> }
 );
@@ -30405,8 +30531,22 @@ export type InsertServiceDraftMutation = (
   )> }
 );
 
+export type DeleteQuotationsMutationVariables = Exact<{
+  ids?: Array<Scalars['Int']>;
+}>;
+
+
+export type DeleteQuotationsMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_quotation?: Maybe<(
+    { __typename?: 'sales_quotation_mutation_response' }
+    & Pick<Sales_Quotation_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type InsertQuotationMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
   contact_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
@@ -30423,13 +30563,16 @@ export type InsertQuotationMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_quotation_one?: Maybe<(
     { __typename?: 'sales_quotation' }
-    & Pick<Sales_Quotation, 'date' | 'deadline' | 'draft_id' | 'id' | 'status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & Pick<Sales_Quotation, 'status' | 'id' | 'ref' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline' | 'draft_id' | 'contact_id'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
     ), customer: (
       { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+      & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
     ) }
   )> }
 );
@@ -30594,20 +30737,26 @@ export type GetInvoiceByIdQuery = (
   )> }
 );
 
-export type GetAllOrdersQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAllOrdersQueryVariables = Exact<{
+  dateStart?: Maybe<Scalars['date']>;
+  dateEnd?: Maybe<Scalars['date']>;
+}>;
 
 
 export type GetAllOrdersQuery = (
   { __typename?: 'query_root' }
   & { sales_order: Array<(
     { __typename?: 'sales_order' }
-    & Pick<Sales_Order, 'delivery_status' | 'payment_status' | 'id' | 'draft_id' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline'>
+    & Pick<Sales_Order, 'delivery_status' | 'payment_status' | 'id' | 'draft_id' | 'ref' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
     ), customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
     ) }
   )> }
 );
@@ -30621,7 +30770,7 @@ export type GetOrderByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_order_by_pk?: Maybe<(
     { __typename?: 'sales_order' }
-    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc' | 'salepoint_id'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
@@ -30703,20 +30852,26 @@ export type GetProductsGroupQuery = (
   )> }
 );
 
-export type GetAllQuotationsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAllQuotationsQueryVariables = Exact<{
+  dateStart?: Maybe<Scalars['date']>;
+  dateEnd?: Maybe<Scalars['date']>;
+}>;
 
 
 export type GetAllQuotationsQuery = (
   { __typename?: 'query_root' }
   & { sales_quotation: Array<(
     { __typename?: 'sales_quotation' }
-    & Pick<Sales_Quotation, 'status' | 'id' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline' | 'draft_id' | 'contact_id'>
+    & Pick<Sales_Quotation, 'status' | 'id' | 'ref' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline' | 'draft_id' | 'contact_id'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
     ), customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
     ) }
   )> }
 );
@@ -33620,9 +33775,9 @@ export const DeleteOrdersDocument = gql`
     }
   }
 export const InsertOrderDocument = gql`
-    mutation InsertOrder($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré") {
+    mutation InsertOrder($company_id: uuid, $salepoint_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré") {
   insert_sales_order_one(
-    object: {company_id: $company_id, contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, delivery_status: $delivery_status, payment_status: $payment_status}
+    object: {company_id: $company_id, salepoint_id: $salepoint_id, contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, delivery_status: $delivery_status, payment_status: $payment_status}
   ) {
     company {
       name
@@ -33636,6 +33791,9 @@ export const InsertOrderDocument = gql`
       code
       name
       phone
+    }
+    salepoint {
+      name
     }
     date
     deadline
@@ -33871,10 +34029,28 @@ export const InsertServiceDraftDocument = gql`
       super(apollo);
     }
   }
+export const DeleteQuotationsDocument = gql`
+    mutation deleteQuotations($ids: [Int!]! = []) {
+  delete_sales_quotation(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteQuotationsGQL extends Apollo.Mutation<DeleteQuotationsMutation, DeleteQuotationsMutationVariables> {
+    document = DeleteQuotationsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertQuotationDocument = gql`
-    mutation InsertQuotation($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $status: String, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric) {
+    mutation InsertQuotation($company_id: uuid, $salepoint_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $draft_id: Int, $status: String, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric) {
   insert_sales_quotation_one(
-    object: {company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, status: $status, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, contact_id: $contact_id}
+    object: {company_id: $company_id, salepoint_id: $salepoint_id, customer_id: $customer_id, date: $date, deadline: $deadline, draft_id: $draft_id, status: $status, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, contact_id: $contact_id}
   ) {
     company {
       name
@@ -33882,17 +34058,23 @@ export const InsertQuotationDocument = gql`
     }
     customer {
       code
+      id
       name
       phone
     }
-    date
-    deadline
-    draft_id
-    id
     status
+    id
+    ref
     total_ht
     total_tax
     total_ttc
+    date
+    deadline
+    draft_id
+    contact_id
+    salepoint {
+      name
+    }
   }
 }
     `;
@@ -34178,8 +34360,8 @@ export const GetInvoiceByIdDocument = gql`
     }
   }
 export const GetAllOrdersDocument = gql`
-    query GetAllOrders {
-  sales_order {
+    query GetAllOrders($dateStart: date, $dateEnd: date) {
+  sales_order(where: {date: {_gte: $dateStart, _lte: $dateEnd}}) {
     company {
       name
       id
@@ -34194,11 +34376,15 @@ export const GetAllOrdersDocument = gql`
     payment_status
     id
     draft_id
+    ref
     total_ht
     total_tax
     total_ttc
     date
     deadline
+    salepoint {
+      name
+    }
   }
 }
     `;
@@ -34291,6 +34477,7 @@ export const GetOrderByIdDocument = gql`
       total_ttc
       total_tva
     }
+    salepoint_id
   }
 }
     `;
@@ -34398,8 +34585,8 @@ export const GetProductsGroupDocument = gql`
     }
   }
 export const GetAllQuotationsDocument = gql`
-    query GetAllQuotations {
-  sales_quotation {
+    query GetAllQuotations($dateStart: date, $dateEnd: date) {
+  sales_quotation(where: {date: {_gte: $dateStart, _lte: $dateEnd}}) {
     company {
       name
       id
@@ -34412,6 +34599,7 @@ export const GetAllQuotationsDocument = gql`
     }
     status
     id
+    ref
     total_ht
     total_tax
     total_ttc
@@ -34419,6 +34607,9 @@ export const GetAllQuotationsDocument = gql`
     deadline
     draft_id
     contact_id
+    salepoint {
+      name
+    }
   }
 }
     `;

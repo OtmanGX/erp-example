@@ -75,5 +75,6 @@ query GetOrderById($id: Int!) {
       total_ttc
       total_tva
     }
+    salepoint_id
   }
 }

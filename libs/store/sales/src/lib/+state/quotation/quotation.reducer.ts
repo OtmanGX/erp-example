@@ -39,9 +39,16 @@ const quotationReducer = createReducer(
     (state, {Quotation}) => ({...state, draftLoadedById: Quotation})
   ),
   on(QuotationActions.addQuotationSuccess,
-    (state, action) => quotationAdapter.addOne(action.Quotation, state)
+    (state, action) => quotationAdapter.addOne(action.quotation, state)
   ),
-  on(QuotationActions.loadQuotationsFailure, (state, { error }) => ({
+  on(QuotationActions.deleteQuotationsSuccess,
+    (state, action) =>
+      quotationAdapter.removeMany(action.ids, state)
+  ),
+  on(
+    QuotationActions.loadQuotationsFailure,
+    QuotationActions.deleteQuotationsFailure,
+    (state, { error }) => ({
     ...state,
     error,
   }))

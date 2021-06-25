@@ -13,6 +13,8 @@ import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import * as SalePointSelectors from '@TanglassStore/shared/lib/+state/short-salePoint.selectors';
+import * as SalePointActions from '@TanglassStore/shared/lib/+state/short-salePoint.actions';
 @Component({
   selector: 'ngx-create-quotation',
   templateUrl: './create-quotation.component.html',
@@ -23,8 +25,9 @@ export class CreateQuotationComponent implements OnInit {
   dataSub: Subscription;
   companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany);
   customer$ = this.store.select(CustomerSelectors.getAllCustomers);
+  salepoints$ = this.store.select(SalePointSelectors.getAllShortSalePoint);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
-  draft_id 
+  draft_id
   @ViewChild('quotation_form', { read: DynamicFormComponent }) quotationFormComponent: DynamicFormComponent;
   get quotationForm() {
     return this.quotationFormComponent?.form;
@@ -43,11 +46,14 @@ export class CreateQuotationComponent implements OnInit {
       this.customer$,
       this.contacts$,
       this.companies$.pipe(map(item => item.map(company => ({ key: company.id, value: company.name })))),
+      this.salepoints$.pipe(map(item => item.map(sp => ({key: sp.id, value: sp.name}))))
     );
     this.store.dispatch(CustomerActions.loadCustomers());
     this.store.dispatch(ContactActions.loadContacts());
+    this.store.dispatch(SalePointActions.loadShortSalePoint());
+
   }
-  
+
   ngOnInit(): void {
     this.store.dispatch(ShortCompanieActions.loadShortCompany());
     this.buildForm();
@@ -69,5 +75,5 @@ export class CreateQuotationComponent implements OnInit {
   cancel() {
     this.dataSub.unsubscribe()
   }
-  
+
 }
