@@ -2,14 +2,18 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
 import { OrderService } from '@tanglass-erp/core/sales';
+import * as DraftActions from '../draft/draft.actions';
+import { select, Store, Action } from '@ngrx/store';
 
 import * as fromOrders from './orders.reducer';
 import * as OrdersActions from './orders.actions';
 import { Router } from '@angular/router';
-import { mergeMap, map, catchError } from 'rxjs/operators';
+import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { ProductDraftFacade } from "../product-draft/product-draft.facade";
+import { DraftFacade } from "../draft/draft.facade";
+import { PaymentsFacade } from '../payments/payments.facade';
 
 @Injectable()
 export class OrdersEffects {
@@ -63,16 +67,17 @@ export class OrdersEffects {
   getOrderById$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(OrdersActions.loadOrderById),
-      mergeMap((action) =>
+      switchMap((action) =>
         this.orderService.getOneById(action.id).pipe(
-          map((data) => {
-           // this.productDraftFacade.loadSelectedProducts(data.data.sales_order_by_pk.draft_id)
-           
+          map((data) => {  
+            this.draftFacade.selectDraftId(data.data.sales_order_by_pk.draft_id)
+            this.productDraftFacade.setDraftProducts(data.data.sales_order_by_pk.draft.product_drafts)
+            this.paymentFacade.setOrderPayments(data.data.sales_order_by_pk.payments)
             return OrdersActions.loadOrderByIdSuccess({ Order: data.data.sales_order_by_pk })
           }),
           catchError((error) =>
             of(OrdersActions.loadOrderByIdFailure({ error }))
-          )
+          )                                                       
         )
       )
     )
@@ -85,6 +90,9 @@ export class OrdersEffects {
     private orderService: OrderService,
     private router: Router,
     private notificationService: NotificationFacadeService,
-    private productDraftFacade: ProductDraftFacade
+    private productDraftFacade: ProductDraftFacade,
+    private draftFacade:DraftFacade,
+    private paymentFacade:PaymentsFacade,
+    private store:Store,
   ) { }
 }

@@ -21,8 +21,8 @@ export const loadPaymentsFailure = createAction(
 
 export const loadPaymentById = createAction(
   '[payment  ] Load payment  By Id',
-  props<{ id:any }>()
-  );
+  props<{ id: any }>()
+);
 
 
 export const loadPaymentByIdSuccess = createAction(
@@ -42,8 +42,8 @@ export const loadPaymentByIdFailure = createAction(
 
 export const loadOrderPayments = createAction(
   '[payment  ] Load Order Payments ',
-  props<{ order_id:number }>()
-  );
+  props<{ order_id: number }>()
+);
 
 
 export const loadOrderPaymentsSuccess = createAction(
@@ -109,3 +109,16 @@ export const removePaymentFailure = createAction(
   '[Payment ] Delete Payment failure',
   props<{ error: any }>()
 );
+
+
+/****************************************************************** */
+/*****SET ORDER PAYMENTS WHEN  LOADING ORDER BY ID** */
+/****************************************************************** */
+
+export const setOrderPayments = createAction(
+  '[payment in order page  ] Set Order Payments ',
+  props<{ payments: PaymentsEntity[] }>()
+
+);
+
+

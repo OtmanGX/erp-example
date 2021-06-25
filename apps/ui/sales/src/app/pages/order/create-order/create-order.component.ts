@@ -76,8 +76,5 @@ export class CreateOrderComponent implements OnInit {
   cancel() {
     this.dataSub.unsubscribe()
   }
-  ngOnDestroy(): void {
-    // this.ordersFacade.clearSelection();
-    // this.draftFacade.clearState();
-  }
+
 }

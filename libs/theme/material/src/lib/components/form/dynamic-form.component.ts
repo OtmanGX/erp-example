@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   Output,
+  OnChanges
 } from '@angular/core';
 import {
   FormGroup,
@@ -58,7 +59,7 @@ import { Groupfield } from '../../interfaces/groupfield.interface';
   `,
   styles: []
 })
-export class DynamicFormComponent implements OnInit {
+export class DynamicFormComponent implements OnInit, OnChanges {
   @Input() name: string;
   @Input() fields: FieldConfig[] = [];
   @Input() groups: Groupfield[] = [];
@@ -84,14 +85,15 @@ export class DynamicFormComponent implements OnInit {
       this.form.addControl(group.name, this.createControl(group.fields));
     });
   }
+  ngOnChanges() {
 
-
+  }
   /***
    *
    * @param name of the field
    * @param new parameters of the field
    */
-  remakeField(name: string, {...params}) {
+  remakeField(name: string, { ...params }) {
     const index = this.fields.findIndex((item) => item.name === name);
     const newField = Object.assign({}, this.fields[index]);
     for (const [key, value] of Object.entries(params)) {
@@ -119,7 +121,7 @@ export class DynamicFormComponent implements OnInit {
     } else {
       this.validateAllFormFields(this.form);
       for (const group of this.groups) {
-        this.validateAllFormFields(<FormGroup> this.form.get(group.name));
+        this.validateAllFormFields(<FormGroup>this.form.get(group.name));
       }
     }
   }

@@ -15,15 +15,65 @@ query GetOrderById($id: Int!) {
       name
       phone
       code
+      ICE
     }
     date
     deadline
     draft_id
     id
-    delivery_status 
-    payment_status 
+    delivery_status
+    payment_status
     total_ht
     total_tax
     total_ttc
+    draft {
+      product_drafts {
+        id
+        label
+        heigth
+        company_name
+        count
+        delivered
+        m2
+        ml
+        price
+        product_code
+        quantity
+        status
+        total_price
+        type
+        unit
+        width
+      }
+    }
+    payments {
+      amount
+      company {
+        name
+        id
+      }
+      date
+      deadline
+      paper_ref
+      payment_method
+      order_id
+      id
+      comment
+      customer {
+        name
+        id
+      }
+    }
+    amounts {
+      company {
+        id
+        name
+      }
+      id
+      order_id
+      total_ht
+      total_ttc
+      total_tva
+    }
   }
 }

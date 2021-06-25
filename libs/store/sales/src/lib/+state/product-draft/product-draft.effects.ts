@@ -9,32 +9,32 @@ import { ProductDraftFacade } from "./product-draft.facade";
 export class ProductDraftEffects {
 
 
-  loadSelectedProducts$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ProductActions.loadSelectedProducts),
-      mergeMap((action) =>
-        this.ProductService.getDraftPorducts(action.draft_id).pipe(
-          map((data) => {
-            console.log('products loading...', data)
-            return ProductActions.loadSelectedProductsSuccess({ products: data.data.sales_product_draft })
-          }
-          ),
-          catchError((error) =>
-            of(ProductActions.loadSelectedProductsFailure({ error }))
-          )
-        )
-      )
-    )
-  });
+  // loadSelectedProducts$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(ProductActions.loadSelectedProducts),
+  //     mergeMap((action) =>
+  //       this.ProductService.getDraftPorducts(action.draft_id).pipe(
+  //         map((data) => {
+
+  //           return ProductActions.loadSelectedProductsSuccess({ products: data.data.sales_product_draft })
+  //         }
+  //         ),
+  //         catchError((error) =>
+  //           of(ProductActions.loadSelectedProductsFailure({ error }))
+  //         )
+  //       )
+  //     )
+  //   )
+  // });
 
   insertGlassesDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductActions.addGlass),
       mergeMap((action) =>
         this.ProductService.addGlass(action.glass).pipe(
-          map((data) =>
-            ProductActions.addGlassSuccess({ glass: data.data.insert_sales_glass_draft_one.product_draft }),
-          ),
+          map((data) => {
+            return ProductActions.addGlassSuccess({ glass: data.data.insert_sales_glass_draft_one.product_draft })
+          }),
           catchError((error) =>
             of(ProductActions.addGlassFailure({ error }))
           )
@@ -89,9 +89,7 @@ export class ProductDraftEffects {
       )
     )
   });
-
-
-
+  
   removeProductDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductActions.removeProduct),

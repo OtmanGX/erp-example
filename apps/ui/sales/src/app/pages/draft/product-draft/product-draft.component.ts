@@ -16,7 +16,7 @@ import { OrdersFacade, DraftFacade } from "@tanglass-erp/store/sales";
   templateUrl: './product-draft.component.html',
   styleUrls: ['./product-draft.component.scss']
 })
-export class ProductDraftComponent implements OnInit, OnDestroy, OnChanges {
+export class ProductDraftComponent implements OnInit, OnDestroy {
   @ViewChild('glassTable') glassTable: TableComponent<DraftItem>;
   @ViewChild('articlesTable', { read: TableComponent, static: false }) articlesTable: TableComponent<DraftItem>;
   displayedColumns: Array<Column> = ProductHeaders
@@ -39,26 +39,18 @@ export class ProductDraftComponent implements OnInit, OnDestroy, OnChanges {
     private draft_facade: DraftFacade,
   ) { }
   ngOnInit(): void {
-    this.draft_facade.selectedDraft$.subscribe(
-      id => { 
-        console.log('id',id)
-        this.draft_id = id; 
-        this.facade.loadSelectedProducts(this.draft_id) }
-    )
-    this.productsSub = this.facade.selectedProducts$.subscribe(
+    this.draft_facade.selectedDraft$.subscribe(id =>this.draft_id = id)
+    this.productsSub = this.facade.allProduct$.subscribe(
       items => {
         this.facade.updateAmounts()
         this.dataSourceGlass = items.filter(item => item.type == ProductsTypes.glass || item.type == ProductsTypes.customerPorduct);
         this.dataSourceArticles = items.filter(item => item.type !== ProductsTypes.glass && item.type !== ProductsTypes.customerPorduct);
       }
-    )
+    )      
+    this.sharedfacade.loadAllShortCompanies()
+    this.sharedfacade.loadAllShortWarehouses()                                                                                                                                                                                                                                                                                                                                                                           
   }
-  ngOnChanges() {
-    if (!this.isCardMode) {
-      this.sharedfacade.loadAllShortCompanies()
-      this.sharedfacade.loadAllShortWarehouses()
-    };
-  }
+
   openDialog(action, product_type: string, row?: DraftItem) {
     let companies; let warehouses
     this.companiesSub = this.companies$.subscribe(val => companies = val)
@@ -75,7 +67,7 @@ export class ProductDraftComponent implements OnInit, OnDestroy, OnChanges {
           break;
         }
         case ProductsTypes.customerPorduct: {
-          this.facade.addGlass({ ...result, draft_id: this.draft_id })
+          this.facade.addCustomerProduct({ ...result, draft_id: this.draft_id })
           break;
         }
         case ProductsTypes.accessory: {

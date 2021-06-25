@@ -63,10 +63,5 @@ export class OrderCardComponent extends ModelCardComponent {
   cancel() { }
   print() { }
   launch() { }
-
-  ngOnDestroy(): void {
-    // this.ordersFacade.clearSelection();
-    // this.draftFacade.clearState();
-  }
 }
 

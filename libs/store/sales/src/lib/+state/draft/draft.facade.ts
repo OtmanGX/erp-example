@@ -12,7 +12,6 @@ export class DraftFacade {
   allDraft$ = this.store.pipe(select(DraftSelectors.getAllDraft));
   selectedDraft$ = this.store.pipe(select(DraftSelectors.getSelectedIdDraft));
   draftLoadedById$ = this.store.pipe(select(DraftSelectors.getDraftLoadedById));
-
   constructor(private store: Store<fromDraft.DraftPartialState>) {}
 
   dispatch(action: Action) {
@@ -26,8 +25,8 @@ export class DraftFacade {
     this.dispatch(DraftActions.addDraft())
   }
   
-  selectDraft(id){
-    this.dispatch(DraftActions.selectDraft(id))
+  selectDraftId(id:number){
+    this.dispatch(DraftActions.selectDraft({id}))
   }
 
   removeMany(ids: number[]) {

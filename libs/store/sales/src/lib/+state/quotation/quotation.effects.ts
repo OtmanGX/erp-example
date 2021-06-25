@@ -51,7 +51,6 @@ export class QuotationEffects {
       mergeMap((action) =>
         this.quotationService.getOneById(action.id).pipe(
           map((data) => {
-            this.productDraftFacade.loadSelectedProducts(data.data.sales_quotation_by_pk.draft_id)
 
             return QuotationActions.loadQuotationByIdSuccess({ Quotation: data.data.sales_quotation_by_pk })
           }),

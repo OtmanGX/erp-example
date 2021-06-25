@@ -17,5 +17,6 @@ export interface Product_draft{
     dependent_id?:string;
     warehouse_id?:string;
     type?;
+    substance_id?:string;
 }
 
