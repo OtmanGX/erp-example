@@ -21,7 +21,11 @@ export class QuotationFacade {
   loadAllQuotations() {
     this.dispatch(QuotationsActions.loadQuotations());
   }
-  addQuotation(quotation:Quotation){
+  addQuotation(quotation:Quotation) {
 
+  }
+
+  removeMany(ids: number[]) {
+    this.dispatch(QuotationsActions.deleteQuotations({ids}));
   }
 }

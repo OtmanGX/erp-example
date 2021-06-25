@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   GetAllQuotationsGQL,
   InsertQuotationGQL,
+  DeleteQuotationsGQL,
   GetQuotationByIdGQL,
   InsertQuotationMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
@@ -14,11 +15,12 @@ export class QuotationService {
   constructor(
     private getAllQuotationsGQL: GetAllQuotationsGQL,
     private insertQuotationGQL: InsertQuotationGQL,
-    private getQuotationByIdGQL: GetQuotationByIdGQL
+    private getQuotationByIdGQL: GetQuotationByIdGQL,
+    private deleteQuotationsGQL: DeleteQuotationsGQL
   ) { }
 
   getAll() {
-    
+
     return this.getAllQuotationsGQL.watch().valueChanges
 
   }
@@ -31,7 +33,8 @@ export class QuotationService {
     return this.insertQuotationGQL.mutate(order);
   }
 
-
-
+  deleteMany(ids: number[]) {
+    return this.deleteQuotationsGQL.mutate({ids});
+  }
 }
 

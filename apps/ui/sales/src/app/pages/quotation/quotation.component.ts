@@ -30,7 +30,7 @@ export class QuotationComponent implements GridView {
   ngAfterViewInit(): void {
     this.agGrid = this.mainGrid.agGrid;
 
-  
+
   }
 
   ngOnInit(): void {
@@ -45,6 +45,7 @@ export class QuotationComponent implements GridView {
       case Operations.update:
         break;
       case Operations.delete:
+        this.facade.removeMany(event.data.map(e => e.id));
         break;
       // ...
     }

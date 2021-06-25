@@ -3,7 +3,7 @@
 //for company/warehouse/salePoint name
 
 export interface ShortFeauture{
-    id:string;
+    id?:string;
     name:string;
     companyid?:string; //for warehouse
 

@@ -96,18 +96,20 @@ export const QuotationHeaders = [
 
   export const OrderHeaders=[
     {
-      field: 'id', headerName: 'Référence', type: "linkColumn",
+      field: 'id', headerName: 'id', type: "linkColumn",
       cellRendererParams: (params) => (
         {
           link: `${params?.data?.id}`,
         }
       )
     },
+      { field: 'ref', headerName: 'Référence', type: "textColumn" },
       { field: 'customer.name', headerName: 'Client', type: "textColumn" },
       { field: 'customer.phone', headerName: 'Phone.N°', type: "textColumn" },
       { field: 'date', headerName: 'Date', type: "textColumn" },
       { field: 'deadline', headerName: 'Expiration', type: "textColumn" },
       { field: 'company.name', headerName: 'Société', type: "textColumn" },
+      { field: 'salepoint.name', headerName: 'Point de vente', type: "textColumn" },
       { field: 'total_ttc', headerName: 'Total TTC', type: "numberColumn" },
       { field: 'total_tax', headerName: 'Total TVA', type: "numberColumn" },
       { field: 'total_ht', headerName: 'Total HT', type: "numberColumn" },

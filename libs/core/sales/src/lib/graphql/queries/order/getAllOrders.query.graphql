@@ -14,10 +14,14 @@ query GetAllOrders {
       payment_status
       id
       draft_id
+      ref
       total_ht
       total_tax
       total_ttc
       date
       deadline
+    salepoint {
+      name
+    }
   }
 }

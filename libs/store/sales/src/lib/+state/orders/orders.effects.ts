@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
 import { OrderService } from '@tanglass-erp/core/sales';
 import * as DraftActions from '../draft/draft.actions';
 import { select, Store, Action } from '@ngrx/store';
 
-import * as fromOrders from './orders.reducer';
 import * as OrdersActions from './orders.actions';
 import { Router } from '@angular/router';
 import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
@@ -36,13 +34,22 @@ export class OrdersEffects {
       ofType(OrdersActions.removeOrders),
       mergeMap(({ ids }) =>
         this.orderService.removeMany(ids).pipe(
-          map((data) => OrdersActions.removeOrderSuccess({ ids })),
+          map((data) => {
+            this.notificationService.showNotifToast({
+              message: 'Supprimé avec succès',
+              operation: 'info',
+              title: 'Commandes',
+              icon: 'closed',
+              route: 'sales/order',
+              color: 'warn',
+            });
+            return OrdersActions.removeOrderSuccess({ ids });
+          }),
           catchError((error) => of(OrdersActions.removeOrderFailure({ error })))
         )
       )
     );
   });
-
 
   addOrder$ = createEffect(() => {
     return this.actions$.pipe(
@@ -50,26 +57,32 @@ export class OrdersEffects {
       mergeMap((action) =>
         this.orderService.insertOne(action.Order).pipe(
           map((data) => {
-            // this.router.navigate(['/sales/order/${data.data.insert_sales_order_one.id}']);
-
-            return OrdersActions.addOrderSuccess({ Order: data.data.insert_sales_order_one })
-          }
-          ),
-          catchError((error) =>
-            of(OrdersActions.addOrderFailure({ error }))
-          )
+            this.notificationService.showNotifToast({
+              message: 'Ajouté avec succès',
+              operation: 'success',
+              title: 'Commandes',
+              time: new Date(),
+              icon: 'check',
+              route: 'sales/order',
+              color: 'primary',
+            });
+            this.router.navigate(['/sales/order']);
+            return OrdersActions.addOrderSuccess({
+              Order: data.data.insert_sales_order_one,
+            });
+          }),
+          catchError((error) => of(OrdersActions.addOrderFailure({ error })))
         )
       )
-    )
+    );
   });
-
 
   getOrderById$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(OrdersActions.loadOrderById),
       switchMap((action) =>
         this.orderService.getOneById(action.id).pipe(
-          map((data) => {  
+          map((data) => {
             this.draftFacade.selectDraftId(data.data.sales_order_by_pk.draft_id)
             this.productDraftFacade.setDraftProducts(data.data.sales_order_by_pk.draft.product_drafts)
             this.paymentFacade.setOrderPayments(data.data.sales_order_by_pk.payments)
@@ -77,13 +90,11 @@ export class OrdersEffects {
           }),
           catchError((error) =>
             of(OrdersActions.loadOrderByIdFailure({ error }))
-          )                                                       
+          )
         )
       )
-    )
+    );
   });
-
-
 
   constructor(
     private actions$: Actions,
@@ -95,4 +106,5 @@ export class OrdersEffects {
     private paymentFacade:PaymentsFacade,
     private store:Store,
   ) { }
+
 }
