@@ -26,7 +26,6 @@ query GetOrderById($id: Int!) {
     total_ht
     total_tax
     total_ttc
-<<<<<<< HEAD
     draft {
       product_drafts {
         id
@@ -76,8 +75,6 @@ query GetOrderById($id: Int!) {
       total_ttc
       total_tva
     }
-=======
->>>>>>> 2d0cfc5ef4f46402b987a2a151311c772ac50f0e
     salepoint_id
   }
 }

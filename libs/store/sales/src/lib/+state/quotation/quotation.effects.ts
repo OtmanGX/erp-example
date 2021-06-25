@@ -4,10 +4,7 @@ import * as QuotationActions from './quotation.actions';
 import { QuotationService } from '@tanglass-erp/core/sales';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-<<<<<<< HEAD
 import { ProductDraftFacade } from "../product-draft/product-draft.facade";
-=======
->>>>>>> 2d0cfc5ef4f46402b987a2a151311c772ac50f0e
 import { Router } from '@angular/router';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
 
@@ -74,10 +71,7 @@ export class QuotationEffects {
     )
   });
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 2d0cfc5ef4f46402b987a2a151311c772ac50f0e
   deleteMany$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(QuotationActions.deleteQuotations),
@@ -107,11 +101,7 @@ export class QuotationEffects {
     private actions$: Actions,
     private quotationService:QuotationService,
     private router: Router,
-<<<<<<< HEAD
     private productDraftFacade: ProductDraftFacade,
-=======
->>>>>>> 2d0cfc5ef4f46402b987a2a151311c772ac50f0e
     private notificationService: NotificationFacadeService
-
   ) {}
 }
