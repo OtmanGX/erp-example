@@ -19,7 +19,10 @@ export class OrdersEffects {
     return this.actions$.pipe(
       ofType(OrdersActions.loadOrders),
       mergeMap((action) =>
-        this.orderService.getAll().pipe(
+        this.orderService.getAll({
+          dateStart: action.dateStart,
+          dateEnd: action.dateEnd,
+        }).pipe(
           map((data) =>
             OrdersActions.loadOrdersSuccess({ orders: data.data.sales_order })
           ),

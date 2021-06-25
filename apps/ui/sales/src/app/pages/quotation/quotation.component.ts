@@ -7,6 +7,10 @@ import { QuotationHeaders } from '../../utils/grid-headers';
 import { Router } from '@angular/router';
 import { QuotationFacade } from "@tanglass-erp/store/sales";
 import { groupeByCode } from "../adapters";
+import startOfMonth from 'date-fns/fp/startOfMonth';
+import { fr } from 'date-fns/locale';
+
+
 @Component({
   selector: 'ngx-quotation',
   templateUrl: './quotation.component.html',
@@ -18,6 +22,7 @@ export class QuotationComponent implements GridView {
   columnDefs;
   columnId: string = 'id';
   data$ = this.facade.allQuotation$;
+  dateText: string;
 
   constructor(
     public dialog: MatDialog,
@@ -34,7 +39,11 @@ export class QuotationComponent implements GridView {
   }
 
   ngOnInit(): void {
-    this.facade.loadAllQuotations();
+    const date = new Date();
+    this.dateText = date.getFullYear() + ' ' + fr.localize.month(date.getMonth(), { width: 'abbreviated' });
+    this.facade.loadAllQuotations({
+      dateStart: startOfMonth(date)
+    });
   }
 
   eventTriggering(event) {
@@ -47,7 +56,9 @@ export class QuotationComponent implements GridView {
       case Operations.delete:
         this.facade.removeMany(event.data.map(e => e.id));
         break;
-      // ...
+      case Operations.dateChange:
+        this.facade.loadAllQuotations(event.data);
+        break;
     }
   }
 

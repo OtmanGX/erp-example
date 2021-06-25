@@ -30737,7 +30737,10 @@ export type GetInvoiceByIdQuery = (
   )> }
 );
 
-export type GetAllOrdersQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAllOrdersQueryVariables = Exact<{
+  dateStart?: Maybe<Scalars['date']>;
+  dateEnd?: Maybe<Scalars['date']>;
+}>;
 
 
 export type GetAllOrdersQuery = (
@@ -30849,7 +30852,10 @@ export type GetProductsGroupQuery = (
   )> }
 );
 
-export type GetAllQuotationsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAllQuotationsQueryVariables = Exact<{
+  dateStart?: Maybe<Scalars['date']>;
+  dateEnd?: Maybe<Scalars['date']>;
+}>;
 
 
 export type GetAllQuotationsQuery = (
@@ -34354,8 +34360,8 @@ export const GetInvoiceByIdDocument = gql`
     }
   }
 export const GetAllOrdersDocument = gql`
-    query GetAllOrders {
-  sales_order {
+    query GetAllOrders($dateStart: date, $dateEnd: date) {
+  sales_order(where: {date: {_gte: $dateStart, _lte: $dateEnd}}) {
     company {
       name
       id
@@ -34579,8 +34585,8 @@ export const GetProductsGroupDocument = gql`
     }
   }
 export const GetAllQuotationsDocument = gql`
-    query GetAllQuotations {
-  sales_quotation {
+    query GetAllQuotations($dateStart: date, $dateEnd: date) {
+  sales_quotation(where: {date: {_gte: $dateStart, _lte: $dateEnd}}) {
     company {
       name
       id

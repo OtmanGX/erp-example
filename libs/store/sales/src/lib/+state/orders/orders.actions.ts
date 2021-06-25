@@ -1,7 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import {Order as OrdersEntity } from "@tanglass-erp/core/sales";
+import { invoiceFilter, Order as OrdersEntity } from '@tanglass-erp/core/sales';
 
-export const loadOrders = createAction('[Orders] Load Orders');
+export const loadOrders = createAction('[Orders] Load Orders',
+  props<invoiceFilter>()
+);
 
 export const loadOrdersSuccess = createAction(
   '[Orders] Load Orders Success',

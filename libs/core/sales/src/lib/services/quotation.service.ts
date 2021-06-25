@@ -7,6 +7,7 @@ import {
   InsertQuotationMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 import { Quotation } from "../models/quotation";
+import { invoiceFilter } from '../models/invoice';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,9 +20,9 @@ export class QuotationService {
     private deleteQuotationsGQL: DeleteQuotationsGQL
   ) { }
 
-  getAll() {
+  getAll(params:invoiceFilter = {}) {
 
-    return this.getAllQuotationsGQL.watch().valueChanges
+    return this.getAllQuotationsGQL.watch(params).valueChanges
 
   }
 

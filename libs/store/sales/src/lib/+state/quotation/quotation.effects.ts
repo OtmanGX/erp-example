@@ -14,7 +14,10 @@ export class QuotationEffects {
     return this.actions$.pipe(
       ofType(QuotationActions.loadQuotations),
       mergeMap((action) =>
-        this.quotationService.getAll().pipe(
+        this.quotationService.getAll({
+          dateStart: action.dateStart,
+          dateEnd: action.dateEnd,
+        }).pipe(
           map((data) =>
             QuotationActions.loadQuotationsSuccess({ quotations: data.data.sales_quotation })
           ),

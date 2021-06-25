@@ -6,6 +6,8 @@ import { OrderHeaders } from '../../utils/grid-headers';
 import { Router } from '@angular/router';
 import { OrdersFacade } from "@tanglass-erp/store/sales";
 import { DeliveryFacade, DraftFacade, Order } from '@tanglass-erp/store/sales';
+import { fr } from 'date-fns/locale';
+import startOfMonth from 'date-fns/fp/startOfMonth';
 
 @Component({
   selector: 'ngx-order',
@@ -18,6 +20,7 @@ export class OrderComponent implements GridView {
   columnDefs;
   columnId: string = 'id';
   data$=this.facade.allOrders$;
+  dateText: string;
 
   constructor(
     public dialog: MatDialog,
@@ -33,7 +36,11 @@ export class OrderComponent implements GridView {
   }
 
   ngOnInit(): void {
-    this.facade.loadAllOrders();
+    const date = new Date();
+    this.dateText = date.getFullYear() + ' ' + fr.localize.month(date.getMonth(), { width: 'abbreviated' });
+    this.facade.loadAllOrders({
+      dateStart: startOfMonth(date)
+    });
   }
 
   eventTriggering(event) {
@@ -46,6 +53,9 @@ export class OrderComponent implements GridView {
         break;
       case Operations.delete:
         this.facade.removeMany(event.data.map((e) => e.id));
+        break;
+      case Operations.dateChange:
+        this.facade.loadAllOrders(event.data);
         break;
     }
   }

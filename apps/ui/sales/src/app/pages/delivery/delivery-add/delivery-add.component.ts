@@ -110,7 +110,7 @@ export class DeliveryAddComponent
   }
 
   dispatchActions() {
-    this.ordersFacade.loadAllOrders();
+    this.ordersFacade.loadAllOrders({});
     this.store.dispatch(ShortCompanieActions.loadShortCompany());
     this.store.dispatch(CustomerActions.loadCustomers());
     this.store.dispatch(ContactActions.loadContacts());
