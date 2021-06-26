@@ -89,7 +89,10 @@ export class OrdersEffects {
             this.draftFacade.selectDraftId(data.data.sales_order_by_pk.draft_id)
             this.productDraftFacade.setDraftProducts(data.data.sales_order_by_pk.draft.product_drafts)
             this.paymentFacade.setOrderPayments(data.data.sales_order_by_pk.payments)
-            return OrdersActions.loadOrderByIdSuccess({ order: data.data.sales_order_by_pk })
+            return OrdersActions.loadOrderByIdSuccess({ order: {
+                ...data.data.sales_order_by_pk,
+              products: data.data.sales_order_by_pk.draft.product_drafts
+              } })
           }),
           catchError((error) =>
             of(OrdersActions.loadOrderByIdFailure({ error }))

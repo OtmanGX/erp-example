@@ -43,6 +43,7 @@ export const loadOrderByIdFailure = createAction(
 export const addOrder = createAction(
   '[Orders Component] Add Order',
   props<{ order: InsertedOrder }>()
+  // props<{ order: OrdersEntity }>()
 );
 
 export const addOrderSuccess = createAction(

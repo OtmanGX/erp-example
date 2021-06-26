@@ -57,7 +57,9 @@ export class OrderCardComponent extends ModelCardComponent {
   }
   save() { }
   cancel() { }
-  print() { }
+  print() {
+    this.facade.printOrder(this.data);
+  }
   launch() { }
 }
 
