@@ -29,7 +29,6 @@ export class GlassCardComponent extends ModelCardComponent {
 
   passData(data: DetailedGlass) {
     return [
-
       {
         label: "Infos",
         isToolbar:"true",
