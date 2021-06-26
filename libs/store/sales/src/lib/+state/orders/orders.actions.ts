@@ -27,7 +27,7 @@ export const loadOrderById = createAction(
 
 export const loadOrderByIdSuccess = createAction(
   '[Order Effect] Load Order By Id Success',
-  props<{ Order: OrdersEntity }>()
+  props<{ order: OrdersEntity }>()
 );
 
 export const loadOrderByIdFailure = createAction(
@@ -42,12 +42,12 @@ export const loadOrderByIdFailure = createAction(
 
 export const addOrder = createAction(
   '[Orders Component] Add Order',
-  props<{ Order: OrdersEntity }>()
+  props<{ order: OrdersEntity }>()
 );
 
 export const addOrderSuccess = createAction(
   '[Order Effect] Add Order Success',
-  props<{ Order: OrdersEntity }>()
+  props<{ order: OrdersEntity }>()
 );
 
 export const addOrderFailure = createAction(
@@ -61,11 +61,11 @@ export const addOrderFailure = createAction(
 
 export const updateOrder = createAction(
   '[Orders Component] Update Order',
-  props<{ Order: OrdersEntity }>()
+  props<{ order: OrdersEntity }>()
 );
 export const updateOrderSuccess = createAction(
   '[Order Effect] Update Order Success',
-  props<{ Order: OrdersEntity }>()
+  props<{ order: OrdersEntity }>()
 );
 export const updateOrderFailure = createAction(
   '[Order Effect] Update Order failure',

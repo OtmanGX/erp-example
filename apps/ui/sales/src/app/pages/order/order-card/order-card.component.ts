@@ -24,7 +24,7 @@ export class OrderCardComponent extends ModelCardComponent {
     protected facade: OrdersFacade,
     private draftFacade: DraftFacade,
     private ordersFacade: OrdersFacade,
-    
+
   ) {
     super(activatedRoute);
   }
@@ -50,7 +50,7 @@ export class OrderCardComponent extends ModelCardComponent {
             { label: 'Date limite ', value: data?.deadline, },
             { label: 'Livraison', value: [data?.delivery_status], type: 'chips' },
             { label: 'Paiement', value: [data?.payment_status], type: 'chips' },
-            { label: 'Réf ', value: data?.draft_id },
+            { label: 'Réf ', value: data?.ref },
           ]
       },
     ];
@@ -61,7 +61,9 @@ export class OrderCardComponent extends ModelCardComponent {
   }
   save() { }
   cancel() { }
-  print() { }
+  print() {
+    this.facade.printOrder(this.data);
+  }
   launch() { }
 }
 

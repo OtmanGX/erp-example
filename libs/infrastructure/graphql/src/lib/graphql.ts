@@ -31188,7 +31188,7 @@ export type GetOrderByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_order_by_pk?: Maybe<(
     { __typename?: 'sales_order' }
-    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc' | 'salepoint_id'>
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'ref' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc' | 'salepoint_id'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
@@ -34843,6 +34843,7 @@ export const GetOrderByIdDocument = gql`
     deadline
     draft_id
     id
+    ref
     delivery_status
     payment_status
     total_ht

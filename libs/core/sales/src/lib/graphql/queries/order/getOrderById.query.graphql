@@ -21,6 +21,7 @@ query GetOrderById($id: Int!) {
     deadline
     draft_id
     id
+    ref
     delivery_status
     payment_status
     total_ht
