@@ -1,5 +1,6 @@
 export interface GroupItems {
   isToolbar?: boolean;
+  toolbarIcon?: string;
   icons?: Array<any>;
   cols: number;
   "cols-xl"?: number;

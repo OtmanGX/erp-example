@@ -5182,6 +5182,10 @@ export type Mutation_Root = {
   delete_sales_invoice_line?: Maybe<Sales_Invoice_Line_Mutation_Response>;
   /** delete single row from the table: "sales.invoice_line" */
   delete_sales_invoice_line_by_pk?: Maybe<Sales_Invoice_Line>;
+  /** delete data from the table: "sales.job_order" */
+  delete_sales_job_order?: Maybe<Sales_Job_Order_Mutation_Response>;
+  /** delete single row from the table: "sales.job_order" */
+  delete_sales_job_order_by_pk?: Maybe<Sales_Job_Order>;
   /** delete data from the table: "sales.order" */
   delete_sales_order?: Maybe<Sales_Order_Mutation_Response>;
   /** delete single row from the table: "sales.order" */
@@ -5430,6 +5434,10 @@ export type Mutation_Root = {
   insert_sales_invoice_line_one?: Maybe<Sales_Invoice_Line>;
   /** insert a single row into the table: "sales.invoice" */
   insert_sales_invoice_one?: Maybe<Sales_Invoice>;
+  /** insert data into the table: "sales.job_order" */
+  insert_sales_job_order?: Maybe<Sales_Job_Order_Mutation_Response>;
+  /** insert a single row into the table: "sales.job_order" */
+  insert_sales_job_order_one?: Maybe<Sales_Job_Order>;
   /** insert data into the table: "sales.order" */
   insert_sales_order?: Maybe<Sales_Order_Mutation_Response>;
   /** insert data into the table: "sales.order_delivery_status" */
@@ -5678,6 +5686,10 @@ export type Mutation_Root = {
   update_sales_invoice_line?: Maybe<Sales_Invoice_Line_Mutation_Response>;
   /** update single row of the table: "sales.invoice_line" */
   update_sales_invoice_line_by_pk?: Maybe<Sales_Invoice_Line>;
+  /** update data of the table: "sales.job_order" */
+  update_sales_job_order?: Maybe<Sales_Job_Order_Mutation_Response>;
+  /** update single row of the table: "sales.job_order" */
+  update_sales_job_order_by_pk?: Maybe<Sales_Job_Order>;
   /** update data of the table: "sales.order" */
   update_sales_order?: Maybe<Sales_Order_Mutation_Response>;
   /** update single row of the table: "sales.order" */
@@ -6307,6 +6319,18 @@ export type Mutation_RootDelete_Sales_Invoice_LineArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Sales_Invoice_Line_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Job_OrderArgs = {
+  where: Sales_Job_Order_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Job_Order_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -7140,6 +7164,20 @@ export type Mutation_RootInsert_Sales_Invoice_Line_OneArgs = {
 export type Mutation_RootInsert_Sales_Invoice_OneArgs = {
   object: Sales_Invoice_Insert_Input;
   on_conflict?: Maybe<Sales_Invoice_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Job_OrderArgs = {
+  objects: Array<Sales_Job_Order_Insert_Input>;
+  on_conflict?: Maybe<Sales_Job_Order_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Job_Order_OneArgs = {
+  object: Sales_Job_Order_Insert_Input;
+  on_conflict?: Maybe<Sales_Job_Order_On_Conflict>;
 };
 
 
@@ -8046,6 +8084,22 @@ export type Mutation_RootUpdate_Sales_Invoice_Line_By_PkArgs = {
   _inc?: Maybe<Sales_Invoice_Line_Inc_Input>;
   _set?: Maybe<Sales_Invoice_Line_Set_Input>;
   pk_columns: Sales_Invoice_Line_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Job_OrderArgs = {
+  _inc?: Maybe<Sales_Job_Order_Inc_Input>;
+  _set?: Maybe<Sales_Job_Order_Set_Input>;
+  where: Sales_Job_Order_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Job_Order_By_PkArgs = {
+  _inc?: Maybe<Sales_Job_Order_Inc_Input>;
+  _set?: Maybe<Sales_Job_Order_Set_Input>;
+  pk_columns: Sales_Job_Order_Pk_Columns_Input;
 };
 
 
@@ -14590,6 +14644,12 @@ export type Query_Root = {
   sales_invoice_line_aggregate: Sales_Invoice_Line_Aggregate;
   /** fetch data from the table: "sales.invoice_line" using primary key columns */
   sales_invoice_line_by_pk?: Maybe<Sales_Invoice_Line>;
+  /** fetch data from the table: "sales.job_order" */
+  sales_job_order: Array<Sales_Job_Order>;
+  /** fetch aggregated fields from the table: "sales.job_order" */
+  sales_job_order_aggregate: Sales_Job_Order_Aggregate;
+  /** fetch data from the table: "sales.job_order" using primary key columns */
+  sales_job_order_by_pk?: Maybe<Sales_Job_Order>;
   /** fetch data from the table: "sales.order" */
   sales_order: Array<Sales_Order>;
   /** fetch aggregated fields from the table: "sales.order" */
@@ -16089,6 +16149,32 @@ export type Query_RootSales_Invoice_Line_AggregateArgs = {
 /** query root */
 export type Query_RootSales_Invoice_Line_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootSales_Job_OrderArgs = {
+  distinct_on?: Maybe<Array<Sales_Job_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Job_Order_Order_By>>;
+  where?: Maybe<Sales_Job_Order_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Job_Order_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Job_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Job_Order_Order_By>>;
+  where?: Maybe<Sales_Job_Order_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Job_Order_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -20080,6 +20166,306 @@ export type Sales_Invoice_Variance_Order_By = {
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "sales.job_order" */
+export type Sales_Job_Order = {
+  __typename?: 'sales_job_order';
+  date: Scalars['Int'];
+  id: Scalars['Int'];
+  order_ref: Scalars['Int'];
+};
+
+/** aggregated selection of "sales.job_order" */
+export type Sales_Job_Order_Aggregate = {
+  __typename?: 'sales_job_order_aggregate';
+  aggregate?: Maybe<Sales_Job_Order_Aggregate_Fields>;
+  nodes: Array<Sales_Job_Order>;
+};
+
+/** aggregate fields of "sales.job_order" */
+export type Sales_Job_Order_Aggregate_Fields = {
+  __typename?: 'sales_job_order_aggregate_fields';
+  avg?: Maybe<Sales_Job_Order_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Sales_Job_Order_Max_Fields>;
+  min?: Maybe<Sales_Job_Order_Min_Fields>;
+  stddev?: Maybe<Sales_Job_Order_Stddev_Fields>;
+  stddev_pop?: Maybe<Sales_Job_Order_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Sales_Job_Order_Stddev_Samp_Fields>;
+  sum?: Maybe<Sales_Job_Order_Sum_Fields>;
+  var_pop?: Maybe<Sales_Job_Order_Var_Pop_Fields>;
+  var_samp?: Maybe<Sales_Job_Order_Var_Samp_Fields>;
+  variance?: Maybe<Sales_Job_Order_Variance_Fields>;
+};
+
+
+/** aggregate fields of "sales.job_order" */
+export type Sales_Job_Order_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Sales_Job_Order_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "sales.job_order" */
+export type Sales_Job_Order_Aggregate_Order_By = {
+  avg?: Maybe<Sales_Job_Order_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Sales_Job_Order_Max_Order_By>;
+  min?: Maybe<Sales_Job_Order_Min_Order_By>;
+  stddev?: Maybe<Sales_Job_Order_Stddev_Order_By>;
+  stddev_pop?: Maybe<Sales_Job_Order_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Sales_Job_Order_Stddev_Samp_Order_By>;
+  sum?: Maybe<Sales_Job_Order_Sum_Order_By>;
+  var_pop?: Maybe<Sales_Job_Order_Var_Pop_Order_By>;
+  var_samp?: Maybe<Sales_Job_Order_Var_Samp_Order_By>;
+  variance?: Maybe<Sales_Job_Order_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "sales.job_order" */
+export type Sales_Job_Order_Arr_Rel_Insert_Input = {
+  data: Array<Sales_Job_Order_Insert_Input>;
+  on_conflict?: Maybe<Sales_Job_Order_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Sales_Job_Order_Avg_Fields = {
+  __typename?: 'sales_job_order_avg_fields';
+  date?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  order_ref?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "sales.job_order" */
+export type Sales_Job_Order_Avg_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "sales.job_order". All fields are combined with a logical 'AND'. */
+export type Sales_Job_Order_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Sales_Job_Order_Bool_Exp>>>;
+  _not?: Maybe<Sales_Job_Order_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Sales_Job_Order_Bool_Exp>>>;
+  date?: Maybe<Int_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  order_ref?: Maybe<Int_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "sales.job_order" */
+export enum Sales_Job_Order_Constraint {
+  /** unique or primary key constraint */
+  JobOrderPkey = 'job_order_pkey'
+}
+
+/** input type for incrementing integer column in table "sales.job_order" */
+export type Sales_Job_Order_Inc_Input = {
+  date?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  order_ref?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "sales.job_order" */
+export type Sales_Job_Order_Insert_Input = {
+  date?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  order_ref?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate max on columns */
+export type Sales_Job_Order_Max_Fields = {
+  __typename?: 'sales_job_order_max_fields';
+  date?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  order_ref?: Maybe<Scalars['Int']>;
+};
+
+/** order by max() on columns of table "sales.job_order" */
+export type Sales_Job_Order_Max_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Sales_Job_Order_Min_Fields = {
+  __typename?: 'sales_job_order_min_fields';
+  date?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  order_ref?: Maybe<Scalars['Int']>;
+};
+
+/** order by min() on columns of table "sales.job_order" */
+export type Sales_Job_Order_Min_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "sales.job_order" */
+export type Sales_Job_Order_Mutation_Response = {
+  __typename?: 'sales_job_order_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Sales_Job_Order>;
+};
+
+/** input type for inserting object relation for remote table "sales.job_order" */
+export type Sales_Job_Order_Obj_Rel_Insert_Input = {
+  data: Sales_Job_Order_Insert_Input;
+  on_conflict?: Maybe<Sales_Job_Order_On_Conflict>;
+};
+
+/** on conflict condition type for table "sales.job_order" */
+export type Sales_Job_Order_On_Conflict = {
+  constraint: Sales_Job_Order_Constraint;
+  update_columns: Array<Sales_Job_Order_Update_Column>;
+  where?: Maybe<Sales_Job_Order_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "sales.job_order" */
+export type Sales_Job_Order_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "sales.job_order" */
+export type Sales_Job_Order_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "sales.job_order" */
+export enum Sales_Job_Order_Select_Column {
+  /** column name */
+  Date = 'date',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  OrderRef = 'order_ref'
+}
+
+/** input type for updating data in table "sales.job_order" */
+export type Sales_Job_Order_Set_Input = {
+  date?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  order_ref?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate stddev on columns */
+export type Sales_Job_Order_Stddev_Fields = {
+  __typename?: 'sales_job_order_stddev_fields';
+  date?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  order_ref?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "sales.job_order" */
+export type Sales_Job_Order_Stddev_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Sales_Job_Order_Stddev_Pop_Fields = {
+  __typename?: 'sales_job_order_stddev_pop_fields';
+  date?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  order_ref?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "sales.job_order" */
+export type Sales_Job_Order_Stddev_Pop_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Sales_Job_Order_Stddev_Samp_Fields = {
+  __typename?: 'sales_job_order_stddev_samp_fields';
+  date?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  order_ref?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "sales.job_order" */
+export type Sales_Job_Order_Stddev_Samp_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Sales_Job_Order_Sum_Fields = {
+  __typename?: 'sales_job_order_sum_fields';
+  date?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  order_ref?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "sales.job_order" */
+export type Sales_Job_Order_Sum_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
+};
+
+/** update columns of table "sales.job_order" */
+export enum Sales_Job_Order_Update_Column {
+  /** column name */
+  Date = 'date',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  OrderRef = 'order_ref'
+}
+
+/** aggregate var_pop on columns */
+export type Sales_Job_Order_Var_Pop_Fields = {
+  __typename?: 'sales_job_order_var_pop_fields';
+  date?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  order_ref?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "sales.job_order" */
+export type Sales_Job_Order_Var_Pop_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Sales_Job_Order_Var_Samp_Fields = {
+  __typename?: 'sales_job_order_var_samp_fields';
+  date?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  order_ref?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "sales.job_order" */
+export type Sales_Job_Order_Var_Samp_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Sales_Job_Order_Variance_Fields = {
+  __typename?: 'sales_job_order_variance_fields';
+  date?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  order_ref?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "sales.job_order" */
+export type Sales_Job_Order_Variance_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  order_ref?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "sales.order" */
@@ -26357,6 +26743,12 @@ export type Subscription_Root = {
   sales_invoice_line_aggregate: Sales_Invoice_Line_Aggregate;
   /** fetch data from the table: "sales.invoice_line" using primary key columns */
   sales_invoice_line_by_pk?: Maybe<Sales_Invoice_Line>;
+  /** fetch data from the table: "sales.job_order" */
+  sales_job_order: Array<Sales_Job_Order>;
+  /** fetch aggregated fields from the table: "sales.job_order" */
+  sales_job_order_aggregate: Sales_Job_Order_Aggregate;
+  /** fetch data from the table: "sales.job_order" using primary key columns */
+  sales_job_order_by_pk?: Maybe<Sales_Job_Order>;
   /** fetch data from the table: "sales.order" */
   sales_order: Array<Sales_Order>;
   /** fetch aggregated fields from the table: "sales.order" */
@@ -27856,6 +28248,32 @@ export type Subscription_RootSales_Invoice_Line_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootSales_Invoice_Line_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Job_OrderArgs = {
+  distinct_on?: Maybe<Array<Sales_Job_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Job_Order_Order_By>>;
+  where?: Maybe<Sales_Job_Order_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Job_Order_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Job_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Job_Order_Order_By>>;
+  where?: Maybe<Sales_Job_Order_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Job_Order_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -29666,7 +30084,7 @@ export type GetAllUsersQuery = (
   { __typename?: 'query_root' }
   & { management_userProfile: Array<(
     { __typename?: 'management_userProfile' }
-    & Pick<Management_UserProfile, 'CIN' | 'active' | 'firstname' | 'id' | 'lastname' | 'phone' | 'role' | 'username'>
+    & Pick<Management_UserProfile, 'CIN' | 'active' | 'firstname' | 'id' | 'email' | 'lastname' | 'phone' | 'role' | 'username' | 'SalesPointsid'>
   )> }
 );
 
@@ -32754,10 +33172,12 @@ export const GetAllUsersDocument = gql`
     active
     firstname
     id
+    email
     lastname
     phone
     role
     username
+    SalesPointsid
   }
 }
     `;

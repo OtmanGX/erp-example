@@ -5,8 +5,7 @@ import { FieldConfig, FormDialog, MustMatch } from '@tanglass-erp/material';
 import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoint.actions';
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
 import { regConfigEmployee } from '@TanglassUi/management/utils/forms';
-import { Subscription } from 'rxjs';
-import { InsertedUser } from "@TanglassStore/management/index";
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -18,8 +17,8 @@ export class DialogEmployeeComponent extends FormDialog implements OnDestroy {
 
   regConfig: FieldConfig[];
   reConfigValidator = MustMatch('password', 'confirmPassword');
-  salePoints$ = this.store.select(SalePointSelectors.getAllSalePoints);
-  salePointsSubscription: Subscription;
+  salePoints$ = this.store.select(SalePointSelectors.getAllSalePoints)
+    .pipe(map(e => e.map(item => ({key: item.id, value: item.name}))));
 
   constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -33,29 +32,15 @@ export class DialogEmployeeComponent extends FormDialog implements OnDestroy {
   }
 
   buildForm(): void {
-    this.salePoints$.subscribe(value => {
-      this.regConfig = regConfigEmployee(this.data, value);
-    }
-    );
+    this.regConfig = regConfigEmployee(this.data, this.salePoints$);
   }
 
 
-  submitForm(value){
-    this.submit({
-      firstname:value.firstname,
-      lastname:value.lastname,
-      username:value.username,
-      phone:value.phone,
-      password:value.password,
-      active:value.active,
-      email:value.email,
-      CIN:value.CIN,
-      role:value.role
-
-    })
+  submitForm(value) {
+    const {confirmPassword, ...formValue} = value;
+    this.submit(formValue);
   }
   ngOnDestroy(): void {
-    this.salePointsSubscription?.unsubscribe();
   }
 
 }
