@@ -7,7 +7,7 @@ import { CreateDraftComponent } from './pages/draft/create-draft/create-draft.co
 import { ProductDraftComponent } from "./pages/draft/product-draft/product-draft.component";
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
 import { MaterialModule } from "@tanglass-erp/material";
-import { StoreSharedModule} from "@tanglass-erp/store/shared";
+import { StoreSharedModule } from "@tanglass-erp/store/shared";
 import { PopProductComponent } from "./pages/draft/pop-product/pop-product.component";
 import { StoreProductModule } from '@TanglassStore/product/index';
 import { StoreSalesModule } from '@tanglass-erp/store/sales';
@@ -27,7 +27,10 @@ import { InvoiceAddComponent } from '@TanglassUi/sales/pages/invoice/invoice-add
 import { InvoiceReadyComponent } from '@TanglassUi/sales/pages/invoice/invoice-ready/invoice-ready.component';
 import { DeliveriesAccordionComponent } from '@TanglassUi/sales/components/deliveries-accordion/deliveries-accordion.component';
 import { InvoiceStatusComponent } from '@TanglassUi/sales/utils/grid-headers';
-import { PopPaymentComponent } from "./pages/order/payment/payment.component";
+import { PopPaymentComponent } from "./pages/order/payments-order/pop-payement/pop-payment.component";
+import { ManagementStateModule } from '@TanglassStore/management/lib/management-state.module';
+import { PaymentsComponent } from "./pages/order/payments-order/payments.component";
+import {QuotationCardComponent} from "./pages/quotation/quotation-card/quotation-card.component"
 @NgModule({
   declarations: [
     SalesComponent,
@@ -49,6 +52,8 @@ import { PopPaymentComponent } from "./pages/order/payment/payment.component";
     InvoiceReadyComponent,
     DeliveriesAccordionComponent,
     PopPaymentComponent,
+    PaymentsComponent,
+    QuotationCardComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +64,8 @@ import { PopPaymentComponent } from "./pages/order/payment/payment.component";
     StoreProductModule,
     StoreContactModule,
     StoreSalesModule,
-    MatSlideToggleModule
+    ManagementStateModule,
+    MatSlideToggleModule,
   ]
 })
 export class SalesModule { }

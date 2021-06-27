@@ -3,19 +3,9 @@
         <mat-icon color="primary">attach_money</mat-icon>
     </button>
     <span>Montants!</span>
-    <span class="example-spacer"></span>
-    <button *ngIf="!isCardMode" mat-flat-button (click)="openDialog('add')" color="primary" style="width: 12em">
-      Ajouter Réglement
-    </button>
 </mat-toolbar>
-<app-table *ngIf="isCardMode" #amountTable [data]="dataSource" 
-  [columnsToShow]="displayedColumns_CardMode"
-  [withCheckbox]=false
-  [withFilter]=false
-  >
-</app-table>
-<app-table *ngIf="!isCardMode" #amountTable [data]="dataSource" 
-  [columnsToShow]="displayedColumns_EditMode"
+<app-table  #amountTable [data]="dataSource" 
+  [columnsToShow]="displayedColumns"
   [withCheckbox]=false
   [withFilter]=false
   >

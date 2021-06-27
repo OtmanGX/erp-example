@@ -6,7 +6,6 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { QuotationHeaders } from '../../utils/grid-headers';
 import { Router } from '@angular/router';
 import { QuotationFacade } from "@tanglass-erp/store/sales";
-import { groupeByCode } from "../adapters";
 import startOfMonth from 'date-fns/fp/startOfMonth';
 import { fr } from 'date-fns/locale';
 

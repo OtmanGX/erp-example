@@ -12,7 +12,6 @@ export interface User {
   phone?: string;
   username?: string;
   SalesPoint?: SalePointForUser;
-  role:Management_User_Role_Enum
 }
 
 

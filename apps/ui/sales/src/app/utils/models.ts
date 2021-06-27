@@ -1,6 +1,4 @@
-export class GlassForm{
-    product
-}
+
 export class DraftInfos {
     id: number;
     status: string;
@@ -9,12 +7,12 @@ export class DraftInfos {
     date: string;
     company: string;
   }
-export class DraftItem {
+export class Product {
     id: string;
-    product_code: string;
-    label: string;
-    count: number;
-    heigth: number;
+    product_code?: string;
+    label?: string;
+    count?: number;
+    heigth?: number;
     width: number;
     m2: number=0;
     ml: number=0;
@@ -42,9 +40,9 @@ export class DraftItem {
   }
 
   export class Intermediate_Data{
-    data?:DraftItem;
+    data?:Product;
     product_type:string;
-    row?:DraftItem;
+    row?:Product;
     companies:KeyValue[];
     warehouses:KeyValue[];
   }

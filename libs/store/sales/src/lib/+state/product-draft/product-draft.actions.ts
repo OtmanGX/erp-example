@@ -1,8 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Product_draft } from "@tanglass-erp/core/sales";
-import { StringDecoder } from 'string_decoder';
-
-
+import { Product_draft, InsertedProduct } from '@tanglass-erp/core/sales';
 
 /****************************************************************** */
 /*****LOAD  Products ** */
@@ -11,7 +8,6 @@ import { StringDecoder } from 'string_decoder';
 export const loadProducts = createAction(
   '[Products] Load Products',
   props<{ draft_id: number }>()
-
 );
 
 export const loadProductsSuccess = createAction(
@@ -24,16 +20,14 @@ export const loadProductsFailure = createAction(
   props<{ error: any }>()
 );
 
-
 /****************************************************************** */
 /*****LOAD INDIVIDUAL Product ** */
 /****************************************************************** */
 
 export const loadProductById = createAction(
   '[product Card Component] Load Product  By Id',
-  props<{ id:any }>()
-  );
-
+  props<{ id: any }>()
+);
 
 export const loadProductByIdSuccess = createAction(
   '[product Effect] Load  By Id Success',
@@ -45,14 +39,13 @@ export const loadProductByIdFailure = createAction(
   props<{ error: any }>()
 );
 
-
 /****************************************************************** */
 /*****ADD INDIVIDUAL Glass ** */
 /****************************************************************** */
 
 export const addGlass = createAction(
   '[List  Glass Component] Add  Glass',
-  props<{ glass: Product_draft }>()
+  props<{ glass: InsertedProduct }>()
 );
 
 export const addGlassSuccess = createAction(
@@ -71,7 +64,7 @@ export const addGlassFailure = createAction(
 
 export const addService = createAction(
   '[List  Service Component] Add  Service',
-  props<{ service: Product_draft }>()
+  props<{ service: InsertedProduct }>()
 );
 
 export const addServiceSuccess = createAction(
@@ -90,7 +83,7 @@ export const addServiceFailure = createAction(
 
 export const addConsumable = createAction(
   '[List  Consumable Component] Add  Consumable',
-  props<{ consumable: Product_draft }>()
+  props<{ consumable: InsertedProduct }>()
 );
 
 export const addConsumableSuccess = createAction(
@@ -109,7 +102,7 @@ export const addConsumableFailure = createAction(
 
 export const addAccessory = createAction(
   '[List  Accessory Component] Add  Accessory',
-  props<{ accessory: Product_draft }>()
+  props<{ accessory: InsertedProduct }>()
 );
 
 export const addAccessorySuccess = createAction(
@@ -128,7 +121,7 @@ export const addAccessoryFailure = createAction(
 
 export const addCustomerItem = createAction(
   '[order  products] Add  Customer Item',
-  props<{ customer_item: Product_draft }>()
+  props<{ customer_item: InsertedProduct }>()
 );
 
 export const addCustomerItemSuccess = createAction(
@@ -145,7 +138,7 @@ export const addCustomerItemFailure = createAction(
 /*****REMOVE INDIVIDUAL    Product** */
 /****************************************************************** */
 
-export const removeProduct= createAction(
+export const removeProduct = createAction(
   '[List   Product Component] Delete  Product',
   props<{ productId: string }>()
 );
@@ -158,25 +151,7 @@ export const removeProductFailure = createAction(
   props<{ error: any }>()
 );
 
-// export const loadSelectedProducts = createAction(
-//   '[Products] Load Selected Products',
-//   props<{ draft_id: number }>()
-
-// );
-
-// export const loadSelectedProductsSuccess = createAction(
-//   '[Products] Load Selected Products Success',
-//   props<{ products: Product_draft[] }>()
-// );
-
-// export const loadSelectedProductsFailure = createAction(
-//   '[Products] Load Selected Products Failure',
-//   props<{ error: any }>()
-// );
-
-
 export const setProductsState = createAction(
   '[Products]  Set  Products Success ',
   props<{ products: Product_draft[] }>()
 );
-

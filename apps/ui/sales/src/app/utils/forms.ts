@@ -2,13 +2,13 @@ import { MAXNUMBER, REQUIRED } from '@tanglass-erp/material';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Accessory, Consumable, CustomerProduct, Glass, Service } from '@TanglassStore/product/index';
-import { DraftItem, Intermediate_Data } from './models';
+import { Product, Intermediate_Data } from './models';
 import { DeliveryStatus, InsertedDeliveryForm, InsertedInvoice, PaymentMethod } from '@tanglass-erp/core/sales';
 
 type ListObservable = Observable<any> | Array<any>;
 
 
-function getGlassQuantities(row: DraftItem) {
+function getGlassQuantities(row: Product) {
   return [
     { key: row.m2, value: row.m2 + '  m2' },
     { key: row.ml, value: row.ml + '  ml' }
@@ -83,11 +83,11 @@ const regConfigInvoice = (data?: InsertedInvoice | null, deliveries?: any, clien
     name: "payment_method",
     label: "Méthode de paiement",
     inputType: "text",
-    options: Object.values(PaymentMethod).map(e => ({key: e, value: e})),
+    options: Object.values(PaymentMethod).map(e => ({ key: e, value: e })),
     value: data?.payment_method,
     validations: [REQUIRED]
   }
-  ];
+];
 
 
 const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?, companies?, contacts?) => [
@@ -169,7 +169,7 @@ const regConfigDraftInfos = (
   customers: any = [],
   contacts: any = [],
   companies: any = [],
-  salepoints: any = []
+  salesPoints: any = [],
 ) => [
 
     {
@@ -177,14 +177,14 @@ const regConfigDraftInfos = (
       name: "customer_id",
       label: "Clients",
       inputType: "text",
-      value: data?.customer_id ,
+      value: data?.customer_id,
       filterFields: ['name', 'phone'],
       fieldsToShow: ['name', 'phone'],
       options: customers
     },
     {
       type: "selectSearch", name: "contact_id",
-      label: "Contacts", inputType: "text", value: data?.contact_id ,
+      label: "Contacts", inputType: "text", value: data?.contact_id,
       filterFields: ['name', 'code'],
       fieldsToShow: ['name', 'code'],
       options: contacts
@@ -203,10 +203,19 @@ const regConfigDraftInfos = (
     name: "salepoint_id",
     label: "Point de vente",
     inputType: "text",
-    options: salepoints,
+    options: salesPoints,
     value: data?.salepoint_id,
     validations: []
   },
+    {
+      type: 'select',
+      name: 'salepoint_id',
+      label: 'Point de vente',
+      inputType: 'text',
+      value: data?.salepoint_id,
+      options: salesPoints,
+      validations: [REQUIRED],
+    },
     {
       type: 'date',
       name: 'date',
@@ -292,7 +301,7 @@ const regConfigGlassItem = (
     },
     {
       type: "select", name: "warehouse_id", label: "Stock",
-      inputType: "text", value: data?.data?.warehouse_id ,
+      inputType: "text", value: data?.data?.warehouse_id,
       options: warehouses,
       //validations: [REQUIRED],
     },
@@ -477,7 +486,7 @@ const regConfigServiceItem = (
       type: "select", name: "company_id", label: "Société",
       inputType: "text", value: data?.data?.company_name,
       options: companies,
-      validations: [REQUIRED],
+      //validations: [REQUIRED],
     },
     {
       type: 'input',
@@ -522,7 +531,7 @@ const regConfigConsumableItem = (
       label: 'Quantité',
       inputType: 'number',
       value: data?.data?.quantity,
-      options: ((data.row.ml || data.row.m2) ? getGlassQuantities(data.row) : null) ,
+      options: ((data.row.ml || data.row.m2) ? getGlassQuantities(data.row) : null),
     },
     {
       type: 'input',
@@ -532,10 +541,15 @@ const regConfigConsumableItem = (
       value: data?.data?.price,
       validations: [REQUIRED, MAXNUMBER(limit)],
     },
-
+    {
+      type: "select", name: "company_id", label: "Société",
+      inputType: "text", value: data?.data?.company_name,
+      options: companies,
+      //validations: [REQUIRED],
+    },
     {
       type: "select", name: "warehouse_id", label: "Stock",
-      inputType: "text", value: data?.data?.warehouse_id ,
+      inputType: "text", value: data?.data?.warehouse_id,
       options: warehouses,
       //validations: [REQUIRED],
     },
@@ -601,7 +615,7 @@ const regConfigPayment = (
       name: "customer_id",
       label: "Client",
       inputType: "text",
-      value: data?.customers ,
+      value: data?.customers,
       filterFields: ['name', 'phone'],
       fieldsToShow: ['name', 'phone'],
       options: customers

@@ -9,7 +9,6 @@ query GetAllUsers {
     email
     lastname
     phone
-    role
     username
     SalesPointsid
   }

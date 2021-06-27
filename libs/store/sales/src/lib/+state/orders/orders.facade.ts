@@ -8,14 +8,14 @@ import * as OrdersActions from './orders.actions';
 import { filter, map } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 
-import { invoiceFilter, Order } from '@tanglass-erp/core/sales';
+import { invoiceFilter, Order,InsertedOrder } from '@tanglass-erp/core/sales';
 import { PaymentsFacade } from "../payments/payments.facade";
 import { ProductDraftFacade } from '../product-draft/product-draft.facade';
 @Injectable()
 export class OrdersFacade {
   loaded$ = this.store.pipe(select(OrdersSelectors.getOrdersLoaded));
   allOrders$ = this.store.pipe(select(OrdersSelectors.getAllOrders));
-  selectedOrders$ = this.store.pipe(select(OrdersSelectors.getSelectedOrder));
+  loadedOrders$ = this.store.pipe(select(OrdersSelectors.getSelectedOrder));
   selectedOrder$ = this.store.pipe(
     select(OrdersSelectors.getSelected),
     filter((val) => !!val)
@@ -40,8 +40,8 @@ export class OrdersFacade {
     this.dispatch(OrdersActions.loadOrderById({ id }))
   }
 
-  addOrder(Order: Order) {
-    this.dispatch(OrdersActions.addOrder({ Order }));
+  addOrder(order: InsertedOrder) {
+    this.dispatch(OrdersActions.addOrder({ order }));
   }
 
   selectOrder(id: string | number) {

@@ -1,13 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { OrdersFacade,DraftFacade, Order } from "@tanglass-erp/store/sales";
-import { AppState } from '@tanglass-erp/store/app';
-import { Store } from '@ngrx/store';
-import { Location } from '@angular/common';
-import { takeWhile } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { OrdersFacade, Order } from "@tanglass-erp/store/sales";
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
-import { of } from "rxjs";
+import { SharedFacade } from '@tanglass-erp/store/shared';
 @Component({
   selector: 'ngx-order-card',
   templateUrl: './order-card.component.html',
@@ -16,21 +12,21 @@ import { of } from "rxjs";
 export class OrderCardComponent extends ModelCardComponent {
   title = "Commande CARD";
   id: string;
-  data$ = this.facade.selectedOrders$
+  data$ = this.facade.loadedOrders$
     .pipe(takeUntil(this._onDestroy));
   isCardMode: boolean = true;
   constructor(
     public activatedRoute: ActivatedRoute,
     protected facade: OrdersFacade,
-    private draftFacade: DraftFacade,
-    private ordersFacade: OrdersFacade,
-    
+    private sharedfacade: SharedFacade,
   ) {
     super(activatedRoute);
   }
 
   dispatch(): void {
     this.facade.loadOrderById(this.id);
+    this.sharedfacade.loadAllShortCompanies();
+    this.sharedfacade.loadAllShortWarehouses();
   }
 
   passData(data:Order) {
@@ -42,6 +38,7 @@ export class OrderCardComponent extends ModelCardComponent {
         icons: [{ name: "edit", tooltip: "Modification", event: 'editMain' }],
         data:
           [
+            { label: 'Réf ', value: data?.ref },
             { label: 'ID.', value: data?.id },
             { label: 'Société', value: data?.company.name },
             { label: 'Client', value: data?.customer.name },
@@ -50,7 +47,6 @@ export class OrderCardComponent extends ModelCardComponent {
             { label: 'Date limite ', value: data?.deadline, },
             { label: 'Livraison', value: [data?.delivery_status], type: 'chips' },
             { label: 'Paiement', value: [data?.payment_status], type: 'chips' },
-            { label: 'Réf ', value: data?.draft_id },
           ]
       },
     ];

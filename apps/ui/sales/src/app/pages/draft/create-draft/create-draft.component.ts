@@ -5,7 +5,6 @@ import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';
 import { FieldConfig } from '@tanglass-erp/material';
 import { Store } from '@ngrx/store';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
-import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
 
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
@@ -14,7 +13,9 @@ import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.
 import { map } from 'rxjs/operators';
 import { DraftFacade } from "@tanglass-erp/store/sales";
 import { Subscription } from 'rxjs';
-import { id } from 'date-fns/locale';
+import { SharedFacade } from '@tanglass-erp/store/shared';
+import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoint.actions';
+
 @Component({
   selector: 'ngx-create-draft',
   templateUrl: './create-draft.component.html',
@@ -34,11 +35,17 @@ export class CreateDraftComponent implements OnInit {
     public dialog: MatDialog,
     private store: Store,
     private facade: DraftFacade,
+    private sharedfacade: SharedFacade,
+
   ) { }
 
   ngOnInit(): void {
     this.facade.createDraft();
-    this.store.dispatch(ShortCompanieActions.loadShortCompany());
+    this.store.dispatch(CustomerActions.loadCustomers());
+    this.store.dispatch(ContactActions.loadContacts());
+    this.sharedfacade.loadAllShortCompanies();
+    this.sharedfacade.loadAllShortWarehouses();
+    this.store.dispatch(SalePointActions.loadSalePoints());
     this.buildForm();
     this.dataSub = this.facade.selectedDraft$.subscribe(id => this.draft_id = id)
   }
@@ -51,9 +58,7 @@ export class CreateDraftComponent implements OnInit {
       this.contacts$,
       this.companies$.pipe(map(item => item.map(company => ({ key: company.id, value: company.name })))),
     );
-    this.store.dispatch(CustomerActions.loadCustomers());
-    this.store.dispatch(ContactActions.loadContacts());
-
+ 
   }
   ngOnDestroy() {
     this.dataSub.unsubscribe()

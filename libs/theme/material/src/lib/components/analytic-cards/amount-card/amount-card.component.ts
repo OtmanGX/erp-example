@@ -8,6 +8,7 @@ import { CardConfig } from '../../../interfaces/card-config';
 })
 export class AmountCardComponent implements OnInit {
   @Input() config: CardConfig;
+
   constructor() { }
 
   ngOnInit(): void {
