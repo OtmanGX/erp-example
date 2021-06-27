@@ -18,5 +18,8 @@ query GetQuotationById($id: Int!) {
     total_ht
     total_tax
     total_ttc
+    salepoint {
+      name
+    }
   }
 }

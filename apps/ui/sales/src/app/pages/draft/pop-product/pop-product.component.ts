@@ -3,10 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
 import * as regConfigs from '@TanglassUi/sales/utils/forms';
 import { Store } from '@ngrx/store';
-import { ProductsTypes, GlassGroup, ServiceGroup, AccessoryGroup } from "../../../utils/enums";
+import { ProductsTypes, GlassGroup, ServiceGroup, AccessoryGroup } from "@tanglass-erp/store/sales";
 import { DynamicFormComponent } from '@tanglass-erp/material';
 import * as productStore from '@TanglassStore/product/index';
-import { DraftItem, Intermediate_Data, SalesItem } from "../../../utils/models";
+import {  Intermediate_Data, SalesItem } from "../../../utils/models";
 @Component({
   selector: 'ngx-pop-product',
   templateUrl: './pop-product.component.html',
@@ -53,8 +53,8 @@ export class PopProductComponent extends FormDialog implements AfterViewInit, On
         let found = this.companies.find(element => element.key == val)
         this.formValue = { ...this.formValue, company_name: found?.value }
         this.warehouses = this.data.warehouses.filter(warehouse => warehouse.company_id == val);
-        //  this.data.data = this.productForm.value;
-        //this.getItems(this.type)
+       this.data.data = this.productForm.value;
+        this.getItems(this.type)
       }
     )
   }
@@ -117,12 +117,10 @@ export class PopProductComponent extends FormDialog implements AfterViewInit, On
       }
     }
   }
+
   submitForm() {
     this.formValue = { ...this.formValue, ...this.productForm.value, type: this.type };
     this.submit(this.formValue);
   }
 
-  ngOnDestroy() {
-
-  }
 }

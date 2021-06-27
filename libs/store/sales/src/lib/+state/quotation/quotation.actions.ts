@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { invoiceFilter, Quotation } from '@tanglass-erp/core/sales';
+import { invoiceFilter, Quotation,InsertedQuotation} from '@tanglass-erp/core/sales';
 
 export const loadQuotations = createAction('[Quotations] Load Quotations',
   props<invoiceFilter>()
@@ -28,7 +28,7 @@ export const loadQuotationById = createAction(
 
 export const loadQuotationByIdSuccess = createAction(
   '[Quotation Effect] Load Quotation By Id Success',
-  props<{ Quotation: Quotation }>()
+  props<{ quotation: Quotation }>()
 );
 
 export const loadQuotationByIdFailure = createAction(
@@ -43,7 +43,7 @@ export const loadQuotationByIdFailure = createAction(
 
 export const addQuotation = createAction(
   '[Quotation Component] Add Quotation',
-  props<{ quotation: Quotation }>()
+  props<{ quotation: InsertedQuotation }>()
 );
 
 export const addQuotationSuccess = createAction(

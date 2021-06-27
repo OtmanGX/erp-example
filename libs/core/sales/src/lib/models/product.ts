@@ -1,21 +1,28 @@
+import { Sales_Product_Type_Enum } from "@tanglass-erp/infrastructure/graphql";
+import { Interface } from "readline";
+
 export interface Product_draft {
-    id:string;
-    draft_id?:number;
-    product_code?:string;
-    label?:string;
-    count?:number;
-    width?:number;
-    heigth?:number;
-    quantity?:number;
-    price?:number;
-    total_price?:number;
+    id: string;
+    draft_id?: number;
+    product_code?: string;
+    label?: string;
+    count?: number;
+    width?: number;
+    heigth?: number;
+    quantity?: number;
+    price?: number;
+    total_price?: number;
     delivered?: number;
-    company_name ?:string;
-    company_id?:string;
-    m2?:number;
-    ml?:number;
-    dependent_id?:string;
-    warehouse_id?:string;
-    type?;
-    substance_id?:string;
+    company_name?: string;
+    company_id?: string;
+    m2?: number;
+    ml?: number;
+    dependent_id?: string;
+    warehouse_id?: string;
+    type?: string;
+    substance_id?: string;
+    unit?:string;
+}
+export interface InsertedProduct extends Product_draft {
+type:Sales_Product_Type_Enum
 }

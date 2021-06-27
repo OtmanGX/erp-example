@@ -11,6 +11,6 @@
     </div>
   </div>
   <button mat-icon-button matTooltip="view more" [routerLink]="config.link">
-    <mat-icon class="mat-18">arrow_right_alt</mat-icon>
+    <mat-icon *ngIf="config.withAction" class="mat-18">arrow_right_alt</mat-icon>
   </button>
 </mat-card>

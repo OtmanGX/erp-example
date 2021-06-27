@@ -1,9 +1,29 @@
-
+import { Product_draft } from "@tanglass-erp/core/sales";
 export class Amount {
-  company?: string;
-  total_HT: number = 0;
-  total_TTC: number = 0;
-  total_TVA: number = 0;
-  received?: number = 0;
-  debt?: number = 0;
+  company_name?: string;
+  total_ht: number = 0;
+  total_ttc: number = 0;
+  total_tax: number = 0;
 }
+export class Product {
+  id: string;
+  product_code?: string;
+  label?: string;
+  count?: number;
+  heigth?: number;
+  width?: number;
+  m2?: number = 0;
+  ml?: number = 0;
+  unit?: string;
+  price?: number;
+  quantity?: number = 0;
+  total_price?: number = 0;
+  company_name?: string;
+  warehouse_id?: string;
+  type?:string
+}
+export class ProductGroups {
+  glasses: Product_draft[];
+  articles: Product_draft[];
+}
+

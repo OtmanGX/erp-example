@@ -6,6 +6,7 @@ interface CardConfig {
   link?: string;
   percentage?: string;
   down?: boolean;
+  withAction:boolean;
 }
 
 

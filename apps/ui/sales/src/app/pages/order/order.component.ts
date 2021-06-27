@@ -21,6 +21,8 @@ export class OrderComponent implements GridView {
   columnId: string = 'id';
   data$=this.facade.allOrders$;
   dateText: string;
+  deliverEvent = 'deliver';
+
 
   constructor(
     public dialog: MatDialog,
@@ -56,16 +58,22 @@ export class OrderComponent implements GridView {
         break;
       case Operations.dateChange:
         this.facade.loadAllOrders(event.data);
+        case this.deliverEvent:
         break;
     }
   }
 
+
+
   setColumnDefs(): void {
     this.columnDefs = [
       ...OrderHeaders,
-      { field: 'id', headerName: 'Action', type: "editColumn" }
+      {field: 'id', headerName: 'Action', type: "editColumn", cellRendererParams: (params) => (
+          {
+            extra: [{ icon: "delivery_dining", tooltip: "délivrer", event: "deliver" }],
+          }
+        )},
     ];
   }
-
 
 }

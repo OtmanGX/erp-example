@@ -58,7 +58,7 @@ export class OrdersEffects {
     return this.actions$.pipe(
       ofType(OrdersActions.addOrder),
       mergeMap((action) =>
-        this.orderService.insertOne(action.Order).pipe(
+        this.orderService.insertOne(action.order).pipe(
           map((data) => {
             this.notificationService.showNotifToast({
               message: 'Ajouté avec succès',
@@ -71,7 +71,7 @@ export class OrdersEffects {
             });
             this.router.navigate(['/sales/order']);
             return OrdersActions.addOrderSuccess({
-              Order: data.data.insert_sales_order_one,
+              order: data.data.insert_sales_order_one,
             });
           }),
           catchError((error) => of(OrdersActions.addOrderFailure({ error })))
@@ -89,7 +89,7 @@ export class OrdersEffects {
             this.draftFacade.selectDraftId(data.data.sales_order_by_pk.draft_id)
             this.productDraftFacade.setDraftProducts(data.data.sales_order_by_pk.draft.product_drafts)
             this.paymentFacade.setOrderPayments(data.data.sales_order_by_pk.payments)
-            return OrdersActions.loadOrderByIdSuccess({ Order: data.data.sales_order_by_pk })
+            return OrdersActions.loadOrderByIdSuccess({ order: data.data.sales_order_by_pk })
           }),
           catchError((error) =>
             of(OrdersActions.loadOrderByIdFailure({ error }))

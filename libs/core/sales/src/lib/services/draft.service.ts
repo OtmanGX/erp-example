@@ -12,7 +12,7 @@ import {
   DeleteDraftsGQL,
   Sales_Product_Type_Enum
 } from '@tanglass-erp/infrastructure/graphql';
-import { Product_draft } from "../models/product";
+import { Product_draft,InsertedProduct } from "../models/product";
 @Injectable({
   providedIn: 'root'
 })
@@ -82,25 +82,25 @@ export class DraftService {
   }
 
   //add Glass to  a Draft (order or quotation )
-  addGlass(createdItem: Product_draft) {
+  addGlass(createdItem: InsertedProduct) {
     return this.insertGlass.mutate(createdItem)
   }
 
   //add Consumable to  a Draft (order or quotation )
 
-  addConsumable(createdItem: Product_draft) {
+  addConsumable(createdItem: InsertedProduct) {
     return this.insertConsumable.mutate(createdItem)
   }
 
   //add Accessory to  a Draft (order or quotation )
 
-  addAccessory(createdItem: Product_draft) {
+  addAccessory(createdItem: InsertedProduct) {
     return this.insertAccessory.mutate(createdItem)
   }
 
   //add Service to  a Draft (order or quotation )
 
-  addService(createdItem: Product_draft) {
+  addService(createdItem: InsertedProduct) {
     return this.insertService.mutate(createdItem)
   }
   removeProduct(id: string) {

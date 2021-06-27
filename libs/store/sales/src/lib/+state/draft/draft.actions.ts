@@ -98,7 +98,7 @@ export const removeDraftFailure = createAction(
 export const clearDraftState = createAction('[Draft] Clear Draft State');
 
 export const selectDraft = createAction(
-  '[Draft ] Select Draft ',
+  '[Draft ] Select Draft ID ',
   props<{ id: number}>()
 );
 

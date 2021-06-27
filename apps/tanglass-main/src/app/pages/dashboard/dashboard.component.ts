@@ -12,25 +12,32 @@ export class DashboardComponent implements OnInit {
       icon: "people",
       title: "New Leads",
       subtitle: "3,050",
-      color: "primary"
+      color: "primary",
+      withAction:true,
     },
     {
       icon: "attach_money",
       title: "Ventes de cette semaine",
       subtitle: "$80,500",
-      color: "primary"
+      color: "primary",
+      withAction:true,
+
     },
     {
       icon: "store",
       title: "État de stock",
       subtitle: "Surplus de stock de 8,5% ",
-      color: "accent"
+      color: "accent",
+      withAction:true,
+
     },
     {
       icon: "shopping_cart",
       title: "Commandes",
       subtitle: "305 Commandes de transfert",
-      color: "accent"
+      color: "accent",
+      withAction:true,
+
     }
   ];
   trending_list: CardConfig[] = [
@@ -41,6 +48,8 @@ export class DashboardComponent implements OnInit {
       percentage: "+21",
       color: "primary",
       down: false,
+      withAction:true,
+
     }
   ];
 
@@ -184,7 +193,7 @@ export class DashboardComponent implements OnInit {
       },
       series: [
         {
-          data: [34, 45, 31, 45, 31, 43, 26, 43, 31, 45, 33, 40],
+          data: [30, 34, 36, 45, 47, 53, 49, 48, 46, 40, 33, 40],
           type: "line",
           areaStyle: {},
           smooth: true,

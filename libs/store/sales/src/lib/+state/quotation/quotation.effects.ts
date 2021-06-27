@@ -57,14 +57,14 @@ export class QuotationEffects {
   });
 
 
-  getOrderById$ = createEffect(() => {
+  getQuotationById$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(QuotationActions.loadQuotationById),
       mergeMap((action) =>
         this.quotationService.getOneById(action.id).pipe(
           map((data) => {
 
-            return QuotationActions.loadQuotationByIdSuccess({ Quotation: data.data.sales_quotation_by_pk })
+            return QuotationActions.loadQuotationByIdSuccess({ quotation: data.data.sales_quotation_by_pk })
           }),
           catchError((error) =>
             of(QuotationActions.loadQuotationByIdFailure({ error }))

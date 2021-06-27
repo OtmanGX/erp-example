@@ -23,5 +23,6 @@ query GetAllOrders($dateStart: date, $dateEnd: date) {
     salepoint {
       name
     }
+      ref
   }
 }

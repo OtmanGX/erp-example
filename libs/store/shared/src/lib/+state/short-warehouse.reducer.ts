@@ -7,7 +7,7 @@ import { ShortFeauture } from '@tanglass-erp/core/common';
 export const SHORTWAREHOUSE_FEATURE_KEY = 'shortWarehouse';
 
 export interface State extends EntityState<ShortFeauture> {
-  selectedId?: string | number; // which ShortWarehouse record has been selected
+  selectedId?: string ; // which ShortWarehouse record has been selected
   loaded: boolean; // has the ShortWarehouse list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -18,7 +18,9 @@ export interface ShortWarehousePartialState {
 
 export const shortWarehouseAdapter: EntityAdapter<ShortFeauture> = createEntityAdapter<
 ShortFeauture
->();
+>({
+  
+});
 
 export const initialState: State = shortWarehouseAdapter.getInitialState({
   // set initial required properties

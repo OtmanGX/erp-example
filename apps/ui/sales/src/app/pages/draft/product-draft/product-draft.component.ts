@@ -1,24 +1,23 @@
-import { Component, OnInit, ViewChild, Input, OnChanges, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnDestroy } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { PopProductComponent } from "../pop-product/pop-product.component";
-import { Column, ColumnType, FieldConfig, TableComponent } from '@tanglass-erp/material';
-import { ProductHeaders, ProductGlassHeaders, action } from "../../../utils/grid-headers";
-import { DraftItem } from "../../../utils/models";
-import { ProductDraftFacade } from "@tanglass-erp/store/sales";
-import { ProductsTypes } from "../../../utils/enums";
+import { Column, FieldConfig, TableComponent } from '@tanglass-erp/material';
+import { ProductHeaders, ProductGlassHeaders } from "../../../utils/grid-headers";
+import { Product } from "../../../utils/models";
+import { ProductDraftFacade ,ProductsTypes} from "@tanglass-erp/store/sales";
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { OrdersFacade, DraftFacade } from "@tanglass-erp/store/sales";
+import { DraftFacade } from "@tanglass-erp/store/sales";
 @Component({
   selector: 'ngx-product-draft',
   templateUrl: './product-draft.component.html',
   styleUrls: ['./product-draft.component.scss']
 })
 export class ProductDraftComponent implements OnInit, OnDestroy {
-  @ViewChild('glassTable') glassTable: TableComponent<DraftItem>;
-  @ViewChild('articlesTable', { read: TableComponent, static: false }) articlesTable: TableComponent<DraftItem>;
+  @ViewChild('glassTable') glassTable: TableComponent<Product>;
+  @ViewChild('articlesTable', { read: TableComponent, static: false }) articlesTable: TableComponent<Product>;
   displayedColumns: Array<Column> = ProductHeaders
   glassesColumns: Array<Column> = ProductGlassHeaders
   dataSourceGlass = [];
@@ -30,7 +29,7 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
   productsSub: Subscription;
   companiesSub: Subscription;
   warehousesSub: Subscription;
-  @ViewChild(MatTable, { static: true }) table: MatTable<DraftItem>;
+  @ViewChild(MatTable, { static: true }) table: MatTable<Product>;
   @Input() isCardMode: boolean = false;
   constructor(
     public dialog: MatDialog,
@@ -39,19 +38,17 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
     private draft_facade: DraftFacade,
   ) { }
   ngOnInit(): void {
-    this.draft_facade.selectedDraft$.subscribe(id =>this.draft_id = id)
-    this.productsSub = this.facade.allProduct$.subscribe(
+    this.draft_facade.selectedDraft$.subscribe(id => this.draft_id = id)
+    this.productsSub = this.facade.getProductsGroups().subscribe(
       items => {
-        this.facade.updateAmounts()
-        this.dataSourceGlass = items.filter(item => item.type == ProductsTypes.glass || item.type == ProductsTypes.customerPorduct);
-        this.dataSourceArticles = items.filter(item => item.type !== ProductsTypes.glass && item.type !== ProductsTypes.customerPorduct);
+        this.facade.updateAmounts();
+        this.dataSourceGlass = items.glasses;
+        this.dataSourceArticles = items.articles;
       }
-    )      
-    this.sharedfacade.loadAllShortCompanies()
-    this.sharedfacade.loadAllShortWarehouses()                                                                                                                                                                                                                                                                                                                                                                           
+    )
   }
 
-  openDialog(action, product_type: string, row?: DraftItem) {
+  openDialog(action, product_type: string, row?: Product): void {
     let companies; let warehouses
     this.companiesSub = this.companies$.subscribe(val => companies = val)
     this.warehousesSub = this.warehouses$.subscribe(val => warehouses = val)
@@ -90,13 +87,13 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
     this.articlesTable.render();
     this.glassTable.render();
   }
-  delete(item: DraftItem) {
+  delete(item: Product): void {
     this.facade.removeProduct(item.id);
     this.articlesTable.render();
     this.glassTable.render();
     this.facade.updateAmounts();
   }
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.productsSub?.unsubscribe();
     this.warehousesSub?.unsubscribe();
     this.companiesSub?.unsubscribe()

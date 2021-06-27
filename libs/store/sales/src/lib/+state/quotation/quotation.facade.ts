@@ -5,7 +5,7 @@ import { select, Store, Action } from '@ngrx/store';
 import * as fromQuotation from './quotation.reducer';
 import * as QuotationSelectors from './quotation.selectors';
 import * as QuotationsActions from './quotation.actions';
-import { invoiceFilter, Quotation } from '@tanglass-erp/core/sales';
+import { InsertedQuotation, invoiceFilter, Quotation } from '@tanglass-erp/core/sales';
 @Injectable()
 export class QuotationFacade {
   loaded$ = this.store.pipe(select(QuotationSelectors.getQuotationLoaded));
@@ -21,7 +21,7 @@ export class QuotationFacade {
   loadAllQuotations(params: invoiceFilter) {
     this.dispatch(QuotationsActions.loadQuotations(params));
   }
-  addQuotation(quotation:Quotation) {
+  addQuotation(quotation:InsertedQuotation) {
     this.dispatch(QuotationsActions.addQuotation({quotation}));
   }
 

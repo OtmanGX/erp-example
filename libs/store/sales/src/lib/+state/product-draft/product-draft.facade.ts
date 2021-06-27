@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { select, Store, Action } from '@ngrx/store';
 import * as ProductDraftSelectors from './product-draft.selectors';
 import * as ProductsActions from './product-draft.actions';
-import { map, reduce } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
-import { Amount } from "./products-draft.models";
+import { map } from 'rxjs/operators';
+import { BehaviorSubject,Observable } from 'rxjs';
 import { PaymentsFacade } from "../payments/payments.facade";
 import { Product_draft } from "@tanglass-erp/core/sales";
-
+import { ProductGroups,Amount } from "./products-draft.models";
+import { ProductsTypes } from "./enums";
+import { groupeByCode } from "./adapters";
 @Injectable()
 export class ProductDraftFacade {
   loaded$ = this.store.pipe(
@@ -15,7 +16,7 @@ export class ProductDraftFacade {
   );
   allProduct$ = this.store.pipe(
     select(ProductDraftSelectors.getAllProduct)
-  );
+  )
   selectedProduct$ = this.store.pipe(
     select(ProductDraftSelectors.getSelectedProduct)
   );
@@ -25,10 +26,21 @@ export class ProductDraftFacade {
     private store: Store,
     public paymentsFacade: PaymentsFacade
   ) { }
-  dispatch(action: Action) {
+
+  getProductsGroups(): Observable<ProductGroups> {
+    return this.allProduct$.pipe(
+      map(
+        items => ({
+          glasses: items.filter(item => item.type == ProductsTypes.glass || item.type == ProductsTypes.customerPorduct),
+          articles: groupeByCode(items.filter(item => item.type !== ProductsTypes.glass && item.type !== ProductsTypes.customerPorduct))
+        })
+      )
+    );
+  }
+  dispatch(action: Action): void {
     this.store.dispatch(action);
   }
-  setDraftProducts(products:Product_draft[]) {
+  setDraftProducts(products: Product_draft[]): void {
     this.dispatch(ProductsActions.setProductsState({ products }))
   }
   addGlass(product): void {
@@ -83,18 +95,18 @@ export class ProductDraftFacade {
           value => value.company_name == company).map(
             obj =>
             ({
-              company: obj.company_name,
-              total_HT: parseFloat((obj.total_price * (5 / 6)).toFixed(2)),
-              total_TTC: parseFloat(obj.total_price.toFixed(2)),
-              total_TVA: parseFloat((obj.total_price / 6).toFixed(2)),
+              company_name: obj.company_name,
+              total_ht: parseFloat((obj.total_price * (5 / 6)).toFixed(2)),
+              total_ttc: parseFloat(obj.total_price.toFixed(2)),
+              total_tax: parseFloat((obj.total_price / 6).toFixed(2)),
             }
             )
           ).reduce(function (accumulator, product: Amount) {
             return {
-              company: product.company,
-              total_HT: parseFloat((product.total_HT + accumulator.total_HT).toFixed(2)),
-              total_TTC: parseFloat((product.total_TTC + accumulator.total_TTC).toFixed(2)),
-              total_TVA: parseFloat((product.total_TVA + accumulator.total_TVA).toFixed(2)),
+              company_name: product.company_name,
+              total_ht: parseFloat((product.total_ht + accumulator.total_ht).toFixed(2)),
+              total_ttc: parseFloat((product.total_ttc + accumulator.total_ttc).toFixed(2)),
+              total_tax: parseFloat((product.total_tax + accumulator.total_tax).toFixed(2)),
             };
           }, new Amount())
       }
@@ -111,14 +123,14 @@ export class ProductDraftFacade {
     let amounts: Amount[] = []
     this.getCompanies();
     this.orderCompanies?.forEach(element => {
-     element? amounts.push(this.updateCompanyAmount(element)):{}
+      element ? amounts.push(this.updateCompanyAmount(element)) : {}
     });
     amounts.push(amounts.reduce(function (accumulator, product: Amount) {
       return {
-        company: 'Total',
-        total_HT: product.total_HT + accumulator.total_HT,
-        total_TTC: product.total_TTC + accumulator.total_TTC,
-        total_TVA: product.total_TVA + accumulator.total_TVA,
+        company_name: 'Total',
+        total_ht: parseFloat((product.total_ht + accumulator.total_ht).toFixed(2)),
+        total_ttc: parseFloat((product.total_ttc + accumulator.total_ttc).toFixed(2)),
+        total_tax: parseFloat((product.total_tax + accumulator.total_tax).toFixed(2)),
       };
     }, new Amount()));
 
@@ -128,5 +140,5 @@ export class ProductDraftFacade {
     this.dispatch(ProductsActions.removeProduct({ productId }));
     this.updateAmounts()
   }
-  
+
 }
