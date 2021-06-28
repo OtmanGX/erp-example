@@ -71,7 +71,7 @@ export class PopProductComponent extends FormDialog implements AfterViewInit, On
         break;
       }
       case ProductsTypes.service: {
-        this.formValue['dependent_id'] = this.data.row.id;
+        this.formValue['dependent_id'] = this.data.row.glass_draft.id;
         this.types = Object.values(ServiceGroup);
         this.type = ProductsTypes.service;
         break;

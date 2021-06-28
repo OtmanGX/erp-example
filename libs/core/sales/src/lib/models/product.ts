@@ -17,11 +17,15 @@ export interface Product_draft {
     company_id?: string;
     m2?: number;
     ml?: number;
-    dependent_id?: string;
     warehouse_id?: string;
     type?: string;
     substance_id?: string;
     unit?:string;
+    glass_draft?:{
+        id:string
+    };
+    dependent_id?: string;
+
 }
 export interface InsertedProduct extends Product_draft {
 type:Sales_Product_Type_Enum

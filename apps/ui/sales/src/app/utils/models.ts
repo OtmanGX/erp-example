@@ -22,6 +22,9 @@ export class Product {
     total_price: number=0;
     company_name?: string;
     warehouse_id?:string;
+    glass_draft?:{
+      id:string
+    }
   }
 
   export class SalesItem{

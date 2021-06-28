@@ -155,3 +155,21 @@ export const setProductsState = createAction(
   '[Products]  Set  Products Success ',
   props<{ products: Product_draft[] }>()
 );
+
+
+// remove Products Form
+export const removeProducts = createAction(
+  '[Products] remove Products',
+  props<{ ids: string[] }>()
+);
+
+export const removeProductsSuccess = createAction(
+  '[Products] remove Products Success',
+  props<{ ids: string[] }>()
+);
+
+export const removeProductsFailure = createAction(
+  '[Products] remove Products Failure',
+  props<{ error: any }>()
+);
+

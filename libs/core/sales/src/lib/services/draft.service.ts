@@ -10,9 +10,10 @@ import {
   GetDraftByIdGQL,
   GetProductsByTypeGQL,
   DeleteDraftsGQL,
-  Sales_Product_Type_Enum
+  Sales_Product_Type_Enum,
+  
 } from '@tanglass-erp/infrastructure/graphql';
-import { Product_draft,InsertedProduct } from "../models/product";
+import { InsertedProduct } from "../models/product";
 @Injectable({
   providedIn: 'root'
 })
@@ -24,11 +25,12 @@ export class DraftService {
     private insertConsumable: InsertConsumableDraftGQL,
     private insertService: InsertServiceDraftGQL,
     private insertAccessory: InsertAccessoryDraftGQL,
-    private deleteProductDraft: DeleteProductDraftGQL,
+    private deleteProduct: DeleteProductDraftGQL,
     private deleteDraftsGQL: DeleteDraftsGQL,
     private getProductsByTypeGQL: GetProductsByTypeGQL,
     private getAllDraftsGQL: GetAllDraftsGQL,
-    private getDraftByIdGQL: GetDraftByIdGQL
+    private getDraftByIdGQL: GetDraftByIdGQL,
+
   ) {
   }
 
@@ -44,11 +46,6 @@ export class DraftService {
     return this.insertOneGQL.mutate()
   }
 
-  updateOne(updatedOne) {
-  }
-
-  removeOne(id: string) {
-  }
 
   removeMany(ids: number[]) {
     return this.deleteDraftsGQL.mutate({ids});
@@ -104,6 +101,8 @@ export class DraftService {
     return this.insertService.mutate(createdItem)
   }
   removeProduct(id: string) {
-    return  this.deleteProductDraft.mutate({ id })
+    return  this.deleteProduct.mutate({ id })
   }
+
+ 
 }

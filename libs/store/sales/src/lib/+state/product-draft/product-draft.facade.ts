@@ -138,7 +138,10 @@ export class ProductDraftFacade {
   }
   removeProduct(productId): void {
     this.dispatch(ProductsActions.removeProduct({ productId }));
+    
+
     this.updateAmounts()
   }
 
 }
+ 

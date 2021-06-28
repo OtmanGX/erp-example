@@ -30759,7 +30759,7 @@ export type InsertConsumableDraftMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_consumable_draft_one?: Maybe<(
     { __typename?: 'sales_consumable_draft' }
-    & Pick<Sales_Consumable_Draft, 'id'>
+    & Pick<Sales_Consumable_Draft, 'id' | 'dependent_id'>
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
       & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'substance_id'>
@@ -30792,10 +30792,13 @@ export type InsertGlassDraftMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_glass_draft_one?: Maybe<(
     { __typename?: 'sales_glass_draft' }
-    & Pick<Sales_Glass_Draft, 'id'>
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
       & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'company_id' | 'count' | 'substance_id'>
+      & { glass_draft?: Maybe<(
+        { __typename?: 'sales_glass_draft' }
+        & Pick<Sales_Glass_Draft, 'id'>
+      )> }
     ) }
   )> }
 );
@@ -30821,7 +30824,7 @@ export type InsertServiceDraftMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_service_draft_one?: Maybe<(
     { __typename?: 'sales_service_draft' }
-    & Pick<Sales_Service_Draft, 'id'>
+    & Pick<Sales_Service_Draft, 'id' | 'dependent_id'>
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
       & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
@@ -31105,6 +31108,10 @@ export type GetOrderByIdQuery = (
       & { product_drafts: Array<(
         { __typename?: 'sales_product_draft' }
         & Pick<Sales_Product_Draft, 'id' | 'label' | 'heigth' | 'company_name' | 'count' | 'delivered' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'status' | 'total_price' | 'type' | 'unit' | 'width'>
+        & { glass_draft?: Maybe<(
+          { __typename?: 'sales_glass_draft' }
+          & Pick<Sales_Glass_Draft, 'id'>
+        )> }
       )> }
     ), payments: Array<(
       { __typename?: 'sales_payment' }
@@ -31148,6 +31155,10 @@ export type GetProductsByTypeQuery = (
   & { sales_product_draft: Array<(
     { __typename?: 'sales_product_draft' }
     & Pick<Sales_Product_Draft, 'company_id' | 'company_name' | 'draft_id' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
+    & { glass_draft?: Maybe<(
+      { __typename?: 'sales_glass_draft' }
+      & Pick<Sales_Glass_Draft, 'id'>
+    )> }
   )> }
 );
 
@@ -34292,6 +34303,7 @@ export const InsertConsumableDraftDocument = gql`
     object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, company_name: $company_name, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id, m2: $m2, ml: $ml, substance_id: $substance_id}}, dependent_id: $dependent_id}
   ) {
     id
+    dependent_id
     product_draft {
       company_name
       heigth
@@ -34327,7 +34339,6 @@ export const InsertGlassDraftDocument = gql`
   insert_sales_glass_draft_one(
     object: {product_draft: {data: {heigth: $heigth, label: $label, m2: $m2, ml: $ml, price: $price, product_code: $product_code, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, width: $width, draft_id: $draft_id, count: $count, warehouse_id: $warehouse_id, company_id: $company_id, company_name: $company_name, substance_id: $substance_id}}}
   ) {
-    id
     product_draft {
       company_name
       heigth
@@ -34345,6 +34356,9 @@ export const InsertGlassDraftDocument = gql`
       company_id
       count
       substance_id
+      glass_draft {
+        id
+      }
     }
   }
 }
@@ -34366,6 +34380,7 @@ export const InsertServiceDraftDocument = gql`
     object: {product_draft: {data: {company_id: $company_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id}}, dependent_id: $dependent_id}
   ) {
     id
+    dependent_id
     product_draft {
       company_name
       heigth
@@ -34843,6 +34858,9 @@ export const GetOrderByIdDocument = gql`
         type
         unit
         width
+        glass_draft {
+          id
+        }
       }
     }
     payments {
@@ -34923,6 +34941,9 @@ export const GetProductsByTypeDocument = gql`
     type
     unit
     width
+    glass_draft {
+      id
+    }
   }
 }
     `;

@@ -33,6 +33,7 @@ mutation InsertConsumableDraft(
        }, 
        dependent_id: $dependent_id}) {
     id
+    dependent_id
     product_draft {
       company_name
       heigth

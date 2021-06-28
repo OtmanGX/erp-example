@@ -45,6 +45,9 @@ query GetOrderById($id: Int!) {
         type
         unit
         width
+        glass_draft {
+          id
+        }
       }
     }
     payments {
