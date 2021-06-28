@@ -17242,8 +17242,6 @@ export type Sales_Consumable_Draft = {
   dependent_id?: Maybe<Scalars['uuid']>;
   id: Scalars['uuid'];
   /** An object relationship */
-  productDraftByDependentId?: Maybe<Sales_Product_Draft>;
-  /** An object relationship */
   product_draft: Sales_Product_Draft;
   productdraft_id: Scalars['uuid'];
 };
@@ -17290,7 +17288,6 @@ export type Sales_Consumable_Draft_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Sales_Consumable_Draft_Bool_Exp>>>;
   dependent_id?: Maybe<Uuid_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
-  productDraftByDependentId?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   productdraft_id?: Maybe<Uuid_Comparison_Exp>;
 };
@@ -17307,7 +17304,6 @@ export enum Sales_Consumable_Draft_Constraint {
 export type Sales_Consumable_Draft_Insert_Input = {
   dependent_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
-  productDraftByDependentId?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
@@ -17368,7 +17364,6 @@ export type Sales_Consumable_Draft_On_Conflict = {
 export type Sales_Consumable_Draft_Order_By = {
   dependent_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  productDraftByDependentId?: Maybe<Sales_Product_Draft_Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
@@ -17411,16 +17406,16 @@ export type Sales_Delivery = {
   amount_ht: Scalars['numeric'];
   amount_ttc: Scalars['numeric'];
   amount_tva: Scalars['numeric'];
-  client: Scalars['uuid'];
-  company: Scalars['uuid'];
   /** An object relationship */
-  companyObject: Management_Company;
-  contact?: Maybe<Scalars['uuid']>;
+  client: Contact_Customer;
+  client_id: Scalars['uuid'];
   /** An object relationship */
-  contactByContact?: Maybe<Contact_Contact>;
+  company: Management_Company;
+  company_id: Scalars['uuid'];
+  /** An object relationship */
+  contact?: Maybe<Contact_Contact>;
+  contact_id?: Maybe<Scalars['uuid']>;
   created_at: Scalars['date'];
-  /** An object relationship */
-  customer: Contact_Customer;
   /** An array relationship */
   delivery_lines: Array<Sales_Delivery_Line>;
   /** An aggregated array relationship */
@@ -17431,9 +17426,9 @@ export type Sales_Delivery = {
   /** An aggregated array relationship */
   invoice_deliveries_aggregate: Sales_Invoice_Delivery_Aggregate;
   isReturned: Scalars['Boolean'];
-  order: Scalars['Int'];
   /** An object relationship */
-  orderObject: Sales_Order;
+  order: Sales_Order;
+  order_id: Scalars['Int'];
   payment_method: Scalars['String'];
   predicted_date: Scalars['date'];
   ref?: Maybe<Scalars['String']>;
@@ -17539,7 +17534,7 @@ export type Sales_Delivery_Avg_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
+  order_id?: Maybe<Scalars['Float']>;
   ref_num?: Maybe<Scalars['Float']>;
 };
 
@@ -17548,7 +17543,7 @@ export type Sales_Delivery_Avg_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
+  order_id?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
 };
 
@@ -17560,19 +17555,19 @@ export type Sales_Delivery_Bool_Exp = {
   amount_ht?: Maybe<Numeric_Comparison_Exp>;
   amount_ttc?: Maybe<Numeric_Comparison_Exp>;
   amount_tva?: Maybe<Numeric_Comparison_Exp>;
-  client?: Maybe<Uuid_Comparison_Exp>;
-  company?: Maybe<Uuid_Comparison_Exp>;
-  companyObject?: Maybe<Management_Company_Bool_Exp>;
-  contact?: Maybe<Uuid_Comparison_Exp>;
-  contactByContact?: Maybe<Contact_Contact_Bool_Exp>;
+  client?: Maybe<Contact_Customer_Bool_Exp>;
+  client_id?: Maybe<Uuid_Comparison_Exp>;
+  company?: Maybe<Management_Company_Bool_Exp>;
+  company_id?: Maybe<Uuid_Comparison_Exp>;
+  contact?: Maybe<Contact_Contact_Bool_Exp>;
+  contact_id?: Maybe<Uuid_Comparison_Exp>;
   created_at?: Maybe<Date_Comparison_Exp>;
-  customer?: Maybe<Contact_Customer_Bool_Exp>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   invoice_deliveries?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
   isReturned?: Maybe<Boolean_Comparison_Exp>;
-  order?: Maybe<Int_Comparison_Exp>;
-  orderObject?: Maybe<Sales_Order_Bool_Exp>;
+  order?: Maybe<Sales_Order_Bool_Exp>;
+  order_id?: Maybe<Int_Comparison_Exp>;
   payment_method?: Maybe<String_Comparison_Exp>;
   predicted_date?: Maybe<Date_Comparison_Exp>;
   ref?: Maybe<String_Comparison_Exp>;
@@ -17592,7 +17587,7 @@ export type Sales_Delivery_Inc_Input = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
-  order?: Maybe<Scalars['Int']>;
+  order_id?: Maybe<Scalars['Int']>;
   ref_num?: Maybe<Scalars['Int']>;
 };
 
@@ -17601,19 +17596,19 @@ export type Sales_Delivery_Insert_Input = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
-  client?: Maybe<Scalars['uuid']>;
-  company?: Maybe<Scalars['uuid']>;
-  companyObject?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
-  contact?: Maybe<Scalars['uuid']>;
-  contactByContact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
+  client?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
+  client_id?: Maybe<Scalars['uuid']>;
+  company?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
+  company_id?: Maybe<Scalars['uuid']>;
+  contact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
+  contact_id?: Maybe<Scalars['uuid']>;
   created_at?: Maybe<Scalars['date']>;
-  customer?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
   invoice_deliveries?: Maybe<Sales_Invoice_Delivery_Arr_Rel_Insert_Input>;
   isReturned?: Maybe<Scalars['Boolean']>;
-  order?: Maybe<Scalars['Int']>;
-  orderObject?: Maybe<Sales_Order_Obj_Rel_Insert_Input>;
+  order?: Maybe<Sales_Order_Obj_Rel_Insert_Input>;
+  order_id?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
   ref?: Maybe<Scalars['String']>;
@@ -18020,12 +18015,12 @@ export type Sales_Delivery_Max_Fields = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
-  client?: Maybe<Scalars['uuid']>;
-  company?: Maybe<Scalars['uuid']>;
-  contact?: Maybe<Scalars['uuid']>;
+  client_id?: Maybe<Scalars['uuid']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
   created_at?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
-  order?: Maybe<Scalars['Int']>;
+  order_id?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
   ref?: Maybe<Scalars['String']>;
@@ -18039,12 +18034,12 @@ export type Sales_Delivery_Max_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  client?: Maybe<Order_By>;
-  company?: Maybe<Order_By>;
-  contact?: Maybe<Order_By>;
+  client_id?: Maybe<Order_By>;
+  company_id?: Maybe<Order_By>;
+  contact_id?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
+  order_id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
   predicted_date?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
@@ -18059,12 +18054,12 @@ export type Sales_Delivery_Min_Fields = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
-  client?: Maybe<Scalars['uuid']>;
-  company?: Maybe<Scalars['uuid']>;
-  contact?: Maybe<Scalars['uuid']>;
+  client_id?: Maybe<Scalars['uuid']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
   created_at?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
-  order?: Maybe<Scalars['Int']>;
+  order_id?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
   ref?: Maybe<Scalars['String']>;
@@ -18078,12 +18073,12 @@ export type Sales_Delivery_Min_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  client?: Maybe<Order_By>;
-  company?: Maybe<Order_By>;
-  contact?: Maybe<Order_By>;
+  client_id?: Maybe<Order_By>;
+  company_id?: Maybe<Order_By>;
+  contact_id?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
+  order_id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
   predicted_date?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
@@ -18119,19 +18114,19 @@ export type Sales_Delivery_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  client?: Maybe<Order_By>;
-  company?: Maybe<Order_By>;
-  companyObject?: Maybe<Management_Company_Order_By>;
-  contact?: Maybe<Order_By>;
-  contactByContact?: Maybe<Contact_Contact_Order_By>;
+  client?: Maybe<Contact_Customer_Order_By>;
+  client_id?: Maybe<Order_By>;
+  company?: Maybe<Management_Company_Order_By>;
+  company_id?: Maybe<Order_By>;
+  contact?: Maybe<Contact_Contact_Order_By>;
+  contact_id?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
-  customer?: Maybe<Contact_Customer_Order_By>;
   delivery_lines_aggregate?: Maybe<Sales_Delivery_Line_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   invoice_deliveries_aggregate?: Maybe<Sales_Invoice_Delivery_Aggregate_Order_By>;
   isReturned?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
-  orderObject?: Maybe<Sales_Order_Order_By>;
+  order?: Maybe<Sales_Order_Order_By>;
+  order_id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
   predicted_date?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
@@ -18154,11 +18149,11 @@ export enum Sales_Delivery_Select_Column {
   /** column name */
   AmountTva = 'amount_tva',
   /** column name */
-  Client = 'client',
+  ClientId = 'client_id',
   /** column name */
-  Company = 'company',
+  CompanyId = 'company_id',
   /** column name */
-  Contact = 'contact',
+  ContactId = 'contact_id',
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
@@ -18166,7 +18161,7 @@ export enum Sales_Delivery_Select_Column {
   /** column name */
   IsReturned = 'isReturned',
   /** column name */
-  Order = 'order',
+  OrderId = 'order_id',
   /** column name */
   PaymentMethod = 'payment_method',
   /** column name */
@@ -18186,13 +18181,13 @@ export type Sales_Delivery_Set_Input = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
-  client?: Maybe<Scalars['uuid']>;
-  company?: Maybe<Scalars['uuid']>;
-  contact?: Maybe<Scalars['uuid']>;
+  client_id?: Maybe<Scalars['uuid']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
   created_at?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   isReturned?: Maybe<Scalars['Boolean']>;
-  order?: Maybe<Scalars['Int']>;
+  order_id?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
   predicted_date?: Maybe<Scalars['date']>;
   ref?: Maybe<Scalars['String']>;
@@ -18207,7 +18202,7 @@ export type Sales_Delivery_Stddev_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
+  order_id?: Maybe<Scalars['Float']>;
   ref_num?: Maybe<Scalars['Float']>;
 };
 
@@ -18216,7 +18211,7 @@ export type Sales_Delivery_Stddev_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
+  order_id?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
 };
 
@@ -18226,7 +18221,7 @@ export type Sales_Delivery_Stddev_Pop_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
+  order_id?: Maybe<Scalars['Float']>;
   ref_num?: Maybe<Scalars['Float']>;
 };
 
@@ -18235,7 +18230,7 @@ export type Sales_Delivery_Stddev_Pop_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
+  order_id?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
 };
 
@@ -18245,7 +18240,7 @@ export type Sales_Delivery_Stddev_Samp_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
+  order_id?: Maybe<Scalars['Float']>;
   ref_num?: Maybe<Scalars['Float']>;
 };
 
@@ -18254,7 +18249,7 @@ export type Sales_Delivery_Stddev_Samp_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
+  order_id?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
 };
 
@@ -18264,7 +18259,7 @@ export type Sales_Delivery_Sum_Fields = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
-  order?: Maybe<Scalars['Int']>;
+  order_id?: Maybe<Scalars['Int']>;
   ref_num?: Maybe<Scalars['Int']>;
 };
 
@@ -18273,7 +18268,7 @@ export type Sales_Delivery_Sum_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
+  order_id?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
 };
 
@@ -18286,11 +18281,11 @@ export enum Sales_Delivery_Update_Column {
   /** column name */
   AmountTva = 'amount_tva',
   /** column name */
-  Client = 'client',
+  ClientId = 'client_id',
   /** column name */
-  Company = 'company',
+  CompanyId = 'company_id',
   /** column name */
-  Contact = 'contact',
+  ContactId = 'contact_id',
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
@@ -18298,7 +18293,7 @@ export enum Sales_Delivery_Update_Column {
   /** column name */
   IsReturned = 'isReturned',
   /** column name */
-  Order = 'order',
+  OrderId = 'order_id',
   /** column name */
   PaymentMethod = 'payment_method',
   /** column name */
@@ -18319,7 +18314,7 @@ export type Sales_Delivery_Var_Pop_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
+  order_id?: Maybe<Scalars['Float']>;
   ref_num?: Maybe<Scalars['Float']>;
 };
 
@@ -18328,7 +18323,7 @@ export type Sales_Delivery_Var_Pop_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
+  order_id?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
 };
 
@@ -18338,7 +18333,7 @@ export type Sales_Delivery_Var_Samp_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
+  order_id?: Maybe<Scalars['Float']>;
   ref_num?: Maybe<Scalars['Float']>;
 };
 
@@ -18347,7 +18342,7 @@ export type Sales_Delivery_Var_Samp_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
+  order_id?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
 };
 
@@ -18357,7 +18352,7 @@ export type Sales_Delivery_Variance_Fields = {
   amount_ht?: Maybe<Scalars['Float']>;
   amount_ttc?: Maybe<Scalars['Float']>;
   amount_tva?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
+  order_id?: Maybe<Scalars['Float']>;
   ref_num?: Maybe<Scalars['Float']>;
 };
 
@@ -18366,7 +18361,7 @@ export type Sales_Delivery_Variance_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  order?: Maybe<Order_By>;
+  order_id?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
 };
 
@@ -21934,10 +21929,6 @@ export type Sales_Product_Draft = {
   company_name?: Maybe<Scalars['String']>;
   /** An object relationship */
   consumable_draft?: Maybe<Sales_Consumable_Draft>;
-  /** An array relationship */
-  consumable_drafts: Array<Sales_Consumable_Draft>;
-  /** An aggregated array relationship */
-  consumable_drafts_aggregate: Sales_Consumable_Draft_Aggregate;
   count?: Maybe<Scalars['numeric']>;
   delivered: Scalars['numeric'];
   /** An array relationship */
@@ -21965,10 +21956,6 @@ export type Sales_Product_Draft = {
   quantity?: Maybe<Scalars['numeric']>;
   /** An object relationship */
   service_draft?: Maybe<Sales_Service_Draft>;
-  /** An array relationship */
-  service_drafts: Array<Sales_Service_Draft>;
-  /** An aggregated array relationship */
-  service_drafts_aggregate: Sales_Service_Draft_Aggregate;
   status: Scalars['String'];
   substance_id?: Maybe<Scalars['uuid']>;
   total_price?: Maybe<Scalars['numeric']>;
@@ -21976,26 +21963,6 @@ export type Sales_Product_Draft = {
   unit?: Maybe<Scalars['String']>;
   warehouse_id?: Maybe<Scalars['uuid']>;
   width?: Maybe<Scalars['numeric']>;
-};
-
-
-/** columns and relationships of "sales.product_draft" */
-export type Sales_Product_DraftConsumable_DraftsArgs = {
-  distinct_on?: Maybe<Array<Sales_Consumable_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Consumable_Draft_Order_By>>;
-  where?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.product_draft" */
-export type Sales_Product_DraftConsumable_Drafts_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Consumable_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Consumable_Draft_Order_By>>;
-  where?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
 };
 
 
@@ -22016,26 +21983,6 @@ export type Sales_Product_DraftDelivery_Lines_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Sales_Delivery_Line_Order_By>>;
   where?: Maybe<Sales_Delivery_Line_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.product_draft" */
-export type Sales_Product_DraftService_DraftsArgs = {
-  distinct_on?: Maybe<Array<Sales_Service_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Service_Draft_Order_By>>;
-  where?: Maybe<Sales_Service_Draft_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.product_draft" */
-export type Sales_Product_DraftService_Drafts_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Service_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Service_Draft_Order_By>>;
-  where?: Maybe<Sales_Service_Draft_Bool_Exp>;
 };
 
 /** aggregated selection of "sales.product_draft" */
@@ -22128,7 +22075,6 @@ export type Sales_Product_Draft_Bool_Exp = {
   company_id?: Maybe<Uuid_Comparison_Exp>;
   company_name?: Maybe<String_Comparison_Exp>;
   consumable_draft?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
-  consumable_drafts?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
   count?: Maybe<Numeric_Comparison_Exp>;
   delivered?: Maybe<Numeric_Comparison_Exp>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Bool_Exp>;
@@ -22147,7 +22093,6 @@ export type Sales_Product_Draft_Bool_Exp = {
   product_type?: Maybe<Sales_Product_Type_Bool_Exp>;
   quantity?: Maybe<Numeric_Comparison_Exp>;
   service_draft?: Maybe<Sales_Service_Draft_Bool_Exp>;
-  service_drafts?: Maybe<Sales_Service_Draft_Bool_Exp>;
   status?: Maybe<String_Comparison_Exp>;
   substance_id?: Maybe<Uuid_Comparison_Exp>;
   total_price?: Maybe<Numeric_Comparison_Exp>;
@@ -22184,7 +22129,6 @@ export type Sales_Product_Draft_Insert_Input = {
   company_id?: Maybe<Scalars['uuid']>;
   company_name?: Maybe<Scalars['String']>;
   consumable_draft?: Maybe<Sales_Consumable_Draft_Obj_Rel_Insert_Input>;
-  consumable_drafts?: Maybe<Sales_Consumable_Draft_Arr_Rel_Insert_Input>;
   count?: Maybe<Scalars['numeric']>;
   delivered?: Maybe<Scalars['numeric']>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Arr_Rel_Insert_Input>;
@@ -22203,7 +22147,6 @@ export type Sales_Product_Draft_Insert_Input = {
   product_type?: Maybe<Sales_Product_Type_Obj_Rel_Insert_Input>;
   quantity?: Maybe<Scalars['numeric']>;
   service_draft?: Maybe<Sales_Service_Draft_Obj_Rel_Insert_Input>;
-  service_drafts?: Maybe<Sales_Service_Draft_Arr_Rel_Insert_Input>;
   status?: Maybe<Scalars['String']>;
   substance_id?: Maybe<Scalars['uuid']>;
   total_price?: Maybe<Scalars['numeric']>;
@@ -22336,7 +22279,6 @@ export type Sales_Product_Draft_Order_By = {
   company_id?: Maybe<Order_By>;
   company_name?: Maybe<Order_By>;
   consumable_draft?: Maybe<Sales_Consumable_Draft_Order_By>;
-  consumable_drafts_aggregate?: Maybe<Sales_Consumable_Draft_Aggregate_Order_By>;
   count?: Maybe<Order_By>;
   delivered?: Maybe<Order_By>;
   delivery_lines_aggregate?: Maybe<Sales_Delivery_Line_Aggregate_Order_By>;
@@ -22355,7 +22297,6 @@ export type Sales_Product_Draft_Order_By = {
   product_type?: Maybe<Sales_Product_Type_Order_By>;
   quantity?: Maybe<Order_By>;
   service_draft?: Maybe<Sales_Service_Draft_Order_By>;
-  service_drafts_aggregate?: Maybe<Sales_Service_Draft_Aggregate_Order_By>;
   status?: Maybe<Order_By>;
   substance_id?: Maybe<Order_By>;
   total_price?: Maybe<Order_By>;
@@ -23437,8 +23378,6 @@ export type Sales_Service_Draft = {
   dependent_id: Scalars['uuid'];
   id: Scalars['uuid'];
   /** An object relationship */
-  productDraftByDependentId: Sales_Product_Draft;
-  /** An object relationship */
   product_draft: Sales_Product_Draft;
   productdraft_id: Scalars['uuid'];
 };
@@ -23485,7 +23424,6 @@ export type Sales_Service_Draft_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Sales_Service_Draft_Bool_Exp>>>;
   dependent_id?: Maybe<Uuid_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
-  productDraftByDependentId?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   productdraft_id?: Maybe<Uuid_Comparison_Exp>;
 };
@@ -23502,7 +23440,6 @@ export enum Sales_Service_Draft_Constraint {
 export type Sales_Service_Draft_Insert_Input = {
   dependent_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
-  productDraftByDependentId?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
@@ -23563,7 +23500,6 @@ export type Sales_Service_Draft_On_Conflict = {
 export type Sales_Service_Draft_Order_By = {
   dependent_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  productDraftByDependentId?: Maybe<Sales_Product_Draft_Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
@@ -30449,11 +30385,11 @@ export type DeleteDeliveryMutation = (
 );
 
 export type InsertDeliveryMutationVariables = Exact<{
-  order: Scalars['Int'];
+  order_id: Scalars['Int'];
   predicted_date?: Maybe<Scalars['date']>;
-  client: Scalars['uuid'];
-  company: Scalars['uuid'];
-  contact: Scalars['uuid'];
+  client_id: Scalars['uuid'];
+  company_id: Scalars['uuid'];
+  contact_id: Scalars['uuid'];
   isReturned?: Maybe<Scalars['Boolean']>;
   delivery_lines?: Array<Sales_Delivery_Line_Insert_Input>;
   payment_method: Scalars['String'];
@@ -30467,14 +30403,14 @@ export type InsertDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_delivery_one?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'contact_id' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order_id' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
     ), client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'mail'>
-    ), contactByContact?: Maybe<(
+    ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
     )> }
@@ -30484,9 +30420,9 @@ export type InsertDeliveryMutation = (
 export type UpdateDeliveryMutationVariables = Exact<{
   id: Scalars['uuid'];
   payment_method: Scalars['String'];
-  contact?: Maybe<Scalars['uuid']>;
-  company?: Maybe<Scalars['uuid']>;
-  client?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  client_id?: Maybe<Scalars['uuid']>;
   isReturned?: Maybe<Scalars['Boolean']>;
   predicted_date?: Maybe<Scalars['date']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
@@ -30499,7 +30435,7 @@ export type UpdateDeliveryMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'company' | 'payment_method' | 'isReturned' | 'predicted_date' | 'client' | 'contact' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
+    & Pick<Sales_Delivery, 'id' | 'order_id' | 'status' | 'company_id' | 'payment_method' | 'isReturned' | 'predicted_date' | 'client_id' | 'contact_id' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
   )> }
 );
 
@@ -30960,7 +30896,7 @@ export type GetDeliveriesByQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery: Array<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc' | 'amount_tva' | 'amount_ht' | 'ref' | 'created_at' | 'updated_at'>
+    & Pick<Sales_Delivery, 'id' | 'order_id' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc' | 'amount_tva' | 'amount_ht' | 'ref' | 'created_at' | 'updated_at'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
@@ -30983,11 +30919,23 @@ export type GetDeliveryByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'client' | 'company' | 'contact' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'ref' | 'client_id' | 'company_id' | 'contact_id' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order_id' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
     & { delivery_lines: Array<(
       { __typename?: 'sales_delivery_line' }
       & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'quantity' | 'product_label' | 'unit_price'>
-    )> }
+    )>, company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'mail'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
+    )>, order: (
+      { __typename?: 'sales_order' }
+      & Pick<Sales_Order, 'ref'>
+    ) }
   )> }
 );
 
@@ -33882,25 +33830,25 @@ export const DeleteDeliveryDocument = gql`
     }
   }
 export const InsertDeliveryDocument = gql`
-    mutation InsertDelivery($order: Int!, $predicted_date: date, $client: uuid!, $company: uuid!, $contact: uuid!, $isReturned: Boolean, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
+    mutation InsertDelivery($order_id: Int!, $predicted_date: date, $client_id: uuid!, $company_id: uuid!, $contact_id: uuid!, $isReturned: Boolean, $delivery_lines: [sales_delivery_line_insert_input!]! = [], $payment_method: String!, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
   insert_sales_delivery_one(
-    object: {order: $order, company: $company, payment_method: $payment_method, predicted_date: $predicted_date, isReturned: $isReturned, client: $client, delivery_lines: {data: $delivery_lines}, contact: $contact, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
+    object: {order_id: $order_id, company_id: $company_id, payment_method: $payment_method, predicted_date: $predicted_date, isReturned: $isReturned, client_id: $client_id, delivery_lines: {data: $delivery_lines}, contact_id: $contact_id, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
   ) {
     id
     status
-    company: companyObject {
+    company {
       name
     }
-    contact
+    contact_id
     payment_method
     predicted_date
     isReturned
-    order
-    client: customer {
+    order_id
+    client {
       name
       mail
     }
-    contactByContact {
+    contact {
       mail
       name
       phone
@@ -33923,20 +33871,20 @@ export const InsertDeliveryDocument = gql`
     }
   }
 export const UpdateDeliveryDocument = gql`
-    mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact: uuid, $company: uuid, $client: uuid, $isReturned: Boolean, $predicted_date: date, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
+    mutation UpdateDelivery($id: uuid!, $payment_method: String!, $contact_id: uuid, $company_id: uuid, $client_id: uuid, $isReturned: Boolean, $predicted_date: date, $amount_ttc: numeric, $amount_tva: numeric, $amount_ht: numeric) {
   update_sales_delivery_by_pk(
     pk_columns: {id: $id}
-    _set: {payment_method: $payment_method, contact: $contact, company: $company, client: $client, predicted_date: $predicted_date, isReturned: $isReturned, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
+    _set: {payment_method: $payment_method, contact_id: $contact_id, company_id: $company_id, client_id: $client_id, predicted_date: $predicted_date, isReturned: $isReturned, amount_ttc: $amount_ttc, amount_tva: $amount_tva, amount_ht: $amount_ht}
   ) {
     id
-    order
+    order_id
     status
-    company
+    company_id
     payment_method
     isReturned
     predicted_date
-    client
-    contact
+    client_id
+    contact_id
     amount_ttc
     amount_tva
     amount_ht
@@ -34524,19 +34472,19 @@ export const GetDeliveriesByDocument = gql`
     where: {created_at: {_gte: $dateStart, _lte: $dateEnd}, status: {_eq: $status}}
   ) {
     id
-    order
+    order_id
     status
-    company: companyObject {
+    company {
       name
     }
     payment_method
     predicted_date
     isReturned
-    client: customer {
+    client {
       name
       mail
     }
-    contact: contactByContact {
+    contact {
       mail
       name
       phone
@@ -34566,13 +34514,14 @@ export const GetDeliveryByIdDocument = gql`
   sales_delivery_by_pk(id: $id) {
     id
     status
-    client
-    company
-    contact
+    ref
+    client_id
+    company_id
+    contact_id
     payment_method
     predicted_date
     isReturned
-    order
+    order_id
     delivery_lines {
       id
       amount
@@ -34585,6 +34534,21 @@ export const GetDeliveryByIdDocument = gql`
     amount_ttc
     amount_tva
     amount_ht
+    company {
+      name
+    }
+    client {
+      name
+      mail
+    }
+    contact {
+      mail
+      name
+      phone
+    }
+    order {
+      ref
+    }
   }
 }
     `;

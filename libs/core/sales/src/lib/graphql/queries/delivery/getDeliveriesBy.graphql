@@ -1,19 +1,19 @@
 query getDeliveriesBy($dateStart: date, $dateEnd: date, $status: String) {
   sales_delivery(where: {created_at: {_gte: $dateStart, _lte: $dateEnd}, status: {_eq: $status}}) {
     id
-    order
+    order_id
     status
-    company: companyObject{
+    company{
       name
     }
     payment_method
     predicted_date
     isReturned
-    client: customer {
+    client {
       name
       mail
     }
-    contact: contactByContact {
+    contact {
       mail
       name
       phone

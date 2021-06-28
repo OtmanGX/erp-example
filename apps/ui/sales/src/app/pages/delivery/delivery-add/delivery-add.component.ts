@@ -73,9 +73,9 @@ export class DeliveryAddComponent
   ngAfterViewInit(): void {
     if (this.id)
       return
-    const orderField = this.form.getField('order');
-    const companyField = this.form.getField('company');
-    const clientField = this.form.getField('client');
+    const orderField = this.form.getField('order_id');
+    const companyField = this.form.getField('company_id');
+    const clientField = this.form.getField('client_id');
     // this.orderLines$.subscribe(value => console.log('orderlines', value))
     this.selectedOrder$.subscribe(
       value => {
@@ -145,5 +145,9 @@ export class DeliveryAddComponent
     super.ngOnDestroy();
     this.ordersFacade.clearSelection();
     this.draftFacade.clearState();
+  }
+
+  print() {
+
   }
 }

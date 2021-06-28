@@ -125,7 +125,7 @@ export const deliveryHeaders = [
         cellRendererFramework: InvoiceStatusComponent,
       },
       { field: 'ref', headerName: 'Référence', type: 'textColumn' },
-      { field: 'order', headerName: 'N° Commande', type: 'textColumn' },
+      { field: 'order_id', headerName: 'N° Commande', type: 'textColumn' },
       {
         field: 'predicted_date',
         headerName: 'Date prévue',
