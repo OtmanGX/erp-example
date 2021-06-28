@@ -1,7 +1,21 @@
 <mat-card class="pr-0 pl-0">
-  <mat-card-header>
-    <mat-card-title class="mat-color-primary">
-      <h1>Bon de livraison</h1>
+  <mat-card-header class='mw-100'>
+    <mat-card-title class="mw-100 mat-color-primary">
+      <div class='mw-100'>
+      <h1 style='display: inline' class='mr-auto'>
+        Bon de livraison
+      </h1>
+      <button
+        id='printer-button'
+        mat-flat-button
+        (click)="print()"
+        color='primary'>
+        <mat-icon>
+          print
+        </mat-icon>
+        &nbsp;IMPRIMER
+      </button>
+        </div>
       <mat-divider></mat-divider>
     </mat-card-title>
   </mat-card-header>

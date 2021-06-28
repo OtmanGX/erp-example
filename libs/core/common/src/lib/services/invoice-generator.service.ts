@@ -56,25 +56,26 @@ export class InvoiceGeneratorService {
           {
             width: 'auto',
             table: {
+              widths: [110, 110],
               body: [
                 [
                   { text: "Total HT", style: "tableHeader" },
-                  { text: ""}
+                  { text: order.total_ht}
                 ],
                 [
                   { text: "TVA", style: "tableHeader" },
-                  { text: "", }
+                  { text: order.total_tax, }
                 ],
                 [
                   { text: "Total TTC", style: "tableHeader" },
-                  { text: "", }
+                  { text: order.total_ttc, }
                 ],
               ],
               alignment: "right"
             }
           },
           // { width: '*', text: '' },
-        ]
+        ], absolutePosition: { y: 700}
       }
       ])
 

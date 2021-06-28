@@ -146,4 +146,8 @@ export class DeliveryAddComponent
     this.ordersFacade.clearSelection();
     this.draftFacade.clearState();
   }
+
+  print() {
+
+  }
 }
