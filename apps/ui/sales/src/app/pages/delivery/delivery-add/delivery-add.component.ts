@@ -54,7 +54,6 @@ export class DeliveryAddComponent
     private deliveryFacade: DeliveryFacade,
     private draftFacade: DraftFacade,
     private ordersFacade: OrdersFacade,
-    private router: Router,
     public activatedRoute: ActivatedRoute) {
     super(activatedRoute);
   }
@@ -141,13 +140,15 @@ export class DeliveryAddComponent
     else this.deliveryFacade.addDelivery(deliveryToInsert);
   }
 
+  print() {
+    this.deliveryFacade.printDelivery(this.data);
+  }
+
   ngOnDestroy(): void {
     super.ngOnDestroy();
     this.ordersFacade.clearSelection();
     this.draftFacade.clearState();
   }
 
-  print() {
 
-  }
 }

@@ -17415,7 +17415,7 @@ export type Sales_Delivery = {
   /** An object relationship */
   contact?: Maybe<Contact_Contact>;
   contact_id?: Maybe<Scalars['uuid']>;
-  created_at: Scalars['date'];
+  createdAt: Scalars['date'];
   /** An array relationship */
   delivery_lines: Array<Sales_Delivery_Line>;
   /** An aggregated array relationship */
@@ -17561,7 +17561,7 @@ export type Sales_Delivery_Bool_Exp = {
   company_id?: Maybe<Uuid_Comparison_Exp>;
   contact?: Maybe<Contact_Contact_Bool_Exp>;
   contact_id?: Maybe<Uuid_Comparison_Exp>;
-  created_at?: Maybe<Date_Comparison_Exp>;
+  createdAt?: Maybe<Date_Comparison_Exp>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   invoice_deliveries?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
@@ -17602,7 +17602,7 @@ export type Sales_Delivery_Insert_Input = {
   company_id?: Maybe<Scalars['uuid']>;
   contact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
   contact_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['date']>;
+  createdAt?: Maybe<Scalars['date']>;
   delivery_lines?: Maybe<Sales_Delivery_Line_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
   invoice_deliveries?: Maybe<Sales_Invoice_Delivery_Arr_Rel_Insert_Input>;
@@ -18018,7 +18018,7 @@ export type Sales_Delivery_Max_Fields = {
   client_id?: Maybe<Scalars['uuid']>;
   company_id?: Maybe<Scalars['uuid']>;
   contact_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['date']>;
+  createdAt?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   order_id?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
@@ -18037,7 +18037,7 @@ export type Sales_Delivery_Max_Order_By = {
   client_id?: Maybe<Order_By>;
   company_id?: Maybe<Order_By>;
   contact_id?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   order_id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
@@ -18057,7 +18057,7 @@ export type Sales_Delivery_Min_Fields = {
   client_id?: Maybe<Scalars['uuid']>;
   company_id?: Maybe<Scalars['uuid']>;
   contact_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['date']>;
+  createdAt?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   order_id?: Maybe<Scalars['Int']>;
   payment_method?: Maybe<Scalars['String']>;
@@ -18076,7 +18076,7 @@ export type Sales_Delivery_Min_Order_By = {
   client_id?: Maybe<Order_By>;
   company_id?: Maybe<Order_By>;
   contact_id?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   order_id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
@@ -18120,7 +18120,7 @@ export type Sales_Delivery_Order_By = {
   company_id?: Maybe<Order_By>;
   contact?: Maybe<Contact_Contact_Order_By>;
   contact_id?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
   delivery_lines_aggregate?: Maybe<Sales_Delivery_Line_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   invoice_deliveries_aggregate?: Maybe<Sales_Invoice_Delivery_Aggregate_Order_By>;
@@ -18155,7 +18155,7 @@ export enum Sales_Delivery_Select_Column {
   /** column name */
   ContactId = 'contact_id',
   /** column name */
-  CreatedAt = 'created_at',
+  CreatedAt = 'createdAt',
   /** column name */
   Id = 'id',
   /** column name */
@@ -18184,7 +18184,7 @@ export type Sales_Delivery_Set_Input = {
   client_id?: Maybe<Scalars['uuid']>;
   company_id?: Maybe<Scalars['uuid']>;
   contact_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['date']>;
+  createdAt?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   isReturned?: Maybe<Scalars['Boolean']>;
   order_id?: Maybe<Scalars['Int']>;
@@ -18287,7 +18287,7 @@ export enum Sales_Delivery_Update_Column {
   /** column name */
   ContactId = 'contact_id',
   /** column name */
-  CreatedAt = 'created_at',
+  CreatedAt = 'createdAt',
   /** column name */
   Id = 'id',
   /** column name */
@@ -30896,7 +30896,7 @@ export type GetDeliveriesByQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery: Array<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'order_id' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc' | 'amount_tva' | 'amount_ht' | 'ref' | 'created_at' | 'updated_at'>
+    & Pick<Sales_Delivery, 'id' | 'order_id' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc' | 'amount_tva' | 'amount_ht' | 'ref' | 'createdAt' | 'updated_at'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
@@ -30919,7 +30919,7 @@ export type GetDeliveryByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'ref' | 'client_id' | 'company_id' | 'contact_id' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order_id' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'ref' | 'client_id' | 'company_id' | 'contact_id' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order_id' | 'createdAt' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
     & { delivery_lines: Array<(
       { __typename?: 'sales_delivery_line' }
       & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'quantity' | 'product_label' | 'unit_price'>
@@ -30928,7 +30928,7 @@ export type GetDeliveryByIdQuery = (
       & Pick<Management_Company, 'name'>
     ), client: (
       { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'name' | 'mail'>
+      & Pick<Contact_Customer, 'name' | 'mail' | 'phone'>
     ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
@@ -34469,7 +34469,7 @@ export const InsertQuotationDocument = gql`
 export const GetDeliveriesByDocument = gql`
     query getDeliveriesBy($dateStart: date, $dateEnd: date, $status: String) {
   sales_delivery(
-    where: {created_at: {_gte: $dateStart, _lte: $dateEnd}, status: {_eq: $status}}
+    where: {createdAt: {_gte: $dateStart, _lte: $dateEnd}, status: {_eq: $status}}
   ) {
     id
     order_id
@@ -34493,7 +34493,7 @@ export const GetDeliveriesByDocument = gql`
     amount_tva
     amount_ht
     ref
-    created_at
+    createdAt
     updated_at
   }
 }
@@ -34522,6 +34522,7 @@ export const GetDeliveryByIdDocument = gql`
     predicted_date
     isReturned
     order_id
+    createdAt
     delivery_lines {
       id
       amount
@@ -34540,6 +34541,7 @@ export const GetDeliveryByIdDocument = gql`
     client {
       name
       mail
+      phone
     }
     contact {
       mail

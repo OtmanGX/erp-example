@@ -6,6 +6,7 @@
         Bon de livraison
       </h1>
       <button
+        *ngIf='data?.id'
         id='printer-button'
         mat-flat-button
         (click)="print()"

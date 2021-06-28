@@ -47,28 +47,6 @@ export class OrdersFacade {
   }
 
   printOrder(order: Order) {
-    // this.invoiceGeneratorService.generatePDF({
-    //   order_id: order.ref,
-    //   order_date: order.date.toLocaleString(),
-    //   client_id: order.customer.id,
-    //   client_name: order.customer.name,
-    //   client_phone: order.customer.phone,
-    //   total_Amount: {
-    //     companie_name: order.company.name,
-    //     total_HT: order.total_ht,
-    //     total_TTC: order.total_ttc,
-    //     tva: order.total_tax,
-    //     total_Net: order.total_ttc,
-    //     discount: 0
-    //   },
-    //   salesData: order.products.map(e => ({
-    //     item_designation: e.label,
-    //     quantity: e.quantity,
-    //     unit_price: e.price,
-    //     total_price: e.total_price,
-    //   })),
-    //   processedMaterial: []
-    // })
     this.invoiceGeneratorService.generateOrderPDF(order);
   }
 
