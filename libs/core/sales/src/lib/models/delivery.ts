@@ -11,12 +11,13 @@ export interface DeliveryForm extends MetaData {
   client: {
     name: string;
     mail?: string;
+    phone?: string;
   };
   company: Company;
   contact?: {
     name: string;
     mail?: string;
-    phone: string;
+    phone?: string;
   };
   ref?: String;
   // delivery_lines: DeliveryLine[];
@@ -46,6 +47,7 @@ export interface InsertedDeliveryForm extends MetaData {
   client?: {
     name: string;
     mail?: string;
+    phone?: string;
   };
   company?: Company;
   contact?: {

@@ -10,6 +10,7 @@ query GetDeliveryById($id: uuid!) {
     predicted_date
     isReturned
     order_id
+    createdAt
     delivery_lines {
       id
       amount
@@ -29,6 +30,7 @@ query GetDeliveryById($id: uuid!) {
     client {
       name
       mail
+      phone
     }
     contact {
       mail

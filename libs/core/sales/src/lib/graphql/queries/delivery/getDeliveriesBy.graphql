@@ -1,5 +1,5 @@
 query getDeliveriesBy($dateStart: date, $dateEnd: date, $status: String) {
-  sales_delivery(where: {created_at: {_gte: $dateStart, _lte: $dateEnd}, status: {_eq: $status}}) {
+  sales_delivery(where: {createdAt: {_gte: $dateStart, _lte: $dateEnd}, status: {_eq: $status}}) {
     id
     order_id
     status
@@ -22,7 +22,7 @@ query getDeliveriesBy($dateStart: date, $dateEnd: date, $status: String) {
     amount_tva
     amount_ht
     ref
-    created_at
+    createdAt
     updated_at
   }
 }

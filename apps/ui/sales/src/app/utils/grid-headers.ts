@@ -132,7 +132,7 @@ export const deliveryHeaders = [
         type: 'dateColumn',
       },
       {
-        field: 'created_at',
+        field: 'createdAt',
         headerName: 'Date de création',
         type: 'dateColumn',
       },

@@ -10,11 +10,12 @@ import {
   DeliveryForm,
   DeliveryLine,
   DeliveryStatus,
-  InsertedDeliveryForm
+  InsertedDeliveryForm, Order
 } from '@tanglass-erp/core/sales';
 import { filter, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
+import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
 
 @Injectable()
 export class DeliveryFacade {
@@ -30,7 +31,8 @@ export class DeliveryFacade {
   constructor(
     private store: Store<fromDelivery.DeliveryPartialState>,
     private router: Router,
-    private notificationService: NotificationFacadeService
+    private notificationService: NotificationFacadeService,
+    public invoiceGeneratorService: InvoiceGeneratorService,
   ) {}
 
   dispatch(action: Action) {
@@ -67,6 +69,10 @@ export class DeliveryFacade {
       amount_tva,
       amount_ht
     }
+  }
+
+  printDelivery(delivery: InsertedDeliveryForm) {
+    this.invoiceGeneratorService.generateDeliveryLinePDF(delivery);
   }
 
   //  Other
