@@ -46,7 +46,7 @@ export class OrderCardComponent extends ModelCardComponent {
             { label: 'Date', value: data?.date },
             { label: 'Date limite ', value: data?.deadline, },
             { label: 'Livraison', value: [data?.delivery_status], type: 'chips' },
-            { label: 'Paiement', value: [data?.payment_status], type: 'chips' },
+            { label: 'Paiement', value: [data?.payment_status], type: 'chips' }
           ]
       },
     ];
