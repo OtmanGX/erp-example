@@ -1,9 +1,9 @@
 mutation UpdateDelivery(
   $id: uuid!
   $payment_method: String!
-  $contact: uuid
-  $company: uuid
-  $client: uuid
+  $contact_id: uuid
+  $company_id: uuid
+  $client_id: uuid
   $isReturned: Boolean
   $predicted_date: date
   $amount_ttc: numeric
@@ -14,9 +14,9 @@ mutation UpdateDelivery(
     pk_columns: {id: $id}
     _set: {
       payment_method: $payment_method
-      contact: $contact
-      company: $company
-      client: $client
+      contact_id: $contact_id
+      company_id: $company_id
+      client_id: $client_id
       predicted_date: $predicted_date
       isReturned: $isReturned
       amount_ttc: $amount_ttc
@@ -25,14 +25,14 @@ mutation UpdateDelivery(
     }
   ) {
     id
-    order
+    order_id
     status
-    company
+    company_id
     payment_method
     isReturned
     predicted_date
-    client
-    contact
+    client_id
+    contact_id
     amount_ttc
     amount_tva
     amount_ht

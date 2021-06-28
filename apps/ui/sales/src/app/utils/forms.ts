@@ -16,13 +16,13 @@ function getGlassQuantities(row: Product) {
 }
 
 export type deliveryFormType = {
-  order: number;
+  order_id: number;
   predicted_date: Date;
   status: DeliveryStatus;
   isReturned: boolean;
-  company: string;
-  client: string;
-  contact: string;
+  company_id: string;
+  client_id: string;
+  contact_id: string;
   payment_method: PaymentMethod;
 }
 
@@ -93,10 +93,10 @@ const regConfigInvoice = (data?: InsertedInvoice | null, deliveries?: any, clien
 const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?, companies?, contacts?) => [
   {
     type: "selectSearch",
-    name: "order",
+    name: "order_id",
     label: "N° Commande",
     inputType: "text",
-    value: data?.order,
+    value: data?.order_id,
     filterFields: ['id', 'company.name'],
     fieldsToShow: ['id', 'company.name'],
     disabled: data !== null,
@@ -119,31 +119,31 @@ const regConfigDelivery = (data?: InsertedDeliveryForm | null, orders?, clients?
   },
   {
     type: "select",
-    name: "company",
+    name: "company_id",
     label: "Société",
     inputType: "text",
     options: companies,
-    value: data?.company
+    value: data?.company_id
   },
   {
     type: "selectSearch",
-    name: "client",
+    name: "client_id",
     label: "Client",
     filterFields: ['name', 'phone'],
     fieldsToShow: ['name', 'phone'],
     inputType: "text",
     options: clients,
-    value: data?.client
+    value: data?.client_id
   },
   {
     type: "selectSearch",
-    name: "contact",
+    name: "contact_id",
     label: "Contact",
     filterFields: ['name', 'code'],
     fieldsToShow: ['name', 'code'],
     inputType: "text",
     options: contacts,
-    value: data?.contact
+    value: data?.contact_id
   },
   {
     type: "select",

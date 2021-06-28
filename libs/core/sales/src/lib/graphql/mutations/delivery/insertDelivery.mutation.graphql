@@ -2,11 +2,11 @@
 # Click on the "Data" tab on top to create tables
 # Try out GraphQL queries here after you create tables
 mutation InsertDelivery(
-  $order: Int!
+  $order_id: Int!
   $predicted_date: date
-  $client: uuid!
-  $company: uuid!
-  $contact: uuid!
+  $client_id: uuid!
+  $company_id: uuid!
+  $contact_id: uuid!
   $isReturned: Boolean
   $delivery_lines: [sales_delivery_line_insert_input!]! = []
   $payment_method: String!
@@ -16,14 +16,14 @@ mutation InsertDelivery(
 ) {
   insert_sales_delivery_one(
     object: {
-      order: $order
-      company: $company
+      order_id: $order_id
+      company_id: $company_id
       payment_method: $payment_method
       predicted_date: $predicted_date
       isReturned: $isReturned
-      client: $client
+      client_id: $client_id
       delivery_lines: { data: $delivery_lines }
-      contact: $contact
+      contact_id: $contact_id
       amount_ttc: $amount_ttc
       amount_tva: $amount_tva
       amount_ht: $amount_ht
@@ -31,19 +31,19 @@ mutation InsertDelivery(
   ) {
     id
     status
-    company: companyObject {
+    company {
       name
     }
-    contact
+    contact_id
     payment_method
     predicted_date
     isReturned
-    order
-    client: customer {
+    order_id
+    client {
       name
       mail
     }
-    contactByContact {
+    contact{
       mail
       name
       phone
