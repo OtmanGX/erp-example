@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { OrderService } from '@tanglass-erp/core/sales';
 import * as DraftActions from '../draft/draft.actions';
-import { select, Store, Action } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import * as OrdersActions from './orders.actions';
 import { Router } from '@angular/router';
@@ -71,7 +71,7 @@ export class OrdersEffects {
             });
             this.router.navigate(['/sales/order']);
             return OrdersActions.addOrderSuccess({
-              order: data.data.insert_sales_order_one,
+              order: data.data.insert_sales_order_one
             });
           }),
           catchError((error) => of(OrdersActions.addOrderFailure({ error })))
@@ -89,7 +89,10 @@ export class OrdersEffects {
             this.draftFacade.selectDraftId(data.data.sales_order_by_pk.draft_id)
             this.productDraftFacade.setDraftProducts(data.data.sales_order_by_pk.draft.product_drafts)
             this.paymentFacade.setOrderPayments(data.data.sales_order_by_pk.payments)
-            return OrdersActions.loadOrderByIdSuccess({ order: data.data.sales_order_by_pk })
+            return OrdersActions.loadOrderByIdSuccess({ order: {
+                ...data.data.sales_order_by_pk,
+              products: data.data.sales_order_by_pk.draft.product_drafts
+              } })
           }),
           catchError((error) =>
             of(OrdersActions.loadOrderByIdFailure({ error }))
