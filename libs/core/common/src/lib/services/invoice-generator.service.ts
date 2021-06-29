@@ -114,7 +114,7 @@ export class InvoiceGeneratorService {
     pdf.add(new Txt(CITY).alignment('right').end);
 
     // Delivery Line Ref + verticale line
-    pdf.add(new Txt(`${DELIVERY_LINE}: ${delivery.ref}`).fontSize(20).bold().end);
+    pdf.add(new Txt(`${DELIVERY_LINE}: ${delivery.ref_num}`).fontSize(20).bold().end);
     pdf.add({
       table : {
         headerRows : 1,
@@ -131,7 +131,7 @@ export class InvoiceGeneratorService {
     pdf.add(new Columns([
       new Columns([
         new Txt(`Date\n${PAYMENT_METHOD}\n${COMMAND}`).width(120).end,
-        new Txt(`:  ${delivery.createdAt.toLocaleString()}\n :  ${delivery.payment_method}\n :  ${delivery.order.ref}`)
+        new Txt(`:  ${delivery.createdAt.toLocaleString()}\n :  ${delivery.payment_method}\n :  ${delivery.order.ref_num}`)
           .alignment('left').width(100).end,
       ]).width('30%').end,
       new Txt(`${CODE_CLIENT}: `+ delivery.client_id).alignment('right').end

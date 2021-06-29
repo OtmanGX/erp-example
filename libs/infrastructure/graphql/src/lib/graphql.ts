@@ -31449,7 +31449,7 @@ export type GetDeliveryByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery_by_pk?: Maybe<(
     { __typename?: 'sales_delivery' }
-    & Pick<Sales_Delivery, 'id' | 'status' | 'ref' | 'client_id' | 'company_id' | 'contact_id' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order_id' | 'createdAt' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
+    & Pick<Sales_Delivery, 'id' | 'status' | 'ref' | 'ref_num' | 'client_id' | 'company_id' | 'contact_id' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order_id' | 'createdAt' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
     & { delivery_lines: Array<(
       { __typename?: 'sales_delivery_line' }
       & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product' | 'quantity' | 'product_label' | 'unit_price'>
@@ -31464,7 +31464,7 @@ export type GetDeliveryByIdQuery = (
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
     )>, order: (
       { __typename?: 'sales_order' }
-      & Pick<Sales_Order, 'ref'>
+      & Pick<Sales_Order, 'ref' | 'ref_num'>
     ) }
   )> }
 );
@@ -31633,7 +31633,7 @@ export type GetOrderByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_order_by_pk?: Maybe<(
     { __typename?: 'sales_order' }
-    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'ref' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'ref' | 'ref_num' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name' | 'id'>
@@ -35096,6 +35096,7 @@ export const GetDeliveryByIdDocument = gql`
     id
     status
     ref
+    ref_num
     client_id
     company_id
     contact_id
@@ -35131,6 +35132,7 @@ export const GetDeliveryByIdDocument = gql`
     }
     order {
       ref
+      ref_num
     }
   }
 }
@@ -35424,6 +35426,7 @@ export const GetOrderByIdDocument = gql`
     draft_id
     id
     ref
+    ref_num
     delivery_status
     payment_status
     total_ht

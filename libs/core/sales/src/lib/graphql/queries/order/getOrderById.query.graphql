@@ -22,6 +22,7 @@ query GetOrderById($id: Int!) {
     draft_id
     id
     ref
+    ref_num
     delivery_status
     payment_status
     total_ht
