@@ -1,18 +1,19 @@
 query GetAllInvoices(
-  $dateStart: date, 
+  $dateStart: date,
   $dateEnd: date) {
   sales_invoice(where:
    {date: {_gte: $dateStart, _lte: $dateEnd}}) {
     id
-    client: clientObj {
+    client {
       name
+      phone
       mail
     }
-    company: companyObj{
+    company{
       id
       name
     }
-    contact: contactObj {
+    contact {
       mail
       name
       phone
@@ -26,7 +27,7 @@ query GetAllInvoices(
     amount_ttc
     amount_ht
     ref
-    created_at
+    createdAt
     updated_at
   }
 }

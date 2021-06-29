@@ -1,11 +1,16 @@
 query GetInvoiceById($id: uuid!) {
   sales_invoice_by_pk(id: $id) {
     id
-    client
-    company
-    contact
+    ref
+    ref_num
+    client_id
+    company_id
+    contact_id
     date
     deliveries {
+      delivery {
+        ref_num
+      }
       delivery_id
     }
     payment_method
@@ -17,5 +22,23 @@ query GetInvoiceById($id: uuid!) {
       quantity
       total
     }
+
+    client {
+      name
+      phone
+      mail
+    }
+    company{
+      id
+      name
+    }
+    contact {
+      mail
+      name
+      phone
+    }
+    amount_tva
+    amount_ttc
+    amount_ht
   }
 }

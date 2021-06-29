@@ -3,7 +3,7 @@ import { PdfMakeWrapper, Table, Txt, Line, Columns  } from 'pdfmake-wrapper';
 import { OrderPrint } from '../models/order-printing';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { InsertedDeliveryForm, Order } from '@tanglass-erp/core/sales';
+import { InsertedDeliveryForm, Order, UpdatedInvoice } from '@tanglass-erp/core/sales';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 //
@@ -11,6 +11,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 //
 const CITY = 'Tanger'
 const DELIVERY_LINE = 'Bon de livraison';
+const INVOICE = 'Facture';
 const PAYMENT_METHOD = 'Mode de paiement';
 const COMMAND = 'Commande';
 const CODE_CLIENT = 'Code client';
@@ -21,6 +22,88 @@ const CODE_CLIENT = 'Code client';
 })
 export class InvoiceGeneratorService {
   constructor() {}
+
+  generateInvoicePDF(invoice: UpdatedInvoice) {
+    const pdf = new PdfMakeWrapper();
+    pdf.pageSize('A4');
+    pdf.pageMargins([40, 60, 40, 60]);
+    // Company name and adress
+    pdf.add(new Txt(invoice.company.name).fontSize(30).bold().alignment('right').end);
+    pdf.add(new Txt(CITY).alignment('right').end);
+
+    // Delivery Line Ref + verticale line
+    pdf.add(new Txt(`${INVOICE}: ${invoice.ref_num}`).fontSize(20).bold().end);
+    pdf.add({
+      table : {
+        headerRows : 1,
+        widths: ['*'],
+        body : [
+          [''],
+          ['']
+        ]
+      },
+      layout : 'headerLineOnly'
+    });
+
+    // date ,customer and deliveries
+    const deliveries = invoice.deliveries.map(e => e.delivery.ref_num).join(', ');
+    pdf.add(new Columns([
+      new Columns([
+        new Txt(`Date\n${PAYMENT_METHOD}\n${DELIVERY_LINE}`).width(120).end,
+        new Txt(`:  ${invoice.date.toLocaleString()}\n :  ${invoice.payment_method}\n :  ${deliveries}`)
+          .alignment('left').width(100).end,
+      ]).width('30%').end,
+      new Txt(`${CODE_CLIENT}: `+ invoice.client_id).alignment('right').end
+    ]).margin([0, 20]).end)
+
+
+    pdf.add(
+      new Table(
+        this.extractSecondData(
+          invoice.invoice_lines.map((e) => ({
+            item_designation: e.product_label,
+            quantity: e.quantity,
+            unit_price: e.unit_price,
+            total_price: e.total,
+          }))
+        )
+      )
+        .widths(['45%', '15%', '20%', '20%'])
+        .margin([0, 20]).end
+    );
+
+    pdf.add([
+      {
+        columns: [
+          { width: '*', text: '' },
+          {
+            width: 'auto',
+            table: {
+              widths: [110, 110],
+              body: [
+                [
+                  { text: "Total HT", style: "tableHeader" },
+                  { text: invoice.amount_ht}
+                ],
+                [
+                  { text: "TVA", style: "tableHeader" },
+                  { text: invoice.amount_tva, }
+                ],
+                [
+                  { text: "Total TTC", style: "tableHeader" },
+                  { text: invoice.amount_ttc, }
+                ],
+              ],
+              alignment: "right"
+            }
+          },
+          // { width: '*', text: '' },
+        ], absolutePosition: { y: 700}
+      }
+      ])
+    pdf.create().open();
+  }
+
 
   generateDeliveryLinePDF(delivery: InsertedDeliveryForm) {
     const pdf = new PdfMakeWrapper();
@@ -52,7 +135,7 @@ export class InvoiceGeneratorService {
           .alignment('left').width(100).end,
       ]).width('30%').end,
       new Txt(`${CODE_CLIENT}: `+ delivery.client_id).alignment('right').end
-    ]).end)
+    ]).margin([0, 20]).end)
 
 
     pdf.add(

@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
 
+const DELIVERY_WARNING = 'Assurez-vous que tous les bons de livraisons séléctionnés ne sont pas encore facturés';
+
 @Injectable()
 export class DeliveryFacade {
   loaded$ = this.store.pipe(select(DeliverySelectors.getDeliveryLoaded));
@@ -81,7 +83,7 @@ export class DeliveryFacade {
       this.notificationService.showToast(
         'warning',
         'Facture',
-        'Assurez-vous que tous les bons de livraisons séléctionnés ne sont pas encore facturés'
+        DELIVERY_WARNING
       );
       return;
     }

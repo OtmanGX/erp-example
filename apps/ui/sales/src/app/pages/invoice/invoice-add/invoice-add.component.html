@@ -1,7 +1,18 @@
 <mat-card class="pr-0 pl-0">
   <mat-card-header>
     <mat-card-title class="mat-color-primary">
-      <h1>Facture</h1>
+      <h1 style='display: inline'>Facture</h1>
+      <button
+        *ngIf='id'
+        id='printer-button'
+        mat-flat-button
+        (click)="print()"
+        color='primary'>
+        <mat-icon>
+          print
+        </mat-icon>
+        &nbsp;IMPRIMER
+      </button>
       <mat-divider></mat-divider>
     </mat-card-title>
   </mat-card-header>

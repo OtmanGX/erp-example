@@ -1,31 +1,32 @@
 mutation UpdateInvoice(
   $id: uuid!
-  $client: uuid
-  $company: uuid
-  $contact: uuid
+  $client_id: uuid
+  $company_id: uuid
+  $contact_id: uuid
   $date: date
   $payment_method: String
 ) {
   update_sales_invoice_by_pk(
     _set: {
-      client: $client
-      company: $company
-      contact: $contact
+      client_id: $client_id
+      company_id: $company_id
+      contact_id: $contact_id
       date: $date
       payment_method: $payment_method
     }
     pk_columns: { id: $id }
   ) {
     id
-    client: clientObj {
+    client {
       name
+      phone
       mail
     }
-    company: companyObj {
+    company {
       id
       name
     }
-    contact: contactObj {
+    contact {
       mail
       name
       phone
@@ -39,7 +40,7 @@ mutation UpdateInvoice(
       delivery_id
     }
     ref
-    created_at
+    createdAt
     updated_at
   }
 }

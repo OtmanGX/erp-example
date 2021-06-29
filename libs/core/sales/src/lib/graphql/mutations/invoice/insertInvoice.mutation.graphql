@@ -1,7 +1,7 @@
 mutation InsertInvoice(
-  $client: uuid!
-  $contact: uuid
-  $company: uuid!
+  $client_id: uuid!
+  $contact_id: uuid
+  $company_id: uuid!
   $payment_method: String!
   $date: date!
   $invoice_lines: [sales_invoice_line_insert_input!]! = []
@@ -13,12 +13,12 @@ mutation InsertInvoice(
 ) {
   insert_sales_invoice_one(
     object: {
-      client: $client
+      client_id: $client_id
       amount_ttc: $amount_ttc
       amount_ht: $amount_ht
       amount_tva: $amount_tva
-      contact: $contact
-      company: $company
+      contact_id: $contact_id
+      company_id: $company_id
       payment_method: $payment_method
       date: $date
       deliveries: { data: $deliveries }
@@ -26,9 +26,10 @@ mutation InsertInvoice(
     }
   ) {
     id
-    client
-    company
-    contact
+    ref
+    client_id
+    company_id
+    contact_id
     date
     deliveries {
       delivery_id

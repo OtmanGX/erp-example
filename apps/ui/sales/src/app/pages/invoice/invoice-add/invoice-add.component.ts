@@ -86,6 +86,7 @@ export class InvoiceAddComponent extends PageForm {
       this.deliveries$,
       this.id ? this.invoiceFacade.selectedInvoice$ : of(this.data)
     ).subscribe((value) => {
+      this.data = value[1];
       this.deliveries = value[0];
       this.regConfig = regConfigInvoice(
         value[1],
@@ -115,5 +116,9 @@ export class InvoiceAddComponent extends PageForm {
         id: this.id,
         ...formValue,
       });
+  }
+
+  print() {
+    this.invoiceFacade.printInvoice(this.data);
   }
 }
