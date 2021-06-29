@@ -7,6 +7,7 @@ import * as InvoiceSelectors from './invoice.selectors';
 import * as InvoiceActions from './invoice.actions';
 import { InsertedInvoice, invoiceFilter, UpdatedInvoice } from '@tanglass-erp/core/sales';
 import { filter, switchMap } from 'rxjs/operators';
+import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
 
 @Injectable()
 export class InvoiceFacade {
@@ -22,7 +23,8 @@ export class InvoiceFacade {
 
   constructor(
     private store: Store<fromInvoice.InvoicePartialState>,
-    ) {}
+    public invoiceGeneratorService: InvoiceGeneratorService
+  ) {}
 
   dispatch(action: Action) {
     this.store.dispatch(action);
@@ -46,5 +48,9 @@ export class InvoiceFacade {
 
   deleteMany(ids: string[]) {
     this.dispatch(InvoiceActions.deleteInvoices({ ids }));
+  }
+
+  printInvoice(invoice: UpdatedInvoice) {
+      this.invoiceGeneratorService.generateInvoicePDF(invoice);
   }
 }

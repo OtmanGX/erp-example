@@ -50,33 +50,33 @@ const regConfigInvoice = (data?: InsertedInvoice | null, deliveries?: any, clien
   },
   {
     type: "select",
-    name: "company",
+    name: "company_id",
     label: "Société",
     inputType: "text",
     options: companies,
-    value: data?.company,
+    value: data?.company_id,
     validations: [REQUIRED]
   },
   {
     type: "selectSearch",
-    name: "client",
+    name: "client_id",
     label: "Client",
     filterFields: ['name', 'phone'],
     fieldsToShow: ['name', 'phone'],
     inputType: "text",
     options: clients,
-    value: data?.client,
+    value: data?.client_id,
     validations: [REQUIRED]
   },
   {
     type: "selectSearch",
-    name: "contact",
+    name: "contact_id",
     label: "Contact",
     filterFields: ['name', 'code'],
     fieldsToShow: ['name', 'code'],
     inputType: "text",
     options: contacts,
-    value: data?.contact
+    value: data?.contact_id
   },
   {
     type: "select",

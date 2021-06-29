@@ -5,45 +5,65 @@ import { MetaData } from '@tanglass-erp/core/common';
 export interface Invoice extends MetaData {
   id?: string;
   client: {
-    name: string
-    mail?: string
+    name: string;
+    mail?: string;
   };
   company?: Company;
   contact?: {
-    name: string
-    mail?: string
-    phone: string
+    name: string;
+    mail?: string;
+    phone: string;
   };
   payment_method: PaymentMethod | string;
   date: Date;
   ref?: String;
-  amount_ttc: number
-  amount_ht: number
-  amount_tva: number
+  amount_ttc: number;
+  amount_ht: number;
+  amount_tva: number;
   deliveries?: Array<{
-    delivery_id: string
-  }>
+    delivery_id: string;
+  }>;
 }
-
 
 export interface InsertedInvoice {
   id?: string;
-  client: string;
+  client_id: string;
   payment_method: PaymentMethod | string;
-  company: string;
-  contact?: string;
+  company_id: string;
+  contact_id?: string;
   date: Date;
   deliveries: Array<{
-    delivery_id: string
-  }>
-  invoice_lines: Array<InvoiceLine>
-  amount_ttc: number
-  amount_ht: number
-  amount_tva: number
+    delivery_id: string;
+  }>;
+  invoice_lines: Array<InvoiceLine>;
+  amount_ttc: number;
+  amount_ht: number;
+  amount_tva: number;
 }
 
 export interface UpdatedInvoice extends InsertedInvoice {
   id: string;
+
+  // Extra Fields
+  ref?: string;
+  ref_num?: number;
+  client?: {
+    name: string;
+    phone?: string;
+    mail?: string;
+  };
+  company?: Company;
+  contact?: {
+    name: string;
+    mail?: string;
+    phone: string;
+  };
+  deliveries: Array<{
+    delivery?: {
+      ref_num: number;
+    };
+    delivery_id: string;
+  }>;
 }
 
 export interface InvoiceLine {
@@ -56,8 +76,7 @@ export interface InvoiceLine {
   total: number;
 }
 
-
 export type invoiceFilter = {
-  dateStart?: Date,
-  dateEnd?: Date,
-}
+  dateStart?: Date;
+  dateEnd?: Date;
+};

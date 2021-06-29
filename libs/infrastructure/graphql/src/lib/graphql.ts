@@ -19234,16 +19234,16 @@ export type Sales_Invoice = {
   amount_ht: Scalars['numeric'];
   amount_ttc: Scalars['numeric'];
   amount_tva: Scalars['numeric'];
-  client: Scalars['uuid'];
   /** An object relationship */
-  clientObj: Contact_Customer;
-  company: Scalars['uuid'];
+  client: Contact_Customer;
+  client_id: Scalars['uuid'];
   /** An object relationship */
-  companyObj: Management_Company;
-  contact?: Maybe<Scalars['uuid']>;
+  company: Management_Company;
+  company_id: Scalars['uuid'];
   /** An object relationship */
-  contactObj?: Maybe<Contact_Contact>;
-  created_at?: Maybe<Scalars['timestamptz']>;
+  contact?: Maybe<Contact_Contact>;
+  contact_id?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   date: Scalars['date'];
   /** An array relationship */
   deliveries: Array<Sales_Invoice_Delivery>;
@@ -19376,13 +19376,13 @@ export type Sales_Invoice_Bool_Exp = {
   amount_ht?: Maybe<Numeric_Comparison_Exp>;
   amount_ttc?: Maybe<Numeric_Comparison_Exp>;
   amount_tva?: Maybe<Numeric_Comparison_Exp>;
-  client?: Maybe<Uuid_Comparison_Exp>;
-  clientObj?: Maybe<Contact_Customer_Bool_Exp>;
-  company?: Maybe<Uuid_Comparison_Exp>;
-  companyObj?: Maybe<Management_Company_Bool_Exp>;
-  contact?: Maybe<Uuid_Comparison_Exp>;
-  contactObj?: Maybe<Contact_Contact_Bool_Exp>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  client?: Maybe<Contact_Customer_Bool_Exp>;
+  client_id?: Maybe<Uuid_Comparison_Exp>;
+  company?: Maybe<Management_Company_Bool_Exp>;
+  company_id?: Maybe<Uuid_Comparison_Exp>;
+  contact?: Maybe<Contact_Contact_Bool_Exp>;
+  contact_id?: Maybe<Uuid_Comparison_Exp>;
+  createdAt?: Maybe<Timestamptz_Comparison_Exp>;
   date?: Maybe<Date_Comparison_Exp>;
   deliveries?: Maybe<Sales_Invoice_Delivery_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
@@ -19567,13 +19567,13 @@ export type Sales_Invoice_Insert_Input = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
-  client?: Maybe<Scalars['uuid']>;
-  clientObj?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
-  company?: Maybe<Scalars['uuid']>;
-  companyObj?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
-  contact?: Maybe<Scalars['uuid']>;
-  contactObj?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
-  created_at?: Maybe<Scalars['timestamptz']>;
+  client?: Maybe<Contact_Customer_Obj_Rel_Insert_Input>;
+  client_id?: Maybe<Scalars['uuid']>;
+  company?: Maybe<Management_Company_Obj_Rel_Insert_Input>;
+  company_id?: Maybe<Scalars['uuid']>;
+  contact?: Maybe<Contact_Contact_Obj_Rel_Insert_Input>;
+  contact_id?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   date?: Maybe<Scalars['date']>;
   deliveries?: Maybe<Sales_Invoice_Delivery_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
@@ -19947,10 +19947,10 @@ export type Sales_Invoice_Max_Fields = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
-  client?: Maybe<Scalars['uuid']>;
-  company?: Maybe<Scalars['uuid']>;
-  contact?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
+  client_id?: Maybe<Scalars['uuid']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
@@ -19964,10 +19964,10 @@ export type Sales_Invoice_Max_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  client?: Maybe<Order_By>;
-  company?: Maybe<Order_By>;
-  contact?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
+  client_id?: Maybe<Order_By>;
+  company_id?: Maybe<Order_By>;
+  contact_id?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
@@ -19982,10 +19982,10 @@ export type Sales_Invoice_Min_Fields = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
-  client?: Maybe<Scalars['uuid']>;
-  company?: Maybe<Scalars['uuid']>;
-  contact?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
+  client_id?: Maybe<Scalars['uuid']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
@@ -19999,10 +19999,10 @@ export type Sales_Invoice_Min_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  client?: Maybe<Order_By>;
-  company?: Maybe<Order_By>;
-  contact?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
+  client_id?: Maybe<Order_By>;
+  company_id?: Maybe<Order_By>;
+  contact_id?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   payment_method?: Maybe<Order_By>;
@@ -20038,13 +20038,13 @@ export type Sales_Invoice_Order_By = {
   amount_ht?: Maybe<Order_By>;
   amount_ttc?: Maybe<Order_By>;
   amount_tva?: Maybe<Order_By>;
-  client?: Maybe<Order_By>;
-  clientObj?: Maybe<Contact_Customer_Order_By>;
-  company?: Maybe<Order_By>;
-  companyObj?: Maybe<Management_Company_Order_By>;
-  contact?: Maybe<Order_By>;
-  contactObj?: Maybe<Contact_Contact_Order_By>;
-  created_at?: Maybe<Order_By>;
+  client?: Maybe<Contact_Customer_Order_By>;
+  client_id?: Maybe<Order_By>;
+  company?: Maybe<Management_Company_Order_By>;
+  company_id?: Maybe<Order_By>;
+  contact?: Maybe<Contact_Contact_Order_By>;
+  contact_id?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   deliveries_aggregate?: Maybe<Sales_Invoice_Delivery_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
@@ -20069,13 +20069,13 @@ export enum Sales_Invoice_Select_Column {
   /** column name */
   AmountTva = 'amount_tva',
   /** column name */
-  Client = 'client',
+  ClientId = 'client_id',
   /** column name */
-  Company = 'company',
+  CompanyId = 'company_id',
   /** column name */
-  Contact = 'contact',
+  ContactId = 'contact_id',
   /** column name */
-  CreatedAt = 'created_at',
+  CreatedAt = 'createdAt',
   /** column name */
   Date = 'date',
   /** column name */
@@ -20095,10 +20095,10 @@ export type Sales_Invoice_Set_Input = {
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
-  client?: Maybe<Scalars['uuid']>;
-  company?: Maybe<Scalars['uuid']>;
-  contact?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
+  client_id?: Maybe<Scalars['uuid']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['uuid']>;
   payment_method?: Maybe<Scalars['String']>;
@@ -20184,13 +20184,13 @@ export enum Sales_Invoice_Update_Column {
   /** column name */
   AmountTva = 'amount_tva',
   /** column name */
-  Client = 'client',
+  ClientId = 'client_id',
   /** column name */
-  Company = 'company',
+  CompanyId = 'company_id',
   /** column name */
-  Contact = 'contact',
+  ContactId = 'contact_id',
   /** column name */
-  CreatedAt = 'created_at',
+  CreatedAt = 'createdAt',
   /** column name */
   Date = 'date',
   /** column name */
@@ -30718,9 +30718,9 @@ export type DeleteInvoicesMutation = (
 );
 
 export type InsertInvoiceMutationVariables = Exact<{
-  client: Scalars['uuid'];
-  contact?: Maybe<Scalars['uuid']>;
-  company: Scalars['uuid'];
+  client_id: Scalars['uuid'];
+  contact_id?: Maybe<Scalars['uuid']>;
+  company_id: Scalars['uuid'];
   payment_method: Scalars['String'];
   date: Scalars['date'];
   invoice_lines?: Array<Sales_Invoice_Line_Insert_Input>;
@@ -30736,7 +30736,7 @@ export type InsertInvoiceMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_invoice_one?: Maybe<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'client' | 'company' | 'contact' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva'>
+    & Pick<Sales_Invoice, 'id' | 'ref' | 'client_id' | 'company_id' | 'contact_id' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva'>
     & { deliveries: Array<(
       { __typename?: 'sales_invoice_delivery' }
       & Pick<Sales_Invoice_Delivery, 'delivery_id'>
@@ -30752,9 +30752,9 @@ export type InsertInvoiceMutation = (
 
 export type UpdateInvoiceMutationVariables = Exact<{
   id: Scalars['uuid'];
-  client?: Maybe<Scalars['uuid']>;
-  company?: Maybe<Scalars['uuid']>;
-  contact?: Maybe<Scalars['uuid']>;
+  client_id?: Maybe<Scalars['uuid']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   payment_method?: Maybe<Scalars['String']>;
 }>;
@@ -30764,10 +30764,10 @@ export type UpdateInvoiceMutation = (
   { __typename?: 'mutation_root' }
   & { update_sales_invoice_by_pk?: Maybe<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva' | 'ref' | 'created_at' | 'updated_at'>
+    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva' | 'ref' | 'createdAt' | 'updated_at'>
     & { client: (
       { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'name' | 'mail'>
+      & Pick<Contact_Customer, 'name' | 'phone' | 'mail'>
     ), company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'id' | 'name'>
@@ -31226,10 +31226,10 @@ export type GetAllInvoicesQuery = (
   { __typename?: 'query_root' }
   & { sales_invoice: Array<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_tva' | 'amount_ttc' | 'amount_ht' | 'ref' | 'created_at' | 'updated_at'>
+    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_tva' | 'amount_ttc' | 'amount_ht' | 'ref' | 'createdAt' | 'updated_at'>
     & { client: (
       { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'name' | 'mail'>
+      & Pick<Contact_Customer, 'name' | 'phone' | 'mail'>
     ), company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'id' | 'name'>
@@ -31282,13 +31282,26 @@ export type GetInvoiceByIdQuery = (
   { __typename?: 'query_root' }
   & { sales_invoice_by_pk?: Maybe<(
     { __typename?: 'sales_invoice' }
-    & Pick<Sales_Invoice, 'id' | 'client' | 'company' | 'contact' | 'date' | 'payment_method'>
+    & Pick<Sales_Invoice, 'id' | 'ref' | 'ref_num' | 'client_id' | 'company_id' | 'contact_id' | 'date' | 'payment_method' | 'amount_tva' | 'amount_ttc' | 'amount_ht'>
     & { deliveries: Array<(
       { __typename?: 'sales_invoice_delivery' }
       & Pick<Sales_Invoice_Delivery, 'delivery_id'>
+      & { delivery: (
+        { __typename?: 'sales_delivery' }
+        & Pick<Sales_Delivery, 'ref_num'>
+      ) }
     )>, invoice_lines: Array<(
       { __typename?: 'sales_invoice_line' }
       & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'quantity' | 'total'>
+    )>, client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'phone' | 'mail'>
+    ), company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'id' | 'name'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
     )> }
   )> }
 );
@@ -34234,14 +34247,15 @@ export const DeleteInvoicesDocument = gql`
     }
   }
 export const InsertInvoiceDocument = gql`
-    mutation InsertInvoice($client: uuid!, $contact: uuid, $company: uuid!, $payment_method: String!, $date: date!, $invoice_lines: [sales_invoice_line_insert_input!]! = [], $deliveries: [sales_invoice_delivery_insert_input!]! = [], $deliveries_ids: [uuid!]! = [], $amount_ttc: numeric, $amount_ht: numeric, $amount_tva: numeric) {
+    mutation InsertInvoice($client_id: uuid!, $contact_id: uuid, $company_id: uuid!, $payment_method: String!, $date: date!, $invoice_lines: [sales_invoice_line_insert_input!]! = [], $deliveries: [sales_invoice_delivery_insert_input!]! = [], $deliveries_ids: [uuid!]! = [], $amount_ttc: numeric, $amount_ht: numeric, $amount_tva: numeric) {
   insert_sales_invoice_one(
-    object: {client: $client, amount_ttc: $amount_ttc, amount_ht: $amount_ht, amount_tva: $amount_tva, contact: $contact, company: $company, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}, invoice_lines: {data: $invoice_lines}}
+    object: {client_id: $client_id, amount_ttc: $amount_ttc, amount_ht: $amount_ht, amount_tva: $amount_tva, contact_id: $contact_id, company_id: $company_id, payment_method: $payment_method, date: $date, deliveries: {data: $deliveries}, invoice_lines: {data: $invoice_lines}}
   ) {
     id
-    client
-    company
-    contact
+    ref
+    client_id
+    company_id
+    contact_id
     date
     deliveries {
       delivery_id
@@ -34279,21 +34293,22 @@ export const InsertInvoiceDocument = gql`
     }
   }
 export const UpdateInvoiceDocument = gql`
-    mutation UpdateInvoice($id: uuid!, $client: uuid, $company: uuid, $contact: uuid, $date: date, $payment_method: String) {
+    mutation UpdateInvoice($id: uuid!, $client_id: uuid, $company_id: uuid, $contact_id: uuid, $date: date, $payment_method: String) {
   update_sales_invoice_by_pk(
-    _set: {client: $client, company: $company, contact: $contact, date: $date, payment_method: $payment_method}
+    _set: {client_id: $client_id, company_id: $company_id, contact_id: $contact_id, date: $date, payment_method: $payment_method}
     pk_columns: {id: $id}
   ) {
     id
-    client: clientObj {
+    client {
       name
+      phone
       mail
     }
-    company: companyObj {
+    company {
       id
       name
     }
-    contact: contactObj {
+    contact {
       mail
       name
       phone
@@ -34307,7 +34322,7 @@ export const UpdateInvoiceDocument = gql`
       delivery_id
     }
     ref
-    created_at
+    createdAt
     updated_at
   }
 }
@@ -34910,15 +34925,16 @@ export const GetAllInvoicesDocument = gql`
     query GetAllInvoices($dateStart: date, $dateEnd: date) {
   sales_invoice(where: {date: {_gte: $dateStart, _lte: $dateEnd}}) {
     id
-    client: clientObj {
+    client {
       name
+      phone
       mail
     }
-    company: companyObj {
+    company {
       id
       name
     }
-    contact: contactObj {
+    contact {
       mail
       name
       phone
@@ -34932,7 +34948,7 @@ export const GetAllInvoicesDocument = gql`
     amount_ttc
     amount_ht
     ref
-    created_at
+    createdAt
     updated_at
   }
 }
@@ -34996,11 +35012,16 @@ export const GetInvoiceByIdDocument = gql`
     query GetInvoiceById($id: uuid!) {
   sales_invoice_by_pk(id: $id) {
     id
-    client
-    company
-    contact
+    ref
+    ref_num
+    client_id
+    company_id
+    contact_id
     date
     deliveries {
+      delivery {
+        ref_num
+      }
       delivery_id
     }
     payment_method
@@ -35012,6 +35033,23 @@ export const GetInvoiceByIdDocument = gql`
       quantity
       total
     }
+    client {
+      name
+      phone
+      mail
+    }
+    company {
+      id
+      name
+    }
+    contact {
+      mail
+      name
+      phone
+    }
+    amount_tva
+    amount_ttc
+    amount_ht
   }
 }
     `;
