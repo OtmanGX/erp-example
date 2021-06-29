@@ -15,8 +15,27 @@ mutation insertGlassDraft(
   $company_id: uuid,
   $company_name: String, 
   $substance_id: uuid) {
-  insert_sales_glass_draft_one(object: {product_draft: {data: {heigth: $heigth, label: $label, m2: $m2, ml: $ml, price: $price, product_code: $product_code, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, width: $width, draft_id: $draft_id, count: $count, warehouse_id: $warehouse_id, company_id: $company_id, company_name: $company_name, substance_id: $substance_id}}}) {
-    id
+  insert_sales_glass_draft_one(object: 
+  {product_draft: 
+  {data: {
+    heigth: $heigth, 
+    label: $label, 
+    m2: $m2, 
+    ml: $ml, 
+    price: $price, 
+    product_code: $product_code, 
+    quantity: $quantity, 
+    total_price: $total_price, 
+    type: $type, 
+    unit: $unit, 
+    width: $width, 
+    draft_id: $draft_id, 
+    count: $count, 
+    warehouse_id: $warehouse_id, 
+    company_id: $company_id, 
+    company_name: $company_name, 
+    substance_id: $substance_id
+    }}}) {
     product_draft {
       company_name
       heigth
@@ -34,6 +53,9 @@ mutation insertGlassDraft(
       company_id
       count
       substance_id
+      glass_draft {
+        id
+      }
     }
   }
 }

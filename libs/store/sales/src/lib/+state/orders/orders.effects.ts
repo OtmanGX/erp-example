@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
-import { ProductDraftFacade } from "../product-draft/product-draft.facade";
-import { DraftFacade } from "../draft/draft.facade";
+import { ProductDraftFacade } from '../product-draft/product-draft.facade';
+import { DraftFacade } from '../draft/draft.facade';
 import { PaymentsFacade } from '../payments/payments.facade';
 
 @Injectable()
@@ -19,15 +19,19 @@ export class OrdersEffects {
     return this.actions$.pipe(
       ofType(OrdersActions.loadOrders),
       mergeMap((action) =>
-        this.orderService.getAll({
-          dateStart: action.dateStart,
-          dateEnd: action.dateEnd,
-        }).pipe(
-          map((data) =>
-            OrdersActions.loadOrdersSuccess({ orders: data.data.sales_order })
-          ),
-          catchError((error) => of(OrdersActions.loadOrdersFailure({ error })))
-        )
+        this.orderService
+          .getAll({
+            dateStart: action.dateStart,
+            dateEnd: action.dateEnd,
+          })
+          .pipe(
+            map((data) =>
+              OrdersActions.loadOrdersSuccess({ orders: data.data.sales_order })
+            ),
+            catchError((error) =>
+              of(OrdersActions.loadOrdersFailure({ error }))
+            )
+          )
       )
     );
   });
@@ -71,7 +75,7 @@ export class OrdersEffects {
             });
             this.router.navigate(['/sales/order']);
             return OrdersActions.addOrderSuccess({
-              order: data.data.insert_sales_order_one
+              order: data.data.insert_sales_order_one,
             });
           }),
           catchError((error) => of(OrdersActions.addOrderFailure({ error })))
@@ -86,13 +90,10 @@ export class OrdersEffects {
       switchMap((action) =>
         this.orderService.getOneById(action.id).pipe(
           map((data) => {
-            this.draftFacade.selectDraftId(data.data.sales_order_by_pk.draft_id)
-            this.productDraftFacade.setDraftProducts(data.data.sales_order_by_pk.draft.product_drafts)
-            this.paymentFacade.setOrderPayments(data.data.sales_order_by_pk.payments)
-            return OrdersActions.loadOrderByIdSuccess({ order: {
-                ...data.data.sales_order_by_pk,
-              products: data.data.sales_order_by_pk.draft.product_drafts
-              } })
+            this.draftFacade.selectDraftId(data.draft_id);
+            this.productDraftFacade.setDraftProducts(data.products);
+            this.paymentFacade.setOrderPayments(data.payments);
+            return OrdersActions.loadOrderByIdSuccess({ order: data });
           }),
           catchError((error) =>
             of(OrdersActions.loadOrderByIdFailure({ error }))
@@ -110,7 +111,6 @@ export class OrdersEffects {
     private productDraftFacade: ProductDraftFacade,
     private draftFacade: DraftFacade,
     private paymentFacade: PaymentsFacade,
-    private store: Store,
-  ) {
-  }
+    private store: Store
+  ) {}
 }

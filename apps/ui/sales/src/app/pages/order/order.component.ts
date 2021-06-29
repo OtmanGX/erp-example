@@ -2,10 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import { OrderHeaders } from '../../utils/grid-headers';
+import { OrderHeaders } from '@TanglassUi/sales/utils/grid-headers';
 import { Router } from '@angular/router';
 import { OrdersFacade } from "@tanglass-erp/store/sales";
-import { DeliveryFacade, DraftFacade, Order } from '@tanglass-erp/store/sales';
+import {  DraftFacade,  } from '@tanglass-erp/store/sales';
 import { fr } from 'date-fns/locale';
 import startOfMonth from 'date-fns/fp/startOfMonth';
 

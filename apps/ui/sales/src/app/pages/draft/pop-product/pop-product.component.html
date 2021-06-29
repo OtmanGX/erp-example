@@ -1,9 +1,0 @@
-<ngx-dialog-body title="Nouveau">
-  <div class="radio">
-    <mat-radio-group aria-label="Select an option" [(ngModel)]="type">
-      <mat-radio-button *ngFor="let type of types" [value]="type" (change)="getItems($event.value)">{{type}} </mat-radio-button>
-    </mat-radio-group>
-  </div>
-  <dynamic-form #product_form [fields]="regConfig" (close)="closePopup()" (submit)="submitForm()">
-  </dynamic-form>
-</ngx-dialog-body>
