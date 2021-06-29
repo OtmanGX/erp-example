@@ -44,6 +44,7 @@ export interface InsertedDeliveryForm extends MetaData {
 
   // Extra fields needed to print deliveryLine
   ref?: string;
+  ref_num?: number;
   client?: {
     name: string;
     mail?: string;
@@ -57,6 +58,7 @@ export interface InsertedDeliveryForm extends MetaData {
   };
   order?: {
     ref?: string;
+    ref_num?: number;
   };
 }
 

@@ -16,6 +16,7 @@ export interface Order {
   total_ht: number;
   products?: Product_draft[];
   ref?:string;
+  ref_num?: number;
 }
 
 export interface InsertedOrder {
