@@ -1,36 +1,36 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SalesRoutingModule } from './sales-routing.module';
-import { SalesComponent } from './sales.component';
-import { DraftComponent } from './pages/draft/draft.component';
-import { CreateDraftComponent } from './pages/draft/create-draft/create-draft.component';
-import { ProductDraftComponent } from "./pages/draft/product-draft/product-draft.component";
+import { SalesComponent } from '@TanglassUi/sales/sales.component';
+import { DraftComponent } from '@TanglassUi/sales/pages/draft/draft.component';
+import { CreateDraftComponent } from '@TanglassUi/sales/components/create-draft/create-draft.component';
+import { ProductDraftComponent } from "@TanglassUi/sales/components/product-draft/product-draft.component";
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
 import { MaterialModule } from "@tanglass-erp/material";
 import { StoreSharedModule } from "@tanglass-erp/store/shared";
-import { PopProductComponent } from "./pages/draft/pop-product/pop-product.component";
+import { PopProductComponent } from "@TanglassUi/sales/components/pop-product/pop-product.component";
 import { StoreProductModule } from '@TanglassStore/product/index';
 import { StoreSalesModule } from '@tanglass-erp/store/sales';
 import { StoreContactModule } from '@TanglassStore/contact/index';
-import { QuotationComponent } from './pages/quotation/quotation.component';
-import { OrderComponent } from './pages/order/order.component';
-import { CreateQuotationComponent } from './pages/quotation/create-quotation/create-quotation.component';
-import { CreateOrderComponent } from "./pages/order/create-order/create-order.component";
-import { AmountsOrderComponent } from "./pages/order/amounts-order/amounts-order.component";
+import { QuotationComponent } from '@TanglassUi/sales/pages/quotation/quotation.component';
+import { OrderComponent } from '@TanglassUi/sales/pages/order/order.component';
+import { CreateQuotationComponent } from '@TanglassUi/sales/pages/quotation/create-quotation/create-quotation.component';
+import { CreateOrderComponent } from "@TanglassUi/sales/pages/order/create-order/create-order.component";
+import { AmountsOrderComponent } from "@TanglassUi/sales/components/amounts-order/amounts-order.component";
 import { DeliveryListComponent } from '@TanglassUi/sales/pages/delivery/delivery-list/delivery-list.component';
 import { DeliveryAddComponent } from '@TanglassUi/sales/pages/delivery/delivery-add/delivery-add.component';
 import { DeliveryLineComponent } from '@TanglassUi/sales/components/delivery-line/delivery-line.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { OrderCardComponent } from "./pages/order/order-card/order-card.component";
+import { OrderCardComponent } from "@TanglassUi/sales/pages/order/order-card/order-card.component";
 import { InvoiceListComponent } from '@TanglassUi/sales/pages/invoice/invoice-list/invoice-list.component';
 import { InvoiceAddComponent } from '@TanglassUi/sales/pages/invoice/invoice-add/invoice-add.component';
 import { InvoiceReadyComponent } from '@TanglassUi/sales/pages/invoice/invoice-ready/invoice-ready.component';
 import { DeliveriesAccordionComponent } from '@TanglassUi/sales/components/deliveries-accordion/deliveries-accordion.component';
-import { InvoiceStatusComponent } from '@TanglassUi/sales/utils/grid-headers';
-import { PopPaymentComponent } from "./pages/order/payments-order/pop-payement/pop-payment.component";
+import { PopPaymentComponent } from "@TanglassUi/sales/components/payments-order/pop-payement/pop-payment.component";
 import { ManagementStateModule } from '@TanglassStore/management/lib/management-state.module';
-import { PaymentsComponent } from "./pages/order/payments-order/payments.component";
-import {QuotationCardComponent} from "./pages/quotation/quotation-card/quotation-card.component"
+import { PaymentsComponent } from "@TanglassUi/sales/components/payments-order/payments.component";
+import {QuotationCardComponent} from "@TanglassUi/sales/pages/quotation/quotation-card/quotation-card.component"
+import {PopRemovingComponent} from "@TanglassUi/sales/components/pop-remove-dependencies/pop-removing.component";
 @NgModule({
   declarations: [
     SalesComponent,
@@ -53,7 +53,8 @@ import {QuotationCardComponent} from "./pages/quotation/quotation-card/quotation
     DeliveriesAccordionComponent,
     PopPaymentComponent,
     PaymentsComponent,
-    QuotationCardComponent
+    QuotationCardComponent,
+    PopRemovingComponent
   ],
   imports: [
     CommonModule,

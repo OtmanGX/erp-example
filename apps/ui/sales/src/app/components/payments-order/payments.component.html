@@ -1,0 +1,32 @@
+<mat-toolbar>
+    <button *ngIf="!withDetails" (click)="showDetails()" mat-icon-button color="primary">
+        <mat-icon>horizontal_split</mat-icon>
+    </button>
+
+    <button mat-icon-button *ngIf="withDetails" (click)="hideDetails()" class="example-icon" >
+        <mat-icon color="primary">attach_money</mat-icon>
+    </button>
+    <span>Réglements!</span>
+    <span class="example-spacer"></span>
+    <button mat-flat-button (click)="openDialog('add')" color="primary" style="width: 12em">
+        Saisir un Réglement
+    </button>
+</mat-toolbar>
+<div fxLayout="row wrap" *ngIf="!withDetails">
+
+    <div fxFlex="100" fxFlex.sm="100" fxFlex.gt-sm="100">
+        <div fxLayout="row wrap">
+            <ngx-amount-card fxFlex="100" fxFlex.sm="25" fxFlex.gt-sm="25" *ngFor="let item of amountsList | async"
+                [config]="item">
+            </ngx-amount-card>
+        </div>
+    </div>
+</div>
+
+<app-table
+  *ngIf="withDetails"
+  [data]="dataSource"
+  [columnsToShow]="displayedColumns"
+  [withCheckbox]=false
+  [withFilter]=false>
+</app-table>

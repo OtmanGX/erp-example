@@ -4,27 +4,8 @@ import * as ProductActions from './product-draft.actions';
 import { DraftService } from '@tanglass-erp/core/sales';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ProductDraftFacade } from './product-draft.facade';
 @Injectable()
 export class ProductDraftEffects {
-  // loadSelectedProducts$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(ProductActions.loadSelectedProducts),
-  //     mergeMap((action) =>
-  //       this.ProductService.getDraftPorducts(action.draft_id).pipe(
-  //         map((data) => {
-
-  //           return ProductActions.loadSelectedProductsSuccess({ products: data.data.sales_product_draft })
-  //         }
-  //         ),
-  //         catchError((error) =>
-  //           of(ProductActions.loadSelectedProductsFailure({ error }))
-  //         )
-  //       )
-  //     )
-  //   )
-  // });
-
   insertGlassesDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductActions.addGlass),
@@ -101,16 +82,16 @@ export class ProductDraftEffects {
 
   removeProductDraft$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ProductActions.removeProduct),
+      ofType(ProductActions.removeProducts),
       mergeMap((action) =>
-        this.ProductService.removeProduct(action.productId).pipe(
+        this.ProductService.removeProducts(action.ids).pipe(
           map((data) =>
-            ProductActions.removeProductSuccess({
-              productId: data.data.delete_sales_product_draft_by_pk.id,
+            ProductActions.removeProductsSuccess({
+              ids: action.ids,
             })
           ),
           catchError((error) =>
-            of(ProductActions.removeProductFailure({ error }))
+            of(ProductActions.removeProductsFailure({ error }))
           )
         )
       )

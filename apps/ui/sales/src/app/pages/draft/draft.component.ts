@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GridPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import { QuotationHeaders } from '../../utils/grid-headers';
+import { QuotationHeaders } from '@TanglassUi/sales/utils/grid-headers';
 import { Router } from '@angular/router';
 import { DraftFacade } from '@tanglass-erp/store/sales';
 

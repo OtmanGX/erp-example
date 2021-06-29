@@ -11,7 +11,7 @@ import {
   GetProductsByTypeGQL,
   DeleteDraftsGQL,
   Sales_Product_Type_Enum,
-  
+  DeleteProductsGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { InsertedProduct } from "../models/product";
 @Injectable({
@@ -30,9 +30,8 @@ export class DraftService {
     private getProductsByTypeGQL: GetProductsByTypeGQL,
     private getAllDraftsGQL: GetAllDraftsGQL,
     private getDraftByIdGQL: GetDraftByIdGQL,
-
-  ) {
-  }
+    private DeleteProductsGQL: DeleteProductsGQL,
+  ) {}
 
   getAll() {
     return this.getAllDraftsGQL.watch().valueChanges
@@ -104,5 +103,8 @@ export class DraftService {
     return  this.deleteProduct.mutate({ id })
   }
 
- 
+  removeProducts(ids: string[]) {
+    console.log(ids)
+    return  this.DeleteProductsGQL.mutate({ ids })
+  }
 }

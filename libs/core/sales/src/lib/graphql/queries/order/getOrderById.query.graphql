@@ -48,6 +48,12 @@ query GetOrderById($id: Int!) {
         glass_draft {
           id
         }
+        consumable_draft {
+          dependent_id
+        }
+        service_draft {
+          dependent_id
+        }
       }
     }
     payments {
@@ -68,6 +74,5 @@ query GetOrderById($id: Int!) {
         id
       }
     }
- 
   }
 }
