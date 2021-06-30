@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { OrdersFacade } from '@tanglass-erp/store/sales';
-import { DraftFacade } from '@tanglass-erp/store/sales';
+import { OrdersFacade,DraftFacade,ProductDraftFacade,PaymentsFacade } from '@tanglass-erp/store/sales';
 import { DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';
@@ -9,13 +8,7 @@ import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import {
-  ProductDraftFacade,
-  Amount,
-  PaymentsFacade,
-} from '@tanglass-erp/store/sales';
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
-import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoint.actions';
 
 @Component({
   selector: 'ngx-create-order',
@@ -30,7 +23,6 @@ export class CreateOrderComponent implements OnInit ,OnDestroy{
   customer$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
   salePoint$ = this.store.select(SalePointSelectors.getAllSalePoints);
-
   dataSub: Subscription;
   draft_id;
 
@@ -90,14 +82,13 @@ export class CreateOrderComponent implements OnInit ,OnDestroy{
           company_name: amount.company_name,
           draft_id: this.draft_id,
         })),
-      });
-    });
+      })
+    })
   }
 
-  cancel() {
-  }
+  cancel() {}
+
   ngOnDestroy(){
     this.dataSub.unsubscribe();
-
   }
 }

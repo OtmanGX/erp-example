@@ -1,19 +1,35 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit,ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
+import { ProductDraftFacade ,Product_draft } from "@tanglass-erp/store/sales";
+import {MatSelectionList} from '@angular/material/list'
+
 @Component({
   selector: 'ngx-pop-removing',
   templateUrl: 'pop-removing.component.html',
-  styleUrls: ['./pop-removing.component.scss']
+  styleUrls: ['./pop-removing.component.scss'],
 })
-export class PopRemovingComponent  {
-  products: string[] = ['coupe', 'trempage', 'fintion', 'film',];
-
+export class PopRemovingComponent implements OnInit {
+  @ViewChild('products')products:MatSelectionList
+  data:Product_draft[];
   constructor(
     public dialogRef: MatDialogRef<PopRemovingComponent>,
-    @Inject(MAT_DIALOG_DATA) public data,
-    private store: Store,
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public row:Product_draft,
+    private facade: ProductDraftFacade,
 
+  ) {}
 
-}
+  ngOnInit() {
+    this.data=this.facade.getDependencies(this.row?.glass_draft?.id);
+    console.log('vert')
+  }
+
+  delete(){
+
+    this.facade.removeProducts(
+      this.products.selectedOptions.selected.map(
+        obj=>obj.value.id
+      )
+    );
+
+  }
+} 

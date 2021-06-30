@@ -38,6 +38,7 @@ export class QuotationCardComponent extends ModelCardComponent {
         icons: [{ name: "edit", tooltip: "Modification", event: 'editMain' }],
         data:
           [
+            { label: 'Réf ', value: data?.ref },
             { label: 'ID.', value: data?.id },
             { label: 'Société', value: data?.company.name },
             { label: 'Client', value: data?.customer.name },
@@ -46,7 +47,6 @@ export class QuotationCardComponent extends ModelCardComponent {
             { label: 'Date limite ', value: data?.deadline, },
             { label: 'Livraison', value: [data?.delivery_status], type: 'chips' },
             { label: 'Paiement', value: [data?.payment_status], type: 'chips' },
-            { label: 'Réf ', value: data?.draft_id },
           ]
       },
     ];

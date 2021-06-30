@@ -45,6 +45,8 @@ export class QuotationEffects {
               route: 'sales/quotation',
               color: 'primary',
             });
+            this.router.navigate(['sales/quotation']);
+
               return QuotationActions.addQuotationSuccess({quotation: data.data.insert_sales_quotation_one})
             }
           ),
