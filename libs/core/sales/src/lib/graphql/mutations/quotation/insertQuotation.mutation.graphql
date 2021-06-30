@@ -1,4 +1,16 @@
-mutation InsertQuotation($draft_id:Int,$company_id: uuid,$contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric , $salepoint_id: uuid, $status: String = "devis", $amounts: [sales_amount_insert_input!]! ) {
+mutation InsertQuotation(
+  $draft_id:Int,
+  $company_id: uuid,
+  $contact_id: uuid, 
+  $customer_id: uuid, 
+  $date: date, 
+  $deadline: date, 
+  $total_ht: numeric, 
+  $total_tax: numeric, 
+  $total_ttc: numeric , 
+  $salepoint_id: uuid, 
+  $status: String = "devis", 
+  $amounts: [sales_amount_insert_input!]! ) {
   insert_sales_quotation_one(object: {contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc,  salepoint_id: $salepoint_id, company_id: $company_id, draft_id: $draft_id}) {
     company {
       name

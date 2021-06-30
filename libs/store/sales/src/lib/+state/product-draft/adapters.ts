@@ -1,13 +1,5 @@
 import { Product } from "./products-draft.models";
 
-
-export function productsAdapter(data:Product[]) { 
-
-    
-
-
-}
-
 export function groupeByCode(data: Product[]): Product[] {
     return data.map(
         item =>

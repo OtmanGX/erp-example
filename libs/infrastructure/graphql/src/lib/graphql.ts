@@ -5349,6 +5349,10 @@ export type Mutation_Root = {
   delete_sales_quotation?: Maybe<Sales_Quotation_Mutation_Response>;
   /** delete single row from the table: "sales.quotation" */
   delete_sales_quotation_by_pk?: Maybe<Sales_Quotation>;
+  /** delete data from the table: "sales.quotation_status" */
+  delete_sales_quotation_status?: Maybe<Sales_Quotation_Status_Mutation_Response>;
+  /** delete single row from the table: "sales.quotation_status" */
+  delete_sales_quotation_status_by_pk?: Maybe<Sales_Quotation_Status>;
   /** delete data from the table: "sales.service_draft" */
   delete_sales_service_draft?: Maybe<Sales_Service_Draft_Mutation_Response>;
   /** delete single row from the table: "sales.service_draft" */
@@ -5597,6 +5601,10 @@ export type Mutation_Root = {
   insert_sales_quotation?: Maybe<Sales_Quotation_Mutation_Response>;
   /** insert a single row into the table: "sales.quotation" */
   insert_sales_quotation_one?: Maybe<Sales_Quotation>;
+  /** insert data into the table: "sales.quotation_status" */
+  insert_sales_quotation_status?: Maybe<Sales_Quotation_Status_Mutation_Response>;
+  /** insert a single row into the table: "sales.quotation_status" */
+  insert_sales_quotation_status_one?: Maybe<Sales_Quotation_Status>;
   /** insert data into the table: "sales.service_draft" */
   insert_sales_service_draft?: Maybe<Sales_Service_Draft_Mutation_Response>;
   /** insert a single row into the table: "sales.service_draft" */
@@ -5845,6 +5853,10 @@ export type Mutation_Root = {
   update_sales_quotation?: Maybe<Sales_Quotation_Mutation_Response>;
   /** update single row of the table: "sales.quotation" */
   update_sales_quotation_by_pk?: Maybe<Sales_Quotation>;
+  /** update data of the table: "sales.quotation_status" */
+  update_sales_quotation_status?: Maybe<Sales_Quotation_Status_Mutation_Response>;
+  /** update single row of the table: "sales.quotation_status" */
+  update_sales_quotation_status_by_pk?: Maybe<Sales_Quotation_Status>;
   /** update data of the table: "sales.service_draft" */
   update_sales_service_draft?: Maybe<Sales_Service_Draft_Mutation_Response>;
   /** update single row of the table: "sales.service_draft" */
@@ -6538,6 +6550,18 @@ export type Mutation_RootDelete_Sales_QuotationArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Sales_Quotation_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Quotation_StatusArgs = {
+  where: Sales_Quotation_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Sales_Quotation_Status_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 
@@ -7387,6 +7411,20 @@ export type Mutation_RootInsert_Sales_QuotationArgs = {
 export type Mutation_RootInsert_Sales_Quotation_OneArgs = {
   object: Sales_Quotation_Insert_Input;
   on_conflict?: Maybe<Sales_Quotation_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Quotation_StatusArgs = {
+  objects: Array<Sales_Quotation_Status_Insert_Input>;
+  on_conflict?: Maybe<Sales_Quotation_Status_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Sales_Quotation_Status_OneArgs = {
+  object: Sales_Quotation_Status_Insert_Input;
+  on_conflict?: Maybe<Sales_Quotation_Status_On_Conflict>;
 };
 
 
@@ -8305,6 +8343,20 @@ export type Mutation_RootUpdate_Sales_Quotation_By_PkArgs = {
   _inc?: Maybe<Sales_Quotation_Inc_Input>;
   _set?: Maybe<Sales_Quotation_Set_Input>;
   pk_columns: Sales_Quotation_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Quotation_StatusArgs = {
+  _set?: Maybe<Sales_Quotation_Status_Set_Input>;
+  where: Sales_Quotation_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sales_Quotation_Status_By_PkArgs = {
+  _set?: Maybe<Sales_Quotation_Status_Set_Input>;
+  pk_columns: Sales_Quotation_Status_Pk_Columns_Input;
 };
 
 
@@ -14777,6 +14829,12 @@ export type Query_Root = {
   sales_quotation_aggregate: Sales_Quotation_Aggregate;
   /** fetch data from the table: "sales.quotation" using primary key columns */
   sales_quotation_by_pk?: Maybe<Sales_Quotation>;
+  /** fetch data from the table: "sales.quotation_status" */
+  sales_quotation_status: Array<Sales_Quotation_Status>;
+  /** fetch aggregated fields from the table: "sales.quotation_status" */
+  sales_quotation_status_aggregate: Sales_Quotation_Status_Aggregate;
+  /** fetch data from the table: "sales.quotation_status" using primary key columns */
+  sales_quotation_status_by_pk?: Maybe<Sales_Quotation_Status>;
   /** fetch data from the table: "sales.service_draft" */
   sales_service_draft: Array<Sales_Service_Draft>;
   /** fetch aggregated fields from the table: "sales.service_draft" */
@@ -16436,6 +16494,32 @@ export type Query_RootSales_Quotation_AggregateArgs = {
 /** query root */
 export type Query_RootSales_Quotation_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootSales_Quotation_StatusArgs = {
+  distinct_on?: Maybe<Array<Sales_Quotation_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Quotation_Status_Order_By>>;
+  where?: Maybe<Sales_Quotation_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Quotation_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Quotation_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Quotation_Status_Order_By>>;
+  where?: Maybe<Sales_Quotation_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSales_Quotation_Status_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 
@@ -23053,6 +23137,8 @@ export type Sales_Quotation = {
   /** An object relationship */
   order?: Maybe<Sales_Order>;
   order_id?: Maybe<Scalars['Int']>;
+  /** An object relationship */
+  quotation_status: Sales_Quotation_Status;
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
   /** An object relationship */
@@ -23155,6 +23241,7 @@ export type Sales_Quotation_Bool_Exp = {
   id?: Maybe<Int_Comparison_Exp>;
   order?: Maybe<Sales_Order_Bool_Exp>;
   order_id?: Maybe<Int_Comparison_Exp>;
+  quotation_status?: Maybe<Sales_Quotation_Status_Bool_Exp>;
   ref?: Maybe<String_Comparison_Exp>;
   ref_num?: Maybe<Int_Comparison_Exp>;
   salepoint?: Maybe<Management_SalesPoint_Bool_Exp>;
@@ -23200,6 +23287,7 @@ export type Sales_Quotation_Insert_Input = {
   id?: Maybe<Scalars['Int']>;
   order?: Maybe<Sales_Order_Obj_Rel_Insert_Input>;
   order_id?: Maybe<Scalars['Int']>;
+  quotation_status?: Maybe<Sales_Quotation_Status_Obj_Rel_Insert_Input>;
   ref?: Maybe<Scalars['String']>;
   ref_num?: Maybe<Scalars['Int']>;
   salepoint?: Maybe<Management_SalesPoint_Obj_Rel_Insert_Input>;
@@ -23324,6 +23412,7 @@ export type Sales_Quotation_Order_By = {
   id?: Maybe<Order_By>;
   order?: Maybe<Sales_Order_Order_By>;
   order_id?: Maybe<Order_By>;
+  quotation_status?: Maybe<Sales_Quotation_Status_Order_By>;
   ref?: Maybe<Order_By>;
   ref_num?: Maybe<Order_By>;
   salepoint?: Maybe<Management_SalesPoint_Order_By>;
@@ -23391,6 +23480,179 @@ export type Sales_Quotation_Set_Input = {
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
 };
+
+/** columns and relationships of "sales.quotation_status" */
+export type Sales_Quotation_Status = {
+  __typename?: 'sales_quotation_status';
+  key: Scalars['String'];
+  /** An array relationship */
+  quotations: Array<Sales_Quotation>;
+  /** An aggregated array relationship */
+  quotations_aggregate: Sales_Quotation_Aggregate;
+  value: Scalars['String'];
+};
+
+
+/** columns and relationships of "sales.quotation_status" */
+export type Sales_Quotation_StatusQuotationsArgs = {
+  distinct_on?: Maybe<Array<Sales_Quotation_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Quotation_Order_By>>;
+  where?: Maybe<Sales_Quotation_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.quotation_status" */
+export type Sales_Quotation_StatusQuotations_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Quotation_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Quotation_Order_By>>;
+  where?: Maybe<Sales_Quotation_Bool_Exp>;
+};
+
+/** aggregated selection of "sales.quotation_status" */
+export type Sales_Quotation_Status_Aggregate = {
+  __typename?: 'sales_quotation_status_aggregate';
+  aggregate?: Maybe<Sales_Quotation_Status_Aggregate_Fields>;
+  nodes: Array<Sales_Quotation_Status>;
+};
+
+/** aggregate fields of "sales.quotation_status" */
+export type Sales_Quotation_Status_Aggregate_Fields = {
+  __typename?: 'sales_quotation_status_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Sales_Quotation_Status_Max_Fields>;
+  min?: Maybe<Sales_Quotation_Status_Min_Fields>;
+};
+
+
+/** aggregate fields of "sales.quotation_status" */
+export type Sales_Quotation_Status_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Sales_Quotation_Status_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "sales.quotation_status" */
+export type Sales_Quotation_Status_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Sales_Quotation_Status_Max_Order_By>;
+  min?: Maybe<Sales_Quotation_Status_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "sales.quotation_status" */
+export type Sales_Quotation_Status_Arr_Rel_Insert_Input = {
+  data: Array<Sales_Quotation_Status_Insert_Input>;
+  on_conflict?: Maybe<Sales_Quotation_Status_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "sales.quotation_status". All fields are combined with a logical 'AND'. */
+export type Sales_Quotation_Status_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Sales_Quotation_Status_Bool_Exp>>>;
+  _not?: Maybe<Sales_Quotation_Status_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Sales_Quotation_Status_Bool_Exp>>>;
+  key?: Maybe<String_Comparison_Exp>;
+  quotations?: Maybe<Sales_Quotation_Bool_Exp>;
+  value?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "sales.quotation_status" */
+export enum Sales_Quotation_Status_Constraint {
+  /** unique or primary key constraint */
+  QuotationStatusPkey = 'quotation_status_pkey',
+  /** unique or primary key constraint */
+  QuotationStatusValueKey = 'quotation_status_value_key'
+}
+
+/** input type for inserting data into table "sales.quotation_status" */
+export type Sales_Quotation_Status_Insert_Input = {
+  key?: Maybe<Scalars['String']>;
+  quotations?: Maybe<Sales_Quotation_Arr_Rel_Insert_Input>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Sales_Quotation_Status_Max_Fields = {
+  __typename?: 'sales_quotation_status_max_fields';
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "sales.quotation_status" */
+export type Sales_Quotation_Status_Max_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Sales_Quotation_Status_Min_Fields = {
+  __typename?: 'sales_quotation_status_min_fields';
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "sales.quotation_status" */
+export type Sales_Quotation_Status_Min_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "sales.quotation_status" */
+export type Sales_Quotation_Status_Mutation_Response = {
+  __typename?: 'sales_quotation_status_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Sales_Quotation_Status>;
+};
+
+/** input type for inserting object relation for remote table "sales.quotation_status" */
+export type Sales_Quotation_Status_Obj_Rel_Insert_Input = {
+  data: Sales_Quotation_Status_Insert_Input;
+  on_conflict?: Maybe<Sales_Quotation_Status_On_Conflict>;
+};
+
+/** on conflict condition type for table "sales.quotation_status" */
+export type Sales_Quotation_Status_On_Conflict = {
+  constraint: Sales_Quotation_Status_Constraint;
+  update_columns: Array<Sales_Quotation_Status_Update_Column>;
+  where?: Maybe<Sales_Quotation_Status_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "sales.quotation_status" */
+export type Sales_Quotation_Status_Order_By = {
+  key?: Maybe<Order_By>;
+  quotations_aggregate?: Maybe<Sales_Quotation_Aggregate_Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "sales.quotation_status" */
+export type Sales_Quotation_Status_Pk_Columns_Input = {
+  key: Scalars['String'];
+};
+
+/** select columns of table "sales.quotation_status" */
+export enum Sales_Quotation_Status_Select_Column {
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "sales.quotation_status" */
+export type Sales_Quotation_Status_Set_Input = {
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "sales.quotation_status" */
+export enum Sales_Quotation_Status_Update_Column {
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
 
 /** aggregate stddev on columns */
 export type Sales_Quotation_Stddev_Fields = {
@@ -26876,6 +27138,12 @@ export type Subscription_Root = {
   sales_quotation_aggregate: Sales_Quotation_Aggregate;
   /** fetch data from the table: "sales.quotation" using primary key columns */
   sales_quotation_by_pk?: Maybe<Sales_Quotation>;
+  /** fetch data from the table: "sales.quotation_status" */
+  sales_quotation_status: Array<Sales_Quotation_Status>;
+  /** fetch aggregated fields from the table: "sales.quotation_status" */
+  sales_quotation_status_aggregate: Sales_Quotation_Status_Aggregate;
+  /** fetch data from the table: "sales.quotation_status" using primary key columns */
+  sales_quotation_status_by_pk?: Maybe<Sales_Quotation_Status>;
   /** fetch data from the table: "sales.service_draft" */
   sales_service_draft: Array<Sales_Service_Draft>;
   /** fetch aggregated fields from the table: "sales.service_draft" */
@@ -28535,6 +28803,32 @@ export type Subscription_RootSales_Quotation_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootSales_Quotation_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Quotation_StatusArgs = {
+  distinct_on?: Maybe<Array<Sales_Quotation_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Quotation_Status_Order_By>>;
+  where?: Maybe<Sales_Quotation_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Quotation_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Quotation_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Quotation_Status_Order_By>>;
+  where?: Maybe<Sales_Quotation_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootSales_Quotation_Status_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 

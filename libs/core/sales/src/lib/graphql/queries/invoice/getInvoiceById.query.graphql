@@ -22,7 +22,6 @@ query GetInvoiceById($id: uuid!) {
       quantity
       total
     }
-
     client {
       name
       phone

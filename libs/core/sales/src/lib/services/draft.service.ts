@@ -104,7 +104,6 @@ export class DraftService {
   }
 
   removeProducts(ids: string[]) {
-    console.log(ids)
     return  this.DeleteProductsGQL.mutate({ ids })
   }
 }

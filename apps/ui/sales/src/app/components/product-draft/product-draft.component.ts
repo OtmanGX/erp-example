@@ -5,11 +5,10 @@ import { PopProductComponent } from "@TanglassUi/sales/components/pop-product/po
 import { Column, FieldConfig, TableComponent } from '@tanglass-erp/material';
 import { ProductHeaders, ProductGlassHeaders } from "@TanglassUi/sales/utils/grid-headers";
 import { Product } from "@TanglassUi/sales/utils/models";
-import { ProductDraftFacade ,ProductsTypes} from "@tanglass-erp/store/sales";
+import { ProductDraftFacade ,ProductsTypes,DraftFacade,Product_draft } from "@tanglass-erp/store/sales";
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { DraftFacade,Product_draft } from "@tanglass-erp/store/sales";
 import { PopRemovingComponent } from "@TanglassUi/sales/components/pop-remove-dependencies/pop-removing.component";
 @Component({
   selector: 'ngx-product-draft',
@@ -48,7 +47,6 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
       }
     )
   }
-
   openDialog(action, product_type: string, row?: Product): void {
     let companies; let warehouses
     this.companiesSub = this.companies$.subscribe(val => companies = val)
@@ -89,16 +87,16 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
     this.glassTable.render();
   }
   delete(item: Product_draft): void {
-    this.facade.removeProducts(item.id,item.glass_draft.id);
+    this.facade.removeProduct(item.id,item?.glass_draft?.id);
     this.articlesTable.render();
     this.glassTable.render();
     this.facade.updateAmounts();
   }
-  deleteDependencies(){
+  deleteDependencies(row: Product_draft):void{
     const dialogRef = this.dialog.open(PopRemovingComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
-      data: []
+      data: row
     });
   }
   ngOnDestroy(): void {

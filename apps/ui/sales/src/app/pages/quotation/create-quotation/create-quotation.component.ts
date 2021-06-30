@@ -56,23 +56,25 @@ export class CreateQuotationComponent implements OnInit {
     this.buildForm();
     this.dataSub = this.draftFacade.selectedDraft$.subscribe(id => {this.draft_id = id})
   }
-  save() {
-  
-    this.productDraftFacade.amounts$.subscribe(
-      value => {
 
-        this.quotationFacade.addQuotation({
+  save() {
+    this.productDraftFacade.amounts$.subscribe((amounts) => {
+      let total = amounts.pop();
+      this.quotationFacade.addQuotation({
         ...this.quotationForm.value,
         draft_id: this.draft_id,
-        total_ttc: value[value.length - 1].total_ttc,
-        total_tax: value[value.length - 1].total_tax,
-        total_ht: value[value.length - 1].total_ht,
-      })}
-    )
+        total_ttc: total.total_ttc,
+        total_tax: total.total_tax,
+        total_ht: total.total_ht,
+        amounts: amounts.map((amount) => ({
+          ...amount,
+          company_name: amount.company_name,
+          draft_id: this.draft_id,
+        })),
+      })
+    })
   }
-
   cancel() {
     this.dataSub.unsubscribe()
   }
-
 }

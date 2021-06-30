@@ -173,7 +173,7 @@ export class ProductDraftFacade {
 
     this.amounts$.next(amounts);
   }
-  removeProducts(id: string, dependent_id?: string): void {
+  removeProduct(id: string, dependent_id?: string): void {
     let ids: string[];
     dependent_id ? (ids = [
       ...this.getDependencies(dependent_id)?.map(product=>product.id),
@@ -181,7 +181,11 @@ export class ProductDraftFacade {
     this.dispatch(ProductsActions.removeProducts({ ids }));
     this.updateAmounts();
   }
-  getDependencies(id) {
+
+  removeProducts(ids: string[]): void {
+    this.dispatch(ProductsActions.removeProducts({ ids }));
+  }
+  getDependencies(id:string):Product_draft[] {
     let dependent_products: Product_draft[];
     this.allProduct$.subscribe((data) => {
       dependent_products=data.filter(item=>item.dependent_id==id)
