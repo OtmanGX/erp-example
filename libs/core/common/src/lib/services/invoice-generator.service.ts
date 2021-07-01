@@ -3,7 +3,7 @@ import { PdfMakeWrapper, Table, Txt, Line, Columns  } from 'pdfmake-wrapper';
 import { OrderPrint } from '../models/order-printing';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { InsertedDeliveryForm, Order, UpdatedInvoice } from '@tanglass-erp/core/sales';
+import { InsertedDeliveryForm, Order, Product_draft, UpdatedInvoice } from '@tanglass-erp/core/sales';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 //
@@ -206,15 +206,16 @@ export class InvoiceGeneratorService {
 
     pdf.add(
       new Table(
-        this.extractSecondData(
-          order.products.map((e) => ({
-            item_designation: e.label,
-            quantity: e.quantity,
-            unit_price: e.price,
-            total_price: e.total_price,
-          }))
-        )
+        this.addGlasses(order.products)
       )
+        .widths(['25%', '15%', '15%', '15%', '15%', '15%'])
+        .margin([0, 20]).end
+    );
+
+    pdf.add(
+      new Table(
+        this.addAll(order.products)
+        )
         .widths(['45%', '15%', '20%', '20%'])
         .margin([0, 20]).end
     );
@@ -251,19 +252,78 @@ export class InvoiceGeneratorService {
     pdf.create().open();
   }
 
-  extratData(order) {
-    return [
+  addGlasses(products: Product_draft[]) {
+    const table = [
       ['Code', 'Qte', 'Largeur', 'Hauteur', 'M2', 'ML'],
-      ...order.processedMaterial.map((row) => [
-        row.code,
-        row.NumberOf_pieces,
-        row.width,
-        row.height,
-        row.m2,
-        row.ml,
-      ]),
     ];
+    // Filter only Glasses and client articles
+    products = products.filter(e=> ['Verre', 'Article_Client'].includes(e.type));
+    const map = new Map<string, Array<any>>();
+    products.forEach(item => {
+      const row = [item.product_code, item.quantity, item.width, item.heigth, item.m2, item.ml];
+      if (!map.has(item.product_code))
+        map.set(item.product_code, [row])
+      else map.get(item.product_code).push(row);
+    })
+
+    map.forEach((value, key) => {
+      table.push(...value);
+      table.push([
+        '', '', '', '',
+        value.reduce((pre, curr) => pre[4] || 0 +curr[4], 0),
+        value.reduce((pre, curr) => pre[5] || 0 +curr[5], 0),
+      ])
+    })
+
+    return table;
   }
+
+  addAll(products: Product_draft[]) {
+    // Header
+    const table: any[] = [
+      ['Désignation', 'Qté M2/ML', 'PU', 'Montant H.T'],
+    ];
+
+    const accessories = ['ACCESSOIRES', 0, '', 0]; // Initialize accessories
+
+    // Group By glass
+    const map = new Map<string, Array<any>>();
+
+    products.filter(e => ['Verre', 'Article_Client', 'Accessoire'].includes(e.type)).forEach((item => {
+      if (item.type === 'Accessoire') { // Accessory type
+        (accessories[1] as number) += item.quantity;
+        (accessories[2] as number) += item.price;
+        (accessories[3] as number) += item.total_price;
+        return;
+      }
+      const row = [item.label, item.m2, item.price, item.total_price]
+      if (map.has(item.product_code)) {
+        map.get(item.product_code)[1] += row[1];
+        map.get(item.product_code)[3] += row[3];
+      } else map.set(item.product_code, row);
+    }));
+
+    // Services
+    const services = [];
+    products.filter(e =>  ['Service', 'Consommable'].includes(e.type)).forEach(item => {
+      if (item.label.toLowerCase().includes('pose')) {
+        accessories[0] += 'ET POSE';
+        (accessories[1] as number) += item.quantity;
+        (accessories[2] as number) += item.price;
+        (accessories[3] as number) += item.total_price;
+      } else {
+          services.push([item.label, item.quantity, item.price, item.total_price]);
+      }
+    })
+
+    // Merge all on the table
+    table.push(...Array.from(map.values()))
+    if (accessories[3] !== 0) table.push(accessories);
+    table.push(...services);
+
+    return table;
+  }
+
   extractSecondData(salesData) {
     return [
       ['Désignation', 'Qté M2/ML', 'PU', 'Montant H.T'],
