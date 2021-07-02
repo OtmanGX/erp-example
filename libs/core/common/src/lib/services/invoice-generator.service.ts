@@ -214,7 +214,7 @@ export class InvoiceGeneratorService {
 
     pdf.add(
       new Table(
-        this.addAll(order.products)
+        this.addAll(order.products.map(e=> ({...e})))
         )
         .widths(['45%', '15%', '20%', '20%'])
         .margin([0, 20]).end
@@ -270,8 +270,8 @@ export class InvoiceGeneratorService {
       table.push(...value);
       table.push([
         '', '', '', '',
-        value.reduce((pre, curr) => pre[4] || 0 +curr[4], 0),
-        value.reduce((pre, curr) => pre[5] || 0 +curr[5], 0),
+        value.reduce((pre, curr) => pre + curr[4], 0),
+        value.reduce((pre, curr) => pre +curr[5], 0),
       ])
     })
 
@@ -279,6 +279,13 @@ export class InvoiceGeneratorService {
   }
 
   addAll(products: Product_draft[]) {
+    // Adapt
+    products.forEach(value => {
+      value.price *= (5/6);
+      value.total_price = value.price*value.quantity;
+      value.price = parseFloat(value.price.toFixed(2));
+      value.total_price = parseFloat(value.total_price.toFixed(2));
+    })
     // Header
     const table: any[] = [
       ['Désignation', 'Qté M2/ML', 'PU', 'Montant H.T'],
