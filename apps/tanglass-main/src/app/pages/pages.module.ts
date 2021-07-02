@@ -69,6 +69,7 @@ const routes: Routes = [
       },
       {
         path: 'sales',
+        data: { title: 'Ventes', breadcrumb: "Ventes", noLink: true},
         loadChildren: () =>
           import('@TanglassUi/sales/sales.module').then(m => m.SalesModule),
       },

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd, ActivatedRouteSnapshot, Params, PRIMARY_OUTLET } from "@angular/router";
 
-interface IRoutePart {
+export interface IRoutePart {
   title: string,
+  noLink?: boolean,
   breadcrumb: string,
   params?: Params,
   url: string,
@@ -25,6 +26,7 @@ export class RoutePartsService {
         routeParts.push({
           title: snapshot.data['title'],
           breadcrumb: snapshot.data['breadcrumb'],
+          noLink: snapshot.data['noLink'],
           url: snapshot.url[0].path,
           urlSegments: snapshot.url,
           params: snapshot.params

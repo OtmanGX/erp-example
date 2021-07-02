@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { RoutePartsService } from '../../../shared/services/route-parts.service';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { IRoutePart, RoutePartsService } from '../../../shared/services/route-parts.service';
 import { LayoutService } from '../../../shared/services/layout.service';
 import { Subscription } from "rxjs";
 import { filter } from 'rxjs/operators';
@@ -11,12 +11,12 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent implements OnInit, OnDestroy {
-  routeParts:any[];
+  routeParts:IRoutePart[];
   routerEventSub: Subscription;
   // public isEnabled: boolean = true;
   constructor(
     private router: Router,
-    private routePartsService: RoutePartsService, 
+    private routePartsService: RoutePartsService,
     private activeRoute: ActivatedRoute,
     public layout: LayoutService
   ) {
@@ -40,7 +40,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
           // prepend previous part to current part
           item.url = `${this.routeParts[i - 1].url}/${item.url}`;
           return item;
-        });        
+        });
       });
   }
 
