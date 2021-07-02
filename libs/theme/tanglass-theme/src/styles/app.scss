@@ -3,7 +3,7 @@
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
 @import 'vendor/pace/pace-theme-min.css';
 @import 'variables';
-@import "functions/functions";
+@import 'functions/functions';
 @import 'colors';
 @import 'animations';
 @import 'themes/themes';
@@ -72,6 +72,10 @@
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.align-icons {
+  vertical-align: text-bottom !important;
 }
 
 @import 'main/main';

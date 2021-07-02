@@ -23,46 +23,46 @@ const routes: Routes = [
         children: [
           { path: '', component: DraftComponent },
         ],
-        data: { title: 'Drafts', breadcrumb: "" }
+        data: { title: 'Drafts', breadcrumb: "Brouillons" }
       },
       {
         path: 'quotation',
         children: [
           { path: '', component: QuotationComponent },
-          { path: 'createQuotation', component: CreateQuotationComponent },
+          { path: 'createQuotation', component: CreateQuotationComponent, data: { breadcrumb: "Ajouter"} },
 
         ],
-        data: { title: 'Quotations', breadcrumb: "" },
+        data: { title: 'Quotations', breadcrumb: "Devis" },
 
       },
       {
         path: 'order',
         children: [
           { path: '', component: OrderComponent },
-          { path: 'createOrder', component: CreateOrderComponent },
-          { path: ':id', component: OrderCardComponent },
+          { path: 'createOrder', component: CreateOrderComponent,  data: { breadcrumb: "Ajouter"}},
+          { path: ':id', component: OrderCardComponent, data: { breadcrumb: "Détails"} },
 
         ],
-        data: { title: 'Orders', breadcrumb: "" }
+        data: { title: 'Orders', breadcrumb: "Commandes" }
       },
       {
         path: 'delivery',
         children: [
           { path: '', component: DeliveryListComponent },
-          { path: 'add', component: DeliveryAddComponent },
-          { path: 'update', component: DeliveryAddComponent },
+          { path: 'add', component: DeliveryAddComponent, data: { breadcrumb: "Ajouter"} },
+          { path: 'update', component: DeliveryAddComponent,  data: { breadcrumb: "Mettre à jour"} },
         ],
-        data: { title: 'Bons de livraison', breadcrumb: "" }
+        data: { title: 'Bons de livraison', breadcrumb: "Bons de livraison" }
       },
       {
         path: 'invoice',
         children: [
           { path: '', component: InvoiceListComponent },
-          { path: 'add', component: InvoiceAddComponent },
-          { path: 'update', component: InvoiceAddComponent },
+          { path: 'add', component: InvoiceAddComponent, data: { breadcrumb: "Ajouter" } },
+          { path: 'update', component: InvoiceAddComponent,  data: { breadcrumb: "Mettre à jour" } },
           { path: 'ready', component: InvoiceReadyComponent },
         ],
-        data: { title: 'Factures', breadcrumb: "" }
+        data: { title: 'Factures', breadcrumb: "Factures" }
       },
     ]
   }
