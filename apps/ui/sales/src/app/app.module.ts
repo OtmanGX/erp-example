@@ -8,15 +8,23 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [AppComponent ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([{ path: '', loadChildren: () =>
-      import('./sales.module').then(m => m.SalesModule) }], { initialNavigation: 'enabled' }),
+    RouterModule.forRoot(
+      [
+        {
+          path: '',
+          loadChildren: () =>
+            import('./sales.module').then((m) => m.SalesModule),
+        },
+      ],
+      { initialNavigation: 'enabled' }
+    ),
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    InfrastructureGraphqlModule
+    InfrastructureGraphqlModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

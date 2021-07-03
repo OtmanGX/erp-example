@@ -38,18 +38,15 @@
             <ngx-amounts-order [isCardMode]='isCardMode'></ngx-amounts-order>
         </mat-tab>
         <mat-tab label="Bis">
-            <app-table  [data]="dataSource_bis" 
-                [columnsToShow]="displayedColumns" [withCheckbox]=false [withFilter]=false>
+            <app-table [data]="dataSource_bis" [columnsToShow]="displayedColumns" [withCheckbox]=false
+                [withFilter]=false>
             </app-table>
         </mat-tab>
         <mat-tab label="Réglements">
             <ngx-payments></ngx-payments>
         </mat-tab>
         <mat-tab label="Livraisons">
-            <app-table  [data]="dataSource_delivery" 
-            [columnsToShow]="displayedColumns" [withCheckbox]=false [withFilter]=false>
-        </app-table>
-
+            <ngx-order-deliveries></ngx-order-deliveries>
         </mat-tab>
     </mat-tab-group>
 </ngx-fiche-card>

@@ -10,7 +10,7 @@ import { JobOrdersFacade } from './+state/job-orders.facade';
   imports: [
     CommonModule,
     StoreModule.forFeature(
-      fromJobOrders.JOBORDERS_FEATURE_KEY,
+      fromJobOrders.JOB_ORDERS_FEATURE_KEY,
       fromJobOrders.reducer
     ),
     EffectsModule.forFeature([JobOrdersEffects]),

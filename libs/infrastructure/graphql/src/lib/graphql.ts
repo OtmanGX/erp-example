@@ -30831,13 +30831,16 @@ export type InsertJobOrderMutation = (
   & { insert_manufacturing_job_order_one?: Maybe<(
     { __typename?: 'manufacturing_job_order' }
     & Pick<Manufacturing_Job_Order, 'id' | 'order_ref' | 'status' | 'type' | 'date'>
+  )>, update_sales_product_draft?: Maybe<(
+    { __typename?: 'sales_product_draft_mutation_response' }
+    & Pick<Sales_Product_Draft_Mutation_Response, 'affected_rows'>
   )> }
 );
 
-export type GetAllOrdersJobQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAllJobsOrdersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllOrdersJobQuery = (
+export type GetAllJobsOrdersQuery = (
   { __typename?: 'query_root' }
   & { manufacturing_job_order: Array<(
     { __typename?: 'manufacturing_job_order' }
@@ -31837,7 +31840,11 @@ export type GetOrderDeliveriesQuery = (
   { __typename?: 'query_root' }
   & { sales_delivery_line: Array<(
     { __typename?: 'sales_delivery_line' }
-    & Pick<Sales_Delivery_Line, 'amount' | 'delivered' | 'delivery' | 'id'>
+    & Pick<Sales_Delivery_Line, 'amount' | 'delivered' | 'id' | 'product_draft_id'>
+    & { product_draft: (
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'company_name' | 'count' | 'delivered' | 'draft_id' | 'heigth' | 'id' | 'isLaunched' | 'isRepeated' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'status' | 'substance_id' | 'total_price' | 'type' | 'unit' | 'warehouse_id' | 'width'>
+    ) }
   )> }
 );
 
@@ -32134,6 +32141,22 @@ export type GetQuotationByIdQuery = (
     ), customer: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'id' | 'name' | 'phone' | 'code'>
+    ), draft: (
+      { __typename?: 'sales_draft' }
+      & { product_drafts: Array<(
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'id' | 'label' | 'heigth' | 'company_name' | 'count' | 'delivered' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'status' | 'total_price' | 'type' | 'unit' | 'width'>
+        & { glass_draft?: Maybe<(
+          { __typename?: 'sales_glass_draft' }
+          & Pick<Sales_Glass_Draft, 'id'>
+        )>, consumable_draft?: Maybe<(
+          { __typename?: 'sales_consumable_draft' }
+          & Pick<Sales_Consumable_Draft, 'dependent_id'>
+        )>, service_draft?: Maybe<(
+          { __typename?: 'sales_service_draft' }
+          & Pick<Sales_Service_Draft, 'dependent_id'>
+        )> }
+      )> }
     ), salepoint: (
       { __typename?: 'management_salesPoint' }
       & Pick<Management_SalesPoint, 'name'>
@@ -34141,6 +34164,12 @@ export const InsertJobOrderDocument = gql`
     type
     date
   }
+  update_sales_product_draft(
+    where: {draft: {order: {ref: {_eq: $order_ref}}}}
+    _set: {isRepeated: true}
+  ) {
+    affected_rows
+  }
 }
     `;
 
@@ -34154,8 +34183,8 @@ export const InsertJobOrderDocument = gql`
       super(apollo);
     }
   }
-export const GetAllOrdersJobDocument = gql`
-    query GetAllOrdersJob {
+export const GetAllJobsOrdersDocument = gql`
+    query GetAllJobsOrders {
   manufacturing_job_order {
     id
     date
@@ -34169,8 +34198,8 @@ export const GetAllOrdersJobDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class GetAllOrdersJobGQL extends Apollo.Query<GetAllOrdersJobQuery, GetAllOrdersJobQueryVariables> {
-    document = GetAllOrdersJobDocument;
+  export class GetAllJobsOrdersGQL extends Apollo.Query<GetAllJobsOrdersQuery, GetAllJobsOrdersQueryVariables> {
+    document = GetAllJobsOrdersDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -35572,8 +35601,31 @@ export const GetOrderDeliveriesDocument = gql`
   sales_delivery_line(where: {product_draft: {draft_id: {_eq: $draft_id}}}) {
     amount
     delivered
-    delivery
     id
+    product_draft_id
+    product_draft {
+      company_name
+      count
+      delivered
+      draft_id
+      heigth
+      id
+      isLaunched
+      isRepeated
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      status
+      substance_id
+      total_price
+      type
+      unit
+      warehouse_id
+      width
+    }
   }
 }
     `;
@@ -36081,6 +36133,35 @@ export const GetQuotationByIdDocument = gql`
       name
       phone
       code
+    }
+    draft {
+      product_drafts {
+        id
+        label
+        heigth
+        company_name
+        count
+        delivered
+        m2
+        ml
+        price
+        product_code
+        quantity
+        status
+        total_price
+        type
+        unit
+        width
+        glass_draft {
+          id
+        }
+        consumable_draft {
+          dependent_id
+        }
+        service_draft {
+          dependent_id
+        }
+      }
     }
     date
     deadline

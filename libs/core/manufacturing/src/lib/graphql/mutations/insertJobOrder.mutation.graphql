@@ -22,4 +22,13 @@ mutation InsertJobOrder(
     type
     date
   }
+  update_sales_product_draft(where: {draft: 
+  {order: {
+    ref: {
+      _eq: $order_ref
+      }}}}, _set: {
+        isRepeated: true
+        }) {
+    affected_rows
+  }
 }

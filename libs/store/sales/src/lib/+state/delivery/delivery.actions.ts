@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { DeliveryForm, InsertedDeliveryForm,DeliveryLine } from '@tanglass-erp/core/sales';
+import { DeliveryForm, InsertedDeliveryForm,DeliveryLine,OrderDelivery } from '@tanglass-erp/core/sales';
 
 // Load all
 export const loadDelivery = createAction(
@@ -92,7 +92,7 @@ export const loadOrderDeliveries = createAction(
 
 export const loadOrderDeliveriesSuccess = createAction(
   '[Order deliveries] Load Order deliveries Success',
-  props<{ deliveries: DeliveryLine[] }>()
+  props<{ deliveries: OrderDelivery[] }>()
 );
 
 export const loadOrderDeliveriesFailure = createAction(

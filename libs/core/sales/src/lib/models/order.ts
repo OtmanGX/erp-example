@@ -17,6 +17,7 @@ export interface Order {
   products?: Product_draft[];
   ref?:string;
   ref_num?: number;
+  salepoint?: {name:string};
 }
 
 export interface InsertedOrder {
@@ -31,5 +32,24 @@ export interface InsertedOrder {
   total_tax: number;
   total_ht: number;
   products: Product_draft[];
+  amounts: Amount[];
+}
+
+
+
+export interface TransformedQuotation{
+  company_id: string, 
+  contact_id: string, 
+  customer_id: string, 
+  Date: Date, 
+  deadline: Date, 
+  total_ht: number, 
+  total_tax: number, 
+  total_ttc: number, 
+  payment_status: string, 
+  delivery_status: string , 
+  salepoint_id: string, 
+  status: string, 
+  product_drafts: Product_draft[];
   amounts: Amount[];
 }

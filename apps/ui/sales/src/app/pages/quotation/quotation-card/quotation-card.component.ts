@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdersFacade, Order } from "@tanglass-erp/store/sales";
+import { QuotationFacade, Quotation } from "@tanglass-erp/store/sales";
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
@@ -12,24 +12,24 @@ import { SharedFacade } from '@tanglass-erp/store/shared';
 export class QuotationCardComponent extends ModelCardComponent {
   title = "Fiche Devis ";
   id: string;
-  data$ = this.facade.loadedOrders$
+  data$ = this.facade.loadedQuotation$
     .pipe(takeUntil(this._onDestroy));
   isCardMode: boolean = true;
   constructor(
     public activatedRoute: ActivatedRoute,
-    protected facade: OrdersFacade,
+    protected facade: QuotationFacade,
     private sharedfacade: SharedFacade,
   ) {
     super(activatedRoute);
   }
 
   dispatch(): void {
-    this.facade.loadOrderById(this.id);
+    this.facade.loadQuotationById(this.id);
     this.sharedfacade.loadAllShortCompanies();
     this.sharedfacade.loadAllShortWarehouses();
   }
 
-  passData(data:Order) {
+  passData(data:Quotation) {
     return [
       {
         label: "Infos Générales",
@@ -45,8 +45,6 @@ export class QuotationCardComponent extends ModelCardComponent {
             { label: 'Tél', value: data?.customer.phone },
             { label: 'Date', value: data?.date },
             { label: 'Date limite ', value: data?.deadline, },
-            { label: 'Livraison', value: [data?.delivery_status], type: 'chips' },
-            { label: 'Paiement', value: [data?.payment_status], type: 'chips' },
           ]
       },
     ];

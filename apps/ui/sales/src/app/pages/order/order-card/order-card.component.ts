@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { OrdersFacade, Order } from "@tanglass-erp/store/sales";
+import { OrdersFacade, Order,DeliveryFacade } from "@tanglass-erp/store/sales";
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { SharedFacade } from '@tanglass-erp/store/shared';
-import { ProductHeaders, ProductGlassHeaders } from "@TanglassUi/sales/utils/grid-headers";
+import { ProductHeaders } from "@TanglassUi/sales/utils/grid-headers";
 
 @Component({
   selector: 'ngx-order-card',
@@ -13,16 +13,16 @@ import { ProductHeaders, ProductGlassHeaders } from "@TanglassUi/sales/utils/gri
 })
 export class OrderCardComponent extends ModelCardComponent {
   title = "Commande CARD";
-  id: string;
   dataSource_bis=[];
-  dataSource_delivery=[]
   displayedColumns=ProductHeaders;
   data$ = this.facade.loadedOrders$
     .pipe(takeUntil(this._onDestroy));
   isCardMode: boolean = true;
+  
   constructor(
     public activatedRoute: ActivatedRoute,
     protected facade: OrdersFacade,
+    protected deliveryFacade :DeliveryFacade,
     private sharedfacade: SharedFacade,
   ) {
     super(activatedRoute);
@@ -60,7 +60,8 @@ export class OrderCardComponent extends ModelCardComponent {
   edit() {
     this.isCardMode = false;
   }
-  save() { }
+  save() { 
+  }
   cancel() {
     this.isCardMode = true
    }

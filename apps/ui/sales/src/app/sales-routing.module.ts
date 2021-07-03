@@ -13,6 +13,7 @@ import { OrderCardComponent } from "./pages/order/order-card/order-card.componen
 import { InvoiceListComponent } from '@TanglassUi/sales/pages/invoice/invoice-list/invoice-list.component';
 import { InvoiceAddComponent } from '@TanglassUi/sales/pages/invoice/invoice-add/invoice-add.component';
 import { InvoiceReadyComponent } from '@TanglassUi/sales/pages/invoice/invoice-ready/invoice-ready.component';
+import { QuotationCardComponent } from "@TanglassUi/sales/pages/quotation/quotation-card/quotation-card.component";
 const routes: Routes = [
   {
     path: '',
@@ -29,7 +30,8 @@ const routes: Routes = [
         path: 'quotation',
         children: [
           { path: '', component: QuotationComponent },
-          { path: 'createQuotation', component: CreateQuotationComponent, data: { breadcrumb: "Ajouter"} },
+          { path: 'createQuotation', component: CreateQuotationComponent },
+          { path: ':id', component: QuotationCardComponent },
 
         ],
         data: { title: 'Quotations', breadcrumb: "Devis" },

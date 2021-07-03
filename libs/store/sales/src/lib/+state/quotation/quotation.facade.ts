@@ -11,7 +11,7 @@ export class QuotationFacade {
   loaded$ = this.store.pipe(select(QuotationSelectors.getQuotationLoaded));
   allQuotation$ = this.store.pipe(select(QuotationSelectors.getAllQuotation));
   selectedQuotation$ = this.store.pipe(select(QuotationSelectors.getSelectedQuotation));
-
+  loadedQuotation$=this.store.pipe(select(QuotationSelectors.getLoadedQuotation))
   constructor(private store: Store<fromQuotation.QuotationPartialState>) {}
 
   dispatch(action: Action) {
@@ -28,4 +28,11 @@ export class QuotationFacade {
   removeMany(ids: number[]) {
     this.dispatch(QuotationsActions.deleteQuotations({ids}));
   }
+  loadQuotationById(id) {
+    this.dispatch(QuotationsActions.loadQuotationById({ id }))
+  }
+  TransformToOrder(){
+    
+  }
+  
 }

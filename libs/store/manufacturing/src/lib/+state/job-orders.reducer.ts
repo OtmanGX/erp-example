@@ -35,10 +35,17 @@ const jobOrdersReducer = createReducer(
   on(JobOrdersActions.loadJobOrdersSuccess, (state, { jobOrders }) =>
     jobOrdersAdapter.setAll(jobOrders, { ...state, loaded: true })
   ),
-  on(JobOrdersActions.loadJobOrdersFailure, (state, { error }) => ({
-    ...state,
-    error,
-  }))
+  on(JobOrdersActions.addJobOrderSuccess, (state, action) =>
+    jobOrdersAdapter.addOne(action.jobOrder, state)
+  ),
+  on(
+    JobOrdersActions.loadJobOrdersFailure,
+    JobOrdersActions.addJobOrderFailure,
+    (state, { error }) => ({
+      ...state,
+      error,
+    })
+  )
 );
 
 export function reducer(state: State | undefined, action: Action) {

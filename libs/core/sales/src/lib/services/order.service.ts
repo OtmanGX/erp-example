@@ -5,10 +5,10 @@ import {
   GetOrderByIdGQL,
   DeleteOrdersGQL,
   InsertOrderMutationVariables,
+  TransformQuotationToOrderGQL
 } from '@tanglass-erp/infrastructure/graphql';
-import { invoiceFilter } from '../models/invoice';
 import { map } from 'rxjs/operators';
-import { Product_draft } from '../models/product';
+import { TransformedQuotation,Product_draft,invoiceFilter,productAdapter} from "@tanglass-erp/core/sales";
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +17,8 @@ export class OrderService {
     private getAllOrdersGQL: GetAllOrdersGQL,
     private deleteOrdersGQL: DeleteOrdersGQL,
     private insertOrderGQL: InsertOrderGQL,
-    private getOrderByIdGQL: GetOrderByIdGQL
+    private getOrderByIdGQL: GetOrderByIdGQL,
+    private transformQuotationToOrderGQL:TransformQuotationToOrderGQL
   ) {}
 
   getAll(params: invoiceFilter = {}) {
@@ -34,27 +35,18 @@ export class OrderService {
         ...data.data.sales_order_by_pk,
         products: data.data.sales_order_by_pk.draft.product_drafts.map(
           (product) => {
-            return this.adapter(product);
+            return productAdapter(product);
           }
         ),
       }))
     );
   }
 
-  adapter(product) {
-    if (product.service_draft) {
-      return {
-        ...product,
-        dependent_id: product.service_draft.dependent_id,
-      };
-    } else if (product.consumable_draft) {
-      return {
-        ...product,
-        dependent_id: product.consumable_draft.dependent_id,
-      };
-    } else return product;
-  }
   insertOne(order: InsertOrderMutationVariables) {
     return this.insertOrderGQL.mutate(order);
   }
+
+  CreateFromQuotation(order:TransformedQuotation) {
+ }
+
 }

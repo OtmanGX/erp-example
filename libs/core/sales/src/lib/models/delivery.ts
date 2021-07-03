@@ -1,6 +1,7 @@
 import { DeliveryStatus, PaymentMethod } from '../enums/delivery';
 import { MetaData } from '@tanglass-erp/core/common';
 import { Company } from '@tanglass-erp/core/product';
+import { Product_draft } from './product';
 
 export interface DeliveryForm extends MetaData {
   id: string;
@@ -91,3 +92,11 @@ export type deliveryFilter = {
   dateEnd?: Date;
   status?: string;
 };
+
+export interface OrderDelivery{
+  amount:number;
+  delivered:number;
+  id:string;
+  quantity:number;
+  product_draft:Product_draft;
+}

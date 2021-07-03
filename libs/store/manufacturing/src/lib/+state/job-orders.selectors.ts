@@ -10,7 +10,7 @@ import {
 export const getJobOrdersState = createFeatureSelector<
   JobOrdersPartialState,
   State
->(JOBORDERS_FEATURE_KEY);
+>(JOB_ORDERS_FEATURE_KEY);
 
 const { selectAll, selectEntities } = jobOrdersAdapter.getSelectors();
 

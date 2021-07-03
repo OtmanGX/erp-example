@@ -30,6 +30,8 @@ export class DeliveryFacade {
     .pipe(select(DeliverySelectors.getSelectedEntity))
     .pipe(filter((e) => !!e));
 
+  orderDeliveries$=this.store.pipe(select(DeliverySelectors.getSelectedOrderDeliveries))
+
   constructor(
     private store: Store<fromDelivery.DeliveryPartialState>,
     private router: Router,
@@ -44,6 +46,7 @@ export class DeliveryFacade {
   loadDeliveries(params: deliveryFilter) {
     this.dispatch(DeliveryActions.loadDelivery(params));
   }
+
 
   loadDeliveryById(id: string) {
     this.dispatch(DeliveryActions.loadDeliveryById({ id }));
@@ -90,5 +93,9 @@ export class DeliveryFacade {
     this.router.navigate(['sales/invoice/add'], {
       state: { deliveries: data.map((e) => ({ delivery_id: e.id })) },
     });
+  }
+  
+  loadOrderDeliveries(draft_id: number) {
+    this.dispatch(DeliveryActions.loadOrderDeliveries({draft_id}));
   }
 }

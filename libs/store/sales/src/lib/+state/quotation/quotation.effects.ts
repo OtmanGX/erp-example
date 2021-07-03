@@ -4,9 +4,9 @@ import * as QuotationActions from './quotation.actions';
 import { QuotationService } from '@tanglass-erp/core/sales';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ProductDraftFacade } from "../product-draft/product-draft.facade";
 import { Router } from '@angular/router';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
+import {DraftFacade,ProductDraftFacade } from "@tanglass-erp/store/sales";
 
 @Injectable()
 export class QuotationEffects {
@@ -65,8 +65,9 @@ export class QuotationEffects {
       mergeMap((action) =>
         this.quotationService.getOneById(action.id).pipe(
           map((data) => {
-
-            return QuotationActions.loadQuotationByIdSuccess({ quotation: data.data.sales_quotation_by_pk })
+            this.draftFacade.selectDraftId(data.draft_id);
+            this.productDraftFacade.setDraftProducts(data.products);
+            return QuotationActions.loadQuotationByIdSuccess({ quotation: data })
           }),
           catchError((error) =>
             of(QuotationActions.loadQuotationByIdFailure({ error }))
@@ -107,6 +108,8 @@ export class QuotationEffects {
     private quotationService:QuotationService,
     private router: Router,
     private productDraftFacade: ProductDraftFacade,
-    private notificationService: NotificationFacadeService
+    private notificationService: NotificationFacadeService,
+    private draftFacade: DraftFacade,
+
   ) {}
 }

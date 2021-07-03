@@ -16,7 +16,7 @@ import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sal
   styleUrls: ['./create-order.component.scss'],
 })
 export class CreateOrderComponent implements OnInit ,OnDestroy{
-  orderPayments$ = this.paymentFacade.orderPayments$;
+  //orderPayments$ = this.paymentFacade.orderPayments$;
 
   regConfig: FieldConfig[];
   companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany);

@@ -2,8 +2,30 @@ query GetOrderDeliveries($draft_id: Int) {
   sales_delivery_line(where: {product_draft: {draft_id: {_eq: $draft_id}}}) {
     amount
     delivered
-    delivery
     id
-    
+    product_draft_id
+    product_draft {
+      company_name
+      count
+      delivered
+      draft_id
+      heigth
+      id
+      isLaunched
+      isRepeated
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      status
+      substance_id
+      total_price
+      type
+      unit
+      warehouse_id
+      width
+    }
   }
 }

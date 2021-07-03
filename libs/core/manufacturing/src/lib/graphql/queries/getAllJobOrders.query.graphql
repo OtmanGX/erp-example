@@ -1,4 +1,4 @@
-query GetAllOrdersJob {
+query GetAllJobsOrders {
   manufacturing_job_order {
     id
     date

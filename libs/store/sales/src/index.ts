@@ -53,6 +53,7 @@ export {
   DeliveryLine,
   DeliveryStatus,
   PaymentMethod,
+  OrderDelivery
   
 } from '@tanglass-erp/core/sales';
 export * from './lib/+state/product-draft/enums'

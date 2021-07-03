@@ -10,6 +10,35 @@ query GetQuotationById($id: Int!) {
       phone
       code
     }
+    draft {
+      product_drafts {
+        id
+        label
+        heigth
+        company_name
+        count
+        delivered
+        m2
+        ml
+        price
+        product_code
+        quantity
+        status
+        total_price
+        type
+        unit
+        width
+        glass_draft {
+          id
+        }
+        consumable_draft {
+          dependent_id
+        }
+        service_draft {
+          dependent_id
+        }
+      }
+    }
     date
     deadline
     draft_id

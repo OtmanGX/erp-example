@@ -22,7 +22,7 @@ export const loadQuotationsFailure = createAction(
 
 export const loadQuotationById = createAction(
   '[Quotation Card Component] Load Quotation By Id',
-  props<{ id: any }>()
+  props<{ id: number }>()
   );
 
 
@@ -74,5 +74,26 @@ export const deleteQuotationsSuccess = createAction(
 
 export const deleteQuotationsFailure = createAction(
   '[Quotation Effect] Delete Quotations Failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****TRANSFORM  ORDER TO QUOTATION ** */
+/****************************************************************** */
+
+export const TransformToOrder= createAction(
+  '[Quotation Card  Component] Transform Quotation To Order',
+  props<{ id: any }>()
+  );
+
+
+export const TransformToOrderSuccess = createAction(
+  '[Quotation Effect] Transform Quotation To Order Success',
+  props<{ quotation: Quotation }>()
+);
+
+export const TransformToOrderFailure = createAction(
+  '[Quotation Effect] Transform Quotation To Order Failure',
   props<{ error: any }>()
 );

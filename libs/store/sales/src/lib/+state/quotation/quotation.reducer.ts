@@ -8,6 +8,7 @@ export const QUOTATION_FEATURE_KEY = 'quotation';
 
 export interface QuotationState extends EntityState<Quotation> {
   selectedId?: string | number; // which Quotation record has been selected
+  selectedQuotation:Quotation;
   loaded: boolean; // has the Quotation list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -22,6 +23,7 @@ Quotation
 
 export const QuotationinitialState: QuotationState = quotationAdapter.getInitialState({
   // set initial required properties
+  selectedQuotation:null,
   loaded: false,
 });
 
@@ -36,7 +38,7 @@ const quotationReducer = createReducer(
     quotationAdapter.setAll(quotations, { ...state, loaded: true })
   ),
   on(QuotationActions.loadQuotationByIdSuccess,
-    (state, {quotation}) => ({...state, draftLoadedById: quotation})
+    (state, {quotation}) => ({...state, selectedQuotation: quotation})
   ),
   on(QuotationActions.addQuotationSuccess,
     (state, action) => quotationAdapter.addOne(action.quotation, state)

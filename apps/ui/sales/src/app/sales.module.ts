@@ -32,6 +32,8 @@ import { PaymentsComponent } from "@TanglassUi/sales/components/payments-order/p
 import {QuotationCardComponent} from "@TanglassUi/sales/pages/quotation/quotation-card/quotation-card.component"
 import {PopRemovingComponent} from "@TanglassUi/sales/components/pop-remove-dependencies/pop-removing.component";
 import { PopRepairComponent } from "@TanglassUi/sales/components/pop-repair-product/pop-repair.component";
+import { OrderDeliveriesComponent } from "@TanglassUi/sales/components/order-deliveries/order-deliveries.component";
+
 @NgModule({
   declarations: [
     SalesComponent,
@@ -56,7 +58,8 @@ import { PopRepairComponent } from "@TanglassUi/sales/components/pop-repair-prod
     PaymentsComponent,
     QuotationCardComponent,
     PopRemovingComponent,
-    PopRepairComponent
+    PopRepairComponent,
+    OrderDeliveriesComponent
   ],
   imports: [
     CommonModule,

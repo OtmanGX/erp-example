@@ -41,7 +41,6 @@ export class OrdersFacade {
     this.dispatch(OrdersActions.loadOrderById({ id }))
   }
 
-
   addOrder(order: InsertedOrder) {
     this.dispatch(OrdersActions.addOrder({ order }));
   }
@@ -61,5 +60,7 @@ export class OrdersFacade {
   clearSelection() {
     this.dispatch(OrdersActions.clearSelection());
   }
+
+  
 
 }
