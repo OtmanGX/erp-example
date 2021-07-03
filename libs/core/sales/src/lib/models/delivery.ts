@@ -97,6 +97,5 @@ export interface OrderDelivery{
   amount:number;
   delivered:number;
   id:string;
-  quantity:number;
   product_draft:Product_draft;
 }
