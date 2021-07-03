@@ -71,9 +71,10 @@ export interface InvoiceLine {
   invoice_id?: string;
   product_code: string;
   product_label: string;
+  product_type: string;
+  total: number;
   quantity: number;
   unit_price: number;
-  total: number;
 }
 
 export type invoiceFilter = {

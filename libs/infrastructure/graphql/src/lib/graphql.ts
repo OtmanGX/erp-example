@@ -20275,6 +20275,7 @@ export type Sales_Invoice_Line = {
   invoice_id: Scalars['uuid'];
   product_code: Scalars['String'];
   product_label: Scalars['String'];
+  product_type: Scalars['String'];
   quantity: Scalars['numeric'];
   total: Scalars['numeric'];
   unit_price: Scalars['numeric'];
@@ -20356,6 +20357,7 @@ export type Sales_Invoice_Line_Bool_Exp = {
   invoice_id?: Maybe<Uuid_Comparison_Exp>;
   product_code?: Maybe<String_Comparison_Exp>;
   product_label?: Maybe<String_Comparison_Exp>;
+  product_type?: Maybe<String_Comparison_Exp>;
   quantity?: Maybe<Numeric_Comparison_Exp>;
   total?: Maybe<Numeric_Comparison_Exp>;
   unit_price?: Maybe<Numeric_Comparison_Exp>;
@@ -20381,6 +20383,7 @@ export type Sales_Invoice_Line_Insert_Input = {
   invoice_id?: Maybe<Scalars['uuid']>;
   product_code?: Maybe<Scalars['String']>;
   product_label?: Maybe<Scalars['String']>;
+  product_type?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
   total?: Maybe<Scalars['numeric']>;
   unit_price?: Maybe<Scalars['numeric']>;
@@ -20393,6 +20396,7 @@ export type Sales_Invoice_Line_Max_Fields = {
   invoice_id?: Maybe<Scalars['uuid']>;
   product_code?: Maybe<Scalars['String']>;
   product_label?: Maybe<Scalars['String']>;
+  product_type?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
   total?: Maybe<Scalars['numeric']>;
   unit_price?: Maybe<Scalars['numeric']>;
@@ -20404,6 +20408,7 @@ export type Sales_Invoice_Line_Max_Order_By = {
   invoice_id?: Maybe<Order_By>;
   product_code?: Maybe<Order_By>;
   product_label?: Maybe<Order_By>;
+  product_type?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
   total?: Maybe<Order_By>;
   unit_price?: Maybe<Order_By>;
@@ -20416,6 +20421,7 @@ export type Sales_Invoice_Line_Min_Fields = {
   invoice_id?: Maybe<Scalars['uuid']>;
   product_code?: Maybe<Scalars['String']>;
   product_label?: Maybe<Scalars['String']>;
+  product_type?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
   total?: Maybe<Scalars['numeric']>;
   unit_price?: Maybe<Scalars['numeric']>;
@@ -20427,6 +20433,7 @@ export type Sales_Invoice_Line_Min_Order_By = {
   invoice_id?: Maybe<Order_By>;
   product_code?: Maybe<Order_By>;
   product_label?: Maybe<Order_By>;
+  product_type?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
   total?: Maybe<Order_By>;
   unit_price?: Maybe<Order_By>;
@@ -20461,6 +20468,7 @@ export type Sales_Invoice_Line_Order_By = {
   invoice_id?: Maybe<Order_By>;
   product_code?: Maybe<Order_By>;
   product_label?: Maybe<Order_By>;
+  product_type?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
   total?: Maybe<Order_By>;
   unit_price?: Maybe<Order_By>;
@@ -20482,6 +20490,8 @@ export enum Sales_Invoice_Line_Select_Column {
   /** column name */
   ProductLabel = 'product_label',
   /** column name */
+  ProductType = 'product_type',
+  /** column name */
   Quantity = 'quantity',
   /** column name */
   Total = 'total',
@@ -20495,6 +20505,7 @@ export type Sales_Invoice_Line_Set_Input = {
   invoice_id?: Maybe<Scalars['uuid']>;
   product_code?: Maybe<Scalars['String']>;
   product_label?: Maybe<Scalars['String']>;
+  product_type?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
   total?: Maybe<Scalars['numeric']>;
   unit_price?: Maybe<Scalars['numeric']>;
@@ -20570,6 +20581,8 @@ export enum Sales_Invoice_Line_Update_Column {
   ProductCode = 'product_code',
   /** column name */
   ProductLabel = 'product_label',
+  /** column name */
+  ProductType = 'product_type',
   /** column name */
   Quantity = 'quantity',
   /** column name */
@@ -31392,7 +31405,7 @@ export type InsertInvoiceMutation = (
       & Pick<Sales_Invoice_Delivery, 'delivery_id'>
     )>, invoice_lines: Array<(
       { __typename?: 'sales_invoice_line' }
-      & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'quantity' | 'total'>
+      & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'quantity' | 'total' | 'product_type'>
     )> }
   )>, update_sales_delivery?: Maybe<(
     { __typename?: 'sales_delivery_mutation_response' }
@@ -31965,7 +31978,7 @@ export type GetInvoiceByIdQuery = (
       ) }
     )>, invoice_lines: Array<(
       { __typename?: 'sales_invoice_line' }
-      & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'quantity' | 'total'>
+      & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'product_type' | 'quantity' | 'total'>
     )>, client: (
       { __typename?: 'contact_customer' }
       & Pick<Contact_Customer, 'name' | 'phone' | 'mail'>
@@ -35006,6 +35019,7 @@ export const InsertInvoiceDocument = gql`
       product_label
       quantity
       total
+      product_type
     }
     amount_ttc
     amount_ht
@@ -35819,6 +35833,7 @@ export const GetInvoiceByIdDocument = gql`
       unit_price
       product_code
       product_label
+      product_type
       quantity
       total
     }

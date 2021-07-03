@@ -19,6 +19,7 @@ query GetInvoiceById($id: uuid!) {
       unit_price
       product_code
       product_label
+      product_type
       quantity
       total
     }

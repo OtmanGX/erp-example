@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { InvoiceFacade } from '@tanglass-erp/store/sales';
 
 @Component({
   selector: 'ngx-invoice-ready',
@@ -9,11 +10,14 @@ import { Location } from '@angular/common';
 export class InvoiceReadyComponent implements OnInit {
   invoice: any;
 
-  constructor(private location:Location) { }
+  constructor(private location:Location, private invoiceFacade: InvoiceFacade,) { }
 
   ngOnInit(): void {
     this.invoice = (<any>this.location.getState()).data;
-    console.log(this.invoice);
+  }
+
+  print() {
+    this.invoiceFacade.printInvoice(this.invoice);
   }
 
 }

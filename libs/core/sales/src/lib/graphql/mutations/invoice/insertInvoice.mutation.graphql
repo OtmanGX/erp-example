@@ -42,6 +42,7 @@ mutation InsertInvoice(
       product_label
       quantity
       total
+      product_type
     }
     amount_ttc
     amount_ht

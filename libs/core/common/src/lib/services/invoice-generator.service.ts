@@ -65,8 +65,8 @@ export class InvoiceGeneratorService {
             quantity: e.quantity,
             price: e.unit_price,
             total_price: e.total,
-            type: '',
-            product_code: ''
+            type: e.product_type,
+            product_code: e.product_code
           }))
         )
       )
@@ -290,7 +290,7 @@ export class InvoiceGeneratorService {
       value.total_price = parseFloat(value.total_price.toFixed(2));
     })
 
-    console.log('products', products);
+
     // Header
     const table: any[] = [
       ['Désignation', 'Qté M2/ML', 'PU', 'Montant H.T'],
