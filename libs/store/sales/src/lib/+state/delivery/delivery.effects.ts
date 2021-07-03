@@ -16,7 +16,8 @@ export class DeliveryEffects {
   loadDelivery$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DeliveryActions.loadDelivery),
-      mergeMap((action) => this.deliveryService
+      mergeMap((action) =>
+        this.deliveryService
           .getBy({
             dateStart: action.dateStart,
             dateEnd: action.dateEnd,
@@ -165,7 +166,30 @@ export class DeliveryEffects {
       )
     )
   );
-
+  loadOrderDeliveries$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DeliveryActions.loadOrderDeliveries),
+      mergeMap((action) =>
+        this.deliveryService.getOrderDeliveries(action.draft_id)
+     
+          .pipe(
+            map((data) =>
+              DeliveryActions.loadOrderDeliveriesSuccess({
+                deliveries: data.data.sales_delivery_line,
+              })
+            ),
+            catchError((error) => {
+              this.notificationService.showToast(
+                'error',
+                'Erreur de chargement',
+                error
+              );
+              return of(DeliveryActions.loadOrderDeliveriesFailure({ error }));
+            })
+          )
+      )
+    )
+  );
   constructor(
     private router: Router,
     private actions$: Actions,

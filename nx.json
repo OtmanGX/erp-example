@@ -125,6 +125,13 @@
     },
     "store-manufacturing": {
       "tags": []
+    },
+    "ui-manufacturing": {
+      "tags": []
+    },
+    "ui/manufacturing-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-manufacturing"]
     }
   }
 }

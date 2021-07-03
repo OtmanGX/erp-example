@@ -31,5 +31,6 @@ module.exports = {
     '<rootDir>/apps/ui/sales',
     '<rootDir>/libs/core/manufacturing',
     '<rootDir>/libs/store/manufacturing',
+    '<rootDir>/apps/ui/manufacturing',
   ],
 };

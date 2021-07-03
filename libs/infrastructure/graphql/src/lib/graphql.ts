@@ -35568,7 +35568,7 @@ export const GetDeliveryByIdDocument = gql`
     }
   }
 export const GetOrderDeliveriesDocument = gql`
-    query GetOrderDeliveries($draft_id: Int = 10) {
+    query GetOrderDeliveries($draft_id: Int) {
   sales_delivery_line(where: {product_draft: {draft_id: {_eq: $draft_id}}}) {
     amount
     delivered

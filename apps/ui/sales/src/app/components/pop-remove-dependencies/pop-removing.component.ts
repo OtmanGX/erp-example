@@ -15,7 +15,6 @@ export class PopRemovingComponent implements OnInit {
     public dialogRef: MatDialogRef<PopRemovingComponent>,
     @Inject(MAT_DIALOG_DATA) public row:Product_draft,
     private facade: ProductDraftFacade,
-
   ) {}
 
   ngOnInit() {

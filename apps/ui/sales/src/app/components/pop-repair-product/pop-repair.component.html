@@ -1,13 +1,16 @@
 <ngx-dialog-body title="Créer Bis">
-    <mat-selection-list #products>
-      <mat-list-option *ngFor="let product of data" [value]="product">
+    <mat-list #products class="list">
+      <mat-list-item *ngFor="let product of data" [value]="product">
         {{product.label}} :
         {{product.quantity}}
         {{product.unit}}
-      </mat-list-option>
-    </mat-selection-list>
+        <span class="spacer"></span>
+        <button mat-button color="primary" (click)='generateRepair(product)' 
+         cdkFocusInitial> Confirmer</button>
+      </mat-list-item>
+    </mat-list>
   <div mat-dialog-actions>
-    <button mat-button color="primary" (click)='generateRepair()' [mat-dialog-close]="false"  cdkFocusInitial>Créer Bis</button>
-    <button mat-button color="warn" [mat-dialog-close]="true">Cancel</button>
+
+    <!-- <button mat-button color="warn" [mat-dialog-close]="true">Fermer</button> -->
   </div>
 </ngx-dialog-body>           

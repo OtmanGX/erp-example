@@ -1,10 +1,11 @@
 import { createAction, props } from '@ngrx/store';
-import { DeliveryForm, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
-
+import { DeliveryForm, InsertedDeliveryForm,DeliveryLine } from '@tanglass-erp/core/sales';
 
 // Load all
-export const loadDelivery = createAction('[Delivery] Load Delivery',
-  props<{dateStart?: Date,dateEnd?: Date, status?: string}>());
+export const loadDelivery = createAction(
+  '[Delivery] Load Delivery',
+  props<{ dateStart?: Date; dateEnd?: Date; status?: string }>()
+);
 
 export const loadDeliverySuccess = createAction(
   '[Delivery] Load Delivery Success',
@@ -17,8 +18,10 @@ export const loadDeliveryFailure = createAction(
 );
 
 // Load By Id
-export const loadDeliveryById = createAction('[Delivery] Load Delivery By Id',
-  props<{id: string | number}>());
+export const loadDeliveryById = createAction(
+  '[Delivery] Load Delivery By Id',
+  props<{ id: string | number }>()
+);
 
 export const loadDeliveryByIdSuccess = createAction(
   '[Delivery] Load Delivery By Id Success',
@@ -30,11 +33,11 @@ export const loadDeliveryByIdFailure = createAction(
   props<{ error: any }>()
 );
 
-
 // Add Delivery Form
 export const addDelivery = createAction(
   '[Delivery] Add Delivery',
-  props<{ delivery: InsertedDeliveryForm }>());
+  props<{ delivery: InsertedDeliveryForm }>()
+);
 
 export const addDeliverySuccess = createAction(
   '[Delivery] Add Delivery Success',
@@ -49,7 +52,8 @@ export const addDeliveryFailure = createAction(
 // update Delivery Form
 export const updateDelivery = createAction(
   '[Delivery] update Delivery',
-  props<{ delivery: InsertedDeliveryForm }>());
+  props<{ delivery: InsertedDeliveryForm }>()
+);
 
 export const updateDeliverySuccess = createAction(
   '[Delivery] update Delivery Success',
@@ -77,3 +81,21 @@ export const removeDeliveryFailure = createAction(
   props<{ error: any }>()
 );
 
+/****************************************************************** */
+/*****LOAD SPECIFIC ORDER DELIVERIES ** */
+/****************************************************************** */
+
+export const loadOrderDeliveries = createAction(
+  '[Order deliveries] Load Order deliveries',
+  props<{ draft_id: number }>()
+);
+
+export const loadOrderDeliveriesSuccess = createAction(
+  '[Order deliveries] Load Order deliveries Success',
+  props<{ deliveries: DeliveryLine[] }>()
+);
+
+export const loadOrderDeliveriesFailure = createAction(
+  '[Order deliveries] Load Order deliveries Failure',
+  props<{ error: any }>()
+);

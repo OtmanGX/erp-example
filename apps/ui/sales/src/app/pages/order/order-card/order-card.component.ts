@@ -14,8 +14,9 @@ import { ProductHeaders, ProductGlassHeaders } from "@TanglassUi/sales/utils/gri
 export class OrderCardComponent extends ModelCardComponent {
   title = "Commande CARD";
   id: string;
-  dataSource=[];
-  displayedColumns=ProductGlassHeaders
+  dataSource_bis=[];
+  dataSource_delivery=[]
+  displayedColumns=ProductHeaders;
   data$ = this.facade.loadedOrders$
     .pipe(takeUntil(this._onDestroy));
   isCardMode: boolean = true;
