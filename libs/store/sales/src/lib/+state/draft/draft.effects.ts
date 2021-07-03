@@ -30,6 +30,22 @@ export class DraftEffects {
     )
   });
 
+  insertDraftForQuotationTransfer$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DraftActions.addDraft),
+      mergeMap((action) =>
+        this.draftervice.insertOne().pipe(
+          map((data) => {
+            return DraftActions.addDraftSuccess({ draft: data.data.insert_sales_draft_one })
+          }),
+          catchError((error) =>
+            of(DraftActions.addDraftFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
   loadDraftById$ = createEffect(() => {
     return  this.actions$.pipe(
       ofType(DraftActions.loadDraftById),

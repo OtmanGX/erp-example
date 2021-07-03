@@ -11,7 +11,8 @@ mutation insertServiceDraft(
   $m2: numeric, 
   $quantity: numeric, 
   $ml: numeric , 
-  $draft_id: Int) {
+  $draft_id: Int, 
+  $warehouse_id: uuid = "null") {
   insert_sales_service_draft_one(object: 
   {
     product_draft: {data:

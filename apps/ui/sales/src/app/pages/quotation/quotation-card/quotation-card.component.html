@@ -2,10 +2,10 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </button>
-    <span> Votre Commande !</span>
+    <span> Votre Devis !</span>
     <span class="example-spacer"></span>
-    <button mat-flat-button  (click)='launch()' color="primary" style="width : 8em;margin-right: 8px;">
-        LANCER
+    <button mat-flat-button  (click)='transformToOrder()' color="primary" style="width : 8em;margin-right: 8px;">
+         COMMANDER  
     </button>
     <button mat-flat-button (click)='edit()'class=" mat-bg-warn" style="width : 8em;">
         MODIFIER
@@ -20,7 +20,7 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </button>
-    <span>Modifications de Commande !</span>
+    <span>Modifications de Devis !</span>
     <span class="example-spacer"></span>
     <button mat-flat-button (click)="save()" color="primary" style="width : 8em;margin-right: 8px;">
         CONFIRMER
@@ -28,7 +28,6 @@
     <button mat-flat-button  (click)="cancel()" class=" mat-bg-warn" style="width : 8em;">
         ANNULER
     </button>
-
 </mat-toolbar>
     <ngx-fiche-card  
     [data]="passedData"
@@ -36,4 +35,3 @@
     <ngx-product-draft [isCardMode]='isCardMode' ></ngx-product-draft>
    <ngx-amounts-order  [isCardMode]='isCardMode' ></ngx-amounts-order>
 </ngx-fiche-card>
-<ngx-payments></ngx-payments>

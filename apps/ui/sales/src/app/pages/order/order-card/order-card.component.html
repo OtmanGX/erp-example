@@ -4,19 +4,19 @@
     </button>
     <span> Votre Commande !</span>
     <span class="example-spacer"></span>
-    <button mat-flat-button  (click)='launch()' color="primary" style="width : 8em;margin-right: 8px;">
+    <button mat-flat-button (click)='launch()' color="primary" style="width : 8em;margin-right: 8px;">
         LANCER
     </button>
-    <button mat-flat-button (click)='edit()'class=" mat-bg-warn" style="width : 8em;">
+    <button mat-flat-button (click)='edit()' class=" mat-bg-warn" style="width : 8em;">
         MODIFIER
     </button>
     <button mat-flat-button (click)="print()" class=" primary" style="width : 8em;">
         IMPRIMER
     </button>
 </mat-toolbar>
- 
 
-<mat-toolbar *ngIf="!isCardMode">
+
+<mat-toolbar *ngIf="!isCardMode" class="toolbar">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </button>
@@ -25,15 +25,28 @@
     <button mat-flat-button (click)="save()" color="primary" style="width : 8em;margin-right: 8px;">
         CONFIRMER
     </button>
-    <button mat-flat-button  (click)="cancel()" class=" mat-bg-warn" style="width : 8em;">
+    <button mat-flat-button (click)="cancel()" class=" mat-bg-warn" style="width : 8em;">
         ANNULER
     </button>
-
 </mat-toolbar>
-    <ngx-fiche-card  
-    [data]="passedData"
-    [withToolbar]='false'>
-    <ngx-product-draft [isCardMode]='isCardMode' ></ngx-product-draft>
-   <ngx-amounts-order  [isCardMode]='isCardMode' ></ngx-amounts-order>
+
+
+<ngx-fiche-card [data]="passedData" [withToolbar]='false'>
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Articles">
+            <ngx-product-draft [isCardMode]='isCardMode'></ngx-product-draft>
+            <ngx-amounts-order [isCardMode]='isCardMode'></ngx-amounts-order>
+        </mat-tab>
+        <mat-tab label="Bis">
+            <app-table [data]="dataSource_bis" [columnsToShow]="displayedColumns" [withCheckbox]=false
+                [withFilter]=false>
+            </app-table>
+        </mat-tab>
+        <mat-tab label="Réglements">
+            <ngx-payments></ngx-payments>
+        </mat-tab>
+        <mat-tab label="Livraisons">
+            <ngx-order-deliveries></ngx-order-deliveries>
+        </mat-tab>
+    </mat-tab-group>
 </ngx-fiche-card>
-<ngx-payments></ngx-payments>

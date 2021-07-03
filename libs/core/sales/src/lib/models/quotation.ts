@@ -15,6 +15,8 @@ export interface Quotation {
   total_ttc: number;
   total_tax: number;
   total_ht: number;
+  products?: Product_draft[];
+  ref_num?: number;
 }
 
 export interface SalesCustomer {
@@ -44,3 +46,5 @@ export interface InsertedQuotation {
     products: Product_draft[];
     amounts: Amount[];
   }
+
+

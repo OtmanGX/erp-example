@@ -1,0 +1,34 @@
+mutation InsertJobOrder(
+    $id: Int, 
+    $order_ref: String, 
+    $status: String, 
+    $type: String, 
+    $date: date, 
+    $products: [sales_glass_draft_insert_input!]!
+    ) {
+  insert_manufacturing_job_order_one(
+      object: {
+          id: $id, 
+          order_ref: $order_ref, 
+          status: $status, 
+          type: $type, 
+          date: $date, 
+          glass_drafts: {
+              data: $products
+              }}){
+    id
+    order_ref
+    status
+    type
+    date
+  }
+  update_sales_product_draft(where: {draft: 
+  {order: {
+    ref: {
+      _eq: $order_ref
+      }}}}, _set: {
+        isRepeated: true
+        }) {
+    affected_rows
+  }
+}

@@ -38,6 +38,11 @@ export const getSelectedEntity = createSelector(
   (state: State) => state.selectedDeliveryForm
 );
 
+export const getSelectedOrderDeliveries = createSelector(
+  getDeliveryState,
+  (state: State) => state.orderDeliveries
+);
+
 export const getSelected = createSelector(
   getDeliveryEntities,
   getSelectedEntity,

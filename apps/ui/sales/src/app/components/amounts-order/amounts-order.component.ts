@@ -30,7 +30,4 @@ export class AmountsOrderComponent implements OnInit {
     )
   }
 
-
-
-
 }

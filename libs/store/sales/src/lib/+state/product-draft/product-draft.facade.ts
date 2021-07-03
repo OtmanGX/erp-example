@@ -25,15 +25,21 @@ export class ProductDraftFacade {
       map((items) => ({
         glasses: items.filter(
           (item) =>
-            item.type == ProductsTypes.glass ||
-            item.type == ProductsTypes.customerPorduct
+            (item.type == ProductsTypes.glass ||
+            item.type == ProductsTypes.customerPorduct)&&!item.isRepeated
         ),
         articles: groupeByCode(
           items.filter(
             (item) =>
-              item.type !== ProductsTypes.glass &&
-              item.type !== ProductsTypes.customerPorduct
+              (item.type !== ProductsTypes.glass &&
+              item.type !== ProductsTypes.customerPorduct)&&!item.isRepeated
           )
+        ),
+        repeated:
+          items.filter(
+            (item) =>
+            (item.type == ProductsTypes.glass ||
+              item.type == ProductsTypes.customerPorduct) &&item.isRepeated
         ),
       }))
     );

@@ -119,6 +119,19 @@
     "ui/sales-e2e": {
       "tags": [],
       "implicitDependencies": ["ui-sales"]
+    },
+    "core-manufacturing": {
+      "tags": []
+    },
+    "store-manufacturing": {
+      "tags": []
+    },
+    "ui-manufacturing": {
+      "tags": []
+    },
+    "ui/manufacturing-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-manufacturing"]
     }
   }
 }

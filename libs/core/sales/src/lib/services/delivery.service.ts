@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import {
   InsertDeliveryGQL,
   GetDeliveryByIdGQL,
@@ -9,6 +8,8 @@ import {
   GetDeliveriesByGQL,
   UpdateDeliveryLineMutationVariables,
   UpdateDeliveryMutationVariables,
+  GetOrderDeliveriesGQL,
+
 } from '@tanglass-erp/infrastructure/graphql';
 import { deliveryFilter, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 import { combineLatest } from 'rxjs';
@@ -22,7 +23,9 @@ export class DeliveryService {
     private updateDeliveryLineGQL: UpdateDeliveryLineGQL,
     private updateDeliveryGQL: UpdateDeliveryGQL,
     private deleteDeliveryGQL: DeleteDeliveryGQL,
-    private getDeliveriesByGQL: GetDeliveriesByGQL
+    private getDeliveriesByGQL: GetDeliveriesByGQL,
+    private getOrderDeliveriesGQL: GetOrderDeliveriesGQL
+
   ) {}
 
   getBy(params: deliveryFilter) {
@@ -61,5 +64,9 @@ export class DeliveryService {
 
   deleteMany(ids: string[]) {
     return this.deleteDeliveryGQL.mutate({ ids });
+  }
+
+  getOrderDeliveries(draft_id: number) {
+    return this.getOrderDeliveriesGQL.fetch({ draft_id });
   }
 }

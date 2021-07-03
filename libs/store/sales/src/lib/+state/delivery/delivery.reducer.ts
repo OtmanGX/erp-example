@@ -2,12 +2,13 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as DeliveryActions from './delivery.actions';
-import { DeliveryForm, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
+import { DeliveryForm, InsertedDeliveryForm,OrderDelivery } from '@tanglass-erp/core/sales';
 
 export const DELIVERY_FEATURE_KEY = 'delivery';
 
 export interface State extends EntityState<DeliveryForm> {
   selectedDeliveryForm?: InsertedDeliveryForm; // which Delivery record has been selected
+  orderDeliveries:OrderDelivery[];
   loaded: boolean; // has the Delivery list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -23,6 +24,7 @@ export const deliveryAdapter: EntityAdapter<DeliveryForm> = createEntityAdapter<
 export const initialState: State = deliveryAdapter.getInitialState({
   // set initial required properties
   selectedDeliveryForm: null,
+  orderDeliveries:null,
   loaded: false,
 });
 
@@ -51,12 +53,16 @@ const deliveryReducer = createReducer(
   on(DeliveryActions.removeDeliverySuccess, (state, {ids}) =>
     deliveryAdapter.removeMany(ids, state)
   ),
+  on(DeliveryActions.loadOrderDeliveriesSuccess, (state, { deliveries }) =>
+  ({...state, orderDeliveries: deliveries})
+  ),
   on(
     DeliveryActions.loadDeliveryFailure,
     DeliveryActions.loadDeliveryByIdFailure,
     DeliveryActions.addDeliveryFailure,
     DeliveryActions.updateDeliveryFailure,
     DeliveryActions.removeDeliveryFailure,
+    DeliveryActions.loadOrderDeliveriesFailure,
     (state, { error }) => ({
     ...state,
     error,
