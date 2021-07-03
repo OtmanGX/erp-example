@@ -2,10 +2,7 @@ mutation UpdateDeliveryLine(
   $amount: numeric
   $delivered: numeric
   $id: uuid!
-  $product: uuid!
-  $product_label: String
-  $unit_price: numeric
-  $quantity: numeric
+  $product_draft_id: uuid!
 ) {
   update_sales_delivery_line_by_pk(
     pk_columns: { id: $id }
@@ -13,18 +10,12 @@ mutation UpdateDeliveryLine(
       amount: $amount
       delivered: $delivered
       id: $id
-      product: $product
-      product_label: $product_label
-      unit_price: $unit_price
-      quantity: $quantity
+      product_draft_id: $product_draft_id
     }
   ) {
     id
     amount
     delivered
-    product
-    product_label
-    quantity
-    unit_price
+    product_draft_id
   }
 }

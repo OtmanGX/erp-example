@@ -20,14 +20,14 @@
 </ng-template>
 
 <ng-template let-item="data" #rest>
-  <div [ngClass]="item.quantity - item.delivered ? 'text-danger' : 'text-success'">
-    {{ item.quantity - item.delivered }}
+  <div [ngClass]="item.product.quantity - item.delivered ? 'text-danger' : 'text-success'">
+    {{ item.product.quantity - item.delivered }}
   </div>
 </ng-template>
 
 
 <ng-template let-item="data" #qte>
-  <div *ngIf="item.quantity - item.delivered">
+  <div *ngIf="item.product.quantity - item.delivered">
     <mat-form-field>
       <input
         #qteInput
@@ -38,7 +38,7 @@
         name="toDeliver"
         [value]="0"
         [min]="0"
-        [max]="item.quantity - item.delivered"
+        [max]="item.product.quantity - item.delivered"
       />
       <button mat-icon-button matSuffix (click)="setMax(qteInput, item)">
         <mat-icon style="font-size: 1.5rem">

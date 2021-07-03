@@ -50,12 +50,9 @@ export class DeliveryService {
       ...delivery_lines.map((e) => {
         const deliveryLine: UpdateDeliveryLineMutationVariables = {
           id: e.id,
-          product: e.product,
+          product_draft_id: e.product_draft_id,
           amount: e.amount,
           delivered: e.delivered,
-          quantity: e.quantity,
-          product_label: e.product_label,
-          unit_price: e.unit_price
         };
         return this.updateDeliveryLineGQL.mutate(deliveryLine);
       })

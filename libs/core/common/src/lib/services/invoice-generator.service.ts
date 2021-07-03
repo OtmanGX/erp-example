@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { PdfMakeWrapper, Table, Txt, Line, Columns  } from 'pdfmake-wrapper';
-import { OrderPrint } from '../models/order-printing';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { InsertedDeliveryForm, Order, Product_draft, UpdatedInvoice } from '@tanglass-erp/core/sales';
+import { ProductToPrint } from '../models/print';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 //
@@ -59,12 +59,14 @@ export class InvoiceGeneratorService {
 
     pdf.add(
       new Table(
-        this.extractSecondData(
+        this.addAll(
           invoice.invoice_lines.map((e) => ({
-            item_designation: e.product_label,
+            label: e.product_label,
             quantity: e.quantity,
-            unit_price: e.unit_price,
+            price: e.unit_price,
             total_price: e.total,
+            type: '',
+            product_code: ''
           }))
         )
       )
@@ -137,15 +139,16 @@ export class InvoiceGeneratorService {
       new Txt(`${CODE_CLIENT}: `+ delivery.client_id).alignment('right').end
     ]).margin([0, 20]).end)
 
-
     pdf.add(
       new Table(
-        this.extractSecondData(
+        this.addAll(
           delivery.delivery_lines.map((e) => ({
-            item_designation: e.product_label,
+            label: e.product.label,
             quantity: e.delivered,
-            unit_price: e.unit_price,
+            price: e.product.price || 0,
             total_price: e.amount,
+            type: e.product.type,
+            product_code: e.product.product_code
           }))
         )
       )
@@ -214,7 +217,7 @@ export class InvoiceGeneratorService {
 
     pdf.add(
       new Table(
-        this.addAll(order.products.map(e=> ({...e})))
+        this.addAll(order.products.map(e=> (<ProductToPrint>{...e})))
         )
         .widths(['45%', '15%', '20%', '20%'])
         .margin([0, 20]).end
@@ -278,7 +281,7 @@ export class InvoiceGeneratorService {
     return table;
   }
 
-  addAll(products: Product_draft[]) {
+  addAll(products: ProductToPrint[]) {
     // Adapt
     products.forEach(value => {
       value.price *= (5/6);
@@ -286,6 +289,8 @@ export class InvoiceGeneratorService {
       value.price = parseFloat(value.price.toFixed(2));
       value.total_price = parseFloat(value.total_price.toFixed(2));
     })
+
+    console.log('products', products);
     // Header
     const table: any[] = [
       ['Désignation', 'Qté M2/ML', 'PU', 'Montant H.T'],
@@ -303,7 +308,7 @@ export class InvoiceGeneratorService {
         (accessories[3] as number) += item.total_price;
         return;
       }
-      const row = [item.label, item.m2, item.price, item.total_price]
+      const row = [item.label, item.quantity, item.price, item.total_price]
       if (map.has(item.product_code)) {
         map.get(item.product_code)[1] += row[1];
         map.get(item.product_code)[3] += row[3];
