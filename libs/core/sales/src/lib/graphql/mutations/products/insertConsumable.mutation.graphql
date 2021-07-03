@@ -10,7 +10,8 @@ mutation InsertConsumableDraft(
   $dependent_id: uuid,
    $m2: numeric, 
    $ml: numeric, 
-   $substance_id: uuid 
+   $substance_id: uuid,
+   $warehouse_id: uuid 
    ) {
   insert_sales_consumable_draft_one(object: 
   {
@@ -28,7 +29,8 @@ mutation InsertConsumableDraft(
        draft_id: $draft_id, 
        m2: $m2, 
        ml: $ml, 
-       substance_id: $substance_id
+       substance_id: $substance_id,
+       warehouse_id: $warehouse_id,
        }
        }, 
        dependent_id: $dependent_id}) {

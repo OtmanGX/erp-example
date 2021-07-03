@@ -25,5 +25,6 @@ export class Product {
 export class ProductGroups {
   glasses: Product_draft[];
   articles: Product_draft[];
+  repeated?:Product_draft[];
 }
 

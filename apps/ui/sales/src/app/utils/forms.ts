@@ -538,6 +538,15 @@ const regConfigServiceItem = (
     //validations: [REQUIRED],
   },
   {
+  type: 'select',
+  name: 'warehouse_id',
+  label: 'Stock',
+  inputType: 'text',
+  value: data?.data?.warehouse_id,
+  options: [],
+  //validations: [REQUIRED],
+},
+  {
     type: 'input',
     name: 'unit',
     label: 'Unité',

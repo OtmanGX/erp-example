@@ -20,7 +20,6 @@ export class PopRemovingComponent implements OnInit {
 
   ngOnInit() {
     this.data=this.facade.getDependencies(this.row?.glass_draft?.id);
-    console.log('vert')
   }
 
   delete(){

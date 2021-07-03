@@ -1,0 +1,9 @@
+query GetOrderDeliveries($draft_id: Int = 10) {
+  sales_delivery_line(where: {product_draft: {draft_id: {_eq: $draft_id}}}) {
+    amount
+    delivered
+    delivery
+    id
+    
+  }
+}

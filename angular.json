@@ -1763,6 +1763,66 @@
           }
         }
       }
+    },
+    "core-manufacturing": {
+      "projectType": "library",
+      "root": "libs/core/manufacturing",
+      "sourceRoot": "libs/core/manufacturing/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/manufacturing/tsconfig.lib.json",
+              "libs/core/manufacturing/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/manufacturing/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/manufacturing/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "store-manufacturing": {
+      "projectType": "library",
+      "root": "libs/store/manufacturing",
+      "sourceRoot": "libs/store/manufacturing/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/manufacturing/tsconfig.lib.json",
+              "libs/store/manufacturing/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/manufacturing/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/manufacturing/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "schematics": {

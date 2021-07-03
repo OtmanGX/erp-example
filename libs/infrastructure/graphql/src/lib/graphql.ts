@@ -30816,6 +30816,35 @@ export type GetUserByIdQuery = (
   )> }
 );
 
+export type InsertJobOrderMutationVariables = Exact<{
+  id?: Maybe<Scalars['Int']>;
+  order_ref?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['date']>;
+  products: Array<Sales_Glass_Draft_Insert_Input>;
+}>;
+
+
+export type InsertJobOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_manufacturing_job_order_one?: Maybe<(
+    { __typename?: 'manufacturing_job_order' }
+    & Pick<Manufacturing_Job_Order, 'id' | 'order_ref' | 'status' | 'type' | 'date'>
+  )> }
+);
+
+export type GetAllOrdersJobQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllOrdersJobQuery = (
+  { __typename?: 'query_root' }
+  & { manufacturing_job_order: Array<(
+    { __typename?: 'manufacturing_job_order' }
+    & Pick<Manufacturing_Job_Order, 'id' | 'date' | 'type' | 'status' | 'order_ref'>
+  )> }
+);
+
 export type AddGlassColorMutationVariables = Exact<{
   color?: Maybe<Scalars['String']>;
 }>;
@@ -31603,6 +31632,7 @@ export type InsertConsumableDraftMutationVariables = Exact<{
   m2?: Maybe<Scalars['numeric']>;
   ml?: Maybe<Scalars['numeric']>;
   substance_id?: Maybe<Scalars['uuid']>;
+  warehouse_id?: Maybe<Scalars['uuid']>;
 }>;
 
 
@@ -31668,6 +31698,7 @@ export type InsertServiceDraftMutationVariables = Exact<{
   quantity?: Maybe<Scalars['numeric']>;
   ml?: Maybe<Scalars['numeric']>;
   draft_id?: Maybe<Scalars['Int']>;
+  warehouse_id?: Maybe<Scalars['uuid']>;
 }>;
 
 
@@ -31794,6 +31825,19 @@ export type GetDeliveryByIdQuery = (
       { __typename?: 'sales_order' }
       & Pick<Sales_Order, 'ref' | 'ref_num'>
     ) }
+  )> }
+);
+
+export type GetOrderDeliveriesQueryVariables = Exact<{
+  draft_id?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type GetOrderDeliveriesQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery_line: Array<(
+    { __typename?: 'sales_delivery_line' }
+    & Pick<Sales_Delivery_Line, 'amount' | 'delivered' | 'delivery' | 'id'>
   )> }
 );
 
@@ -34086,6 +34130,52 @@ export const GetUserByIdDocument = gql`
       super(apollo);
     }
   }
+export const InsertJobOrderDocument = gql`
+    mutation InsertJobOrder($id: Int, $order_ref: String, $status: String, $type: String, $date: date, $products: [sales_glass_draft_insert_input!]!) {
+  insert_manufacturing_job_order_one(
+    object: {id: $id, order_ref: $order_ref, status: $status, type: $type, date: $date, glass_drafts: {data: $products}}
+  ) {
+    id
+    order_ref
+    status
+    type
+    date
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertJobOrderGQL extends Apollo.Mutation<InsertJobOrderMutation, InsertJobOrderMutationVariables> {
+    document = InsertJobOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllOrdersJobDocument = gql`
+    query GetAllOrdersJob {
+  manufacturing_job_order {
+    id
+    date
+    type
+    status
+    order_ref
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllOrdersJobGQL extends Apollo.Query<GetAllOrdersJobQuery, GetAllOrdersJobQueryVariables> {
+    document = GetAllOrdersJobDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const AddGlassColorDocument = gql`
     mutation AddGlassColor($color: String) {
   insert_product_glassColor_one(object: {color: $color}) {
@@ -35189,9 +35279,9 @@ export const InsertAccessoryDraftDocument = gql`
     }
   }
 export const InsertConsumableDraftDocument = gql`
-    mutation InsertConsumableDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $draft_id: Int, $dependent_id: uuid, $m2: numeric, $ml: numeric, $substance_id: uuid) {
+    mutation InsertConsumableDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $draft_id: Int, $dependent_id: uuid, $m2: numeric, $ml: numeric, $substance_id: uuid, $warehouse_id: uuid) {
   insert_sales_consumable_draft_one(
-    object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, company_name: $company_name, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id, m2: $m2, ml: $ml, substance_id: $substance_id}}, dependent_id: $dependent_id}
+    object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, company_name: $company_name, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id, m2: $m2, ml: $ml, substance_id: $substance_id, warehouse_id: $warehouse_id}}, dependent_id: $dependent_id}
   ) {
     id
     dependent_id
@@ -35266,7 +35356,7 @@ export const InsertGlassDraftDocument = gql`
     }
   }
 export const InsertServiceDraftDocument = gql`
-    mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int) {
+    mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int, $warehouse_id: uuid = "null") {
   insert_sales_service_draft_one(
     object: {product_draft: {data: {company_id: $company_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id}}, dependent_id: $dependent_id}
   ) {
@@ -35472,6 +35562,27 @@ export const GetDeliveryByIdDocument = gql`
   })
   export class GetDeliveryByIdGQL extends Apollo.Query<GetDeliveryByIdQuery, GetDeliveryByIdQueryVariables> {
     document = GetDeliveryByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetOrderDeliveriesDocument = gql`
+    query GetOrderDeliveries($draft_id: Int = 10) {
+  sales_delivery_line(where: {product_draft: {draft_id: {_eq: $draft_id}}}) {
+    amount
+    delivered
+    delivery
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetOrderDeliveriesGQL extends Apollo.Query<GetOrderDeliveriesQuery, GetOrderDeliveriesQueryVariables> {
+    document = GetOrderDeliveriesDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

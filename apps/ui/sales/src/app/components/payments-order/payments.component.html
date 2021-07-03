@@ -1,9 +1,6 @@
 <mat-toolbar>
-    <button *ngIf="!withDetails" (click)="showDetails()" mat-icon-button color="primary">
-        <mat-icon>horizontal_split</mat-icon>
-    </button>
 
-    <button mat-icon-button *ngIf="withDetails" (click)="hideDetails()" class="example-icon" >
+    <button mat-icon-button class="example-icon">
         <mat-icon color="primary">attach_money</mat-icon>
     </button>
     <span>Réglements!</span>
@@ -12,7 +9,12 @@
         Saisir un Réglement
     </button>
 </mat-toolbar>
-<div fxLayout="row wrap" *ngIf="!withDetails">
+
+
+<app-table [data]="dataSource" [columnsToShow]="displayedColumns" [withCheckbox]=false [withFilter]=false>
+</app-table>
+
+<div fxLayout="row wrap">
 
     <div fxFlex="100" fxFlex.sm="100" fxFlex.gt-sm="100">
         <div fxLayout="row wrap">
@@ -22,11 +24,3 @@
         </div>
     </div>
 </div>
-
-<app-table
-  *ngIf="withDetails"
-  [data]="dataSource"
-  [columnsToShow]="displayedColumns"
-  [withCheckbox]=false
-  [withFilter]=false>
-</app-table>

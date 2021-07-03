@@ -10,6 +10,7 @@ import { SharedFacade } from '@tanglass-erp/store/shared';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { PopRemovingComponent } from "@TanglassUi/sales/components/pop-remove-dependencies/pop-removing.component";
+import {PopRepairComponent} from "@TanglassUi/sales/components/pop-repair-product/pop-repair.component";
 @Component({
   selector: 'ngx-product-draft',
   templateUrl: './product-draft.component.html',
@@ -94,6 +95,13 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
   }
   deleteDependencies(row: Product_draft):void{
     const dialogRef = this.dialog.open(PopRemovingComponent, {
+      width: '1000px',
+      panelClass: 'panel-dialog',
+      data: row
+    });
+  }
+  addRepair(row: Product_draft):void{
+    const dialogRef = this.dialog.open(PopRepairComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
       data: row

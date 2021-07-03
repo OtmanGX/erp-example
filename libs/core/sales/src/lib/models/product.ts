@@ -25,7 +25,7 @@ export interface Product_draft {
         id:string
     };
     dependent_id?: string;
-
+    isRepeated? :boolean;
 }
 export interface InsertedProduct extends Product_draft {
 type:Sales_Product_Type_Enum

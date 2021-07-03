@@ -56,8 +56,10 @@ export class QuotationCardComponent extends ModelCardComponent {
     this.isCardMode = false;
   }
   save() { }
-  cancel() { }
+  cancel() {
+    this.isCardMode = true
+   }
   print() { }
-  launch() { }
+  transformToOrder() { }
 }
 

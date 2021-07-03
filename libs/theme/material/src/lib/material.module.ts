@@ -22,6 +22,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTabsModule} from '@angular/material/tabs';
 
 // Components
 import { SelectComponent } from './components/form/select.component';
@@ -88,7 +89,8 @@ const MATERIAL_MODULES = [
   MatExpansionModule,
   MatStepperModule,
   NgxMatSelectSearchModule,
-  MatGridListModule
+  MatGridListModule,
+  MatTabsModule
 ];
 
 const OTHER_MODULES = [

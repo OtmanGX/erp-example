@@ -1,0 +1,13 @@
+<ngx-dialog-body title="Créer Bis">
+    <mat-selection-list #products>
+      <mat-list-option *ngFor="let product of data" [value]="product">
+        {{product.label}} :
+        {{product.quantity}}
+        {{product.unit}}
+      </mat-list-option>
+    </mat-selection-list>
+  <div mat-dialog-actions>
+    <button mat-button color="primary" (click)='generateRepair()' [mat-dialog-close]="false"  cdkFocusInitial>Créer Bis</button>
+    <button mat-button color="warn" [mat-dialog-close]="true">Cancel</button>
+  </div>
+</ngx-dialog-body>           
