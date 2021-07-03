@@ -36,7 +36,7 @@ export interface InsertedDeliveryForm extends MetaData {
   client_id: string;
   company_id: string;
   contact_id: string;
-  delivery_lines?: DeliveryLine[];
+  delivery_lines?: Array<DeliveryLine>;
   payment_method: PaymentMethod;
   amount_ttc: number;
   amount_tva: number;
@@ -62,13 +62,26 @@ export interface InsertedDeliveryForm extends MetaData {
   };
 }
 
-export interface DeliveryLine {
+export interface InsertedDeliveryLine {
   id?: string;
-  product: any;
-  unit_price: number;
+  product_draft_id: any;
   quantity: number;
   delivered: number;
-  product_label?: string;
+  amount?: number;
+  toDeliver?: number; // For Form purpose only
+}
+
+export interface DeliveryLine {
+  id?: string;
+  product_draft_id: any;
+  product?: {
+    type: string;
+    label: string;
+    product_code: string;
+    price: number
+    quantity: number;
+  }
+  delivered: number;
   amount?: number;
   toDeliver?: number; // For Form purpose only
 }

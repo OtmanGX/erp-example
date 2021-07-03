@@ -16,10 +16,14 @@ query GetDeliveryById($id: uuid!) {
       id
       amount
       delivered
-      product
-      quantity
-      product_label
-      unit_price
+      product_draft_id
+      product: product_draft {
+        type
+        label
+        product_code
+        price
+        quantity
+      }
     }
     amount_ttc
     amount_tva

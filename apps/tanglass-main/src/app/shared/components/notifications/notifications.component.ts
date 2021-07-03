@@ -15,15 +15,6 @@ export class NotificationsComponent implements OnInit {
   constructor(private router: Router, public notifService: NotificationFacadeService) {}
 
   ngOnInit() {
-    // Test purpose
-    // this.notifService.showNotification({
-    //   id: '5',
-    //   message: 'Contact Added',
-    //   time: new Date(),
-    //   icon: 'checked',
-    //   route: 'contact/contact',
-    //   color: 'primary'
-    // });
     this.router.events.subscribe((routeChange) => {
       if (routeChange instanceof NavigationEnd) {
         this.notificPanel.close();

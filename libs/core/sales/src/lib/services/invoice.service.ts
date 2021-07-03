@@ -91,10 +91,10 @@ export class InvoiceService {
           if (!item)
             invoiceLinesMap.set(key, {
               product_code: key,
-              unit_price: delivery.unit_price,
+              unit_price: delivery.product_draft.price,
               total: delivery.amount,
               quantity: delivery.delivered,
-              product_label: delivery.product_label,
+              product_label: delivery.product_draft.label,
             });
           else item.quantity += delivery.delivered;
         });

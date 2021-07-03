@@ -126,18 +126,18 @@ export class DeliveryAddComponent
   }
 
   submit(value: deliveryFormType) {
-    const delivery_lines = this.table.submitValue()
+    const delivery_lines = this.table.adaptValue()
     const deliveryToInsert: InsertedDeliveryForm = {
       ...value,
       delivery_lines,
       ...this.deliveryFacade.calculateAmounts(delivery_lines)
     };
     if (this.id)
-      this.deliveryFacade.updateDelivery({
+      this.deliveryFacade.updateDelivery({ // Update Case
         ...deliveryToInsert,
         id: this.id
       });
-    else this.deliveryFacade.addDelivery(deliveryToInsert);
+    else this.deliveryFacade.addDelivery(deliveryToInsert); // Insert Case
   }
 
   print() {

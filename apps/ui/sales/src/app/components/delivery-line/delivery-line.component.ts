@@ -7,7 +7,7 @@ import { Column, ColumnType, TableComponent } from '@tanglass-erp/material';
   templateUrl: './delivery-line.component.html',
   styleUrls: ['./delivery-line.component.scss'],
 })
-export class DeliveryLineComponent implements OnInit {
+export class DeliveryLineComponent {
   @ViewChild('table', {read: TableComponent}) table: TableComponent<Product_draft>;
   _data: Product_draft[] = [];
   @Input() update: boolean = false;
@@ -16,13 +16,18 @@ export class DeliveryLineComponent implements OnInit {
     this._data = data;
     if (!this.update)
       this.deliveryLines = data.map((elem) => ({
-        product: elem.id,
-        quantity: elem.quantity - (elem?.delivered || 0),
+        product_draft_id: elem.id,
+        product: {
+          label: elem.label,
+          type: elem.type,
+          product_code: elem.product_code,
+          price: elem.price,
+          quantity: elem.quantity - (elem?.delivered || 0)
+        },
+        // quantity: elem.quantity - (elem?.delivered || 0),
         delivered: 0,
-        unit_price: elem.price,
         amount: 0,
         toDeliver: 0,
-        product_label: elem.label,
       }));
     else this.deliveryLines = [
       ...this.deliveryLines.map(e => ({...e, toDeliver: 0}))
@@ -39,12 +44,12 @@ export class DeliveryLineComponent implements OnInit {
   @Input()
   public deliveryLines: Array<DeliveryLine> = [];
   displayedColumns: Array<Column> = [
-    { title: 'Article', key: 'product_label', type: ColumnType.normal },
+    { title: 'Article', key: 'product.label', type: ColumnType.normal },
     { title: 'Livrer', key: 'qte', type: ColumnType.template, withRow: true },
     { title: 'Reste', key: 'rest', type: ColumnType.template, withRow: true },
     { title: 'Déja Livré', key: 'delivered', type: ColumnType.template },
-    { title: 'Quantité', key: 'quantity', type: ColumnType.normal },
-    { title: 'Prix unitaire', key: 'unit_price', type: ColumnType.normal },
+    { title: 'Quantité', key: 'product.quantity', type: ColumnType.normal },
+    { title: 'Prix unitaire', key: 'product.price', type: ColumnType.normal },
     {
       title: 'Montant',
       key: 'amount',
@@ -52,24 +57,9 @@ export class DeliveryLineComponent implements OnInit {
     }];
   constructor() {}
 
-  ngOnInit(): void {
-
-  }
-
 
   switchReturned(obj, newValue: boolean) {
     obj.isReturned = newValue;
-  }
-
-  public submitValue(): DeliveryLine[] {
-    const returnedValue = this.deliveryLines.map((e) => {
-      const { toDeliver, ...wanted } = {
-        ...e,
-        delivered: e.delivered + e.toDeliver ?? 0,
-      };
-      return wanted;
-    });
-    return returnedValue;
   }
 
   setMax(input: HTMLInputElement, row) {
@@ -78,6 +68,17 @@ export class DeliveryLineComponent implements OnInit {
   }
 
   calculateAmount(item: DeliveryLine) {
-    item.amount = (item.delivered+item.toDeliver)*item.unit_price
+    item.amount = (item.delivered+item.toDeliver)*item.product.price
+  }
+
+  public adaptValue(): DeliveryLine[] {
+    const returnedValue = this.deliveryLines.map((e) => {
+      const { toDeliver, product, ...wanted } = {
+        ...e,
+        delivered: e.delivered + e.toDeliver ?? 0,
+      };
+      return wanted;
+    });
+    return returnedValue;
   }
 }
