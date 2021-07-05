@@ -1,17 +1,29 @@
 mutation InsertQuotation(
-  $draft_id:Int,
-  $company_id: uuid,
+  $draft_id: Int!, 
+  $company_id: uuid, 
   $contact_id: uuid, 
   $customer_id: uuid, 
   $date: date, 
   $deadline: date, 
   $total_ht: numeric, 
   $total_tax: numeric, 
-  $total_ttc: numeric , 
+  $total_ttc: numeric, 
   $salepoint_id: uuid, 
   $status: String = "devis", 
-  $amounts: [sales_amount_insert_input!]! ) {
-  insert_sales_quotation_one(object: {contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc,  salepoint_id: $salepoint_id, company_id: $company_id, draft_id: $draft_id}) {
+  $amounts: [sales_amount_insert_input!]!
+  ) {
+  insert_sales_quotation_one(object: {
+    contact_id: $contact_id,
+    customer_id: $customer_id, 
+    date: $date, 
+    deadline: $deadline, 
+    total_ht: $total_ht, 
+    total_tax: $total_tax, 
+    total_ttc: $total_ttc, 
+    salepoint_id: $salepoint_id, 
+    company_id: $company_id, 
+    draft_id: $draft_id
+    }) {
     company {
       name
       id
@@ -23,7 +35,6 @@ mutation InsertQuotation(
       phone
     }
     status
-    
     ref
     date
     deadline
@@ -40,12 +51,17 @@ mutation InsertQuotation(
       name
     }
   }
-  update_sales_draft(where: {id: {_eq: $draft_id}}, _set: {status: $status}) {
-    returning {
-      id
-    }
-  }
   insert_sales_amount(objects: $amounts) {
     affected_rows
+  }
+  update_sales_draft_by_pk(pk_columns: {
+    id: $draft_id},
+    _set: {
+      company_id: $company_id, 
+      customer_id: $customer_id, 
+      date: $date, 
+      status: $status
+      }) {
+    id
   }
 }

@@ -1,14 +1,9 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { QuotationFacade } from "@tanglass-erp/store/sales";
-import { DraftFacade } from "@tanglass-erp/store/sales";
+import { DraftFacade ,ProductDraftFacade,QuotationFacade} from "@tanglass-erp/store/sales";
 import { DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
-import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
 import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';
-import { ProductDraftFacade } from "@tanglass-erp/store/sales";
-import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
-import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';

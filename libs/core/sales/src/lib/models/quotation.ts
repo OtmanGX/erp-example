@@ -48,3 +48,15 @@ export interface InsertedQuotation {
   }
 
 
+  export interface TransformedQuotation{
+    draft_id:number;
+    company_id: string, 
+    contact_id?: string, 
+    customer_id: string, 
+    date: Date, 
+    deadline?: Date, 
+    total_ht: number, 
+    total_tax: number, 
+    total_ttc: number, 
+    salepoint_id: string, 
+  }

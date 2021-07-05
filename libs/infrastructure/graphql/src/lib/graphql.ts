@@ -31458,7 +31458,7 @@ export type DeleteOrdersMutation = (
 );
 
 export type InsertOrderMutationVariables = Exact<{
-  draft_id?: Maybe<Scalars['Int']>;
+  draft_id: Scalars['Int'];
   company_id?: Maybe<Scalars['uuid']>;
   contact_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
@@ -31493,51 +31493,12 @@ export type InsertOrderMutation = (
       { __typename?: 'management_salesPoint' }
       & Pick<Management_SalesPoint, 'name'>
     ) }
-  )>, update_sales_draft?: Maybe<(
-    { __typename?: 'sales_draft_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'sales_draft' }
-      & Pick<Sales_Draft, 'id'>
-    )> }
   )>, insert_sales_amount?: Maybe<(
     { __typename?: 'sales_amount_mutation_response' }
     & Pick<Sales_Amount_Mutation_Response, 'affected_rows'>
-  )> }
-);
-
-export type TransformQuotationToOrderMutationVariables = Exact<{
-  company_id?: Maybe<Scalars['uuid']>;
-  contact_id?: Maybe<Scalars['uuid']>;
-  customer_id?: Maybe<Scalars['uuid']>;
-  date?: Maybe<Scalars['date']>;
-  deadline?: Maybe<Scalars['date']>;
-  total_ht?: Maybe<Scalars['numeric']>;
-  total_tax?: Maybe<Scalars['numeric']>;
-  total_ttc?: Maybe<Scalars['numeric']>;
-  payment_status?: Maybe<Scalars['String']>;
-  delivery_status?: Maybe<Scalars['String']>;
-  salepoint_id?: Maybe<Scalars['uuid']>;
-  status?: Maybe<Scalars['String']>;
-  product_drafts: Sales_Product_Draft_Arr_Rel_Insert_Input;
-  amounts: Sales_Amount_Arr_Rel_Insert_Input;
-}>;
-
-
-export type TransformQuotationToOrderMutation = (
-  { __typename?: 'mutation_root' }
-  & { insert_sales_order_one?: Maybe<(
-    { __typename?: 'sales_order' }
-    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc'>
-    & { company: (
-      { __typename?: 'management_company' }
-      & Pick<Management_Company, 'name' | 'id'>
-    ), contact?: Maybe<(
-      { __typename?: 'contact_contact' }
-      & Pick<Contact_Contact, 'code' | 'name'>
-    )>, customer: (
-      { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
-    ) }
+  )>, update_sales_draft_by_pk?: Maybe<(
+    { __typename?: 'sales_draft' }
+    & Pick<Sales_Draft, 'id'>
   )> }
 );
 
@@ -31744,7 +31705,7 @@ export type DeleteQuotationsMutation = (
 );
 
 export type InsertQuotationMutationVariables = Exact<{
-  draft_id?: Maybe<Scalars['Int']>;
+  draft_id: Scalars['Int'];
   company_id?: Maybe<Scalars['uuid']>;
   contact_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
@@ -31774,15 +31735,53 @@ export type InsertQuotationMutation = (
       { __typename?: 'management_salesPoint' }
       & Pick<Management_SalesPoint, 'name'>
     ) }
-  )>, update_sales_draft?: Maybe<(
-    { __typename?: 'sales_draft_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'sales_draft' }
-      & Pick<Sales_Draft, 'id'>
-    )> }
   )>, insert_sales_amount?: Maybe<(
     { __typename?: 'sales_amount_mutation_response' }
     & Pick<Sales_Amount_Mutation_Response, 'affected_rows'>
+  )>, update_sales_draft_by_pk?: Maybe<(
+    { __typename?: 'sales_draft' }
+    & Pick<Sales_Draft, 'id'>
+  )> }
+);
+
+export type TransformQuotationToOrderMutationVariables = Exact<{
+  draft_id: Scalars['Int'];
+  status?: Maybe<Scalars['String']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  customer_id?: Maybe<Scalars['uuid']>;
+  contact_id?: Maybe<Scalars['uuid']>;
+  date?: Maybe<Scalars['date']>;
+  deadline?: Maybe<Scalars['date']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
+  payment_status?: Maybe<Scalars['String']>;
+  delivery_status?: Maybe<Scalars['String']>;
+}>;
+
+
+export type TransformQuotationToOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_sales_draft_by_pk?: Maybe<(
+    { __typename?: 'sales_draft' }
+    & Pick<Sales_Draft, 'status'>
+  )>, insert_sales_order_one?: Maybe<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'name'>
+    )>, customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
   )> }
 );
 
@@ -35109,7 +35108,7 @@ export const DeleteOrdersDocument = gql`
     }
   }
 export const InsertOrderDocument = gql`
-    mutation InsertOrder($draft_id: Int, $company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré", $salepoint_id: uuid, $status: String = "commande", $amounts: [sales_amount_insert_input!]!) {
+    mutation InsertOrder($draft_id: Int!, $company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré", $salepoint_id: uuid, $status: String = "commande", $amounts: [sales_amount_insert_input!]!) {
   insert_sales_order_one(
     object: {contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, delivery_status: $delivery_status, payment_status: $payment_status, salepoint_id: $salepoint_id, company_id: $company_id, draft_id: $draft_id}
   ) {
@@ -35139,13 +35138,14 @@ export const InsertOrderDocument = gql`
     total_tax
     total_ttc
   }
-  update_sales_draft(where: {id: {_eq: $draft_id}}, _set: {status: $status}) {
-    returning {
-      id
-    }
-  }
   insert_sales_amount(objects: $amounts) {
     affected_rows
+  }
+  update_sales_draft_by_pk(
+    pk_columns: {id: $draft_id}
+    _set: {status: $status, company_id: $company_id, customer_id: $customer_id, date: $date}
+  ) {
+    id
   }
 }
     `;
@@ -35155,47 +35155,6 @@ export const InsertOrderDocument = gql`
   })
   export class InsertOrderGQL extends Apollo.Mutation<InsertOrderMutation, InsertOrderMutationVariables> {
     document = InsertOrderDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const TransformQuotationToOrderDocument = gql`
-    mutation TransformQuotationToOrder($company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré", $salepoint_id: uuid, $status: String = "order", $product_drafts: sales_product_draft_arr_rel_insert_input!, $amounts: sales_amount_arr_rel_insert_input!) {
-  insert_sales_order_one(
-    object: {company_id: $company_id, contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, delivery_status: $delivery_status, payment_status: $payment_status, salepoint_id: $salepoint_id, draft: {data: {company_id: $company_id, customer_id: $customer_id, date: $date, status: $status, product_drafts: $product_drafts, amounts: $amounts}}}
-  ) {
-    company {
-      name
-      id
-    }
-    contact {
-      code
-      name
-    }
-    customer {
-      code
-      name
-      phone
-    }
-    date
-    deadline
-    draft_id
-    id
-    delivery_status
-    payment_status
-    total_ht
-    total_tax
-    total_ttc
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class TransformQuotationToOrderGQL extends Apollo.Mutation<TransformQuotationToOrderMutation, TransformQuotationToOrderMutationVariables> {
-    document = TransformQuotationToOrderDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -35453,7 +35412,7 @@ export const DeleteQuotationsDocument = gql`
     }
   }
 export const InsertQuotationDocument = gql`
-    mutation InsertQuotation($draft_id: Int, $company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $salepoint_id: uuid, $status: String = "devis", $amounts: [sales_amount_insert_input!]!) {
+    mutation InsertQuotation($draft_id: Int!, $company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $salepoint_id: uuid, $status: String = "devis", $amounts: [sales_amount_insert_input!]!) {
   insert_sales_quotation_one(
     object: {contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, salepoint_id: $salepoint_id, company_id: $company_id, draft_id: $draft_id}
   ) {
@@ -35484,13 +35443,14 @@ export const InsertQuotationDocument = gql`
       name
     }
   }
-  update_sales_draft(where: {id: {_eq: $draft_id}}, _set: {status: $status}) {
-    returning {
-      id
-    }
-  }
   insert_sales_amount(objects: $amounts) {
     affected_rows
+  }
+  update_sales_draft_by_pk(
+    pk_columns: {id: $draft_id}
+    _set: {company_id: $company_id, customer_id: $customer_id, date: $date, status: $status}
+  ) {
+    id
   }
 }
     `;
@@ -35500,6 +35460,53 @@ export const InsertQuotationDocument = gql`
   })
   export class InsertQuotationGQL extends Apollo.Mutation<InsertQuotationMutation, InsertQuotationMutationVariables> {
     document = InsertQuotationDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const TransformQuotationToOrderDocument = gql`
+    mutation TransformQuotationToOrder($draft_id: Int!, $status: String = "commande", $company_id: uuid, $customer_id: uuid, $contact_id: uuid, $date: date, $deadline: date, $salepoint_id: uuid, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré") {
+  update_sales_draft_by_pk(pk_columns: {id: $draft_id}, _set: {status: $status}) {
+    status
+  }
+  insert_sales_order_one(
+    object: {company_id: $company_id, draft_id: $draft_id, customer_id: $customer_id, contact_id: $contact_id, date: $date, deadline: $deadline, total_ht: $total_ht, salepoint_id: $salepoint_id, total_tax: $total_tax, total_ttc: $total_ttc, payment_status: $payment_status, delivery_status: $delivery_status}
+  ) {
+    company {
+      name
+      id
+    }
+    contact {
+      code
+      name
+    }
+    customer {
+      code
+      name
+      phone
+    }
+    salepoint {
+      name
+    }
+    date
+    deadline
+    draft_id
+    id
+    delivery_status
+    payment_status
+    total_ht
+    total_tax
+    total_ttc
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class TransformQuotationToOrderGQL extends Apollo.Mutation<TransformQuotationToOrderMutation, TransformQuotationToOrderMutationVariables> {
+    document = TransformQuotationToOrderDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

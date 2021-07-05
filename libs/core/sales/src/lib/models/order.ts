@@ -37,19 +37,3 @@ export interface InsertedOrder {
 
 
 
-export interface TransformedQuotation{
-  company_id: string, 
-  contact_id: string, 
-  customer_id: string, 
-  Date: Date, 
-  deadline: Date, 
-  total_ht: number, 
-  total_tax: number, 
-  total_ttc: number, 
-  payment_status: string, 
-  delivery_status: string , 
-  salepoint_id: string, 
-  status: string, 
-  product_drafts: Product_draft[];
-  amounts: Amount[];
-}
