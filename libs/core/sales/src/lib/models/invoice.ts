@@ -51,6 +51,7 @@ export interface UpdatedInvoice extends InsertedInvoice {
     name: string;
     phone?: string;
     mail?: string;
+    code?: string;
   };
   company?: Company;
   contact?: {

@@ -7,9 +7,10 @@ import * as QuotationSelectors from './quotation.selectors';
 import * as QuotationsActions from './quotation.actions';
 import {
   InsertedQuotation,
-  invoiceFilter,
-  TransformedQuotation,
+  invoiceFilter, Order, Quotation,
+  TransformedQuotation
 } from '@tanglass-erp/core/sales';
+import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
 @Injectable()
 export class QuotationFacade {
   loaded$ = this.store.pipe(select(QuotationSelectors.getQuotationLoaded));
@@ -20,7 +21,10 @@ export class QuotationFacade {
   loadedQuotation$ = this.store.pipe(
     select(QuotationSelectors.getLoadedQuotation)
   );
-  constructor(private store: Store<fromQuotation.QuotationPartialState>) {}
+  constructor(
+    private store: Store<fromQuotation.QuotationPartialState>,
+    public invoiceGeneratorService: InvoiceGeneratorService,
+  ) {}
 
   dispatch(action: Action) {
     this.store.dispatch(action);
@@ -43,5 +47,9 @@ export class QuotationFacade {
     this.dispatch(
       QuotationsActions.TransformToOrder({ transformingVariables })
     );
+  }
+
+  printQuotation(quotation: Quotation) {
+    this.invoiceGeneratorService.generateOrderPDF(<Order>quotation, true);
   }
 }

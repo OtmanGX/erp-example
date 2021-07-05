@@ -22,7 +22,7 @@ export class DeliveryLineComponent {
           type: elem.type,
           product_code: elem.product_code,
           price: elem.price,
-          quantity: elem.quantity - (elem?.delivered || 0)
+          quantity: elem.count??elem.quantity - (elem?.delivered || 0)
         },
         // quantity: elem.quantity - (elem?.delivered || 0),
         delivered: 0,

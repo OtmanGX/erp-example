@@ -27,6 +27,7 @@ query GetInvoiceById($id: uuid!) {
       name
       phone
       mail
+      code
     }
     company{
       id

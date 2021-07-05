@@ -5146,6 +5146,7 @@ export type Manufacturing_Job_Order = {
   glass_drafts_aggregate: Sales_Glass_Draft_Aggregate;
   id: Scalars['Int'];
   order_ref: Scalars['String'];
+  ref: Scalars['String'];
   status: Scalars['String'];
   type: Scalars['String'];
 };
@@ -5241,6 +5242,7 @@ export type Manufacturing_Job_Order_Bool_Exp = {
   glass_drafts?: Maybe<Sales_Glass_Draft_Bool_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   order_ref?: Maybe<String_Comparison_Exp>;
+  ref?: Maybe<String_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
   type?: Maybe<String_Comparison_Exp>;
 };
@@ -5262,6 +5264,7 @@ export type Manufacturing_Job_Order_Insert_Input = {
   glass_drafts?: Maybe<Sales_Glass_Draft_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
 };
@@ -5272,6 +5275,7 @@ export type Manufacturing_Job_Order_Max_Fields = {
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
 };
@@ -5281,6 +5285,7 @@ export type Manufacturing_Job_Order_Max_Order_By = {
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   order_ref?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
 };
@@ -5291,6 +5296,7 @@ export type Manufacturing_Job_Order_Min_Fields = {
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
 };
@@ -5300,6 +5306,7 @@ export type Manufacturing_Job_Order_Min_Order_By = {
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   order_ref?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
 };
@@ -5332,6 +5339,7 @@ export type Manufacturing_Job_Order_Order_By = {
   glass_drafts_aggregate?: Maybe<Sales_Glass_Draft_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   order_ref?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
 };
@@ -5350,6 +5358,8 @@ export enum Manufacturing_Job_Order_Select_Column {
   /** column name */
   OrderRef = 'order_ref',
   /** column name */
+  Ref = 'ref',
+  /** column name */
   Status = 'status',
   /** column name */
   Type = 'type'
@@ -5360,6 +5370,7 @@ export type Manufacturing_Job_Order_Set_Input = {
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
+  ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
 };
@@ -5416,6 +5427,8 @@ export enum Manufacturing_Job_Order_Update_Column {
   Id = 'id',
   /** column name */
   OrderRef = 'order_ref',
+  /** column name */
+  Ref = 'ref',
   /** column name */
   Status = 'status',
   /** column name */
@@ -19077,7 +19090,7 @@ export type Sales_Draft = {
   product_drafts: Array<Sales_Product_Draft>;
   /** An aggregated array relationship */
   product_drafts_aggregate: Sales_Product_Draft_Aggregate;
-  status: Scalars['String'];
+  status: Sales_Draft_Status_Enum;
 };
 
 
@@ -19197,7 +19210,7 @@ export type Sales_Draft_Bool_Exp = {
   id?: Maybe<Int_Comparison_Exp>;
   order?: Maybe<Sales_Order_Bool_Exp>;
   product_drafts?: Maybe<Sales_Product_Draft_Bool_Exp>;
-  status?: Maybe<String_Comparison_Exp>;
+  status?: Maybe<Sales_Draft_Status_Enum_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.draft" */
@@ -19223,7 +19236,7 @@ export type Sales_Draft_Insert_Input = {
   id?: Maybe<Scalars['Int']>;
   order?: Maybe<Sales_Order_Obj_Rel_Insert_Input>;
   product_drafts?: Maybe<Sales_Product_Draft_Arr_Rel_Insert_Input>;
-  status?: Maybe<Scalars['String']>;
+  status?: Maybe<Sales_Draft_Status_Enum>;
 };
 
 /** aggregate max on columns */
@@ -19233,7 +19246,6 @@ export type Sales_Draft_Max_Fields = {
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['Int']>;
-  status?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "sales.draft" */
@@ -19242,7 +19254,6 @@ export type Sales_Draft_Max_Order_By = {
   customer_id?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -19252,7 +19263,6 @@ export type Sales_Draft_Min_Fields = {
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['Int']>;
-  status?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "sales.draft" */
@@ -19261,7 +19271,6 @@ export type Sales_Draft_Min_Order_By = {
   customer_id?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "sales.draft" */
@@ -19326,7 +19335,7 @@ export type Sales_Draft_Set_Input = {
   customer_id?: Maybe<Scalars['uuid']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['Int']>;
-  status?: Maybe<Scalars['String']>;
+  status?: Maybe<Sales_Draft_Status_Enum>;
 };
 
 /** columns and relationships of "sales.draft_status" */
@@ -19408,6 +19417,21 @@ export enum Sales_Draft_Status_Constraint {
   /** unique or primary key constraint */
   DraftStatusPkey = 'draft_status_pkey'
 }
+
+export enum Sales_Draft_Status_Enum {
+  Commande = 'commande',
+  Devis = 'devis',
+  Draft = 'draft'
+}
+
+/** expression to compare columns of type sales_draft_status_enum. All fields are combined with logical 'AND'. */
+export type Sales_Draft_Status_Enum_Comparison_Exp = {
+  _eq?: Maybe<Sales_Draft_Status_Enum>;
+  _in?: Maybe<Array<Sales_Draft_Status_Enum>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _neq?: Maybe<Sales_Draft_Status_Enum>;
+  _nin?: Maybe<Array<Sales_Draft_Status_Enum>>;
+};
 
 /** input type for inserting data into table "sales.draft_status" */
 export type Sales_Draft_Status_Insert_Input = {
@@ -31355,7 +31379,7 @@ export type DeleteDraftsMutation = (
 );
 
 export type InsertDraftMutationVariables = Exact<{
-  status?: Maybe<Scalars['String']>;
+  status?: Maybe<Sales_Draft_Status_Enum>;
 }>;
 
 
@@ -31470,7 +31494,7 @@ export type InsertOrderMutationVariables = Exact<{
   payment_status?: Maybe<Scalars['String']>;
   delivery_status?: Maybe<Scalars['String']>;
   salepoint_id?: Maybe<Scalars['uuid']>;
-  status?: Maybe<Scalars['String']>;
+  status?: Maybe<Sales_Draft_Status_Enum>;
   amounts: Array<Sales_Amount_Insert_Input>;
 }>;
 
@@ -31715,7 +31739,7 @@ export type InsertQuotationMutationVariables = Exact<{
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
   salepoint_id?: Maybe<Scalars['uuid']>;
-  status?: Maybe<Scalars['String']>;
+  status?: Maybe<Sales_Draft_Status_Enum>;
   amounts: Array<Sales_Amount_Insert_Input>;
 }>;
 
@@ -31746,7 +31770,7 @@ export type InsertQuotationMutation = (
 
 export type TransformQuotationToOrderMutationVariables = Exact<{
   draft_id: Scalars['Int'];
-  status?: Maybe<Scalars['String']>;
+  status?: Maybe<Sales_Draft_Status_Enum>;
   company_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
   contact_id?: Maybe<Scalars['uuid']>;
@@ -31825,14 +31849,14 @@ export type GetDeliveryByIdQuery = (
       & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product_draft_id'>
       & { product: (
         { __typename?: 'sales_product_draft' }
-        & Pick<Sales_Product_Draft, 'type' | 'label' | 'product_code' | 'price' | 'quantity'>
+        & Pick<Sales_Product_Draft, 'type' | 'label' | 'product_code' | 'price' | 'quantity' | 'count'>
       ) }
     )>, company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
     ), client: (
       { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'name' | 'mail' | 'phone'>
+      & Pick<Contact_Customer, 'name' | 'mail' | 'phone' | 'code'>
     ), contact?: Maybe<(
       { __typename?: 'contact_contact' }
       & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
@@ -31980,7 +32004,7 @@ export type GetInvoiceByIdQuery = (
       & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'product_type' | 'quantity' | 'total'>
     )>, client: (
       { __typename?: 'contact_customer' }
-      & Pick<Contact_Customer, 'name' | 'phone' | 'mail'>
+      & Pick<Contact_Customer, 'name' | 'phone' | 'mail' | 'code'>
     ), company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'id' | 'name'>
@@ -34961,7 +34985,7 @@ export const DeleteDraftsDocument = gql`
     }
   }
 export const InsertDraftDocument = gql`
-    mutation InsertDraft($status: String = "draft") {
+    mutation InsertDraft($status: sales_draft_status_enum = draft) {
   insert_sales_draft_one(object: {status: $status}) {
     id
   }
@@ -35108,7 +35132,7 @@ export const DeleteOrdersDocument = gql`
     }
   }
 export const InsertOrderDocument = gql`
-    mutation InsertOrder($draft_id: Int!, $company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré", $salepoint_id: uuid, $status: String = "commande", $amounts: [sales_amount_insert_input!]!) {
+    mutation InsertOrder($draft_id: Int!, $company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré", $salepoint_id: uuid, $status: sales_draft_status_enum = commande, $amounts: [sales_amount_insert_input!]!) {
   insert_sales_order_one(
     object: {contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, delivery_status: $delivery_status, payment_status: $payment_status, salepoint_id: $salepoint_id, company_id: $company_id, draft_id: $draft_id}
   ) {
@@ -35412,7 +35436,7 @@ export const DeleteQuotationsDocument = gql`
     }
   }
 export const InsertQuotationDocument = gql`
-    mutation InsertQuotation($draft_id: Int!, $company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $salepoint_id: uuid, $status: String = "devis", $amounts: [sales_amount_insert_input!]!) {
+    mutation InsertQuotation($draft_id: Int!, $company_id: uuid, $contact_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $salepoint_id: uuid, $status: sales_draft_status_enum = devis, $amounts: [sales_amount_insert_input!]!) {
   insert_sales_quotation_one(
     object: {contact_id: $contact_id, customer_id: $customer_id, date: $date, deadline: $deadline, total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc, salepoint_id: $salepoint_id, company_id: $company_id, draft_id: $draft_id}
   ) {
@@ -35466,7 +35490,7 @@ export const InsertQuotationDocument = gql`
     }
   }
 export const TransformQuotationToOrderDocument = gql`
-    mutation TransformQuotationToOrder($draft_id: Int!, $status: String = "commande", $company_id: uuid, $customer_id: uuid, $contact_id: uuid, $date: date, $deadline: date, $salepoint_id: uuid, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré") {
+    mutation TransformQuotationToOrder($draft_id: Int!, $status: sales_draft_status_enum = commande, $company_id: uuid, $customer_id: uuid, $contact_id: uuid, $date: date, $deadline: date, $salepoint_id: uuid, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré") {
   update_sales_draft_by_pk(pk_columns: {id: $draft_id}, _set: {status: $status}) {
     status
   }
@@ -35581,6 +35605,7 @@ export const GetDeliveryByIdDocument = gql`
         product_code
         price
         quantity
+        count
       }
     }
     amount_ttc
@@ -35593,6 +35618,7 @@ export const GetDeliveryByIdDocument = gql`
       name
       mail
       phone
+      code
     }
     contact {
       mail
@@ -35848,6 +35874,7 @@ export const GetInvoiceByIdDocument = gql`
       name
       phone
       mail
+      code
     }
     company {
       id

@@ -65,7 +65,9 @@ export class QuotationCardComponent extends ModelCardComponent {
   cancel() {
     this.isCardMode = true;
   }
-  print() {}
+  print() {
+    this.facade.printQuotation(this.data);
+  }
   transformToOrder(): void {
     let amount:Amount;
     this.productDraftFacade.amounts$.subscribe((val) => (amount = val.pop()));
@@ -74,14 +76,14 @@ export class QuotationCardComponent extends ModelCardComponent {
       panelClass: 'panel-dialog',
       data: null,
     });
-    dialogRef 
+    dialogRef
       .afterClosed()
       .subscribe((result) =>
        this.facade.TransformToOrder({
          ...result,
-         total_ht: amount.total_ht, 
-         total_tax: amount.total_tax, 
-         total_ttc: amount.total_ttc, 
+         total_ht: amount.total_ht,
+         total_tax: amount.total_tax,
+         total_ttc: amount.total_ttc,
       }));
   }
 }

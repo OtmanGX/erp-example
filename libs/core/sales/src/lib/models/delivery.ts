@@ -50,6 +50,7 @@ export interface InsertedDeliveryForm extends MetaData {
     name: string;
     mail?: string;
     phone?: string;
+    code?: string;
   };
   company?: Company;
   contact?: {
@@ -81,6 +82,7 @@ export interface DeliveryLine {
     product_code: string;
     price: number
     quantity: number;
+    count?: number;
   }
   delivered: number;
   amount?: number;

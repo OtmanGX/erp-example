@@ -23,6 +23,7 @@ query GetDeliveryById($id: uuid!) {
         product_code
         price
         quantity
+        count
       }
     }
     amount_ttc
@@ -36,6 +37,7 @@ query GetDeliveryById($id: uuid!) {
       name
       mail
       phone
+      code
     }
     contact {
       mail
