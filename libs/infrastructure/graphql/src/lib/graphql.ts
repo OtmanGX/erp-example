@@ -30693,7 +30693,7 @@ export type InsertUserMutation = (
   { __typename?: 'mutation_root' }
   & { SignUp?: Maybe<(
     { __typename?: 'SignUpOutput' }
-    & Pick<SignUpOutput, 'CIN' | 'active' | 'firstname' | 'id' | 'lastname' | 'phone' | 'username'>
+    & Pick<SignUpOutput, 'CIN' | 'active' | 'firstname' | 'id' | 'lastname' | 'phone' | 'username' | 'email'>
   )> }
 );
 
@@ -33898,6 +33898,7 @@ export const InsertUserDocument = gql`
     lastname
     phone
     username
+    email
   }
 }
     `;
