@@ -5,9 +5,10 @@ import {
   GetQuotationByIdGQL,
   DeleteQuotationsGQL,
   InsertQuotationMutationVariables,
+  TransformQuotationToOrderGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
-import {invoiceFilter,Quotation ,productAdapter } from "@tanglass-erp/core/sales";
+import {invoiceFilter ,productAdapter,TransformedQuotation } from "@tanglass-erp/core/sales";
 @Injectable({
   providedIn: 'root',
 })
@@ -16,8 +17,10 @@ export class QuotationService {
     private getAllQuotationsGQL: GetAllQuotationsGQL,
     private insertQuotationGQL: InsertQuotationGQL,
     private getQuotationByIdGQL: GetQuotationByIdGQL,
-    private deleteQuotationsGQL: DeleteQuotationsGQL
-  ) {}
+    private deleteQuotationsGQL: DeleteQuotationsGQL,
+    private transformQuotationToOrderGQL:TransformQuotationToOrderGQL
+
+    ) {}
 
   getAll(params: invoiceFilter = {}) {
     return this.getAllQuotationsGQL.watch(params).valueChanges;
@@ -44,4 +47,9 @@ export class QuotationService {
   deleteMany(ids: number[]) {
     return this.deleteQuotationsGQL.mutate({ ids });
   }
+
+  
+  transformQuotationToOrder(order:TransformedQuotation) {
+    return this.transformQuotationToOrderGQL.mutate(order)
+ }
 }

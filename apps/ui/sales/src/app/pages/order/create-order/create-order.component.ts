@@ -35,7 +35,6 @@ export class CreateOrderComponent implements OnInit ,OnDestroy{
     private ordersFacade: OrdersFacade,
     private draftFacade: DraftFacade,
     private store: Store,
-    private paymentFacade: PaymentsFacade,
     private productDraftFacade: ProductDraftFacade
   ) {}
   buildForm(): void {

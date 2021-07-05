@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { invoiceFilter, Quotation,InsertedQuotation} from '@tanglass-erp/core/sales';
-
+import { invoiceFilter, Quotation,Order,InsertedQuotation,TransformedQuotation} from '@tanglass-erp/core/sales';
 export const loadQuotations = createAction('[Quotations] Load Quotations',
   props<invoiceFilter>()
 );
@@ -84,13 +83,13 @@ export const deleteQuotationsFailure = createAction(
 
 export const TransformToOrder= createAction(
   '[Quotation Card  Component] Transform Quotation To Order',
-  props<{ id: any }>()
+  props<{ transformingVariables: TransformedQuotation }>()
   );
 
 
 export const TransformToOrderSuccess = createAction(
   '[Quotation Effect] Transform Quotation To Order Success',
-  props<{ quotation: Quotation }>()
+  props<{ order: Order }>()
 );
 
 export const TransformToOrderFailure = createAction(

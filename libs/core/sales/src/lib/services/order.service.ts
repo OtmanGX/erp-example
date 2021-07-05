@@ -5,7 +5,6 @@ import {
   GetOrderByIdGQL,
   DeleteOrdersGQL,
   InsertOrderMutationVariables,
-  TransformQuotationToOrderGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
 import { TransformedQuotation,Product_draft,invoiceFilter,productAdapter} from "@tanglass-erp/core/sales";
@@ -18,7 +17,6 @@ export class OrderService {
     private deleteOrdersGQL: DeleteOrdersGQL,
     private insertOrderGQL: InsertOrderGQL,
     private getOrderByIdGQL: GetOrderByIdGQL,
-    private transformQuotationToOrderGQL:TransformQuotationToOrderGQL
   ) {}
 
   getAll(params: invoiceFilter = {}) {
@@ -46,7 +44,5 @@ export class OrderService {
     return this.insertOrderGQL.mutate(order);
   }
 
-  CreateFromQuotation(order:TransformedQuotation) {
- }
 
 }

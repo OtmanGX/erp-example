@@ -103,6 +103,35 @@ export class QuotationEffects {
     )
   });
 
+
+  TransformQuotationToOrder$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(QuotationActions.TransformToOrder),
+      mergeMap((action) =>
+        this.quotationService.transformQuotationToOrder(action.transformingVariables).pipe(
+          map((data) => {
+            this.notificationService.showNotifToast({
+              message: 'Transférer au Commande avec succès',
+              operation: 'success',
+              title: 'Devis',
+              time: new Date(),
+              icon: 'check',
+              route: 'sales/quotation',
+              color: 'primary',
+            });
+            this.router.navigate(['sales/order']);
+
+              return QuotationActions.TransformToOrderSuccess({order: data.data.insert_sales_order_one})
+            }
+          ),
+          catchError((error) =>
+            of(QuotationActions.TransformToOrderFailure({ error }))
+          )
+        )
+      )
+    )
+  });
+
   constructor(
     private actions$: Actions,
     private quotationService:QuotationService,

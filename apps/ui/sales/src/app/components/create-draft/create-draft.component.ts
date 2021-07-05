@@ -36,8 +36,7 @@ export class CreateDraftComponent implements OnInit {
     private store: Store,
     private facade: DraftFacade,
     private sharedfacade: SharedFacade,
-
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.facade.createDraft();
@@ -58,7 +57,6 @@ export class CreateDraftComponent implements OnInit {
       this.contacts$,
       this.companies$.pipe(map(item => item.map(company => ({ key: company.id, value: company.name })))),
     );
- 
   }
   ngOnDestroy() {
     this.dataSub.unsubscribe()
