@@ -55,3 +55,4 @@ export {
 } from '@tanglass-erp/core/sales';
 export * from './lib/+state/product-draft/enums';
 export * from './lib/+state/product-draft/adapters'
+export * from './lib/+state/product-draft/products-draft.models'

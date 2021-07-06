@@ -50,6 +50,7 @@ query GetOrderById($id: Int!) {
         width
         isRepeated
         isLaunched
+        draft_id
         glass_draft {
           id
         }

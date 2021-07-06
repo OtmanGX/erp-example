@@ -268,3 +268,16 @@ export const PaymentsHeaders: Array<Column> = [
   { key: 'comment', title: 'Commentaire', type: ColumnType.normal },
   { key: 'company', title: 'En Faveur de', type: ColumnType.normal },
 ];
+
+
+export const ProductDeliveriesHeaders: Array<Column> = [
+  //{ field: 'id', headerName: 'ID. ' },
+  { key: 'amount', title: 'amount', type: ColumnType.normal },
+  { key: 'delivered', title: 'delivered', type: ColumnType.normal },
+  { key: 'id', title: 'id', type: ColumnType.normal },
+  { key: 'unit', title: 'Unité', type: ColumnType.normal },
+  { key: 'price', title: 'P.U', type: ColumnType.normal },
+  { key: 'total_price', title: 'Total', type: ColumnType.normal },
+  { key: 'company_name', title: 'Société', type: ColumnType.normal },
+  action,
+];

@@ -12,8 +12,12 @@ export class ProductDraftEffects {
       mergeMap((action) =>
         this.ProductService.addGlass(action.glass).pipe(
           map((data) => {
+            let {
+              __typename,
+              ...product
+            } = data.data.insert_sales_glass_draft_one.product_draft;
             return ProductActions.addGlassSuccess({
-              glass: data.data.insert_sales_glass_draft_one.product_draft,
+              glass: product,
             });
           }),
           catchError((error) => of(ProductActions.addGlassFailure({ error })))
@@ -21,37 +25,25 @@ export class ProductDraftEffects {
       )
     );
   });
-  insertReparation=createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ProductActions.addReparationProducts),
-      mergeMap((action) =>
-        this.ProductService.addBisItems(action.products).pipe(map
-          ((data) => {
-            return ProductActions.addReparationProductsSuccess({
-              products: data.data.insert_sales_glass_draft_one.product_draft,
-            });
-          }), 
-       
-          catchError((error) => of(ProductActions.addReparationProductsFailure({ error })))
-          )
-      )
-    );
-  });
- 
+
   insertServicDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductActions.addService),
       mergeMap((action) =>
         this.ProductService.addService(action.service).pipe(
-          map((data) =>
-            ProductActions.addServiceSuccess({
+          map((data) => {
+            let {
+              __typename,
+              ...product
+            } = data.data.insert_sales_service_draft_one.product_draft;
+            return ProductActions.addServiceSuccess({
               service: {
-                ...data.data.insert_sales_service_draft_one.product_draft,
+                ...product,
                 dependent_id:
                   data.data.insert_sales_service_draft_one.dependent_id,
               },
-            })
-          ),
+            });
+          }),
           catchError((error) => of(ProductActions.addServiceFailure({ error })))
         )
       )
@@ -62,15 +54,19 @@ export class ProductDraftEffects {
       ofType(ProductActions.addConsumable),
       mergeMap((action) =>
         this.ProductService.addConsumable(action.consumable).pipe(
-          map((data) =>
-            ProductActions.addConsumableSuccess({
+          map((data) => {
+            let {
+              __typename,
+              ...product
+            } = data.data.insert_sales_consumable_draft_one.product_draft;
+            return ProductActions.addConsumableSuccess({
               consumable: {
-                ...data.data.insert_sales_consumable_draft_one.product_draft,
+                ...product,
                 dependent_id:
                   data.data.insert_sales_consumable_draft_one.dependent_id,
               },
-            })
-          ),
+            });
+          }),
           catchError((error) =>
             of(ProductActions.addConsumableFailure({ error }))
           )
@@ -83,12 +79,16 @@ export class ProductDraftEffects {
       ofType(ProductActions.addAccessory),
       mergeMap((action) =>
         this.ProductService.addAccessory(action.accessory).pipe(
-          map((data) =>
-            ProductActions.addAccessorySuccess({
-              accessory:
-                data.data.insert_sales_accessory_draft_one.product_draft,
-            })
-          ),
+          map((data) => {
+            let {
+              __typename,
+              ...product
+            } = data.data.insert_sales_accessory_draft_one.product_draft;
+
+            return ProductActions.addAccessorySuccess({
+              accessory: product,
+            });
+          }),
           catchError((error) =>
             of(ProductActions.addAccessoryFailure({ error }))
           )
@@ -114,7 +114,26 @@ export class ProductDraftEffects {
       )
     );
   });
+  insertBisDraft$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.addReparationProducts),
+      mergeMap((action) =>
+        this.ProductService.addGlass(action.item.glass).pipe(
+          map((data) => {
+            let {
+              __typename,
+              ...product
+            } = data.data.insert_sales_glass_draft_one.product_draft;
 
+            return ProductActions.addGlassSuccess({
+              glass: product,
+            }); 
+          }),
+          catchError((error) => of(ProductActions.addGlassFailure({ error })))
+        )
+      )
+    );
+  });
 
 
   constructor(

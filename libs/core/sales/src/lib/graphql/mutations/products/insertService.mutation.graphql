@@ -12,10 +12,13 @@ mutation insertServiceDraft(
   $quantity: numeric, 
   $ml: numeric , 
   $draft_id: Int, 
-  $warehouse_id: uuid = "null") {
+  $warehouse_id: uuid = "null",
+  $isRepeated: Boolean = false
+  ) {
   insert_sales_service_draft_one(object: 
   {
-    product_draft: {data:
+    product_draft: 
+  {data:
    {
      company_id: $company_id, 
      company_name: $company_name,
@@ -28,7 +31,9 @@ mutation insertServiceDraft(
      m2: $m2, 
      quantity: $quantity, 
      ml: $ml, 
-     draft_id: $draft_id
+     draft_id: $draft_id,
+     isRepeated: $isRepeated,
+     warehouse_id: $warehouse_id, 
      }
      }, 
      dependent_id: $dependent_id}) {
@@ -51,6 +56,7 @@ mutation insertServiceDraft(
       isLaunched
       width
       company_id
+      draft_id
       count
     }
   }

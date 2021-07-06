@@ -1,0 +1,24 @@
+mutation InsertManyProducts($objects: [sales_product_draft_insert_input!]!) {
+  insert_sales_product_draft(objects: $objects) {
+    returning {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      isRepeated
+      isLaunched
+      total_price
+      type
+      unit
+      width
+      substance_id
+      warehouse_id
+      draft_id
+    }
+  }
+}

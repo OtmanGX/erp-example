@@ -12,11 +12,12 @@ import {
   DeleteDraftsGQL,
   Sales_Product_Type_Enum,
   DeleteProductsGQL,
-  InsertGlassDependenciesGQL,
-  InsertGlassDependenciesMutationVariables,
 } from '@tanglass-erp/infrastructure/graphql';
 import { InsertedProduct, Product_draft } from '@tanglass-erp/core/sales';
 import { map } from 'rxjs/operators';
+import { of, combineLatest, Observable } from 'rxjs';
+import { WriteStream } from 'fs';
+import { Console } from 'console';
 @Injectable({
   providedIn: 'root',
 })
@@ -33,7 +34,6 @@ export class DraftService {
     private getAllDraftsGQL: GetAllDraftsGQL,
     private getDraftByIdGQL: GetDraftByIdGQL,
     private DeleteProductsGQL: DeleteProductsGQL,
-    private insertGlassDependenciesGQL: InsertGlassDependenciesGQL
   ) {}
 
   getAll() {
@@ -121,54 +121,15 @@ export class DraftService {
   }
 
   addBisItems(products) {
-    let value: InsertGlassDependenciesMutationVariables;
-    let glass = products.find(
-      (item) =>
-        (item.type == Sales_Product_Type_Enum.Verre ||
-          item.type == Sales_Product_Type_Enum.ArticleClient) &&
-        !item.isRepeated
-    );
-    let { glass_draft, ...data } = glass;
-    let services = products.filter(
-      (item) => item.type == Sales_Product_Type_Enum.Service
-    );
-    let consumables = products.filter(
-      (item) => item.type == Sales_Product_Type_Enum.Consommable
-    );
-    value = {
-      product_draft: { data },
-      service_drafts: { data: services.map(data=>({product_draft:data})) },
-      consumable_drafts: { data: consumables },
+    let response: {
+      glass;
+      services;
+      consumables;
     };
-   return this.insertGlassDependenciesGQL.mutate(value);
+
+
+    return;
   }
 
-  // addBisItems(products): Product_draft[] {
-  //   let response: Product_draft[] = [];
-  //   let glass = products.find(
-  //     (item) =>
-  //       (item.type == Sales_Product_Type_Enum.Verre ||
-  //         item.type == Sales_Product_Type_Enum.ArticleClient) &&
-  //       !item.isRepeated
-  //   );
-  //   let services: InsertedProduct[] = products.filter(
-  //     (item) => item.type == Sales_Product_Type_Enum.Service
-  //   );
-  //   let consumables: InsertedProduct[] = products.filter(
-  //     (item) => item.type == Sales_Product_Type_Enum.Consommable
-  //   );
-  //   this.addGlass(glass).pipe(
-  //     map((data) => {
-  //       let dependent_id =
-  //         data.data.insert_sales_glass_draft_one.product_draft.glass_draft.id;
-  //       services.length
-  //         ? services.map((e) => this.addService({ ...e, dependent_id }))
-  //         : null;
-  //       consumables.length
-  //         ? consumables.map((e) => this.addConsumable({ ...e, dependent_id }))
-  //         : null;
-  //     })
-  //   );
-  //   return response;
-  // }
+
 }

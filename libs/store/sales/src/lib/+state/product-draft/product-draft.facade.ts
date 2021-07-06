@@ -16,6 +16,7 @@ import {
   InsertedProduct,
   Product_draft,
 } from '@tanglass-erp/core/sales';
+import { Bis } from './products-draft.models';
 @Injectable()
 export class ProductDraftFacade {
   loaded$ = this.store.pipe(select(ProductDraftSelectors.getProductLoaded));
@@ -243,7 +244,35 @@ export class ProductDraftFacade {
     return response;
   }
 
-  addBisItems(products: Product_draft[]) {
-   this.dispatch(ProductsActions.addReparationProducts({ products }))
+  addBisItems(products) {
+    let {
+      status,
+      glass_draft,
+      delivered,
+      service_draft,
+      isLaunched,
+      id,
+      consumable_draft,
+      ...glass
+    } = products.find(
+      (item) =>
+        (item.type == Sales_Product_Type_Enum.Verre ||
+          item.type == Sales_Product_Type_Enum.ArticleClient) &&
+        !item.isRepeated
+    );
+    //glass={...glass,isRepeated:true}
+
+    let services = products.filter(
+      (item) => item.type == Sales_Product_Type_Enum.Service
+    );
+    let consumables = products.filter(
+      (item) => item.type == Sales_Product_Type_Enum.Consommable
+    );
+    let item:Bis={
+      glass,
+      services,
+      consumables,
+    }
+   this.dispatch(ProductsActions.addReparationProducts({ item }))
   }
 }

@@ -7,7 +7,11 @@ import { Router } from '@angular/router';
 import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
-import { PaymentsFacade,DraftFacade,ProductDraftFacade } from "@tanglass-erp/store/sales";
+import {
+  PaymentsFacade,
+  DraftFacade,
+  ProductDraftFacade,
+} from '@tanglass-erp/store/sales';
 @Injectable()
 export class OrdersEffects {
   loadOrders$ = createEffect(() => {
@@ -68,7 +72,10 @@ export class OrdersEffects {
               route: 'sales/order',
               color: 'primary',
             });
-            this.router.navigate(['/sales/order',data.data.insert_sales_order_one.id]);
+            this.router.navigate([
+              '/sales/order',
+              data.data.insert_sales_order_one.id,
+            ]);
             return OrdersActions.addOrderSuccess({
               order: data.data.insert_sales_order_one,
             });
@@ -86,7 +93,11 @@ export class OrdersEffects {
         this.orderService.getOneById(action.id).pipe(
           map((data) => {
             this.draftFacade.selectDraftId(data.draft_id);
-            this.productDraftFacade.setDraftProducts(data.products);
+            let products = data.products.map((data) => {
+              let { __typename, ...product } = data;
+              return product;
+            });
+            this.productDraftFacade.setDraftProducts(products);
             this.paymentFacade.setOrderPayments(data.payments);
             return OrdersActions.loadOrderByIdSuccess({ order: data });
           }),
