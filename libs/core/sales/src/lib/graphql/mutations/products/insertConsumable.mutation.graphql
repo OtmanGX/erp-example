@@ -46,11 +46,14 @@ mutation InsertConsumableDraft(
       price
       product_code
       quantity
+      isRepeated
+      isLaunched
       total_price
       type
       unit
       width
       substance_id
+      warehouse_id
     }
   }
 }

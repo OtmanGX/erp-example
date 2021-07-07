@@ -4,11 +4,18 @@ import * as ProductDraftSelectors from './product-draft.selectors';
 import * as ProductsActions from './product-draft.actions';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PaymentsFacade } from '../payments/payments.facade';
-import { Product_draft } from '@tanglass-erp/core/sales';
-import { ProductGroups, Amount } from './products-draft.models';
-import { ProductsTypes } from './enums';
-import { groupeByCode } from './adapters';
+import {
+  DraftFacade,
+  PaymentsFacade,
+  ProductGroups,
+  Amount,
+  Sales_Product_Type_Enum,
+  groupeByCode,
+} from '@tanglass-erp/store/sales';
+import {
+  InsertedProduct,
+  Product_draft,
+} from '@tanglass-erp/core/sales';
 @Injectable()
 export class ProductDraftFacade {
   loaded$ = this.store.pipe(select(ProductDraftSelectors.getProductLoaded));
@@ -18,28 +25,35 @@ export class ProductDraftFacade {
   );
   amounts$ = new BehaviorSubject<Amount[]>([new Amount()]);
   orderCompanies;
-  constructor(private store: Store, public paymentsFacade: PaymentsFacade) {}
+
+  constructor(
+    private store: Store,
+    public paymentsFacade: PaymentsFacade,
+    private draft_facade: DraftFacade
+  ) {}
 
   getProductsGroups(): Observable<ProductGroups> {
     return this.allProduct$.pipe(
       map((items) => ({
         glasses: items.filter(
           (item) =>
-            (item.type == ProductsTypes.glass ||
-            item.type == ProductsTypes.customerPorduct)&&!item.isRepeated
+            (item.type == Sales_Product_Type_Enum.Verre ||
+              item.type == Sales_Product_Type_Enum.ArticleClient) &&
+            !item.isRepeated
         ),
         articles: groupeByCode(
           items.filter(
             (item) =>
-              (item.type !== ProductsTypes.glass &&
-              item.type !== ProductsTypes.customerPorduct)&&!item.isRepeated
+              item.type !== Sales_Product_Type_Enum.Verre &&
+              item.type !== Sales_Product_Type_Enum.ArticleClient &&
+              !item.isRepeated
           )
         ),
-        repeated:
-          items.filter(
-            (item) =>
-            (item.type == ProductsTypes.glass ||
-              item.type == ProductsTypes.customerPorduct) &&item.isRepeated
+        repeated: items.filter(
+          (item) =>
+            (item.type == Sales_Product_Type_Enum.Verre ||
+              item.type == Sales_Product_Type_Enum.ArticleClient) &&
+            item.isRepeated
         ),
       }))
     );
@@ -94,21 +108,21 @@ export class ProductDraftFacade {
     };
     this.dispatch(ProductsActions.addGlass({ glass }));
   }
-  addAccessory(product): void {
+  addAccessory(product:InsertedProduct): void {
     let accessory = {
       ...product,
       total_price: product.quantity * product.price,
     };
     this.dispatch(ProductsActions.addAccessory({ accessory }));
   }
-  addConsumable(product): void {
+  addConsumable(product:InsertedProduct): void {
     let consumable = {
       ...product,
       total_price: product.quantity * product.price,
     };
     this.dispatch(ProductsActions.addConsumable({ consumable }));
   }
-  addService(product): void {
+  addService(product:InsertedProduct): void {
     let service = {
       ...product,
       total_price: product.quantity * product.price,
@@ -181,21 +195,55 @@ export class ProductDraftFacade {
   }
   removeProduct(id: string, dependent_id?: string): void {
     let ids: string[];
-    dependent_id ? (ids = [
-      ...this.getDependencies(dependent_id)?.map(product=>product.id),
-      id]) : (ids = [id]);
+    dependent_id
+      ? (ids = [
+          ...this.getDependencies(dependent_id)?.map((product) => product.id),
+          id,
+        ])
+      : (ids = [id]);
     this.dispatch(ProductsActions.removeProducts({ ids }));
     this.updateAmounts();
   }
-
   removeProducts(ids: string[]): void {
     this.dispatch(ProductsActions.removeProducts({ ids }));
   }
-  getDependencies(id:string):Product_draft[] {
+  getDependencies(id: string): Product_draft[] {
     let dependent_products: Product_draft[];
     this.allProduct$.subscribe((data) => {
-      dependent_products=data.filter(item=>item.dependent_id==id)
+      dependent_products = data.filter((item) => item.dependent_id == id);
     });
     return dependent_products;
+  }
+  getRepairingDimensions(
+    products: Product_draft[],
+    new_count: number
+  ): Product_draft[] {
+    let old_count: number;
+    let response = products.map((product) => {
+      product.type == Sales_Product_Type_Enum.Verre ||
+      product.type == Sales_Product_Type_Enum.ArticleClient
+        ? (old_count = product.count)
+        : null;
+      return {
+        ...product,
+        m2: product?.m2
+          ? parseFloat(((product?.m2 / old_count) * new_count).toFixed(2))
+          : null,
+        ml: product.ml
+          ? parseFloat(((product?.ml / old_count) * new_count).toFixed(2))
+          : null,
+        quantity: parseFloat(
+          ((product?.quantity / old_count) * new_count).toFixed(2)
+        ),
+        price: 0,
+        total_price: 0,
+        count: product.count ? new_count : null,
+      };
+    });
+    return response;
+  }
+
+  addBisItems(products: Product_draft[]) {
+   this.dispatch(ProductsActions.addReparationProducts({ products }))
   }
 }

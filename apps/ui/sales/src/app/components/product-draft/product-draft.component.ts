@@ -5,7 +5,7 @@ import { PopProductComponent } from "@TanglassUi/sales/components/pop-product/po
 import { Column, FieldConfig, TableComponent } from '@tanglass-erp/material';
 import { ProductHeaders, ProductGlassHeaders } from "@TanglassUi/sales/utils/grid-headers";
 import { Product } from "@TanglassUi/sales/utils/models";
-import { ProductDraftFacade ,ProductsTypes,DraftFacade,Product_draft } from "@tanglass-erp/store/sales";
+import { ProductDraftFacade ,Sales_Product_Type_Enum,DraftFacade,Product_draft } from "@tanglass-erp/store/sales";
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -59,23 +59,23 @@ export class ProductDraftComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe(result => {
       switch (result?.type) {
-        case ProductsTypes.glass: {
+        case Sales_Product_Type_Enum.Verre: {
           this.facade.addGlass({ ...result, draft_id: this.draft_id })
           break;
         }
-        case ProductsTypes.customerPorduct: {
+        case Sales_Product_Type_Enum.ArticleClient: {
           this.facade.addCustomerProduct({ ...result, draft_id: this.draft_id })
           break;
         }
-        case ProductsTypes.accessory: {
+        case Sales_Product_Type_Enum.Accessoire: {
           this.facade.addAccessory({ ...result, draft_id: this.draft_id })
           break;
         }
-        case ProductsTypes.service: {
+        case Sales_Product_Type_Enum.Service: {
           this.facade.addService({ ...result, draft_id: this.draft_id })
           break;
         }
-        case ProductsTypes.consumable: {
+        case Sales_Product_Type_Enum.Consommable: {
           this.facade.addConsumable({ ...result, draft_id: this.draft_id })
           break;
         }

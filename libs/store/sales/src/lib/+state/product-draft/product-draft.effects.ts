@@ -6,7 +6,7 @@ import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 @Injectable()
 export class ProductDraftEffects {
-  insertGlassesDraft$ = createEffect(() => {
+  insertGlassDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductActions.addGlass),
       mergeMap((action) =>
@@ -21,7 +21,24 @@ export class ProductDraftEffects {
       )
     );
   });
-  insertServicesDraft$ = createEffect(() => {
+  insertReparation=createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.addReparationProducts),
+      mergeMap((action) =>
+        this.ProductService.addBisItems(action.products).pipe(map
+          ((data) => {
+            return ProductActions.addReparationProductsSuccess({
+              products: data.data.insert_sales_glass_draft_one.product_draft,
+            });
+          }), 
+       
+          catchError((error) => of(ProductActions.addReparationProductsFailure({ error })))
+          )
+      )
+    );
+  });
+ 
+  insertServicDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductActions.addService),
       mergeMap((action) =>
@@ -40,7 +57,7 @@ export class ProductDraftEffects {
       )
     );
   });
-  insertConsumablesDraft$ = createEffect(() => {
+  insertConsumablDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductActions.addConsumable),
       mergeMap((action) =>
@@ -61,7 +78,7 @@ export class ProductDraftEffects {
       )
     );
   });
-  insertAccessoriesDraft$ = createEffect(() => {
+  insertAccessoryDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductActions.addAccessory),
       mergeMap((action) =>
@@ -97,6 +114,8 @@ export class ProductDraftEffects {
       )
     );
   });
+
+
 
   constructor(
     private actions$: Actions,

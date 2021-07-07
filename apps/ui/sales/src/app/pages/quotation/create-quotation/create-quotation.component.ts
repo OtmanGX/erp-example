@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
+import { Router } from '@angular/router';
 @Component({
   selector: 'ngx-create-quotation',
   templateUrl: './create-quotation.component.html',
@@ -31,6 +32,8 @@ export class CreateQuotationComponent implements OnInit {
     private draftFacade: DraftFacade,
     private store: Store,
     private productDraftFacade: ProductDraftFacade,
+    private router: Router,
+
   ) { }
 
   buildForm(): void {
@@ -72,5 +75,7 @@ export class CreateQuotationComponent implements OnInit {
   
   cancel() {
     this.dataSub.unsubscribe()
+    this.router.navigate(['/sales/quotaion']);
+
   }
 }

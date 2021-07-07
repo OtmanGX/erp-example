@@ -4,7 +4,10 @@ import {
   Quotation,
   ProductDraftFacade,
   Amount,
+  DraftFacade,
+  Sales_Draft_Status_Enum,
 } from '@tanglass-erp/store/sales';
+import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -19,6 +22,7 @@ import { PopQuotationTransferComponent } from '@TanglassUi/sales/components/pop-
 export class QuotationCardComponent extends ModelCardComponent {
   title = 'Fiche Devis ';
   id: string;
+  status = Sales_Draft_Status_Enum;
   data$ = this.facade.loadedQuotation$.pipe(takeUntil(this._onDestroy));
   isCardMode: boolean = true;
   constructor(
@@ -26,7 +30,10 @@ export class QuotationCardComponent extends ModelCardComponent {
     public activatedRoute: ActivatedRoute,
     protected facade: QuotationFacade,
     private sharedfacade: SharedFacade,
-    private productDraftFacade: ProductDraftFacade
+    private productDraftFacade: ProductDraftFacade,
+    private draft_facade: DraftFacade,
+    private router: Router,
+
   ) {
     super(activatedRoute);
   }
@@ -53,6 +60,7 @@ export class QuotationCardComponent extends ModelCardComponent {
           { label: 'Tél', value: data?.customer.phone },
           { label: 'Date', value: data?.date },
           { label: 'Date limite ', value: data?.deadline },
+          { label: 'Status ', value: [data?.status], type: 'chips' },
         ],
       },
     ];
@@ -63,28 +71,29 @@ export class QuotationCardComponent extends ModelCardComponent {
   // }
   save() {}
   cancel() {
-    this.isCardMode = true;
+    this.router.navigate(['/sales/quotaion']);
   }
   print() {
     this.facade.printQuotation(this.data);
   }
   transformToOrder(): void {
-    let amount:Amount;
+    let amount: Amount;
+    let draft_id;
+    this.draft_facade.selectedDraft$.subscribe((id) => (draft_id = id));
     this.productDraftFacade.amounts$.subscribe((val) => (amount = val.pop()));
     const dialogRef = this.dialog.open(PopQuotationTransferComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
       data: null,
     });
-    dialogRef
-      .afterClosed()
-      .subscribe((result) =>
-       this.facade.TransformToOrder({
-         ...result,
-         total_ht: amount.total_ht,
-         total_tax: amount.total_tax,
-         total_ttc: amount.total_ttc,
-      }));
+    dialogRef.afterClosed().subscribe((result) =>
+      this.facade.TransformToOrder({
+        ...result,
+        draft_id,
+        total_ht: amount?.total_ht,
+        total_tax: amount?.total_tax,
+        total_ttc: amount?.total_ttc,
+      })
+    );
   }
 }
-

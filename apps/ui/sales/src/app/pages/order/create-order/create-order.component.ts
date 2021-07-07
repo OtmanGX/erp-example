@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { OrdersFacade,DraftFacade,ProductDraftFacade,PaymentsFacade } from '@tanglass-erp/store/sales';
+import { OrdersFacade,DraftFacade,ProductDraftFacade } from '@tanglass-erp/store/sales';
 import { DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';
@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-create-order',
@@ -35,8 +36,10 @@ export class CreateOrderComponent implements OnInit ,OnDestroy{
     private ordersFacade: OrdersFacade,
     private draftFacade: DraftFacade,
     private store: Store,
-    private productDraftFacade: ProductDraftFacade
-  ) {}
+    private productDraftFacade: ProductDraftFacade,
+    private router: Router,
+
+    ) {}
   buildForm(): void {
     let data;
     this.regConfig = regConfigDraftInfos(
@@ -85,7 +88,9 @@ export class CreateOrderComponent implements OnInit ,OnDestroy{
     })
   }
 
-  cancel() {}
+  cancel() {
+    this.router.navigate(['/sales/order']);
+  }
 
   ngOnDestroy(){
     this.dataSub.unsubscribe();

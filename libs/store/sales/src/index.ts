@@ -5,10 +5,7 @@ import { DeliveryStatus } from '@tanglass-erp/core/sales';
 
 import * as InvoiceFeature from './lib/+state/invoice/invoice.reducer';
 
-export {
-  InvoiceFeature,
-};
-
+export { InvoiceFeature };
 
 export * from './lib/+state/invoice/invoice.facade';
 export * from './lib/+state/payments/payments.actions';
@@ -16,7 +13,6 @@ export * from './lib/+state/payments/payments.actions';
 export * from './lib/+state/payments/payments.reducer';
 
 export * from './lib/+state/payments/payments.selectors';
-
 
 export * from './lib/+state/payments/payments.facade';
 
@@ -53,7 +49,9 @@ export {
   DeliveryLine,
   DeliveryStatus,
   PaymentMethod,
-  OrderDelivery
-  
+  OrderDelivery,
+  Sales_Draft_Status_Enum,
+  Sales_Product_Type_Enum,
 } from '@tanglass-erp/core/sales';
-export * from './lib/+state/product-draft/enums'
+export * from './lib/+state/product-draft/enums';
+export * from './lib/+state/product-draft/adapters'

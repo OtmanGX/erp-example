@@ -14,4 +14,4 @@ export * from './lib/models/invoice';
 export * from './lib/enums/delivery';
 export * from './lib/services/payment.service';
 export * from './lib/utils/product-adapter';
-export {Sales_Product_Type_Enum} from '@tanglass-erp/infrastructure/graphql'
+export {Sales_Product_Type_Enum,Sales_Draft_Status_Enum} from '@tanglass-erp/infrastructure/graphql'

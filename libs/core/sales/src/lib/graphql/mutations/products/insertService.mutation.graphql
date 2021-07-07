@@ -47,7 +47,11 @@ mutation insertServiceDraft(
       total_price
       type
       unit
+      isRepeated
+      isLaunched
       width
+      company_id
+      count
     }
   }
 }

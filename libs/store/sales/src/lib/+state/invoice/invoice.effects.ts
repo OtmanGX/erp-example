@@ -88,7 +88,7 @@ export class InvoiceEffects {
                 route: 'sales/invoice',
                 color: 'primary',
               });
-              this.router.navigate(['sales/invoice/ready'], {
+              this.router.navigate(['sales/invoice/ready',data.data.insert_sales_invoice_one.id], {
                 state: { data: data.data.insert_sales_invoice_one },
               });
               return InvoiceActions.addInvoiceSuccess({

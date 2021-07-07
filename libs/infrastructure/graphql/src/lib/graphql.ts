@@ -88,7 +88,6 @@ export type SignUpOutput = {
   id: Scalars['String'];
   lastname?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
-  role: Scalars['String'];
   username?: Maybe<Scalars['String']>;
 };
 
@@ -3704,10 +3703,6 @@ export type Management_Company = {
   payments_aggregate: Sales_Payment_Aggregate;
   phone: Scalars['String'];
   /** An array relationship */
-  productDraftsByCompanyId: Array<Sales_Product_Draft>;
-  /** An aggregated array relationship */
-  productDraftsByCompanyId_aggregate: Sales_Product_Draft_Aggregate;
-  /** An array relationship */
   product_companies: Array<Product_Product_Companies>;
   /** An aggregated array relationship */
   product_companies_aggregate: Product_Product_Companies_Aggregate;
@@ -3846,26 +3841,6 @@ export type Management_CompanyPayments_AggregateArgs = {
 
 
 /** columns and relationships of "management.company" */
-export type Management_CompanyProductDraftsByCompanyIdArgs = {
-  distinct_on?: Maybe<Array<Sales_Product_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Product_Draft_Order_By>>;
-  where?: Maybe<Sales_Product_Draft_Bool_Exp>;
-};
-
-
-/** columns and relationships of "management.company" */
-export type Management_CompanyProductDraftsByCompanyId_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Product_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Product_Draft_Order_By>>;
-  where?: Maybe<Sales_Product_Draft_Bool_Exp>;
-};
-
-
-/** columns and relationships of "management.company" */
 export type Management_CompanyProduct_CompaniesArgs = {
   distinct_on?: Maybe<Array<Product_Product_Companies_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -3981,7 +3956,6 @@ export type Management_Company_Bool_Exp = {
   orders?: Maybe<Sales_Order_Bool_Exp>;
   payments?: Maybe<Sales_Payment_Bool_Exp>;
   phone?: Maybe<String_Comparison_Exp>;
-  productDraftsByCompanyId?: Maybe<Sales_Product_Draft_Bool_Exp>;
   product_companies?: Maybe<Product_Product_Companies_Bool_Exp>;
   quotations?: Maybe<Sales_Quotation_Bool_Exp>;
   updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
@@ -4025,7 +3999,6 @@ export type Management_Company_Insert_Input = {
   orders?: Maybe<Sales_Order_Arr_Rel_Insert_Input>;
   payments?: Maybe<Sales_Payment_Arr_Rel_Insert_Input>;
   phone?: Maybe<Scalars['String']>;
-  productDraftsByCompanyId?: Maybe<Sales_Product_Draft_Arr_Rel_Insert_Input>;
   product_companies?: Maybe<Product_Product_Companies_Arr_Rel_Insert_Input>;
   quotations?: Maybe<Sales_Quotation_Arr_Rel_Insert_Input>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
@@ -4149,7 +4122,6 @@ export type Management_Company_Order_By = {
   orders_aggregate?: Maybe<Sales_Order_Aggregate_Order_By>;
   payments_aggregate?: Maybe<Sales_Payment_Aggregate_Order_By>;
   phone?: Maybe<Order_By>;
-  productDraftsByCompanyId_aggregate?: Maybe<Sales_Product_Draft_Aggregate_Order_By>;
   product_companies_aggregate?: Maybe<Product_Product_Companies_Aggregate_Order_By>;
   quotations_aggregate?: Maybe<Sales_Quotation_Aggregate_Order_By>;
   updatedAt?: Maybe<Order_By>;
@@ -23323,6 +23295,8 @@ export type Sales_Product_Type_Bool_Exp = {
 /** unique or primary key constraints on table "sales.product_type" */
 export enum Sales_Product_Type_Constraint {
   /** unique or primary key constraint */
+  ProductTypeKeyKey = 'product_type_key_key',
+  /** unique or primary key constraint */
   ProductTypePkey = 'product_type_pkey'
 }
 
@@ -31613,7 +31587,7 @@ export type InsertAccessoryDraftMutation = (
     & Pick<Sales_Accessory_Draft, 'id'>
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
-      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'substance_id'>
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'substance_id' | 'warehouse_id'>
     ) }
   )> }
 );
@@ -31644,7 +31618,7 @@ export type InsertConsumableDraftMutation = (
     & Pick<Sales_Consumable_Draft, 'id' | 'dependent_id'>
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
-      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'substance_id'>
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'isRepeated' | 'isLaunched' | 'total_price' | 'type' | 'unit' | 'width' | 'substance_id' | 'warehouse_id'>
     ) }
   )> }
 );
@@ -31676,12 +31650,94 @@ export type InsertGlassDraftMutation = (
     { __typename?: 'sales_glass_draft' }
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
-      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'company_id' | 'count' | 'substance_id'>
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'company_id' | 'count' | 'isRepeated' | 'isLaunched' | 'substance_id' | 'warehouse_id'>
       & { glass_draft?: Maybe<(
         { __typename?: 'sales_glass_draft' }
         & Pick<Sales_Glass_Draft, 'id'>
       )> }
     ) }
+  )> }
+);
+
+export type InsertGlassDependenciesMutationVariables = Exact<{
+  service_drafts?: Maybe<Sales_Service_Draft_Arr_Rel_Insert_Input>;
+  consumable_drafts?: Maybe<Sales_Consumable_Draft_Arr_Rel_Insert_Input>;
+  product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
+}>;
+
+
+export type InsertGlassDependenciesMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_glass_draft_one?: Maybe<(
+    { __typename?: 'sales_glass_draft' }
+    & { product_draft: (
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'isRepeated' | 'isLaunched' | 'total_price' | 'type' | 'unit' | 'width' | 'substance_id' | 'warehouse_id'>
+    ) }
+  )> }
+);
+
+export type InsertManyConsumablesMutationVariables = Exact<{
+  consumables: Array<Sales_Consumable_Draft_Insert_Input>;
+}>;
+
+
+export type InsertManyConsumablesMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_consumable_draft?: Maybe<(
+    { __typename?: 'sales_consumable_draft_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'sales_consumable_draft' }
+      & Pick<Sales_Consumable_Draft, 'id' | 'dependent_id'>
+      & { product_draft: (
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'isRepeated' | 'isLaunched' | 'width' | 'company_id' | 'count'>
+      ) }
+    )> }
+  )> }
+);
+
+export type InsertManyGlassesMutationVariables = Exact<{
+  glasses: Array<Sales_Glass_Draft_Insert_Input>;
+}>;
+
+
+export type InsertManyGlassesMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_glass_draft?: Maybe<(
+    { __typename?: 'sales_glass_draft_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'sales_glass_draft' }
+      & Pick<Sales_Glass_Draft, 'id'>
+      & { product_draft: (
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'company_id' | 'count' | 'isRepeated' | 'isLaunched' | 'substance_id' | 'warehouse_id'>
+        & { glass_draft?: Maybe<(
+          { __typename?: 'sales_glass_draft' }
+          & Pick<Sales_Glass_Draft, 'id'>
+        )> }
+      ) }
+    )> }
+  )> }
+);
+
+export type InsertManyServicesMutationVariables = Exact<{
+  services: Array<Sales_Service_Draft_Insert_Input>;
+}>;
+
+
+export type InsertManyServicesMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_service_draft?: Maybe<(
+    { __typename?: 'sales_service_draft_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'sales_service_draft' }
+      & Pick<Sales_Service_Draft, 'id' | 'dependent_id'>
+      & { product_draft: (
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'isRepeated' | 'isLaunched' | 'company_id' | 'count'>
+      ) }
+    )> }
   )> }
 );
 
@@ -31710,7 +31766,7 @@ export type InsertServiceDraftMutation = (
     & Pick<Sales_Service_Draft, 'id' | 'dependent_id'>
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
-      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'isRepeated' | 'isLaunched' | 'width' | 'company_id' | 'count'>
     ) }
   )> }
 );
@@ -31782,6 +31838,7 @@ export type TransformQuotationToOrderMutationVariables = Exact<{
   total_ttc?: Maybe<Scalars['numeric']>;
   payment_status?: Maybe<Scalars['String']>;
   delivery_status?: Maybe<Scalars['String']>;
+  quotationStatus?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -31806,6 +31863,9 @@ export type TransformQuotationToOrderMutation = (
       { __typename?: 'management_salesPoint' }
       & Pick<Management_SalesPoint, 'name'>
     ) }
+  )>, update_sales_quotation?: Maybe<(
+    { __typename?: 'sales_quotation_mutation_response' }
+    & Pick<Sales_Quotation_Mutation_Response, 'affected_rows'>
   )> }
 );
 
@@ -32062,7 +32122,7 @@ export type GetOrderByIdQuery = (
       { __typename?: 'sales_draft' }
       & { product_drafts: Array<(
         { __typename?: 'sales_product_draft' }
-        & Pick<Sales_Product_Draft, 'id' | 'label' | 'heigth' | 'company_name' | 'count' | 'delivered' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'status' | 'total_price' | 'type' | 'unit' | 'width'>
+        & Pick<Sales_Product_Draft, 'id' | 'label' | 'heigth' | 'company_name' | 'count' | 'delivered' | 'warehouse_id' | 'substance_id' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'status' | 'total_price' | 'type' | 'unit' | 'width' | 'isRepeated' | 'isLaunched'>
         & { glass_draft?: Maybe<(
           { __typename?: 'sales_glass_draft' }
           & Pick<Sales_Glass_Draft, 'id'>
@@ -35168,7 +35228,7 @@ export const InsertOrderDocument = gql`
   }
   update_sales_draft_by_pk(
     pk_columns: {id: $draft_id}
-    _set: {status: $status, company_id: $company_id, customer_id: $customer_id, date: $date}
+    _set: {company_id: $company_id, customer_id: $customer_id, date: $date, status: $status}
   ) {
     id
   }
@@ -35204,7 +35264,7 @@ export const DeletePaymentDocument = gql`
     }
   }
 export const InsertPaymentDocument = gql`
-    mutation InsertPayment($amount: numeric, $company_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $order_id: Int, $payment_method: String, $comment: String = "", $paper_ref: String = "") {
+    mutation InsertPayment($amount: numeric, $company_id: uuid, $customer_id: uuid, $date: date, $deadline: date, $order_id: Int, $payment_method: String, $comment: String, $paper_ref: String) {
   insert_sales_payment_one(
     object: {amount: $amount, company_id: $company_id, customer_id: $customer_id, date: $date, deadline: $deadline, order_id: $order_id, payment_method: $payment_method, comment: $comment, paper_ref: $paper_ref}
   ) {
@@ -35290,6 +35350,7 @@ export const InsertAccessoryDraftDocument = gql`
       unit
       width
       substance_id
+      warehouse_id
     }
   }
 }
@@ -35322,11 +35383,14 @@ export const InsertConsumableDraftDocument = gql`
       price
       product_code
       quantity
+      isRepeated
+      isLaunched
       total_price
       type
       unit
       width
       substance_id
+      warehouse_id
     }
   }
 }
@@ -35363,7 +35427,10 @@ export const InsertGlassDraftDocument = gql`
       width
       company_id
       count
+      isRepeated
+      isLaunched
       substance_id
+      warehouse_id
       glass_draft {
         id
       }
@@ -35377,6 +35444,168 @@ export const InsertGlassDraftDocument = gql`
   })
   export class InsertGlassDraftGQL extends Apollo.Mutation<InsertGlassDraftMutation, InsertGlassDraftMutationVariables> {
     document = InsertGlassDraftDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertGlassDependenciesDocument = gql`
+    mutation InsertGlassDependencies($service_drafts: sales_service_draft_arr_rel_insert_input, $consumable_drafts: sales_consumable_draft_arr_rel_insert_input, $product_draft: sales_product_draft_obj_rel_insert_input) {
+  insert_sales_glass_draft_one(
+    object: {service_drafts: $service_drafts, consumable_drafts: $consumable_drafts, product_draft: $product_draft}
+  ) {
+    product_draft {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      isRepeated
+      isLaunched
+      total_price
+      type
+      unit
+      width
+      substance_id
+      warehouse_id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertGlassDependenciesGQL extends Apollo.Mutation<InsertGlassDependenciesMutation, InsertGlassDependenciesMutationVariables> {
+    document = InsertGlassDependenciesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertManyConsumablesDocument = gql`
+    mutation InsertManyConsumables($consumables: [sales_consumable_draft_insert_input!]!) {
+  insert_sales_consumable_draft(objects: $consumables) {
+    returning {
+      id
+      dependent_id
+      product_draft {
+        company_name
+        heigth
+        id
+        label
+        m2
+        ml
+        price
+        product_code
+        quantity
+        total_price
+        type
+        unit
+        isRepeated
+        isLaunched
+        width
+        company_id
+        count
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertManyConsumablesGQL extends Apollo.Mutation<InsertManyConsumablesMutation, InsertManyConsumablesMutationVariables> {
+    document = InsertManyConsumablesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertManyGlassesDocument = gql`
+    mutation InsertManyGlasses($glasses: [sales_glass_draft_insert_input!]!) {
+  insert_sales_glass_draft(objects: $glasses) {
+    returning {
+      id
+      product_draft {
+        company_name
+        heigth
+        id
+        label
+        m2
+        ml
+        price
+        product_code
+        quantity
+        total_price
+        type
+        unit
+        width
+        company_id
+        count
+        isRepeated
+        isLaunched
+        substance_id
+        warehouse_id
+        glass_draft {
+          id
+        }
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertManyGlassesGQL extends Apollo.Mutation<InsertManyGlassesMutation, InsertManyGlassesMutationVariables> {
+    document = InsertManyGlassesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertManyServicesDocument = gql`
+    mutation InsertManyServices($services: [sales_service_draft_insert_input!]!) {
+  insert_sales_service_draft(objects: $services) {
+    returning {
+      id
+      dependent_id
+      product_draft {
+        company_name
+        heigth
+        id
+        label
+        m2
+        ml
+        price
+        product_code
+        quantity
+        total_price
+        type
+        unit
+        width
+        isRepeated
+        isLaunched
+        company_id
+        count
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertManyServicesGQL extends Apollo.Mutation<InsertManyServicesMutation, InsertManyServicesMutationVariables> {
+    document = InsertManyServicesDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -35402,7 +35631,11 @@ export const InsertServiceDraftDocument = gql`
       total_price
       type
       unit
+      isRepeated
+      isLaunched
       width
+      company_id
+      count
     }
   }
 }
@@ -35491,7 +35724,7 @@ export const InsertQuotationDocument = gql`
     }
   }
 export const TransformQuotationToOrderDocument = gql`
-    mutation TransformQuotationToOrder($draft_id: Int!, $status: sales_draft_status_enum = commande, $company_id: uuid, $customer_id: uuid, $contact_id: uuid, $date: date, $deadline: date, $salepoint_id: uuid, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré") {
+    mutation TransformQuotationToOrder($draft_id: Int!, $status: sales_draft_status_enum = commande, $company_id: uuid, $customer_id: uuid, $contact_id: uuid, $date: date, $deadline: date, $salepoint_id: uuid, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré", $quotationStatus: String = "confirmé") {
   update_sales_draft_by_pk(pk_columns: {id: $draft_id}, _set: {status: $status}) {
     status
   }
@@ -35523,6 +35756,12 @@ export const TransformQuotationToOrderDocument = gql`
     total_ht
     total_tax
     total_ttc
+  }
+  update_sales_quotation(
+    where: {draft_id: {_eq: $draft_id}}
+    _set: {status: $quotationStatus}
+  ) {
+    affected_rows
   }
 }
     `;
@@ -35983,6 +36222,8 @@ export const GetOrderByIdDocument = gql`
         company_name
         count
         delivered
+        warehouse_id
+        substance_id
         m2
         ml
         price
@@ -35993,6 +36234,8 @@ export const GetOrderByIdDocument = gql`
         type
         unit
         width
+        isRepeated
+        isLaunched
         glass_draft {
           id
         }

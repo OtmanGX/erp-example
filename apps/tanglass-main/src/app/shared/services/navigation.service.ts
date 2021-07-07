@@ -213,7 +213,19 @@ export class NavigationService {
       icon: 'assignment_ind',
       tooltip: 'Factures',
       state: 'sales/invoice'
-    }
+    },
+
+       // *** Manufacturing ***
+       {
+        name: 'Fabrication',
+        type: 'separator'
+      },
+      {
+        name: 'Ordres de fabrication',
+        type: 'link',
+        icon: 'assignment_ind',
+        state: 'manufacturing/jobOrders'
+      },
   ];
 
 

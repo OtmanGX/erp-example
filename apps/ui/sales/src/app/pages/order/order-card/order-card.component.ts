@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { OrdersFacade, Order,DeliveryFacade } from "@tanglass-erp/store/sales";
+import { OrdersFacade, Order,DeliveryFacade,ProductDraftFacade } from "@tanglass-erp/store/sales";
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import { ProductHeaders } from "@TanglassUi/sales/utils/grid-headers";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-order-card',
@@ -22,8 +23,10 @@ export class OrderCardComponent extends ModelCardComponent {
   constructor(
     public activatedRoute: ActivatedRoute,
     protected facade: OrdersFacade,
+    private router: Router,
     protected deliveryFacade :DeliveryFacade,
-    private sharedfacade: SharedFacade,
+    protected sharedfacade: SharedFacade,
+    protected productDraftFacade:ProductDraftFacade
   ) {
     super(activatedRoute);
   }
@@ -32,6 +35,9 @@ export class OrderCardComponent extends ModelCardComponent {
     this.facade.loadOrderById(this.id);
     this.sharedfacade.loadAllShortCompanies();
     this.sharedfacade.loadAllShortWarehouses();
+   this.productDraftFacade.getProductsGroups().subscribe(
+     data=>this.dataSource_bis=data.repeated
+   )
   }
 
   passData(data:Order) {
@@ -63,11 +69,11 @@ export class OrderCardComponent extends ModelCardComponent {
   save() { 
   }
   cancel() {
-    this.isCardMode = true
-   }
+    this.router.navigate(['/sales/order']);
+  }
   print() {
     this.facade.printOrder(this.data);
   }
-  launch() { }
+  launch() {}
 }
 

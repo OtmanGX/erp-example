@@ -68,7 +68,7 @@ export class OrdersEffects {
               route: 'sales/order',
               color: 'primary',
             });
-            this.router.navigate(['/sales/order']);
+            this.router.navigate(['/sales/order',data.data.insert_sales_order_one.id]);
             return OrdersActions.addOrderSuccess({
               order: data.data.insert_sales_order_one,
             });

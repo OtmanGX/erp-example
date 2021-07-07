@@ -13,7 +13,7 @@ mutation insertGlassDraft(
   $count: numeric, 
   $warehouse_id: uuid,
   $company_id: uuid,
-  $company_name: String, 
+  $company_name: String,
   $substance_id: uuid) {
   insert_sales_glass_draft_one(object: 
   {product_draft: 
@@ -52,7 +52,10 @@ mutation insertGlassDraft(
       width
       company_id
       count
+      isRepeated
+      isLaunched
       substance_id
+      warehouse_id
       glass_draft {
         id
       }
