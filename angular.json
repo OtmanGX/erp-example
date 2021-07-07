@@ -1945,6 +1945,128 @@
           }
         }
       }
+    },
+    "ui-cash-register": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/ui/cash-register",
+      "sourceRoot": "apps/ui/cash-register/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ui/cash-register",
+            "index": "apps/ui/cash-register/src/index.html",
+            "main": "apps/ui/cash-register/src/main.ts",
+            "polyfills": "apps/ui/cash-register/src/polyfills.ts",
+            "tsConfig": "apps/ui/cash-register/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/ui/cash-register/src/favicon.ico",
+              "apps/ui/cash-register/src/assets"
+            ],
+            "styles": ["apps/ui/cash-register/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ui/cash-register/src/environments/environment.ts",
+                  "with": "apps/ui/cash-register/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ui-cash-register:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ui-cash-register:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ui-cash-register:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ui/cash-register/tsconfig.app.json",
+              "apps/ui/cash-register/tsconfig.spec.json",
+              "apps/ui/cash-register/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ui/cash-register/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ui/cash-register/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui/cash-register-e2e": {
+      "root": "apps/ui/cash-register-e2e",
+      "sourceRoot": "apps/ui/cash-register-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ui/cash-register-e2e/cypress.json",
+            "tsConfig": "apps/ui/cash-register-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ui-cash-register:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ui-cash-register:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ui/cash-register-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ui/cash-register-e2e/**/*"]
+          }
+        }
+      }
     }
   },
   "schematics": {

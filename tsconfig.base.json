@@ -27,6 +27,7 @@
       "@TanglassUi/purchase/*": ["./apps/ui/purchase/src/app/*"],
       "@TanglassUi/product/*": ["./apps/ui/product/src/app/*"],
       "@TanglassUi/sales/*": ["./apps/ui/sales/src/app/*"],
+      "@TanglassUi/cash-register/*": ["./apps/ui/cash-register/src/app/*"],
       "@TanglassUi/manufacturing/*": ["./apps/ui/manufacturing/src/app/*"],
       "@TanglassCore/*": ["./libs/tanglass-core/src/*"],
       "@TanglassTheme/*": ["./libs/theme/tanglass-theme/src/*"],

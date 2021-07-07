@@ -132,6 +132,13 @@
     "ui/manufacturing-e2e": {
       "tags": [],
       "implicitDependencies": ["ui-manufacturing"]
+    },
+    "ui-cash-register": {
+      "tags": []
+    },
+    "ui/cash-register-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-cash-register"]
     }
   }
 }
