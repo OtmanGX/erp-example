@@ -43,6 +43,7 @@ mutation InsertAccessoryDraft(
       unit
       width
       substance_id
+      warehouse_id
     }
   }
 }

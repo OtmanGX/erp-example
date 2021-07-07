@@ -4,6 +4,7 @@ import { GridPermissions, GridView, MainGridComponent, Operations } from '@tangl
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from '@angular/router';
 import { JobOrdersFacade } from "@tanglass-erp/store/manufacturing";
+import { JobOrderHeaders } from "@TanglassUi/manufacturing/utils/grid-headers";
 @Component({
   selector: 'ngx-job-orders',
   templateUrl: './job-orders.component.html',
@@ -33,7 +34,7 @@ export class jobOrdersComponent implements GridView {
   }
 
   ngOnInit(): void {
-    this.facade.loadAll();
+    this.facade.loadAllJobOrders();
   }
 
   eventTriggering(event) {
@@ -46,7 +47,7 @@ export class jobOrdersComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-      ...QuotationHeaders,
+      ...JobOrderHeaders,
       { field: 'id', headerName: 'Action', type: "editColumn" }
     ];
   }

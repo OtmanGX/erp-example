@@ -37,7 +37,7 @@ export const displayedAmounts_PaymentsColumns: Array<Column> = [
   { key: 'received', title: 'Reçu', type: ColumnType.normal },
   { key: 'debt', title: 'Reste', type: ColumnType.normal },
 ];
-export const ProductGlassHeaders: Array<Column> = [
+export const Product: Array<Column> = [
   // { field: 'id', headerName: 'ID. ' },
   { key: 'product_code', title: 'Code', type: ColumnType.normal },
   { key: 'label', title: 'Désignation', type: ColumnType.normal },
@@ -50,6 +50,10 @@ export const ProductGlassHeaders: Array<Column> = [
   { key: 'price', title: 'P.U', type: ColumnType.normal },
   { key: 'total_price', title: 'Total', type: ColumnType.normal },
   { key: 'company_name', title: 'Société', type: ColumnType.normal },
+];
+export const ProductGlassHeaders: Array<Column> = [
+  // { field: 'id', headerName: 'ID. ' },
+  ...Product,
   action,
 ];
 
@@ -268,3 +272,15 @@ export const PaymentsHeaders: Array<Column> = [
   { key: 'comment', title: 'Commentaire', type: ColumnType.normal },
   { key: 'company', title: 'En Faveur de', type: ColumnType.normal },
 ];
+
+export const ProductDeliveriesHeaders: Array<Column> = [
+  //{ field: 'id', headerName: 'ID. ' },
+  { key: 'amount', title: 'amount', type: ColumnType.normal },
+  { key: 'delivered', title: 'delivered', type: ColumnType.normal },
+  { key: 'id', title: 'id', type: ColumnType.normal },
+  { key: 'unit', title: 'Unité', type: ColumnType.normal },
+  { key: 'price', title: 'P.U', type: ColumnType.normal },
+  { key: 'total_price', title: 'Total', type: ColumnType.normal },
+  { key: 'company_name', title: 'Société', type: ColumnType.normal },
+];
+

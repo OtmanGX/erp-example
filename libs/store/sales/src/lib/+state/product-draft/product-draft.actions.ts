@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Product_draft, InsertedProduct } from '@tanglass-erp/core/sales';
-
+import { Product_draft,InsertedProduct} from '@tanglass-erp/core/sales';
+import { Bis } from "@tanglass-erp/store/sales";
 /****************************************************************** */
 /*****LOAD  Products ** */
 /****************************************************************** */
@@ -172,4 +172,16 @@ export const removeProductsFailure = createAction(
   '[Products] remove Products Failure',
   props<{ error: any }>()
 );
+
+
+/****************************************************************** */
+/*****Process the  BIS(Product Reparing )  Product  addition ** */
+/****************************************************************** */
+
+export const addReparationProducts = createAction(
+  '[Reparation Products ] Add Reparation Products ',
+  props<{ item:Bis }>()
+);
+
+
 

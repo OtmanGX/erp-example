@@ -36,6 +36,8 @@ query GetOrderById($id: Int!) {
         company_name
         count
         delivered
+        warehouse_id
+        substance_id
         m2
         ml
         price
@@ -46,6 +48,9 @@ query GetOrderById($id: Int!) {
         type
         unit
         width
+        isRepeated
+        isLaunched
+        draft_id
         glass_draft {
           id
         }

@@ -1,4 +1,4 @@
-import { Product_draft } from "@tanglass-erp/core/sales";
+import { InsertedProduct, Product_draft,InsertBisItem } from '@tanglass-erp/core/sales';
 export class Amount {
   company_name?: string;
   total_ht: number = 0;
@@ -20,11 +20,16 @@ export class Product {
   total_price?: number = 0;
   company_name?: string;
   warehouse_id?: string;
-  type?:string
+  type?: string;
 }
 export class ProductGroups {
   glasses: Product_draft[];
   articles: Product_draft[];
-  repeated?:Product_draft[];
+  repeated?: Product_draft[];
 }
 
+export class Bis {
+  glass: InsertedProduct;
+  services: InsertedProduct[];
+  consumables: InsertedProduct[];
+}

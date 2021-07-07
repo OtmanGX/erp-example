@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SalesRoutingModule } from './sales-routing.module';
+import { SalesRoutingModule } from '@TanglassUi/sales/sales-routing.module';
 import { SalesComponent } from '@TanglassUi/sales/sales.component';
 import { DraftComponent } from '@TanglassUi/sales/pages/draft/draft.component';
 import { CreateDraftComponent } from '@TanglassUi/sales/components/create-draft/create-draft.component';

@@ -6,8 +6,8 @@ mutation InsertPayment(
   $deadline: date, 
   $order_id: Int, 
   $payment_method: String, 
-  $comment: String = "", 
-  $paper_ref: String = "") {
+  $comment: String, 
+  $paper_ref: String) {
   insert_sales_payment_one(object: 
   {
     amount: $amount, 

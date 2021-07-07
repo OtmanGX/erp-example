@@ -5,7 +5,7 @@ import {
   OrderDelivery,
   DraftFacade,
 } from '@tanglass-erp/store/sales';
-import { ProductHeaders } from '@TanglassUi/sales//utils/grid-headers';
+import { ProductDeliveriesHeaders } from '@TanglassUi/sales//utils/grid-headers';
 import { Column } from '@tanglass-erp/material';
 
 @Component({
@@ -14,7 +14,7 @@ import { Column } from '@tanglass-erp/material';
   styleUrls: ['./order-deliveries.component.scss'],
 })
 export class OrderDeliveriesComponent implements OnInit {
-  displayedColumns: Array<Column> = ProductHeaders;
+  displayedColumns: Array<Column> = ProductDeliveriesHeaders;
   dataSource: OrderDelivery[] = [];
   draft_id;
 

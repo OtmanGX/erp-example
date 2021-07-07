@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FieldConfig, FormDialog } from '@tanglass-erp/material';
 import * as regConfigs from '@TanglassUi/sales/utils/forms';
 import { Store } from '@ngrx/store';
-import { ProductsTypes, GlassGroup, ServiceGroup, AccessoryGroup } from "@tanglass-erp/store/sales";
+import { Sales_Product_Type_Enum, GlassGroup, ServiceGroup, AccessoryGroup } from "@tanglass-erp/store/sales";
 import { DynamicFormComponent } from '@tanglass-erp/material';
 import * as productStore from '@TanglassStore/product/index';
 import {  Intermediate_Data, SalesItem } from "@TanglassUi/sales/utils/models";
@@ -16,7 +16,7 @@ export class PopProductComponent extends FormDialog implements AfterViewInit, On
   type: string;
   types: string[];
   regConfig: FieldConfig[];
-  product_types = ProductsTypes;
+  product_types = Sales_Product_Type_Enum;
   glasses$ = this.store.select(productStore.getAllGlasses)
   services$ = this.store.select(productStore.getAllServices);
   accessories$ = this.store.select(productStore.getAllAccessories)
@@ -60,20 +60,20 @@ export class PopProductComponent extends FormDialog implements AfterViewInit, On
   }
   buildForm(): void {
     switch (this.data.product_type) {
-      case ProductsTypes.glass: {
+      case Sales_Product_Type_Enum.Verre: {
         this.types = Object.values(GlassGroup);
-        this.type = ProductsTypes.glass;
+        this.type = Sales_Product_Type_Enum.Verre;
         break;
       }
-      case ProductsTypes.accessory: {
+      case Sales_Product_Type_Enum.Accessoire: {
         this.types = Object.values(AccessoryGroup);
-        this.type = ProductsTypes.accessory;
+        this.type = Sales_Product_Type_Enum.Accessoire;
         break;
       }
-      case ProductsTypes.service: {
+      case Sales_Product_Type_Enum.Service: {
         this.formValue['dependent_id'] = this.data.row.glass_draft.id;
         this.types = Object.values(ServiceGroup);
-        this.type = ProductsTypes.service;
+        this.type = Sales_Product_Type_Enum.Service;
         break;
       }
       default: {
@@ -84,32 +84,32 @@ export class PopProductComponent extends FormDialog implements AfterViewInit, On
   }
   getItems(type) {
     switch (type) {
-      case ProductsTypes.glass: {
+      case Sales_Product_Type_Enum.Verre: {
         this.store.dispatch(productStore.loadGlasses());
         this.glasses$.subscribe(data => this.products = data)
         this.regConfig = regConfigs.regConfigGlassItem(this.glasses$, this.companies,
           this.warehouses, this.data);
         break
       }
-      case ProductsTypes.customerPorduct: {
+      case Sales_Product_Type_Enum.ArticleClient: {
         this.store.dispatch(productStore.loadCustomerProducts());
         this.customerItems$.subscribe(data => this.products = data)
         this.regConfig = regConfigs.regConfigCustomerItem(this.customerItems$, this.data);
         break
       }
-      case ProductsTypes.accessory: {
+      case Sales_Product_Type_Enum.Accessoire: {
         this.store.dispatch(productStore.loadAccessories());
         this.accessories$.subscribe(data => this.products = data)
         this.regConfig = regConfigs.regConfigAccessoireItem(this.accessories$, this.companies, this.warehouses, this.data);
         break
       }
-      case ProductsTypes.consumable: {
+      case Sales_Product_Type_Enum.Consommable: {
         this.store.dispatch(productStore.loadConsumables());
         this.consumables$.subscribe(data => this.products = data)
         this.regConfig = regConfigs.regConfigConsumableItem(this.consumables$, this.companies, this.warehouses, this.data)
         break
       }
-      case ProductsTypes.service: {
+      case Sales_Product_Type_Enum.Service: {
         this.store.dispatch(productStore.loadServices());
         this.services$.subscribe(data => this.products = data)
         this.regConfig = regConfigs.regConfigServiceItem(this.services$, this.companies, this.data);

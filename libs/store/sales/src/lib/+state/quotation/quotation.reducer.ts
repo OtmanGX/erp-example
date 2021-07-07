@@ -3,7 +3,7 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as QuotationActions from './quotation.actions';
 import { Quotation } from "@tanglass-erp/core/sales";
-
+import { ordersAdapter } from "@tanglass-erp/store/sales";
 export const QUOTATION_FEATURE_KEY = 'quotation';
 
 export interface QuotationState extends EntityState<Quotation> {
@@ -43,6 +43,7 @@ const quotationReducer = createReducer(
   on(QuotationActions.addQuotationSuccess,
     (state, action) => quotationAdapter.addOne(action.quotation, state)
   ),
+
   on(QuotationActions.deleteQuotationsSuccess,
     (state, action) =>
       quotationAdapter.removeMany(action.ids, state)
@@ -51,6 +52,7 @@ const quotationReducer = createReducer(
     QuotationActions.loadQuotationsFailure,
     QuotationActions.deleteQuotationsFailure,
     QuotationActions.addQuotationFailure,
+    QuotationActions.TransformToOrderFailure,
     (state, { error }) => ({
     ...state,
     error,

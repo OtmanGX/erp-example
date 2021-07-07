@@ -45,7 +45,7 @@ export class QuotationEffects {
               route: 'sales/quotation',
               color: 'primary',
             });
-            this.router.navigate(['sales/quotation']);
+            this.router.navigate(['sales/quotation',data.data.insert_sales_quotation_one.id]);
 
               return QuotationActions.addQuotationSuccess({quotation: data.data.insert_sales_quotation_one})
             }
@@ -119,7 +119,7 @@ export class QuotationEffects {
               route: 'sales/quotation',
               color: 'primary',
             });
-            this.router.navigate(['sales/order']);
+            this.router.navigate(['sales/order',data.data.insert_sales_order_one.id]);
 
               return QuotationActions.TransformToOrderSuccess({order: data.data.insert_sales_order_one})
             }

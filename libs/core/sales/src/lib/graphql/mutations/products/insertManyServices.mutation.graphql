@@ -1,0 +1,27 @@
+mutation InsertManyServices($services: [sales_service_draft_insert_input!]!) {
+  insert_sales_service_draft(objects: $services) {
+    returning {
+      id
+      dependent_id
+      product_draft {
+        company_name
+        heigth
+        id
+        label
+        m2
+        ml
+        price
+        product_code
+        quantity
+        total_price
+        type
+        unit
+        width
+        isRepeated
+        isLaunched
+        company_id
+        count
+      }
+    }
+  }
+}

@@ -73,6 +73,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('@TanglassUi/sales/sales.module').then(m => m.SalesModule),
       },
+      {
+        path: 'manufacturing',
+        data: { title: 'Fabricarion', breadcrumb: "Fabrication", noLink: true},
+        loadChildren: () =>
+          import('@TanglassUi/manufacturing/manufacturing.module').then(m => m.ManufacturingModule),
+      },
     ]},
   {
     path: "**",
