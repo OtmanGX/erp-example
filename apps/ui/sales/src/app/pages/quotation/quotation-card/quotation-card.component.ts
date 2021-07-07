@@ -32,8 +32,7 @@ export class QuotationCardComponent extends ModelCardComponent {
     private sharedfacade: SharedFacade,
     private productDraftFacade: ProductDraftFacade,
     private draft_facade: DraftFacade,
-    private router: Router,
-
+    private router: Router
   ) {
     super(activatedRoute);
   }

@@ -54,12 +54,6 @@ const productReducer = createReducer(
   on(ProductActions.removeProductsSuccess, (state, action) =>
     productAdapter.removeMany<ProductState>(action.ids, state)
   ),
-
-  on(ProductActions.addReparationProductsSuccess, (state, action) => ({
-    ...state,
-    ...action.products,
-  })),
-
   on(
     ProductActions.loadProductsFailure,
     ProductActions.addGlassFailure,
@@ -67,7 +61,6 @@ const productReducer = createReducer(
     ProductActions.addConsumableFailure,
     ProductActions.addServiceFailure,
     ProductActions.removeProductsFailure,
-    ProductActions.addReparationProductsFailure,
     //ProductActions.loadSelectedProductsFailure,
     (state, { error }) => ({
       ...state,

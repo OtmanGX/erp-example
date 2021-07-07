@@ -3,7 +3,8 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as ProductActions from './product-draft.actions';
 import { DraftService } from '@tanglass-erp/core/sales';
 import { mergeMap, map, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, combineLatest } from 'rxjs';
+import { Store } from '@ngrx/store';
 @Injectable()
 export class ProductDraftEffects {
   insertGlassDraft$ = createEffect(() => {
@@ -114,7 +115,7 @@ export class ProductDraftEffects {
       )
     );
   });
-  insertBisDraft$ = createEffect(() => {
+  insertBis$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductActions.addReparationProducts),
       mergeMap((action) =>
@@ -124,10 +125,60 @@ export class ProductDraftEffects {
               __typename,
               ...product
             } = data.data.insert_sales_glass_draft_one.product_draft;
+            action.item.services.length
+              ? action.item.services.map((item) => {
+                  let {
+                    status,
+                    glass_draft,
+                    delivered,
+                    service_draft,
+                    isLaunched,
+                    consumable_draft,
+                    count,
+                    heigth,
+                    width,
+                    substance_id,
+                    ...service
+                  } = item;
+                  service = {
+                    ...service,
+                    isRepeated: true,
+                    dependent_id: product.glass_draft.id,
+                  };
 
+                  return this.store.dispatch(
+                    ProductActions.addService({ service })
+                  );
+                })
+              : null;
+            action.item.consumables.length
+              ? action.item.consumables.map((item) => {
+                  let {
+                    status,
+                    glass_draft,
+                    delivered,
+                    service_draft,
+                    isLaunched,
+                    consumable_draft,
+                    count,
+                    heigth,
+                    width,
+                    substance_id,
+                    ...consumable
+                  } = item;
+                  consumable = {
+                    ...consumable,
+                    isRepeated: true,
+                    dependent_id: product.glass_draft.id,
+                  };
+                  return this.store.dispatch(
+                    ProductActions.addConsumable({ consumable })
+                  );
+                })
+              : null;
             return ProductActions.addGlassSuccess({
               glass: product,
-            }); 
+            });
           }),
           catchError((error) => of(ProductActions.addGlassFailure({ error })))
         )
@@ -135,9 +186,9 @@ export class ProductDraftEffects {
     );
   });
 
-
   constructor(
     private actions$: Actions,
-    private ProductService: DraftService
+    private ProductService: DraftService,
+    private store: Store
   ) {}
 }

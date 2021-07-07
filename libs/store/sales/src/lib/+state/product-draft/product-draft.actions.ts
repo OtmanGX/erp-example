@@ -175,7 +175,7 @@ export const removeProductsFailure = createAction(
 
 
 /****************************************************************** */
-/*****ADD  BIS  Product to be reproduced** */
+/*****Process the  BIS(Product Reparing )  Product  addition ** */
 /****************************************************************** */
 
 export const addReparationProducts = createAction(
@@ -183,14 +183,5 @@ export const addReparationProducts = createAction(
   props<{ item:Bis }>()
 );
 
-export const addReparationProductsSuccess = createAction(
-  '[Reparation Products Effect] Add Reparation Products  Success',
-  props<{ products: Product_draft}>()
-);
-
-export const addReparationProductsFailure = createAction(
-  '[Reparation Products Effect] Add Reparation  Products Failure',
-  props<{ error: any }>()
-);
 
 

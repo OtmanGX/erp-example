@@ -12,10 +12,7 @@ import {
   Sales_Product_Type_Enum,
   groupeByCode,
 } from '@tanglass-erp/store/sales';
-import {
-  InsertedProduct,
-  Product_draft,
-} from '@tanglass-erp/core/sales';
+import { InsertedProduct, Product_draft } from '@tanglass-erp/core/sales';
 import { Bis } from './products-draft.models';
 @Injectable()
 export class ProductDraftFacade {
@@ -50,12 +47,7 @@ export class ProductDraftFacade {
               !item.isRepeated
           )
         ),
-        repeated: items.filter(
-          (item) =>
-            (item.type == Sales_Product_Type_Enum.Verre ||
-              item.type == Sales_Product_Type_Enum.ArticleClient) &&
-            item.isRepeated
-        ),
+        repeated: items.filter((item) => item.isRepeated),
       }))
     );
   }
@@ -109,21 +101,21 @@ export class ProductDraftFacade {
     };
     this.dispatch(ProductsActions.addGlass({ glass }));
   }
-  addAccessory(product:InsertedProduct): void {
+  addAccessory(product: InsertedProduct): void {
     let accessory = {
       ...product,
       total_price: product.quantity * product.price,
     };
     this.dispatch(ProductsActions.addAccessory({ accessory }));
   }
-  addConsumable(product:InsertedProduct): void {
+  addConsumable(product: InsertedProduct): void {
     let consumable = {
       ...product,
       total_price: product.quantity * product.price,
     };
     this.dispatch(ProductsActions.addConsumable({ consumable }));
   }
-  addService(product:InsertedProduct): void {
+  addService(product: InsertedProduct): void {
     let service = {
       ...product,
       total_price: product.quantity * product.price,
@@ -245,22 +237,27 @@ export class ProductDraftFacade {
   }
 
   addBisItems(products) {
-    let {
-      status,
-      glass_draft,
-      delivered,
-      service_draft,
-      isLaunched,
-      id,
-      consumable_draft,
-      ...glass
-    } = products.find(
+    products = products.map((product) => {
+      let {
+        status,
+        glass_draft,
+        delivered,
+        service_draft,
+        isLaunched,
+        id,
+        consumable_draft,
+        ...item
+      } = product;
+      return item;
+    });
+    let glass = products.find(
       (item) =>
         (item.type == Sales_Product_Type_Enum.Verre ||
           item.type == Sales_Product_Type_Enum.ArticleClient) &&
         !item.isRepeated
     );
-    //glass={...glass,isRepeated:true}
+    console.log(glass);
+    glass = { ...glass, isRepeated: true };
 
     let services = products.filter(
       (item) => item.type == Sales_Product_Type_Enum.Service
@@ -268,11 +265,11 @@ export class ProductDraftFacade {
     let consumables = products.filter(
       (item) => item.type == Sales_Product_Type_Enum.Consommable
     );
-    let item:Bis={
+    let item: Bis = {
       glass,
       services,
       consumables,
-    }
-   this.dispatch(ProductsActions.addReparationProducts({ item }))
+    };
+    this.dispatch(ProductsActions.addReparationProducts({ item }));
   }
 }

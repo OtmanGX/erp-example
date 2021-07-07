@@ -4,7 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { SharedFacade } from '@tanglass-erp/store/shared';
-import { ProductHeaders } from "@TanglassUi/sales/utils/grid-headers";
+import { Product } from "@TanglassUi/sales/utils/grid-headers";
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class OrderCardComponent extends ModelCardComponent {
   title = "Commande CARD";
   dataSource_bis=[];
-  displayedColumns=ProductHeaders;
+  displayedColumns=Product;
   data$ = this.facade.loadedOrders$
     .pipe(takeUntil(this._onDestroy));
   isCardMode: boolean = true;
