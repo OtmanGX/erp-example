@@ -2,14 +2,14 @@
 
 //for company/warehouse/salePoint name
 
-export interface ShortFeauture{
+export interface ShortFeature {
     id?:string;
     name:string;
     companyid?:string; //for warehouse
-    cash_boxes?: any;
+    cash_boxes?: Array<{id: number, name: string}>;
 }
 // for sales product
-export interface Product{
+export interface Product {
     code:string;
     label:string;
     price:number;
@@ -18,7 +18,7 @@ export interface Product{
     unit:string;
 }
 
-export interface ShortProvider{
+export interface ShortProvider {
     code?:string;
     name:string;
 }

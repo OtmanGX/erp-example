@@ -1,7 +1,7 @@
 import { InsertedProduct, Substance } from './shared.model';
 import { Service } from "./service.model";
 import {  Product } from './shared.model';
-import { MetaData, ShortFeauture } from '@tanglass-erp/core/common';
+import { MetaData, ShortFeature } from '@tanglass-erp/core/common';
 import {
   Product_Product_Insert_Input,
   Product_Product_Unit_Enum,

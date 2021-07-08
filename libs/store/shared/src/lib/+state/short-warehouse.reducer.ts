@@ -2,11 +2,11 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as ShortWarehouseActions from './short-warehouse.actions';
-import { ShortFeauture } from '@tanglass-erp/core/common';
+import { ShortFeature } from '@tanglass-erp/core/common';
 
 export const SHORTWAREHOUSE_FEATURE_KEY = 'shortWarehouse';
 
-export interface State extends EntityState<ShortFeauture> {
+export interface State extends EntityState<ShortFeature> {
   selectedId?: string ; // which ShortWarehouse record has been selected
   loaded: boolean; // has the ShortWarehouse list been loaded
   error?: string | null; // last known error (if any)
@@ -16,10 +16,10 @@ export interface ShortWarehousePartialState {
   readonly [SHORTWAREHOUSE_FEATURE_KEY]: State;
 }
 
-export const shortWarehouseAdapter: EntityAdapter<ShortFeauture> = createEntityAdapter<
-ShortFeauture
+export const shortWarehouseAdapter: EntityAdapter<ShortFeature> = createEntityAdapter<
+ShortFeature
 >({
-  
+
 });
 
 export const initialState: State = shortWarehouseAdapter.getInitialState({

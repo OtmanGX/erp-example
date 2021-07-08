@@ -5,6 +5,7 @@ mutation addExpense(
   $employee_id: String
   $name: String
   $note: String
+  $date: timestamptz
 ) {
   insert_cash_register_expenses_one(
     object: {
@@ -14,6 +15,7 @@ mutation addExpense(
       employee_id: $employee_id
       name: $name
       note: $note
+      date: $date
     }
   ) {
     id

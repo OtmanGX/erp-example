@@ -617,6 +617,7 @@ export type Cash_Register_Expenses = {
   cash_box_id: Scalars['Int'];
   category: Scalars['String'];
   createdAt?: Maybe<Scalars['timestamptz']>;
+  date?: Maybe<Scalars['timestamptz']>;
   /** An object relationship */
   employee?: Maybe<Management_UserProfile>;
   employee_id?: Maybe<Scalars['String']>;
@@ -704,6 +705,7 @@ export type Cash_Register_Expenses_Bool_Exp = {
   cash_box_id?: Maybe<Int_Comparison_Exp>;
   category?: Maybe<String_Comparison_Exp>;
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
+  date?: Maybe<Timestamptz_Comparison_Exp>;
   employee?: Maybe<Management_UserProfile_Bool_Exp>;
   employee_id?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
@@ -733,6 +735,7 @@ export type Cash_Register_Expenses_Insert_Input = {
   cash_box_id?: Maybe<Scalars['Int']>;
   category?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
+  date?: Maybe<Scalars['timestamptz']>;
   employee?: Maybe<Management_UserProfile_Obj_Rel_Insert_Input>;
   employee_id?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
@@ -749,6 +752,7 @@ export type Cash_Register_Expenses_Max_Fields = {
   cash_box_id?: Maybe<Scalars['Int']>;
   category?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
+  date?: Maybe<Scalars['timestamptz']>;
   employee_id?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
@@ -763,6 +767,7 @@ export type Cash_Register_Expenses_Max_Order_By = {
   cash_box_id?: Maybe<Order_By>;
   category?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
+  date?: Maybe<Order_By>;
   employee_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
@@ -778,6 +783,7 @@ export type Cash_Register_Expenses_Min_Fields = {
   cash_box_id?: Maybe<Scalars['Int']>;
   category?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
+  date?: Maybe<Scalars['timestamptz']>;
   employee_id?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
@@ -792,6 +798,7 @@ export type Cash_Register_Expenses_Min_Order_By = {
   cash_box_id?: Maybe<Order_By>;
   category?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
+  date?: Maybe<Order_By>;
   employee_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
@@ -828,6 +835,7 @@ export type Cash_Register_Expenses_Order_By = {
   cash_box_id?: Maybe<Order_By>;
   category?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
+  date?: Maybe<Order_By>;
   employee?: Maybe<Management_UserProfile_Order_By>;
   employee_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -853,6 +861,8 @@ export enum Cash_Register_Expenses_Select_Column {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
+  Date = 'date',
+  /** column name */
   EmployeeId = 'employee_id',
   /** column name */
   Id = 'id',
@@ -872,6 +882,7 @@ export type Cash_Register_Expenses_Set_Input = {
   cash_box_id?: Maybe<Scalars['Int']>;
   category?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
+  date?: Maybe<Scalars['timestamptz']>;
   employee_id?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
@@ -958,6 +969,8 @@ export enum Cash_Register_Expenses_Update_Column {
   Category = 'category',
   /** column name */
   CreatedAt = 'createdAt',
+  /** column name */
+  Date = 'date',
   /** column name */
   EmployeeId = 'employee_id',
   /** column name */
@@ -30790,6 +30803,7 @@ export type AddExpenseMutationVariables = Exact<{
   employee_id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['timestamptz']>;
 }>;
 
 
@@ -30798,6 +30812,19 @@ export type AddExpenseMutation = (
   & { insert_cash_register_expenses_one?: Maybe<(
     { __typename?: 'cash_register_expenses' }
     & Pick<Cash_Register_Expenses, 'id'>
+  )> }
+);
+
+export type DeleteExpensesByIdMutationVariables = Exact<{
+  ids?: Array<Scalars['Int']>;
+}>;
+
+
+export type DeleteExpensesByIdMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_cash_register_expenses?: Maybe<(
+    { __typename?: 'cash_register_expenses_mutation_response' }
+    & Pick<Cash_Register_Expenses_Mutation_Response, 'affected_rows'>
   )> }
 );
 
@@ -30828,7 +30855,7 @@ export type GetCashBoxByIdQuery = (
     & Pick<Cash_Register_Cash_Box, 'balance' | 'createdAt' | 'updatedAt' | 'name' | 'id'>
     & { expenses: Array<(
       { __typename?: 'cash_register_expenses' }
-      & Pick<Cash_Register_Expenses, 'amountSpent' | 'category' | 'createdAt' | 'employee_id' | 'id' | 'name' | 'note'>
+      & Pick<Cash_Register_Expenses, 'amountSpent' | 'category' | 'createdAt' | 'date' | 'employee_id' | 'id' | 'name' | 'note'>
       & { employee?: Maybe<(
         { __typename?: 'management_userProfile' }
         & Pick<Management_UserProfile, 'firstname' | 'lastname' | 'username'>
@@ -30839,7 +30866,7 @@ export type GetCashBoxByIdQuery = (
     ) }
   )>, sales_payment: Array<(
     { __typename?: 'sales_payment' }
-    & Pick<Sales_Payment, 'amount' | 'comment' | 'order_id' | 'deadline' | 'date'>
+    & Pick<Sales_Payment, 'id' | 'amount' | 'comment' | 'order_id' | 'deadline' | 'date'>
     & { company: (
       { __typename?: 'management_company' }
       & Pick<Management_Company, 'name'>
@@ -33691,9 +33718,9 @@ export const Product_ProductFragmentFragmentDoc = gql`
 }
     `;
 export const AddExpenseDocument = gql`
-    mutation addExpense($cash_box_id: Int!, $amountSpent: numeric!, $category: String, $employee_id: String, $name: String, $note: String) {
+    mutation addExpense($cash_box_id: Int!, $amountSpent: numeric!, $category: String, $employee_id: String, $name: String, $note: String, $date: timestamptz) {
   insert_cash_register_expenses_one(
-    object: {amountSpent: $amountSpent, cash_box_id: $cash_box_id, category: $category, employee_id: $employee_id, name: $name, note: $note}
+    object: {amountSpent: $amountSpent, cash_box_id: $cash_box_id, category: $category, employee_id: $employee_id, name: $name, note: $note, date: $date}
   ) {
     id
   }
@@ -33705,6 +33732,24 @@ export const AddExpenseDocument = gql`
   })
   export class AddExpenseGQL extends Apollo.Mutation<AddExpenseMutation, AddExpenseMutationVariables> {
     document = AddExpenseDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteExpensesByIdDocument = gql`
+    mutation deleteExpensesById($ids: [Int!]! = []) {
+  delete_cash_register_expenses(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteExpensesByIdGQL extends Apollo.Mutation<DeleteExpensesByIdMutation, DeleteExpensesByIdMutationVariables> {
+    document = DeleteExpensesByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -33739,6 +33784,7 @@ export const GetCashBoxByIdDocument = gql`
       amountSpent
       category
       createdAt
+      date
       employee {
         firstname
         lastname
@@ -33757,7 +33803,10 @@ export const GetCashBoxByIdDocument = gql`
       name
     }
   }
-  sales_payment(where: {order: {salepoint_id: {_eq: $salepoint_id}}}) {
+  sales_payment(
+    where: {order: {salepoint_id: {_eq: $salepoint_id}}, payment_method: {_eq: "Espèce"}}
+  ) {
+    id
     amount
     comment
     company {

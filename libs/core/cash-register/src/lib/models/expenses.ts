@@ -6,11 +6,11 @@ export interface Expenses extends MetaData {
   category: string;
   amountSpent: number;
   note?: string;
-  employee_id?: number;
+  employee_id?: string;
   employee?: {
-    username: string;
-    firstname: string;
-    lastname: string;
+    username?: string;
+    firstname?: string;
+    lastname?: string;
   };
 }
 
@@ -21,5 +21,5 @@ export interface InsertedExpenses {
   amountSpent: number;
   note?: string;
   cash_box_id: number;
-  employee_id?: number;
+  employee_id?: string;
 }

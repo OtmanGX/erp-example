@@ -6,6 +6,7 @@ query getCashBoxById($id: Int!, $salepoint_id: uuid!) {
       amountSpent
       category
       createdAt
+      date
       employee {
         firstname
         lastname
@@ -25,7 +26,8 @@ query getCashBoxById($id: Int!, $salepoint_id: uuid!) {
     }
   }
 
-  sales_payment(where: { order: { salepoint_id: { _eq: $salepoint_id } } }) {
+  sales_payment(where: { order: { salepoint_id: { _eq: $salepoint_id } }, payment_method: {_eq: "Espèce"} }) {
+    id
     amount
     comment
     company {
