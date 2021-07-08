@@ -2,6 +2,9 @@ query GeShortSalePoints {
   management_salesPoint {
     name
     id
-    
+    cash_boxes {
+      id
+      name
+    }
   }
 }

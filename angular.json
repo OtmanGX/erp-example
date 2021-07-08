@@ -2067,6 +2067,66 @@
           }
         }
       }
+    },
+    "core-cash-register": {
+      "projectType": "library",
+      "root": "libs/core/cash-register",
+      "sourceRoot": "libs/core/cash-register/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/cash-register/tsconfig.lib.json",
+              "libs/core/cash-register/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/cash-register/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/cash-register/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "store-cash-register": {
+      "projectType": "library",
+      "root": "libs/store/cash-register",
+      "sourceRoot": "libs/store/cash-register/src",
+      "prefix": "tanglass-erp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/cash-register/tsconfig.lib.json",
+              "libs/store/cash-register/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/cash-register/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/cash-register/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "schematics": {

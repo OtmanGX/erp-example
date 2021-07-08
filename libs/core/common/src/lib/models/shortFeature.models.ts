@@ -6,7 +6,7 @@ export interface ShortFeauture{
     id?:string;
     name:string;
     companyid?:string; //for warehouse
-
+    cash_boxes?: any;
 }
 // for sales product
 export interface Product{

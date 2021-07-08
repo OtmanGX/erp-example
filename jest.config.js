@@ -33,5 +33,7 @@ module.exports = {
     '<rootDir>/libs/store/manufacturing',
     '<rootDir>/apps/ui/manufacturing',
     '<rootDir>/apps/ui/cash-register',
+    '<rootDir>/libs/core/cash-register',
+    '<rootDir>/libs/store/cash-register',
   ],
 };

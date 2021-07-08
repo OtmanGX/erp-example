@@ -139,6 +139,12 @@
     "ui/cash-register-e2e": {
       "tags": [],
       "implicitDependencies": ["ui-cash-register"]
+    },
+    "core-cash-register": {
+      "tags": []
+    },
+    "store-cash-register": {
+      "tags": []
     }
   }
 }
