@@ -8,7 +8,6 @@ import { CashBox } from '@tanglass-erp/core/cash-register';
 export const CASHBOX_FEATURE_KEY = 'cashBox';
 
 export interface State extends EntityState<ShortFeature> {
-  salepoints: ShortFeature[];
   selectedCashBox: CashBox;
   loaded: boolean; // has the CashBox list been loaded
   error?: string | null; // last known error (if any)
@@ -24,7 +23,6 @@ export const cashBoxAdapter: EntityAdapter<ShortFeature> = createEntityAdapter<
 
 export const initialState: State = cashBoxAdapter.getInitialState({
   // set initial required properties
-  salepoints: null,
   selectedCashBox: null,
   loaded: false,
 });

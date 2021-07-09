@@ -52,8 +52,7 @@
       "@tanglass-erp/store/shared": ["libs/store/shared/src/index.ts"],
       "@tanglass-erp/core/common": ["libs/core/common/src/index.ts"],
       "@tanglass-erp/store/sales": ["libs/store/sales/src/index.ts"],
-      "@tanglass-erp/store/cash-register": ["libs/store/cash-register/src/index.ts"],
-      "@tanglass-erp/core/cash-register": ["libs/core/cash-register/src/index.ts"],
+      "@tanglass-erp/core/sales": ["libs/core/sales/src/index.ts"],
       "@tanglass-erp/core/manufacturing": [
         "libs/core/manufacturing/src/index.ts"
       ],

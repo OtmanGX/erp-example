@@ -23,3 +23,8 @@ export interface InsertedExpenses {
   cash_box_id: number;
   employee_id?: string;
 }
+
+export interface ExpensesCategory {
+  key: string;
+  value: string;
+}

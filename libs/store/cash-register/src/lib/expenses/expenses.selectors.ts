@@ -3,7 +3,7 @@ import {
   EXPENSES_FEATURE_KEY,
   State,
   ExpensesPartialState,
-  expensesAdapter,
+  ExpensesCategoriesAdapter,
 } from './expenses.reducer';
 
 // Lookup the 'Expenses' feature state managed by NgRx
@@ -12,9 +12,9 @@ export const getExpensesState = createFeatureSelector<
   State
 >(EXPENSES_FEATURE_KEY);
 
-const { selectAll, selectEntities } = expensesAdapter.getSelectors();
+const { selectAll, selectEntities } = ExpensesCategoriesAdapter.getSelectors();
 
-export const getExpensesLoaded = createSelector(
+export const getExpensesCategoriesLoaded = createSelector(
   getExpensesState,
   (state: State) => state.loaded
 );
@@ -24,22 +24,6 @@ export const getExpensesError = createSelector(
   (state: State) => state.error
 );
 
-export const getAllExpenses = createSelector(getExpensesState, (state: State) =>
+export const getAllExpensesCategories = createSelector(getExpensesState, (state: State) =>
   selectAll(state)
-);
-
-export const getExpensesEntities = createSelector(
-  getExpensesState,
-  (state: State) => selectEntities(state)
-);
-
-export const getSelectedId = createSelector(
-  getExpensesState,
-  (state: State) => state.selectedId
-);
-
-export const getSelected = createSelector(
-  getExpensesEntities,
-  getSelectedId,
-  (entities, selectedId) => selectedId && entities[selectedId]
 );

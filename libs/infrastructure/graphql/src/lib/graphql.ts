@@ -30852,7 +30852,7 @@ export type GetCashBoxByIdQuery = (
   { __typename?: 'query_root' }
   & { cash_register_cash_box_by_pk?: Maybe<(
     { __typename?: 'cash_register_cash_box' }
-    & Pick<Cash_Register_Cash_Box, 'balance' | 'createdAt' | 'updatedAt' | 'name' | 'id'>
+    & Pick<Cash_Register_Cash_Box, 'balance' | 'createdAt' | 'salepoint_id' | 'updatedAt' | 'name' | 'id'>
     & { expenses: Array<(
       { __typename?: 'cash_register_expenses' }
       & Pick<Cash_Register_Expenses, 'amountSpent' | 'category' | 'createdAt' | 'date' | 'employee_id' | 'id' | 'name' | 'note'>
@@ -30925,6 +30925,19 @@ export type GetGlassesSubstancesQuery = (
         & Pick<Product_Product_Glass_View, 'code' | 'label' | 'substanceid' | 'unit'>
       )> }
     ) }
+  )> }
+);
+
+export type GetOrdersBySalepointQueryVariables = Exact<{
+  salepoint_id: Scalars['uuid'];
+}>;
+
+
+export type GetOrdersBySalepointQuery = (
+  { __typename?: 'query_root' }
+  & { sales_order: Array<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'id' | 'ref'>
   )> }
 );
 
@@ -33780,6 +33793,7 @@ export const GetCashBoxByIdDocument = gql`
   cash_register_cash_box_by_pk(id: $id) {
     balance
     createdAt
+    salepoint_id
     expenses {
       amountSpent
       category
@@ -33902,6 +33916,25 @@ export const GetGlassesSubstancesDocument = gql`
   })
   export class GetGlassesSubstancesGQL extends Apollo.Query<GetGlassesSubstancesQuery, GetGlassesSubstancesQueryVariables> {
     document = GetGlassesSubstancesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetOrdersBySalepointDocument = gql`
+    query getOrdersBySalepoint($salepoint_id: uuid!) {
+  sales_order(where: {salepoint_id: {}, payment_status: {_neq: "payé"}}) {
+    id
+    ref
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetOrdersBySalepointGQL extends Apollo.Query<GetOrdersBySalepointQuery, GetOrdersBySalepointQueryVariables> {
+    document = GetOrdersBySalepointDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

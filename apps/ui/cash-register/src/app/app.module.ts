@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { CashRegisterComponent } from './pages/cash-register/cash-register.component';
 
 @NgModule({
   declarations: [AppComponent],

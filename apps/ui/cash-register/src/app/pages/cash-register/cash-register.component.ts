@@ -16,8 +16,7 @@ export class CashRegisterComponent implements OnInit {
       color: "primary",
       down: false,
       withAction:false,
-    }
-    ;
+    };
   constructor() { }
 
   ngOnInit(): void {

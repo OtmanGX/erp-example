@@ -4,6 +4,7 @@ import { Expenses } from './expenses';
 export interface CashBox extends MetaData {
   id: number;
   name: string;
+  salepoint_id: string;
   balance: number;
   expenses: Expenses[];
   payments;
@@ -13,7 +14,6 @@ export interface CashBox extends MetaData {
 export interface InsertedCashBox {
   name: string;
   salepoint_id: string;
-  balance: number;
 }
 
 export interface InsertedPayment {

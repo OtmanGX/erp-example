@@ -2,6 +2,7 @@ query getCashBoxById($id: Int!, $salepoint_id: uuid!) {
   cash_register_cash_box_by_pk(id: $id) {
     balance
     createdAt
+    salepoint_id
     expenses {
       amountSpent
       category

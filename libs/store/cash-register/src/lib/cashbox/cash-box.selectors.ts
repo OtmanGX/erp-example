@@ -14,32 +14,22 @@ export const getCashBoxState = createFeatureSelector<
 
 const { selectAll, selectEntities } = cashBoxAdapter.getSelectors();
 
-export const getCashBoxLoaded = createSelector(
+export const getSalePointsLoaded = createSelector(
   getCashBoxState,
   (state: State) => state.loaded
 );
 
-export const getCashBoxError = createSelector(
+export const getSalePointsError = createSelector(
   getCashBoxState,
   (state: State) => state.error
 );
 
-export const getAllCashBox = createSelector(getCashBoxState, (state: State) =>
+export const getAllSalePoints = createSelector(getCashBoxState, (state: State) =>
   selectAll(state)
 );
 
-export const getCashBoxEntities = createSelector(
-  getCashBoxState,
-  (state: State) => selectEntities(state)
-);
 
-export const getSelectedId = createSelector(
+export const getSelectedCashBox = createSelector(
   getCashBoxState,
-  (state: State) => state.selectedId
-);
-
-export const getSelected = createSelector(
-  getCashBoxEntities,
-  getSelectedId,
-  (entities, selectedId) => selectedId && entities[selectedId]
+  (state: State) => state.selectedCashBox
 );

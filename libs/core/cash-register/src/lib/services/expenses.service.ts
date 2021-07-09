@@ -24,6 +24,6 @@ export class ExpensesService {
   }
 
   deleteExpense(ids: number[]) {
-    this.deleteExpensesByIdGQL.mutate({ ids });
+    return this.deleteExpensesByIdGQL.mutate({ ids });
   }
 }

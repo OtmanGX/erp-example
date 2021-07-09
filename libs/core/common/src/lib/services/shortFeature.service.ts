@@ -8,7 +8,8 @@ import {
   GetAccessoriesSubstancesGQL,
   GetGlassesSubstancesGQL,
   GetShortSubstancesGQL,
-  GetShortProvidersGQL
+  GetShortProvidersGQL,
+  GetOrdersBySalepointGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
 import { Substance, ShortSubstance, } from '../models/substance';
@@ -29,9 +30,13 @@ export class ShortFeatureService {
     private getGlassesSubstancesGQL: GetGlassesSubstancesGQL,
     private getShortSubstancesGQL: GetShortSubstancesGQL,
     private getShortProvidersGQL: GetShortProvidersGQL,
+    private getOrdersBySalepointGQL: GetOrdersBySalepointGQL,
 
   ) {}
 
+  getAllOrdersBySalepoint(salepoint_id: string) {
+    return this.getOrdersBySalepointGQL.fetch({salepoint_id});
+  }
 
   getAllCompanies() {
     return this.getShortCompaniesGQL.watch().valueChanges

@@ -1,14 +1,13 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as ExpensesActions from './expenses.actions';
-import { ExpensesEntity } from './expenses.models';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { ExpensesCategory } from '@tanglass-erp/core/cash-register';
 
 export const EXPENSES_FEATURE_KEY = 'expenses';
 
-export interface State extends EntityState<ExpensesEntity> {
-  selectedId?: string | number; // which Expenses record has been selected
-  loaded: boolean; // has the Expenses list been loaded
+export interface State extends EntityState<ExpensesCategory> {
+  loaded: boolean;
   error?: string | null; // last known error (if any)
 }
 
@@ -16,26 +15,38 @@ export interface ExpensesPartialState {
   readonly [EXPENSES_FEATURE_KEY]: State;
 }
 
-export const expensesAdapter: EntityAdapter<ExpensesEntity> = createEntityAdapter<
-  ExpensesEntity
->();
 
-export const initialState: State = expensesAdapter.getInitialState({
+
+export const ExpensesCategoriesAdapter: EntityAdapter<ExpensesCategory> = createEntityAdapter<
+  ExpensesCategory
+  >();
+
+export const initialState: State = ExpensesCategoriesAdapter.getInitialState({
   // set initial required properties
   loaded: false,
+  error: null,
 });
 
 const expensesReducer = createReducer(
   initialState,
-  on(ExpensesActions.loadExpenses, (state) => ({
+  on(ExpensesActions.loadExpensesCategories, (state) => ({
     ...state,
     loaded: false,
     error: null,
   })),
-  on(ExpensesActions.loadExpensesSuccess, (state, { expenses }) =>
-    expensesAdapter.setAll(expenses, { ...state, loaded: true })
+  on(ExpensesActions.loadExpensesCategoriesSuccess, (state, {expensesCategories}) =>
+    ExpensesCategoriesAdapter.setAll(expensesCategories, {...state, loaded: true, error: null})
   ),
-  on(ExpensesActions.loadExpensesFailure, (state, { error }) => ({
+  on(ExpensesActions.addExpense, (state) => ({
+    ...state,
+    error: null,
+  })),
+
+  on(
+    ExpensesActions.addExpenseFailure,
+    ExpensesActions.loadExpensesCategoriesFailure,
+    ExpensesActions.deleteExpenseFailure,
+    (state, { error }) => ({
     ...state,
     error,
   }))

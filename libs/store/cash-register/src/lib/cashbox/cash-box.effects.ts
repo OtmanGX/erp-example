@@ -3,7 +3,7 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as CashBoxActions from './cash-box.actions';
 import { CashBoxService } from '@tanglass-erp/core/cash-register';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ShortFeatureService } from '@tanglass-erp/core/common';
 
@@ -19,7 +19,7 @@ export class CashBoxEffects {
               ...data.data.cash_register_cash_box_by_pk,
               payments: data.data.sales_payment,
             };
-            return CashBoxActions.loadCashBoxSuccess({ cashBox });
+            return CashBoxActions.loadCashBoxSuccess({ cashBox })
           }),
           catchError((error) => {
             this.notificationService.showToast(
@@ -51,8 +51,12 @@ export class CashBoxEffects {
               route: 'cash-register',
               color: 'primary',
             });
-            return CashBoxActions.addCashBoxSuccess();
+            return [
+              CashBoxActions.addCashBoxSuccess(),
+              CashBoxActions.loadCashBoxSalePoints()
+            ];
           }),
+          switchMap(actions => actions),
           catchError((error) => {
             this.notificationService.showToast(
               'error',
@@ -100,7 +104,7 @@ export class CashBoxEffects {
 
   loadSalePoints$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(CashBoxActions.addPayment),
+      ofType(CashBoxActions.loadCashBoxSalePoints),
       mergeMap((action) =>
         this.shortFeatureService.getAllSalePoints().pipe(
           map((data) =>
