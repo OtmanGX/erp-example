@@ -3,9 +3,11 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as CashBoxActions from './cash-box.actions';
 import { CashBoxService } from '@tanglass-erp/core/cash-register';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ShortFeatureService } from '@tanglass-erp/core/common';
+import { CashBoxFacade } from '@tanglass-erp/store/cash-register';
+import * as ExpensesActions from '../expenses/expenses.actions';
 
 @Injectable()
 export class CashBoxEffects {
@@ -86,8 +88,20 @@ export class CashBoxEffects {
               route: 'cash-register',
               color: 'primary',
             });
-            return CashBoxActions.addPaymentSuccess();
+            return this.cashBoxFacade.selectedCashBox$;
           }),
+          switchMap((obj) =>
+            obj.pipe(
+              take(1),
+              map((value) => {
+                this.cashBoxFacade.loadCashBoxById(
+                  value.id,
+                  value.salepoint_id
+                );
+                return CashBoxActions.addPaymentSuccess();
+              })
+            )
+          ),
           catchError((error) => {
             this.notificationService.showToast(
               'error',
@@ -126,6 +140,7 @@ export class CashBoxEffects {
   constructor(
     private actions$: Actions,
     private cashBoxService: CashBoxService,
+    private cashBoxFacade: CashBoxFacade,
     private shortFeatureService: ShortFeatureService,
     private notificationService: NotificationFacadeService
   ) {}

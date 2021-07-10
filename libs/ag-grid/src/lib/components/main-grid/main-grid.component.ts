@@ -34,6 +34,7 @@ export class MainGridComponent {
   @Input() set rowData(obj) {
     if (obj instanceof Array)
       this._rowData = of(obj);
+    else this._rowData = obj;
   }
   get rowData() {
     return this._rowData;

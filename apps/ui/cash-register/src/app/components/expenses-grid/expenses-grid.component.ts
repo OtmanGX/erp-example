@@ -43,9 +43,10 @@ export class ExpensesGridComponent implements GridView {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (action === Operations.add) {
-        this.expensesFacade.addExpense(result);
-      }
+      if (result)
+        if (action === Operations.add) {
+          this.expensesFacade.addExpense(result);
+        }
     });
   }
 

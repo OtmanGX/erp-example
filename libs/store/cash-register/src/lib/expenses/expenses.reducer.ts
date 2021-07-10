@@ -19,7 +19,9 @@ export interface ExpensesPartialState {
 
 export const ExpensesCategoriesAdapter: EntityAdapter<ExpensesCategory> = createEntityAdapter<
   ExpensesCategory
-  >();
+  >({
+  selectId: obj =>obj.key
+});
 
 export const initialState: State = ExpensesCategoriesAdapter.getInitialState({
   // set initial required properties

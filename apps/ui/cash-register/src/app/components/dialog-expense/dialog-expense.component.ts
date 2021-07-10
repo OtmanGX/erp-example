@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./dialog-expense.component.scss']
 })
 export class DialogExpenseComponent extends FormDialog {
-  title = "Ajouter";
+  title = "Dépense";
   employees$ = this.facade.allShortEmployees$;
   categories$ = this.expensesFacade.allCategoryExpenses$
     .pipe(map(values => values.map(e => ({key: e.value, value: e.value}))));
@@ -33,6 +33,13 @@ export class DialogExpenseComponent extends FormDialog {
     this.facade.loadAllEmployees();
     this.expensesFacade.loadAllCategoryExpenses();
     this.regConfig = regConfigExpense(this.data, this.categories$, this.employees$);
+  }
+
+  submit(value) {
+    super.submit({
+      ...this.data,
+      ...value
+    })
   }
 
 }

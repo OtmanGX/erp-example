@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 
 import * as ExpensesActions from './expenses.actions';
-import { catchError, map, mergeMap, zipAll } from 'rxjs/operators';
+import { catchError, map, mergeMap, take, zipAll } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { CashBoxFacade } from '@tanglass-erp/store/cash-register';
@@ -29,6 +29,7 @@ export class ExpensesEffects {
           }),
           mergeMap((obs) => {
             return obs.pipe(
+              take(1),
               map((value) => {
                 this.cashBoxFacade.loadCashBoxById(
                   value.id,
@@ -56,17 +57,15 @@ export class ExpensesEffects {
       ofType(ExpensesActions.loadExpensesCategories),
       mergeMap((action) =>
         this.expensesService.getExpensesCategories().pipe(
-          map((data) =>
-            this.cashBoxFacade.selectedCashBox$
-          ),
-          mergeMap((obs) =>
-            obs.pipe(
+          mergeMap((data) =>
+            this.cashBoxFacade.selectedCashBox$.pipe(
+              take(1),
               map((value) => {
                 this.cashBoxFacade.loadCashBoxById(
                   value.id,
                   value.salepoint_id
                 );
-                return ExpensesActions.addExpenseSuccess();
+                return ExpensesActions.loadExpensesCategoriesSuccess({expensesCategories: data.data.cash_register_expense_category});
               })
             )
           ),
@@ -103,6 +102,7 @@ export class ExpensesEffects {
           }),
           mergeMap((obs) =>
             obs.pipe(
+              take(1),
               map((value) => {
                 this.cashBoxFacade.loadCashBoxById(
                   value.id,
