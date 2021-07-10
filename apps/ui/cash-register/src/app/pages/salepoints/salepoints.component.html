@@ -19,8 +19,7 @@
       <mat-card-actions fxLayout='row' fxLayoutAlign="end center">
         <button
           *ngIf="salepoint.cash_boxes?.length; else createCashBox"
-          routerLink=''
-          [queryParams]="{salepoint: salepoint.id, cashbox: salepoint.cash_boxes[0].id}"
+          [routerLink]="salepoint.id+'/'+salepoint.cash_boxes[0].id"
           mat-raised-button
           color="primary">
           <mat-icon>launch</mat-icon> Entrer

@@ -44,11 +44,7 @@ import { DialogExpenseComponent } from '@TanglassUi/cash-register/components/dia
       {
         path: 'salepoints/:salepoint/:cashbox',
         component: CashRegisterComponent,
-        data: {
-          title: 'Caisse',
-          breadcrumb: 'Caisse',
-        },
-      },
+      }
     ]),
 
     MaterialModule,

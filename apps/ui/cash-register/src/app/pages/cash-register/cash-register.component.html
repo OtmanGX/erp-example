@@ -1,17 +1,19 @@
 <div fxLayout='row' fxLayoutAlign='center center'>
   <ngx-trending-card fxFlex='50' fxFlex.gt-md='20' fxFlex.gt-xl='15'
-                     [config]="balance">
+                     [config]="balanceCard">
   </ngx-trending-card>
 </div>
 
 
 <div fxLayout='row' fxLayoutAlign='center center'>
-    <mat-tab-group>
+    <mat-tab-group fxFlex="100">
       <mat-tab>
         <ng-template mat-tab-label>
           <mat-icon class="example-tab-icon">input</mat-icon>
           &nbsp;Entrées
         </ng-template>
+
+        <ngx-payments-grid *ngIf="cashBox" [data$]="cashBox?.payments"></ngx-payments-grid>
       </mat-tab>
 
       <mat-tab>
@@ -22,5 +24,4 @@
       </mat-tab>
 
     </mat-tab-group>
-
 </div>
