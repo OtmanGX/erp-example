@@ -33,16 +33,28 @@ import { StoreContactModule } from '@TanglassStore/contact/lib/store-contact.mod
       },
       {
         path: 'salepoints',
-        component: SalepointsComponent,
+        children: [
+          {
+            path: '',
+            component: SalepointsComponent,
+            data: {
+
+            }
+          },
+          {
+            path: ':salepoint/:cashbox',
+            component: CashRegisterComponent,
+            data: {
+              title: ''
+            }
+          }
+        ],
         data: {
           title: 'Points de vente',
           breadcrumb: 'Points de vente',
         },
       },
-      {
-        path: 'salepoints/:salepoint/:cashbox',
-        component: CashRegisterComponent,
-      }
+
     ]),
 
     MaterialModule,

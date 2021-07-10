@@ -58,6 +58,9 @@ export class ExpensesGridComponent implements GridView {
           cash_box_id: parseInt(this.route.snapshot.paramMap.get('cashbox'), 10)
         });
         break;
+      case Operations.delete:
+        this.expensesFacade.deleteExpense(event.data.map(e =>e.id));
+        break;
     }
   }
 

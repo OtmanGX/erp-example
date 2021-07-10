@@ -74,7 +74,7 @@ const routes: Routes = [
           import('@TanglassUi/sales/sales.module').then(m => m.SalesModule),
       },{
         path: 'cash-register',
-        data: { title: 'Caisse', breadcrumb: "Caisse", noLink: true},
+        data: { title: 'Caisse', breadcrumb: "Caisse"},
         loadChildren: () =>
           import('@TanglassUi/cash-register/cash-register.module').then(m => m.CashRegisterModule),
       },
