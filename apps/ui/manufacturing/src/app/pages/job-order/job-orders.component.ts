@@ -10,7 +10,8 @@ import { JobOrderHeaders } from "@TanglassUi/manufacturing/utils/grid-headers";
   templateUrl: './job-orders.component.html',
   styleUrls: ['./job-orders.component.scss']
 })
-export class jobOrdersComponent implements GridView {
+
+export class JobOrdersComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
   agGrid: AgGridAngular;
   columnDefs;
@@ -40,6 +41,7 @@ export class jobOrdersComponent implements GridView {
   eventTriggering(event) {
     // Store Action Dispatching
     switch (event.action) {
+      
       case Operations.delete:
         break;
     }

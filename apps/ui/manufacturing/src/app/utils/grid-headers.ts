@@ -1,11 +1,10 @@
 export const JobOrderHeaders = [
   {
-    field: 'ref',
+    field: 'id',
     headerName: 'Référence',
     type: 'linkColumn',
     cellRendererParams: (params) => ({
-      link: `${params.value}`,
-      state: { id: params?.data?.ref },
+      link: `${params?.data?.id}`,
     }),
   },
   { field: 'date', headerName: 'Date', type: 'textColumn' },

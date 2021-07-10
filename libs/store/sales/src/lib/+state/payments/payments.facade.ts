@@ -31,6 +31,7 @@ export class PaymentsFacade {
   loadOrderPayments(order_id) {
     this.dispatch(PaymentsActions.loadOrderPayments({ order_id }));
   }
+  
   addPayment(payment: Payment) {
     this.dispatch(PaymentsActions.addPayment({ payment }));
   }
