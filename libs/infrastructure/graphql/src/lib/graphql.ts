@@ -30952,6 +30952,17 @@ export type GetShortCompaniesQuery = (
   )> }
 );
 
+export type GetShortEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetShortEmployeesQuery = (
+  { __typename?: 'query_root' }
+  & { management_userProfile: Array<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'id' | 'username' | 'firstname' | 'lastname'>
+  )> }
+);
+
 export type GetShortProvidersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -33923,7 +33934,9 @@ export const GetGlassesSubstancesDocument = gql`
   }
 export const GetOrdersBySalepointDocument = gql`
     query getOrdersBySalepoint($salepoint_id: uuid!) {
-  sales_order(where: {salepoint_id: {}, payment_status: {_neq: "payé"}}) {
+  sales_order(
+    where: {salepoint_id: {_eq: $salepoint_id}, payment_status: {_neq: "payé"}}
+  ) {
     id
     ref
   }
@@ -33954,6 +33967,27 @@ export const GetShortCompaniesDocument = gql`
   })
   export class GetShortCompaniesGQL extends Apollo.Query<GetShortCompaniesQuery, GetShortCompaniesQueryVariables> {
     document = GetShortCompaniesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetShortEmployeesDocument = gql`
+    query getShortEmployees {
+  management_userProfile {
+    id
+    username
+    firstname
+    lastname
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortEmployeesGQL extends Apollo.Query<GetShortEmployeesQuery, GetShortEmployeesQueryVariables> {
+    document = GetShortEmployeesDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -13,7 +13,7 @@
           &nbsp;Entrées
         </ng-template>
 
-        <ngx-payments-grid *ngIf="cashBox" [data$]="cashBox?.payments"></ngx-payments-grid>
+        <ngx-payments-grid [data$]="cashBox?.payments"></ngx-payments-grid>
       </mat-tab>
 
       <mat-tab>
@@ -21,6 +21,7 @@
           <mat-icon class="example-tab-icon">shopping_cart</mat-icon>
           &nbsp;Sorties
         </ng-template>
+        <ngx-expenses-grid [data$]='cashBox?.expenses'></ngx-expenses-grid>
       </mat-tab>
 
     </mat-tab-group>

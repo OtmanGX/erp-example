@@ -3,7 +3,6 @@ import { CardConfig } from '@tanglass-erp/material';
 import { CashBoxFacade } from '@tanglass-erp/store/cash-register';
 import { CashBox } from '@tanglass-erp/core/cash-register';
 import { ActivatedRoute } from '@angular/router';
-import {of} from 'rxjs';
 
 @Component({
   selector: 'ngx-cash-register',
@@ -16,9 +15,6 @@ export class CashRegisterComponent implements OnInit {
 
   cashBox: CashBox;
   cashBox$ = this.cashBoxFacade.selectedCashBox$;
-  get payments$() {
-    return of(this.cashBox?.payments);
-  }
   balanceCard: CardConfig =
     {
       icon: "account_balance",

@@ -1,5 +1,5 @@
 query getOrdersBySalepoint($salepoint_id: uuid!) {
-  sales_order(where: {salepoint_id: {}, payment_status: {_neq: "payé"}}) {
+  sales_order(where: {salepoint_id: {_eq: $salepoint_id}, payment_status: {_neq: "payé"}}) {
     id
     ref
   }

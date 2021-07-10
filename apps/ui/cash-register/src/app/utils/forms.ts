@@ -85,7 +85,7 @@ const regConfigPayment = (data, orders, customers, companies, limit?: number) =>
 ];
 
 
-const regConfigExpense = (data, categories, customers) => [
+const regConfigExpense = (data, categories, employees) => [
   {
     type: 'input',
     inputType: 'text',
@@ -117,9 +117,9 @@ const regConfigExpense = (data, categories, customers) => [
     name: 'employee_id',
     label: 'Employé ',
     value: data?.employee_id,
-    filterFields: ['name'],
-    fieldsToShow: ['name'],
-    options: customers
+    filterFields: ['username', 'firstname'],
+    fieldsToShow:  ['username', 'firstname'],
+    options: employees
   },
 ];
 

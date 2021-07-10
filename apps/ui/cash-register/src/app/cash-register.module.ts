@@ -11,6 +11,8 @@ import { PaymentsGridComponent } from '@TanglassUi/cash-register/components/paym
 import { DialogCashboxComponent } from '@TanglassUi/cash-register/components/dialog-cashbox/dialog-cashbox.component';
 import { DialogPaymentComponent } from '@TanglassUi/cash-register/components/dialog-payment/dialog-payment.component';
 import { DialogExpenseComponent } from '@TanglassUi/cash-register/components/dialog-expense/dialog-expense.component';
+import { StoreSharedModule } from '@tanglass-erp/store/shared';
+import { StoreContactModule } from '@TanglassStore/contact/lib/store-contact.module';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,6 @@ import { DialogExpenseComponent } from '@TanglassUi/cash-register/components/dia
       {
         path: '',
         redirectTo: 'salepoints',
-        data: {
-          title: 'Points de vente',
-          breadcrumb: 'Points de vente',
-        },
       },
       {
         path: 'salepoints',
@@ -50,6 +48,8 @@ import { DialogExpenseComponent } from '@TanglassUi/cash-register/components/dia
     MaterialModule,
     MainAgGridModule,
     StoreCashRegisterModule,
+    StoreContactModule,
+    StoreSharedModule,
   ],
 })
 export class CashRegisterModule {}
