@@ -4,7 +4,9 @@ import { NotificationFacadeService } from './notification/notification-facade.se
 import { StoreModule } from '@ngrx/store';
 import * as NotificationReducer from './notification/notification.reducer';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import * as fromAuth from './auth/auth.reducer';
+import { AuthEffects } from './auth/auth.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   imports: [
@@ -14,16 +16,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       NotificationReducer.notificationFeatureKey,
       NotificationReducer.reducer
     ),
-    ToastrModule.forRoot(
-      {
-        disableTimeOut: true,
-        positionClass: 'toast-top-right',
-        preventDuplicates: true,
-        closeButton: true
-      }
-    ), // ToastrModule added
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
+    EffectsModule.forFeature([AuthEffects]),
+    ToastrModule.forRoot({
+      disableTimeOut: true,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      closeButton: true,
+    }),
   ],
   providers: [NotificationFacadeService],
-  exports: []
+  exports: [],
 })
 export class StoreAppModule {}

@@ -8,6 +8,7 @@ import { CashBoxFacade } from './cashbox/cash-box.facade';
 import * as fromExpenses from './expenses/expenses.reducer';
 import { ExpensesEffects } from './expenses/expenses.effects';
 import { ExpensesFacade } from './expenses/expenses.facade';
+import { StoreAppModule } from '@tanglass-erp/store/app';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ExpensesFacade } from './expenses/expenses.facade';
       fromExpenses.reducer
     ),
     EffectsModule.forFeature([ExpensesEffects]),
+    StoreAppModule
   ],
   providers: [CashBoxFacade, ExpensesFacade],
 })

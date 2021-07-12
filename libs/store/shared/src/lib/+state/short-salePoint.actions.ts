@@ -8,8 +8,9 @@ import { ShortFeature } from '@tanglass-erp/core/common';
 /****************************************************************** */
 
 export const loadShortSalePoint = createAction(
-  '[ShortSalePoint] Load ShortSalePoint'
-);
+  '[ShortSalePoint] Load ShortSalePoint',
+  props<{ids?: string[]}>()
+  );
 
 export const loadShortSalePointSuccess = createAction(
   '[ShortSalePoint] Load ShortSalePoint Success',

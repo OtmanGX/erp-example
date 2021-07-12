@@ -101,8 +101,8 @@ export class SharedFacade {
     this.dispatch(ShortProviderActions.loadShortProvider());
   }
 
-  loadAllShortSalePoint() {
-    this.dispatch(ShortSalePointActions.loadShortSalePoint());
+  loadAllShortSalePoint(ids?: string[]) {
+    this.dispatch(ShortSalePointActions.loadShortSalePoint({ids}));
   }
   loadAllShortWarehouses() {
     this.dispatch(ShortWarehouseActions.loadShortWarehouse());

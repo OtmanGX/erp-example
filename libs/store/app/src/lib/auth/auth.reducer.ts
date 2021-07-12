@@ -1,0 +1,32 @@
+import { createReducer, on } from '@ngrx/store';
+import * as AuthActions from './auth.actions';
+
+export const authFeatureKey = 'auth';
+
+export interface State {
+  user: any;
+  error: any;
+}
+
+export const initialState: State = {
+  user: null,
+  error: null,
+};
+
+export const reducer = createReducer(
+  initialState,
+
+  on(AuthActions.loadUserSuccess, (state, action) => {
+    return {
+      ...state,
+      user: action.user,
+      error: null,
+    };
+  }),
+  on(AuthActions.loadUserFailure, (state, action) => {
+    return {
+      ...state,
+      error: action.error,
+    };
+  })
+);

@@ -2,7 +2,7 @@ import {
   ActionReducer,
   ActionReducerMap,
 } from '@ngrx/store';
-import * as fromAuth from './lib/auth.reducer';
+import * as fromAuth from './lib/auth/auth.reducer';
 import * as fromNotif from './lib/notification/notification.reducer'
 
 export interface AppState {
@@ -29,3 +29,5 @@ export *  from './lib/notification/notification.actions';
 export *  from './lib/notification/notification.selectors';
 export *  from './lib/notification/notification.model';
 export *  from './lib/notification/notification-facade.service';
+export * from './lib/auth/auth-facade.service';
+export * from './lib/store-app.module';

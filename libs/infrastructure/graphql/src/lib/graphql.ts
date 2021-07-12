@@ -16,6 +16,7 @@ export type Scalars = {
   json: any;
   jsonb: any;
   numeric: any;
+  timestamp: any;
   timestamptz: any;
   uuid: any;
 };
@@ -6064,16 +6065,18 @@ export enum Management_User_Role_Update_Column {
 /** columns and relationships of "manufacturing.job_order" */
 export type Manufacturing_Job_Order = {
   __typename?: 'manufacturing_job_order';
-  date: Scalars['date'];
+  date: Scalars['timestamp'];
   /** An array relationship */
   glass_drafts: Array<Sales_Glass_Draft>;
   /** An aggregated array relationship */
   glass_drafts_aggregate: Sales_Glass_Draft_Aggregate;
   id: Scalars['Int'];
+  isReparing: Scalars['Boolean'];
+  /** An object relationship */
+  job_status: Manufacturing_Job_Status;
   order_ref: Scalars['String'];
-  ref: Scalars['String'];
+  ref?: Maybe<Scalars['String']>;
   status: Scalars['String'];
-  type: Scalars['String'];
 };
 
 
@@ -6163,17 +6166,20 @@ export type Manufacturing_Job_Order_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Manufacturing_Job_Order_Bool_Exp>>>;
   _not?: Maybe<Manufacturing_Job_Order_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Manufacturing_Job_Order_Bool_Exp>>>;
-  date?: Maybe<Date_Comparison_Exp>;
+  date?: Maybe<Timestamp_Comparison_Exp>;
   glass_drafts?: Maybe<Sales_Glass_Draft_Bool_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
+  isReparing?: Maybe<Boolean_Comparison_Exp>;
+  job_status?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
   order_ref?: Maybe<String_Comparison_Exp>;
   ref?: Maybe<String_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
-  type?: Maybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "manufacturing.job_order" */
 export enum Manufacturing_Job_Order_Constraint {
+  /** unique or primary key constraint */
+  JobOrderIdKey = 'job_order_id_key',
   /** unique or primary key constraint */
   JobOrderPkey = 'job_order_pkey'
 }
@@ -6185,24 +6191,24 @@ export type Manufacturing_Job_Order_Inc_Input = {
 
 /** input type for inserting data into table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Insert_Input = {
-  date?: Maybe<Scalars['date']>;
+  date?: Maybe<Scalars['timestamp']>;
   glass_drafts?: Maybe<Sales_Glass_Draft_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['Int']>;
+  isReparing?: Maybe<Scalars['Boolean']>;
+  job_status?: Maybe<Manufacturing_Job_Status_Obj_Rel_Insert_Input>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type Manufacturing_Job_Order_Max_Fields = {
   __typename?: 'manufacturing_job_order_max_fields';
-  date?: Maybe<Scalars['date']>;
+  date?: Maybe<Scalars['timestamp']>;
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "manufacturing.job_order" */
@@ -6212,18 +6218,16 @@ export type Manufacturing_Job_Order_Max_Order_By = {
   order_ref?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Manufacturing_Job_Order_Min_Fields = {
   __typename?: 'manufacturing_job_order_min_fields';
-  date?: Maybe<Scalars['date']>;
+  date?: Maybe<Scalars['timestamp']>;
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "manufacturing.job_order" */
@@ -6233,7 +6237,6 @@ export type Manufacturing_Job_Order_Min_Order_By = {
   order_ref?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "manufacturing.job_order" */
@@ -6263,10 +6266,11 @@ export type Manufacturing_Job_Order_Order_By = {
   date?: Maybe<Order_By>;
   glass_drafts_aggregate?: Maybe<Sales_Glass_Draft_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
+  isReparing?: Maybe<Order_By>;
+  job_status?: Maybe<Manufacturing_Job_Status_Order_By>;
   order_ref?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "manufacturing.job_order" */
@@ -6281,23 +6285,23 @@ export enum Manufacturing_Job_Order_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  IsReparing = 'isReparing',
+  /** column name */
   OrderRef = 'order_ref',
   /** column name */
   Ref = 'ref',
   /** column name */
-  Status = 'status',
-  /** column name */
-  Type = 'type'
+  Status = 'status'
 }
 
 /** input type for updating data in table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Set_Input = {
-  date?: Maybe<Scalars['date']>;
+  date?: Maybe<Scalars['timestamp']>;
   id?: Maybe<Scalars['Int']>;
+  isReparing?: Maybe<Scalars['Boolean']>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
@@ -6351,13 +6355,13 @@ export enum Manufacturing_Job_Order_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  IsReparing = 'isReparing',
+  /** column name */
   OrderRef = 'order_ref',
   /** column name */
   Ref = 'ref',
   /** column name */
-  Status = 'status',
-  /** column name */
-  Type = 'type'
+  Status = 'status'
 }
 
 /** aggregate var_pop on columns */
@@ -6392,6 +6396,181 @@ export type Manufacturing_Job_Order_Variance_Fields = {
 export type Manufacturing_Job_Order_Variance_Order_By = {
   id?: Maybe<Order_By>;
 };
+
+/** columns and relationships of "manufacturing.job_status" */
+export type Manufacturing_Job_Status = {
+  __typename?: 'manufacturing_job_status';
+  /** An array relationship */
+  job_orders: Array<Manufacturing_Job_Order>;
+  /** An aggregated array relationship */
+  job_orders_aggregate: Manufacturing_Job_Order_Aggregate;
+  key: Scalars['String'];
+  value: Scalars['String'];
+};
+
+
+/** columns and relationships of "manufacturing.job_status" */
+export type Manufacturing_Job_StatusJob_OrdersArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Order_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Order_Bool_Exp>;
+};
+
+
+/** columns and relationships of "manufacturing.job_status" */
+export type Manufacturing_Job_StatusJob_Orders_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Order_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Order_Bool_Exp>;
+};
+
+/** aggregated selection of "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Aggregate = {
+  __typename?: 'manufacturing_job_status_aggregate';
+  aggregate?: Maybe<Manufacturing_Job_Status_Aggregate_Fields>;
+  nodes: Array<Manufacturing_Job_Status>;
+};
+
+/** aggregate fields of "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Aggregate_Fields = {
+  __typename?: 'manufacturing_job_status_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Manufacturing_Job_Status_Max_Fields>;
+  min?: Maybe<Manufacturing_Job_Status_Min_Fields>;
+};
+
+
+/** aggregate fields of "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Manufacturing_Job_Status_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Manufacturing_Job_Status_Max_Order_By>;
+  min?: Maybe<Manufacturing_Job_Status_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Arr_Rel_Insert_Input = {
+  data: Array<Manufacturing_Job_Status_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Job_Status_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "manufacturing.job_status". All fields are combined with a logical 'AND'. */
+export type Manufacturing_Job_Status_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Manufacturing_Job_Status_Bool_Exp>>>;
+  _not?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Manufacturing_Job_Status_Bool_Exp>>>;
+  job_orders?: Maybe<Manufacturing_Job_Order_Bool_Exp>;
+  key?: Maybe<String_Comparison_Exp>;
+  value?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "manufacturing.job_status" */
+export enum Manufacturing_Job_Status_Constraint {
+  /** unique or primary key constraint */
+  JobStatusKeyKey = 'job_status_key_key',
+  /** unique or primary key constraint */
+  JobStatusPkey = 'job_status_pkey',
+  /** unique or primary key constraint */
+  JobStatusValueKey = 'job_status_value_key'
+}
+
+/** input type for inserting data into table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Insert_Input = {
+  job_orders?: Maybe<Manufacturing_Job_Order_Arr_Rel_Insert_Input>;
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Manufacturing_Job_Status_Max_Fields = {
+  __typename?: 'manufacturing_job_status_max_fields';
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Max_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Manufacturing_Job_Status_Min_Fields = {
+  __typename?: 'manufacturing_job_status_min_fields';
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Min_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Mutation_Response = {
+  __typename?: 'manufacturing_job_status_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Manufacturing_Job_Status>;
+};
+
+/** input type for inserting object relation for remote table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Obj_Rel_Insert_Input = {
+  data: Manufacturing_Job_Status_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Job_Status_On_Conflict>;
+};
+
+/** on conflict condition type for table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_On_Conflict = {
+  constraint: Manufacturing_Job_Status_Constraint;
+  update_columns: Array<Manufacturing_Job_Status_Update_Column>;
+  where?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Order_By = {
+  job_orders_aggregate?: Maybe<Manufacturing_Job_Order_Aggregate_Order_By>;
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Pk_Columns_Input = {
+  key: Scalars['String'];
+};
+
+/** select columns of table "manufacturing.job_status" */
+export enum Manufacturing_Job_Status_Select_Column {
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Set_Input = {
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "manufacturing.job_status" */
+export enum Manufacturing_Job_Status_Update_Column {
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
 
 /** columns and relationships of "manufacturing.manufacturing_line" */
 export type Manufacturing_Manufacturing_Line = {
@@ -6721,6 +6900,10 @@ export type Mutation_Root = {
   delete_manufacturing_job_order?: Maybe<Manufacturing_Job_Order_Mutation_Response>;
   /** delete single row from the table: "manufacturing.job_order" */
   delete_manufacturing_job_order_by_pk?: Maybe<Manufacturing_Job_Order>;
+  /** delete data from the table: "manufacturing.job_status" */
+  delete_manufacturing_job_status?: Maybe<Manufacturing_Job_Status_Mutation_Response>;
+  /** delete single row from the table: "manufacturing.job_status" */
+  delete_manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
   /** delete data from the table: "manufacturing.manufacturing_line" */
   delete_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** delete single row from the table: "manufacturing.manufacturing_line" */
@@ -6987,6 +7170,10 @@ export type Mutation_Root = {
   insert_manufacturing_job_order?: Maybe<Manufacturing_Job_Order_Mutation_Response>;
   /** insert a single row into the table: "manufacturing.job_order" */
   insert_manufacturing_job_order_one?: Maybe<Manufacturing_Job_Order>;
+  /** insert data into the table: "manufacturing.job_status" */
+  insert_manufacturing_job_status?: Maybe<Manufacturing_Job_Status_Mutation_Response>;
+  /** insert a single row into the table: "manufacturing.job_status" */
+  insert_manufacturing_job_status_one?: Maybe<Manufacturing_Job_Status>;
   /** insert data into the table: "manufacturing.manufacturing_line" */
   insert_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** insert a single row into the table: "manufacturing.manufacturing_line" */
@@ -7257,6 +7444,10 @@ export type Mutation_Root = {
   update_manufacturing_job_order?: Maybe<Manufacturing_Job_Order_Mutation_Response>;
   /** update single row of the table: "manufacturing.job_order" */
   update_manufacturing_job_order_by_pk?: Maybe<Manufacturing_Job_Order>;
+  /** update data of the table: "manufacturing.job_status" */
+  update_manufacturing_job_status?: Maybe<Manufacturing_Job_Status_Mutation_Response>;
+  /** update single row of the table: "manufacturing.job_status" */
+  update_manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
   /** update data of the table: "manufacturing.manufacturing_line" */
   update_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** update single row of the table: "manufacturing.manufacturing_line" */
@@ -7690,6 +7881,18 @@ export type Mutation_RootDelete_Manufacturing_Job_OrderArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Manufacturing_Job_Order_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Job_StatusArgs = {
+  where: Manufacturing_Job_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Job_Status_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 
@@ -8527,6 +8730,20 @@ export type Mutation_RootInsert_Manufacturing_Job_OrderArgs = {
 export type Mutation_RootInsert_Manufacturing_Job_Order_OneArgs = {
   object: Manufacturing_Job_Order_Insert_Input;
   on_conflict?: Maybe<Manufacturing_Job_Order_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Job_StatusArgs = {
+  objects: Array<Manufacturing_Job_Status_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Job_Status_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Job_Status_OneArgs = {
+  object: Manufacturing_Job_Status_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Job_Status_On_Conflict>;
 };
 
 
@@ -9477,6 +9694,20 @@ export type Mutation_RootUpdate_Manufacturing_Job_Order_By_PkArgs = {
   _inc?: Maybe<Manufacturing_Job_Order_Inc_Input>;
   _set?: Maybe<Manufacturing_Job_Order_Set_Input>;
   pk_columns: Manufacturing_Job_Order_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Job_StatusArgs = {
+  _set?: Maybe<Manufacturing_Job_Status_Set_Input>;
+  where: Manufacturing_Job_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Job_Status_By_PkArgs = {
+  _set?: Maybe<Manufacturing_Job_Status_Set_Input>;
+  pk_columns: Manufacturing_Job_Status_Pk_Columns_Input;
 };
 
 
@@ -16338,6 +16569,12 @@ export type Query_Root = {
   manufacturing_job_order_aggregate: Manufacturing_Job_Order_Aggregate;
   /** fetch data from the table: "manufacturing.job_order" using primary key columns */
   manufacturing_job_order_by_pk?: Maybe<Manufacturing_Job_Order>;
+  /** fetch data from the table: "manufacturing.job_status" */
+  manufacturing_job_status: Array<Manufacturing_Job_Status>;
+  /** fetch aggregated fields from the table: "manufacturing.job_status" */
+  manufacturing_job_status_aggregate: Manufacturing_Job_Status_Aggregate;
+  /** fetch data from the table: "manufacturing.job_status" using primary key columns */
+  manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
   /** fetch data from the table: "manufacturing.manufacturing_line" */
   manufacturing_manufacturing_line: Array<Manufacturing_Manufacturing_Line>;
   /** fetch aggregated fields from the table: "manufacturing.manufacturing_line" */
@@ -17247,6 +17484,32 @@ export type Query_RootManufacturing_Job_Order_AggregateArgs = {
 /** query root */
 export type Query_RootManufacturing_Job_Order_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Job_StatusArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Job_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Job_Status_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 
@@ -28438,6 +28701,12 @@ export type Subscription_Root = {
   manufacturing_job_order_aggregate: Manufacturing_Job_Order_Aggregate;
   /** fetch data from the table: "manufacturing.job_order" using primary key columns */
   manufacturing_job_order_by_pk?: Maybe<Manufacturing_Job_Order>;
+  /** fetch data from the table: "manufacturing.job_status" */
+  manufacturing_job_status: Array<Manufacturing_Job_Status>;
+  /** fetch aggregated fields from the table: "manufacturing.job_status" */
+  manufacturing_job_status_aggregate: Manufacturing_Job_Status_Aggregate;
+  /** fetch data from the table: "manufacturing.job_status" using primary key columns */
+  manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
   /** fetch data from the table: "manufacturing.manufacturing_line" */
   manufacturing_manufacturing_line: Array<Manufacturing_Manufacturing_Line>;
   /** fetch aggregated fields from the table: "manufacturing.manufacturing_line" */
@@ -29347,6 +29616,32 @@ export type Subscription_RootManufacturing_Job_Order_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootManufacturing_Job_Order_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Job_StatusArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Job_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Job_Status_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 
@@ -30769,6 +31064,20 @@ export type Subscription_RootStock_Warehouse_Substance_By_PkArgs = {
 };
 
 
+/** expression to compare columns of type timestamp. All fields are combined with logical 'AND'. */
+export type Timestamp_Comparison_Exp = {
+  _eq?: Maybe<Scalars['timestamp']>;
+  _gt?: Maybe<Scalars['timestamp']>;
+  _gte?: Maybe<Scalars['timestamp']>;
+  _in?: Maybe<Array<Scalars['timestamp']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['timestamp']>;
+  _lte?: Maybe<Scalars['timestamp']>;
+  _neq?: Maybe<Scalars['timestamp']>;
+  _nin?: Maybe<Array<Scalars['timestamp']>>;
+};
+
+
 /** expression to compare columns of type timestamptz. All fields are combined with logical 'AND'. */
 export type Timestamptz_Comparison_Exp = {
   _eq?: Maybe<Scalars['timestamptz']>;
@@ -30928,6 +31237,19 @@ export type GetGlassesSubstancesQuery = (
   )> }
 );
 
+export type GetMyUserQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type GetMyUserQuery = (
+  { __typename?: 'query_root' }
+  & { management_userProfile_by_pk?: Maybe<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'active' | 'createdAt' | 'email' | 'firstname' | 'id' | 'lastname' | 'phone' | 'role' | 'username' | 'SalesPointsid' | 'CIN'>
+  )> }
+);
+
 export type GetOrdersBySalepointQueryVariables = Exact<{
   salepoint_id: Scalars['uuid'];
 }>;
@@ -30974,7 +31296,9 @@ export type GetShortProvidersQuery = (
   )> }
 );
 
-export type GeShortSalePointsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GeShortSalePointsQueryVariables = Exact<{
+  id?: Maybe<Scalars['uuid']>;
+}>;
 
 
 export type GeShortSalePointsQuery = (
@@ -32269,8 +32593,7 @@ export type InsertJobOrderMutationVariables = Exact<{
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['date']>;
+  date?: Maybe<Scalars['timestamp']>;
   products: Array<Sales_Glass_Draft_Insert_Input>;
 }>;
 
@@ -32279,7 +32602,7 @@ export type InsertJobOrderMutation = (
   { __typename?: 'mutation_root' }
   & { insert_manufacturing_job_order_one?: Maybe<(
     { __typename?: 'manufacturing_job_order' }
-    & Pick<Manufacturing_Job_Order, 'id' | 'order_ref' | 'status' | 'type' | 'date'>
+    & Pick<Manufacturing_Job_Order, 'id' | 'order_ref' | 'status' | 'date'>
   )>, update_sales_product_draft?: Maybe<(
     { __typename?: 'sales_product_draft_mutation_response' }
     & Pick<Sales_Product_Draft_Mutation_Response, 'affected_rows'>
@@ -32293,7 +32616,7 @@ export type GetAllJobsOrdersQuery = (
   { __typename?: 'query_root' }
   & { manufacturing_job_order: Array<(
     { __typename?: 'manufacturing_job_order' }
-    & Pick<Manufacturing_Job_Order, 'id' | 'date' | 'type' | 'status' | 'order_ref'>
+    & Pick<Manufacturing_Job_Order, 'id' | 'date' | 'status' | 'order_ref'>
   )> }
 );
 
@@ -33932,6 +34255,34 @@ export const GetGlassesSubstancesDocument = gql`
       super(apollo);
     }
   }
+export const GetMyUserDocument = gql`
+    query getMyUser($id: String!) {
+  management_userProfile_by_pk(id: $id) {
+    active
+    createdAt
+    email
+    firstname
+    id
+    lastname
+    phone
+    role
+    username
+    SalesPointsid
+    CIN
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetMyUserGQL extends Apollo.Query<GetMyUserQuery, GetMyUserQueryVariables> {
+    document = GetMyUserDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetOrdersBySalepointDocument = gql`
     query getOrdersBySalepoint($salepoint_id: uuid!) {
   sales_order(
@@ -34013,8 +34364,8 @@ export const GetShortProvidersDocument = gql`
     }
   }
 export const GeShortSalePointsDocument = gql`
-    query GeShortSalePoints {
-  management_salesPoint {
+    query GeShortSalePoints($id: uuid = null) {
+  management_salesPoint(where: {id: {_eq: null}}) {
     name
     id
     cash_boxes {
@@ -35847,14 +36198,13 @@ export const GetUserByIdDocument = gql`
     }
   }
 export const InsertJobOrderDocument = gql`
-    mutation InsertJobOrder($id: Int, $order_ref: String, $status: String, $type: String, $date: date, $products: [sales_glass_draft_insert_input!]!) {
+    mutation InsertJobOrder($id: Int, $order_ref: String, $status: String, $date: timestamp, $products: [sales_glass_draft_insert_input!]!) {
   insert_manufacturing_job_order_one(
-    object: {id: $id, order_ref: $order_ref, status: $status, type: $type, date: $date, glass_drafts: {data: $products}}
+    object: {id: $id, order_ref: $order_ref, status: $status, date: $date, glass_drafts: {data: $products}}
   ) {
     id
     order_ref
     status
-    type
     date
   }
   update_sales_product_draft(
@@ -35881,7 +36231,6 @@ export const GetAllJobsOrdersDocument = gql`
   manufacturing_job_order {
     id
     date
-    type
     status
     order_ref
   }
