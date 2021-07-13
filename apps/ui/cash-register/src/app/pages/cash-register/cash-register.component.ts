@@ -19,14 +19,16 @@ export class CashRegisterComponent implements OnInit {
     {
       icon: "account_balance",
       title: "Solde",
-      subtitle: "0 MAD",
+      amount: 0,
+      amountSuffix: "MAD",
+      subtitle: null,
       color: "primary",
       down: false,
       withAction:false,
     };
 
   constructor(
-    private cashBoxFacade:CashBoxFacade,
+    private cashBoxFacade: CashBoxFacade,
     private route:ActivatedRoute
   ) {
   this.salepoint_id = this.route.snapshot.paramMap.get('salepoint');
@@ -36,6 +38,7 @@ export class CashRegisterComponent implements OnInit {
   ngOnInit(): void {
     this.cashBox$.subscribe(value => {
       this.cashBox = value;
+      this.balanceCard.amount = parseFloat(value?.balance.toFixed(2));
       this.balanceCard.subtitle = value?.balance.toFixed(2) + ' MAD';
     });
     this.cashBoxFacade.loadCashBoxById(this.cashbox_id, this.salepoint_id);

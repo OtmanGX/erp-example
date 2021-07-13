@@ -24,6 +24,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 
+import {CounterModule} from 'angular-circle-counter';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+
 // Components
 import { SelectComponent } from './components/form/select.component';
 import { CheckboxComponent } from './components/form/checkbox.component';
@@ -97,7 +100,8 @@ const OTHER_MODULES = [
   CommonModule,
   ReactiveFormsModule,
   FormsModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  CounterModule
 ];
 
 const COMPONENTS = [
@@ -136,5 +140,6 @@ const OTHER_COMPONENTS = [
   imports: [...OTHER_MODULES, ...MATERIAL_MODULES, RouterModule],
   exports: [...OTHER_MODULES, ...MATERIAL_MODULES, ...COMPONENTS, ...OTHER_COMPONENTS, ...DIRECTIVES],
   entryComponents: COMPONENTS,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MaterialModule {}
