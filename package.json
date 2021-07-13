@@ -67,6 +67,7 @@
     "ag-grid-angular": "^25.1.0",
     "ag-grid-community": "^25.1.0",
     "ag-grid-enterprise": "^25.1.0",
+    "angular-circle-counter": "^1.1.0",
     "apollo-angular": "^2.1.0",
     "class-transformer": "^0.3.1",
     "class-validator-multi-lang": "^0.122.200",

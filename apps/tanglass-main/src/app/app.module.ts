@@ -12,6 +12,7 @@ import { InfrastructureGraphqlModule } from '@tanglass-erp/infrastructure/graphq
 import { AuthGuard, AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment as env } from '../environments/environment.prod';
+import {CounterModule} from 'angular-circle-counter';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
