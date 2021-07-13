@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     private routePartsService: RoutePartsService,
     // private themeService: ThemeService,
     private layout: LayoutService,
-    public auth: AuthService
+    public auth: AuthService,
   ) {
   }
 

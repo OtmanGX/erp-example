@@ -1,10 +1,11 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import * as AuthActions from './auth.actions';
+import { UserProfile } from '@tanglass-erp/core/common';
 
 export const authFeatureKey = 'auth';
 
 export interface State {
-  user: any;
+  user: UserProfile;
   error: any;
 }
 
@@ -16,23 +17,17 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(AuthActions.loginSuccess, AuthActions.browserReload, (state, action) => {
+  on(AuthActions.loadUserSuccess, (state, action) => {
     return {
       ...state,
       user: action.user,
       error: null,
     };
   }),
-  on(AuthActions.loginFailure, (state, action) => {
+  on(AuthActions.loadUserFailure, (state, action) => {
     return {
       ...state,
       error: action.error,
-    };
-  }),
-  on(AuthActions.logout, (state, action) => {
-    return {
-      ...state,
-      error: null,
     };
   })
 );

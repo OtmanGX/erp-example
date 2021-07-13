@@ -30,7 +30,7 @@ export class PopWarehouseComponent extends FormDialog {
   }
   ngOnInit(): void {
     this.store.dispatch(ShortCompanieActions.loadShortCompany())
-    this.store.dispatch(shortSalePointActions.loadShortSalePoint())
+    this.store.dispatch(shortSalePointActions.loadShortSalePoint({}))
     this.buildForm();
   }
 

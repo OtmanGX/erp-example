@@ -215,7 +215,18 @@ export class NavigationService {
       state: 'sales/invoice'
     },
 
-       // *** Manufacturing ***
+       // *** Cash Register ***
+       {
+        name: 'Caisse',
+        type: 'separator'
+      },
+      {
+        name: 'Caisse',
+        type: 'link',
+        icon: 'assignment_ind',
+        state: 'cash-register'
+      },
+    // *** Manufacturing ***
        {
         name: 'Fabrication',
         type: 'separator'

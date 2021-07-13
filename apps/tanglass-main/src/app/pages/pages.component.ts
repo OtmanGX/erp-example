@@ -18,6 +18,7 @@ import { Subscription } from "rxjs";
 import { filter } from 'rxjs/operators';
 import { ThemeService } from '../shared/services/theme.service';
 import { LayoutService } from '../shared/services/layout.service';
+import { AuthFacadeService } from '@tanglass-erp/store/app';
 
 @Component({
   selector: 'ngx-pages',
@@ -39,6 +40,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     public themeService: ThemeService,
     private layout: LayoutService,
     private cdr: ChangeDetectorRef,
+    private authFacadeService: AuthFacadeService
   ) {
 
 
@@ -51,6 +53,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.authFacadeService.loadUser();
     // this.layoutConf = this.layout.layoutConf;
     this.layoutConfSub = this.layout.layoutConf$.subscribe((layoutConf) => {
       this.layoutConf = layoutConf;

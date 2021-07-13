@@ -8,7 +8,7 @@ import {
 import { AgGridAngular } from 'ag-grid-angular';
 import { DatePipe } from '@angular/common';
 import { MatEditComponent } from '../cell-renderers/mat-edit.component';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { GridObjectRenderComponentComponent } from '../grid-object-render-component/grid-object-render-component.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ExportBottomSheetComponent } from '../export-bottom-sheet/export-bottom-sheet.component';
@@ -30,7 +30,15 @@ import { dateType } from '../../interfaces/date';
 export class MainGridComponent {
   operations = Operations;
   @ViewChild('agGrid') public agGrid: AgGridAngular;
-  @Input() rowData: Observable<any>;
+  _rowData: Observable<any> | Array<any>
+  @Input() set rowData(obj) {
+    if (obj instanceof Array)
+      this._rowData = of(obj);
+    else this._rowData = obj;
+  }
+  get rowData() {
+    return this._rowData;
+  }
   @Input() columnDefs: any;
   @Input() autoGroupColumnDef: any;
   @Input() columnId = 'id';

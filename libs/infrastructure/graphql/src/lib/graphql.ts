@@ -16,6 +16,7 @@ export type Scalars = {
   json: any;
   jsonb: any;
   numeric: any;
+  timestamp: any;
   timestamptz: any;
   uuid: any;
 };
@@ -108,6 +109,932 @@ export type String_Comparison_Exp = {
   _nlike?: Maybe<Scalars['String']>;
   _nsimilar?: Maybe<Scalars['String']>;
   _similar?: Maybe<Scalars['String']>;
+};
+
+/** columns and relationships of "cash_register.cash_box" */
+export type Cash_Register_Cash_Box = {
+  __typename?: 'cash_register_cash_box';
+  balance: Scalars['numeric'];
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  /** An array relationship */
+  expenses: Array<Cash_Register_Expenses>;
+  /** An aggregated array relationship */
+  expenses_aggregate: Cash_Register_Expenses_Aggregate;
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  /** An object relationship */
+  salepoint: Management_SalesPoint;
+  salepoint_id: Scalars['uuid'];
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+
+/** columns and relationships of "cash_register.cash_box" */
+export type Cash_Register_Cash_BoxExpensesArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expenses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expenses_Order_By>>;
+  where?: Maybe<Cash_Register_Expenses_Bool_Exp>;
+};
+
+
+/** columns and relationships of "cash_register.cash_box" */
+export type Cash_Register_Cash_BoxExpenses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expenses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expenses_Order_By>>;
+  where?: Maybe<Cash_Register_Expenses_Bool_Exp>;
+};
+
+/** aggregated selection of "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Aggregate = {
+  __typename?: 'cash_register_cash_box_aggregate';
+  aggregate?: Maybe<Cash_Register_Cash_Box_Aggregate_Fields>;
+  nodes: Array<Cash_Register_Cash_Box>;
+};
+
+/** aggregate fields of "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Aggregate_Fields = {
+  __typename?: 'cash_register_cash_box_aggregate_fields';
+  avg?: Maybe<Cash_Register_Cash_Box_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Cash_Register_Cash_Box_Max_Fields>;
+  min?: Maybe<Cash_Register_Cash_Box_Min_Fields>;
+  stddev?: Maybe<Cash_Register_Cash_Box_Stddev_Fields>;
+  stddev_pop?: Maybe<Cash_Register_Cash_Box_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Cash_Register_Cash_Box_Stddev_Samp_Fields>;
+  sum?: Maybe<Cash_Register_Cash_Box_Sum_Fields>;
+  var_pop?: Maybe<Cash_Register_Cash_Box_Var_Pop_Fields>;
+  var_samp?: Maybe<Cash_Register_Cash_Box_Var_Samp_Fields>;
+  variance?: Maybe<Cash_Register_Cash_Box_Variance_Fields>;
+};
+
+
+/** aggregate fields of "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Cash_Register_Cash_Box_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Aggregate_Order_By = {
+  avg?: Maybe<Cash_Register_Cash_Box_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Cash_Register_Cash_Box_Max_Order_By>;
+  min?: Maybe<Cash_Register_Cash_Box_Min_Order_By>;
+  stddev?: Maybe<Cash_Register_Cash_Box_Stddev_Order_By>;
+  stddev_pop?: Maybe<Cash_Register_Cash_Box_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Cash_Register_Cash_Box_Stddev_Samp_Order_By>;
+  sum?: Maybe<Cash_Register_Cash_Box_Sum_Order_By>;
+  var_pop?: Maybe<Cash_Register_Cash_Box_Var_Pop_Order_By>;
+  var_samp?: Maybe<Cash_Register_Cash_Box_Var_Samp_Order_By>;
+  variance?: Maybe<Cash_Register_Cash_Box_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Arr_Rel_Insert_Input = {
+  data: Array<Cash_Register_Cash_Box_Insert_Input>;
+  on_conflict?: Maybe<Cash_Register_Cash_Box_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Cash_Register_Cash_Box_Avg_Fields = {
+  __typename?: 'cash_register_cash_box_avg_fields';
+  balance?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Avg_Order_By = {
+  balance?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "cash_register.cash_box". All fields are combined with a logical 'AND'. */
+export type Cash_Register_Cash_Box_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Cash_Register_Cash_Box_Bool_Exp>>>;
+  _not?: Maybe<Cash_Register_Cash_Box_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Cash_Register_Cash_Box_Bool_Exp>>>;
+  balance?: Maybe<Numeric_Comparison_Exp>;
+  createdAt?: Maybe<Timestamptz_Comparison_Exp>;
+  expenses?: Maybe<Cash_Register_Expenses_Bool_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  salepoint?: Maybe<Management_SalesPoint_Bool_Exp>;
+  salepoint_id?: Maybe<Uuid_Comparison_Exp>;
+  updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "cash_register.cash_box" */
+export enum Cash_Register_Cash_Box_Constraint {
+  /** unique or primary key constraint */
+  CashBoxPkey = 'cash_box_pkey'
+}
+
+/** input type for incrementing integer column in table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Inc_Input = {
+  balance?: Maybe<Scalars['numeric']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Insert_Input = {
+  balance?: Maybe<Scalars['numeric']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  expenses?: Maybe<Cash_Register_Expenses_Arr_Rel_Insert_Input>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  salepoint?: Maybe<Management_SalesPoint_Obj_Rel_Insert_Input>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Cash_Register_Cash_Box_Max_Fields = {
+  __typename?: 'cash_register_cash_box_max_fields';
+  balance?: Maybe<Scalars['numeric']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Max_Order_By = {
+  balance?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  salepoint_id?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Cash_Register_Cash_Box_Min_Fields = {
+  __typename?: 'cash_register_cash_box_min_fields';
+  balance?: Maybe<Scalars['numeric']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Min_Order_By = {
+  balance?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  salepoint_id?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Mutation_Response = {
+  __typename?: 'cash_register_cash_box_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Cash_Register_Cash_Box>;
+};
+
+/** input type for inserting object relation for remote table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Obj_Rel_Insert_Input = {
+  data: Cash_Register_Cash_Box_Insert_Input;
+  on_conflict?: Maybe<Cash_Register_Cash_Box_On_Conflict>;
+};
+
+/** on conflict condition type for table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_On_Conflict = {
+  constraint: Cash_Register_Cash_Box_Constraint;
+  update_columns: Array<Cash_Register_Cash_Box_Update_Column>;
+  where?: Maybe<Cash_Register_Cash_Box_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Order_By = {
+  balance?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  expenses_aggregate?: Maybe<Cash_Register_Expenses_Aggregate_Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  salepoint?: Maybe<Management_SalesPoint_Order_By>;
+  salepoint_id?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "cash_register.cash_box" */
+export enum Cash_Register_Cash_Box_Select_Column {
+  /** column name */
+  Balance = 'balance',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  SalepointId = 'salepoint_id',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+/** input type for updating data in table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Set_Input = {
+  balance?: Maybe<Scalars['numeric']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  salepoint_id?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Cash_Register_Cash_Box_Stddev_Fields = {
+  __typename?: 'cash_register_cash_box_stddev_fields';
+  balance?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Stddev_Order_By = {
+  balance?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Cash_Register_Cash_Box_Stddev_Pop_Fields = {
+  __typename?: 'cash_register_cash_box_stddev_pop_fields';
+  balance?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Stddev_Pop_Order_By = {
+  balance?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Cash_Register_Cash_Box_Stddev_Samp_Fields = {
+  __typename?: 'cash_register_cash_box_stddev_samp_fields';
+  balance?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Stddev_Samp_Order_By = {
+  balance?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Cash_Register_Cash_Box_Sum_Fields = {
+  __typename?: 'cash_register_cash_box_sum_fields';
+  balance?: Maybe<Scalars['numeric']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Sum_Order_By = {
+  balance?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** update columns of table "cash_register.cash_box" */
+export enum Cash_Register_Cash_Box_Update_Column {
+  /** column name */
+  Balance = 'balance',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  SalepointId = 'salepoint_id',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+/** aggregate var_pop on columns */
+export type Cash_Register_Cash_Box_Var_Pop_Fields = {
+  __typename?: 'cash_register_cash_box_var_pop_fields';
+  balance?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Var_Pop_Order_By = {
+  balance?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Cash_Register_Cash_Box_Var_Samp_Fields = {
+  __typename?: 'cash_register_cash_box_var_samp_fields';
+  balance?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Var_Samp_Order_By = {
+  balance?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Cash_Register_Cash_Box_Variance_Fields = {
+  __typename?: 'cash_register_cash_box_variance_fields';
+  balance?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Variance_Order_By = {
+  balance?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "cash_register.expense_category" */
+export type Cash_Register_Expense_Category = {
+  __typename?: 'cash_register_expense_category';
+  key: Scalars['String'];
+  value: Scalars['String'];
+};
+
+/** aggregated selection of "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Aggregate = {
+  __typename?: 'cash_register_expense_category_aggregate';
+  aggregate?: Maybe<Cash_Register_Expense_Category_Aggregate_Fields>;
+  nodes: Array<Cash_Register_Expense_Category>;
+};
+
+/** aggregate fields of "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Aggregate_Fields = {
+  __typename?: 'cash_register_expense_category_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Cash_Register_Expense_Category_Max_Fields>;
+  min?: Maybe<Cash_Register_Expense_Category_Min_Fields>;
+};
+
+
+/** aggregate fields of "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Cash_Register_Expense_Category_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Cash_Register_Expense_Category_Max_Order_By>;
+  min?: Maybe<Cash_Register_Expense_Category_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Arr_Rel_Insert_Input = {
+  data: Array<Cash_Register_Expense_Category_Insert_Input>;
+  on_conflict?: Maybe<Cash_Register_Expense_Category_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "cash_register.expense_category". All fields are combined with a logical 'AND'. */
+export type Cash_Register_Expense_Category_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Cash_Register_Expense_Category_Bool_Exp>>>;
+  _not?: Maybe<Cash_Register_Expense_Category_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Cash_Register_Expense_Category_Bool_Exp>>>;
+  key?: Maybe<String_Comparison_Exp>;
+  value?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "cash_register.expense_category" */
+export enum Cash_Register_Expense_Category_Constraint {
+  /** unique or primary key constraint */
+  ExpenseCategoryPkey = 'expense_category_pkey',
+  /** unique or primary key constraint */
+  ExpenseCategoryValueKey = 'expense_category_value_key'
+}
+
+/** input type for inserting data into table "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Insert_Input = {
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Cash_Register_Expense_Category_Max_Fields = {
+  __typename?: 'cash_register_expense_category_max_fields';
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Max_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Cash_Register_Expense_Category_Min_Fields = {
+  __typename?: 'cash_register_expense_category_min_fields';
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Min_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Mutation_Response = {
+  __typename?: 'cash_register_expense_category_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Cash_Register_Expense_Category>;
+};
+
+/** input type for inserting object relation for remote table "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Obj_Rel_Insert_Input = {
+  data: Cash_Register_Expense_Category_Insert_Input;
+  on_conflict?: Maybe<Cash_Register_Expense_Category_On_Conflict>;
+};
+
+/** on conflict condition type for table "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_On_Conflict = {
+  constraint: Cash_Register_Expense_Category_Constraint;
+  update_columns: Array<Cash_Register_Expense_Category_Update_Column>;
+  where?: Maybe<Cash_Register_Expense_Category_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Pk_Columns_Input = {
+  key: Scalars['String'];
+};
+
+/** select columns of table "cash_register.expense_category" */
+export enum Cash_Register_Expense_Category_Select_Column {
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Set_Input = {
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "cash_register.expense_category" */
+export enum Cash_Register_Expense_Category_Update_Column {
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
+
+/** columns and relationships of "cash_register.expenses" */
+export type Cash_Register_Expenses = {
+  __typename?: 'cash_register_expenses';
+  amountSpent: Scalars['numeric'];
+  cash_box_id: Scalars['Int'];
+  category: Scalars['String'];
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  date?: Maybe<Scalars['timestamptz']>;
+  /** An object relationship */
+  employee?: Maybe<Management_UserProfile>;
+  employee_id?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  note?: Maybe<Scalars['String']>;
+  repeated: Scalars['Int'];
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregated selection of "cash_register.expenses" */
+export type Cash_Register_Expenses_Aggregate = {
+  __typename?: 'cash_register_expenses_aggregate';
+  aggregate?: Maybe<Cash_Register_Expenses_Aggregate_Fields>;
+  nodes: Array<Cash_Register_Expenses>;
+};
+
+/** aggregate fields of "cash_register.expenses" */
+export type Cash_Register_Expenses_Aggregate_Fields = {
+  __typename?: 'cash_register_expenses_aggregate_fields';
+  avg?: Maybe<Cash_Register_Expenses_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Cash_Register_Expenses_Max_Fields>;
+  min?: Maybe<Cash_Register_Expenses_Min_Fields>;
+  stddev?: Maybe<Cash_Register_Expenses_Stddev_Fields>;
+  stddev_pop?: Maybe<Cash_Register_Expenses_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Cash_Register_Expenses_Stddev_Samp_Fields>;
+  sum?: Maybe<Cash_Register_Expenses_Sum_Fields>;
+  var_pop?: Maybe<Cash_Register_Expenses_Var_Pop_Fields>;
+  var_samp?: Maybe<Cash_Register_Expenses_Var_Samp_Fields>;
+  variance?: Maybe<Cash_Register_Expenses_Variance_Fields>;
+};
+
+
+/** aggregate fields of "cash_register.expenses" */
+export type Cash_Register_Expenses_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Cash_Register_Expenses_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Aggregate_Order_By = {
+  avg?: Maybe<Cash_Register_Expenses_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Cash_Register_Expenses_Max_Order_By>;
+  min?: Maybe<Cash_Register_Expenses_Min_Order_By>;
+  stddev?: Maybe<Cash_Register_Expenses_Stddev_Order_By>;
+  stddev_pop?: Maybe<Cash_Register_Expenses_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Cash_Register_Expenses_Stddev_Samp_Order_By>;
+  sum?: Maybe<Cash_Register_Expenses_Sum_Order_By>;
+  var_pop?: Maybe<Cash_Register_Expenses_Var_Pop_Order_By>;
+  var_samp?: Maybe<Cash_Register_Expenses_Var_Samp_Order_By>;
+  variance?: Maybe<Cash_Register_Expenses_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "cash_register.expenses" */
+export type Cash_Register_Expenses_Arr_Rel_Insert_Input = {
+  data: Array<Cash_Register_Expenses_Insert_Input>;
+  on_conflict?: Maybe<Cash_Register_Expenses_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Cash_Register_Expenses_Avg_Fields = {
+  __typename?: 'cash_register_expenses_avg_fields';
+  amountSpent?: Maybe<Scalars['Float']>;
+  cash_box_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  repeated?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Avg_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "cash_register.expenses". All fields are combined with a logical 'AND'. */
+export type Cash_Register_Expenses_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Cash_Register_Expenses_Bool_Exp>>>;
+  _not?: Maybe<Cash_Register_Expenses_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Cash_Register_Expenses_Bool_Exp>>>;
+  amountSpent?: Maybe<Numeric_Comparison_Exp>;
+  cash_box_id?: Maybe<Int_Comparison_Exp>;
+  category?: Maybe<String_Comparison_Exp>;
+  createdAt?: Maybe<Timestamptz_Comparison_Exp>;
+  date?: Maybe<Timestamptz_Comparison_Exp>;
+  employee?: Maybe<Management_UserProfile_Bool_Exp>;
+  employee_id?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  repeated?: Maybe<Int_Comparison_Exp>;
+  updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "cash_register.expenses" */
+export enum Cash_Register_Expenses_Constraint {
+  /** unique or primary key constraint */
+  ExpensesPkey = 'expenses_pkey'
+}
+
+/** input type for incrementing integer column in table "cash_register.expenses" */
+export type Cash_Register_Expenses_Inc_Input = {
+  amountSpent?: Maybe<Scalars['numeric']>;
+  cash_box_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  repeated?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "cash_register.expenses" */
+export type Cash_Register_Expenses_Insert_Input = {
+  amountSpent?: Maybe<Scalars['numeric']>;
+  cash_box_id?: Maybe<Scalars['Int']>;
+  category?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  date?: Maybe<Scalars['timestamptz']>;
+  employee?: Maybe<Management_UserProfile_Obj_Rel_Insert_Input>;
+  employee_id?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  repeated?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Cash_Register_Expenses_Max_Fields = {
+  __typename?: 'cash_register_expenses_max_fields';
+  amountSpent?: Maybe<Scalars['numeric']>;
+  cash_box_id?: Maybe<Scalars['Int']>;
+  category?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  date?: Maybe<Scalars['timestamptz']>;
+  employee_id?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  repeated?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Max_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  category?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  date?: Maybe<Order_By>;
+  employee_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Cash_Register_Expenses_Min_Fields = {
+  __typename?: 'cash_register_expenses_min_fields';
+  amountSpent?: Maybe<Scalars['numeric']>;
+  cash_box_id?: Maybe<Scalars['Int']>;
+  category?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  date?: Maybe<Scalars['timestamptz']>;
+  employee_id?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  repeated?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Min_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  category?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  date?: Maybe<Order_By>;
+  employee_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "cash_register.expenses" */
+export type Cash_Register_Expenses_Mutation_Response = {
+  __typename?: 'cash_register_expenses_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Cash_Register_Expenses>;
+};
+
+/** input type for inserting object relation for remote table "cash_register.expenses" */
+export type Cash_Register_Expenses_Obj_Rel_Insert_Input = {
+  data: Cash_Register_Expenses_Insert_Input;
+  on_conflict?: Maybe<Cash_Register_Expenses_On_Conflict>;
+};
+
+/** on conflict condition type for table "cash_register.expenses" */
+export type Cash_Register_Expenses_On_Conflict = {
+  constraint: Cash_Register_Expenses_Constraint;
+  update_columns: Array<Cash_Register_Expenses_Update_Column>;
+  where?: Maybe<Cash_Register_Expenses_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "cash_register.expenses" */
+export type Cash_Register_Expenses_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  category?: Maybe<Order_By>;
+  createdAt?: Maybe<Order_By>;
+  date?: Maybe<Order_By>;
+  employee?: Maybe<Management_UserProfile_Order_By>;
+  employee_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
+  updatedAt?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "cash_register.expenses" */
+export type Cash_Register_Expenses_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "cash_register.expenses" */
+export enum Cash_Register_Expenses_Select_Column {
+  /** column name */
+  AmountSpent = 'amountSpent',
+  /** column name */
+  CashBoxId = 'cash_box_id',
+  /** column name */
+  Category = 'category',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Date = 'date',
+  /** column name */
+  EmployeeId = 'employee_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Repeated = 'repeated',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+/** input type for updating data in table "cash_register.expenses" */
+export type Cash_Register_Expenses_Set_Input = {
+  amountSpent?: Maybe<Scalars['numeric']>;
+  cash_box_id?: Maybe<Scalars['Int']>;
+  category?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  date?: Maybe<Scalars['timestamptz']>;
+  employee_id?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  repeated?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Cash_Register_Expenses_Stddev_Fields = {
+  __typename?: 'cash_register_expenses_stddev_fields';
+  amountSpent?: Maybe<Scalars['Float']>;
+  cash_box_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  repeated?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Stddev_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Cash_Register_Expenses_Stddev_Pop_Fields = {
+  __typename?: 'cash_register_expenses_stddev_pop_fields';
+  amountSpent?: Maybe<Scalars['Float']>;
+  cash_box_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  repeated?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Stddev_Pop_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Cash_Register_Expenses_Stddev_Samp_Fields = {
+  __typename?: 'cash_register_expenses_stddev_samp_fields';
+  amountSpent?: Maybe<Scalars['Float']>;
+  cash_box_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  repeated?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Stddev_Samp_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Cash_Register_Expenses_Sum_Fields = {
+  __typename?: 'cash_register_expenses_sum_fields';
+  amountSpent?: Maybe<Scalars['numeric']>;
+  cash_box_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  repeated?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Sum_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
+};
+
+/** update columns of table "cash_register.expenses" */
+export enum Cash_Register_Expenses_Update_Column {
+  /** column name */
+  AmountSpent = 'amountSpent',
+  /** column name */
+  CashBoxId = 'cash_box_id',
+  /** column name */
+  Category = 'category',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Date = 'date',
+  /** column name */
+  EmployeeId = 'employee_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  Repeated = 'repeated',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+/** aggregate var_pop on columns */
+export type Cash_Register_Expenses_Var_Pop_Fields = {
+  __typename?: 'cash_register_expenses_var_pop_fields';
+  amountSpent?: Maybe<Scalars['Float']>;
+  cash_box_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  repeated?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Var_Pop_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Cash_Register_Expenses_Var_Samp_Fields = {
+  __typename?: 'cash_register_expenses_var_samp_fields';
+  amountSpent?: Maybe<Scalars['Float']>;
+  cash_box_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  repeated?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Var_Samp_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Cash_Register_Expenses_Variance_Fields = {
+  __typename?: 'cash_register_expenses_variance_fields';
+  amountSpent?: Maybe<Scalars['Float']>;
+  cash_box_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  repeated?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "cash_register.expenses" */
+export type Cash_Register_Expenses_Variance_Order_By = {
+  amountSpent?: Maybe<Order_By>;
+  cash_box_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  repeated?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "contact.address" */
@@ -4221,6 +5148,10 @@ export enum Management_Company_Update_Column {
 export type Management_SalesPoint = {
   __typename?: 'management_salesPoint';
   address: Scalars['String'];
+  /** An array relationship */
+  cash_boxes: Array<Cash_Register_Cash_Box>;
+  /** An aggregated array relationship */
+  cash_boxes_aggregate: Cash_Register_Cash_Box_Aggregate;
   createdAt?: Maybe<Scalars['timestamptz']>;
   createdBy?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
@@ -4246,6 +5177,26 @@ export type Management_SalesPoint = {
   warehouses: Array<Stock_Warehouse>;
   /** An aggregated array relationship */
   warehouses_aggregate: Stock_Warehouse_Aggregate;
+};
+
+
+/** columns and relationships of "management.salesPoint" */
+export type Management_SalesPointCash_BoxesArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Cash_Box_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Cash_Box_Order_By>>;
+  where?: Maybe<Cash_Register_Cash_Box_Bool_Exp>;
+};
+
+
+/** columns and relationships of "management.salesPoint" */
+export type Management_SalesPointCash_Boxes_AggregateArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Cash_Box_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Cash_Box_Order_By>>;
+  where?: Maybe<Cash_Register_Cash_Box_Bool_Exp>;
 };
 
 
@@ -4369,6 +5320,7 @@ export type Management_SalesPoint_Bool_Exp = {
   _not?: Maybe<Management_SalesPoint_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Management_SalesPoint_Bool_Exp>>>;
   address?: Maybe<String_Comparison_Exp>;
+  cash_boxes?: Maybe<Cash_Register_Cash_Box_Bool_Exp>;
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
   createdBy?: Maybe<Uuid_Comparison_Exp>;
   email?: Maybe<String_Comparison_Exp>;
@@ -4397,6 +5349,7 @@ export enum Management_SalesPoint_Constraint {
 /** input type for inserting data into table "management.salesPoint" */
 export type Management_SalesPoint_Insert_Input = {
   address?: Maybe<Scalars['String']>;
+  cash_boxes?: Maybe<Cash_Register_Cash_Box_Arr_Rel_Insert_Input>;
   createdAt?: Maybe<Scalars['timestamptz']>;
   createdBy?: Maybe<Scalars['uuid']>;
   email?: Maybe<Scalars['String']>;
@@ -4495,6 +5448,7 @@ export type Management_SalesPoint_On_Conflict = {
 /** ordering options when selecting data from "management.salesPoint" */
 export type Management_SalesPoint_Order_By = {
   address?: Maybe<Order_By>;
+  cash_boxes_aggregate?: Maybe<Cash_Register_Cash_Box_Aggregate_Order_By>;
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   email?: Maybe<Order_By>;
@@ -5111,16 +6065,18 @@ export enum Management_User_Role_Update_Column {
 /** columns and relationships of "manufacturing.job_order" */
 export type Manufacturing_Job_Order = {
   __typename?: 'manufacturing_job_order';
-  date: Scalars['date'];
+  date: Scalars['timestamp'];
   /** An array relationship */
   glass_drafts: Array<Sales_Glass_Draft>;
   /** An aggregated array relationship */
   glass_drafts_aggregate: Sales_Glass_Draft_Aggregate;
   id: Scalars['Int'];
+  isReparing: Scalars['Boolean'];
+  /** An object relationship */
+  job_status: Manufacturing_Job_Status;
   order_ref: Scalars['String'];
-  ref: Scalars['String'];
+  ref?: Maybe<Scalars['String']>;
   status: Scalars['String'];
-  type: Scalars['String'];
 };
 
 
@@ -5210,17 +6166,20 @@ export type Manufacturing_Job_Order_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Manufacturing_Job_Order_Bool_Exp>>>;
   _not?: Maybe<Manufacturing_Job_Order_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Manufacturing_Job_Order_Bool_Exp>>>;
-  date?: Maybe<Date_Comparison_Exp>;
+  date?: Maybe<Timestamp_Comparison_Exp>;
   glass_drafts?: Maybe<Sales_Glass_Draft_Bool_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
+  isReparing?: Maybe<Boolean_Comparison_Exp>;
+  job_status?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
   order_ref?: Maybe<String_Comparison_Exp>;
   ref?: Maybe<String_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
-  type?: Maybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "manufacturing.job_order" */
 export enum Manufacturing_Job_Order_Constraint {
+  /** unique or primary key constraint */
+  JobOrderIdKey = 'job_order_id_key',
   /** unique or primary key constraint */
   JobOrderPkey = 'job_order_pkey'
 }
@@ -5232,24 +6191,24 @@ export type Manufacturing_Job_Order_Inc_Input = {
 
 /** input type for inserting data into table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Insert_Input = {
-  date?: Maybe<Scalars['date']>;
+  date?: Maybe<Scalars['timestamp']>;
   glass_drafts?: Maybe<Sales_Glass_Draft_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['Int']>;
+  isReparing?: Maybe<Scalars['Boolean']>;
+  job_status?: Maybe<Manufacturing_Job_Status_Obj_Rel_Insert_Input>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type Manufacturing_Job_Order_Max_Fields = {
   __typename?: 'manufacturing_job_order_max_fields';
-  date?: Maybe<Scalars['date']>;
+  date?: Maybe<Scalars['timestamp']>;
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "manufacturing.job_order" */
@@ -5259,18 +6218,16 @@ export type Manufacturing_Job_Order_Max_Order_By = {
   order_ref?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Manufacturing_Job_Order_Min_Fields = {
   __typename?: 'manufacturing_job_order_min_fields';
-  date?: Maybe<Scalars['date']>;
+  date?: Maybe<Scalars['timestamp']>;
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "manufacturing.job_order" */
@@ -5280,7 +6237,6 @@ export type Manufacturing_Job_Order_Min_Order_By = {
   order_ref?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "manufacturing.job_order" */
@@ -5310,10 +6266,11 @@ export type Manufacturing_Job_Order_Order_By = {
   date?: Maybe<Order_By>;
   glass_drafts_aggregate?: Maybe<Sales_Glass_Draft_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
+  isReparing?: Maybe<Order_By>;
+  job_status?: Maybe<Manufacturing_Job_Status_Order_By>;
   order_ref?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "manufacturing.job_order" */
@@ -5328,23 +6285,23 @@ export enum Manufacturing_Job_Order_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  IsReparing = 'isReparing',
+  /** column name */
   OrderRef = 'order_ref',
   /** column name */
   Ref = 'ref',
   /** column name */
-  Status = 'status',
-  /** column name */
-  Type = 'type'
+  Status = 'status'
 }
 
 /** input type for updating data in table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Set_Input = {
-  date?: Maybe<Scalars['date']>;
+  date?: Maybe<Scalars['timestamp']>;
   id?: Maybe<Scalars['Int']>;
+  isReparing?: Maybe<Scalars['Boolean']>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
@@ -5398,13 +6355,13 @@ export enum Manufacturing_Job_Order_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  IsReparing = 'isReparing',
+  /** column name */
   OrderRef = 'order_ref',
   /** column name */
   Ref = 'ref',
   /** column name */
-  Status = 'status',
-  /** column name */
-  Type = 'type'
+  Status = 'status'
 }
 
 /** aggregate var_pop on columns */
@@ -5439,6 +6396,181 @@ export type Manufacturing_Job_Order_Variance_Fields = {
 export type Manufacturing_Job_Order_Variance_Order_By = {
   id?: Maybe<Order_By>;
 };
+
+/** columns and relationships of "manufacturing.job_status" */
+export type Manufacturing_Job_Status = {
+  __typename?: 'manufacturing_job_status';
+  /** An array relationship */
+  job_orders: Array<Manufacturing_Job_Order>;
+  /** An aggregated array relationship */
+  job_orders_aggregate: Manufacturing_Job_Order_Aggregate;
+  key: Scalars['String'];
+  value: Scalars['String'];
+};
+
+
+/** columns and relationships of "manufacturing.job_status" */
+export type Manufacturing_Job_StatusJob_OrdersArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Order_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Order_Bool_Exp>;
+};
+
+
+/** columns and relationships of "manufacturing.job_status" */
+export type Manufacturing_Job_StatusJob_Orders_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Order_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Order_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Order_Bool_Exp>;
+};
+
+/** aggregated selection of "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Aggregate = {
+  __typename?: 'manufacturing_job_status_aggregate';
+  aggregate?: Maybe<Manufacturing_Job_Status_Aggregate_Fields>;
+  nodes: Array<Manufacturing_Job_Status>;
+};
+
+/** aggregate fields of "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Aggregate_Fields = {
+  __typename?: 'manufacturing_job_status_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Manufacturing_Job_Status_Max_Fields>;
+  min?: Maybe<Manufacturing_Job_Status_Min_Fields>;
+};
+
+
+/** aggregate fields of "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Manufacturing_Job_Status_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Manufacturing_Job_Status_Max_Order_By>;
+  min?: Maybe<Manufacturing_Job_Status_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Arr_Rel_Insert_Input = {
+  data: Array<Manufacturing_Job_Status_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Job_Status_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "manufacturing.job_status". All fields are combined with a logical 'AND'. */
+export type Manufacturing_Job_Status_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Manufacturing_Job_Status_Bool_Exp>>>;
+  _not?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Manufacturing_Job_Status_Bool_Exp>>>;
+  job_orders?: Maybe<Manufacturing_Job_Order_Bool_Exp>;
+  key?: Maybe<String_Comparison_Exp>;
+  value?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "manufacturing.job_status" */
+export enum Manufacturing_Job_Status_Constraint {
+  /** unique or primary key constraint */
+  JobStatusKeyKey = 'job_status_key_key',
+  /** unique or primary key constraint */
+  JobStatusPkey = 'job_status_pkey',
+  /** unique or primary key constraint */
+  JobStatusValueKey = 'job_status_value_key'
+}
+
+/** input type for inserting data into table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Insert_Input = {
+  job_orders?: Maybe<Manufacturing_Job_Order_Arr_Rel_Insert_Input>;
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Manufacturing_Job_Status_Max_Fields = {
+  __typename?: 'manufacturing_job_status_max_fields';
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Max_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Manufacturing_Job_Status_Min_Fields = {
+  __typename?: 'manufacturing_job_status_min_fields';
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Min_Order_By = {
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Mutation_Response = {
+  __typename?: 'manufacturing_job_status_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Manufacturing_Job_Status>;
+};
+
+/** input type for inserting object relation for remote table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Obj_Rel_Insert_Input = {
+  data: Manufacturing_Job_Status_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Job_Status_On_Conflict>;
+};
+
+/** on conflict condition type for table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_On_Conflict = {
+  constraint: Manufacturing_Job_Status_Constraint;
+  update_columns: Array<Manufacturing_Job_Status_Update_Column>;
+  where?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Order_By = {
+  job_orders_aggregate?: Maybe<Manufacturing_Job_Order_Aggregate_Order_By>;
+  key?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Pk_Columns_Input = {
+  key: Scalars['String'];
+};
+
+/** select columns of table "manufacturing.job_status" */
+export enum Manufacturing_Job_Status_Select_Column {
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "manufacturing.job_status" */
+export type Manufacturing_Job_Status_Set_Input = {
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "manufacturing.job_status" */
+export enum Manufacturing_Job_Status_Update_Column {
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
 
 /** columns and relationships of "manufacturing.manufacturing_line" */
 export type Manufacturing_Manufacturing_Line = {
@@ -5700,6 +6832,18 @@ export type Mutation_Root = {
   SignUp?: Maybe<SignUpOutput>;
   /** perform the action: "createTransferItem" */
   createTransferItem?: Maybe<InsertItemTranfserOutput>;
+  /** delete data from the table: "cash_register.cash_box" */
+  delete_cash_register_cash_box?: Maybe<Cash_Register_Cash_Box_Mutation_Response>;
+  /** delete single row from the table: "cash_register.cash_box" */
+  delete_cash_register_cash_box_by_pk?: Maybe<Cash_Register_Cash_Box>;
+  /** delete data from the table: "cash_register.expense_category" */
+  delete_cash_register_expense_category?: Maybe<Cash_Register_Expense_Category_Mutation_Response>;
+  /** delete single row from the table: "cash_register.expense_category" */
+  delete_cash_register_expense_category_by_pk?: Maybe<Cash_Register_Expense_Category>;
+  /** delete data from the table: "cash_register.expenses" */
+  delete_cash_register_expenses?: Maybe<Cash_Register_Expenses_Mutation_Response>;
+  /** delete single row from the table: "cash_register.expenses" */
+  delete_cash_register_expenses_by_pk?: Maybe<Cash_Register_Expenses>;
   /** delete data from the table: "contact.address" */
   delete_contact_address?: Maybe<Contact_Address_Mutation_Response>;
   /** delete single row from the table: "contact.address" */
@@ -5756,6 +6900,10 @@ export type Mutation_Root = {
   delete_manufacturing_job_order?: Maybe<Manufacturing_Job_Order_Mutation_Response>;
   /** delete single row from the table: "manufacturing.job_order" */
   delete_manufacturing_job_order_by_pk?: Maybe<Manufacturing_Job_Order>;
+  /** delete data from the table: "manufacturing.job_status" */
+  delete_manufacturing_job_status?: Maybe<Manufacturing_Job_Status_Mutation_Response>;
+  /** delete single row from the table: "manufacturing.job_status" */
+  delete_manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
   /** delete data from the table: "manufacturing.manufacturing_line" */
   delete_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** delete single row from the table: "manufacturing.manufacturing_line" */
@@ -5954,6 +7102,18 @@ export type Mutation_Root = {
   delete_stock_warehouse_substance?: Maybe<Stock_Warehouse_Substance_Mutation_Response>;
   /** delete single row from the table: "stock.warehouse_substance" */
   delete_stock_warehouse_substance_by_pk?: Maybe<Stock_Warehouse_Substance>;
+  /** insert data into the table: "cash_register.cash_box" */
+  insert_cash_register_cash_box?: Maybe<Cash_Register_Cash_Box_Mutation_Response>;
+  /** insert a single row into the table: "cash_register.cash_box" */
+  insert_cash_register_cash_box_one?: Maybe<Cash_Register_Cash_Box>;
+  /** insert data into the table: "cash_register.expense_category" */
+  insert_cash_register_expense_category?: Maybe<Cash_Register_Expense_Category_Mutation_Response>;
+  /** insert a single row into the table: "cash_register.expense_category" */
+  insert_cash_register_expense_category_one?: Maybe<Cash_Register_Expense_Category>;
+  /** insert data into the table: "cash_register.expenses" */
+  insert_cash_register_expenses?: Maybe<Cash_Register_Expenses_Mutation_Response>;
+  /** insert a single row into the table: "cash_register.expenses" */
+  insert_cash_register_expenses_one?: Maybe<Cash_Register_Expenses>;
   /** insert data into the table: "contact.address" */
   insert_contact_address?: Maybe<Contact_Address_Mutation_Response>;
   /** insert a single row into the table: "contact.address" */
@@ -6010,6 +7170,10 @@ export type Mutation_Root = {
   insert_manufacturing_job_order?: Maybe<Manufacturing_Job_Order_Mutation_Response>;
   /** insert a single row into the table: "manufacturing.job_order" */
   insert_manufacturing_job_order_one?: Maybe<Manufacturing_Job_Order>;
+  /** insert data into the table: "manufacturing.job_status" */
+  insert_manufacturing_job_status?: Maybe<Manufacturing_Job_Status_Mutation_Response>;
+  /** insert a single row into the table: "manufacturing.job_status" */
+  insert_manufacturing_job_status_one?: Maybe<Manufacturing_Job_Status>;
   /** insert data into the table: "manufacturing.manufacturing_line" */
   insert_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** insert a single row into the table: "manufacturing.manufacturing_line" */
@@ -6212,6 +7376,18 @@ export type Mutation_Root = {
   insert_stock_warehouse_substance_one?: Maybe<Stock_Warehouse_Substance>;
   /** perform the action: "login" */
   login?: Maybe<LoginOutput>;
+  /** update data of the table: "cash_register.cash_box" */
+  update_cash_register_cash_box?: Maybe<Cash_Register_Cash_Box_Mutation_Response>;
+  /** update single row of the table: "cash_register.cash_box" */
+  update_cash_register_cash_box_by_pk?: Maybe<Cash_Register_Cash_Box>;
+  /** update data of the table: "cash_register.expense_category" */
+  update_cash_register_expense_category?: Maybe<Cash_Register_Expense_Category_Mutation_Response>;
+  /** update single row of the table: "cash_register.expense_category" */
+  update_cash_register_expense_category_by_pk?: Maybe<Cash_Register_Expense_Category>;
+  /** update data of the table: "cash_register.expenses" */
+  update_cash_register_expenses?: Maybe<Cash_Register_Expenses_Mutation_Response>;
+  /** update single row of the table: "cash_register.expenses" */
+  update_cash_register_expenses_by_pk?: Maybe<Cash_Register_Expenses>;
   /** update data of the table: "contact.address" */
   update_contact_address?: Maybe<Contact_Address_Mutation_Response>;
   /** update single row of the table: "contact.address" */
@@ -6268,6 +7444,10 @@ export type Mutation_Root = {
   update_manufacturing_job_order?: Maybe<Manufacturing_Job_Order_Mutation_Response>;
   /** update single row of the table: "manufacturing.job_order" */
   update_manufacturing_job_order_by_pk?: Maybe<Manufacturing_Job_Order>;
+  /** update data of the table: "manufacturing.job_status" */
+  update_manufacturing_job_status?: Maybe<Manufacturing_Job_Status_Mutation_Response>;
+  /** update single row of the table: "manufacturing.job_status" */
+  update_manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
   /** update data of the table: "manufacturing.manufacturing_line" */
   update_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** update single row of the table: "manufacturing.manufacturing_line" */
@@ -6496,6 +7676,42 @@ export type Mutation_RootCreateTransferItemArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Cash_Register_Cash_BoxArgs = {
+  where: Cash_Register_Cash_Box_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Cash_Register_Cash_Box_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Cash_Register_Expense_CategoryArgs = {
+  where: Cash_Register_Expense_Category_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Cash_Register_Expense_Category_By_PkArgs = {
+  key: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Cash_Register_ExpensesArgs = {
+  where: Cash_Register_Expenses_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Cash_Register_Expenses_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Contact_AddressArgs = {
   where: Contact_Address_Bool_Exp;
 };
@@ -6665,6 +7881,18 @@ export type Mutation_RootDelete_Manufacturing_Job_OrderArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Manufacturing_Job_Order_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Job_StatusArgs = {
+  where: Manufacturing_Job_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Job_Status_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 
@@ -7268,6 +8496,48 @@ export type Mutation_RootDelete_Stock_Warehouse_Substance_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Cash_Register_Cash_BoxArgs = {
+  objects: Array<Cash_Register_Cash_Box_Insert_Input>;
+  on_conflict?: Maybe<Cash_Register_Cash_Box_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Cash_Register_Cash_Box_OneArgs = {
+  object: Cash_Register_Cash_Box_Insert_Input;
+  on_conflict?: Maybe<Cash_Register_Cash_Box_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Cash_Register_Expense_CategoryArgs = {
+  objects: Array<Cash_Register_Expense_Category_Insert_Input>;
+  on_conflict?: Maybe<Cash_Register_Expense_Category_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Cash_Register_Expense_Category_OneArgs = {
+  object: Cash_Register_Expense_Category_Insert_Input;
+  on_conflict?: Maybe<Cash_Register_Expense_Category_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Cash_Register_ExpensesArgs = {
+  objects: Array<Cash_Register_Expenses_Insert_Input>;
+  on_conflict?: Maybe<Cash_Register_Expenses_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Cash_Register_Expenses_OneArgs = {
+  object: Cash_Register_Expenses_Insert_Input;
+  on_conflict?: Maybe<Cash_Register_Expenses_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Contact_AddressArgs = {
   objects: Array<Contact_Address_Insert_Input>;
   on_conflict?: Maybe<Contact_Address_On_Conflict>;
@@ -7460,6 +8730,20 @@ export type Mutation_RootInsert_Manufacturing_Job_OrderArgs = {
 export type Mutation_RootInsert_Manufacturing_Job_Order_OneArgs = {
   object: Manufacturing_Job_Order_Insert_Input;
   on_conflict?: Maybe<Manufacturing_Job_Order_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Job_StatusArgs = {
+  objects: Array<Manufacturing_Job_Status_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Job_Status_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Job_Status_OneArgs = {
+  object: Manufacturing_Job_Status_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Job_Status_On_Conflict>;
 };
 
 
@@ -8170,6 +9454,52 @@ export type Mutation_RootLoginArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Cash_Register_Cash_BoxArgs = {
+  _inc?: Maybe<Cash_Register_Cash_Box_Inc_Input>;
+  _set?: Maybe<Cash_Register_Cash_Box_Set_Input>;
+  where: Cash_Register_Cash_Box_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Cash_Register_Cash_Box_By_PkArgs = {
+  _inc?: Maybe<Cash_Register_Cash_Box_Inc_Input>;
+  _set?: Maybe<Cash_Register_Cash_Box_Set_Input>;
+  pk_columns: Cash_Register_Cash_Box_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Cash_Register_Expense_CategoryArgs = {
+  _set?: Maybe<Cash_Register_Expense_Category_Set_Input>;
+  where: Cash_Register_Expense_Category_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Cash_Register_Expense_Category_By_PkArgs = {
+  _set?: Maybe<Cash_Register_Expense_Category_Set_Input>;
+  pk_columns: Cash_Register_Expense_Category_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Cash_Register_ExpensesArgs = {
+  _inc?: Maybe<Cash_Register_Expenses_Inc_Input>;
+  _set?: Maybe<Cash_Register_Expenses_Set_Input>;
+  where: Cash_Register_Expenses_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Cash_Register_Expenses_By_PkArgs = {
+  _inc?: Maybe<Cash_Register_Expenses_Inc_Input>;
+  _set?: Maybe<Cash_Register_Expenses_Set_Input>;
+  pk_columns: Cash_Register_Expenses_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Contact_AddressArgs = {
   _set?: Maybe<Contact_Address_Set_Input>;
   where: Contact_Address_Bool_Exp;
@@ -8364,6 +9694,20 @@ export type Mutation_RootUpdate_Manufacturing_Job_Order_By_PkArgs = {
   _inc?: Maybe<Manufacturing_Job_Order_Inc_Input>;
   _set?: Maybe<Manufacturing_Job_Order_Set_Input>;
   pk_columns: Manufacturing_Job_Order_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Job_StatusArgs = {
+  _set?: Maybe<Manufacturing_Job_Status_Set_Input>;
+  where: Manufacturing_Job_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Job_Status_By_PkArgs = {
+  _set?: Maybe<Manufacturing_Job_Status_Set_Input>;
+  pk_columns: Manufacturing_Job_Status_Pk_Columns_Input;
 };
 
 
@@ -9703,6 +11047,7 @@ export type Product_Consumable = {
   createdAt: Scalars['date'];
   createdBy?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
+  labelFactory?: Maybe<Scalars['String']>;
   /** An object relationship */
   product: Product_Product;
   productcode: Scalars['String'];
@@ -9969,6 +11314,7 @@ export type Product_Consumable_Bool_Exp = {
   createdAt?: Maybe<Date_Comparison_Exp>;
   createdBy?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  labelFactory?: Maybe<String_Comparison_Exp>;
   product?: Maybe<Product_Product_Bool_Exp>;
   productcode?: Maybe<String_Comparison_Exp>;
   service_consumables?: Maybe<Product_Service_Consumable_Bool_Exp>;
@@ -9995,6 +11341,7 @@ export type Product_Consumable_Insert_Input = {
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   product?: Maybe<Product_Product_Obj_Rel_Insert_Input>;
   productcode?: Maybe<Scalars['String']>;
   service_consumables?: Maybe<Product_Service_Consumable_Arr_Rel_Insert_Input>;
@@ -10010,6 +11357,7 @@ export type Product_Consumable_Max_Fields = {
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   productcode?: Maybe<Scalars['String']>;
   substanceid?: Maybe<Scalars['uuid']>;
   updatedAt?: Maybe<Scalars['date']>;
@@ -10021,6 +11369,7 @@ export type Product_Consumable_Max_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
   productcode?: Maybe<Order_By>;
   substanceid?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
@@ -10033,6 +11382,7 @@ export type Product_Consumable_Min_Fields = {
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   productcode?: Maybe<Scalars['String']>;
   substanceid?: Maybe<Scalars['uuid']>;
   updatedAt?: Maybe<Scalars['date']>;
@@ -10044,6 +11394,7 @@ export type Product_Consumable_Min_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
   productcode?: Maybe<Order_By>;
   substanceid?: Maybe<Order_By>;
   updatedAt?: Maybe<Order_By>;
@@ -10079,6 +11430,7 @@ export type Product_Consumable_Order_By = {
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
   product?: Maybe<Product_Product_Order_By>;
   productcode?: Maybe<Order_By>;
   service_consumables_aggregate?: Maybe<Product_Service_Consumable_Aggregate_Order_By>;
@@ -10104,6 +11456,8 @@ export enum Product_Consumable_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  LabelFactory = 'labelFactory',
+  /** column name */
   Productcode = 'productcode',
   /** column name */
   Substanceid = 'substanceid',
@@ -10119,6 +11473,7 @@ export type Product_Consumable_Set_Input = {
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   productcode?: Maybe<Scalars['String']>;
   substanceid?: Maybe<Scalars['uuid']>;
   updatedAt?: Maybe<Scalars['date']>;
@@ -10135,6 +11490,8 @@ export enum Product_Consumable_Update_Column {
   CreatedBy = 'createdBy',
   /** column name */
   Id = 'id',
+  /** column name */
+  LabelFactory = 'labelFactory',
   /** column name */
   Productcode = 'productcode',
   /** column name */
@@ -15082,6 +16439,24 @@ export enum Product_Supply_Update_Column {
 /** query root */
 export type Query_Root = {
   __typename?: 'query_root';
+  /** fetch data from the table: "cash_register.cash_box" */
+  cash_register_cash_box: Array<Cash_Register_Cash_Box>;
+  /** fetch aggregated fields from the table: "cash_register.cash_box" */
+  cash_register_cash_box_aggregate: Cash_Register_Cash_Box_Aggregate;
+  /** fetch data from the table: "cash_register.cash_box" using primary key columns */
+  cash_register_cash_box_by_pk?: Maybe<Cash_Register_Cash_Box>;
+  /** fetch data from the table: "cash_register.expense_category" */
+  cash_register_expense_category: Array<Cash_Register_Expense_Category>;
+  /** fetch aggregated fields from the table: "cash_register.expense_category" */
+  cash_register_expense_category_aggregate: Cash_Register_Expense_Category_Aggregate;
+  /** fetch data from the table: "cash_register.expense_category" using primary key columns */
+  cash_register_expense_category_by_pk?: Maybe<Cash_Register_Expense_Category>;
+  /** fetch data from the table: "cash_register.expenses" */
+  cash_register_expenses: Array<Cash_Register_Expenses>;
+  /** fetch aggregated fields from the table: "cash_register.expenses" */
+  cash_register_expenses_aggregate: Cash_Register_Expenses_Aggregate;
+  /** fetch data from the table: "cash_register.expenses" using primary key columns */
+  cash_register_expenses_by_pk?: Maybe<Cash_Register_Expenses>;
   /** fetch data from the table: "contact.address" */
   contact_address: Array<Contact_Address>;
   /** fetch aggregated fields from the table: "contact.address" */
@@ -15194,6 +16569,12 @@ export type Query_Root = {
   manufacturing_job_order_aggregate: Manufacturing_Job_Order_Aggregate;
   /** fetch data from the table: "manufacturing.job_order" using primary key columns */
   manufacturing_job_order_by_pk?: Maybe<Manufacturing_Job_Order>;
+  /** fetch data from the table: "manufacturing.job_status" */
+  manufacturing_job_status: Array<Manufacturing_Job_Status>;
+  /** fetch aggregated fields from the table: "manufacturing.job_status" */
+  manufacturing_job_status_aggregate: Manufacturing_Job_Status_Aggregate;
+  /** fetch data from the table: "manufacturing.job_status" using primary key columns */
+  manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
   /** fetch data from the table: "manufacturing.manufacturing_line" */
   manufacturing_manufacturing_line: Array<Manufacturing_Manufacturing_Line>;
   /** fetch aggregated fields from the table: "manufacturing.manufacturing_line" */
@@ -15516,6 +16897,84 @@ export type Query_Root = {
   stock_warehouse_substance_aggregate: Stock_Warehouse_Substance_Aggregate;
   /** fetch data from the table: "stock.warehouse_substance" using primary key columns */
   stock_warehouse_substance_by_pk?: Maybe<Stock_Warehouse_Substance>;
+};
+
+
+/** query root */
+export type Query_RootCash_Register_Cash_BoxArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Cash_Box_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Cash_Box_Order_By>>;
+  where?: Maybe<Cash_Register_Cash_Box_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootCash_Register_Cash_Box_AggregateArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Cash_Box_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Cash_Box_Order_By>>;
+  where?: Maybe<Cash_Register_Cash_Box_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootCash_Register_Cash_Box_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootCash_Register_Expense_CategoryArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expense_Category_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expense_Category_Order_By>>;
+  where?: Maybe<Cash_Register_Expense_Category_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootCash_Register_Expense_Category_AggregateArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expense_Category_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expense_Category_Order_By>>;
+  where?: Maybe<Cash_Register_Expense_Category_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootCash_Register_Expense_Category_By_PkArgs = {
+  key: Scalars['String'];
+};
+
+
+/** query root */
+export type Query_RootCash_Register_ExpensesArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expenses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expenses_Order_By>>;
+  where?: Maybe<Cash_Register_Expenses_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootCash_Register_Expenses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expenses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expenses_Order_By>>;
+  where?: Maybe<Cash_Register_Expenses_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootCash_Register_Expenses_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -16025,6 +17484,32 @@ export type Query_RootManufacturing_Job_Order_AggregateArgs = {
 /** query root */
 export type Query_RootManufacturing_Job_Order_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Job_StatusArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Job_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Job_Status_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 
@@ -17969,10 +19454,8 @@ export type Sales_Amount_Variance_Order_By = {
 export type Sales_Consumable_Draft = {
   __typename?: 'sales_consumable_draft';
   dependent_id?: Maybe<Scalars['uuid']>;
-  factury_label?: Maybe<Scalars['String']>;
-  /** An object relationship */
-  glass_draft?: Maybe<Sales_Glass_Draft>;
   id: Scalars['uuid'];
+  labelFactory?: Maybe<Scalars['String']>;
   /** An object relationship */
   product_draft: Sales_Product_Draft;
   productdraft_id: Scalars['uuid'];
@@ -18019,9 +19502,8 @@ export type Sales_Consumable_Draft_Bool_Exp = {
   _not?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Consumable_Draft_Bool_Exp>>>;
   dependent_id?: Maybe<Uuid_Comparison_Exp>;
-  factury_label?: Maybe<String_Comparison_Exp>;
-  glass_draft?: Maybe<Sales_Glass_Draft_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  labelFactory?: Maybe<String_Comparison_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   productdraft_id?: Maybe<Uuid_Comparison_Exp>;
 };
@@ -18037,9 +19519,8 @@ export enum Sales_Consumable_Draft_Constraint {
 /** input type for inserting data into table "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Insert_Input = {
   dependent_id?: Maybe<Scalars['uuid']>;
-  factury_label?: Maybe<Scalars['String']>;
-  glass_draft?: Maybe<Sales_Glass_Draft_Obj_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
@@ -18048,16 +19529,16 @@ export type Sales_Consumable_Draft_Insert_Input = {
 export type Sales_Consumable_Draft_Max_Fields = {
   __typename?: 'sales_consumable_draft_max_fields';
   dependent_id?: Maybe<Scalars['uuid']>;
-  factury_label?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Max_Order_By = {
   dependent_id?: Maybe<Order_By>;
-  factury_label?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
 
@@ -18065,16 +19546,16 @@ export type Sales_Consumable_Draft_Max_Order_By = {
 export type Sales_Consumable_Draft_Min_Fields = {
   __typename?: 'sales_consumable_draft_min_fields';
   dependent_id?: Maybe<Scalars['uuid']>;
-  factury_label?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Min_Order_By = {
   dependent_id?: Maybe<Order_By>;
-  factury_label?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
 
@@ -18103,9 +19584,8 @@ export type Sales_Consumable_Draft_On_Conflict = {
 /** ordering options when selecting data from "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Order_By = {
   dependent_id?: Maybe<Order_By>;
-  factury_label?: Maybe<Order_By>;
-  glass_draft?: Maybe<Sales_Glass_Draft_Order_By>;
   id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
@@ -18120,9 +19600,9 @@ export enum Sales_Consumable_Draft_Select_Column {
   /** column name */
   DependentId = 'dependent_id',
   /** column name */
-  FacturyLabel = 'factury_label',
-  /** column name */
   Id = 'id',
+  /** column name */
+  LabelFactory = 'labelFactory',
   /** column name */
   ProductdraftId = 'productdraft_id'
 }
@@ -18130,8 +19610,8 @@ export enum Sales_Consumable_Draft_Select_Column {
 /** input type for updating data in table "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Set_Input = {
   dependent_id?: Maybe<Scalars['uuid']>;
-  factury_label?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -18140,9 +19620,9 @@ export enum Sales_Consumable_Draft_Update_Column {
   /** column name */
   DependentId = 'dependent_id',
   /** column name */
-  FacturyLabel = 'factury_label',
-  /** column name */
   Id = 'id',
+  /** column name */
+  LabelFactory = 'labelFactory',
   /** column name */
   ProductdraftId = 'productdraft_id'
 }
@@ -19577,61 +21057,13 @@ export type Sales_Draft_Variance_Order_By = {
 /** columns and relationships of "sales.glass_draft" */
 export type Sales_Glass_Draft = {
   __typename?: 'sales_glass_draft';
-  /** An array relationship */
-  consumable_drafts: Array<Sales_Consumable_Draft>;
-  /** An aggregated array relationship */
-  consumable_drafts_aggregate: Sales_Consumable_Draft_Aggregate;
   id: Scalars['uuid'];
   /** An object relationship */
   job_order?: Maybe<Manufacturing_Job_Order>;
   job_order_id?: Maybe<Scalars['Int']>;
   /** An object relationship */
-  product_draft: Sales_Product_Draft;
-  productdraft_id: Scalars['uuid'];
-  /** An array relationship */
-  service_drafts: Array<Sales_Service_Draft>;
-  /** An aggregated array relationship */
-  service_drafts_aggregate: Sales_Service_Draft_Aggregate;
-};
-
-
-/** columns and relationships of "sales.glass_draft" */
-export type Sales_Glass_DraftConsumable_DraftsArgs = {
-  distinct_on?: Maybe<Array<Sales_Consumable_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Consumable_Draft_Order_By>>;
-  where?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.glass_draft" */
-export type Sales_Glass_DraftConsumable_Drafts_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Consumable_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Consumable_Draft_Order_By>>;
-  where?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.glass_draft" */
-export type Sales_Glass_DraftService_DraftsArgs = {
-  distinct_on?: Maybe<Array<Sales_Service_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Service_Draft_Order_By>>;
-  where?: Maybe<Sales_Service_Draft_Bool_Exp>;
-};
-
-
-/** columns and relationships of "sales.glass_draft" */
-export type Sales_Glass_DraftService_Drafts_AggregateArgs = {
-  distinct_on?: Maybe<Array<Sales_Service_Draft_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Sales_Service_Draft_Order_By>>;
-  where?: Maybe<Sales_Service_Draft_Bool_Exp>;
+  product_draft?: Maybe<Sales_Product_Draft>;
+  productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregated selection of "sales.glass_draft" */
@@ -19701,13 +21133,11 @@ export type Sales_Glass_Draft_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Sales_Glass_Draft_Bool_Exp>>>;
   _not?: Maybe<Sales_Glass_Draft_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Glass_Draft_Bool_Exp>>>;
-  consumable_drafts?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   job_order?: Maybe<Manufacturing_Job_Order_Bool_Exp>;
   job_order_id?: Maybe<Int_Comparison_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   productdraft_id?: Maybe<Uuid_Comparison_Exp>;
-  service_drafts?: Maybe<Sales_Service_Draft_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "sales.glass_draft" */
@@ -19725,13 +21155,11 @@ export type Sales_Glass_Draft_Inc_Input = {
 
 /** input type for inserting data into table "sales.glass_draft" */
 export type Sales_Glass_Draft_Insert_Input = {
-  consumable_drafts?: Maybe<Sales_Consumable_Draft_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
   job_order?: Maybe<Manufacturing_Job_Order_Obj_Rel_Insert_Input>;
   job_order_id?: Maybe<Scalars['Int']>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   productdraft_id?: Maybe<Scalars['uuid']>;
-  service_drafts?: Maybe<Sales_Service_Draft_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -19788,13 +21216,11 @@ export type Sales_Glass_Draft_On_Conflict = {
 
 /** ordering options when selecting data from "sales.glass_draft" */
 export type Sales_Glass_Draft_Order_By = {
-  consumable_drafts_aggregate?: Maybe<Sales_Consumable_Draft_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   job_order?: Maybe<Manufacturing_Job_Order_Order_By>;
   job_order_id?: Maybe<Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   productdraft_id?: Maybe<Order_By>;
-  service_drafts_aggregate?: Maybe<Sales_Service_Draft_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: "sales.glass_draft" */
@@ -24146,10 +25572,8 @@ export type Sales_Quotation_Variance_Order_By = {
 export type Sales_Service_Draft = {
   __typename?: 'sales_service_draft';
   dependent_id: Scalars['uuid'];
-  factory_label?: Maybe<Scalars['String']>;
-  /** An object relationship */
-  glass_draft: Sales_Glass_Draft;
   id: Scalars['uuid'];
+  labelFactory?: Maybe<Scalars['String']>;
   /** An object relationship */
   product_draft: Sales_Product_Draft;
   productdraft_id: Scalars['uuid'];
@@ -24196,9 +25620,8 @@ export type Sales_Service_Draft_Bool_Exp = {
   _not?: Maybe<Sales_Service_Draft_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Service_Draft_Bool_Exp>>>;
   dependent_id?: Maybe<Uuid_Comparison_Exp>;
-  factory_label?: Maybe<String_Comparison_Exp>;
-  glass_draft?: Maybe<Sales_Glass_Draft_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  labelFactory?: Maybe<String_Comparison_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   productdraft_id?: Maybe<Uuid_Comparison_Exp>;
 };
@@ -24214,9 +25637,8 @@ export enum Sales_Service_Draft_Constraint {
 /** input type for inserting data into table "sales.service_draft" */
 export type Sales_Service_Draft_Insert_Input = {
   dependent_id?: Maybe<Scalars['uuid']>;
-  factory_label?: Maybe<Scalars['String']>;
-  glass_draft?: Maybe<Sales_Glass_Draft_Obj_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
@@ -24225,16 +25647,16 @@ export type Sales_Service_Draft_Insert_Input = {
 export type Sales_Service_Draft_Max_Fields = {
   __typename?: 'sales_service_draft_max_fields';
   dependent_id?: Maybe<Scalars['uuid']>;
-  factory_label?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "sales.service_draft" */
 export type Sales_Service_Draft_Max_Order_By = {
   dependent_id?: Maybe<Order_By>;
-  factory_label?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
 
@@ -24242,16 +25664,16 @@ export type Sales_Service_Draft_Max_Order_By = {
 export type Sales_Service_Draft_Min_Fields = {
   __typename?: 'sales_service_draft_min_fields';
   dependent_id?: Maybe<Scalars['uuid']>;
-  factory_label?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "sales.service_draft" */
 export type Sales_Service_Draft_Min_Order_By = {
   dependent_id?: Maybe<Order_By>;
-  factory_label?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
 
@@ -24280,9 +25702,8 @@ export type Sales_Service_Draft_On_Conflict = {
 /** ordering options when selecting data from "sales.service_draft" */
 export type Sales_Service_Draft_Order_By = {
   dependent_id?: Maybe<Order_By>;
-  factory_label?: Maybe<Order_By>;
-  glass_draft?: Maybe<Sales_Glass_Draft_Order_By>;
   id?: Maybe<Order_By>;
+  labelFactory?: Maybe<Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   productdraft_id?: Maybe<Order_By>;
 };
@@ -24297,9 +25718,9 @@ export enum Sales_Service_Draft_Select_Column {
   /** column name */
   DependentId = 'dependent_id',
   /** column name */
-  FactoryLabel = 'factory_label',
-  /** column name */
   Id = 'id',
+  /** column name */
+  LabelFactory = 'labelFactory',
   /** column name */
   ProductdraftId = 'productdraft_id'
 }
@@ -24307,8 +25728,8 @@ export enum Sales_Service_Draft_Select_Column {
 /** input type for updating data in table "sales.service_draft" */
 export type Sales_Service_Draft_Set_Input = {
   dependent_id?: Maybe<Scalars['uuid']>;
-  factory_label?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  labelFactory?: Maybe<Scalars['String']>;
   productdraft_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -24317,9 +25738,9 @@ export enum Sales_Service_Draft_Update_Column {
   /** column name */
   DependentId = 'dependent_id',
   /** column name */
-  FactoryLabel = 'factory_label',
-  /** column name */
   Id = 'id',
+  /** column name */
+  LabelFactory = 'labelFactory',
   /** column name */
   ProductdraftId = 'productdraft_id'
 }
@@ -27086,6 +28507,24 @@ export enum Stock_Warehouse_Update_Column {
 /** subscription root */
 export type Subscription_Root = {
   __typename?: 'subscription_root';
+  /** fetch data from the table: "cash_register.cash_box" */
+  cash_register_cash_box: Array<Cash_Register_Cash_Box>;
+  /** fetch aggregated fields from the table: "cash_register.cash_box" */
+  cash_register_cash_box_aggregate: Cash_Register_Cash_Box_Aggregate;
+  /** fetch data from the table: "cash_register.cash_box" using primary key columns */
+  cash_register_cash_box_by_pk?: Maybe<Cash_Register_Cash_Box>;
+  /** fetch data from the table: "cash_register.expense_category" */
+  cash_register_expense_category: Array<Cash_Register_Expense_Category>;
+  /** fetch aggregated fields from the table: "cash_register.expense_category" */
+  cash_register_expense_category_aggregate: Cash_Register_Expense_Category_Aggregate;
+  /** fetch data from the table: "cash_register.expense_category" using primary key columns */
+  cash_register_expense_category_by_pk?: Maybe<Cash_Register_Expense_Category>;
+  /** fetch data from the table: "cash_register.expenses" */
+  cash_register_expenses: Array<Cash_Register_Expenses>;
+  /** fetch aggregated fields from the table: "cash_register.expenses" */
+  cash_register_expenses_aggregate: Cash_Register_Expenses_Aggregate;
+  /** fetch data from the table: "cash_register.expenses" using primary key columns */
+  cash_register_expenses_by_pk?: Maybe<Cash_Register_Expenses>;
   /** fetch data from the table: "contact.address" */
   contact_address: Array<Contact_Address>;
   /** fetch aggregated fields from the table: "contact.address" */
@@ -27198,6 +28637,12 @@ export type Subscription_Root = {
   manufacturing_job_order_aggregate: Manufacturing_Job_Order_Aggregate;
   /** fetch data from the table: "manufacturing.job_order" using primary key columns */
   manufacturing_job_order_by_pk?: Maybe<Manufacturing_Job_Order>;
+  /** fetch data from the table: "manufacturing.job_status" */
+  manufacturing_job_status: Array<Manufacturing_Job_Status>;
+  /** fetch aggregated fields from the table: "manufacturing.job_status" */
+  manufacturing_job_status_aggregate: Manufacturing_Job_Status_Aggregate;
+  /** fetch data from the table: "manufacturing.job_status" using primary key columns */
+  manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
   /** fetch data from the table: "manufacturing.manufacturing_line" */
   manufacturing_manufacturing_line: Array<Manufacturing_Manufacturing_Line>;
   /** fetch aggregated fields from the table: "manufacturing.manufacturing_line" */
@@ -27520,6 +28965,84 @@ export type Subscription_Root = {
   stock_warehouse_substance_aggregate: Stock_Warehouse_Substance_Aggregate;
   /** fetch data from the table: "stock.warehouse_substance" using primary key columns */
   stock_warehouse_substance_by_pk?: Maybe<Stock_Warehouse_Substance>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCash_Register_Cash_BoxArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Cash_Box_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Cash_Box_Order_By>>;
+  where?: Maybe<Cash_Register_Cash_Box_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCash_Register_Cash_Box_AggregateArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Cash_Box_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Cash_Box_Order_By>>;
+  where?: Maybe<Cash_Register_Cash_Box_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCash_Register_Cash_Box_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** subscription root */
+export type Subscription_RootCash_Register_Expense_CategoryArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expense_Category_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expense_Category_Order_By>>;
+  where?: Maybe<Cash_Register_Expense_Category_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCash_Register_Expense_Category_AggregateArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expense_Category_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expense_Category_Order_By>>;
+  where?: Maybe<Cash_Register_Expense_Category_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCash_Register_Expense_Category_By_PkArgs = {
+  key: Scalars['String'];
+};
+
+
+/** subscription root */
+export type Subscription_RootCash_Register_ExpensesArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expenses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expenses_Order_By>>;
+  where?: Maybe<Cash_Register_Expenses_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCash_Register_Expenses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expenses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expenses_Order_By>>;
+  where?: Maybe<Cash_Register_Expenses_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCash_Register_Expenses_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -28029,6 +29552,32 @@ export type Subscription_RootManufacturing_Job_Order_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootManufacturing_Job_Order_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Job_StatusArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Job_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Job_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Job_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Job_Status_By_PkArgs = {
+  key: Scalars['String'];
 };
 
 
@@ -29451,6 +31000,20 @@ export type Subscription_RootStock_Warehouse_Substance_By_PkArgs = {
 };
 
 
+/** expression to compare columns of type timestamp. All fields are combined with logical 'AND'. */
+export type Timestamp_Comparison_Exp = {
+  _eq?: Maybe<Scalars['timestamp']>;
+  _gt?: Maybe<Scalars['timestamp']>;
+  _gte?: Maybe<Scalars['timestamp']>;
+  _in?: Maybe<Array<Scalars['timestamp']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['timestamp']>;
+  _lte?: Maybe<Scalars['timestamp']>;
+  _neq?: Maybe<Scalars['timestamp']>;
+  _nin?: Maybe<Array<Scalars['timestamp']>>;
+};
+
+
 /** expression to compare columns of type timestamptz. All fields are combined with logical 'AND'. */
 export type Timestamptz_Comparison_Exp = {
   _eq?: Maybe<Scalars['timestamptz']>;
@@ -29477,6 +31040,98 @@ export type Uuid_Comparison_Exp = {
   _neq?: Maybe<Scalars['uuid']>;
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
+
+export type AddExpenseMutationVariables = Exact<{
+  cash_box_id: Scalars['Int'];
+  amountSpent: Scalars['numeric'];
+  category?: Maybe<Scalars['String']>;
+  employee_id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['timestamptz']>;
+}>;
+
+
+export type AddExpenseMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_cash_register_expenses_one?: Maybe<(
+    { __typename?: 'cash_register_expenses' }
+    & Pick<Cash_Register_Expenses, 'id'>
+  )> }
+);
+
+export type DeleteExpensesByIdMutationVariables = Exact<{
+  ids?: Array<Scalars['Int']>;
+}>;
+
+
+export type DeleteExpensesByIdMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_cash_register_expenses?: Maybe<(
+    { __typename?: 'cash_register_expenses_mutation_response' }
+    & Pick<Cash_Register_Expenses_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type InsertCashBoxMutationVariables = Exact<{
+  name: Scalars['String'];
+  salepoint_id: Scalars['uuid'];
+}>;
+
+
+export type InsertCashBoxMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_cash_register_cash_box_one?: Maybe<(
+    { __typename?: 'cash_register_cash_box' }
+    & Pick<Cash_Register_Cash_Box, 'id'>
+  )> }
+);
+
+export type GetCashBoxByIdQueryVariables = Exact<{
+  id: Scalars['Int'];
+  salepoint_id: Scalars['uuid'];
+}>;
+
+
+export type GetCashBoxByIdQuery = (
+  { __typename?: 'query_root' }
+  & { cash_register_cash_box_by_pk?: Maybe<(
+    { __typename?: 'cash_register_cash_box' }
+    & Pick<Cash_Register_Cash_Box, 'balance' | 'createdAt' | 'salepoint_id' | 'updatedAt' | 'name' | 'id'>
+    & { expenses: Array<(
+      { __typename?: 'cash_register_expenses' }
+      & Pick<Cash_Register_Expenses, 'amountSpent' | 'category' | 'createdAt' | 'date' | 'employee_id' | 'id' | 'name' | 'note'>
+      & { employee?: Maybe<(
+        { __typename?: 'management_userProfile' }
+        & Pick<Management_UserProfile, 'firstname' | 'lastname' | 'username'>
+      )> }
+    )>, salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
+  )>, sales_payment: Array<(
+    { __typename?: 'sales_payment' }
+    & Pick<Sales_Payment, 'id' | 'amount' | 'comment' | 'order_id' | 'deadline' | 'date'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name'>
+    ) }
+  )> }
+);
+
+export type GetExpensesCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetExpensesCategoriesQuery = (
+  { __typename?: 'query_root' }
+  & { cash_register_expense_category: Array<(
+    { __typename?: 'cash_register_expense_category' }
+    & Pick<Cash_Register_Expense_Category, 'key' | 'value'>
+  )> }
+);
 
 export type GetAccessoriesSubstancesQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -29518,6 +31173,32 @@ export type GetGlassesSubstancesQuery = (
   )> }
 );
 
+export type GetMyUserQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type GetMyUserQuery = (
+  { __typename?: 'query_root' }
+  & { management_userProfile_by_pk?: Maybe<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'active' | 'createdAt' | 'email' | 'firstname' | 'id' | 'lastname' | 'phone' | 'role' | 'username' | 'SalesPointsid' | 'CIN'>
+  )> }
+);
+
+export type GetOrdersBySalepointQueryVariables = Exact<{
+  salepoint_id: Scalars['uuid'];
+}>;
+
+
+export type GetOrdersBySalepointQuery = (
+  { __typename?: 'query_root' }
+  & { sales_order: Array<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'id' | 'ref'>
+  )> }
+);
+
 export type GetShortCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -29526,6 +31207,17 @@ export type GetShortCompaniesQuery = (
   & { management_company: Array<(
     { __typename?: 'management_company' }
     & Pick<Management_Company, 'id' | 'name'>
+  )> }
+);
+
+export type GetShortEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetShortEmployeesQuery = (
+  { __typename?: 'query_root' }
+  & { management_userProfile: Array<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'id' | 'username' | 'firstname' | 'lastname'>
   )> }
 );
 
@@ -29540,7 +31232,9 @@ export type GetShortProvidersQuery = (
   )> }
 );
 
-export type GeShortSalePointsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GeShortSalePointsQueryVariables = Exact<{
+  ids?: Maybe<Array<Scalars['uuid']>>;
+}>;
 
 
 export type GeShortSalePointsQuery = (
@@ -29548,6 +31242,10 @@ export type GeShortSalePointsQuery = (
   & { management_salesPoint: Array<(
     { __typename?: 'management_salesPoint' }
     & Pick<Management_SalesPoint, 'name' | 'id'>
+    & { cash_boxes: Array<(
+      { __typename?: 'cash_register_cash_box' }
+      & Pick<Cash_Register_Cash_Box, 'id' | 'name'>
+    )> }
   )> }
 );
 
@@ -30831,8 +32529,7 @@ export type InsertJobOrderMutationVariables = Exact<{
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['date']>;
+  date?: Maybe<Scalars['timestamp']>;
   products: Array<Sales_Glass_Draft_Insert_Input>;
 }>;
 
@@ -30841,7 +32538,7 @@ export type InsertJobOrderMutation = (
   { __typename?: 'mutation_root' }
   & { insert_manufacturing_job_order_one?: Maybe<(
     { __typename?: 'manufacturing_job_order' }
-    & Pick<Manufacturing_Job_Order, 'id' | 'order_ref' | 'status' | 'type' | 'date'>
+    & Pick<Manufacturing_Job_Order, 'id' | 'order_ref' | 'status' | 'date'>
   )>, update_sales_product_draft?: Maybe<(
     { __typename?: 'sales_product_draft_mutation_response' }
     & Pick<Sales_Product_Draft_Mutation_Response, 'affected_rows'>
@@ -30855,7 +32552,7 @@ export type GetAllJobsOrdersQuery = (
   { __typename?: 'query_root' }
   & { manufacturing_job_order: Array<(
     { __typename?: 'manufacturing_job_order' }
-    & Pick<Manufacturing_Job_Order, 'id' | 'date' | 'type' | 'status' | 'order_ref'>
+    & Pick<Manufacturing_Job_Order, 'id' | 'date' | 'status' | 'order_ref'>
   )> }
 );
 
@@ -31650,14 +33347,14 @@ export type InsertGlassDraftMutation = (
   { __typename?: 'mutation_root' }
   & { insert_sales_glass_draft_one?: Maybe<(
     { __typename?: 'sales_glass_draft' }
-    & { product_draft: (
+    & { product_draft?: Maybe<(
       { __typename?: 'sales_product_draft' }
       & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'company_id' | 'count' | 'isRepeated' | 'isLaunched' | 'substance_id' | 'warehouse_id' | 'draft_id'>
       & { glass_draft?: Maybe<(
         { __typename?: 'sales_glass_draft' }
         & Pick<Sales_Glass_Draft, 'id'>
       )> }
-    ) }
+    )> }
   )> }
 );
 
@@ -32303,6 +34000,141 @@ export const Product_ProductFragmentFragmentDoc = gql`
   price
 }
     `;
+export const AddExpenseDocument = gql`
+    mutation addExpense($cash_box_id: Int!, $amountSpent: numeric!, $category: String, $employee_id: String, $name: String, $note: String, $date: timestamptz) {
+  insert_cash_register_expenses_one(
+    object: {amountSpent: $amountSpent, cash_box_id: $cash_box_id, category: $category, employee_id: $employee_id, name: $name, note: $note, date: $date}
+  ) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddExpenseGQL extends Apollo.Mutation<AddExpenseMutation, AddExpenseMutationVariables> {
+    document = AddExpenseDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteExpensesByIdDocument = gql`
+    mutation deleteExpensesById($ids: [Int!]! = []) {
+  delete_cash_register_expenses(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteExpensesByIdGQL extends Apollo.Mutation<DeleteExpensesByIdMutation, DeleteExpensesByIdMutationVariables> {
+    document = DeleteExpensesByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertCashBoxDocument = gql`
+    mutation insertCashBox($name: String!, $salepoint_id: uuid!) {
+  insert_cash_register_cash_box_one(
+    object: {name: $name, salepoint_id: $salepoint_id}
+  ) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertCashBoxGQL extends Apollo.Mutation<InsertCashBoxMutation, InsertCashBoxMutationVariables> {
+    document = InsertCashBoxDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetCashBoxByIdDocument = gql`
+    query getCashBoxById($id: Int!, $salepoint_id: uuid!) {
+  cash_register_cash_box_by_pk(id: $id) {
+    balance
+    createdAt
+    salepoint_id
+    expenses {
+      amountSpent
+      category
+      createdAt
+      date
+      employee {
+        firstname
+        lastname
+        username
+      }
+      employee_id
+      id
+      name
+      note
+    }
+    createdAt
+    updatedAt
+    name
+    id
+    salepoint {
+      name
+    }
+  }
+  sales_payment(
+    where: {order: {salepoint_id: {_eq: $salepoint_id}}, payment_method: {_eq: "Espèce"}}
+  ) {
+    id
+    amount
+    comment
+    company {
+      name
+    }
+    customer {
+      name
+    }
+    order_id
+    deadline
+    date
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetCashBoxByIdGQL extends Apollo.Query<GetCashBoxByIdQuery, GetCashBoxByIdQueryVariables> {
+    document = GetCashBoxByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetExpensesCategoriesDocument = gql`
+    query getExpensesCategories {
+  cash_register_expense_category {
+    key
+    value
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetExpensesCategoriesGQL extends Apollo.Query<GetExpensesCategoriesQuery, GetExpensesCategoriesQueryVariables> {
+    document = GetExpensesCategoriesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAccessoriesSubstancesDocument = gql`
     query GetAccessoriesSubstances($id: uuid!) {
   stock_warehouse_substance(
@@ -32359,6 +34191,55 @@ export const GetGlassesSubstancesDocument = gql`
       super(apollo);
     }
   }
+export const GetMyUserDocument = gql`
+    query getMyUser($id: String!) {
+  management_userProfile_by_pk(id: $id) {
+    active
+    createdAt
+    email
+    firstname
+    id
+    lastname
+    phone
+    role
+    username
+    SalesPointsid
+    CIN
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetMyUserGQL extends Apollo.Query<GetMyUserQuery, GetMyUserQueryVariables> {
+    document = GetMyUserDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetOrdersBySalepointDocument = gql`
+    query getOrdersBySalepoint($salepoint_id: uuid!) {
+  sales_order(
+    where: {salepoint_id: {_eq: $salepoint_id}, payment_status: {_neq: "payé"}}
+  ) {
+    id
+    ref
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetOrdersBySalepointGQL extends Apollo.Query<GetOrdersBySalepointQuery, GetOrdersBySalepointQueryVariables> {
+    document = GetOrdersBySalepointDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetShortCompaniesDocument = gql`
     query GetShortCompanies {
   management_company {
@@ -32373,6 +34254,27 @@ export const GetShortCompaniesDocument = gql`
   })
   export class GetShortCompaniesGQL extends Apollo.Query<GetShortCompaniesQuery, GetShortCompaniesQueryVariables> {
     document = GetShortCompaniesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetShortEmployeesDocument = gql`
+    query getShortEmployees {
+  management_userProfile {
+    id
+    username
+    firstname
+    lastname
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetShortEmployeesGQL extends Apollo.Query<GetShortEmployeesQuery, GetShortEmployeesQueryVariables> {
+    document = GetShortEmployeesDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -32398,10 +34300,14 @@ export const GetShortProvidersDocument = gql`
     }
   }
 export const GeShortSalePointsDocument = gql`
-    query GeShortSalePoints {
-  management_salesPoint {
+    query GeShortSalePoints($ids: [uuid!] = null) {
+  management_salesPoint(where: {id: {_in: $ids}}) {
     name
     id
+    cash_boxes {
+      id
+      name
+    }
   }
 }
     `;
@@ -34228,14 +36134,13 @@ export const GetUserByIdDocument = gql`
     }
   }
 export const InsertJobOrderDocument = gql`
-    mutation InsertJobOrder($id: Int, $order_ref: String, $status: String, $type: String, $date: date, $products: [sales_glass_draft_insert_input!]!) {
+    mutation InsertJobOrder($id: Int, $order_ref: String, $status: String, $date: timestamp, $products: [sales_glass_draft_insert_input!]!) {
   insert_manufacturing_job_order_one(
-    object: {id: $id, order_ref: $order_ref, status: $status, type: $type, date: $date, glass_drafts: {data: $products}}
+    object: {id: $id, order_ref: $order_ref, status: $status, date: $date, glass_drafts: {data: $products}}
   ) {
     id
     order_ref
     status
-    type
     date
   }
   update_sales_product_draft(
@@ -34262,7 +36167,6 @@ export const GetAllJobsOrdersDocument = gql`
   manufacturing_job_order {
     id
     date
-    type
     status
     order_ref
   }

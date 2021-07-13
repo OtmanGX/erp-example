@@ -17,14 +17,14 @@
     <h2 class="m-0 text-muted text-28 font-weight-bold">
       {{config.subtitle}}
     </h2>
-    <div fxLayout="row wrap" fxLayoutAlign="start center">
+    <div fxLayout="row wrap" fxLayoutAlign="start center" *ngIf='config?.percentage'>
       <div class="small-circle" [ngClass]="config.down?'mat-bg-warn':'mat-bg-'+config.color" >
         <mat-icon class="text-12">
           expand_less
         </mat-icon>
       </div>
       <small class="m-0 ml-4 mat-color-{{config.color}} text-12">
-        ({{config.percentage}}%)
+        ({{config?.percentage}}%)
       </small>
     </div>
   </div>

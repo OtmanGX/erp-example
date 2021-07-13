@@ -6,13 +6,12 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '@tanglass-erp/material';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from '@tanglass-erp/store/app';
+import { reducers, StoreAppModule } from '@tanglass-erp/store/app';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { StoreAppModule } from '../../../../../libs/store/app/src/lib/store-app.module';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { ProfileComponent } from './auth/profile/profile.component';
 
@@ -72,6 +71,11 @@ const routes: Routes = [
         data: { title: 'Ventes', breadcrumb: "Ventes", noLink: true},
         loadChildren: () =>
           import('@TanglassUi/sales/sales.module').then(m => m.SalesModule),
+      },{
+        path: 'cash-register',
+        data: { title: 'Caisse', breadcrumb: "Caisse"},
+        loadChildren: () =>
+          import('@TanglassUi/cash-register/cash-register.module').then(m => m.CashRegisterModule),
       },
       {
         path: 'manufacturing',
@@ -93,10 +97,10 @@ const routes: Routes = [
     SharedModule,
     MaterialModule,
     RouterModule.forChild(routes),
-    StoreModule.forRoot(reducers, {}),
+    StoreModule.forRoot( {}),
+    StoreAppModule,
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot(),
-    StoreAppModule,
     PerfectScrollbarModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')

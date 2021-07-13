@@ -19,6 +19,10 @@ import * as fromShortProvider from './+state/short-provider.reducer';
 import { ShortProviderEffects } from './+state/short-provider.effects';
 import * as fromWarehouseAccessory from './+state/warehouse-accessory.reducer';
 import { WarehouseAccessoryEffects } from './+state/warehouse-accessory.effects';
+import * as fromOrdersSalepoint from './+state/orders-salepoint/orders-salepoint.reducer';
+import { OrdersSalepointEffects } from './+state/orders-salepoint/orders-salepoint.effects';
+import * as fromEmployees from './+state/employees/employees.reducer';
+import { EmployeesEffects } from './+state/employees/employees.effects';
 
 @NgModule({
   imports: [
@@ -61,9 +65,17 @@ import { WarehouseAccessoryEffects } from './+state/warehouse-accessory.effects'
       fromWarehouseAccessory.reducer
     ),
     EffectsModule.forFeature([WarehouseAccessoryEffects]),
+    StoreModule.forFeature(
+      fromOrdersSalepoint.ORDERS_SALEPOINT_FEATURE_KEY,
+      fromOrdersSalepoint.reducer
+    ),
+    EffectsModule.forFeature([OrdersSalepointEffects]),
+    StoreModule.forFeature(
+      fromEmployees.EMPLOYEES_FEATURE_KEY,
+      fromEmployees.reducer
+    ),
+    EffectsModule.forFeature([EmployeesEffects]),
   ],
-  providers: [
-    SharedFacade
-  ],
+  providers: [SharedFacade],
 })
 export class StoreSharedModule {}

@@ -2,7 +2,6 @@ query GetAllJobsOrders {
   manufacturing_job_order {
     id
     date
-    type
     status
     order_ref
   }

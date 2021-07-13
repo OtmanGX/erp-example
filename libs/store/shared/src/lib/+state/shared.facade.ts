@@ -12,6 +12,13 @@ import * as ShortProductsActions from './short-product.actions';
 import * as ShortProviderActions from './short-provider.actions';
 import * as ShortProviderSelectors from './short-provider.selectors';
 
+import * as ShortEmployeesActions from './employees/employees.actions';
+import * as ShortEmployeesSelectors from './employees/employees.selectors';
+
+
+import * as OrdersSalepointActions from './orders-salepoint/orders-salepoint.actions';
+import * as OrdersSalepointSelectors from './orders-salepoint/orders-salepoint.selectors';
+
 import * as ShortSalePointActions from './short-salePoint.actions';
 import * as ShortSalePointSelectors from './short-salePoint.selectors';
 import * as WarehouseAccessoryActions from './warehouse-accessory.actions';
@@ -20,6 +27,12 @@ import * as WarehouseGlassActions from './warehouse-glass.actions';
 import * as WarehouseGlassSelectors from './warehouse-glass.selectors';
 @Injectable()
 export class SharedFacade {
+  allShortEmployees$ = this.store.pipe(select(ShortEmployeesSelectors.getAllEmployees));
+
+  allOrdersSalepoint$ = this.store.pipe(
+    select(OrdersSalepointSelectors.getAllOrdersSalepoint)
+  );
+
   allShortCompany$ = this.store.pipe(
     select(ShortCompanySelectors.getAllShortCompany)
   );
@@ -69,8 +82,15 @@ export class SharedFacade {
     this.store.dispatch(action);
   }
 
+  loadAllOrdersSalepoint(salepoint_id: string) {
+    this.dispatch(OrdersSalepointActions.loadOrdersSalepoint({salepoint_id}));
+  }
   loadAllShortCompanies() {
     this.dispatch(ShortCompaniesActions.loadShortCompany());
+  }
+
+  loadAllEmployees() {
+    this.dispatch(ShortEmployeesActions.loadEmployees());
   }
 
   loadAllShortProduct() {
@@ -81,8 +101,8 @@ export class SharedFacade {
     this.dispatch(ShortProviderActions.loadShortProvider());
   }
 
-  loadAllShortSalePoint() {
-    this.dispatch(ShortSalePointActions.loadShortSalePoint());
+  loadAllShortSalePoint(ids?: string[]) {
+    this.dispatch(ShortSalePointActions.loadShortSalePoint({ids}));
   }
   loadAllShortWarehouses() {
     this.dispatch(ShortWarehouseActions.loadShortWarehouse());

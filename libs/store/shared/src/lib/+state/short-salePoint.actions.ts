@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ShortFeauture } from '@tanglass-erp/core/common';
+import { ShortFeature } from '@tanglass-erp/core/common';
 
 
 
@@ -8,12 +8,13 @@ import { ShortFeauture } from '@tanglass-erp/core/common';
 /****************************************************************** */
 
 export const loadShortSalePoint = createAction(
-  '[ShortSalePoint] Load ShortSalePoint'
-);
+  '[ShortSalePoint] Load ShortSalePoint',
+  props<{ids?: string[]}>()
+  );
 
 export const loadShortSalePointSuccess = createAction(
   '[ShortSalePoint] Load ShortSalePoint Success',
-  props<{ shortSalePoint: ShortFeauture[] }>()
+  props<{ shortSalePoint: ShortFeature[] }>()
 );
 
 export const loadShortSalePointFailure = createAction(

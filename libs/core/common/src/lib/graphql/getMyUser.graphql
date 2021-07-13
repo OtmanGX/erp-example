@@ -1,0 +1,15 @@
+query getMyUser($id: String!) {
+  management_userProfile_by_pk(id: $id) {
+    active
+    createdAt
+    email
+    firstname
+    id
+    lastname
+    phone
+    role
+    username
+    SalesPointsid
+    CIN
+  }
+}
