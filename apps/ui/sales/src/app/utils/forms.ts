@@ -70,7 +70,7 @@ const regConfigInvoice = (
     label: "Société",
     inputType: "text",
     options: companies,
-    
+
     value: data?.company_id,
     validations: [REQUIRED]
   },

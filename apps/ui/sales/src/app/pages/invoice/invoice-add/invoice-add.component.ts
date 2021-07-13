@@ -82,24 +82,60 @@ export class InvoiceAddComponent extends PageForm {
   }
 
   buildForm(): void {
-    combineLatest(
-      this.deliveries$,
-      this.id ? this.invoiceFacade.selectedInvoice$ : of(this.data)
-    ).subscribe((value) => {
-      this.data = value[1];
-      this.deliveries = value[0];
-      this.regConfig = regConfigInvoice(
-        value[1],
-        this.deliveries,
-        this.customers$,
-        this.companies$.pipe(
-          map((e) =>
-            e.map((company) => ({ key: company.id, value: company.name }))
-          )
-        ),
-        this.contacts$
-      );
-    });
+    if (this.id) {
+      this.invoiceFacade.selectedInvoice$.subscribe(
+        value => {
+          this.regConfig = regConfigInvoice(
+            value,
+            value.deliveries,
+            this.customers$,
+            this.companies$.pipe(
+              map((e) =>
+                e.map((company) => ({ key: company.id, value: company.name }))
+              )
+            ),
+            this.contacts$
+          );
+        }
+      )
+    } else {
+      this.deliveries$.subscribe(
+        value => {
+          this.deliveries = value;
+          this.regConfig = regConfigInvoice(
+            this.data,
+            this.deliveries,
+            this.customers$,
+            this.companies$.pipe(
+              map((e) =>
+                e.map((company) => ({ key: company.id, value: company.name }))
+              )
+            ),
+            this.contacts$
+          );
+        }
+      )
+
+    }
+    //
+    // combineLatest(
+    //   this.deliveries$,
+    //   this.id ? this.invoiceFacade.selectedInvoice$ : of(this.data)
+    // ).subscribe((value) => {
+    //   this.data = value[1];
+    //   this.deliveries = value[0];
+    //   this.regConfig = regConfigInvoice(
+    //     value[1],
+    //     this.deliveries,
+    //     this.customers$,
+    //     this.companies$.pipe(
+    //       map((e) =>
+    //         e.map((company) => ({ key: company.id, value: company.name }))
+    //       )
+    //     ),
+    //     this.contacts$
+    //   );
+    // });
   }
 
   submit(formValue) {
