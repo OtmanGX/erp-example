@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="start center">
-  <mat-card fxFlex *ngFor="let salepoint of salePoints$ | async">
+  <mat-card fxFlex='nogrow' *ngFor="let salepoint of salePoints$ | async">
     <mat-card-header>
       <mat-card-title>
         {{ salepoint.name }}

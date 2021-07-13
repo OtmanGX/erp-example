@@ -48,9 +48,8 @@ export class ShortFeatureService {
     return this.getShortEmployeesGQL.fetch();
   }
 
-  getAllSalePoints() {
-    return this.getShortSalePointsGQL.watch().valueChanges
-
+  getAllSalePoints(ids?: string[]) {
+    return this.getShortSalePointsGQL.watch({ids}).valueChanges;
   }
 
   getAllWarehouses() {

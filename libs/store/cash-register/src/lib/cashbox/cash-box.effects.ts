@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as CashBoxActions from './cash-box.actions';
 import { CashBoxService } from '@tanglass-erp/core/cash-register';
-import { NotificationFacadeService } from '@tanglass-erp/store/app';
-import { catchError, map, mergeMap, switchMap, take } from 'rxjs/operators';
+import {
+  AuthFacadeService,
+  NotificationFacadeService,
+} from '@tanglass-erp/store/app';
+import { catchError, filter, map, mergeMap, switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ShortFeatureService } from '@tanglass-erp/core/common';
 import { CashBoxFacade } from '@tanglass-erp/store/cash-register';
@@ -21,7 +24,7 @@ export class CashBoxEffects {
               ...data.data.cash_register_cash_box_by_pk,
               payments: data.data.sales_payment,
             };
-            return CashBoxActions.loadCashBoxSuccess({ cashBox })
+            return CashBoxActions.loadCashBoxSuccess({ cashBox });
           }),
           catchError((error) => {
             this.notificationService.showToast(
@@ -35,8 +38,6 @@ export class CashBoxEffects {
       )
     )
   );
-
-
 
   addCashBox$ = createEffect(() =>
     this.actions$.pipe(
@@ -55,10 +56,10 @@ export class CashBoxEffects {
             });
             return [
               CashBoxActions.addCashBoxSuccess(),
-              CashBoxActions.loadCashBoxSalePoints()
+              CashBoxActions.loadCashBoxSalePoints(),
             ];
           }),
-          switchMap(actions => actions),
+          switchMap((actions) => actions),
           catchError((error) => {
             this.notificationService.showToast(
               'error',
@@ -71,7 +72,6 @@ export class CashBoxEffects {
       )
     )
   );
-
 
   addPayment$ = createEffect(() =>
     this.actions$.pipe(
@@ -105,7 +105,7 @@ export class CashBoxEffects {
           catchError((error) => {
             this.notificationService.showToast(
               'error',
-              'Erreur lors d\'insertion',
+              "Erreur lors d'insertion",
               error
             );
             return of(CashBoxActions.addPaymentFailure({ error }));
@@ -115,23 +115,32 @@ export class CashBoxEffects {
     )
   );
 
-
   loadSalePoints$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CashBoxActions.loadCashBoxSalePoints),
       mergeMap((action) =>
-        this.shortFeatureService.getAllSalePoints().pipe(
-          map((data) =>
-            CashBoxActions.loadCashBoxSalePointsSuccess({salepoints: data.data.management_salesPoint})
-          ),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de chargement',
-              error
-            );
-            return of(CashBoxActions.loadCashBoxSalePointsFailure({ error }));
-          })
+        this.authFacadeService.currentUser$.pipe(
+          filter(e => !!e),
+          take(1),
+          switchMap((val) =>
+            this.shortFeatureService.getAllSalePoints((val.role === 'admin' || !val.SalesPointsid)?null:[val.SalesPointsid]).pipe(
+              map((data) =>
+                CashBoxActions.loadCashBoxSalePointsSuccess({
+                  salepoints: data.data.management_salesPoint,
+                })
+              ),
+              catchError((error) => {
+                this.notificationService.showToast(
+                  'error',
+                  'Erreur de chargement',
+                  error
+                );
+                return of(
+                  CashBoxActions.loadCashBoxSalePointsFailure({ error })
+                );
+              })
+            )
+          )
         )
       )
     )
@@ -142,6 +151,7 @@ export class CashBoxEffects {
     private cashBoxService: CashBoxService,
     private cashBoxFacade: CashBoxFacade,
     private shortFeatureService: ShortFeatureService,
-    private notificationService: NotificationFacadeService
+    private notificationService: NotificationFacadeService,
+    private authFacadeService: AuthFacadeService
   ) {}
 }

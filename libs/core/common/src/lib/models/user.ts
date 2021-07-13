@@ -2,7 +2,7 @@ export interface UserProfile {
   id: string
   active: boolean
   createdAt: Date
-  email: string
+  email?: string
   firstname?: string
   lastname?: string
   phone?: string

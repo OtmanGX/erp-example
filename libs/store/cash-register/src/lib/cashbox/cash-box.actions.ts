@@ -5,7 +5,9 @@ import { CashBox, InsertedCashBox, InsertedPayment } from '@tanglass-erp/core/ca
 
 // Salepoints
 
-export const loadCashBoxSalePoints = createAction('[CashBox] Load SalePoints');
+export const loadCashBoxSalePoints = createAction(
+  '[CashBox] Load SalePoints'
+);
 
 export const loadCashBoxSalePointsSuccess = createAction(
   '[CashBox] Load SalePoints Success',

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GetMyUserGQL } from '@tanglass-erp/infrastructure/graphql';
 import { AuthService } from '@auth0/auth0-angular';
 import { filter, map, mergeMap } from 'rxjs/operators';
-import { User } from '../models/user';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +19,7 @@ export class UserService {
         this.authService.user$.pipe(
           mergeMap((user) =>
             this.getMyUserGQL
-              .fetch({ id: user.id })
+              .fetch({ id: user.sub })
               .pipe(map(value => value.data.management_userProfile_by_pk))
           )
         )

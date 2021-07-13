@@ -9,7 +9,7 @@ import {
   InsertedCashBox,
   InsertedPayment,
 } from '@tanglass-erp/core/cash-register';
-import { filter, switchMap, take } from 'rxjs/operators';
+import { filter, map, switchMap, take } from 'rxjs/operators';
 import { AuthFacadeService } from '@tanglass-erp/store/app';
 import { UserProfile } from '@tanglass-erp/core/common';
 
@@ -35,9 +35,7 @@ export class CashBoxFacade {
   }
 
   loadAllSalePoints() {
-    this.authFacadeService.currentUser$.pipe(take(1))
-      .subscribe((value: UserProfile) => this.dispatch(CashBoxActions.loadCashBoxSalePoints()))
-
+    this.dispatch(CashBoxActions.loadCashBoxSalePoints());
   }
 
   loadCashBoxById(id: number, salepoint_id: string) {

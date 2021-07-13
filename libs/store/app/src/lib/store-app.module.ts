@@ -7,6 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 import * as fromAuth from './auth/auth.reducer';
 import { AuthEffects } from './auth/auth.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthFacadeService } from './auth/auth-facade.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { EffectsModule } from '@ngrx/effects';
       closeButton: true,
     }),
   ],
-  providers: [NotificationFacadeService],
+  providers: [NotificationFacadeService, AuthFacadeService],
   exports: [],
 })
 export class StoreAppModule {}

@@ -1,10 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import * as AuthActions from './auth.actions';
+import { UserProfile } from '@tanglass-erp/core/common';
 
 export const authFeatureKey = 'auth';
 
 export interface State {
-  user: any;
+  user: UserProfile;
   error: any;
 }
 

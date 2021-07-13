@@ -13,7 +13,8 @@ export class AuthEffects {
       mergeMap((action) =>
         this.userService
           .getUser()
-          .pipe(map((value) => AuthActions.loadUserSuccess({ user: value })))
+          .pipe(map((value) =>
+            AuthActions.loadUserSuccess({ user: value })))
       ),
       catchError((error) => of(AuthActions.loadUserFailure({ error })))
     )
