@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
       amountSuffix: "%",
       amountFontSize: 48,
       amount: 8.5,
-      subtitle: "8.5",
       color: "accent",
       withAction:true,
 

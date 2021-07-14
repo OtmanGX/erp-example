@@ -84,10 +84,10 @@ const routes: Routes = [
           import('@TanglassUi/manufacturing/manufacturing.module').then(m => m.ManufacturingModule),
       },
     ]},
-  {
-    path: "**",
-    redirectTo: "404",
-  },
+  // {
+  //   path: "**",
+  //   redirectTo: "404",
+  // },
 ];
 
 @NgModule({

@@ -1,11 +1,20 @@
 import { Component, ViewChild } from '@angular/core';
-import { DynamicFormComponent, FieldConfig, PageForm } from '@tanglass-erp/material';
+import {
+  DynamicFormComponent,
+  FieldConfig,
+  PageForm,
+} from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
 import { regConfigInvoice } from '@TanglassUi/sales/utils/forms';
 import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
-import { DeliveryFacade, DeliveryForm, DeliveryStatus, InvoiceFacade } from '@tanglass-erp/store/sales';
+import {
+  DeliveryFacade,
+  DeliveryForm,
+  DeliveryStatus,
+  InvoiceFacade,
+} from '@tanglass-erp/store/sales';
 import { Store } from '@ngrx/store';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
@@ -22,6 +31,7 @@ import { Location } from '@angular/common';
 export class InvoiceAddComponent extends PageForm {
   data = null; // Data to pass to the form
   regConfig: FieldConfig[];
+
   _form: DynamicFormComponent;
   @ViewChild('form', { read: DynamicFormComponent, static: false })
   set form(value: DynamicFormComponent) {
@@ -30,9 +40,7 @@ export class InvoiceAddComponent extends PageForm {
     if (this._form)
       this._form.getField('deliveries').valueChanges.subscribe((fieldValue) => {
         if (fieldValue) {
-          this.selectedDeliveries = this.deliveries.filter((e) =>
-            fieldValue.includes(e.id)
-          );
+          this.selectDeliveries(fieldValue);
         }
       });
   }
@@ -45,8 +53,8 @@ export class InvoiceAddComponent extends PageForm {
   companies$ = this.store.select(ShortCompanieSelectors.getAllShortCompany);
   customers$ = this.store.select(CustomerSelectors.getAllCustomers);
   contacts$ = this.store.select(ContactSelectors.getAllContacts);
-  deliveries$ = this.deliveryFacade.allDelivery$
-    .pipe(map(e => e.filter(value => value.status === DeliveryStatus.NOT_INVOICED)));
+  deliveries$ = this.deliveryFacade.allDelivery$;
+  invoiceLines$ = this.invoiceFacade.invoiceLines$;
   deliveries: DeliveryForm[];
   selectedDeliveries: DeliveryForm[] = [];
 
@@ -58,12 +66,7 @@ export class InvoiceAddComponent extends PageForm {
     private location: Location
   ) {
     super(activatedRoute);
-  }
-
-  ngOnInit() {
-    super.ngOnInit();
     !this.id && this.getState();
-    this.buildForm();
   }
 
   getState() {
@@ -71,9 +74,19 @@ export class InvoiceAddComponent extends PageForm {
     this.data = { deliveries };
   }
 
+  selectDeliveries(ids: string[]) {
+    this.selectedDeliveries = this.deliveries.filter((e) => ids.includes(e.id));
+    this.invoiceFacade.prepareInvoiceLines(this.selectedDeliveries.map((e) => e.id));
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+    this.buildForm();
+  }
+
   dispatchActions(): void {
-    this.deliveryFacade.loaded$.pipe(take(1)).subscribe((value) => {
-      if (!value) this.deliveryFacade.loadDeliveries({status: DeliveryStatus.NOT_INVOICED});
+    this.deliveryFacade.loadDeliveries({
+      status: !this.id?DeliveryStatus.NOT_INVOICED:null
     });
     if (this.id) this.invoiceFacade.loadById(this.id);
     this.store.dispatch(ShortCompanieActions.loadShortCompany());
@@ -87,9 +100,12 @@ export class InvoiceAddComponent extends PageForm {
       this.id ? this.invoiceFacade.selectedInvoice$ : of(this.data)
     ).subscribe((value) => {
       this.data = value[1];
+      // @ts-ignore
       this.deliveries = value[0];
+      if (this.data?.deliveries)
+        this.selectDeliveries(this.data.deliveries.map((e) => e.delivery_id));
       this.regConfig = regConfigInvoice(
-        value[1],
+        this.data,
         this.deliveries,
         this.customers$,
         this.companies$.pipe(
@@ -109,7 +125,7 @@ export class InvoiceAddComponent extends PageForm {
         deliveries: formValue.deliveries.map((e) => ({ delivery_id: e })),
         amount_ttc: 0,
         amount_ht: 0,
-        amount_tva: 0
+        amount_tva: 0,
       });
     else
       this.invoiceFacade.update({

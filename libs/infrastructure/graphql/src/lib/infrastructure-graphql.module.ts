@@ -17,13 +17,16 @@ export function createApollo(httpLink: HttpLink) {
   const defaultOptions = {
     watchQuery: {
       fetchPolicy: 'cache-and-network',
-    }
-  }
+    },
+    query: {
+      fetchPolicy: 'network-only',
+    },
+  };
 
   return {
     link,
     cache,
-    defaultOptions
+    defaultOptions,
   };
 }
 

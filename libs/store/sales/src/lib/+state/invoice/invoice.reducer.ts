@@ -9,6 +9,7 @@ export const INVOICE_FEATURE_KEY = 'invoice';
 export interface State extends EntityState<Invoice> {
   selectedInvoice?: InsertedInvoice; // which Invoiceinvoice record has been selected
   loaded: boolean; // has the Invoiceinvoice list been loaded
+  invoiceLines: Array<any>,
   error?: string | null; // last known error (if any)
 }
 
@@ -23,6 +24,7 @@ export const invoiceAdapter: EntityAdapter<Invoice> = createEntityAdapter<
 export const initialState: State = invoiceAdapter.getInitialState({
   // set initial required properties
   loaded: false,
+  invoiceLines: null
 });
 
 const invoiceReducer = createReducer(
@@ -31,6 +33,14 @@ const invoiceReducer = createReducer(
     ...state,
     loaded: false,
     error: null,
+  })),
+  on(InvoiceActions.prepareInvoiceLines, (state) => ({
+    ...state,
+    invoiceLines: null
+  })),
+  on(InvoiceActions.prepareInvoiceLinesSuccess, (state, {invoiceLines}) => ({
+    ...state,
+    invoiceLines,
   })),
   on(InvoiceActions.loadInvoiceById, (state) => ({
     ...state,

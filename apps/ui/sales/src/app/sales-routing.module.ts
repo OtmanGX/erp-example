@@ -62,7 +62,7 @@ const routes: Routes = [
           { path: '', component: InvoiceListComponent },
           { path: 'add', component: InvoiceAddComponent, data: { breadcrumb: "Ajouter" } },
           { path: 'update', component: InvoiceAddComponent,  data: { breadcrumb: "Mettre à jour" } },
-          { path: 'ready', component: InvoiceReadyComponent },
+          { path: 'ready', component: InvoiceReadyComponent, data: { title: "" } },
         ],
         data: { title: 'Factures', breadcrumb: "Factures" }
       },
