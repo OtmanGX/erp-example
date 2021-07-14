@@ -8,6 +8,7 @@ import * as InvoiceActions from './invoice.actions';
 import { InsertedInvoice, invoiceFilter, UpdatedInvoice } from '@tanglass-erp/core/sales';
 import { filter, switchMap } from 'rxjs/operators';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
+import { getInvoiceLines } from './invoice.selectors';
 
 @Injectable()
 export class InvoiceFacade {
@@ -21,6 +22,10 @@ export class InvoiceFacade {
     filter((e) => !!e)
   );
 
+  invoiceLines$ = this.store.pipe(select(InvoiceSelectors.getInvoiceLines));
+
+
+
   constructor(
     private store: Store<fromInvoice.InvoicePartialState>,
     public invoiceGeneratorService: InvoiceGeneratorService
@@ -32,6 +37,10 @@ export class InvoiceFacade {
 
   loadAll(params: invoiceFilter) {
     this.dispatch(InvoiceActions.loadInvoices(params));
+  }
+
+  prepareInvoiceLines(deliveries) {
+    this.dispatch(InvoiceActions.prepareInvoiceLines({deliveries}));
   }
 
   loadById(id: string) {

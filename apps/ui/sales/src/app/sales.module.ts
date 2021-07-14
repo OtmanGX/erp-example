@@ -34,6 +34,7 @@ import { PopRemovingComponent } from '@TanglassUi/sales/components/pop-remove-de
 import { PopRepairComponent } from '@TanglassUi/sales/components/pop-repair-product/pop-repair.component';
 import { OrderDeliveriesComponent } from '@TanglassUi/sales/components/order-deliveries/order-deliveries.component';
 import { PopQuotationTransferComponent } from '@TanglassUi/sales/components/pop-quotation-transfer/pop-quotation-transfer.component';
+import { InvoiceLinesComponent } from '@TanglassUi/sales/components/invoice-lines/invoice-lines.component';
 @NgModule({
   declarations: [
     SalesComponent,
@@ -61,6 +62,7 @@ import { PopQuotationTransferComponent } from '@TanglassUi/sales/components/pop-
     PopRepairComponent,
     OrderDeliveriesComponent,
     PopQuotationTransferComponent,
+    InvoiceLinesComponent
   ],
   imports: [
     CommonModule,

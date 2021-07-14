@@ -29,6 +29,9 @@
       <ngx-deliveries-accordion *ngIf="selectedDeliveries.length" [deliveries]="selectedDeliveries">
       </ngx-deliveries-accordion>
 
+      <ngx-invoice-lines *ngIf='invoiceLines$ | async; let invoiceLines' [data]='invoiceLines'>
+      </ngx-invoice-lines>
+
       <mat-card-actions class="mt-12 ml-12">
         <button type="submit" mat-raised-button color="primary">{{id?'Mettre à jour':'Confirmer'}}</button>
       </mat-card-actions>

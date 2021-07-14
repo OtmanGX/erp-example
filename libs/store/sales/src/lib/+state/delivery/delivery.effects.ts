@@ -72,7 +72,7 @@ export class DeliveryEffects {
       mergeMap((action) =>
         this.deliveryService.insertOne(action.delivery).pipe(
           map((data) => {
-            this.router.navigate(['/sales/delivery',data.data.insert_sales_delivery_one.id]);
+            this.router.navigate(['/sales/delivery']);
             this.notificationService.showNotifToast({
               message: 'Ajouté avec succès',
               operation: 'success',
@@ -171,7 +171,7 @@ export class DeliveryEffects {
       ofType(DeliveryActions.loadOrderDeliveries),
       mergeMap((action) =>
         this.deliveryService.getOrderDeliveries(action.draft_id)
-     
+
           .pipe(
             map((data) =>
               DeliveryActions.loadOrderDeliveriesSuccess({

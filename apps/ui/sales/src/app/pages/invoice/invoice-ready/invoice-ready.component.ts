@@ -8,16 +8,17 @@ import { InvoiceFacade } from '@tanglass-erp/store/sales';
   styleUrls: ['./invoice-ready.component.scss']
 })
 export class InvoiceReadyComponent implements OnInit {
-  invoice: any;
+  invoice$ = this.invoiceFacade.selectedInvoice$;
 
-  constructor(private location:Location, private invoiceFacade: InvoiceFacade,) { }
+  constructor(private location:Location, private invoiceFacade: InvoiceFacade) { }
 
   ngOnInit(): void {
-    this.invoice = (<any>this.location.getState()).data;
+    const invoice_id = (<any>this.location.getState()).data.id;
+    this.invoiceFacade.loadById(invoice_id);
   }
 
-  print() {
-    this.invoiceFacade.printInvoice(this.invoice);
+  print(invoice) {
+    this.invoiceFacade.printInvoice(invoice);
   }
 
 }

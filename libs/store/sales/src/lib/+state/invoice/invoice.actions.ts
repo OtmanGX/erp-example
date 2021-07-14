@@ -7,6 +7,22 @@ import {
   UpdatedInvoice
 } from '@tanglass-erp/core/sales';
 
+export const prepareInvoiceLines = createAction(
+  '[Invoice] prepare InvoiceLines',
+  props<{deliveries: any}>()
+);
+
+export const prepareInvoiceLinesSuccess = createAction(
+  '[Invoice] prepare InvoiceLines Success',
+  props<{invoiceLines: any}>()
+);
+
+export const prepareInvoiceLinesFailure = createAction(
+  '[Invoice] prepare InvoiceLines Failure',
+  props<{error: any}>()
+);
+
+
 export const loadInvoices = createAction(
   '[Invoice] Load Invoice',
   props<invoiceFilter>()

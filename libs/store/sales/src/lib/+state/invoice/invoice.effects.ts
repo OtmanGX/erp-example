@@ -17,24 +17,26 @@ export class InvoiceEffects {
     this.actions$.pipe(
       ofType(InvoiceActions.loadInvoices),
       mergeMap((action) =>
-        this.service.getAll({
-          dateStart: action.dateStart,
-          dateEnd: action.dateEnd,
-        }).pipe(
-          map((data) =>
-            InvoiceActions.loadInvoicesSuccess({
-              invoices: data.data.sales_invoice,
-            })
-          ),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de chargement',
-              error
-            );
-            return of(InvoiceActions.loadInvoicesFailure({ error }));
+        this.service
+          .getAll({
+            dateStart: action.dateStart,
+            dateEnd: action.dateEnd,
           })
-        )
+          .pipe(
+            map((data) =>
+              InvoiceActions.loadInvoicesSuccess({
+                invoices: data.data.sales_invoice,
+              })
+            ),
+            catchError((error) => {
+              this.notificationService.showToast(
+                'error',
+                'Erreur de chargement',
+                error
+              );
+              return of(InvoiceActions.loadInvoicesFailure({ error }));
+            })
+          )
       )
     )
   );
@@ -63,20 +65,39 @@ export class InvoiceEffects {
     )
   );
 
+  prepareInvoiceLines$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(InvoiceActions.prepareInvoiceLines),
+      mergeMap((action) =>
+        this.service.prepareInvoiceLines(action.deliveries).pipe(
+          map((data) =>
+            InvoiceActions.prepareInvoiceLinesSuccess({ invoiceLines: data })
+          ),
+          catchError((error) =>
+            of(InvoiceActions.prepareInvoiceLinesFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
   addInvoice$ = createEffect(() =>
     this.actions$.pipe(
       ofType(InvoiceActions.addInvoice),
       mergeMap((action) => {
         return this.service
-          .prepareInvoiceLines(action.invoice.deliveries.map((e) => e.delivery_id))
-          .pipe(mergeMap((value) => {
-            const invoice = {
-              ...action.invoice,
-              invoice_lines: value
-            };
-            return this.service.insertOne(invoice)
-          }
-          ))
+          .prepareInvoiceLines(
+            action.invoice.deliveries.map((e) => e.delivery_id)
+          )
+          .pipe(
+            mergeMap((value) => {
+              const invoice = {
+                ...action.invoice,
+                invoice_lines: value,
+              };
+              return this.service.insertOne(invoice);
+            })
+          )
           .pipe(
             map((data) => {
               this.notificationService.showNotifToast({
@@ -88,7 +109,7 @@ export class InvoiceEffects {
                 route: 'sales/invoice',
                 color: 'primary',
               });
-              this.router.navigate(['sales/invoice/ready',data.data.insert_sales_invoice_one.id], {
+              this.router.navigate(['sales/invoice/ready'], {
                 state: { data: data.data.insert_sales_invoice_one },
               });
               return InvoiceActions.addInvoiceSuccess({

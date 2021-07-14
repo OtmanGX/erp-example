@@ -20,7 +20,7 @@
             [from]="0"
             [to]="config.amount"
             [of]="config.ofAmount || config.amount"
-            [finishedText]="config?.subtitle"
+            [finishedText]="config?.subtitle?config?.subtitle:''"
           >
             <ng-counter-prefix *ngIf="config?.amountPrefix">
               {{ config.amountPrefix }} &nbsp;

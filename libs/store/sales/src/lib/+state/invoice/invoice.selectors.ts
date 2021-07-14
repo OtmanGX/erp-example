@@ -16,6 +16,11 @@ export const getInvoiceError = createSelector(
   (state: State) => state.error
 );
 
+export const getInvoiceLines = createSelector(
+  getInvoiceState,
+  (state: State) => state.invoiceLines
+);
+
 export const getAllInvoice = createSelector(
   getInvoiceState,
   (state: State) => selectAll(state)
