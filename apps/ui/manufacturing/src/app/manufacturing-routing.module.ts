@@ -1,25 +1,31 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { jobOrdersComponent } from "@TanglassUi/manufacturing/pages/job-order/job-orders.component";
-
+import { JobOrdersComponent } from '@TanglassUi/manufacturing/pages/job-order/job-orders.component';
+import { JobCardComponent } from '@TanglassUi/manufacturing/pages/job-order/job-card/job-card.component';
+import { ManufacturingComponent } from '@TanglassUi/manufacturing/manufacturing.component';
 const routes: Routes = [
   {
     path: '',
-    component: jobOrdersComponent,
+    component: ManufacturingComponent,
     children: [
       {
         path: 'jobOrders',
         children: [
-          { path: '', component: jobOrdersComponent },
+          { path: '', component: JobOrdersComponent },
+          {
+            path: ':id',
+            component: JobCardComponent,
+            data: { breadcrumb: 'Fiche J.O' },
+          },
         ],
-        data: { title: 'jobOrders', breadcrumb: "" }
+        data: { title: 'jobOrders', breadcrumb: 'Ordre de Fabrication' },
       },
-    ]
-  }
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ManufacturingRoutingModule { }
+export class ManufacturingRoutingModule {}

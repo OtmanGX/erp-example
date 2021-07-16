@@ -71,6 +71,7 @@ export class ListConsumableComponent implements GridView {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        console.log(result)
         // Store action dispatching
         if (action === Operations.add) {
           this.store.dispatch(ConsumableActions.addConsumable({consumable : result}));

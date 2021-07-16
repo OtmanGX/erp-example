@@ -1,6 +1,10 @@
-
-mutation AddCustomerContact($id: uuid!, $contact: contact_contact_insert_input!) {
-  insert_contact_customer_contact_one(object: {customerid: $id, contact: {data: $contact}}) {
+mutation AddCustomerContact(
+  $id: uuid!
+  $contact: contact_contact_insert_input!
+) {
+  insert_contact_customer_contact_one(
+    object: { customerid: $id, contact: { data: $contact } }
+  ) {
     contact {
       code
       mail

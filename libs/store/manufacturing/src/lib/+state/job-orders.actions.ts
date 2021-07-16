@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { JobOrdersEntity } from './job-orders.models';
+import { JobOrder,InsertedJobOrder } from '@tanglass-erp/core/manufacturing';
 
 
 /****************************************************************** */
@@ -11,7 +11,7 @@ export const loadJobOrders = createAction('[JobOrders] Load JobOrders');
 
 export const loadJobOrdersSuccess = createAction(
   '[JobOrders] Load JobOrders Success',
-  props<{ jobOrders: JobOrdersEntity[] }>()
+  props<{ jobOrders: JobOrder[] }>()
 );
 
 export const loadJobOrdersFailure = createAction(
@@ -32,7 +32,7 @@ export const loadJobOrderById = createAction(
 
 export const loadJobOrderByIdSuccess = createAction(
   '[Job Order Effect] Load Job Order By Id Success',
-  props<{ jobOrder: JobOrdersEntity }>()
+  props<{ jobOrder: JobOrder }>()
 );
 
 export const loadJobOrderByIdFailure = createAction(
@@ -47,12 +47,12 @@ export const loadJobOrderByIdFailure = createAction(
 
 export const addJobOrder = createAction(
   '[Job Orders Component] Add Job Order',
-  props<{ jobOrder: JobOrdersEntity }>()
+  props<{ jobOrder: InsertedJobOrder }>()
 );
 
 export const addJobOrderSuccess = createAction(
   '[Job Order Effect] Add Job Order Success',
-  props<{ jobOrder: JobOrdersEntity }>()
+  props<{ jobOrder: JobOrder }>()
 );
 
 export const addJobOrderFailure = createAction(

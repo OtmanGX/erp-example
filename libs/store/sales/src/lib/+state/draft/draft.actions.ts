@@ -1,14 +1,11 @@
 import { createAction, props } from '@ngrx/store';
-import { DraftEntity } from './draft.models';
 import { Draft } from '@tanglass-erp/core/sales';
 
 /****************************************************************** */
 /*****LOAD Drafts ** */
 /****************************************************************** */
 
-export const loadDrafts = createAction(
-  '[Draft] Load Draft'
-  );
+export const loadDrafts = createAction('[Draft] Load Draft');
 
 export const loadDraftSuccess = createAction(
   '[Draft] Load Draft Success',
@@ -20,16 +17,14 @@ export const loadDraftFailure = createAction(
   props<{ error: any }>()
 );
 
-
 /****************************************************************** */
 /*****LOAD INDIVIDUAL Draft ** */
 /****************************************************************** */
 
 export const loadDraftById = createAction(
   '[Draft Card Component] Load Draft By Id',
-  props<{ id:number }>()
-  );
-
+  props<{ id: number }>()
+);
 
 export const loadDraftByIdSuccess = createAction(
   '[Draft Effect] Load Draft By Id Success',
@@ -41,14 +36,13 @@ export const loadDraftByIdFailure = createAction(
   props<{ error: any }>()
 );
 
-
 /****************************************************************** */
 /*****ADD INDIVIDUAL Draft ** */
 /****************************************************************** */
 
 export const addDraft = createAction(
-  '[List drafts Component] Add Draft',
- // props<{ draft: Draft }>()
+  '[List drafts Component] Add Draft'
+  // props<{ draft: Draft }>()
 );
 
 export const addDraftSuccess = createAction(
@@ -99,6 +93,5 @@ export const clearDraftState = createAction('[Draft] Clear Draft State');
 
 export const selectDraft = createAction(
   '[Draft ] Select Draft ID ',
-  props<{ id: number}>()
+  props<{ id: number }>()
 );
-

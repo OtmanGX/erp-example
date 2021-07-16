@@ -1,12 +1,11 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-
 import * as JobOrdersActions from './job-orders.actions';
-import { JobOrdersEntity } from './job-orders.models';
+import { JobOrder, InsertedJobOrder } from '@tanglass-erp/core/manufacturing';
 
 export const JOB_ORDERS_FEATURE_KEY = 'jobOrders';
 
-export interface State extends EntityState<JobOrdersEntity> {
+export interface State extends EntityState<JobOrder> {
   selectedId?: string | number; // which JobOrders record has been selected
   loaded: boolean; // has the JobOrders list been loaded
   error?: string | null; // last known error (if any)
@@ -16,8 +15,8 @@ export interface JobOrdersPartialState {
   readonly [JOB_ORDERS_FEATURE_KEY]: State;
 }
 
-export const jobOrdersAdapter: EntityAdapter<JobOrdersEntity> = createEntityAdapter<
-  JobOrdersEntity
+export const jobOrdersAdapter: EntityAdapter<JobOrder> = createEntityAdapter<
+  JobOrder
 >();
 
 export const initialState: State = jobOrdersAdapter.getInitialState({
@@ -38,6 +37,11 @@ const jobOrdersReducer = createReducer(
   on(JobOrdersActions.addJobOrderSuccess, (state, action) =>
     jobOrdersAdapter.addOne(action.jobOrder, state)
   ),
+  on(JobOrdersActions.loadJobOrderByIdSuccess, (state, action) => ({
+    ...state,
+    error: null,
+    selectedOrder: action.jobOrder,
+  })),
   on(
     JobOrdersActions.loadJobOrdersFailure,
     JobOrdersActions.addJobOrderFailure,

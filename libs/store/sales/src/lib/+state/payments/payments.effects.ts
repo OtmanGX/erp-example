@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
 import { PaymentService } from '@tanglass-erp/core/sales';
-
-import * as fromPayments from './payments.reducer';
 import * as PaymentsActions from './payments.actions';
-
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -34,16 +31,17 @@ export class PaymentsEffects {
       mergeMap((action) =>
         this.paymentService.insertPayment(action.payment).pipe(
           map((data) =>
-            PaymentsActions.addPaymentSuccess({ payment: data.data.insert_sales_payment_one })
+            PaymentsActions.addPaymentSuccess({
+              payment: data.data.insert_sales_payment_one,
+            })
           ),
           catchError((error) =>
             of(PaymentsActions.addPaymentFailure({ error }))
           )
         )
       )
-    )
+    );
   });
-
 
   getOrderPayments$ = createEffect(() => {
     return this.actions$.pipe(
@@ -51,18 +49,20 @@ export class PaymentsEffects {
       mergeMap((action) =>
         this.paymentService.getOrderPayments(action.order_id).pipe(
           map((data) =>
-            PaymentsActions.loadOrderPaymentsSuccess({ payments: data.data.sales_payment })
+            PaymentsActions.loadOrderPaymentsSuccess({
+              payments: data.data.sales_payment,
+            })
           ),
           catchError((error) =>
             of(PaymentsActions.loadOrderPaymentsFailure({ error }))
           )
         )
       )
-    )
+    );
   });
 
-
-
-  constructor(private actions$: Actions,
-    private paymentService: PaymentService) { }
+  constructor(
+    private actions$: Actions,
+    private paymentService: PaymentService
+  ) {}
 }

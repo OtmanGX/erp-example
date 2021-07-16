@@ -1,4 +1,5 @@
 <ngx-dialog-body title="Supprimer">
+  <div *ngIf="!data.length"><h1> Pas de Services dépendants de cette piéce de verre!</h1></div>
     <mat-selection-list #products>
       <mat-list-option *ngFor="let product of data" [value]="product">
         {{product.label}} :

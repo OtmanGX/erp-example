@@ -1,33 +1,31 @@
 import { Injectable } from '@angular/core';
-
 import { select, Store, Action } from '@ngrx/store';
-
 import * as fromOrders from './orders.reducer';
 import * as OrdersSelectors from './orders.selectors';
 import * as OrdersActions from './orders.actions';
 import { filter } from 'rxjs/operators';
-
-import { invoiceFilter, Order,InsertedOrder } from '@tanglass-erp/core/sales';
-import { PaymentsFacade } from "../payments/payments.facade";
+import { invoiceFilter, Order, InsertedOrder } from '@tanglass-erp/core/sales';
+import { PaymentsFacade } from '../payments/payments.facade';
 import { ProductDraftFacade } from '../product-draft/product-draft.facade';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
+
 @Injectable()
 export class OrdersFacade {
   loaded$ = this.store.pipe(select(OrdersSelectors.getOrdersLoaded));
   allOrders$ = this.store.pipe(select(OrdersSelectors.getAllOrders));
-  loadedOrders$ = this.store.pipe(select(OrdersSelectors.getSelectedOrder));
+  loadedOrder$ = this.store.pipe(select(OrdersSelectors.getSelectedOrder));
   selectedOrder$ = this.store.pipe(
     select(OrdersSelectors.getSelected),
     filter((val) => !!val)
   );
-  selectedOrderId$ = this.store.pipe(select(OrdersSelectors.getSelectedId))
+  selectedOrderId$ = this.store.pipe(select(OrdersSelectors.getSelectedId));
 
   constructor(
     private store: Store<fromOrders.OrdersPartialState>,
     public paymentsFacade: PaymentsFacade,
     public invoiceGeneratorService: InvoiceGeneratorService,
-    public productFacade: ProductDraftFacade) {
-    }
+    public productFacade: ProductDraftFacade
+  ) {}
 
   dispatch(action: Action) {
     this.store.dispatch(action);
@@ -37,8 +35,8 @@ export class OrdersFacade {
   }
 
   loadOrderById(id) {
-    this.paymentsFacade.loadOrderPayments({ order_id: id })
-    this.dispatch(OrdersActions.loadOrderById({ id }))
+    this.paymentsFacade.loadOrderPayments({ order_id: id });
+    this.dispatch(OrdersActions.loadOrderById({ id }));
   }
 
   addOrder(order: InsertedOrder) {
@@ -60,7 +58,4 @@ export class OrdersFacade {
   clearSelection() {
     this.dispatch(OrdersActions.clearSelection());
   }
-
-  
-
 }

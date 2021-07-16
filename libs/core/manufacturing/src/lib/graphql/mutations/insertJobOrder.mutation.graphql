@@ -1,31 +1,58 @@
 mutation InsertJobOrder(
-    $id: Int,
-    $order_ref: String,
-    $status: String,
-    $date: timestamp,
-    $products: [sales_glass_draft_insert_input!]!
-    ) {
+  $order_ref: String
+  $isReparing: Boolean = false
+  $ids: [sales_glass_draft_insert_input!]!
+) {
   insert_manufacturing_job_order_one(
-      object: {
-          id: $id,
-          order_ref: $order_ref,
-          status: $status,
-          date: $date,
-          glass_drafts: {
-              data: $products
-              }}){
+    object: {
+      order_ref: $order_ref
+      isReparing: $isReparing
+      glass_drafts: {
+        data: $ids
+        on_conflict: {
+          constraint: glass_draft_pkey
+          update_columns: job_order_id
+        }
+      }
+    }
+  ) {
     id
     order_ref
     status
+    isReparing
     date
+    ref
+    glass_drafts {
+      id
+      product_draft {
+        type
+        count
+        heigth
+        width
+        label
+        product_code
+      }
+      consumable_drafts {
+        dependent_id
+        labelFactory
+        id
+      }
+      service_drafts {
+        id
+        labelFactory
+        dependent_id
+      }
+    }
   }
-  update_sales_product_draft(where: {draft:
-  {order: {
-    ref: {
-      _eq: $order_ref
-      }}}}, _set: {
-        isRepeated: true
-        }) {
+  update_sales_product_draft(
+    _set: { isLaunched: true }
+    where: {
+      _and: {
+        draft: { order: { ref: { _eq: $order_ref } } }
+        type: { _nin: [Accessoire] }
+      }
+    }
+  ) {
     affected_rows
   }
 }

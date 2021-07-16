@@ -1,14 +1,13 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-
 import * as PaymentsActions from './payments.actions';
-import { Payment as PaymentsEntity } from "@tanglass-erp/core/sales";
+import { Payment as PaymentsEntity } from '@tanglass-erp/core/sales';
 
 export const PAYMENTS_FEATURE_KEY = 'payments';
 
 export interface PaymentState extends EntityState<PaymentsEntity> {
   selectedId?: string | number; // which Payments record has been selected
-  selectedPayments:PaymentsEntity[]
+  selectedPayments: PaymentsEntity[];
   loaded: boolean; // has the Payments list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -21,11 +20,13 @@ export const paymentsAdapter: EntityAdapter<PaymentsEntity> = createEntityAdapte
   PaymentsEntity
 >();
 
-export const payment_initialState: PaymentState = paymentsAdapter.getInitialState({
-  // set initial required properties
-  selectedPayments:[],
-  loaded: false,
-});
+export const payment_initialState: PaymentState = paymentsAdapter.getInitialState(
+  {
+    // set initial required properties
+    selectedPayments: [],
+    loaded: false,
+  }
+);
 
 const paymentsReducer = createReducer(
   payment_initialState,
@@ -37,26 +38,31 @@ const paymentsReducer = createReducer(
   on(PaymentsActions.loadPaymentsSuccess, (state, { payments }) =>
     paymentsAdapter.setAll(payments, { ...state, loaded: true })
   ),
-  on(PaymentsActions.loadOrderPaymentsSuccess,
-    (state, {payments}) => ({...state, selectedPayments:payments })
-  ),
-  on(PaymentsActions.addPaymentSuccess,
-    (state, action) =>paymentsAdapter.addOne(action.payment,
-      state)
+  on(PaymentsActions.loadOrderPaymentsSuccess, (state, { payments }) => ({
+    ...state,
+    selectedPayments: payments,
+  })),
+  on(PaymentsActions.addPaymentSuccess, (state, action) =>
+    paymentsAdapter.addOne(action.payment, state)
   ),
   on(PaymentsActions.setOrderPayments, (state, { payments }) =>
-  paymentsAdapter.setAll(payments, { ...state, loaded: true })
+    paymentsAdapter.setAll(payments, { ...state, loaded: true })
   ),
-  on(PaymentsActions.loadPaymentsFailure,
+  on(
+    PaymentsActions.loadPaymentsFailure,
     PaymentsActions.loadOrderPaymentsFailure,
     PaymentsActions.addPaymentFailure,
     PaymentsActions.removePaymentFailure,
     (state, { error }) => ({
-    ...state,
-    error,
-  }))
+      ...state,
+      error,
+    })
+  )
 );
 
-export function reducerPayment(state: PaymentState | undefined, action: Action) {
+export function reducerPayment(
+  state: PaymentState | undefined,
+  action: Action
+) {
   return paymentsReducer(state, action);
 }

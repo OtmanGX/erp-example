@@ -3,7 +3,7 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as ProductActions from './product-draft.actions';
 import { DraftService } from '@tanglass-erp/core/sales';
 import { mergeMap, map, catchError } from 'rxjs/operators';
-import { of, combineLatest } from 'rxjs';
+import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
 @Injectable()
 export class ProductDraftEffects {
@@ -17,6 +17,7 @@ export class ProductDraftEffects {
               __typename,
               ...product
             } = data.data.insert_sales_glass_draft_one.product_draft;
+            
             return ProductActions.addGlassSuccess({
               glass: product,
             });

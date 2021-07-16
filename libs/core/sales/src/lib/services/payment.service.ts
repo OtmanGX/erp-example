@@ -1,34 +1,30 @@
 import { Injectable } from '@angular/core';
 import {
-    GetPaymentGQL,
-    InsertPaymentGQL,
-    InsertPaymentMutationVariables,
-    DeletePaymentGQL
-
+  GetPaymentGQL,
+  InsertPaymentGQL,
+  InsertPaymentMutationVariables,
+  DeletePaymentGQL,
 } from '@tanglass-erp/infrastructure/graphql';
-import { flattenObj } from "@tanglass-erp/core/common";
-import { map } from 'rxjs/operators';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class PaymentService {
-    constructor(
-        private InsertPaymentGQL: InsertPaymentGQL,
-        private getOrderPaymentGQL: GetPaymentGQL,
-        private deletePaymentGQL:DeletePaymentGQL
-    ) {}
+  constructor(
+    private InsertPaymentGQL: InsertPaymentGQL,
+    private getOrderPaymentGQL: GetPaymentGQL,
+    private deletePaymentGQL: DeletePaymentGQL
+  ) {}
 
-    getOrderPayments(order_id) {
-        return this.getOrderPaymentGQL.fetch(order_id )
-    }
+  getOrderPayments(order_id) {
+    return this.getOrderPaymentGQL.fetch(order_id);
+  }
 
-    insertPayment(payment: InsertPaymentMutationVariables) {
-        return this.InsertPaymentGQL.mutate(payment);
-    }
+  insertPayment(payment: InsertPaymentMutationVariables) {
+    return this.InsertPaymentGQL.mutate(payment);
+  }
 
-    removePayment(id){
-        return this.deletePaymentGQL.mutate(id);
-    }
-
+  removePayment(id) {
+    return this.deletePaymentGQL.mutate(id);
+  }
 }

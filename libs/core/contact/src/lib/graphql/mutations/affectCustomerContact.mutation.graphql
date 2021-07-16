@@ -1,5 +1,6 @@
-
-mutation AffectCustomerContact($affectedContacts: [contact_customer_contact_insert_input!]!) {
+mutation AffectCustomerContact(
+  $affectedContacts: [contact_customer_contact_insert_input!]!
+) {
   insert_contact_customer_contact(objects: $affectedContacts) {
     returning {
       contact {

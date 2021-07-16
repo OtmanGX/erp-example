@@ -13,11 +13,7 @@ import {
   Sales_Product_Type_Enum,
   DeleteProductsGQL,
 } from '@tanglass-erp/infrastructure/graphql';
-import { InsertedProduct, Product_draft } from '@tanglass-erp/core/sales';
-import { map } from 'rxjs/operators';
-import { of, combineLatest, Observable } from 'rxjs';
-import { WriteStream } from 'fs';
-import { Console } from 'console';
+import { InsertedProduct } from '@tanglass-erp/core/sales';
 @Injectable({
   providedIn: 'root',
 })
@@ -33,7 +29,7 @@ export class DraftService {
     private getProductsByTypeGQL: GetProductsByTypeGQL,
     private getAllDraftsGQL: GetAllDraftsGQL,
     private getDraftByIdGQL: GetDraftByIdGQL,
-    private DeleteProductsGQL: DeleteProductsGQL,
+    private DeleteProductsGQL: DeleteProductsGQL
   ) {}
 
   getAll() {
@@ -119,17 +115,4 @@ export class DraftService {
   removeProducts(ids: string[]) {
     return this.DeleteProductsGQL.mutate({ ids });
   }
-
-  addBisItems(products) {
-    let response: {
-      glass;
-      services;
-      consumables;
-    };
-
-
-    return;
-  }
-
-
 }

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-
 import { select, Store, Action } from '@ngrx/store';
-
 import * as fromJobOrders from './job-orders.reducer';
 import * as JobOrdersSelectors from './job-orders.selectors';
-import * as JobOrdersAction from './job-orders.actions';
+import * as JobOrdersActions from './job-orders.actions';
+import { InsertedJobOrder } from '@tanglass-erp/core/manufacturing';
 @Injectable()
 export class JobOrdersFacade {
   loaded$ = this.store.pipe(select(JobOrdersSelectors.getJobOrdersLoaded));
@@ -18,11 +17,18 @@ export class JobOrdersFacade {
   }
 
   loadAllJobOrders() {
-    this.dispatch(JobOrdersAction.loadJobOrders());
+    this.dispatch(JobOrdersActions.loadJobOrders());
   }
 
-  addJobOrder(jobOrder){
-    this.dispatch(JobOrdersAction.addJobOrder(jobOrder))
+  addJobOrder(jobOrder:InsertedJobOrder) {
+    this.dispatch(JobOrdersActions.addJobOrder({jobOrder}));
   }
 
+  loadJobOrderById(id) {
+    this.dispatch(JobOrdersActions.loadJobOrderById({ id }));
+  }
+  launchJobOrder(data:InsertedJobOrder,type?:string){
+    
+
+  }
 }

@@ -15,5 +15,6 @@ query GetAllConsumables {
       }
     }
     substanceid
+    labelFactory 
   }
 }

@@ -2,7 +2,9 @@ query GetAllJobsOrders {
   manufacturing_job_order {
     id
     date
+    isReparing
     status
     order_ref
+    ref
   }
 }

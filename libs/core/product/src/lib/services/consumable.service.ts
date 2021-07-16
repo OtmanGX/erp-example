@@ -5,44 +5,41 @@ import {
   GetConsumableByIdGQL,
   DeleteOneGQL,
   DeleteManyGQL,
-  InsertConsumableMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
-import {  InsertedConsumable } from "../models/consumable.model";
+import { InsertedConsumable } from '../models/consumable.model';
 import { adaptProduct } from '../utils/dataAdapter';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConsumableService {
-
-
   constructor(
     private getAllGQL: GetAllConsumablesGQL,
     private getByIdGQL: GetConsumableByIdGQL,
     private insertOneGQL: InsertConsumableGQL,
     private deleteOneGQL: DeleteOneGQL,
-    private deleteMany:DeleteManyGQL
-  ) {
- }
+    private deleteMany: DeleteManyGQL
+  ) {}
 
   getAll() {
-    return this.getAllGQL.watch().valueChanges
+    return this.getAllGQL.watch().valueChanges;
   }
 
   getOneById(id: string) {
-    return this.getByIdGQL.fetch({ id })
+    return this.getByIdGQL.fetch({ id });
   }
 
   insertOne(createdOne: InsertedConsumable) {
-    let addeValue=adaptProduct(createdOne,'consumable')
+    console.log(createdOne);
+    let addeValue = adaptProduct(createdOne, 'consumable');
 
-    return this.insertOneGQL.mutate(addeValue)
+    return this.insertOneGQL.mutate(addeValue);
   }
   removeOne(code: string) {
-    return this.deleteOneGQL.mutate({ code })
+    return this.deleteOneGQL.mutate({ code });
   }
 
   removeMany(codes: string[]) {
-    return this.deleteMany.mutate({codes})
+    return this.deleteMany.mutate({ codes });
   }
 }

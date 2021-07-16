@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
-import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
+import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { Router } from '@angular/router';
-
-import * as fromJobOrders from './job-orders.reducer';
 import * as JobOrdersActions from './job-orders.actions';
 import { JobOrderService } from '@tanglass-erp/core/manufacturing';
 
@@ -16,20 +13,19 @@ export class JobOrdersEffects {
     return this.actions$.pipe(
       ofType(JobOrdersActions.loadJobOrders),
       mergeMap((action) =>
-        this.jobOrderService
-          .getAll()
-          .pipe(
-            map((data) =>
-            JobOrdersActions.loadJobOrdersSuccess({ jobOrders: data.data.manufacturing_job_order })
-            ),
-            catchError((error) =>
-              of(JobOrdersActions.loadJobOrdersFailure({ error }))
-            )
+        this.jobOrderService.getAll().pipe(
+          map((data) =>
+            JobOrdersActions.loadJobOrdersSuccess({
+              jobOrders: data.data.manufacturing_job_order,
+            })
+          ),
+          catchError((error) =>
+            of(JobOrdersActions.loadJobOrdersFailure({ error }))
           )
+        )
       )
     );
   });
-
 
   addJobOrder$ = createEffect(() => {
     return this.actions$.pipe(
@@ -46,12 +42,32 @@ export class JobOrdersEffects {
               route: 'manufacturing/jobOrder',
               color: 'primary',
             });
-            this.router.navigate(['manufacturing/jobOrder']);
+            this.router.navigate(['manufacturing/jobOrders']);
             return JobOrdersActions.addJobOrderSuccess({
               jobOrder: data.data.insert_manufacturing_job_order_one,
             });
           }),
-          catchError((error) => of(JobOrdersActions.addJobOrderFailure({ error })))
+          catchError((error) =>
+            of(JobOrdersActions.addJobOrderFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  getJobOrderById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(JobOrdersActions.loadJobOrderById),
+      mergeMap((action) =>
+        this.jobOrderService.getOneById(action.id).pipe(
+          map((data) => {
+            return JobOrdersActions.loadJobOrderByIdSuccess({
+              jobOrder: data.data.manufacturing_job_order_by_pk,
+            });
+          }),
+          catchError((error) =>
+            of(JobOrdersActions.loadJobOrderByIdFailure({ error }))
+          )
         )
       )
     );
@@ -61,6 +77,6 @@ export class JobOrdersEffects {
     private actions$: Actions,
     private jobOrderService: JobOrderService,
     private router: Router,
-    private notificationService: NotificationFacadeService,
-   ) {}
+    private notificationService: NotificationFacadeService
+  ) {}
 }

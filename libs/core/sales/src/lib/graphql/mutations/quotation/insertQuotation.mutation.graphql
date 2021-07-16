@@ -57,9 +57,7 @@ mutation InsertQuotation(
   update_sales_draft_by_pk(pk_columns: {
     id: $draft_id},
     _set: {
-      company_id: $company_id,
-      customer_id: $customer_id,
-      date: $date,
+     
       status: $status
       }) {
     id

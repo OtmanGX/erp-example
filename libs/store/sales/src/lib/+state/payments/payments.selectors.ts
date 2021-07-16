@@ -24,8 +24,9 @@ export const getPaymentsError = createSelector(
   (state: PaymentState) => state.error
 );
 
-export const getAllPayments = createSelector(getPaymentsState, (state: PaymentState) =>
-  selectAll(state)
+export const getAllPayments = createSelector(
+  getPaymentsState,
+  (state: PaymentState) => selectAll(state)
 );
 
 export const getPaymentsEntities = createSelector(

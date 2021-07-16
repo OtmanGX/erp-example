@@ -55,7 +55,7 @@ const invoiceReducer = createReducer(
   })),
   on(InvoiceActions.addInvoiceSuccess, (state, { invoice }) => ({
     ...state,
-    selectedInvoice: invoice
+    selectedInvoice: invoice,
   })),
   on(InvoiceActions.updateInvoiceSuccess, (state, { invoice }) =>
     invoiceAdapter.updateOne({ id: invoice.id, changes: invoice }, state)
