@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { JobOrdersComponent } from '@TanglassUi/manufacturing/pages/job-order/job-orders.component';
 import { JobCardComponent } from '@TanglassUi/manufacturing/pages/job-order/job-card/job-card.component';
-import { ManufacturingComponent } from "@TanglassUi/manufacturing/manufacturing.component";
+import { ManufacturingComponent } from '@TanglassUi/manufacturing/manufacturing.component';
 const routes: Routes = [
   {
     path: '',
@@ -12,7 +12,11 @@ const routes: Routes = [
         path: 'jobOrders',
         children: [
           { path: '', component: JobOrdersComponent },
-          { path: ':id', component: JobCardComponent },
+          {
+            path: ':id',
+            component: JobCardComponent,
+            data: { breadcrumb: 'Fiche J.O' },
+          },
         ],
         data: { title: 'jobOrders', breadcrumb: 'Ordre de Fabrication' },
       },

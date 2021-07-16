@@ -1,13 +1,5 @@
 query GetDraftById($id: Int!) {
   sales_draft_by_pk(id: $id) {
-    company {
-      name
-    }
-    customer {
-      code
-      id
-      name
-    }
     date
     id
     status

@@ -256,7 +256,6 @@ export class ProductDraftFacade {
           item.type == Sales_Product_Type_Enum.ArticleClient) &&
         !item.isRepeated
     );
-    console.log(glass);
     glass = { ...glass, isRepeated: true };
 
     let services = products.filter(

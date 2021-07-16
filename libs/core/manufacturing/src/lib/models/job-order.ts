@@ -1,25 +1,34 @@
 export interface JobOrder {
-  id: string;
+  id: number;
   date: Date;
-  order_ref: number;
-  ref: string;
+  order_ref: string;
+  ref?: string;
   status: string;
-  type: string;
-  glass_drafts: JobProduct[];
+  glass_drafts?: JobProduct[];
 }
 
 export interface JobProduct {
   id: string;
-  consumable_drafts: Dependency[];
-  service_drafts: Dependency[];
-  product_draft: {
-    count: number;
-    heigth: number;
-    width: number;
+  consumable_drafts?: Dependency[];
+  service_drafts?: Dependency[];
+  product_draft?: {
+    type?: string;
+    label?: string;
+    count?: number;
+    heigth?: number;
+    width?: number;
     product_code: string;
   };
 }
 
 export interface Dependency {
-  labelFactory: string;
+  labelFactory?: string;
+  id: string;
+  dependent_id?: string;
+}
+
+export interface InsertedJobOrder {
+  order_ref: string;
+  isReparing?: boolean;
+  ids: { id: string }[];
 }

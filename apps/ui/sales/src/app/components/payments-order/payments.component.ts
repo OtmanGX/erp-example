@@ -29,7 +29,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.order_subscription = this.orderFacade.loadedOrders$.subscribe(
+    this.order_subscription = this.orderFacade.loadedOrder$.subscribe(
       (order) => (this.order_id = order?.id)
     );
     this.amountsList = this.paymentFacade.groupPaymentsByCompany().pipe(

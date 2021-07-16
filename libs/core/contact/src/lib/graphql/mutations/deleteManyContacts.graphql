@@ -1,5 +1,5 @@
 mutation DeleteManyContacts($ids: [uuid!]) {
-  delete_contact_contact(where: {id: {_in: $ids}}) {
+  delete_contact_contact(where: { id: { _in: $ids } }) {
     returning {
       id
     }

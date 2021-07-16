@@ -13,7 +13,7 @@ import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
 export class OrdersFacade {
   loaded$ = this.store.pipe(select(OrdersSelectors.getOrdersLoaded));
   allOrders$ = this.store.pipe(select(OrdersSelectors.getAllOrders));
-  loadedOrders$ = this.store.pipe(select(OrdersSelectors.getSelectedOrder));
+  loadedOrder$ = this.store.pipe(select(OrdersSelectors.getSelectedOrder));
   selectedOrder$ = this.store.pipe(
     select(OrdersSelectors.getSelected),
     filter((val) => !!val)
