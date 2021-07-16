@@ -67,6 +67,7 @@ export interface InsertedProduct   {
   status?: string;
   isLaunched?:boolean;
   type: Sales_Product_Type_Enum;
+  labelFactory: string;
 }
 
 export interface InsertBisItem {

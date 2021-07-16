@@ -33,8 +33,6 @@ export class QuotationComponent implements GridView {
 
   ngAfterViewInit(): void {
     this.agGrid = this.mainGrid.agGrid;
-
-
   }
 
   ngOnInit(): void {
@@ -67,6 +65,4 @@ export class QuotationComponent implements GridView {
       { field: 'id', headerName: 'Action', type: "editColumn" }
     ];
   }
-
-
 }

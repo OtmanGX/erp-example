@@ -24,7 +24,7 @@ mutation InsertJobOrder(
     ref: {
       _eq: $order_ref
       }}}}, _set: {
-        isRepeated: true
+        isLaunched: true
         }) {
     affected_rows
   }

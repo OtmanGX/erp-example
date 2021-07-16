@@ -1,42 +1,42 @@
 mutation insertServiceDraft(
-  $company_id: uuid ,
-  $company_name: String, 
-  $label: String, 
-  $price: numeric,
-  $product_code: String, 
-  $total_price: numeric, 
-  $type: sales_product_type_enum,
-  $unit: String, 
-  $dependent_id: uuid, 
-  $m2: numeric, 
-  $quantity: numeric, 
-  $ml: numeric , 
-  $draft_id: Int, 
-  $warehouse_id: uuid = "null",
-  $isRepeated: Boolean = false
+  $company_id: uuid
+  $company_name: String
+  $label: String
+  $price: numeric
+  $product_code: String
+  $total_price: numeric
+  $type: sales_product_type_enum
+  $unit: String
+  $dependent_id: uuid
+  $m2: numeric
+  $quantity: numeric
+  $ml: numeric
+  $draft_id: Int
+  $warehouse_id: uuid = "null"
+  $labelFactory: String
+) {
+  insert_sales_service_draft_one(
+    object: {
+      product_draft: {
+        data: {
+          company_id: $company_id
+          company_name: $company_name
+          label: $label
+          price: $price
+          product_code: $product_code
+          total_price: $total_price
+          type: $type
+          unit: $unit
+          m2: $m2
+          quantity: $quantity
+          ml: $ml
+          draft_id: $draft_id
+        }
+      }
+      dependent_id: $dependent_id
+      labelFactory: $labelFactory
+    }
   ) {
-  insert_sales_service_draft_one(object: 
-  {
-    product_draft: 
-  {data:
-   {
-     company_id: $company_id, 
-     company_name: $company_name,
-     label: $label, 
-     price: $price, 
-     product_code: $product_code, 
-     total_price: $total_price, 
-     type: $type,
-     unit: $unit, 
-     m2: $m2, 
-     quantity: $quantity, 
-     ml: $ml, 
-     draft_id: $draft_id,
-     isRepeated: $isRepeated,
-     warehouse_id: $warehouse_id, 
-     }
-     }, 
-     dependent_id: $dependent_id}) {
     id
     dependent_id
     product_draft {
@@ -56,7 +56,6 @@ mutation insertServiceDraft(
       isLaunched
       width
       company_id
-      draft_id
       count
     }
   }

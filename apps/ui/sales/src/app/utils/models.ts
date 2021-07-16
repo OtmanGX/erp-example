@@ -39,6 +39,7 @@ export class Product {
     company_name?: string;
     warehouse_id?:string;
     substance_id?:string;
+    labelFactory?:string
      
   }
 

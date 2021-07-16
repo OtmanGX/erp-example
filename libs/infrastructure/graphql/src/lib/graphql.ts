@@ -19454,6 +19454,11 @@ export type Sales_Amount_Variance_Order_By = {
 export type Sales_Consumable_Draft = {
   __typename?: 'sales_consumable_draft';
   dependent_id?: Maybe<Scalars['uuid']>;
+<<<<<<< HEAD
+=======
+  /** An object relationship */
+  glass_draft?: Maybe<Sales_Glass_Draft>;
+>>>>>>> de48ef3 (production:job order)
   id: Scalars['uuid'];
   labelFactory?: Maybe<Scalars['String']>;
   /** An object relationship */
@@ -19502,6 +19507,10 @@ export type Sales_Consumable_Draft_Bool_Exp = {
   _not?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Consumable_Draft_Bool_Exp>>>;
   dependent_id?: Maybe<Uuid_Comparison_Exp>;
+<<<<<<< HEAD
+=======
+  glass_draft?: Maybe<Sales_Glass_Draft_Bool_Exp>;
+>>>>>>> de48ef3 (production:job order)
   id?: Maybe<Uuid_Comparison_Exp>;
   labelFactory?: Maybe<String_Comparison_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
@@ -19519,6 +19528,10 @@ export enum Sales_Consumable_Draft_Constraint {
 /** input type for inserting data into table "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Insert_Input = {
   dependent_id?: Maybe<Scalars['uuid']>;
+<<<<<<< HEAD
+=======
+  glass_draft?: Maybe<Sales_Glass_Draft_Obj_Rel_Insert_Input>;
+>>>>>>> de48ef3 (production:job order)
   id?: Maybe<Scalars['uuid']>;
   labelFactory?: Maybe<Scalars['String']>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
@@ -19584,6 +19597,10 @@ export type Sales_Consumable_Draft_On_Conflict = {
 /** ordering options when selecting data from "sales.consumable_draft" */
 export type Sales_Consumable_Draft_Order_By = {
   dependent_id?: Maybe<Order_By>;
+<<<<<<< HEAD
+=======
+  glass_draft?: Maybe<Sales_Glass_Draft_Order_By>;
+>>>>>>> de48ef3 (production:job order)
   id?: Maybe<Order_By>;
   labelFactory?: Maybe<Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
@@ -25572,6 +25589,11 @@ export type Sales_Quotation_Variance_Order_By = {
 export type Sales_Service_Draft = {
   __typename?: 'sales_service_draft';
   dependent_id: Scalars['uuid'];
+<<<<<<< HEAD
+=======
+  /** An object relationship */
+  glass_draft: Sales_Glass_Draft;
+>>>>>>> de48ef3 (production:job order)
   id: Scalars['uuid'];
   labelFactory?: Maybe<Scalars['String']>;
   /** An object relationship */
@@ -25620,6 +25642,10 @@ export type Sales_Service_Draft_Bool_Exp = {
   _not?: Maybe<Sales_Service_Draft_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Sales_Service_Draft_Bool_Exp>>>;
   dependent_id?: Maybe<Uuid_Comparison_Exp>;
+<<<<<<< HEAD
+=======
+  glass_draft?: Maybe<Sales_Glass_Draft_Bool_Exp>;
+>>>>>>> de48ef3 (production:job order)
   id?: Maybe<Uuid_Comparison_Exp>;
   labelFactory?: Maybe<String_Comparison_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
@@ -25637,6 +25663,10 @@ export enum Sales_Service_Draft_Constraint {
 /** input type for inserting data into table "sales.service_draft" */
 export type Sales_Service_Draft_Insert_Input = {
   dependent_id?: Maybe<Scalars['uuid']>;
+<<<<<<< HEAD
+=======
+  glass_draft?: Maybe<Sales_Glass_Draft_Obj_Rel_Insert_Input>;
+>>>>>>> de48ef3 (production:job order)
   id?: Maybe<Scalars['uuid']>;
   labelFactory?: Maybe<Scalars['String']>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
@@ -25702,6 +25732,10 @@ export type Sales_Service_Draft_On_Conflict = {
 /** ordering options when selecting data from "sales.service_draft" */
 export type Sales_Service_Draft_Order_By = {
   dependent_id?: Maybe<Order_By>;
+<<<<<<< HEAD
+=======
+  glass_draft?: Maybe<Sales_Glass_Draft_Order_By>;
+>>>>>>> de48ef3 (production:job order)
   id?: Maybe<Order_By>;
   labelFactory?: Maybe<Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
@@ -32556,6 +32590,33 @@ export type GetAllJobsOrdersQuery = (
   )> }
 );
 
+export type GetJobOrderByIdQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type GetJobOrderByIdQuery = (
+  { __typename?: 'query_root' }
+  & { manufacturing_job_order_by_pk?: Maybe<(
+    { __typename?: 'manufacturing_job_order' }
+    & Pick<Manufacturing_Job_Order, 'date' | 'id' | 'order_ref' | 'ref' | 'status' | 'type'>
+    & { glass_drafts: Array<(
+      { __typename?: 'sales_glass_draft' }
+      & Pick<Sales_Glass_Draft, 'id' | 'job_order_id'>
+      & { consumable_drafts: Array<(
+        { __typename?: 'sales_consumable_draft' }
+        & Pick<Sales_Consumable_Draft, 'labelFactory'>
+      )>, service_drafts: Array<(
+        { __typename?: 'sales_service_draft' }
+        & Pick<Sales_Service_Draft, 'labelFactory'>
+      )>, product_draft: (
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'count' | 'heigth' | 'width' | 'product_code'>
+      ) }
+    )> }
+  )> }
+);
+
 export type AddGlassColorMutationVariables = Exact<{
   color?: Maybe<Scalars['String']>;
 }>;
@@ -33307,6 +33368,7 @@ export type InsertConsumableDraftMutationVariables = Exact<{
   substance_id?: Maybe<Scalars['uuid']>;
   warehouse_id?: Maybe<Scalars['uuid']>;
   isRepeated?: Maybe<Scalars['Boolean']>;
+  labelFactory?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -33430,7 +33492,7 @@ export type InsertServiceDraftMutationVariables = Exact<{
   ml?: Maybe<Scalars['numeric']>;
   draft_id?: Maybe<Scalars['Int']>;
   warehouse_id?: Maybe<Scalars['uuid']>;
-  isRepeated?: Maybe<Scalars['Boolean']>;
+  labelFactory?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -33441,7 +33503,7 @@ export type InsertServiceDraftMutation = (
     & Pick<Sales_Service_Draft, 'id' | 'dependent_id'>
     & { product_draft: (
       { __typename?: 'sales_product_draft' }
-      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'isRepeated' | 'isLaunched' | 'width' | 'company_id' | 'draft_id' | 'count'>
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'isRepeated' | 'isLaunched' | 'width' | 'company_id' | 'count'>
     ) }
   )> }
 );
@@ -36146,7 +36208,7 @@ export const InsertJobOrderDocument = gql`
   }
   update_sales_product_draft(
     where: {draft: {order: {ref: {_eq: $order_ref}}}}
-    _set: {isRepeated: true}
+    _set: {isLaunched: true}
   ) {
     affected_rows
   }
@@ -36179,6 +36241,45 @@ export const GetAllJobsOrdersDocument = gql`
   })
   export class GetAllJobsOrdersGQL extends Apollo.Query<GetAllJobsOrdersQuery, GetAllJobsOrdersQueryVariables> {
     document = GetAllJobsOrdersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetJobOrderByIdDocument = gql`
+    query GetJobOrderById($id: Int!) {
+  manufacturing_job_order_by_pk(id: $id) {
+    date
+    id
+    order_ref
+    ref
+    status
+    type
+    glass_drafts {
+      id
+      job_order_id
+      consumable_drafts {
+        labelFactory
+      }
+      service_drafts {
+        labelFactory
+      }
+      product_draft {
+        count
+        heigth
+        width
+        product_code
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetJobOrderByIdGQL extends Apollo.Query<GetJobOrderByIdQuery, GetJobOrderByIdQueryVariables> {
+    document = GetJobOrderByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -37250,9 +37351,9 @@ export const InsertAccessoryDraftDocument = gql`
     }
   }
 export const InsertConsumableDraftDocument = gql`
-    mutation InsertConsumableDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $draft_id: Int, $dependent_id: uuid, $m2: numeric, $ml: numeric, $substance_id: uuid, $warehouse_id: uuid, $isRepeated: Boolean = false) {
+    mutation InsertConsumableDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $quantity: numeric, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $draft_id: Int, $dependent_id: uuid, $m2: numeric, $ml: numeric, $substance_id: uuid, $warehouse_id: uuid, $isRepeated: Boolean = false, $labelFactory: String) {
   insert_sales_consumable_draft_one(
-    object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, company_name: $company_name, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id, m2: $m2, ml: $ml, substance_id: $substance_id, warehouse_id: $warehouse_id, isRepeated: $isRepeated}}, dependent_id: $dependent_id}
+    object: {product_draft: {data: {company_id: $company_id, label: $label, price: $price, product_code: $product_code, company_name: $company_name, quantity: $quantity, total_price: $total_price, type: $type, unit: $unit, draft_id: $draft_id, m2: $m2, ml: $ml, substance_id: $substance_id, warehouse_id: $warehouse_id, isRepeated: $isRepeated}}, dependent_id: $dependent_id, labelFactory: $labelFactory}
   ) {
     id
     dependent_id
@@ -37452,9 +37553,9 @@ export const InsertManyServicesDocument = gql`
     }
   }
 export const InsertServiceDraftDocument = gql`
-    mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int, $warehouse_id: uuid = "null", $isRepeated: Boolean = false) {
+    mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int, $warehouse_id: uuid = "null", $labelFactory: String) {
   insert_sales_service_draft_one(
-    object: {product_draft: {data: {company_id: $company_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id, isRepeated: $isRepeated, warehouse_id: $warehouse_id}}, dependent_id: $dependent_id}
+    object: {product_draft: {data: {company_id: $company_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id}}, dependent_id: $dependent_id, labelFactory: $labelFactory}
   ) {
     id
     dependent_id
@@ -37475,7 +37576,6 @@ export const InsertServiceDraftDocument = gql`
       isLaunched
       width
       company_id
-      draft_id
       count
     }
   }

@@ -1,0 +1,26 @@
+query GetJobOrderById($id: Int!) {
+  manufacturing_job_order_by_pk(id: $id) {
+    date
+    id
+    order_ref
+    ref
+    status
+    type
+    glass_drafts {
+      id
+      job_order_id
+      consumable_drafts {
+        labelFactory
+      }
+      service_drafts {
+        labelFactory
+      }
+      product_draft {
+        count
+        heigth
+        width
+        product_code
+      }
+    }
+  }
+}

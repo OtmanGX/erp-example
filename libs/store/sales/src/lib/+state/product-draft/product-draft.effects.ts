@@ -17,6 +17,7 @@ export class ProductDraftEffects {
               __typename,
               ...product
             } = data.data.insert_sales_glass_draft_one.product_draft;
+            
             return ProductActions.addGlassSuccess({
               glass: product,
             });
