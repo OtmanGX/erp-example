@@ -1,6 +1,13 @@
 import { createAction, props } from '@ngrx/store';
-import { invoiceFilter, Quotation,Order,InsertedQuotation,TransformedQuotation} from '@tanglass-erp/core/sales';
-export const loadQuotations = createAction('[Quotations] Load Quotations',
+import {
+  invoiceFilter,
+  Quotation,
+  Order,
+  InsertedQuotation,
+  TransformedQuotation,
+} from '@tanglass-erp/core/sales';
+export const loadQuotations = createAction(
+  '[Quotations] Load Quotations',
   props<invoiceFilter>()
 );
 
@@ -14,7 +21,6 @@ export const loadQuotationsFailure = createAction(
   props<{ error: any }>()
 );
 
-
 /****************************************************************** */
 /*****LOAD INDIVIDUAL Quotation ** */
 /****************************************************************** */
@@ -22,8 +28,7 @@ export const loadQuotationsFailure = createAction(
 export const loadQuotationById = createAction(
   '[Quotation Card Component] Load Quotation By Id',
   props<{ id: number }>()
-  );
-
+);
 
 export const loadQuotationByIdSuccess = createAction(
   '[Quotation Effect] Load Quotation By Id Success',
@@ -34,7 +39,6 @@ export const loadQuotationByIdFailure = createAction(
   '[Quotation Effect] Load Quotation By Id Failure',
   props<{ error: any }>()
 );
-
 
 /****************************************************************** */
 /*****ADD INDIVIDUAL Quotation ** */
@@ -55,8 +59,6 @@ export const addQuotationFailure = createAction(
   props<{ error: any }>()
 );
 
-
-
 /****************************************************************** */
 /*****Delete Quotations ** */
 /****************************************************************** */
@@ -76,16 +78,14 @@ export const deleteQuotationsFailure = createAction(
   props<{ error: any }>()
 );
 
-
 /****************************************************************** */
 /*****TRANSFORM  ORDER TO QUOTATION ** */
 /****************************************************************** */
 
-export const TransformToOrder= createAction(
+export const TransformToOrder = createAction(
   '[Quotation Card  Component] Transform Quotation To Order',
   props<{ transformingVariables: TransformedQuotation }>()
-  );
-
+);
 
 export const TransformToOrderSuccess = createAction(
   '[Quotation Effect] Transform Quotation To Order Success',

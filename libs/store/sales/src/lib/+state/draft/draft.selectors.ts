@@ -7,9 +7,10 @@ import {
 } from './draft.reducer';
 
 // Lookup the 'Draft' feature state managed by NgRx
-export const getDraftState = createFeatureSelector<DraftPartialState, DraftState>(
-  DRAFT_FEATURE_KEY
-);
+export const getDraftState = createFeatureSelector<
+  DraftPartialState,
+  DraftState
+>(DRAFT_FEATURE_KEY);
 
 const { selectAll, selectEntities } = draftAdapter.getSelectors();
 
@@ -32,8 +33,9 @@ export const getAllDraft = createSelector(getDraftState, (state: DraftState) =>
   selectAll(state)
 );
 
-export const getDraftEntities = createSelector(getDraftState, (state: DraftState) =>
-  selectEntities(state)
+export const getDraftEntities = createSelector(
+  getDraftState,
+  (state: DraftState) => selectEntities(state)
 );
 
 export const getSelectedIdDraft = createSelector(

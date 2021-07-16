@@ -1,4 +1,4 @@
-import { InsertedProduct, Product_draft,InsertBisItem } from '@tanglass-erp/core/sales';
+import { InsertedProduct, Product_draft } from '@tanglass-erp/core/sales';
 export class Amount {
   company_name?: string;
   total_ht: number = 0;

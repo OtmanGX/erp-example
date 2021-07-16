@@ -1,33 +1,29 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as DraftActions from './draft.actions';
-import * as ProductsActions from '../product-draft/product-draft.actions';
 
 import { DraftService } from '@tanglass-erp/core/sales';
-import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
+import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ProductDraftFacade } from "../product-draft/product-draft.facade";
-
+import { ProductDraftFacade } from '../product-draft/product-draft.facade';
 
 @Injectable()
 export class DraftEffects {
-
-
   insertDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(DraftActions.addDraft),
       mergeMap((action) =>
         this.draftervice.insertOne().pipe(
           map((data) => {
-            this.productDraftFacade.setDraftProducts([])
-            return DraftActions.addDraftSuccess({ draft: data.data.insert_sales_draft_one })
+            this.productDraftFacade.setDraftProducts([]);
+            return DraftActions.addDraftSuccess({
+              draft: data.data.insert_sales_draft_one,
+            });
           }),
-          catchError((error) =>
-            of(DraftActions.addDraftFailure({ error }))
-          )
+          catchError((error) => of(DraftActions.addDraftFailure({ error })))
         )
       )
-    )
+    );
   });
 
   insertDraftForQuotationTransfer$ = createEffect(() => {
@@ -36,30 +32,32 @@ export class DraftEffects {
       mergeMap((action) =>
         this.draftervice.insertOne().pipe(
           map((data) => {
-            return DraftActions.addDraftSuccess({ draft: data.data.insert_sales_draft_one })
+            return DraftActions.addDraftSuccess({
+              draft: data.data.insert_sales_draft_one,
+            });
           }),
-          catchError((error) =>
-            of(DraftActions.addDraftFailure({ error }))
-          )
+          catchError((error) => of(DraftActions.addDraftFailure({ error })))
         )
       )
-    )
+    );
   });
 
   loadDraftById$ = createEffect(() => {
-    return  this.actions$.pipe(
+    return this.actions$.pipe(
       ofType(DraftActions.loadDraftById),
       mergeMap((action) =>
         this.draftervice.getOneById(action.id).pipe(
           map((data) => {
-            return DraftActions.loadDraftByIdSuccess({ draft: data.data.sales_draft_by_pk })
+            return DraftActions.loadDraftByIdSuccess({
+              draft: data.data.sales_draft_by_pk,
+            });
           }),
           catchError((error) =>
             of(DraftActions.loadDraftByIdFailure({ error }))
           )
         )
       )
-    )
+    );
   });
 
   loadAllDraft$ = createEffect(() => {
@@ -70,12 +68,10 @@ export class DraftEffects {
           map((data) =>
             DraftActions.loadDraftSuccess({ draft: data.data.sales_draft })
           ),
-          catchError((error) =>
-            of(DraftActions.loadDraftFailure({ error }))
-          )
+          catchError((error) => of(DraftActions.loadDraftFailure({ error })))
         )
       )
-    )
+    );
   });
 
   removeDrafts$ = createEffect(() => {
@@ -83,19 +79,16 @@ export class DraftEffects {
       ofType(DraftActions.removeDrafts),
       mergeMap((action) =>
         this.draftervice.removeMany(action.ids).pipe(
-          map((data) =>
-            DraftActions.removeDraftSuccess({ ids: action.ids })
-          ),
-          catchError((error) =>
-            of(DraftActions.removeDraftFailure({ error }))
-          )
+          map((data) => DraftActions.removeDraftSuccess({ ids: action.ids })),
+          catchError((error) => of(DraftActions.removeDraftFailure({ error })))
         )
       )
-    )
+    );
   });
 
-
-  constructor(private actions$: Actions,
+  constructor(
+    private actions$: Actions,
     private draftervice: DraftService,
-    private productDraftFacade: ProductDraftFacade) { }
+    private productDraftFacade: ProductDraftFacade
+  ) {}
 }

@@ -1,10 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 import {
-  InsertedDeliveryForm,
   InsertedInvoice,
   Invoice,
   invoiceFilter,
-  UpdatedInvoice
+  UpdatedInvoice,
 } from '@tanglass-erp/core/sales';
 
 export const prepareInvoiceLines = createAction(
@@ -38,12 +37,11 @@ export const loadInvoicesFailure = createAction(
   props<{ error: any }>()
 );
 
-
 // loadInvoiceById
 
 export const loadInvoiceById = createAction(
   '[Invoice] Load Invoice By Id',
-  props<{id: string}>()
+  props<{ id: string }>()
 );
 
 export const loadInvoiceByIdSuccess = createAction(
@@ -56,12 +54,11 @@ export const loadInvoiceByIdFailure = createAction(
   props<{ error: any }>()
 );
 
-
 // addInvoice
 
 export const addInvoice = createAction(
   '[Invoice] add Invoice',
-  props<{invoice: InsertedInvoice}>()
+  props<{ invoice: InsertedInvoice }>()
 );
 
 export const addInvoiceSuccess = createAction(
@@ -78,7 +75,7 @@ export const addInvoiceFailure = createAction(
 
 export const updateInvoice = createAction(
   '[Invoice] update Invoice',
-  props<{invoice: UpdatedInvoice}>()
+  props<{ invoice: UpdatedInvoice }>()
 );
 
 export const updateInvoiceSuccess = createAction(
@@ -91,12 +88,11 @@ export const updateInvoiceFailure = createAction(
   props<{ error: any }>()
 );
 
-
 // deleteInvoices
 
 export const deleteInvoices = createAction(
   '[Invoice] delete Invoices',
-  props<{ids: string[]}>()
+  props<{ ids: string[] }>()
 );
 
 export const deleteInvoicesSuccess = createAction(
@@ -108,6 +104,3 @@ export const deleteInvoicesFailure = createAction(
   '[Invoice] delete Invoices Failure',
   props<{ error: any }>()
 );
-
-
-

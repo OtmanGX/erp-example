@@ -1,8 +1,16 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { INVOICE_FEATURE_KEY, State, InvoicePartialState, invoiceAdapter } from './invoice.reducer';
+import {
+  INVOICE_FEATURE_KEY,
+  State,
+  InvoicePartialState,
+  invoiceAdapter,
+} from './invoice.reducer';
 
 // Lookup the 'Invoiceinvoice' feature state managed by NgRx
-export const getInvoiceState = createFeatureSelector<InvoicePartialState, State>(INVOICE_FEATURE_KEY);
+export const getInvoiceState = createFeatureSelector<
+  InvoicePartialState,
+  State
+>(INVOICE_FEATURE_KEY);
 
 const { selectAll, selectEntities } = invoiceAdapter.getSelectors();
 

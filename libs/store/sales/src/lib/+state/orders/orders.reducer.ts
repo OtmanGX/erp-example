@@ -1,14 +1,13 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-
 import * as OrdersActions from './orders.actions';
-import { Order as OrdersEntity } from "@tanglass-erp/core/sales";
-import * as DraftActions from "../draft/draft.actions";
+import { Order as OrdersEntity } from '@tanglass-erp/core/sales';
+
 export const ORDERS_FEATURE_KEY = 'orders';
 
 export interface OrderState extends EntityState<OrdersEntity> {
   selectedId?: string | number; // which Orders record has been selected
-  selectedOrder: OrdersEntity
+  selectedOrder: OrdersEntity;
   loaded: boolean; // has the Orders list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -41,18 +40,13 @@ const ordersReducer = createReducer(
   on(OrdersActions.removeOrderSuccess, (state, { ids }) =>
     ordersAdapter.removeMany(ids, state)
   ),
-  on(OrdersActions.loadOrderByIdSuccess,
-    (state, action) =>
-    ({
-      ...state,
-      error: null,
-      selectedOrder: action.order,
-    })
-
-
-  ),
-  on(OrdersActions.addOrderSuccess,
-    (state, action) => ordersAdapter.addOne(action.order, state)
+  on(OrdersActions.loadOrderByIdSuccess, (state, action) => ({
+    ...state,
+    error: null,
+    selectedOrder: action.order,
+  })),
+  on(OrdersActions.addOrderSuccess, (state, action) =>
+    ordersAdapter.addOne(action.order, state)
   ),
 
   on(OrdersActions.selectOrder, (state, { id }) => ({
@@ -73,7 +67,8 @@ const ordersReducer = createReducer(
     (state, { error }) => ({
       ...state,
       error,
-    })),
+    })
+  )
 );
 
 export function reducerOrder(state: OrderState | undefined, action: Action) {

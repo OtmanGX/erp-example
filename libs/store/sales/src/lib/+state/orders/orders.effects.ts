@@ -117,6 +117,5 @@ export class OrdersEffects {
     private productDraftFacade: ProductDraftFacade,
     private draftFacade: DraftFacade,
     private paymentFacade: PaymentsFacade,
-    private store: Store
   ) {}
 }

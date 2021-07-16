@@ -118,6 +118,9 @@ const regConfigConsumable = (data?: Consumable, listCompanies: ListObservable = 
         type: "inputSelect", label: "Catégorie", inputType: "text", name: "category", value: data?.category,
         options: Object.values(Product_ConsumableCategory_Enum).map(item => ({ key: item, value: item }))
       },
+      {
+        type: "input", label: "Désg.Usine", inputType: "text", name: "labelFactory ", value: data?.labelFactory,
+      },
     ]
   },
   {

@@ -31,7 +31,7 @@ export class ConsumableEffects {
       mergeMap((action) =>
         this.consumableService.insertOne(action.consumable).pipe(
           map((data) =>
-            ConsumableActions.addConsumableSuccess({consumable: data.data.insert_product_consumable_one})
+             ConsumableActions.addConsumableSuccess({consumable: data.data.insert_product_consumable_one})
           ),
           catchError((error) =>
             of(ConsumableActions.addConsumableFailure({ error }))

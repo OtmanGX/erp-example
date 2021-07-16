@@ -17,11 +17,11 @@
       <span class="spacer"></span>
       {{product.quantity}}
       {{product.unit}}
-      <button  mat-button (click)='confirm()'  *ngIf="countFormControl.valid" color="primary" [mat-dialog-close]="true">CONFIRMER</button>
 
     </mat-list-item>
-      <button  mat-button (click)='confirm()'  *ngIf="countFormControl.valid" color="primary" [mat-dialog-close]="true">CONFIRMER</button>
-      <button  mat-button   color="warn"  cdkFocusInitial>ANNULER</button>
-   </mat-list>
+    <button mat-button (click)='confirm()' *ngIf="countFormControl.valid" color="primary"
+      [mat-dialog-close]="true">CONFIRMER</button>
+    <button mat-button color="warn" cdkFocusInitial>ANNULER</button>
+  </mat-list>
 
 </ngx-dialog-body>

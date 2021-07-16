@@ -32636,6 +32636,7 @@ export type InsertConsumableMutationVariables = Exact<{
   product: Product_Product_Insert_Input;
   category?: Maybe<Product_ConsumableCategory_Enum>;
   subsctance?: Product_Substance_Insert_Input;
+  labelFactory?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -32784,7 +32785,7 @@ export type GetAllConsumablesQuery = (
   { __typename?: 'query_root' }
   & { product_consumable: Array<(
     { __typename?: 'product_consumable' }
-    & Pick<Product_Consumable, 'id' | 'category' | 'substanceid'>
+    & Pick<Product_Consumable, 'id' | 'category' | 'substanceid' | 'labelFactory'>
     & { product: (
       { __typename?: 'product_product' }
       & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
@@ -36290,9 +36291,9 @@ export const InsertAccessoryDocument = gql`
     }
   }
 export const InsertConsumableDocument = gql`
-    mutation InsertConsumable($product: product_product_insert_input!, $category: product_consumableCategory_enum, $subsctance: product_substance_insert_input! = {type: consumable}) {
+    mutation InsertConsumable($product: product_product_insert_input!, $category: product_consumableCategory_enum, $subsctance: product_substance_insert_input! = {type: consumable}, $labelFactory: String) {
   insert_product_consumable_one(
-    object: {product: {data: $product}, category: $category, substance: {data: $subsctance}}
+    object: {product: {data: $product}, category: $category, substance: {data: $subsctance}, labelFactory: $labelFactory}
   ) {
     id
     product {
@@ -36524,6 +36525,7 @@ export const GetAllConsumablesDocument = gql`
       }
     }
     substanceid
+    labelFactory
   }
 }
     `;

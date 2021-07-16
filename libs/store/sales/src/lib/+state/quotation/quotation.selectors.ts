@@ -39,7 +39,6 @@ export const getSelectedIdQuotation = createSelector(
   (state: QuotationState) => state.selectedId
 );
 
-
 export const getLoadedQuotation = createSelector(
   getQuotationState,
   (state: QuotationState) => state.selectedQuotation

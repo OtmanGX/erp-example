@@ -22,12 +22,10 @@ export class PopRemovingComponent implements OnInit {
   }
 
   delete(){
-
     this.facade.removeProducts(
       this.products.selectedOptions.selected.map(
         obj=>obj.value.id
       )
     );
-
   }
 } 

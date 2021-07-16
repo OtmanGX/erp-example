@@ -19,18 +19,18 @@ export class DraftFacade {
   }
 
   loadAll() {
-    this.dispatch(DraftActions.loadDrafts())
+    this.dispatch(DraftActions.loadDrafts());
   }
   createDraft() {
-    this.dispatch(DraftActions.addDraft())
+    this.dispatch(DraftActions.addDraft());
   }
-  
-  selectDraftId(id:number){
-    this.dispatch(DraftActions.selectDraft({id}))
+
+  selectDraftId(id: number) {
+    this.dispatch(DraftActions.selectDraft({ id }));
   }
 
   removeMany(ids: number[]) {
-    this.dispatch(DraftActions.removeDrafts({ids}));
+    this.dispatch(DraftActions.removeDrafts({ ids }));
   }
 
   clearState() {
@@ -38,6 +38,6 @@ export class DraftFacade {
   }
 
   loadById(id) {
-    this.dispatch(DraftActions.loadDraftById({id}));
+    this.dispatch(DraftActions.loadDraftById({ id }));
   }
 }
