@@ -34771,7 +34771,7 @@ export type GetDeliveryByIdQuery = (
       & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product_draft_id'>
       & { product: (
         { __typename?: 'sales_product_draft' }
-        & Pick<Sales_Product_Draft, 'type' | 'label' | 'product_code' | 'price' | 'quantity' | 'count'>
+        & Pick<Sales_Product_Draft, 'type' | 'label' | 'product_code' | 'price' | 'quantity' | 'count' | 'delivered' | 'unit'>
       ) }
     )>, company: (
       { __typename?: 'management_company' }
@@ -38943,6 +38943,8 @@ export const GetDeliveryByIdDocument = gql`
         price
         quantity
         count
+        delivered
+        unit
       }
     }
     amount_ttc

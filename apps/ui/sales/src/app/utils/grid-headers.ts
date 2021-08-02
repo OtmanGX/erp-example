@@ -111,6 +111,34 @@ export const OrderHeaders = [
   { field: 'payment_status', headerName: 'paiement', type: 'textColumn' },
 ];
 
+export const deliveryLineHeaders: Array<Column> = [
+  { title: 'Article', key: 'product.label', type: ColumnType.normal },
+  {
+    title: 'Quantité',
+    key: 'qte',
+    type: ColumnType.template,
+    withRow: true,
+  },
+  {
+    title: 'Quantité commandé',
+    key: 'product.quantity',
+    type: ColumnType.normal,
+  },
+  {
+    title: 'Total livrée',
+    key: 'product.delivered',
+    type: ColumnType.template,
+  },
+  { title: 'Reste', key: 'rest', type: ColumnType.template, withRow: true },
+  { title: 'Unité', key: 'product.unit', type: ColumnType.normal },
+  { title: 'Prix unitaire', key: 'product.price', type: ColumnType.normal },
+  {
+    title: 'Montant',
+    key: 'amount',
+    type: ColumnType.normal,
+  },
+];
+
 export const deliveryHeaders = [
   {
     headerName: 'Livraison',

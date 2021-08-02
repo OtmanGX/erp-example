@@ -24,6 +24,8 @@ query GetDeliveryById($id: uuid!) {
         price
         quantity
         count
+        delivered
+        unit
       }
     }
     amount_ttc

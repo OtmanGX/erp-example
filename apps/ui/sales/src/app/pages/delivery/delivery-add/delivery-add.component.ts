@@ -13,7 +13,7 @@ import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { DeliveryLineComponent } from '@TanglassUi/sales/components/delivery-line/delivery-line.component';
 import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
-
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'ngx-delivery-add',
@@ -63,7 +63,7 @@ export class DeliveryAddComponent
     if (this.id) {
       this.deliveryFacade.loadDeliveryById(this.id);
       this.deliveryFacade.selectedDelivery$.subscribe(value => {
-      this.data = <InsertedDeliveryForm> value;
+      this.data = <InsertedDeliveryForm> cloneDeep(value);
       this.buildForm()
       })
     } else this.buildForm();
