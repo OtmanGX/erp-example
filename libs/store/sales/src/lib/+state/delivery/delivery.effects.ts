@@ -66,35 +66,53 @@ export class DeliveryEffects {
     )
   );
 
+  calcDeliveryAmount$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DeliveryActions.calcDeliveryAmount),
+      map((action) =>
+        DeliveryActions.calcDeliveryAmountSuccess({
+          amount: this.deliveryService.calculateAmounts(action.delivery_lines),
+        })
+      )
+    )
+  );
+
   addDelivery$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DeliveryActions.addDelivery),
       mergeMap((action) =>
-        this.deliveryService.insertOne(action.delivery).pipe(
-          map((data) => {
-            this.router.navigate(['/sales/delivery']);
-            this.notificationService.showNotifToast({
-              message: 'Ajouté avec succès',
-              operation: 'success',
-              title: 'Bons de livraison',
-              time: new Date(),
-              icon: 'checked',
-              route: 'sales/delivery',
-              color: 'primary',
-            });
-            return DeliveryActions.addDeliverySuccess({
-              delivery: <DeliveryForm>data.data.insert_sales_delivery_one,
-            });
-          }),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              "Erreur d'ajout",
-              error
-            );
-            return of(DeliveryActions.addDeliveryFailure({ error }));
+        this.deliveryService
+          .insertOne({
+            ...action.delivery,
+            ...this.deliveryService.calculateAmounts(
+              action.delivery.delivery_lines
+            ),
           })
-        )
+          .pipe(
+            map((data) => {
+              this.router.navigate(['/sales/delivery']);
+              this.notificationService.showNotifToast({
+                message: 'Ajouté avec succès',
+                operation: 'success',
+                title: 'Bons de livraison',
+                time: new Date(),
+                icon: 'checked',
+                route: 'sales/delivery',
+                color: 'primary',
+              });
+              return DeliveryActions.addDeliverySuccess({
+                delivery: <DeliveryForm>data.data.insert_sales_delivery_one,
+              });
+            }),
+            catchError((error) => {
+              this.notificationService.showToast(
+                'error',
+                "Erreur d'ajout",
+                error
+              );
+              return of(DeliveryActions.addDeliveryFailure({ error }));
+            })
+          )
       )
     )
   );
@@ -103,7 +121,12 @@ export class DeliveryEffects {
     this.actions$.pipe(
       ofType(DeliveryActions.updateDelivery),
       mergeMap((action) =>
-        this.deliveryService.updateDelivery(action.delivery).pipe(
+        this.deliveryService.updateDelivery({
+          ...action.delivery,
+          ...this.deliveryService.calculateAmounts(
+            action.delivery.delivery_lines
+          ),
+        }).pipe(
           map((data: Array<any>) => {
             this.router.navigate(['sales/invoice']);
             this.notificationService.showNotifToast({
@@ -170,7 +193,8 @@ export class DeliveryEffects {
     this.actions$.pipe(
       ofType(DeliveryActions.loadOrderDeliveries),
       mergeMap((action) =>
-        this.deliveryService.getOrderDeliveries(action.draft_id)
+        this.deliveryService
+          .getOrderDeliveries(action.draft_id)
 
           .pipe(
             map((data) =>

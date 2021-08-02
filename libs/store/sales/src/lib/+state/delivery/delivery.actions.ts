@@ -1,5 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { DeliveryForm, InsertedDeliveryForm,DeliveryLine,OrderDelivery } from '@tanglass-erp/core/sales';
+import {
+  DeliveryForm,
+  InsertedDeliveryForm,
+  DeliveryLine,
+  OrderDelivery,
+} from '@tanglass-erp/core/sales';
 
 // Load all
 export const loadDelivery = createAction(
@@ -79,6 +84,23 @@ export const removeDeliverySuccess = createAction(
 export const removeDeliveryFailure = createAction(
   '[Delivery] remove Delivery Failure',
   props<{ error: any }>()
+);
+
+// Calculate amount
+export const calcDeliveryAmount = createAction(
+  '[Delivery] calc Delivery amount',
+  props<{ delivery_lines: DeliveryLine[] }>()
+);
+
+export const calcDeliveryAmountSuccess = createAction(
+  '[Delivery] calc Delivery amount Success',
+  props<{
+    amount: {
+      amount_ttc: number;
+      amount_tva: number;
+      amount_ht: number;
+    };
+  }>()
 );
 
 /****************************************************************** */

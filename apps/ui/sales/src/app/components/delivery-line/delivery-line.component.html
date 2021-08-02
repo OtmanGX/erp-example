@@ -4,8 +4,8 @@
     [withCheckbox]='false'
     [data]="deliveryLines"
     [templates]="{
+      'product.delivered': product_delivered,
       delivered: delivered,
-      qte: qte,
       rest: rest
       }"
     [columnsToShow]="displayedColumns"
@@ -15,36 +15,43 @@
 
 <!--      Templates-->
 
-<ng-template let-item="data" #delivered>
+<ng-template let-item="data" #product_delivered>
   <div class="text-success">{{ item }}</div>
 </ng-template>
 
 <ng-template let-item="data" #rest>
-  <div [ngClass]="item.product.quantity - item.delivered ? 'text-danger' : 'text-success'">
-    {{ item.product.quantity - item.delivered }}
+  <div [ngClass]="item.product.quantity - item.product.delivered ? 'text-danger' : 'text-success'">
+    {{ item.product.quantity - item.product.delivered }}
   </div>
 </ng-template>
 
 
-<ng-template let-item="data" #qte>
-  <div *ngIf="item.product.quantity - item.delivered">
+<ng-template let-item="data" #delivered>
+  <div *ngIf="item.product.quantity - item.product.delivered">
     <mat-form-field>
       <input
         #qteInput
         matInput
         type="number"
-        [(ngModel)]="item.toDeliver"
+        [ngModel]="item.delivered"
         (ngModelChange)='calculateAmount(item)'
-        name="toDeliver"
+        name="delivered"
         [value]="0"
         [min]="0"
-        [max]="item.product.quantity - item.delivered"
+        [max]="item.product.quantity - item.product.delivered + item.delivered"
       />
       <button mat-icon-button matSuffix (click)="setMax(qteInput, item)">
         <mat-icon style="font-size: 1.5rem">
-          {{item.toDeliver==qteInput.max?'clear_all':'done_all'}}
+          {{item.delivered==qteInput.max?'clear_all':'done_all'}}
         </mat-icon>
       </button>
     </mat-form-field>
   </div>
 </ng-template>
+
+
+<mat-divider></mat-divider>
+<div class='text-right mr-12'>
+  <span class='font-weight-bold'>Montant Total: </span>
+  <span>{{(deliveryAmount$ | async)?.amount_ttc}}</span>
+</div>

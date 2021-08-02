@@ -116,8 +116,8 @@ export const deliveryHeaders = [
     headerName: 'Livraison',
     children: [
       {
-        field: 'id',
-        headerName: 'ID',
+        field: 'ref',
+        headerName: 'Référence',
         type: 'linkColumn',
         cellRendererParams: (params) => ({
           link: ['update', { id: params?.data?.id }],
@@ -128,13 +128,7 @@ export const deliveryHeaders = [
         headerName: 'Etat',
         cellRendererFramework: InvoiceStatusComponent,
       },
-      { field: 'ref', headerName: 'Référence', type: 'textColumn' },
       { field: 'order_id', headerName: 'N° Commande', type: 'textColumn' },
-      {
-        field: 'predicted_date',
-        headerName: 'Date prévue',
-        type: 'dateColumn',
-      },
       {
         field: 'createdAt',
         headerName: 'Date de création',
@@ -283,4 +277,3 @@ export const ProductDeliveriesHeaders: Array<Column> = [
   { key: 'total_price', title: 'Total', type: ColumnType.normal },
   { key: 'company_name', title: 'Société', type: ColumnType.normal },
 ];
-

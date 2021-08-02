@@ -16,6 +16,7 @@ query GetDraftById($id: Int!) {
       price
       total_price
       company_name
+      delivered
     }
 
   }

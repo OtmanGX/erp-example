@@ -11,7 +11,7 @@ import {
   GetOrderDeliveriesGQL,
 
 } from '@tanglass-erp/infrastructure/graphql';
-import { deliveryFilter, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
+import { deliveryFilter, DeliveryLine, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 import { combineLatest } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -68,5 +68,17 @@ export class DeliveryService {
 
   getOrderDeliveries(draft_id: number) {
     return this.getOrderDeliveriesGQL.fetch({ draft_id });
+  }
+
+  calculateAmounts(delivery_lines: DeliveryLine[]) {
+    const amount_ttc = delivery_lines
+      .reduce((acc, curr) => acc + curr.amount, 0);
+    const amount_tva = (amount_ttc/6);
+    const amount_ht = amount_ttc*(5/6);
+    return {
+      amount_ttc,
+      amount_tva,
+      amount_ht
+    }
   }
 }

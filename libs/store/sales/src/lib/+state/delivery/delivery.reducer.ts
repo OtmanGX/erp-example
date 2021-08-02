@@ -10,6 +10,11 @@ export interface State extends EntityState<DeliveryForm> {
   selectedDeliveryForm?: InsertedDeliveryForm; // which Delivery record has been selected
   orderDeliveries:OrderDelivery[];
   loaded: boolean; // has the Delivery list been loaded
+  amount?: {
+    amount_ttc: number,
+    amount_tva: number,
+    amount_ht: number
+  };
   error?: string | null; // last known error (if any)
 }
 
@@ -55,6 +60,9 @@ const deliveryReducer = createReducer(
   ),
   on(DeliveryActions.loadOrderDeliveriesSuccess, (state, { deliveries }) =>
   ({...state, orderDeliveries: deliveries})
+  ),
+  on(DeliveryActions.calcDeliveryAmountSuccess, (state, { amount }) =>
+  ({...state, amount})
   ),
   on(
     DeliveryActions.loadDeliveryFailure,

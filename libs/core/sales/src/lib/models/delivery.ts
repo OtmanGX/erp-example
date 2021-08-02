@@ -83,6 +83,7 @@ export interface DeliveryLine {
     price: number
     quantity: number;
     count?: number;
+    delivered?: number;
   }
   delivered: number;
   amount?: number;

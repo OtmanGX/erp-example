@@ -41,7 +41,7 @@ export class DeliveryAddComponent
   selectedOrder: Order;
   orderLines$ = this.draftFacade.draftLoadedById$.pipe(
     filter(val => !!val),
-    map(val => val['product_drafts'])
+    map(val => val['product_drafts'].filter(e => !!e.price))
   );
 
   data: InsertedDeliveryForm = null;
@@ -130,7 +130,9 @@ export class DeliveryAddComponent
     const deliveryToInsert: InsertedDeliveryForm = {
       ...value,
       delivery_lines,
-      ...this.deliveryFacade.calculateAmounts(delivery_lines)
+      amount_ttc: 0,
+      amount_tva: 0,
+      amount_ht: 0,
     };
     if (this.id)
       this.deliveryFacade.updateDelivery({ // Update Case

@@ -19,6 +19,12 @@ export const getDeliveryLoaded = createSelector(
   (state: State) => state.loaded
 );
 
+
+export const getDeliveryAmount = createSelector(
+  getDeliveryState,
+  (state: State) => state.amount
+);
+
 export const getDeliveryError = createSelector(
   getDeliveryState,
   (state: State) => state.error

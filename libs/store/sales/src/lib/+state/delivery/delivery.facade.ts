@@ -16,12 +16,14 @@ import { filter, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
+import { getDeliveryAmount } from './delivery.selectors';
 
 const DELIVERY_WARNING = 'Assurez-vous que tous les bons de livraisons séléctionnés ne sont pas encore facturés';
 
 @Injectable()
 export class DeliveryFacade {
   loaded$ = this.store.pipe(select(DeliverySelectors.getDeliveryLoaded));
+  deliveryAmount$ = this.store.pipe(select(DeliverySelectors.getDeliveryAmount));
   allDelivery$ = this.loaded$.pipe(
     filter((e) => !!e),
     switchMap(() => this.store.pipe(select(DeliverySelectors.getAllDelivery)))
@@ -64,16 +66,20 @@ export class DeliveryFacade {
     this.dispatch(DeliveryActions.removeDelivery({ ids }));
   }
 
+  // calculateAmounts(delivery_lines: DeliveryLine[]) {
+  //   const amount_ttc = delivery_lines
+  //     .reduce((acc, curr) => acc + curr.amount, 0);
+  //   const amount_tva = (amount_ttc/6);
+  //   const amount_ht = amount_ttc*(5/6);
+  //   return {
+  //     amount_ttc,
+  //     amount_tva,
+  //     amount_ht
+  //   }
+  // }
+
   calculateAmounts(delivery_lines: DeliveryLine[]) {
-    const amount_ttc = delivery_lines
-      .reduce((acc, curr) => acc + curr.amount, 0);
-    const amount_tva = (amount_ttc/6);
-    const amount_ht = amount_ttc*(5/6);
-    return {
-      amount_ttc,
-      amount_tva,
-      amount_ht
-    }
+    this.dispatch(DeliveryActions.calcDeliveryAmount({delivery_lines}));
   }
 
   printDelivery(delivery: InsertedDeliveryForm) {
@@ -94,7 +100,7 @@ export class DeliveryFacade {
       state: { deliveries: data.map((e) => ({ delivery_id: e.id })) },
     });
   }
-  
+
   loadOrderDeliveries(draft_id: number) {
     this.dispatch(DeliveryActions.loadOrderDeliveries({draft_id}));
   }

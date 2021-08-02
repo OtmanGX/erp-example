@@ -6518,11 +6518,328 @@ export enum Manufacturing_Job_Status_Update_Column {
   Value = 'value'
 }
 
+/** columns and relationships of "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable = {
+  __typename?: 'manufacturing_manufacturing_consumable';
+  /** An object relationship */
+  consumable_draft: Sales_Consumable_Draft;
+  consumable_draft_id: Scalars['uuid'];
+  /** An object relationship */
+  manufacturing_line: Manufacturing_Manufacturing_Line;
+  manufacturing_line_id: Scalars['Int'];
+};
+
+/** aggregated selection of "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Aggregate = {
+  __typename?: 'manufacturing_manufacturing_consumable_aggregate';
+  aggregate?: Maybe<Manufacturing_Manufacturing_Consumable_Aggregate_Fields>;
+  nodes: Array<Manufacturing_Manufacturing_Consumable>;
+};
+
+/** aggregate fields of "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Aggregate_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_aggregate_fields';
+  avg?: Maybe<Manufacturing_Manufacturing_Consumable_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Manufacturing_Manufacturing_Consumable_Max_Fields>;
+  min?: Maybe<Manufacturing_Manufacturing_Consumable_Min_Fields>;
+  stddev?: Maybe<Manufacturing_Manufacturing_Consumable_Stddev_Fields>;
+  stddev_pop?: Maybe<Manufacturing_Manufacturing_Consumable_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Manufacturing_Manufacturing_Consumable_Stddev_Samp_Fields>;
+  sum?: Maybe<Manufacturing_Manufacturing_Consumable_Sum_Fields>;
+  var_pop?: Maybe<Manufacturing_Manufacturing_Consumable_Var_Pop_Fields>;
+  var_samp?: Maybe<Manufacturing_Manufacturing_Consumable_Var_Samp_Fields>;
+  variance?: Maybe<Manufacturing_Manufacturing_Consumable_Variance_Fields>;
+};
+
+
+/** aggregate fields of "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Aggregate_Order_By = {
+  avg?: Maybe<Manufacturing_Manufacturing_Consumable_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Manufacturing_Manufacturing_Consumable_Max_Order_By>;
+  min?: Maybe<Manufacturing_Manufacturing_Consumable_Min_Order_By>;
+  stddev?: Maybe<Manufacturing_Manufacturing_Consumable_Stddev_Order_By>;
+  stddev_pop?: Maybe<Manufacturing_Manufacturing_Consumable_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Manufacturing_Manufacturing_Consumable_Stddev_Samp_Order_By>;
+  sum?: Maybe<Manufacturing_Manufacturing_Consumable_Sum_Order_By>;
+  var_pop?: Maybe<Manufacturing_Manufacturing_Consumable_Var_Pop_Order_By>;
+  var_samp?: Maybe<Manufacturing_Manufacturing_Consumable_Var_Samp_Order_By>;
+  variance?: Maybe<Manufacturing_Manufacturing_Consumable_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Arr_Rel_Insert_Input = {
+  data: Array<Manufacturing_Manufacturing_Consumable_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Consumable_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Manufacturing_Manufacturing_Consumable_Avg_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_avg_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Avg_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "manufacturing.manufacturing_consumable". All fields are combined with a logical 'AND'. */
+export type Manufacturing_Manufacturing_Consumable_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>>>;
+  _not?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>>>;
+  consumable_draft?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
+  consumable_draft_id?: Maybe<Uuid_Comparison_Exp>;
+  manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+  manufacturing_line_id?: Maybe<Int_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "manufacturing.manufacturing_consumable" */
+export enum Manufacturing_Manufacturing_Consumable_Constraint {
+  /** unique or primary key constraint */
+  ManufacturingConsumablePkey = 'manufacturing_consumable_pkey'
+}
+
+/** input type for incrementing integer column in table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Inc_Input = {
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Insert_Input = {
+  consumable_draft?: Maybe<Sales_Consumable_Draft_Obj_Rel_Insert_Input>;
+  consumable_draft_id?: Maybe<Scalars['uuid']>;
+  manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Obj_Rel_Insert_Input>;
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate max on columns */
+export type Manufacturing_Manufacturing_Consumable_Max_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_max_fields';
+  consumable_draft_id?: Maybe<Scalars['uuid']>;
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by max() on columns of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Max_Order_By = {
+  consumable_draft_id?: Maybe<Order_By>;
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Manufacturing_Manufacturing_Consumable_Min_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_min_fields';
+  consumable_draft_id?: Maybe<Scalars['uuid']>;
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by min() on columns of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Min_Order_By = {
+  consumable_draft_id?: Maybe<Order_By>;
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Mutation_Response = {
+  __typename?: 'manufacturing_manufacturing_consumable_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Manufacturing_Manufacturing_Consumable>;
+};
+
+/** input type for inserting object relation for remote table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Obj_Rel_Insert_Input = {
+  data: Manufacturing_Manufacturing_Consumable_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Consumable_On_Conflict>;
+};
+
+/** on conflict condition type for table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_On_Conflict = {
+  constraint: Manufacturing_Manufacturing_Consumable_Constraint;
+  update_columns: Array<Manufacturing_Manufacturing_Consumable_Update_Column>;
+  where?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Order_By = {
+  consumable_draft?: Maybe<Sales_Consumable_Draft_Order_By>;
+  consumable_draft_id?: Maybe<Order_By>;
+  manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Order_By>;
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Pk_Columns_Input = {
+  consumable_draft_id: Scalars['uuid'];
+  manufacturing_line_id: Scalars['Int'];
+};
+
+/** select columns of table "manufacturing.manufacturing_consumable" */
+export enum Manufacturing_Manufacturing_Consumable_Select_Column {
+  /** column name */
+  ConsumableDraftId = 'consumable_draft_id',
+  /** column name */
+  ManufacturingLineId = 'manufacturing_line_id'
+}
+
+/** input type for updating data in table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Set_Input = {
+  consumable_draft_id?: Maybe<Scalars['uuid']>;
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate stddev on columns */
+export type Manufacturing_Manufacturing_Consumable_Stddev_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_stddev_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Stddev_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Manufacturing_Manufacturing_Consumable_Stddev_Pop_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_stddev_pop_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Stddev_Pop_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Manufacturing_Manufacturing_Consumable_Stddev_Samp_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_stddev_samp_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Stddev_Samp_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Manufacturing_Manufacturing_Consumable_Sum_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_sum_fields';
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Sum_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** update columns of table "manufacturing.manufacturing_consumable" */
+export enum Manufacturing_Manufacturing_Consumable_Update_Column {
+  /** column name */
+  ConsumableDraftId = 'consumable_draft_id',
+  /** column name */
+  ManufacturingLineId = 'manufacturing_line_id'
+}
+
+/** aggregate var_pop on columns */
+export type Manufacturing_Manufacturing_Consumable_Var_Pop_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_var_pop_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Var_Pop_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Manufacturing_Manufacturing_Consumable_Var_Samp_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_var_samp_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Var_Samp_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Manufacturing_Manufacturing_Consumable_Variance_Fields = {
+  __typename?: 'manufacturing_manufacturing_consumable_variance_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "manufacturing.manufacturing_consumable" */
+export type Manufacturing_Manufacturing_Consumable_Variance_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
 /** columns and relationships of "manufacturing.manufacturing_line" */
 export type Manufacturing_Manufacturing_Line = {
   __typename?: 'manufacturing_manufacturing_line';
+  /** An object relationship */
+  glass_draft: Sales_Glass_Draft;
+  glass_id: Scalars['uuid'];
   id: Scalars['Int'];
-  status: Scalars['String'];
+  /** An array relationship */
+  manufacturing_consumables: Array<Manufacturing_Manufacturing_Consumable>;
+  /** An aggregated array relationship */
+  manufacturing_consumables_aggregate: Manufacturing_Manufacturing_Consumable_Aggregate;
+  /** An object relationship */
+  manufacturing_line_status: Manufacturing_Manufacturing_Line_Status;
+  /** An array relationship */
+  manufacturing_services: Array<Manufacturing_Manufacturing_Service>;
+  /** An aggregated array relationship */
+  manufacturing_services_aggregate: Manufacturing_Manufacturing_Service_Aggregate;
+  status: Manufacturing_Manufacturing_Line_Status_Enum;
+};
+
+
+/** columns and relationships of "manufacturing.manufacturing_line" */
+export type Manufacturing_Manufacturing_LineManufacturing_ConsumablesArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+};
+
+
+/** columns and relationships of "manufacturing.manufacturing_line" */
+export type Manufacturing_Manufacturing_LineManufacturing_Consumables_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+};
+
+
+/** columns and relationships of "manufacturing.manufacturing_line" */
+export type Manufacturing_Manufacturing_LineManufacturing_ServicesArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Service_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Service_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
+};
+
+
+/** columns and relationships of "manufacturing.manufacturing_line" */
+export type Manufacturing_Manufacturing_LineManufacturing_Services_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Service_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Service_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
 };
 
 /** aggregated selection of "manufacturing.manufacturing_line" */
@@ -6592,8 +6909,13 @@ export type Manufacturing_Manufacturing_Line_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>>>;
   _not?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>>>;
+  glass_draft?: Maybe<Sales_Glass_Draft_Bool_Exp>;
+  glass_id?: Maybe<Uuid_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
-  status?: Maybe<String_Comparison_Exp>;
+  manufacturing_consumables?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+  manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+  manufacturing_services?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
+  status?: Maybe<Manufacturing_Manufacturing_Line_Status_Enum_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "manufacturing.manufacturing_line" */
@@ -6609,34 +6931,39 @@ export type Manufacturing_Manufacturing_Line_Inc_Input = {
 
 /** input type for inserting data into table "manufacturing.manufacturing_line" */
 export type Manufacturing_Manufacturing_Line_Insert_Input = {
+  glass_draft?: Maybe<Sales_Glass_Draft_Obj_Rel_Insert_Input>;
+  glass_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['Int']>;
-  status?: Maybe<Scalars['String']>;
+  manufacturing_consumables?: Maybe<Manufacturing_Manufacturing_Consumable_Arr_Rel_Insert_Input>;
+  manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Obj_Rel_Insert_Input>;
+  manufacturing_services?: Maybe<Manufacturing_Manufacturing_Service_Arr_Rel_Insert_Input>;
+  status?: Maybe<Manufacturing_Manufacturing_Line_Status_Enum>;
 };
 
 /** aggregate max on columns */
 export type Manufacturing_Manufacturing_Line_Max_Fields = {
   __typename?: 'manufacturing_manufacturing_line_max_fields';
+  glass_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['Int']>;
-  status?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "manufacturing.manufacturing_line" */
 export type Manufacturing_Manufacturing_Line_Max_Order_By = {
+  glass_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Manufacturing_Manufacturing_Line_Min_Fields = {
   __typename?: 'manufacturing_manufacturing_line_min_fields';
+  glass_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['Int']>;
-  status?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "manufacturing.manufacturing_line" */
 export type Manufacturing_Manufacturing_Line_Min_Order_By = {
+  glass_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "manufacturing.manufacturing_line" */
@@ -6663,7 +6990,12 @@ export type Manufacturing_Manufacturing_Line_On_Conflict = {
 
 /** ordering options when selecting data from "manufacturing.manufacturing_line" */
 export type Manufacturing_Manufacturing_Line_Order_By = {
+  glass_draft?: Maybe<Sales_Glass_Draft_Order_By>;
+  glass_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  manufacturing_consumables_aggregate?: Maybe<Manufacturing_Manufacturing_Consumable_Aggregate_Order_By>;
+  manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Order_By>;
+  manufacturing_services_aggregate?: Maybe<Manufacturing_Manufacturing_Service_Aggregate_Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -6675,6 +7007,8 @@ export type Manufacturing_Manufacturing_Line_Pk_Columns_Input = {
 /** select columns of table "manufacturing.manufacturing_line" */
 export enum Manufacturing_Manufacturing_Line_Select_Column {
   /** column name */
+  GlassId = 'glass_id',
+  /** column name */
   Id = 'id',
   /** column name */
   Status = 'status'
@@ -6682,9 +7016,182 @@ export enum Manufacturing_Manufacturing_Line_Select_Column {
 
 /** input type for updating data in table "manufacturing.manufacturing_line" */
 export type Manufacturing_Manufacturing_Line_Set_Input = {
+  glass_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Manufacturing_Manufacturing_Line_Status_Enum>;
+};
+
+/** columns and relationships of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status = {
+  __typename?: 'manufacturing_manufacturing_line_status';
+  /** An array relationship */
+  manufacturing_lines: Array<Manufacturing_Manufacturing_Line>;
+  /** An aggregated array relationship */
+  manufacturing_lines_aggregate: Manufacturing_Manufacturing_Line_Aggregate;
+  status: Scalars['String'];
+};
+
+
+/** columns and relationships of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_StatusManufacturing_LinesArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+};
+
+
+/** columns and relationships of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_StatusManufacturing_Lines_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+};
+
+/** aggregated selection of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate = {
+  __typename?: 'manufacturing_manufacturing_line_status_aggregate';
+  aggregate?: Maybe<Manufacturing_Manufacturing_Line_Status_Aggregate_Fields>;
+  nodes: Array<Manufacturing_Manufacturing_Line_Status>;
+};
+
+/** aggregate fields of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate_Fields = {
+  __typename?: 'manufacturing_manufacturing_line_status_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Manufacturing_Manufacturing_Line_Status_Max_Fields>;
+  min?: Maybe<Manufacturing_Manufacturing_Line_Status_Min_Fields>;
+};
+
+
+/** aggregate fields of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Manufacturing_Manufacturing_Line_Status_Max_Order_By>;
+  min?: Maybe<Manufacturing_Manufacturing_Line_Status_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Arr_Rel_Insert_Input = {
+  data: Array<Manufacturing_Manufacturing_Line_Status_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "manufacturing.manufacturing_line_status". All fields are combined with a logical 'AND'. */
+export type Manufacturing_Manufacturing_Line_Status_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>>>;
+  _not?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>>>;
+  manufacturing_lines?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+  status?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "manufacturing.manufacturing_line_status" */
+export enum Manufacturing_Manufacturing_Line_Status_Constraint {
+  /** unique or primary key constraint */
+  ManufacturingLineStatusPkey = 'manufacturing_line_status_pkey'
+}
+
+export enum Manufacturing_Manufacturing_Line_Status_Enum {
+  InProgress = 'InProgress',
+  Ready = 'Ready'
+}
+
+/** expression to compare columns of type manufacturing_manufacturing_line_status_enum. All fields are combined with logical 'AND'. */
+export type Manufacturing_Manufacturing_Line_Status_Enum_Comparison_Exp = {
+  _eq?: Maybe<Manufacturing_Manufacturing_Line_Status_Enum>;
+  _in?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Enum>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _neq?: Maybe<Manufacturing_Manufacturing_Line_Status_Enum>;
+  _nin?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Enum>>;
+};
+
+/** input type for inserting data into table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Insert_Input = {
+  manufacturing_lines?: Maybe<Manufacturing_Manufacturing_Line_Arr_Rel_Insert_Input>;
   status?: Maybe<Scalars['String']>;
 };
+
+/** aggregate max on columns */
+export type Manufacturing_Manufacturing_Line_Status_Max_Fields = {
+  __typename?: 'manufacturing_manufacturing_line_status_max_fields';
+  status?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Max_Order_By = {
+  status?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Manufacturing_Manufacturing_Line_Status_Min_Fields = {
+  __typename?: 'manufacturing_manufacturing_line_status_min_fields';
+  status?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Min_Order_By = {
+  status?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Mutation_Response = {
+  __typename?: 'manufacturing_manufacturing_line_status_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Manufacturing_Manufacturing_Line_Status>;
+};
+
+/** input type for inserting object relation for remote table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Obj_Rel_Insert_Input = {
+  data: Manufacturing_Manufacturing_Line_Status_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+/** on conflict condition type for table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_On_Conflict = {
+  constraint: Manufacturing_Manufacturing_Line_Status_Constraint;
+  update_columns: Array<Manufacturing_Manufacturing_Line_Status_Update_Column>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Order_By = {
+  manufacturing_lines_aggregate?: Maybe<Manufacturing_Manufacturing_Line_Aggregate_Order_By>;
+  status?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Pk_Columns_Input = {
+  status: Scalars['String'];
+};
+
+/** select columns of table "manufacturing.manufacturing_line_status" */
+export enum Manufacturing_Manufacturing_Line_Status_Select_Column {
+  /** column name */
+  Status = 'status'
+}
+
+/** input type for updating data in table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Set_Input = {
+  status?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "manufacturing.manufacturing_line_status" */
+export enum Manufacturing_Manufacturing_Line_Status_Update_Column {
+  /** column name */
+  Status = 'status'
+}
 
 /** aggregate stddev on columns */
 export type Manufacturing_Manufacturing_Line_Stddev_Fields = {
@@ -6733,6 +7240,8 @@ export type Manufacturing_Manufacturing_Line_Sum_Order_By = {
 /** update columns of table "manufacturing.manufacturing_line" */
 export enum Manufacturing_Manufacturing_Line_Update_Column {
   /** column name */
+  GlassId = 'glass_id',
+  /** column name */
   Id = 'id',
   /** column name */
   Status = 'status'
@@ -6769,6 +7278,270 @@ export type Manufacturing_Manufacturing_Line_Variance_Fields = {
 /** order by variance() on columns of table "manufacturing.manufacturing_line" */
 export type Manufacturing_Manufacturing_Line_Variance_Order_By = {
   id?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service = {
+  __typename?: 'manufacturing_manufacturing_service';
+  /** An object relationship */
+  manufacturing_line: Manufacturing_Manufacturing_Line;
+  manufacturing_line_id: Scalars['Int'];
+  /** An object relationship */
+  service_draft: Sales_Service_Draft;
+  service_draft_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Aggregate = {
+  __typename?: 'manufacturing_manufacturing_service_aggregate';
+  aggregate?: Maybe<Manufacturing_Manufacturing_Service_Aggregate_Fields>;
+  nodes: Array<Manufacturing_Manufacturing_Service>;
+};
+
+/** aggregate fields of "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Aggregate_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_aggregate_fields';
+  avg?: Maybe<Manufacturing_Manufacturing_Service_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Manufacturing_Manufacturing_Service_Max_Fields>;
+  min?: Maybe<Manufacturing_Manufacturing_Service_Min_Fields>;
+  stddev?: Maybe<Manufacturing_Manufacturing_Service_Stddev_Fields>;
+  stddev_pop?: Maybe<Manufacturing_Manufacturing_Service_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Manufacturing_Manufacturing_Service_Stddev_Samp_Fields>;
+  sum?: Maybe<Manufacturing_Manufacturing_Service_Sum_Fields>;
+  var_pop?: Maybe<Manufacturing_Manufacturing_Service_Var_Pop_Fields>;
+  var_samp?: Maybe<Manufacturing_Manufacturing_Service_Var_Samp_Fields>;
+  variance?: Maybe<Manufacturing_Manufacturing_Service_Variance_Fields>;
+};
+
+
+/** aggregate fields of "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Manufacturing_Manufacturing_Service_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Aggregate_Order_By = {
+  avg?: Maybe<Manufacturing_Manufacturing_Service_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Manufacturing_Manufacturing_Service_Max_Order_By>;
+  min?: Maybe<Manufacturing_Manufacturing_Service_Min_Order_By>;
+  stddev?: Maybe<Manufacturing_Manufacturing_Service_Stddev_Order_By>;
+  stddev_pop?: Maybe<Manufacturing_Manufacturing_Service_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Manufacturing_Manufacturing_Service_Stddev_Samp_Order_By>;
+  sum?: Maybe<Manufacturing_Manufacturing_Service_Sum_Order_By>;
+  var_pop?: Maybe<Manufacturing_Manufacturing_Service_Var_Pop_Order_By>;
+  var_samp?: Maybe<Manufacturing_Manufacturing_Service_Var_Samp_Order_By>;
+  variance?: Maybe<Manufacturing_Manufacturing_Service_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Arr_Rel_Insert_Input = {
+  data: Array<Manufacturing_Manufacturing_Service_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Service_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Manufacturing_Manufacturing_Service_Avg_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_avg_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Avg_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "manufacturing.manufacturing_service". All fields are combined with a logical 'AND'. */
+export type Manufacturing_Manufacturing_Service_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>>>;
+  _not?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>>>;
+  manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+  manufacturing_line_id?: Maybe<Int_Comparison_Exp>;
+  service_draft?: Maybe<Sales_Service_Draft_Bool_Exp>;
+  service_draft_id?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "manufacturing.manufacturing_service" */
+export enum Manufacturing_Manufacturing_Service_Constraint {
+  /** unique or primary key constraint */
+  ManufacturingServicePkey = 'manufacturing_service_pkey'
+}
+
+/** input type for incrementing integer column in table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Inc_Input = {
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Insert_Input = {
+  manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Obj_Rel_Insert_Input>;
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+  service_draft?: Maybe<Sales_Service_Draft_Obj_Rel_Insert_Input>;
+  service_draft_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Manufacturing_Manufacturing_Service_Max_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_max_fields';
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+  service_draft_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Max_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+  service_draft_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Manufacturing_Manufacturing_Service_Min_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_min_fields';
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+  service_draft_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Min_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+  service_draft_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Mutation_Response = {
+  __typename?: 'manufacturing_manufacturing_service_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Manufacturing_Manufacturing_Service>;
+};
+
+/** input type for inserting object relation for remote table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Obj_Rel_Insert_Input = {
+  data: Manufacturing_Manufacturing_Service_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Service_On_Conflict>;
+};
+
+/** on conflict condition type for table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_On_Conflict = {
+  constraint: Manufacturing_Manufacturing_Service_Constraint;
+  update_columns: Array<Manufacturing_Manufacturing_Service_Update_Column>;
+  where?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Order_By = {
+  manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Order_By>;
+  manufacturing_line_id?: Maybe<Order_By>;
+  service_draft?: Maybe<Sales_Service_Draft_Order_By>;
+  service_draft_id?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Pk_Columns_Input = {
+  manufacturing_line_id: Scalars['Int'];
+  service_draft_id: Scalars['uuid'];
+};
+
+/** select columns of table "manufacturing.manufacturing_service" */
+export enum Manufacturing_Manufacturing_Service_Select_Column {
+  /** column name */
+  ManufacturingLineId = 'manufacturing_line_id',
+  /** column name */
+  ServiceDraftId = 'service_draft_id'
+}
+
+/** input type for updating data in table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Set_Input = {
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+  service_draft_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate stddev on columns */
+export type Manufacturing_Manufacturing_Service_Stddev_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_stddev_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Stddev_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Manufacturing_Manufacturing_Service_Stddev_Pop_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_stddev_pop_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Stddev_Pop_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Manufacturing_Manufacturing_Service_Stddev_Samp_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_stddev_samp_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Stddev_Samp_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Manufacturing_Manufacturing_Service_Sum_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_sum_fields';
+  manufacturing_line_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Sum_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** update columns of table "manufacturing.manufacturing_service" */
+export enum Manufacturing_Manufacturing_Service_Update_Column {
+  /** column name */
+  ManufacturingLineId = 'manufacturing_line_id',
+  /** column name */
+  ServiceDraftId = 'service_draft_id'
+}
+
+/** aggregate var_pop on columns */
+export type Manufacturing_Manufacturing_Service_Var_Pop_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_var_pop_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Var_Pop_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Manufacturing_Manufacturing_Service_Var_Samp_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_var_samp_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Var_Samp_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Manufacturing_Manufacturing_Service_Variance_Fields = {
+  __typename?: 'manufacturing_manufacturing_service_variance_fields';
+  manufacturing_line_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "manufacturing.manufacturing_service" */
+export type Manufacturing_Manufacturing_Service_Variance_Order_By = {
+  manufacturing_line_id?: Maybe<Order_By>;
 };
 
 /** mutation root */
@@ -6850,10 +7623,22 @@ export type Mutation_Root = {
   delete_manufacturing_job_status?: Maybe<Manufacturing_Job_Status_Mutation_Response>;
   /** delete single row from the table: "manufacturing.job_status" */
   delete_manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
+  /** delete data from the table: "manufacturing.manufacturing_consumable" */
+  delete_manufacturing_manufacturing_consumable?: Maybe<Manufacturing_Manufacturing_Consumable_Mutation_Response>;
+  /** delete single row from the table: "manufacturing.manufacturing_consumable" */
+  delete_manufacturing_manufacturing_consumable_by_pk?: Maybe<Manufacturing_Manufacturing_Consumable>;
   /** delete data from the table: "manufacturing.manufacturing_line" */
   delete_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** delete single row from the table: "manufacturing.manufacturing_line" */
   delete_manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** delete data from the table: "manufacturing.manufacturing_line_status" */
+  delete_manufacturing_manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Mutation_Response>;
+  /** delete single row from the table: "manufacturing.manufacturing_line_status" */
+  delete_manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
+  /** delete data from the table: "manufacturing.manufacturing_service" */
+  delete_manufacturing_manufacturing_service?: Maybe<Manufacturing_Manufacturing_Service_Mutation_Response>;
+  /** delete single row from the table: "manufacturing.manufacturing_service" */
+  delete_manufacturing_manufacturing_service_by_pk?: Maybe<Manufacturing_Manufacturing_Service>;
   /** delete data from the table: "product.accessory" */
   delete_product_accessory?: Maybe<Product_Accessory_Mutation_Response>;
   /** delete data from the table: "product.accessoryTypes" */
@@ -7120,10 +7905,22 @@ export type Mutation_Root = {
   insert_manufacturing_job_status?: Maybe<Manufacturing_Job_Status_Mutation_Response>;
   /** insert a single row into the table: "manufacturing.job_status" */
   insert_manufacturing_job_status_one?: Maybe<Manufacturing_Job_Status>;
+  /** insert data into the table: "manufacturing.manufacturing_consumable" */
+  insert_manufacturing_manufacturing_consumable?: Maybe<Manufacturing_Manufacturing_Consumable_Mutation_Response>;
+  /** insert a single row into the table: "manufacturing.manufacturing_consumable" */
+  insert_manufacturing_manufacturing_consumable_one?: Maybe<Manufacturing_Manufacturing_Consumable>;
   /** insert data into the table: "manufacturing.manufacturing_line" */
   insert_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** insert a single row into the table: "manufacturing.manufacturing_line" */
   insert_manufacturing_manufacturing_line_one?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** insert data into the table: "manufacturing.manufacturing_line_status" */
+  insert_manufacturing_manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Mutation_Response>;
+  /** insert a single row into the table: "manufacturing.manufacturing_line_status" */
+  insert_manufacturing_manufacturing_line_status_one?: Maybe<Manufacturing_Manufacturing_Line_Status>;
+  /** insert data into the table: "manufacturing.manufacturing_service" */
+  insert_manufacturing_manufacturing_service?: Maybe<Manufacturing_Manufacturing_Service_Mutation_Response>;
+  /** insert a single row into the table: "manufacturing.manufacturing_service" */
+  insert_manufacturing_manufacturing_service_one?: Maybe<Manufacturing_Manufacturing_Service>;
   /** insert data into the table: "product.accessory" */
   insert_product_accessory?: Maybe<Product_Accessory_Mutation_Response>;
   /** insert data into the table: "product.accessoryTypes" */
@@ -7394,10 +8191,22 @@ export type Mutation_Root = {
   update_manufacturing_job_status?: Maybe<Manufacturing_Job_Status_Mutation_Response>;
   /** update single row of the table: "manufacturing.job_status" */
   update_manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
+  /** update data of the table: "manufacturing.manufacturing_consumable" */
+  update_manufacturing_manufacturing_consumable?: Maybe<Manufacturing_Manufacturing_Consumable_Mutation_Response>;
+  /** update single row of the table: "manufacturing.manufacturing_consumable" */
+  update_manufacturing_manufacturing_consumable_by_pk?: Maybe<Manufacturing_Manufacturing_Consumable>;
   /** update data of the table: "manufacturing.manufacturing_line" */
   update_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** update single row of the table: "manufacturing.manufacturing_line" */
   update_manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** update data of the table: "manufacturing.manufacturing_line_status" */
+  update_manufacturing_manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Mutation_Response>;
+  /** update single row of the table: "manufacturing.manufacturing_line_status" */
+  update_manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
+  /** update data of the table: "manufacturing.manufacturing_service" */
+  update_manufacturing_manufacturing_service?: Maybe<Manufacturing_Manufacturing_Service_Mutation_Response>;
+  /** update single row of the table: "manufacturing.manufacturing_service" */
+  update_manufacturing_manufacturing_service_by_pk?: Maybe<Manufacturing_Manufacturing_Service>;
   /** update data of the table: "product.accessory" */
   update_product_accessory?: Maybe<Product_Accessory_Mutation_Response>;
   /** update data of the table: "product.accessoryTypes" */
@@ -7843,6 +8652,19 @@ export type Mutation_RootDelete_Manufacturing_Job_Status_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Manufacturing_Manufacturing_ConsumableArgs = {
+  where: Manufacturing_Manufacturing_Consumable_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Manufacturing_Consumable_By_PkArgs = {
+  consumable_draft_id: Scalars['uuid'];
+  manufacturing_line_id: Scalars['Int'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Manufacturing_Manufacturing_LineArgs = {
   where: Manufacturing_Manufacturing_Line_Bool_Exp;
 };
@@ -7851,6 +8673,31 @@ export type Mutation_RootDelete_Manufacturing_Manufacturing_LineArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Manufacturing_Manufacturing_Line_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Manufacturing_Line_StatusArgs = {
+  where: Manufacturing_Manufacturing_Line_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  status: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Manufacturing_ServiceArgs = {
+  where: Manufacturing_Manufacturing_Service_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Manufacturing_Service_By_PkArgs = {
+  manufacturing_line_id: Scalars['Int'];
+  service_draft_id: Scalars['uuid'];
 };
 
 
@@ -8694,6 +9541,20 @@ export type Mutation_RootInsert_Manufacturing_Job_Status_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Manufacturing_Manufacturing_ConsumableArgs = {
+  objects: Array<Manufacturing_Manufacturing_Consumable_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Consumable_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Manufacturing_Consumable_OneArgs = {
+  object: Manufacturing_Manufacturing_Consumable_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Consumable_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Manufacturing_Manufacturing_LineArgs = {
   objects: Array<Manufacturing_Manufacturing_Line_Insert_Input>;
   on_conflict?: Maybe<Manufacturing_Manufacturing_Line_On_Conflict>;
@@ -8704,6 +9565,34 @@ export type Mutation_RootInsert_Manufacturing_Manufacturing_LineArgs = {
 export type Mutation_RootInsert_Manufacturing_Manufacturing_Line_OneArgs = {
   object: Manufacturing_Manufacturing_Line_Insert_Input;
   on_conflict?: Maybe<Manufacturing_Manufacturing_Line_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Manufacturing_Line_StatusArgs = {
+  objects: Array<Manufacturing_Manufacturing_Line_Status_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Manufacturing_Line_Status_OneArgs = {
+  object: Manufacturing_Manufacturing_Line_Status_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Manufacturing_ServiceArgs = {
+  objects: Array<Manufacturing_Manufacturing_Service_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Service_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Manufacturing_Service_OneArgs = {
+  object: Manufacturing_Manufacturing_Service_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Service_On_Conflict>;
 };
 
 
@@ -9658,6 +10547,22 @@ export type Mutation_RootUpdate_Manufacturing_Job_Status_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Manufacturing_ConsumableArgs = {
+  _inc?: Maybe<Manufacturing_Manufacturing_Consumable_Inc_Input>;
+  _set?: Maybe<Manufacturing_Manufacturing_Consumable_Set_Input>;
+  where: Manufacturing_Manufacturing_Consumable_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Manufacturing_Consumable_By_PkArgs = {
+  _inc?: Maybe<Manufacturing_Manufacturing_Consumable_Inc_Input>;
+  _set?: Maybe<Manufacturing_Manufacturing_Consumable_Set_Input>;
+  pk_columns: Manufacturing_Manufacturing_Consumable_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Manufacturing_Manufacturing_LineArgs = {
   _inc?: Maybe<Manufacturing_Manufacturing_Line_Inc_Input>;
   _set?: Maybe<Manufacturing_Manufacturing_Line_Set_Input>;
@@ -9670,6 +10575,36 @@ export type Mutation_RootUpdate_Manufacturing_Manufacturing_Line_By_PkArgs = {
   _inc?: Maybe<Manufacturing_Manufacturing_Line_Inc_Input>;
   _set?: Maybe<Manufacturing_Manufacturing_Line_Set_Input>;
   pk_columns: Manufacturing_Manufacturing_Line_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Manufacturing_Line_StatusArgs = {
+  _set?: Maybe<Manufacturing_Manufacturing_Line_Status_Set_Input>;
+  where: Manufacturing_Manufacturing_Line_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  _set?: Maybe<Manufacturing_Manufacturing_Line_Status_Set_Input>;
+  pk_columns: Manufacturing_Manufacturing_Line_Status_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Manufacturing_ServiceArgs = {
+  _inc?: Maybe<Manufacturing_Manufacturing_Service_Inc_Input>;
+  _set?: Maybe<Manufacturing_Manufacturing_Service_Set_Input>;
+  where: Manufacturing_Manufacturing_Service_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Manufacturing_Service_By_PkArgs = {
+  _inc?: Maybe<Manufacturing_Manufacturing_Service_Inc_Input>;
+  _set?: Maybe<Manufacturing_Manufacturing_Service_Set_Input>;
+  pk_columns: Manufacturing_Manufacturing_Service_Pk_Columns_Input;
 };
 
 
@@ -16521,12 +17456,30 @@ export type Query_Root = {
   manufacturing_job_status_aggregate: Manufacturing_Job_Status_Aggregate;
   /** fetch data from the table: "manufacturing.job_status" using primary key columns */
   manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
+  /** fetch data from the table: "manufacturing.manufacturing_consumable" */
+  manufacturing_manufacturing_consumable: Array<Manufacturing_Manufacturing_Consumable>;
+  /** fetch aggregated fields from the table: "manufacturing.manufacturing_consumable" */
+  manufacturing_manufacturing_consumable_aggregate: Manufacturing_Manufacturing_Consumable_Aggregate;
+  /** fetch data from the table: "manufacturing.manufacturing_consumable" using primary key columns */
+  manufacturing_manufacturing_consumable_by_pk?: Maybe<Manufacturing_Manufacturing_Consumable>;
   /** fetch data from the table: "manufacturing.manufacturing_line" */
   manufacturing_manufacturing_line: Array<Manufacturing_Manufacturing_Line>;
   /** fetch aggregated fields from the table: "manufacturing.manufacturing_line" */
   manufacturing_manufacturing_line_aggregate: Manufacturing_Manufacturing_Line_Aggregate;
   /** fetch data from the table: "manufacturing.manufacturing_line" using primary key columns */
   manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status: Array<Manufacturing_Manufacturing_Line_Status>;
+  /** fetch aggregated fields from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status_aggregate: Manufacturing_Manufacturing_Line_Status_Aggregate;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" using primary key columns */
+  manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
+  /** fetch data from the table: "manufacturing.manufacturing_service" */
+  manufacturing_manufacturing_service: Array<Manufacturing_Manufacturing_Service>;
+  /** fetch aggregated fields from the table: "manufacturing.manufacturing_service" */
+  manufacturing_manufacturing_service_aggregate: Manufacturing_Manufacturing_Service_Aggregate;
+  /** fetch data from the table: "manufacturing.manufacturing_service" using primary key columns */
+  manufacturing_manufacturing_service_by_pk?: Maybe<Manufacturing_Manufacturing_Service>;
   /** fetch data from the table: "product.accessory" */
   product_accessory: Array<Product_Accessory>;
   /** fetch data from the table: "product.accessoryTypes" */
@@ -17460,6 +18413,33 @@ export type Query_RootManufacturing_Job_Status_By_PkArgs = {
 
 
 /** query root */
+export type Query_RootManufacturing_Manufacturing_ConsumableArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Consumable_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Consumable_By_PkArgs = {
+  consumable_draft_id: Scalars['uuid'];
+  manufacturing_line_id: Scalars['Int'];
+};
+
+
+/** query root */
 export type Query_RootManufacturing_Manufacturing_LineArgs = {
   distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -17482,6 +18462,59 @@ export type Query_RootManufacturing_Manufacturing_Line_AggregateArgs = {
 /** query root */
 export type Query_RootManufacturing_Manufacturing_Line_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Line_StatusArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Line_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  status: Scalars['String'];
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_ServiceArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Service_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Service_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Service_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Service_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Service_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Service_By_PkArgs = {
+  manufacturing_line_id: Scalars['Int'];
+  service_draft_id: Scalars['uuid'];
 };
 
 
@@ -20792,7 +21825,8 @@ export enum Sales_Draft_Status_Constraint {
 export enum Sales_Draft_Status_Enum {
   Commande = 'commande',
   Devis = 'devis',
-  Draft = 'draft'
+  Draft = 'draft',
+  Lance = 'lance'
 }
 
 /** expression to compare columns of type sales_draft_status_enum. All fields are combined with logical 'AND'. */
@@ -20980,6 +22014,10 @@ export type Sales_Glass_Draft = {
   /** An object relationship */
   job_order?: Maybe<Manufacturing_Job_Order>;
   job_order_id?: Maybe<Scalars['Int']>;
+  /** An array relationship */
+  manufacturing_lines: Array<Manufacturing_Manufacturing_Line>;
+  /** An aggregated array relationship */
+  manufacturing_lines_aggregate: Manufacturing_Manufacturing_Line_Aggregate;
   /** An object relationship */
   product_draft?: Maybe<Sales_Product_Draft>;
   productdraft_id?: Maybe<Scalars['uuid']>;
@@ -21007,6 +22045,26 @@ export type Sales_Glass_DraftConsumable_Drafts_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Sales_Consumable_Draft_Order_By>>;
   where?: Maybe<Sales_Consumable_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.glass_draft" */
+export type Sales_Glass_DraftManufacturing_LinesArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sales.glass_draft" */
+export type Sales_Glass_DraftManufacturing_Lines_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
 };
 
 
@@ -21100,6 +22158,7 @@ export type Sales_Glass_Draft_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
   job_order?: Maybe<Manufacturing_Job_Order_Bool_Exp>;
   job_order_id?: Maybe<Int_Comparison_Exp>;
+  manufacturing_lines?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
   product_draft?: Maybe<Sales_Product_Draft_Bool_Exp>;
   productdraft_id?: Maybe<Uuid_Comparison_Exp>;
   service_drafts?: Maybe<Sales_Service_Draft_Bool_Exp>;
@@ -21124,6 +22183,7 @@ export type Sales_Glass_Draft_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
   job_order?: Maybe<Manufacturing_Job_Order_Obj_Rel_Insert_Input>;
   job_order_id?: Maybe<Scalars['Int']>;
+  manufacturing_lines?: Maybe<Manufacturing_Manufacturing_Line_Arr_Rel_Insert_Input>;
   product_draft?: Maybe<Sales_Product_Draft_Obj_Rel_Insert_Input>;
   productdraft_id?: Maybe<Scalars['uuid']>;
   service_drafts?: Maybe<Sales_Service_Draft_Arr_Rel_Insert_Input>;
@@ -21187,6 +22247,7 @@ export type Sales_Glass_Draft_Order_By = {
   id?: Maybe<Order_By>;
   job_order?: Maybe<Manufacturing_Job_Order_Order_By>;
   job_order_id?: Maybe<Order_By>;
+  manufacturing_lines_aggregate?: Maybe<Manufacturing_Manufacturing_Line_Aggregate_Order_By>;
   product_draft?: Maybe<Sales_Product_Draft_Order_By>;
   productdraft_id?: Maybe<Order_By>;
   service_drafts_aggregate?: Maybe<Sales_Service_Draft_Aggregate_Order_By>;
@@ -28617,12 +29678,30 @@ export type Subscription_Root = {
   manufacturing_job_status_aggregate: Manufacturing_Job_Status_Aggregate;
   /** fetch data from the table: "manufacturing.job_status" using primary key columns */
   manufacturing_job_status_by_pk?: Maybe<Manufacturing_Job_Status>;
+  /** fetch data from the table: "manufacturing.manufacturing_consumable" */
+  manufacturing_manufacturing_consumable: Array<Manufacturing_Manufacturing_Consumable>;
+  /** fetch aggregated fields from the table: "manufacturing.manufacturing_consumable" */
+  manufacturing_manufacturing_consumable_aggregate: Manufacturing_Manufacturing_Consumable_Aggregate;
+  /** fetch data from the table: "manufacturing.manufacturing_consumable" using primary key columns */
+  manufacturing_manufacturing_consumable_by_pk?: Maybe<Manufacturing_Manufacturing_Consumable>;
   /** fetch data from the table: "manufacturing.manufacturing_line" */
   manufacturing_manufacturing_line: Array<Manufacturing_Manufacturing_Line>;
   /** fetch aggregated fields from the table: "manufacturing.manufacturing_line" */
   manufacturing_manufacturing_line_aggregate: Manufacturing_Manufacturing_Line_Aggregate;
   /** fetch data from the table: "manufacturing.manufacturing_line" using primary key columns */
   manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status: Array<Manufacturing_Manufacturing_Line_Status>;
+  /** fetch aggregated fields from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status_aggregate: Manufacturing_Manufacturing_Line_Status_Aggregate;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" using primary key columns */
+  manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
+  /** fetch data from the table: "manufacturing.manufacturing_service" */
+  manufacturing_manufacturing_service: Array<Manufacturing_Manufacturing_Service>;
+  /** fetch aggregated fields from the table: "manufacturing.manufacturing_service" */
+  manufacturing_manufacturing_service_aggregate: Manufacturing_Manufacturing_Service_Aggregate;
+  /** fetch data from the table: "manufacturing.manufacturing_service" using primary key columns */
+  manufacturing_manufacturing_service_by_pk?: Maybe<Manufacturing_Manufacturing_Service>;
   /** fetch data from the table: "product.accessory" */
   product_accessory: Array<Product_Accessory>;
   /** fetch data from the table: "product.accessoryTypes" */
@@ -29556,6 +30635,33 @@ export type Subscription_RootManufacturing_Job_Status_By_PkArgs = {
 
 
 /** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_ConsumableArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Consumable_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Consumable_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Consumable_By_PkArgs = {
+  consumable_draft_id: Scalars['uuid'];
+  manufacturing_line_id: Scalars['Int'];
+};
+
+
+/** subscription root */
 export type Subscription_RootManufacturing_Manufacturing_LineArgs = {
   distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -29578,6 +30684,59 @@ export type Subscription_RootManufacturing_Manufacturing_Line_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootManufacturing_Manufacturing_Line_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Line_StatusArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Line_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  status: Scalars['String'];
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_ServiceArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Service_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Service_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Service_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Service_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Service_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Service_By_PkArgs = {
+  manufacturing_line_id: Scalars['Int'];
+  service_draft_id: Scalars['uuid'];
 };
 
 
@@ -33670,7 +34829,7 @@ export type GetDraftByIdQuery = (
     & Pick<Sales_Draft, 'date' | 'id' | 'status'>
     & { product_drafts: Array<(
       { __typename?: 'sales_product_draft' }
-      & Pick<Sales_Product_Draft, 'id' | 'product_code' | 'label' | 'quantity' | 'm2' | 'ml' | 'unit' | 'width' | 'heigth' | 'price' | 'total_price' | 'company_name'>
+      & Pick<Sales_Product_Draft, 'id' | 'product_code' | 'label' | 'quantity' | 'm2' | 'ml' | 'unit' | 'width' | 'heigth' | 'price' | 'total_price' | 'company_name' | 'delivered'>
     )> }
   )> }
 );
@@ -37904,6 +39063,7 @@ export const GetDraftByIdDocument = gql`
       price
       total_price
       company_name
+      delivered
     }
   }
 }
