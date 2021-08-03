@@ -39,6 +39,7 @@ export class DeliveryLineComponent implements OnInit {
         },
         delivered: 0,
         amount: 0,
+        toDeliver: 0
       }));
     }
   }
@@ -57,6 +58,7 @@ export class DeliveryLineComponent implements OnInit {
 
   ngOnInit(): void {
     this.facade.calculateAmounts(cloneDeep(this.deliveryLines));
+    this.deliveryLines.forEach(value => value.toDeliver = value.delivered);
   }
 
   switchReturned(obj, newValue: boolean) {

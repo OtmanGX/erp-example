@@ -47,10 +47,11 @@
         matInput
         type="number"
         [(ngModel)]="item.delivered"
+        (focusout)='switchViews(qteFormField, out)'
         (ngModelChange)="calculateAmount(item)"
         name="delivered"
         [min]="0"
-        [max]="item.product.quantity - item.product.delivered"
+        [max]="item.product.quantity - item.product.delivered + item.toDeliver"
       />
       <button mat-icon-button matSuffix (click)="setMax(qteInput, item)">
         <mat-icon style="font-size: 1.5rem">

@@ -212,14 +212,13 @@ export const invoiceHeaders = [
     headerName: 'Facture',
     children: [
       {
-        field: 'id',
-        headerName: 'ID',
+        field: 'ref',
+        headerName: 'Référence',
         type: 'linkColumn',
         cellRendererParams: (params) => ({
           link: ['update', { id: params?.data?.id }],
         }),
       },
-      { field: 'ref', headerName: 'Référence', type: 'textColumn' },
       {
         field: 'date',
         headerName: 'Date de facture',
