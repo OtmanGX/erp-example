@@ -78,50 +78,55 @@ const routes: Routes = [
         path: 'glass',
         children: [
           { path: '', component: ListGlasseComponent },
-          { path: ':id', component: GlassCardComponent },
+          { path: ':id', component: GlassCardComponent, data: {breadcrumb: "Détails"}},
         ],
-        data: {title: 'Verres', breadcrumb: ""}
+        data: {title: 'Verres', breadcrumb: "Verres"}
       },
       {
         path: 'consumable',
         children: [
           { path: '', component: ListConsumableComponent  },
-          { path: ':id', component: ConsumableCardComponent  },
+          { path: ':id', component: ConsumableCardComponent, data: {breadcrumb: "Détails"}},
         ],
+        data: {title: 'Consommables', breadcrumb: "Consommables"}
       },
       {
         path: 'accessory',
         children: [
           { path: '', component: ListAccessoriesComponent  },
-          { path: ':id', component: AccessoryCardComponent  },
+          { path: ':id', component: AccessoryCardComponent, data: {breadcrumb: "Détails"}},
         ],
+        data: {title: 'Accessoires', breadcrumb: "Accessoires"}
       },
       {
         path: 'supplies',
         children: [
           { path: '', component: ListSuppliesComponent  },
-          { path: ':id', component: SupplyCardComponent  },
+          { path: ':id', component: SupplyCardComponent, data: {breadcrumb: "Détails"} },
         ],
+        data: {title: 'Fournitures', breadcrumb: "Fournitures"}
       },
       {
         path: 'service',
         children: [
           { path: '', component: ListServiceComponent  },
-          { path: ':id', component: ServiceCardComponent  },
+          { path: ':id', component: ServiceCardComponent, data: {breadcrumb: "Détails"} },
         ],
+        data: {title: 'Services', breadcrumb: "Services"}
       },
 
       {
         path: 'customerProduct',
         children: [
           { path: '', component: ListCustomerProductComponent },
-          { path: ':id', component: CustomerProductCardComponent },
+          { path: ':id', component: CustomerProductCardComponent, data: {breadcrumb: "Détails"} },
         ],
-        data: {title: 'Articles Clients', breadcrumb: ""}
-      }, 
+        data: {title: 'Articles Clients', breadcrumb: "Articles Clients"}
+      },
       {
         path: 'listServicesConsommable',
         component: ListServiceConsumableComponent,
+        data: {title: 'Services consommables', breadcrumb: "Services consommables"}
       }
     ]
   },

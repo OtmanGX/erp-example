@@ -17,25 +17,25 @@ const routes: Routes = [
         path: 'companies',
         children: [
           { path: '', component: CompaniesComponent },
-          { path: ':id', component: CompanyCardComponent },
+          { path: ':id', component: CompanyCardComponent, data: {breadcrumb: "Détails"} },
         ],
-        data: {title: 'Sociétés', breadcrumb: ""},
+        data: {title: 'Sociétés', breadcrumb: "Sociétés"},
       },
       {
         path: 'salePoints',
         children: [
           { path: '', component: SalePointsComponent },
-          { path: ':id', component: SalePointCardComponent },
+          { path: ':id', component: SalePointCardComponent, data: {breadcrumb: "Détails"} },
         ],
-        data: {title: 'Points de vente', breadcrumb: ""},
+        data: {title: 'Points de vente', breadcrumb: "Points de vente"},
       },
       {
         path: 'users',
         children: [
           { path: '', component: EmployeesComponent },
-          { path: ':id', component: EmployeeCardComponent },
+          { path: ':id', component: EmployeeCardComponent, data: {breadcrumb: "Détails"} },
         ],
-        data: {title: 'Employées', breadcrumb: ""},
+        data: {title: 'Employées', breadcrumb: "Employées"},
       },
     ],
   },

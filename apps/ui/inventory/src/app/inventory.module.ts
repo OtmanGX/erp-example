@@ -31,21 +31,21 @@ const routes: Routes = [
         path: 'warehouses',
         children: [
           { path: '', component: WarehousesComponent },
-          { path: ':id', component: WarehouseCardComponent },
+          { path: ':id', component: WarehouseCardComponent, data: {breadcrumb: "Détails"} },
         ],
-        data: { title: 'Entrepôts', breadcrumb: "" }
+        data: { title: 'Entrepôts', breadcrumb: "Entrepôts" }
       },
       {
         path: 'transfer',
-        data: { title: 'Transfert', breadcrumb: "" },
+        data: { title: 'Transfert', breadcrumb: "Transfert" },
         children : [
           { path: '', component: WarehouseTransfertComponent},
-          { path: ':id', component: TransfertCardComponent },
-        ]
+          { path: ':id', component: TransfertCardComponent, data: {breadcrumb: "Détails"} },
+        ],
       },
       {
         path: 'transferred',
-        data: { title: 'Transfert', breadcrumb: "" },
+        data: { title: 'Transférés', breadcrumb: "Transférés" },
         children : [
           { path: '', component: WarehouseTransferredComponent},
         ]
@@ -53,30 +53,32 @@ const routes: Routes = [
       {
         path: 'warehouse-consumable',
         component: WarehouseConsumableComponent,
-        data: {title: 'Entrepôts de consommable', breadcrumb: ""}
+        data: {title: 'Entrepôts de consommable', breadcrumb: "Entrepôts de consommable"}
       },
       {
         path: 'warehouse-consumable/:id',
         component: WarehouseConsumableCardComponent,
-        data: {title: 'Entrepôts de consommable', breadcrumb: ""}
+        data: {title: 'Entrepôts de consommable', breadcrumb: "Entrepôts de consommable"}
       },
       {
         path: 'warehouse-accessory',
-        component: WarehouseAccessoryComponent
+        component: WarehouseAccessoryComponent,
+        data: {title: 'Entrepôts d\'accessoires', breadcrumb: "Entrepôts d\'accessoires"}
       },
       {
         path: 'warehouse-accessory/:id',
         component: WarehouseAccessoryCardComponent,
-        data: {title: 'Entrepôts d\'accessoires', breadcrumb: ""}
+        data: {title: 'Entrepôts d\'accessoires', breadcrumb: "Détails"}
       },
       {
         path: 'warehouse-glasse',
         component: WarehouseGlasseComponent,
-        data: {title: 'Entrepôts de verre', breadcrumb: ""}
+        data: {title: 'Entrepôts de verre', breadcrumb: "Entrepôts de verre"}
       },
       {
         path: 'warehouse-glasse/:id',
-        component: WarehouseGlasseCardComponent
+        component: WarehouseGlasseCardComponent,
+        data: {breadcrumb: "Détails"}
       },
     ] }
 ];

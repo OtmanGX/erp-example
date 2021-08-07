@@ -27,26 +27,26 @@ const routes: Routes = [
           { path: '', component: CustomerComponent},
           {
             path: ':id',
-            component: CustomerCardComponent,
+            component: CustomerCardComponent, data: {breadcrumb: "Détails"},
           },
         ],
-        data: {title: 'Clients', breadcrumb: ""}
+        data: {title: 'Clients', breadcrumb: "Clients"}
       },
       {
         path: 'contact',
         children : [
           { path: '', component: ContactComponent },
-          { path: ':id', component: ContactCardComponent },
+          { path: ':id', component: ContactCardComponent, data: {breadcrumb: "Détails"} },
         ],
-        data: {title: 'Contact', breadcrumb: ""}
+        data: {title: 'Contacts', breadcrumb: "Contacts"}
       },
       {
         path: 'provider',
         children : [
           { path: '', component: ProviderComponent },
-          { path: ':id', component: ProviderCardComponent }
+          { path: ':id', component: ProviderCardComponent, data: {breadcrumb: "Détails"} }
         ],
-        data: {title: 'Fournisseurs', breadcrumb: ""}
+        data: {title: 'Fournisseurs', breadcrumb: "Fournisseurs"}
       },
     ]
   }

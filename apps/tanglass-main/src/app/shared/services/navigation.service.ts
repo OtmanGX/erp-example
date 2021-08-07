@@ -155,11 +155,6 @@ export class NavigationService {
       state: "product/customerProduct"
     },
     {
-      name: "Accessoires",
-      type: "link",
-      icon: "assignment_ind",
-      state: "product/accessory"
-    },{
       name: 'Fournitures',
       type: 'link',
       icon: 'assignment_ind',
