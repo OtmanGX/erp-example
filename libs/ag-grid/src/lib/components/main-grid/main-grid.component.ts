@@ -69,7 +69,7 @@ export class MainGridComponent {
   @Input() enableCharts: boolean = true;
   @Input() theme = 'ag-theme-alpine';
   @Input() rowGroupPanelShow = 'always';
-  @Input() height = '900px';
+  @Input() height = '600px';
   @Input() width = '100%';
   @Input()
   withDateFilter: boolean = false;

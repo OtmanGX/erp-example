@@ -1,6 +1,11 @@
 <mat-card appHighlight class="mat-elevation-z5">
-  <mat-card-header>
-    <mat-card-title>{{data.name.substr(0,2) | uppercase}}</mat-card-title>
-    <mat-card-subtitle>{{data.name}}</mat-card-subtitle>
-  </mat-card-header>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon style='font-size: 2.5rem; display: inline-block' class='mr-24'>
+          miscellaneous_services
+        </mat-icon>
+      </div>
+      <mat-card-title>{{data.name.substr(0,2) | uppercase}}</mat-card-title>
+      <mat-card-subtitle>{{data.name}}</mat-card-subtitle>
+    </mat-card-header>
 </mat-card>

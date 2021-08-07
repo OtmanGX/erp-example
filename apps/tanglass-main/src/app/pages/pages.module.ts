@@ -43,26 +43,31 @@ const routes: Routes = [
       },
       {
         path: 'management',
+        data: { title: 'Gestion', breadcrumb: "Gestion", noLink: true},
         loadChildren: () =>
           import('@TanglassUi/management/management.module').then(m => m.ManagementModule)
       },
       {
         path: 'contact',
+        data: { title: 'Contact', breadcrumb: "Contact", noLink: true},
         loadChildren: () =>
           import('@TanglassUi/contact/contact.module').then(m => m.ContactModule),
       },
       {
         path: 'inventory',
+        data: { title: 'Stock', breadcrumb: "Stock", noLink: true},
         loadChildren: () =>
           import('@TanglassUi/inventory/inventory.module').then(m => m.InventoryModule),
       },
       {
         path: 'product',
+        data: { title: 'Produits', breadcrumb: "Produits", noLink: true},
         loadChildren: () =>
           import('@TanglassUi/product/product.module').then(m => m.ProductModule),
       },
       {
         path: 'purchase',
+        data: { title: 'Achat', breadcrumb: "Achat", noLink: true},
         loadChildren: () =>
           import('@TanglassUi/purchase/purchase.module').then(m => m.PurchaseModule),
       },

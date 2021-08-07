@@ -20,11 +20,12 @@ const routes: Routes = [
       children: [
         { path: '', component: PurchaseDeliveryComponent },
       ],
-      data: { title: 'Réception', breadcrumb: "" }
+      data: { title: 'Réception', breadcrumb: "Réception" }
     },
     {
       path: 'returned',
-      component: PurchaseReturnedComponent
+      component: PurchaseReturnedComponent,
+      data: { title: 'Retournés', breadcrumb: "Retournés" }
     }
   ]
 }

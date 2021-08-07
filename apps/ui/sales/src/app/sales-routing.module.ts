@@ -31,7 +31,7 @@ const routes: Routes = [
         children: [
           { path: '', component: QuotationComponent },
           { path: 'createQuotation', component: CreateQuotationComponent },
-          { path: ':id', component: QuotationCardComponent },
+          { path: ':id', component: QuotationCardComponent, data: {breadcrumb: "Détails"} },
 
         ],
         data: { title: 'Quotations', breadcrumb: "Devis" },

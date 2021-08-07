@@ -1,25 +1,26 @@
 <mat-card class="card">
   <mat-toolbar *ngIf="withToolbar" class="mat-elevation-z15"
   style="height: 60px" color="primary">
-    <button mat-icon-button
-    matTooltip="Précédent">
-      <mat-icon>reply</mat-icon>
-    </button>
-    <button  mat-icon-button matTooltip="Ajouter"
-    aria-label="Example icon-button with a menu">
-      <mat-icon >add</mat-icon>
-    </button>
-    <button mat-icon-button
-    matTooltip="Supprimer">
-      <mat-icon>delete</mat-icon>
-    </button>
+<!--    <button mat-icon-button-->
+<!--    matTooltip="Précédent">-->
+<!--      <mat-icon>reply</mat-icon>-->
+<!--    </button>-->
+<!--    <button  mat-icon-button matTooltip="Ajouter"-->
+<!--    aria-label="Example icon-button with a menu">-->
+<!--      <mat-icon >add</mat-icon>-->
+<!--    </button>-->
+<!--    <button mat-icon-button-->
+<!--    matTooltip="Supprimer">-->
+<!--      <mat-icon>delete</mat-icon>-->
+<!--    </button>-->
+    <h4 style="text-align: center">{{title}}</h4>
 
   </mat-toolbar>
-  <div  *ngIf="title" class="flip" fxLayout="row" fxLayoutAlign="space-around center" >
-    <mat-card fxFlex="90" fxFlex.lg='30' fxFlex.lg='50'>
-      <h4 style="text-align: center">{{title}}</h4>
-    </mat-card>
-  </div>
+<!--  <div  *ngIf="title" class="flip" fxLayout="row" fxLayoutAlign="space-around center" >-->
+<!--    <mat-card fxFlex="90" fxFlex.lg='30' fxFlex.gt-lg='50'>-->
+<!--      <h4 style="text-align: center">{{title}}</h4>-->
+<!--    </mat-card>-->
+<!--  </div>-->
   <ng-content select="[top]"></ng-content>
   <mat-card-content class="card-content">
     <ngx-list-item *ngIf="data && data.length" [data]="data"
