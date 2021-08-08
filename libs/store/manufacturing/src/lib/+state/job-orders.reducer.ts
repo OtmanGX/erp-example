@@ -6,11 +6,12 @@ import {
   JobProduct,
 } from '@tanglass-erp/core/manufacturing';
 export const JOB_ORDERS_FEATURE_KEY = 'jobOrders';
-
+import { GlassesUpdating ,JobOrderGlassesAdapter} from "@tanglass-erp/store/manufacturing";
 export interface State extends EntityState<JobOrder> {
   selectedId?: string | number; // which JobOrders record has been selected
   selectedJobOrder?: JobOrder;
   selectedGlasses?: JobProduct[];
+  selectedGlass?:JobProduct;
   loaded: boolean; // has the JobOrders list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -35,22 +36,37 @@ const jobOrdersReducer = createReducer(
     loaded: false,
     error: null,
   })),
+    
   on(JobOrdersActions.loadJobOrdersSuccess, (state, { jobOrders }) =>
     jobOrdersAdapter.setAll(jobOrders, { ...state, loaded: true })
   ),
   on(JobOrdersActions.addJobOrderSuccess, (state, action) =>
     jobOrdersAdapter.addOne(action.jobOrder, state)
   ),
+  on(JobOrdersActions.selectGlassLine, (state,action) => ({
+    ...state,
+    selectedGlass:action.glass,
+    loaded: true,
+    error: null,
+  })),
+  on(JobOrdersActions.updateLinesStatesSuccess, (state,action) => ({
+    ...state,
+    selectedGlasses:GlassesUpdating(state.selectedGlasses,state.selectedGlass,action.lines),
+    loaded: true,
+    error: null,
+  })),
+
+  on(JobOrdersActions.updateGlassLine, (state,action) => ({
+    ...state,
+    selectedGlass:action.glass,
+    loaded: true,
+    error: null,
+  })),
   on(JobOrdersActions.loadJobOrderByIdSuccess, (state, action) => ({
     ...state,
     error: null,
     selectedJobOrder: action.jobOrder,
-    selectedGlasses: [
-      ...action.jobOrder.glass_drafts.map((glass) => ({
-        ...glass,
-        manufacturing_lines: glass.manufacturing_lines
-      })),
-    ]
+    selectedGlasses:JobOrderGlassesAdapter(action.jobOrder.glass_drafts),
   })),
   on(JobOrdersActions.addManufacturingLinesSuccess, (state, action) => {
     return {
@@ -66,11 +82,13 @@ const jobOrdersReducer = createReducer(
       ],
     };
   }),
+
   on(
     JobOrdersActions.loadJobOrdersFailure,
     JobOrdersActions.addJobOrderFailure,
     JobOrdersActions.addManufacturingLinesFailure,
     JobOrdersActions.loadJobOrderByIdFailure,
+    JobOrdersActions.updateLinesStatesFailure,
     (state, { error }) => ({
       ...state,
       error,

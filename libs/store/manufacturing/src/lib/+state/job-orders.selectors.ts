@@ -52,3 +52,7 @@ export const getSelected = createSelector(
   getSelectedId,
   (entities, selectedId) => selectedId && entities[selectedId]
 );
+export const getSelectedGlassLine = createSelector(
+  getJobOrdersState,
+  (state: State) => state.selectedGlass
+); 

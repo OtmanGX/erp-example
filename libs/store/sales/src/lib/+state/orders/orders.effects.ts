@@ -109,6 +109,30 @@ export class OrdersEffects {
     );
   });
 
+  updateOrder$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(OrdersActions.updateOrder),
+      mergeMap((action) =>
+        this.orderService.updateOrder(action.order).pipe(
+          map((data) => {
+            this.notificationService.showNotifToast({
+              message: 'La Commande est mise à jour avec succès',
+              operation: 'success',
+              title: 'Commandes',
+              time: new Date(),
+              icon: 'check',
+              route: 'sales/order',
+              color: 'primary',
+            });
+            return OrdersActions.updateOrderSuccess({
+              order: data.data.update_sales_order_by_pk,
+            });
+          }),
+          catchError((error) => of(OrdersActions.updateOrderFailure({ error })))
+        )
+      )
+    );
+  });
   constructor(
     private actions$: Actions,
     private orderService: OrderService,

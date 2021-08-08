@@ -9,12 +9,15 @@ import { JobOrderService } from '@tanglass-erp/core/manufacturing';
 import { select, Store, Action } from '@ngrx/store';
 import * as JobOrdersSelectors from './job-orders.selectors';
 import * as fromJobOrders from './job-orders.reducer';
-import { Line } from 'pdfmake-wrapper';
 
 @Injectable()
 export class JobOrdersEffects {
   selectedJobOrderID$ = this.store.pipe(
     select(JobOrdersSelectors.getSelectedId)
+  );
+
+  selectedJobOrder$ = this.store.pipe(
+    select(JobOrdersSelectors.getSelectedJobOrder)
   );
   loadJobOrders$ = createEffect(() => {
     return this.actions$.pipe(
@@ -61,7 +64,32 @@ export class JobOrdersEffects {
       )
     );
   });
-
+  updateLinesStates = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(JobOrdersActions.updateLinesStates),
+      mergeMap((action) =>
+        this.jobOrderService.updateManufacturingState(action.lines).pipe(
+          map((data) => {
+            this.notificationService.showNotifToast({
+              message: 'Mise à jour de progrés a réussi',
+              operation: 'success',
+              title: 'Ordre de fabrication',
+              time: new Date(),
+              icon: 'check',
+              route: 'manufacturing/jobOrder',
+              color: 'primary',
+            });
+            return JobOrdersActions.updateLinesStatesSuccess({
+              lines: data
+            });
+          }),
+          catchError((error) =>
+            of(JobOrdersActions.updateLinesStatesFailure({ error }))
+          )
+        )
+      )
+    );
+  });
   getJobOrderById$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(JobOrdersActions.loadJobOrderById),
@@ -78,10 +106,16 @@ export class JobOrdersEffects {
                       (prodLine) => ({
                         ...prodLine,
                         manufacturing_services: prodLine.manufacturing_services.map(
-                          (data) => data.service_draft.labelFactory
+                          (data) => ({
+                            labelFactory: data.service_draft.labelFactory,
+                            id: data.service_draft.id,
+                          })
                         ),
                         manufacturing_consumables: prodLine.manufacturing_consumables.map(
-                          (data) => data.consumable_draft.labelFactory
+                          (data) => ({
+                            labelFactory: data.consumable_draft.labelFactory,
+                            id: data.consumable_draft.id,
+                          })
                         ),
                       })
                     ),
@@ -89,7 +123,7 @@ export class JobOrdersEffects {
                 ),
               ],
             };
-            
+
             return JobOrdersActions.loadJobOrderByIdSuccess({
               jobOrder: jobOrder,
             });

@@ -1,27 +1,17 @@
-
-    <mat-toolbar style='background-color:transparent'>Avancement</mat-toolbar>
-    <mat-chip-list class="example-chip" cdkDropList #todoList="cdkDropList" [cdkDropListData]="steps" (cdkDropListDropped)="drop($event)">
-          <span style="width : 10em;margin-right: 10px;margin-left: 16px;">
-          <h3> {{glass?.product_draft?.count}} Piéces</h3>
-        </span>
-      <mat-chip class="example-box" cdkDrag *ngFor="let step of steps" color="primary" selected>
-        {{step}}
-      </mat-chip>
-    </mat-chip-list>
-  <mat-list role="list">
-    <mat-list-item *ngFor="let line of manufacturing_lines">
-      <div fxLayout="row" >
-        <span style="width : 10em;margin-right: 10px">
-          <h3>00000000{{ line?.id}}</h3>
-        </span>
-        <mat-chip-list class="example-chip"  [cdkDropListData]="line?.manufacturing_services" [cdkDropListConnectedTo]="[todoList]" (cdkDropListDropped)="drop($event)">
-          <mat-chip class="example-box" fxLayout.gt-xs="row" fxLayout.xs="column" *ngFor="let step of line?.manufacturing_services"
-            [removable]="removable" (removed)="remove(step)">
-            <span fxFlex="90%"> {{step}}</span>
-            <mat-icon fxFlex="10%" matChipRemove *ngIf="removable" style="margin-right: 5px;">cancel</mat-icon>
-          </mat-chip>
-        </mat-chip-list>
-      </div>
-      <mat-divider></mat-divider>
-    </mat-list-item>
-  </mat-list>
+<mat-toolbar style='background-color:transparent'>Avancement</mat-toolbar>
+<section *ngFor="let line of glass?.manufacturing_lines; let itemIndex=index" style="margin-left:10px ;margin-bottom: 20px">
+<div style="margin-bottom: 10px"> 
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="example-label" style="margin-right: 20px"> <h3>00000000{{ line?.id}}</h3></div>
+    <button  mat-stroked-button *ngFor="let step of line?.services ;let serviceIndex=index"
+    [style.background-color]="step.isReady ? '#222a45': '#FBFCFC'"
+    [style.color]="step.isReady ? '#FBFCFC': '#222a45'"     
+    style="width : 10em;margin-left: 10px"
+    (click)='updateState(itemIndex,serviceIndex)'>{{step?.labelFactory}}</button>
+  </div>
+</div>
+<mat-divider></mat-divider>
+</section>
+<div fxLayout="row" fxLayoutAlign="end">
+  <button style="width : 10em;margin-right: 8px;" (click)="confirm()" mat-raised-button color="primary">Confirm</button>
+</div>

@@ -40,3 +40,11 @@ export interface InsertedOrder {
   amounts: Amount[];
 }
 
+export interface UpdateOrder{
+  order_id:number;
+  total_ttc: number;
+  total_tax: number;
+  total_ht: number;
+  amounts: Amount[];
+}
+

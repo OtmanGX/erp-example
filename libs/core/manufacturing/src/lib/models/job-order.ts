@@ -1,4 +1,5 @@
 import { Product_draft } from '@tanglass-erp/core/sales';
+import { InsertConsumableGQL } from '@tanglass-erp/infrastructure/graphql';
 export interface JobOrder {
   id: number;
   date: Date;
@@ -26,7 +27,6 @@ export interface JobProduct {
 export interface Dependency {
   labelFactory?: string;
   id: string;
-  dependent_id?: string;
 }
 
 export interface InsertedJobOrder {
@@ -44,7 +44,38 @@ export interface ManufacturingLine {
   glass_id: string;
   id: number;
   status: string;
-  manufacturing_services:string[];
-  manufacturing_consumables: string[];
+  manufacturing_services: LineService[];
+  manufacturing_consumables: LineService[];
+  services?: ManufacturungService[];
 }
 
+export interface LineService {
+  id: string;
+  labelFactory?: string;
+}
+export interface ManufacturungService {
+  labelFactory?: string;
+  isReady: boolean;
+  id: string;
+  type: string;
+}
+
+export interface InsertedManufacturingState {
+  glass_id:string;
+  services: TaskState[];
+  consumables: TaskState[];
+}
+
+export interface ManufacturingState {
+  services: TaskState[];
+  consumables: TaskState[];
+}
+
+
+export interface TaskState {
+  manufacturing_line_id: number;
+  consumable_draft_id?: string;
+  service_draft_id?: string;
+  line_status?:string ;
+  labelFactory?:string
+}

@@ -33440,13 +33440,13 @@ export type GenerateBarCodesMutation = (
         { __typename?: 'manufacturing_manufacturing_service' }
         & { service_draft: (
           { __typename?: 'sales_service_draft' }
-          & Pick<Sales_Service_Draft, 'labelFactory'>
+          & Pick<Sales_Service_Draft, 'labelFactory' | 'id'>
         ) }
       )>, manufacturing_consumables: Array<(
         { __typename?: 'manufacturing_manufacturing_consumable' }
         & { consumable_draft: (
           { __typename?: 'sales_consumable_draft' }
-          & Pick<Sales_Consumable_Draft, 'labelFactory'>
+          & Pick<Sales_Consumable_Draft, 'labelFactory' | 'id'>
         ) }
       )> }
     )> }
@@ -33473,10 +33473,10 @@ export type InsertJobOrderMutation = (
         & Pick<Sales_Product_Draft, 'type' | 'count' | 'heigth' | 'width' | 'label' | 'product_code'>
       )>, consumable_drafts: Array<(
         { __typename?: 'sales_consumable_draft' }
-        & Pick<Sales_Consumable_Draft, 'dependent_id' | 'labelFactory' | 'id'>
+        & Pick<Sales_Consumable_Draft, 'labelFactory' | 'id'>
       )>, service_drafts: Array<(
         { __typename?: 'sales_service_draft' }
-        & Pick<Sales_Service_Draft, 'id' | 'labelFactory' | 'dependent_id'>
+        & Pick<Sales_Service_Draft, 'id' | 'labelFactory'>
       )>, manufacturing_lines: Array<(
         { __typename?: 'manufacturing_manufacturing_line' }
         & Pick<Manufacturing_Manufacturing_Line, 'glass_id' | 'id' | 'status'>
@@ -33488,6 +33488,50 @@ export type InsertJobOrderMutation = (
   )>, update_sales_draft?: Maybe<(
     { __typename?: 'sales_draft_mutation_response' }
     & Pick<Sales_Draft_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type UpdateManufacturingProgressMutationVariables = Exact<{
+  services?: Array<Manufacturing_Manufacturing_Service_Insert_Input>;
+  consumables?: Array<Manufacturing_Manufacturing_Consumable_Insert_Input>;
+  glass_id: Scalars['uuid'];
+}>;
+
+
+export type UpdateManufacturingProgressMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_manufacturing_manufacturing_service?: Maybe<(
+    { __typename?: 'manufacturing_manufacturing_service_mutation_response' }
+    & Pick<Manufacturing_Manufacturing_Service_Mutation_Response, 'affected_rows'>
+  )>, delete_manufacturing_manufacturing_consumable?: Maybe<(
+    { __typename?: 'manufacturing_manufacturing_consumable_mutation_response' }
+    & Pick<Manufacturing_Manufacturing_Consumable_Mutation_Response, 'affected_rows'>
+  )>, insert_manufacturing_manufacturing_service?: Maybe<(
+    { __typename?: 'manufacturing_manufacturing_service_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'manufacturing_manufacturing_service' }
+      & Pick<Manufacturing_Manufacturing_Service, 'manufacturing_line_id' | 'service_draft_id'>
+      & { service_draft: (
+        { __typename?: 'sales_service_draft' }
+        & Pick<Sales_Service_Draft, 'labelFactory'>
+      ), manufacturing_line: (
+        { __typename?: 'manufacturing_manufacturing_line' }
+        & Pick<Manufacturing_Manufacturing_Line, 'status'>
+      ) }
+    )> }
+  )>, insert_manufacturing_manufacturing_consumable?: Maybe<(
+    { __typename?: 'manufacturing_manufacturing_consumable_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'manufacturing_manufacturing_consumable' }
+      & Pick<Manufacturing_Manufacturing_Consumable, 'consumable_draft_id' | 'manufacturing_line_id'>
+      & { consumable_draft: (
+        { __typename?: 'sales_consumable_draft' }
+        & Pick<Sales_Consumable_Draft, 'labelFactory'>
+      ), manufacturing_line: (
+        { __typename?: 'manufacturing_manufacturing_line' }
+        & Pick<Manufacturing_Manufacturing_Line, 'status'>
+      ) }
+    )> }
   )> }
 );
 
@@ -33531,15 +33575,54 @@ export type GetJobOrderByIdQuery = (
           { __typename?: 'manufacturing_manufacturing_service' }
           & { service_draft: (
             { __typename?: 'sales_service_draft' }
-            & Pick<Sales_Service_Draft, 'labelFactory'>
+            & Pick<Sales_Service_Draft, 'labelFactory' | 'id'>
           ) }
         )>, manufacturing_consumables: Array<(
           { __typename?: 'manufacturing_manufacturing_consumable' }
           & { consumable_draft: (
             { __typename?: 'sales_consumable_draft' }
-            & Pick<Sales_Consumable_Draft, 'labelFactory'>
+            & Pick<Sales_Consumable_Draft, 'labelFactory' | 'id'>
           ) }
         )> }
+      )> }
+    )> }
+  )> }
+);
+
+export type GetManufacturingGlassByIdQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetManufacturingGlassByIdQuery = (
+  { __typename?: 'query_root' }
+  & { sales_glass_draft_by_pk?: Maybe<(
+    { __typename?: 'sales_glass_draft' }
+    & Pick<Sales_Glass_Draft, 'id'>
+    & { consumable_drafts: Array<(
+      { __typename?: 'sales_consumable_draft' }
+      & Pick<Sales_Consumable_Draft, 'dependent_id' | 'labelFactory' | 'id'>
+    )>, service_drafts: Array<(
+      { __typename?: 'sales_service_draft' }
+      & Pick<Sales_Service_Draft, 'dependent_id' | 'labelFactory' | 'id'>
+    )>, product_draft?: Maybe<(
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'type' | 'count' | 'heigth' | 'width' | 'label' | 'product_code'>
+    )>, manufacturing_lines: Array<(
+      { __typename?: 'manufacturing_manufacturing_line' }
+      & Pick<Manufacturing_Manufacturing_Line, 'glass_id' | 'id' | 'status'>
+      & { manufacturing_services: Array<(
+        { __typename?: 'manufacturing_manufacturing_service' }
+        & { service_draft: (
+          { __typename?: 'sales_service_draft' }
+          & Pick<Sales_Service_Draft, 'labelFactory' | 'id'>
+        ) }
+      )>, manufacturing_consumables: Array<(
+        { __typename?: 'manufacturing_manufacturing_consumable' }
+        & { consumable_draft: (
+          { __typename?: 'sales_consumable_draft' }
+          & Pick<Sales_Consumable_Draft, 'labelFactory' | 'id'>
+        ) }
       )> }
     )> }
   )> }
@@ -34184,6 +34267,42 @@ export type InsertOrderMutation = (
   )>, update_sales_draft_by_pk?: Maybe<(
     { __typename?: 'sales_draft' }
     & Pick<Sales_Draft, 'id'>
+  )> }
+);
+
+export type UpdateOrderMutationVariables = Exact<{
+  order_id: Scalars['Int'];
+  total_ht?: Maybe<Scalars['numeric']>;
+  total_tax?: Maybe<Scalars['numeric']>;
+  total_ttc?: Maybe<Scalars['numeric']>;
+  amounts: Array<Sales_Amount_Insert_Input>;
+}>;
+
+
+export type UpdateOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_sales_order_by_pk?: Maybe<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'name'>
+    )>, customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
+  )>, delete_sales_amount?: Maybe<(
+    { __typename?: 'sales_amount_mutation_response' }
+    & Pick<Sales_Amount_Mutation_Response, 'affected_rows'>
+  )>, insert_sales_amount?: Maybe<(
+    { __typename?: 'sales_amount_mutation_response' }
+    & Pick<Sales_Amount_Mutation_Response, 'affected_rows'>
   )> }
 );
 
@@ -37137,11 +37256,13 @@ export const GenerateBarCodesDocument = gql`
       manufacturing_services {
         service_draft {
           labelFactory
+          id
         }
       }
       manufacturing_consumables {
         consumable_draft {
           labelFactory
+          id
         }
       }
     }
@@ -37181,14 +37302,12 @@ export const InsertJobOrderDocument = gql`
         product_code
       }
       consumable_drafts {
-        dependent_id
         labelFactory
         id
       }
       service_drafts {
         id
         labelFactory
-        dependent_id
       }
       manufacturing_lines {
         glass_id
@@ -37217,6 +37336,61 @@ export const InsertJobOrderDocument = gql`
   })
   export class InsertJobOrderGQL extends Apollo.Mutation<InsertJobOrderMutation, InsertJobOrderMutationVariables> {
     document = InsertJobOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateManufacturingProgressDocument = gql`
+    mutation UpdateManufacturingProgress($services: [manufacturing_manufacturing_service_insert_input!]! = [], $consumables: [manufacturing_manufacturing_consumable_insert_input!]! = [], $glass_id: uuid!) {
+  delete_manufacturing_manufacturing_service(
+    where: {manufacturing_line: {glass_draft: {id: {_eq: $glass_id}}}}
+  ) {
+    affected_rows
+  }
+  delete_manufacturing_manufacturing_consumable(
+    where: {manufacturing_line: {glass_draft: {id: {_eq: $glass_id}}}}
+  ) {
+    affected_rows
+  }
+  insert_manufacturing_manufacturing_service(
+    objects: $services
+    on_conflict: {constraint: manufacturing_service_pkey, update_columns: service_draft_id}
+  ) {
+    returning {
+      manufacturing_line_id
+      service_draft_id
+      service_draft {
+        labelFactory
+      }
+      manufacturing_line {
+        status
+      }
+    }
+  }
+  insert_manufacturing_manufacturing_consumable(
+    objects: $consumables
+    on_conflict: {constraint: manufacturing_consumable_pkey, update_columns: consumable_draft_id}
+  ) {
+    returning {
+      consumable_draft_id
+      manufacturing_line_id
+      consumable_draft {
+        labelFactory
+      }
+      manufacturing_line {
+        status
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateManufacturingProgressGQL extends Apollo.Mutation<UpdateManufacturingProgressMutation, UpdateManufacturingProgressMutationVariables> {
+    document = UpdateManufacturingProgressDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -37281,11 +37455,13 @@ export const GetJobOrderByIdDocument = gql`
         manufacturing_services {
           service_draft {
             labelFactory
+            id
           }
         }
         manufacturing_consumables {
           consumable_draft {
             labelFactory
+            id
           }
         }
       }
@@ -37299,6 +37475,59 @@ export const GetJobOrderByIdDocument = gql`
   })
   export class GetJobOrderByIdGQL extends Apollo.Query<GetJobOrderByIdQuery, GetJobOrderByIdQueryVariables> {
     document = GetJobOrderByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetManufacturingGlassByIdDocument = gql`
+    query GetManufacturingGlassById($id: uuid!) {
+  sales_glass_draft_by_pk(id: $id) {
+    id
+    consumable_drafts {
+      dependent_id
+      labelFactory
+      id
+    }
+    service_drafts {
+      dependent_id
+      labelFactory
+      id
+    }
+    product_draft {
+      type
+      count
+      heigth
+      width
+      label
+      product_code
+    }
+    manufacturing_lines {
+      glass_id
+      id
+      status
+      manufacturing_services {
+        service_draft {
+          labelFactory
+          id
+        }
+      }
+      manufacturing_consumables {
+        consumable_draft {
+          labelFactory
+          id
+        }
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetManufacturingGlassByIdGQL extends Apollo.Query<GetManufacturingGlassByIdQuery, GetManufacturingGlassByIdQueryVariables> {
+    document = GetManufacturingGlassByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -38240,6 +38469,57 @@ export const InsertOrderDocument = gql`
   })
   export class InsertOrderGQL extends Apollo.Mutation<InsertOrderMutation, InsertOrderMutationVariables> {
     document = InsertOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateOrderDocument = gql`
+    mutation UpdateOrder($order_id: Int!, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $amounts: [sales_amount_insert_input!]!) {
+  update_sales_order_by_pk(
+    pk_columns: {id: $order_id}
+    _set: {total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc}
+  ) {
+    company {
+      name
+      id
+    }
+    contact {
+      code
+      name
+    }
+    customer {
+      code
+      name
+      phone
+    }
+    salepoint {
+      name
+    }
+    date
+    deadline
+    draft_id
+    id
+    delivery_status
+    payment_status
+    total_ht
+    total_tax
+    total_ttc
+  }
+  delete_sales_amount(where: {draft: {order: {id: {_eq: $order_id}}}}) {
+    affected_rows
+  }
+  insert_sales_amount(objects: $amounts) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateOrderGQL extends Apollo.Mutation<UpdateOrderMutation, UpdateOrderMutationVariables> {
+    document = UpdateOrderDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

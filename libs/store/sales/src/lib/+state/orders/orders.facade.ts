@@ -4,7 +4,7 @@ import * as fromOrders from './orders.reducer';
 import * as OrdersSelectors from './orders.selectors';
 import * as OrdersActions from './orders.actions';
 import { filter } from 'rxjs/operators';
-import { invoiceFilter, Order, InsertedOrder } from '@tanglass-erp/core/sales';
+import { invoiceFilter, Order, InsertedOrder ,UpdateOrder} from '@tanglass-erp/core/sales';
 import { PaymentsFacade } from '../payments/payments.facade';
 import { ProductDraftFacade } from '../product-draft/product-draft.facade';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
@@ -41,6 +41,9 @@ export class OrdersFacade {
 
   addOrder(order: InsertedOrder) {
     this.dispatch(OrdersActions.addOrder({ order }));
+  }
+  updateOrder(order:UpdateOrder){
+    this.dispatch(OrdersActions.updateOrder({order}))
   }
 
   printOrder(order: Order) {

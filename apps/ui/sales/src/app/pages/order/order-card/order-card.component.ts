@@ -24,6 +24,8 @@ export class OrderCardComponent extends ModelCardComponent {
   data$ = this.facade.loadedOrder$.pipe(takeUntil(this._onDestroy));
   isCardMode: boolean = true;
   isLaunched: boolean;
+  order_id: number;
+  draft_id: number;
   constructor(
     public activatedRoute: ActivatedRoute,
     protected facade: OrdersFacade,
@@ -46,6 +48,8 @@ export class OrderCardComponent extends ModelCardComponent {
     data?.draft_status == Sales_Draft_Status_Enum.Lance
       ? (this.isLaunched = true)
       : (this.isLaunched = false);
+    this.order_id = data?.id;
+    this.draft_id = data?.draft_id;
     return [
       {
         label: 'Infos Générales',
@@ -72,7 +76,31 @@ export class OrderCardComponent extends ModelCardComponent {
     this.isCardMode = false;
   }
   save() {
-    console.log(this.data);
+    this.productDraftFacade.amounts$.subscribe((amounts) => {
+      let total = amounts.pop();
+      console.log({
+        order_id: this.order_id,
+        total_ttc: total.total_ttc,
+        total_tax: total.total_tax,
+        total_ht: total.total_ht,
+        amounts: amounts.map((amount) => ({
+          ...amount,
+          company_name: amount.company_name,
+          draft_id: this.draft_id,
+        })),
+      });
+      this.facade.updateOrder({
+        order_id: this.order_id,
+        total_ttc: total.total_ttc,
+        total_tax: total.total_tax,
+        total_ht: total.total_ht,
+        amounts: amounts.map((amount) => ({
+          ...amount,
+          company_name: amount.company_name,
+          draft_id: this.draft_id,
+        })),
+      });
+    });
   }
   cancel() {
     this.router.navigate(['/sales/order']);

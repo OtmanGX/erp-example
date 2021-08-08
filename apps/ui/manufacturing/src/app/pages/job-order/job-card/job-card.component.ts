@@ -1,4 +1,4 @@
-import { Component ,ViewChild} from '@angular/core';
+import { Component ,OnDestroy} from '@angular/core';
 import {
   JobOrdersFacade,
   JobOrder,
@@ -6,19 +6,15 @@ import {
 } from '@tanglass-erp/store/manufacturing';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
-import { JobProgressComponent } from "@TanglassUi/manufacturing/components/job-progress/job-progress.component";
 @Component({
   selector: 'ngx-job-card',
   templateUrl: './job-card.component.html',
   styleUrls: ['./job-card.component.scss'],
 })
-export class JobCardComponent extends ModelCardComponent {
+export class JobCardComponent extends ModelCardComponent implements OnDestroy{
   data$ = this.facade.selectedJobOrder$;
   products: JobItem[];
   withGeneratedBarCodes: boolean = false;
-  selectedProduct: JobItem;
-  glass_id:string;
-  @ViewChild('progress', { read: JobProgressComponent }) progress:JobProgressComponent;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -30,7 +26,7 @@ export class JobCardComponent extends ModelCardComponent {
   dispatch(): void {
     this.facade
       .adaptSelectedJobOrder()
-      .subscribe((data) => (this.products = data.items));
+      .subscribe((data) => (this.products = data?.items));
     this.facade.loadJobOrderById(this.id);
   }
 
@@ -63,12 +59,8 @@ export class JobCardComponent extends ModelCardComponent {
     this.withGeneratedBarCodes = false;
   }
 
-  checkProgress(Glass_id?: string): void {
-
-  }
   selectProduct(product:JobItem): void {
-    this.selectedProduct = product;
-    this.glass_id=product.id
+    this.facade.setSelectedGlass(product.id)
   }
- 
+  ngOnDestroy():void{}
 }

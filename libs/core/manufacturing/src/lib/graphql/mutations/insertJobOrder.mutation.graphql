@@ -33,14 +33,12 @@ mutation InsertJobOrder(
         product_code
       }
       consumable_drafts {
-        dependent_id
         labelFactory
         id
       }
       service_drafts {
         id
         labelFactory
-        dependent_id
       }
       manufacturing_lines {
         glass_id

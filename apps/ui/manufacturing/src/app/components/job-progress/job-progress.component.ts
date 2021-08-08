@@ -1,75 +1,48 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  Input,
-  OnChanges,
-} from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import {
   JobOrdersFacade,
-  ManufacturingLine,
   JobProduct,
 } from '@tanglass-erp/store/manufacturing';
-import {CdkDragDrop, moveItemInArray, copyArrayItem} from '@angular/cdk/drag-drop';
-
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'ngx-job-progress',
   templateUrl: './job-progress.component.html',
   styleUrls: ['./job-progress.component.scss'],
 })
-export class JobProgressComponent implements OnInit, AfterViewInit, OnChanges {
-  data$ = this.facade.selectedJobOrderGlasses$;
+export class JobProgressComponent implements OnInit, OnDestroy {
   glass: JobProduct;
-  removable = true;
-  manufacturing_lines: ManufacturingLine[];
-  steps: string[];
-  @Input() id: string;
+  dataSub: Subscription;
 
   constructor(protected facade: JobOrdersFacade) {}
 
   ngOnInit() {
-    this.steps = [
-      ...this.glass.service_drafts.map((data) => data.labelFactory),
-      ...this.glass.consumable_drafts.map((data) => data.labelFactory),
-    ];
-  }
-  ngOnChanges(): void {
-    console.log(this.id)
-    this.data$.subscribe((glasses) => {
-      this.glass = glasses?.find((glass) => glass.id == this.id);
+    this.dataSub = this.facade.selectedGlassLine$.subscribe((data) => {
+      this.glass = data;
+      console.log(data)
     });
-    this.manufacturing_lines = this.glass.manufacturing_lines.map((line) => ({
-      ...line,
-      manufacturing_services: [
-        ...line.manufacturing_services,
-        ...line.manufacturing_consumables,
-      ],
-    }));
-    console.log(this.manufacturing_lines)
-    this.steps = [
-      ...this.glass.service_drafts.map((data) => data.labelFactory),
-      ...this.glass.consumable_drafts.map((data) => data.labelFactory),
-    ];
-  }
-  ngAfterViewInit() {
-   
   }
 
-  drop(event: CdkDragDrop<string[]>):void {
-    console.log(event)
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      copyArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-    };
-    const prev_idx = event.previousIndex;    
-    let test = event.previousContainer.data[prev_idx];
-    console.log(test)
+  updateState(itemIndex, serviceIndex) {
+    let newGlass = JSON.parse(JSON.stringify(this.glass));
+    let service = this.glass.manufacturing_lines[itemIndex].services[
+      serviceIndex
+    ];
+    service.isReady
+      ? (newGlass.manufacturing_lines[itemIndex].services[
+          serviceIndex
+        ].isReady = false)
+      : (newGlass.manufacturing_lines[itemIndex].services[
+          serviceIndex
+        ].isReady = true);
+    this.facade.updateGlassLine(newGlass);
+    this.glass = newGlass;
   }
-  remove(step: string): void {
-    // const index = this.steps.indexOf(fruit);
+
+  confirm() {
+    this.facade.updateManufacturingProgress(this.glass.manufacturing_lines);
+  }
+
+  ngOnDestroy(): void {
+    this.dataSub.unsubscribe();
   }
 }

@@ -27,14 +27,13 @@
               <mat-card-subtitle>{{product.dimensions}}</mat-card-subtitle>
             </mat-card-header>
           </div>
-          <app-counter showCircle="true" circleColor="#73D216" animationTime="1000" fontSize="48" [from]="0" [to]="23"
-            [of]="100">
-            23
-            <ng-counter-suffix> % </ng-counter-suffix>
-          </app-counter>
+           <app-counter showCircle="true" circleColor="#73D216" animationTime="1" fontSize="48" [from]="0" [to]="product.count"
+            [of]="product.count">
+            <ng-counter-suffix>Pcs </ng-counter-suffix>
+          </app-counter> 
         </mat-card>
       </div>
     </div>
   </div>
-  <ngx-job-progress #progress  *ngIf='selectedProduct' [id]='glass_id'></ngx-job-progress>
+  <ngx-job-progress ></ngx-job-progress>
 </ngx-fiche-card>

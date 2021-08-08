@@ -10,11 +10,13 @@ mutation GenerateBarCodes(
       manufacturing_services {
         service_draft {
           labelFactory
+          id
         }
       }
       manufacturing_consumables {
         consumable_draft {
           labelFactory
+          id
         }
       }
     }

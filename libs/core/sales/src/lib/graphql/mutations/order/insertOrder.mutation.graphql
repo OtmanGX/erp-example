@@ -60,7 +60,6 @@ mutation InsertOrder(
   update_sales_draft_by_pk(pk_columns: {
     id: $draft_id},
      _set: {
-     
        status: $status
        }) {
     id

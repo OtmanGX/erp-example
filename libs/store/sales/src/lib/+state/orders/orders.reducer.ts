@@ -58,6 +58,9 @@ const ordersReducer = createReducer(
     selectedOrder: null,
     selectedId: null,
   })),
+  on(OrdersActions.updateOrderSuccess,(state, {order}) =>
+  ordersAdapter.updateOne({id: order.id, changes: order}, state)
+),
   on(
     OrdersActions.loadOrdersFailure,
     OrdersActions.loadOrderByIdFailure,

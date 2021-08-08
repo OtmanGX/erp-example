@@ -3,7 +3,8 @@ import {
   invoiceFilter,
   Order as OrdersEntity,
   InsertedOrder,
-  DetailedOrder
+  DetailedOrder,
+  UpdateOrder
 } from '@tanglass-erp/core/sales';
 
 export const loadOrders = createAction(
@@ -65,7 +66,7 @@ export const addOrderFailure = createAction(
 
 export const updateOrder = createAction(
   '[Orders Component] Update Order',
-  props<{ order: OrdersEntity }>()
+  props<{ order: UpdateOrder }>()
 );
 export const updateOrderSuccess = createAction(
   '[Order Effect] Update Order Success',

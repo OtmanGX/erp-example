@@ -17,8 +17,6 @@
         &nbsp;IMPRIMER
     </button>
 </mat-toolbar>
-
-
 <mat-toolbar *ngIf="!isCardMode" class="toolbar" style='background-color:transparent'>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
@@ -32,8 +30,6 @@
         ANNULER
     </button>
 </mat-toolbar>
-
-
 <ngx-fiche-card [data]="passedData" [withToolbar]='false'>
     <mat-tab-group animationDuration="0ms">
         <mat-tab label="Articles">
