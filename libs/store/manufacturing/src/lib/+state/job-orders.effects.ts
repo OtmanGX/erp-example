@@ -12,10 +12,6 @@ import * as fromJobOrders from './job-orders.reducer';
 
 @Injectable()
 export class JobOrdersEffects {
-  selectedJobOrderID$ = this.store.pipe(
-    select(JobOrdersSelectors.getSelectedId)
-  );
-
   selectedJobOrder$ = this.store.pipe(
     select(JobOrdersSelectors.getSelectedJobOrder)
   );
@@ -52,7 +48,10 @@ export class JobOrdersEffects {
               route: 'manufacturing/jobOrder',
               color: 'primary',
             });
-            this.router.navigate(['manufacturing/jobOrders']);
+            this.router.navigate([
+              'manufacturing/jobOrders',
+              data.data.insert_manufacturing_job_order_one.id,
+            ]);
             return JobOrdersActions.addJobOrderSuccess({
               jobOrder: data.data.insert_manufacturing_job_order_one,
             });
@@ -80,7 +79,7 @@ export class JobOrdersEffects {
               color: 'primary',
             });
             return JobOrdersActions.updateLinesStatesSuccess({
-              lines: data
+              lines: data,
             });
           }),
           catchError((error) =>
@@ -135,6 +134,8 @@ export class JobOrdersEffects {
       )
     );
   });
+
+  //Generating BarCodes
   addManufacturingLines = createEffect(() => {
     return this.actions$.pipe(
       ofType(JobOrdersActions.addManufacturingLines),
@@ -143,6 +144,9 @@ export class JobOrdersEffects {
           .generateManufacturingLines(action.manufacturingLines)
           .pipe(
             map((data) => {
+              this.selectedJobOrder$.subscribe((data) => {
+                this.router.navigate(['manufacturing/jobOrders', data.id]);
+              });
               return JobOrdersActions.addManufacturingLinesSuccess({
                 manufacturingLines: data,
               });

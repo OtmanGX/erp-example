@@ -23,6 +23,9 @@ export class JobOrdersFacade {
   selectedJobOrderGlasses$ = this.store.pipe(
     select(JobOrdersSelectors.getSelectedJobOrderGlasses)
   );
+  withBarCodes$ = this.store.pipe(
+    select(JobOrdersSelectors.getBarCodeState)
+  );
 
   constructor(private store: Store<fromJobOrders.JobOrdersPartialState>) {}
 

@@ -12,6 +12,7 @@ export interface State extends EntityState<JobOrder> {
   selectedJobOrder?: JobOrder;
   selectedGlasses?: JobProduct[];
   selectedGlass?:JobProduct;
+  withBarCodes:boolean;
   loaded: boolean; // has the JobOrders list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -26,6 +27,7 @@ export const jobOrdersAdapter: EntityAdapter<JobOrder> = createEntityAdapter<
 
 export const initialState: State = jobOrdersAdapter.getInitialState({
   // set initial required properties
+  withBarCodes:true,
   loaded: false,
 });
 
@@ -65,6 +67,7 @@ const jobOrdersReducer = createReducer(
   on(JobOrdersActions.loadJobOrderByIdSuccess, (state, action) => ({
     ...state,
     error: null,
+    withBarCodes:action.jobOrder.glass_drafts[0].manufacturing_lines.length?true:false,
     selectedJobOrder: action.jobOrder,
     selectedGlasses:JobOrderGlassesAdapter(action.jobOrder.glass_drafts),
   })),
@@ -72,14 +75,15 @@ const jobOrdersReducer = createReducer(
     return {
       ...state,
       error: null,
-      selectedGlasses: [
+      withBarCodes:true,
+      selectedGlasses:JobOrderGlassesAdapter( [
         ...state.selectedJobOrder.glass_drafts.map((glass) => ({
           ...glass,
           manufacturing_lines: action.manufacturingLines.filter(
             (line) => line.glass_id == glass.id
           ),
         })),
-      ],
+      ])
     };
   }),
 

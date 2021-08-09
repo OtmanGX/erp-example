@@ -13,8 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class JobCardComponent extends ModelCardComponent implements OnDestroy{
   data$ = this.facade.selectedJobOrder$;
+  withGeneratedBarCodes$= this.facade.withBarCodes$;
   products: JobItem[];
-  withGeneratedBarCodes: boolean = false;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -28,12 +28,11 @@ export class JobCardComponent extends ModelCardComponent implements OnDestroy{
       .adaptSelectedJobOrder()
       .subscribe((data) => (this.products = data?.items));
     this.facade.loadJobOrderById(this.id);
+    this.withGeneratedBarCodes$.subscribe(daata=>console.log(daata))
   }
 
   passData(data: JobOrder) {
-    data?.glass_drafts[0].manufacturing_lines.length
-      ? (this.withGeneratedBarCodes = true)
-      : (this.withGeneratedBarCodes = false);
+
     return [
       {
         label: 'Infos Générales',
@@ -56,7 +55,6 @@ export class JobCardComponent extends ModelCardComponent implements OnDestroy{
 
   generateBarCodes() {
     this.facade.addManufacturingLines();
-    this.withGeneratedBarCodes = false;
   }
 
   selectProduct(product:JobItem): void {

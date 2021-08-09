@@ -56,3 +56,9 @@ export const getSelectedGlassLine = createSelector(
   getJobOrdersState,
   (state: State) => state.selectedGlass
 ); 
+
+
+export const getBarCodeState = createSelector(
+  getJobOrdersState,
+  (state: State) => state.withBarCodes
+); 
