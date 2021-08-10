@@ -42,6 +42,11 @@ mutation InsertJobOrder(
         labelFactory
         dependent_id
       }
+      manufacturing_lines {
+        glass_id
+        id
+        status
+      }
     }
   }
   update_sales_product_draft(
@@ -52,6 +57,12 @@ mutation InsertJobOrder(
         type: { _nin: [Accessoire] }
       }
     }
+  ) {
+    affected_rows
+  }
+  update_sales_draft(
+    where: { order: { ref: { _eq: $order_ref } } }
+    _set: { status: lance }
   ) {
     affected_rows
   }

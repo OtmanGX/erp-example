@@ -1,6 +1,6 @@
 
   <div *ngFor="let group of data">
-    <mat-toolbar *ngIf="group.isToolbar">
+    <mat-toolbar *ngIf="group.isToolbar" style='background-color:transparent'>
 
       <span><mat-icon style='font-size: 1.2rem' *ngIf='group?.toolbarIcon let icon'>{{icon}}</mat-icon> {{group.label}}</span>
       <span class="spacer"></span>

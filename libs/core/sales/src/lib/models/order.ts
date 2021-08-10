@@ -1,6 +1,7 @@
 import { SalesCustomer, SalesCompany } from './quotation';
 import { Product_draft } from './product';
 import { Amount } from './amount';
+
 export interface Order {
   id: number;
   draft_id: number;
@@ -15,9 +16,13 @@ export interface Order {
   total_tax: number;
   total_ht: number;
   products?: Product_draft[];
-  ref?:string;
+  ref?: string;
   ref_num?: number;
-  salepoint?: {name:string};
+  salepoint?: { name: string };
+}
+
+export interface DetailedOrder extends Order {
+  draft_status: string;
 }
 
 export interface InsertedOrder {
@@ -34,6 +39,4 @@ export interface InsertedOrder {
   products: Product_draft[];
   amounts: Amount[];
 }
-
-
 

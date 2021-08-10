@@ -3,6 +3,7 @@ import {
   invoiceFilter,
   Order as OrdersEntity,
   InsertedOrder,
+  DetailedOrder
 } from '@tanglass-erp/core/sales';
 
 export const loadOrders = createAction(
@@ -31,7 +32,7 @@ export const loadOrderById = createAction(
 
 export const loadOrderByIdSuccess = createAction(
   '[Order Effect] Load Order By Id Success',
-  props<{ order: OrdersEntity }>()
+  props<{ order: DetailedOrder }>()
 );
 
 export const loadOrderByIdFailure = createAction(

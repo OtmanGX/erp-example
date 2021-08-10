@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { JobOrder,InsertedJobOrder } from '@tanglass-erp/core/manufacturing';
+import { JobOrder,InsertedJobOrder,InsertedManufacturingLine ,ManufacturingLine} from '@tanglass-erp/core/manufacturing';
 
 
 /****************************************************************** */
@@ -60,4 +60,22 @@ export const addJobOrderFailure = createAction(
   props<{ error: any }>()
 );
 
+/****************************************************************** */
+/*****ADD MANUFACTURING LINES  ** */
+/****************************************************************** */
+
+export const addManufacturingLines = createAction(
+  '[ Manufacturing Lines] Add Manufacturing Lines',
+  props<{ manufacturingLines: InsertedManufacturingLine[] }>()
+);
+
+export const addManufacturingLinesSuccess = createAction(
+  '[Manufacturing Lines Effect] Add Manufacturing Lines Success',
+  props<{ manufacturingLines:ManufacturingLine[] }>()
+);
+
+export const addManufacturingLinesFailure = createAction(
+  '[Manufacturing Lines Effect] Add Manufacturing Lines Failure',
+  props<{ error: any }>()
+);
 

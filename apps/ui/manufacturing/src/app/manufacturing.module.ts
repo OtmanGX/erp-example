@@ -7,14 +7,23 @@ import { JobOrdersComponent } from '@TanglassUi/manufacturing/pages/job-order/jo
 import { StoreManufacturingModule } from '@tanglass-erp/store/manufacturing';
 import { JobCardComponent } from '@TanglassUi/manufacturing/pages/job-order/job-card/job-card.component';
 import { ManufacturingComponent } from './manufacturing.component';
+import { JobProgressComponent } from '@TanglassUi/manufacturing/components/job-progress/job-progress.component';
+//import { NgxBarcodeModule } from 'ngx-barcode';
+
 @NgModule({
-  declarations: [ManufacturingComponent, JobOrdersComponent, JobCardComponent],
+  declarations: [
+    ManufacturingComponent,
+    JobOrdersComponent,
+    JobCardComponent,
+    JobProgressComponent,
+  ],
   imports: [
     CommonModule,
     ManufacturingRoutingModule,
     MainAgGridModule,
     MaterialModule,
     StoreManufacturingModule,
+
   ],
 })
 export class ManufacturingModule {}

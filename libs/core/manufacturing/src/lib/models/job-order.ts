@@ -1,3 +1,4 @@
+import { Product_draft } from '@tanglass-erp/core/sales';
 export interface JobOrder {
   id: number;
   date: Date;
@@ -19,6 +20,7 @@ export interface JobProduct {
     width?: number;
     product_code: string;
   };
+  manufacturing_lines?: ManufacturingLine[];
 }
 
 export interface Dependency {
@@ -32,3 +34,17 @@ export interface InsertedJobOrder {
   isReparing?: boolean;
   ids: { id: string }[];
 }
+
+export interface InsertedManufacturingLine {
+  glass_id: string;
+  count: number;
+}
+
+export interface ManufacturingLine {
+  glass_id: string;
+  id: number;
+  status: string;
+  manufacturing_services:string[];
+  manufacturing_consumables: string[];
+}
+

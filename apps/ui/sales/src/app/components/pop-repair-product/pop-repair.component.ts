@@ -38,7 +38,7 @@ export class PopRepairComponent implements OnInit {
         ? (this.data = this.facade.getRepairingDimensions(this.data, value))
         : null
     );
-  } 
+  }
 
   confirm() {
     this.facade.addBisItems(this.data);

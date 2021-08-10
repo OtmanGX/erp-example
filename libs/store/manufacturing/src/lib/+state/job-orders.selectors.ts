@@ -38,6 +38,14 @@ export const getSelectedId = createSelector(
   getJobOrdersState,
   (state: State) => state.selectedId
 );
+export const getSelectedJobOrder = createSelector(
+  getJobOrdersState,
+  (state: State) => state.selectedJobOrder
+);
+export const getSelectedJobOrderGlasses = createSelector(
+  getJobOrdersState,
+  (state: State) => state.selectedGlasses
+);
 
 export const getSelected = createSelector(
   getJobOrdersEntities,

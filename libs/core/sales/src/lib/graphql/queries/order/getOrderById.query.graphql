@@ -29,6 +29,7 @@ query GetOrderById($id: Int!) {
     total_tax
     total_ttc
     draft {
+      status
       product_drafts {
         id
         label

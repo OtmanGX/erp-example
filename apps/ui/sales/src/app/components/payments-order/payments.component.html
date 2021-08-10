@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar style='background-color:transparent'>
 
     <button mat-icon-button class="example-icon">
         <mat-icon color="primary">attach_money</mat-icon>
@@ -15,7 +15,6 @@
 </app-table>
 
 <div fxLayout="row wrap">
-
     <div fxFlex="100" fxFlex.sm="100" fxFlex.gt-sm="100">
         <div fxLayout="row wrap">
             <ngx-amount-card fxFlex="100" fxFlex.sm="25" fxFlex.gt-sm="25" *ngFor="let item of amountsList | async"

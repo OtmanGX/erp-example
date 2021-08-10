@@ -68,12 +68,5 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.order_subscription.unsubscribe();
   }
-  showDetails() {
-    this.withDetails = true;
-  }
-  hideDetails() {
-    this.withDetails = false;
-    console.log(this.withDetails)
 
-  }
 }

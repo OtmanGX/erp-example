@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
 import {
   OrdersFacade,
-  Order,
+  DetailedOrder,
   DeliveryFacade,
   ProductDraftFacade,
+  Sales_Draft_Status_Enum,
 } from '@tanglass-erp/store/sales';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { SharedFacade } from '@tanglass-erp/store/shared';
-import { Product } from '@TanglassUi/sales/utils/grid-headers';
 import { Router } from '@angular/router';
-import {
-  JobOrdersFacade,
-} from '@tanglass-erp/store/manufacturing';
+import { JobOrdersFacade } from '@tanglass-erp/store/manufacturing';
 
 @Component({
   selector: 'ngx-order-card',
@@ -22,12 +20,10 @@ import {
 })
 export class OrderCardComponent extends ModelCardComponent {
   title = 'Commande CARD';
-  dataSource_bis = [];
   glasses_ids;
-  displayedColumns = Product;
   data$ = this.facade.loadedOrder$.pipe(takeUntil(this._onDestroy));
   isCardMode: boolean = true;
-
+  isLaunched: boolean;
   constructor(
     public activatedRoute: ActivatedRoute,
     protected facade: OrdersFacade,
@@ -41,25 +37,20 @@ export class OrderCardComponent extends ModelCardComponent {
   }
 
   dispatch(): void {
+    this.isLaunched = false;
     this.facade.loadOrderById(this.id);
     this.sharedfacade.loadAllShortCompanies();
     this.sharedfacade.loadAllShortWarehouses();
-    this.productDraftFacade
-      .getProductsGroups()
-      .subscribe(
-        (data) => (
-          (this.dataSource_bis = data.repeated),
-          (this.glasses_ids = data.glasses.map((data) => ({ id: data.id })))
-        )
-      );
   }
-
-  passData(data: Order) {
+  passData(data: DetailedOrder) {
+    data?.draft_status == Sales_Draft_Status_Enum.Lance
+      ? (this.isLaunched = true)
+      : (this.isLaunched = false);
     return [
       {
         label: 'Infos Générales',
         isToolbar: 'true',
-        cols: 3,
+        cols: 4,
         icons: [{ name: 'edit', tooltip: 'Modification', event: 'editMain' }],
         data: [
           { label: 'Réf ', value: data?.ref },
@@ -71,6 +62,7 @@ export class OrderCardComponent extends ModelCardComponent {
           { label: 'Date limite ', value: data?.deadline },
           { label: 'Livraison', value: [data?.delivery_status], type: 'chips' },
           { label: 'Paiement', value: [data?.payment_status], type: 'chips' },
+          { label: 'Status', value: [data?.draft_status], type: 'chips' },
         ],
       },
     ];
@@ -79,22 +71,27 @@ export class OrderCardComponent extends ModelCardComponent {
   edit() {
     this.isCardMode = false;
   }
-  save() {}
+  save() {
+    console.log(this.data);
+  }
   cancel() {
     this.router.navigate(['/sales/order']);
   }
   print() {
     this.facade.printOrder(this.data);
   }
-  launch(type?: string) {
-    let order: Order;
-    this.data$.subscribe((data) => (order = data));
-    this.manufacturingFacade.launchJobOrder(
-      {
-        order_ref: order.ref,
-        ids: this.glasses_ids,
-      },
-      type
+  launch() {
+    let order: DetailedOrder;
+    this.productDraftFacade.getProductsGroups().subscribe(
+      (data) =>
+        (this.glasses_ids = data.glasses.map((data) => ({
+          id: data.glass_draft.id,
+        })))
     );
+    this.data$.subscribe((data) => (order = data));
+    this.manufacturingFacade.addJobOrder({
+      order_ref: order.ref,
+      ids: this.glasses_ids,
+    });
   }
 }

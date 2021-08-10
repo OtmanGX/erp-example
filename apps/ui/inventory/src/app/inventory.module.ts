@@ -15,7 +15,7 @@ import { WarehouseGlasseCardComponent } from './pages/warehouse-glasse/warehouse
 import { StoreInventoryModule } from '@TanglassStore/inventory/index';
 import { WarehouseTransfertComponent } from './pages/warehouse-transfert/warehouse-transfert.component';
 import { PopWarehouseTransfertComponent } from './pages/warehouse-transfert/pop-warehouse-transfert/pop-warehouse-transfert.component';
-import { StoreProductModule } from '../../../../../libs/store/product/src';
+import { StoreProductModule } from '@TanglassStore/product/lib/store-product.module';
 import { TransfertCardComponent } from './pages/warehouse-transfert/transfert-card/transfert-card.component';
 import { StoreSharedModule } from '@tanglass-erp/store/shared';
 import { PopOrderItemComponent } from './pages/warehouse-transfert/pop-order-item/pop-order-item.component';

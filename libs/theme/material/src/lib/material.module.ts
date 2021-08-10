@@ -26,6 +26,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 import {CounterModule} from 'angular-circle-counter';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 // Components
 import { SelectComponent } from './components/form/select.component';
@@ -93,7 +94,8 @@ const MATERIAL_MODULES = [
   MatStepperModule,
   NgxMatSelectSearchModule,
   MatGridListModule,
-  MatTabsModule
+  MatTabsModule,
+  DragDropModule
 ];
 
 const OTHER_MODULES = [
