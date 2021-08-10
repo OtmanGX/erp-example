@@ -35,7 +35,9 @@ import { PopRepairComponent } from '@TanglassUi/sales/components/pop-repair-prod
 import { OrderDeliveriesComponent } from '@TanglassUi/sales/components/order-deliveries/order-deliveries.component';
 import { PopQuotationTransferComponent } from '@TanglassUi/sales/components/pop-quotation-transfer/pop-quotation-transfer.component';
 import { InvoiceLinesComponent } from '@TanglassUi/sales/components/invoice-lines/invoice-lines.component';
-import { StoreManufacturingModule } from "@tanglass-erp/store/manufacturing";
+import { StoreManufacturingModule } from '@tanglass-erp/store/manufacturing';
+import { OrderRepairsComponent } from '@TanglassUi/sales/components/order-repairs/order-repairs.component';
+
 @NgModule({
   declarations: [
     SalesComponent,
@@ -63,7 +65,8 @@ import { StoreManufacturingModule } from "@tanglass-erp/store/manufacturing";
     PopRepairComponent,
     OrderDeliveriesComponent,
     PopQuotationTransferComponent,
-    InvoiceLinesComponent
+    InvoiceLinesComponent,
+    OrderRepairsComponent,
   ],
   imports: [
     CommonModule,
@@ -76,7 +79,7 @@ import { StoreManufacturingModule } from "@tanglass-erp/store/manufacturing";
     StoreSalesModule,
     ManagementStateModule,
     MatSlideToggleModule,
-    StoreManufacturingModule
+    StoreManufacturingModule,
   ],
 })
 export class SalesModule {}

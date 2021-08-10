@@ -37,7 +37,7 @@ export const displayedAmounts_PaymentsColumns: Array<Column> = [
   { key: 'received', title: 'Reçu', type: ColumnType.normal },
   { key: 'debt', title: 'Reste', type: ColumnType.normal },
 ];
-export const Product: Array<Column> = [
+export const ProductColumns: Array<Column> = [
   // { field: 'id', headerName: 'ID. ' },
   { key: 'product_code', title: 'Code', type: ColumnType.normal },
   { key: 'label', title: 'Désignation', type: ColumnType.normal },
@@ -53,7 +53,7 @@ export const Product: Array<Column> = [
 ];
 export const ProductGlassHeaders: Array<Column> = [
   // { field: 'id', headerName: 'ID. ' },
-  ...Product,
+  ...ProductColumns,
   action,
 ];
 

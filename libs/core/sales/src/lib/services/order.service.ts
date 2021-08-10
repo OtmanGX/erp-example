@@ -5,9 +5,12 @@ import {
   GetOrderByIdGQL,
   DeleteOrdersGQL,
   InsertOrderMutationVariables,
+  UpdateOrderGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
 import { invoiceFilter, productAdapter } from '@tanglass-erp/core/sales';
+import { ManufacturingLine } from "@tanglass-erp/core/manufacturing";
+import { UpdateOrder } from '../models/order';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +19,8 @@ export class OrderService {
     private getAllOrdersGQL: GetAllOrdersGQL,
     private deleteOrdersGQL: DeleteOrdersGQL,
     private insertOrderGQL: InsertOrderGQL,
-    private getOrderByIdGQL: GetOrderByIdGQL
+    private getOrderByIdGQL: GetOrderByIdGQL,
+    private updateOrderGQL:UpdateOrderGQL
   ) {}
 
   getAll(params: invoiceFilter = {}) {
@@ -31,6 +35,7 @@ export class OrderService {
     return this.getOrderByIdGQL.fetch({ id }).pipe(
       map((data) => ({
         ...data.data.sales_order_by_pk,
+        draft_status: data.data.sales_order_by_pk.draft.status,
         products: data.data.sales_order_by_pk.draft.product_drafts.map(
           (product) => {
             return productAdapter(product);
@@ -39,8 +44,12 @@ export class OrderService {
       }))
     );
   }
-
+ 
   insertOne(order: InsertOrderMutationVariables) {
     return this.insertOrderGQL.mutate(order);
   }
+  updateOrder(order:UpdateOrder){
+     return this.updateOrderGQL.mutate(order)
+  }
+
 }

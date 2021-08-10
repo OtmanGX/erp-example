@@ -1,0 +1,17 @@
+<mat-toolbar style='background-color:transparent'>Avancement</mat-toolbar>
+<section *ngFor="let line of glass?.manufacturing_lines; let itemIndex=index" style="margin-left:10px ;margin-bottom: 20px">
+<div style="margin-bottom: 10px"> 
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="example-label" style="margin-right: 20px"> <h3>00000000{{ line?.id}}</h3></div>
+    <button  mat-stroked-button *ngFor="let step of line?.services ;let serviceIndex=index"
+    [style.background-color]="step.isReady ? '#222a45': '#FBFCFC'"
+    [style.color]="step.isReady ? '#FBFCFC': '#222a45'"     
+    style="width : 10em;margin-left: 10px"
+    (click)='updateState(itemIndex,serviceIndex)'>{{step?.labelFactory}}</button>
+  </div>
+</div>
+<mat-divider></mat-divider>
+</section>
+<div fxLayout="row" fxLayoutAlign="end">
+  <button style="width : 10em;margin-right: 8px;" (click)="confirm()" mat-raised-button color="primary">Confirm</button>
+</div>

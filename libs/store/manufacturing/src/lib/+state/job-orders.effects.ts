@@ -6,9 +6,15 @@ import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { Router } from '@angular/router';
 import * as JobOrdersActions from './job-orders.actions';
 import { JobOrderService } from '@tanglass-erp/core/manufacturing';
+import { select, Store, Action } from '@ngrx/store';
+import * as JobOrdersSelectors from './job-orders.selectors';
+import * as fromJobOrders from './job-orders.reducer';
 
 @Injectable()
 export class JobOrdersEffects {
+  selectedJobOrder$ = this.store.pipe(
+    select(JobOrdersSelectors.getSelectedJobOrder)
+  );
   loadJobOrders$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(JobOrdersActions.loadJobOrders),
@@ -42,7 +48,10 @@ export class JobOrdersEffects {
               route: 'manufacturing/jobOrder',
               color: 'primary',
             });
-            this.router.navigate(['manufacturing/jobOrders']);
+            this.router.navigate([
+              'manufacturing/jobOrders',
+              data.data.insert_manufacturing_job_order_one.id,
+            ]);
             return JobOrdersActions.addJobOrderSuccess({
               jobOrder: data.data.insert_manufacturing_job_order_one,
             });
@@ -54,15 +63,68 @@ export class JobOrdersEffects {
       )
     );
   });
-
+  updateLinesStates = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(JobOrdersActions.updateLinesStates),
+      mergeMap((action) =>
+        this.jobOrderService.updateManufacturingState(action.lines).pipe(
+          map((data) => {
+            this.notificationService.showNotifToast({
+              message: 'Mise à jour de progrés a réussi',
+              operation: 'success',
+              title: 'Ordre de fabrication',
+              time: new Date(),
+              icon: 'check',
+              route: 'manufacturing/jobOrder',
+              color: 'primary',
+            });
+            return JobOrdersActions.updateLinesStatesSuccess({
+              lines: data,
+            });
+          }),
+          catchError((error) =>
+            of(JobOrdersActions.updateLinesStatesFailure({ error }))
+          )
+        )
+      )
+    );
+  });
   getJobOrderById$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(JobOrdersActions.loadJobOrderById),
       mergeMap((action) =>
         this.jobOrderService.getOneById(action.id).pipe(
           map((data) => {
+            let jobOrder = {
+              ...data.data.manufacturing_job_order_by_pk,
+              glass_drafts: [
+                ...data.data.manufacturing_job_order_by_pk.glass_drafts.map(
+                  (glass) => ({
+                    ...glass,
+                    manufacturing_lines: glass.manufacturing_lines.map(
+                      (prodLine) => ({
+                        ...prodLine,
+                        manufacturing_services: prodLine.manufacturing_services.map(
+                          (data) => ({
+                            labelFactory: data.service_draft.labelFactory,
+                            id: data.service_draft.id,
+                          })
+                        ),
+                        manufacturing_consumables: prodLine.manufacturing_consumables.map(
+                          (data) => ({
+                            labelFactory: data.consumable_draft.labelFactory,
+                            id: data.consumable_draft.id,
+                          })
+                        ),
+                      })
+                    ),
+                  })
+                ),
+              ],
+            };
+
             return JobOrdersActions.loadJobOrderByIdSuccess({
-              jobOrder: data.data.manufacturing_job_order_by_pk,
+              jobOrder: jobOrder,
             });
           }),
           catchError((error) =>
@@ -73,10 +135,34 @@ export class JobOrdersEffects {
     );
   });
 
+  //Generating BarCodes
+  addManufacturingLines = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(JobOrdersActions.addManufacturingLines),
+      mergeMap((action) =>
+        this.jobOrderService
+          .generateManufacturingLines(action.manufacturingLines)
+          .pipe(
+            map((data) => {
+              this.selectedJobOrder$.subscribe((data) => {
+                this.router.navigate(['manufacturing/jobOrders', data.id]);
+              });
+              return JobOrdersActions.addManufacturingLinesSuccess({
+                manufacturingLines: data,
+              });
+            }),
+            catchError((error) =>
+              of(JobOrdersActions.addManufacturingLinesFailure({ error }))
+            )
+          )
+      )
+    );
+  });
   constructor(
     private actions$: Actions,
     private jobOrderService: JobOrderService,
     private router: Router,
-    private notificationService: NotificationFacadeService
+    private notificationService: NotificationFacadeService,
+    private store: Store<fromJobOrders.JobOrdersPartialState>
   ) {}
 }

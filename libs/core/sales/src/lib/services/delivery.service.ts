@@ -9,7 +9,6 @@ import {
   UpdateDeliveryLineMutationVariables,
   UpdateDeliveryMutationVariables,
   GetOrderDeliveriesGQL,
-
 } from '@tanglass-erp/infrastructure/graphql';
 import { deliveryFilter, DeliveryLine, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 import { combineLatest } from 'rxjs';

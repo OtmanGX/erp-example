@@ -1,4 +1,4 @@
-import { Component, Inject,ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormDialog, FieldConfig } from '@tanglass-erp/material';
 import { AppState } from '@tanglass-erp/store/app';
@@ -18,7 +18,8 @@ import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';
 })
 export class PopQuotationTransferComponent extends FormDialog {
   title = 'Données pour le tranfert';
-  @ViewChild('transfer_form', { read: DynamicFormComponent }) transferFormComponent: DynamicFormComponent;
+  @ViewChild('transfer_form', { read: DynamicFormComponent })
+  transferFormComponent: DynamicFormComponent;
   get transferForm() {
     return this.transferFormComponent?.form;
   }
@@ -42,7 +43,7 @@ export class PopQuotationTransferComponent extends FormDialog {
   ) {
     super(dialogRef, data);
   }
-  submitForm(){
+  submitForm() {
     this.submit(this.transferForm.value);
   }
   buildForm() {

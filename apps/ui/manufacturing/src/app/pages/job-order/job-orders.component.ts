@@ -41,7 +41,6 @@ export class JobOrdersComponent implements GridView {
   eventTriggering(event) {
     // Store Action Dispatching
     switch (event.action) {
-      
       case Operations.delete:
         break;
     }

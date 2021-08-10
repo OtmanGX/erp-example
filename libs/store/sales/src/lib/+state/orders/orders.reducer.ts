@@ -1,13 +1,13 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as OrdersActions from './orders.actions';
-import { Order as OrdersEntity } from '@tanglass-erp/core/sales';
+import { Order as OrdersEntity,DetailedOrder } from '@tanglass-erp/core/sales';
 
 export const ORDERS_FEATURE_KEY = 'orders';
 
 export interface OrderState extends EntityState<OrdersEntity> {
   selectedId?: string | number; // which Orders record has been selected
-  selectedOrder: OrdersEntity;
+  selectedOrder: DetailedOrder;
   loaded: boolean; // has the Orders list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -58,6 +58,9 @@ const ordersReducer = createReducer(
     selectedOrder: null,
     selectedId: null,
   })),
+  on(OrdersActions.updateOrderSuccess,(state, {order}) =>
+  ordersAdapter.updateOne({id: order.id, changes: order}, state)
+),
   on(
     OrdersActions.loadOrdersFailure,
     OrdersActions.loadOrderByIdFailure,

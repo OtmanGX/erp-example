@@ -26,6 +26,23 @@ query GetJobOrderById($id: Int!) {
         label
         product_code
       }
+      manufacturing_lines {
+        glass_id
+        id
+        status
+        manufacturing_services {
+          service_draft {
+            labelFactory
+            id
+          }
+        }
+        manufacturing_consumables {
+          consumable_draft {
+            labelFactory
+            id
+          }
+        }
+      }
     }
   }
 }

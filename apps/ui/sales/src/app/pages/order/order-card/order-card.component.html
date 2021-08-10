@@ -1,34 +1,23 @@
-<mat-toolbar *ngIf="isCardMode">
+<mat-toolbar *ngIf="isCardMode" style='background-color:transparent'>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </button>
     <span> Votre Commande !</span>
     <span class="example-spacer"></span>
-    <button mat-flat-button (click)='launch()' color="primary" style="width : 8em;margin-right: 8px;">
+    <button  *ngIf="!isLaunched" mat-flat-button (click)='launch()' color="primary" style="width : 8em;margin-right: 8px;">
         LANCER
     </button>
     <button mat-flat-button (click)='edit()' class=" mat-bg-warn" style="width : 8em;">
         MODIFIER
     </button>
-    <!-- <button mat-flat-button (click)="print()" class=" primary" style="width : 8em;">
-        IMPRIMER
-    </button> -->
-
-    <button
-    id='printer-button'
-    mat-flat-button
-    (click)="print()"
-    color='primary'>
-    <mat-icon>
-      print
-    </mat-icon>
-    &nbsp;IMPRIMER
-  </button>
-
+    <button id='printer-button' mat-flat-button (click)="print()" color='primary'>
+        <mat-icon>
+            print
+        </mat-icon>
+        &nbsp;IMPRIMER
+    </button>
 </mat-toolbar>
-
-
-<mat-toolbar *ngIf="!isCardMode" class="toolbar">
+<mat-toolbar *ngIf="!isCardMode" class="toolbar" style='background-color:transparent'>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </button>
@@ -41,18 +30,14 @@
         ANNULER
     </button>
 </mat-toolbar>
-
-
 <ngx-fiche-card [data]="passedData" [withToolbar]='false'>
     <mat-tab-group animationDuration="0ms">
         <mat-tab label="Articles">
-            <ngx-product-draft [isCardMode]='isCardMode'></ngx-product-draft>
+            <ngx-product-draft [isCardMode]='isCardMode' [isLaunched]='isLaunched'></ngx-product-draft>
             <ngx-amounts-order [isCardMode]='isCardMode'></ngx-amounts-order>
         </mat-tab>
         <mat-tab label="Bis">
-            <app-table [data]="dataSource_bis" [columnsToShow]="displayedColumns" [withCheckbox]=false
-                [withFilter]=false>
-            </app-table>
+           <ngx-order-repairs></ngx-order-repairs>
         </mat-tab>
         <mat-tab label="Réglements">
             <ngx-payments></ngx-payments>

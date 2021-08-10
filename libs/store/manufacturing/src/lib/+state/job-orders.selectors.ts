@@ -38,9 +38,27 @@ export const getSelectedId = createSelector(
   getJobOrdersState,
   (state: State) => state.selectedId
 );
+export const getSelectedJobOrder = createSelector(
+  getJobOrdersState,
+  (state: State) => state.selectedJobOrder
+);
+export const getSelectedJobOrderGlasses = createSelector(
+  getJobOrdersState,
+  (state: State) => state.selectedGlasses
+);
 
 export const getSelected = createSelector(
   getJobOrdersEntities,
   getSelectedId,
   (entities, selectedId) => selectedId && entities[selectedId]
 );
+export const getSelectedGlassLine = createSelector(
+  getJobOrdersState,
+  (state: State) => state.selectedGlass
+); 
+
+
+export const getBarCodeState = createSelector(
+  getJobOrdersState,
+  (state: State) => state.withBarCodes
+); 

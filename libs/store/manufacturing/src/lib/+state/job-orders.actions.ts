@@ -1,11 +1,18 @@
 import { createAction, props } from '@ngrx/store';
-import { JobOrder,InsertedJobOrder } from '@tanglass-erp/core/manufacturing';
-
+import {
+  JobOrder,
+  InsertedJobOrder,
+  InsertedManufacturingLine,
+  ManufacturingLine,
+  ManufacturingState,
+  LineService,
+  JobProduct,
+  InsertedManufacturingState
+} from '@tanglass-erp/core/manufacturing';
 
 /****************************************************************** */
 /*****LOAD ALL JOB ORDERS ** */
 /****************************************************************** */
-
 
 export const loadJobOrders = createAction('[JobOrders] Load JobOrders');
 
@@ -19,7 +26,6 @@ export const loadJobOrdersFailure = createAction(
   props<{ error: any }>()
 );
 
-
 /****************************************************************** */
 /*****LOAD INDIVIDUAL JOB ORDER ** */
 /****************************************************************** */
@@ -27,8 +33,7 @@ export const loadJobOrdersFailure = createAction(
 export const loadJobOrderById = createAction(
   '[JOB Order Component] Load Job Order By Id',
   props<{ id: number }>()
-  );
-
+);
 
 export const loadJobOrderByIdSuccess = createAction(
   '[Job Order Effect] Load Job Order By Id Success',
@@ -39,7 +44,6 @@ export const loadJobOrderByIdFailure = createAction(
   '[Job Order Effect] Load Job Order By Id Failure',
   props<{ error: any }>()
 );
-
 
 /****************************************************************** */
 /*****ADD INDIVIDUAL JOB ORDER ** */
@@ -60,4 +64,61 @@ export const addJobOrderFailure = createAction(
   props<{ error: any }>()
 );
 
+/****************************************************************** */
+/*****ADD MANUFACTURING LINES  ** */
+/****************************************************************** */
 
+export const addManufacturingLines = createAction(
+  '[ Manufacturing Lines] Add Manufacturing Lines',
+  props<{ manufacturingLines: InsertedManufacturingLine[] }>()
+);
+
+export const addManufacturingLinesSuccess = createAction(
+  '[Manufacturing Lines Effect] Add Manufacturing Lines Success',
+  props<{ manufacturingLines: ManufacturingLine[] }>()
+);
+
+export const addManufacturingLinesFailure = createAction(
+  '[Manufacturing Lines Effect] Add Manufacturing Lines Failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****UPDATE MANUFACTURING LINES  STATES** */
+/****************************************************************** */
+
+export const updateLinesStates = createAction(
+  '[ Manufacturing States] Update Manufacturing Progress Lines',
+  props<{ lines: InsertedManufacturingState }>()
+);
+
+export const updateLinesStatesSuccess = createAction(
+  '[ Manufacturing States Effect] Update Manufacturing Progress Lines Success',
+  props<{ lines: ManufacturingState }>()
+);
+
+export const updateLinesStatesFailure = createAction(
+  '[ Manufacturing States Effect] Update Manufacturing Lines Progress Failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****SELECT GLASS  LINE  ** */
+/****************************************************************** */
+
+export const selectGlassLine = createAction(
+  '[ Manufacturing Glass Line States] Select Manufacturing Glass Line States ',
+  props<{ glass: JobProduct }>()
+);
+
+
+
+/****************************************************************** */
+/*****UPDATE SELECTED GLASSLINE  ** */
+/****************************************************************** */
+
+export const updateGlassLine = createAction(
+  '[ Manufacturing Glass Line States] Update Manufacturing Glass Line States ',
+  props<{ glass: JobProduct }>()
+);
