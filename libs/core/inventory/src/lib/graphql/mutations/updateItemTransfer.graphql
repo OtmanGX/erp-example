@@ -8,9 +8,73 @@ mutation UpdateStockItemTranfer(
     pk_columns: { id: $id }
     _set: { date: $date, quantity: $quantity, status: $status }
   ) {
-    date
-    id
-    quantity
-    status
+    tranfer_order_item {
+      transfer_order
+      {
+        id
+        date
+        deadline
+        createdAt
+        createdBy
+        updatedAt
+        updatedBy
+        status
+        fromwarehouse {
+          name
+        }
+        towarehouse {
+          name
+        }
+        order_items_aggregate {
+          aggregate {
+            count(columns: id)
+            sum {
+              quantity
+            }
+          }
+          nodes {
+            quantity
+            status
+            id
+            substance {
+              productAccessory {
+                ...product_product_accessory_viewFragment
+              }
+              productGlass {
+                ...product_product_glass_viewFragment
+              }
+            }
+            item_tranfers_aggregate {
+              aggregate {
+                sum {
+                  quantity
+                }
+              }
+              nodes {
+                quantity
+                status
+                id
+                date
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
+
+fragment product_product_glass_viewFragment on product_product_glass_view {
+  code
+  label
+  price
+  unit
+}
+
+fragment product_product_accessory_viewFragment on product_product_accessory_view {
+  code
+  label
+  price
+  unit
+}
+

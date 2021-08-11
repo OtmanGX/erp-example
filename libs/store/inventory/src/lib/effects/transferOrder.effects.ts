@@ -48,6 +48,61 @@ export class TransferOrderEffects {
     )
   );
 
+
+  updateTransferOrder$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TransferOrderActions.updateTransferOrder),
+      mergeMap((action) => this.transferOrderservice.updateTransferOrder(action.transferOrder)
+        .pipe(
+          map((data) =>
+            TransferOrderActions.updateTransferOrderSuccess({transferOrder: data.data.update_stock_transfer_order_by_pk})),
+          catchError((error) =>
+            of(TransferOrderActions.updateTransferOrderFailure({error})))
+          ))
+    )
+  );
+
+  deleteTransferOrders$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TransferOrderActions.deleteTransferOrder),
+      mergeMap((action) => this.transferOrderservice.deleteTransferOrders(action.ids)
+        .pipe(
+          map((data) =>
+            TransferOrderActions.deleteTransferOrderSuccess({ids: action.ids})),
+          catchError((error) =>
+            of(TransferOrderActions.deleteTransferOrderFailure({error})))
+          ))
+    )
+  );
+
+
+  updateOrderItem$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TransferOrderActions.updateOrderItem),
+      mergeMap((action) => this.transferOrderservice.updateStockOrderItem(action.orderItem)
+        .pipe(
+          map((data) =>
+            TransferOrderActions.updateOrderItemSuccess({transferOrder: data})),
+          catchError((error) =>
+            of(TransferOrderActions.updateOrderItemFailure({error})))
+          ))
+    )
+  );
+
+
+  updateItemTransfer$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TransferOrderActions.updateItemTransfer),
+      mergeMap((action) => this.transferOrderservice.updateStockItemTranfer(action.transferred)
+        .pipe(
+          map((data) =>
+            TransferOrderActions.updateItemTransferSuccess({transferOrder: data})),
+          catchError((error) =>
+            of(TransferOrderActions.updateItemTransferFailure({error})))
+          ))
+    )
+  );
+
   loadTransferOrderDetails$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TransferOrderActions.loadOrdersDetails),

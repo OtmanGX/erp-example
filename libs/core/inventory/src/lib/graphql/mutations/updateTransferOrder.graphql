@@ -18,8 +18,15 @@ mutation UpdateTransferOrder(
   ) {
     date
     deadline
-    fromWarehouseid
+    fromwarehouse {
+      name
+      id
+    }
+    towarehouse {
+      name
+      id
+    }
     status
-    toWarehouseid
+    id
   }
 }

@@ -33089,8 +33089,66 @@ export type UpdateStockItemTranferMutation = (
   { __typename?: 'mutation_root' }
   & { update_stock_item_tranfer_by_pk?: Maybe<(
     { __typename?: 'stock_item_tranfer' }
-    & Pick<Stock_Item_Tranfer, 'date' | 'id' | 'quantity' | 'status'>
+    & { tranfer_order_item: (
+      { __typename?: 'stock_order_item' }
+      & { transfer_order: (
+        { __typename?: 'stock_transfer_order' }
+        & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'status'>
+        & { fromwarehouse: (
+          { __typename?: 'stock_warehouse' }
+          & Pick<Stock_Warehouse, 'name'>
+        ), towarehouse: (
+          { __typename?: 'stock_warehouse' }
+          & Pick<Stock_Warehouse, 'name'>
+        ), order_items_aggregate: (
+          { __typename?: 'stock_order_item_aggregate' }
+          & { aggregate?: Maybe<(
+            { __typename?: 'stock_order_item_aggregate_fields' }
+            & Pick<Stock_Order_Item_Aggregate_Fields, 'count'>
+            & { sum?: Maybe<(
+              { __typename?: 'stock_order_item_sum_fields' }
+              & Pick<Stock_Order_Item_Sum_Fields, 'quantity'>
+            )> }
+          )>, nodes: Array<(
+            { __typename?: 'stock_order_item' }
+            & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
+            & { substance: (
+              { __typename?: 'product_substance' }
+              & { productAccessory?: Maybe<(
+                { __typename?: 'product_product_accessory_view' }
+                & Product_Product_Accessory_ViewFragmentFragment
+              )>, productGlass?: Maybe<(
+                { __typename?: 'product_product_glass_view' }
+                & Product_Product_Glass_ViewFragmentFragment
+              )> }
+            ), item_tranfers_aggregate: (
+              { __typename?: 'stock_item_tranfer_aggregate' }
+              & { aggregate?: Maybe<(
+                { __typename?: 'stock_item_tranfer_aggregate_fields' }
+                & { sum?: Maybe<(
+                  { __typename?: 'stock_item_tranfer_sum_fields' }
+                  & Pick<Stock_Item_Tranfer_Sum_Fields, 'quantity'>
+                )> }
+              )>, nodes: Array<(
+                { __typename?: 'stock_item_tranfer' }
+                & Pick<Stock_Item_Tranfer, 'quantity' | 'status' | 'id' | 'date'>
+              )> }
+            ) }
+          )> }
+        ) }
+      ) }
+    ) }
   )> }
+);
+
+export type Product_Product_Glass_ViewFragmentFragment = (
+  { __typename?: 'product_product_glass_view' }
+  & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
+);
+
+export type Product_Product_Accessory_ViewFragmentFragment = (
+  { __typename?: 'product_product_accessory_view' }
+  & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
 );
 
 export type UpdateTransferOrderMutationVariables = Exact<{
@@ -33107,7 +33165,14 @@ export type UpdateTransferOrderMutation = (
   { __typename?: 'mutation_root' }
   & { update_stock_transfer_order_by_pk?: Maybe<(
     { __typename?: 'stock_transfer_order' }
-    & Pick<Stock_Transfer_Order, 'date' | 'deadline' | 'fromWarehouseid' | 'status' | 'toWarehouseid'>
+    & Pick<Stock_Transfer_Order, 'date' | 'deadline' | 'status' | 'id'>
+    & { fromwarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ), towarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ) }
   )> }
 );
 
@@ -33122,7 +33187,52 @@ export type UpdateStockOrderItemMutation = (
   { __typename?: 'mutation_root' }
   & { update_stock_order_item_by_pk?: Maybe<(
     { __typename?: 'stock_order_item' }
-    & Pick<Stock_Order_Item, 'id' | 'quantity' | 'status'>
+    & { transfer_order: (
+      { __typename?: 'stock_transfer_order' }
+      & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'status'>
+      & { fromwarehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name'>
+      ), towarehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name'>
+      ), order_items_aggregate: (
+        { __typename?: 'stock_order_item_aggregate' }
+        & { aggregate?: Maybe<(
+          { __typename?: 'stock_order_item_aggregate_fields' }
+          & Pick<Stock_Order_Item_Aggregate_Fields, 'count'>
+          & { sum?: Maybe<(
+            { __typename?: 'stock_order_item_sum_fields' }
+            & Pick<Stock_Order_Item_Sum_Fields, 'quantity'>
+          )> }
+        )>, nodes: Array<(
+          { __typename?: 'stock_order_item' }
+          & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
+          & { substance: (
+            { __typename?: 'product_substance' }
+            & { productAccessory?: Maybe<(
+              { __typename?: 'product_product_accessory_view' }
+              & Product_Product_Accessory_ViewFragmentFragment
+            )>, productGlass?: Maybe<(
+              { __typename?: 'product_product_glass_view' }
+              & Product_Product_Glass_ViewFragmentFragment
+            )> }
+          ), item_tranfers_aggregate: (
+            { __typename?: 'stock_item_tranfer_aggregate' }
+            & { aggregate?: Maybe<(
+              { __typename?: 'stock_item_tranfer_aggregate_fields' }
+              & { sum?: Maybe<(
+                { __typename?: 'stock_item_tranfer_sum_fields' }
+                & Pick<Stock_Item_Tranfer_Sum_Fields, 'quantity'>
+              )> }
+            )>, nodes: Array<(
+              { __typename?: 'stock_item_tranfer' }
+              & Pick<Stock_Item_Tranfer, 'quantity' | 'status' | 'id' | 'date'>
+            )> }
+          ) }
+        )> }
+      ) }
+    ) }
   )> }
 );
 
@@ -33188,11 +33298,6 @@ export type GetAllAccessoriesStockQuery = (
       )> }
     ) }
   )> }
-);
-
-export type Product_Product_Accessory_ViewFragmentFragment = (
-  { __typename?: 'product_product_accessory_view' }
-  & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
 );
 
 export type GetAllConsumablesStockQueryVariables = Exact<{ [key: string]: never; }>;
@@ -33477,11 +33582,6 @@ export type GetTransferOrderByIdQuery = (
       )> }
     ) }
   )> }
-);
-
-export type Product_Product_Glass_ViewFragmentFragment = (
-  { __typename?: 'product_product_glass_view' }
-  & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
 );
 
 export type GetWarehouseByIdQueryVariables = Exact<{
@@ -35387,6 +35487,14 @@ export type GetQuotationByIdQuery = (
   )> }
 );
 
+export const Product_Product_Glass_ViewFragmentFragmentDoc = gql`
+    fragment product_product_glass_viewFragment on product_product_glass_view {
+  code
+  label
+  price
+  unit
+}
+    `;
 export const Product_Product_Accessory_ViewFragmentFragmentDoc = gql`
     fragment product_product_accessory_viewFragment on product_product_accessory_view {
   code
@@ -35435,14 +35543,6 @@ export const Management_CompanyFragmentFragmentDoc = gql`
     fragment management_companyFragment on management_company {
   name
   id
-}
-    `;
-export const Product_Product_Glass_ViewFragmentFragmentDoc = gql`
-    fragment product_product_glass_viewFragment on product_product_glass_view {
-  code
-  label
-  price
-  unit
 }
     `;
 export const Product_ProductFragmentFragmentDoc = gql`
@@ -36760,13 +36860,62 @@ export const UpdateStockItemTranferDocument = gql`
     pk_columns: {id: $id}
     _set: {date: $date, quantity: $quantity, status: $status}
   ) {
-    date
-    id
-    quantity
-    status
+    tranfer_order_item {
+      transfer_order {
+        id
+        date
+        deadline
+        createdAt
+        createdBy
+        updatedAt
+        updatedBy
+        status
+        fromwarehouse {
+          name
+        }
+        towarehouse {
+          name
+        }
+        order_items_aggregate {
+          aggregate {
+            count(columns: id)
+            sum {
+              quantity
+            }
+          }
+          nodes {
+            quantity
+            status
+            id
+            substance {
+              productAccessory {
+                ...product_product_accessory_viewFragment
+              }
+              productGlass {
+                ...product_product_glass_viewFragment
+              }
+            }
+            item_tranfers_aggregate {
+              aggregate {
+                sum {
+                  quantity
+                }
+              }
+              nodes {
+                quantity
+                status
+                id
+                date
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
-    `;
+    ${Product_Product_Accessory_ViewFragmentFragmentDoc}
+${Product_Product_Glass_ViewFragmentFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
@@ -36786,9 +36935,16 @@ export const UpdateTransferOrderDocument = gql`
   ) {
     date
     deadline
-    fromWarehouseid
+    fromwarehouse {
+      name
+      id
+    }
+    towarehouse {
+      name
+      id
+    }
     status
-    toWarehouseid
+    id
   }
 }
     `;
@@ -36809,12 +36965,60 @@ export const UpdateStockOrderItemDocument = gql`
     pk_columns: {id: $id}
     _set: {quantity: $quantity, status: $status}
   ) {
-    id
-    quantity
-    status
+    transfer_order {
+      id
+      date
+      deadline
+      createdAt
+      createdBy
+      updatedAt
+      updatedBy
+      status
+      fromwarehouse {
+        name
+      }
+      towarehouse {
+        name
+      }
+      order_items_aggregate {
+        aggregate {
+          count(columns: id)
+          sum {
+            quantity
+          }
+        }
+        nodes {
+          quantity
+          status
+          id
+          substance {
+            productAccessory {
+              ...product_product_accessory_viewFragment
+            }
+            productGlass {
+              ...product_product_glass_viewFragment
+            }
+          }
+          item_tranfers_aggregate {
+            aggregate {
+              sum {
+                quantity
+              }
+            }
+            nodes {
+              quantity
+              status
+              id
+              date
+            }
+          }
+        }
+      }
+    }
   }
 }
-    `;
+    ${Product_Product_Accessory_ViewFragmentFragmentDoc}
+${Product_Product_Glass_ViewFragmentFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'

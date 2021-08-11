@@ -1,5 +1,12 @@
 import { createAction, props } from '@ngrx/store';
-import { TransferOrder, DetailedTransferOrder, InsertedTransferOrder, OrderDetails } from '@tanglass-erp/core/inventory';
+import {
+  TransferOrder,
+  DetailedTransferOrder,
+  InsertedTransferOrder,
+  OrderDetails,
+  OrderItem, Transfered
+} from '@tanglass-erp/core/inventory';
+import { RequireExactlyOne } from '@tanglass-erp/core/common';
 
 export const loadTransferOrders = createAction('[TransferOrders] Load TransferOrders');
 
@@ -47,6 +54,23 @@ export const addTransferOrderFailure = createAction(
 );
 
 
+// *** Update ***
+export const updateTransferOrder = createAction(
+  '[TransferOrders] Update TransferOrder',
+  props<{ transferOrder: RequireExactlyOne<InsertedTransferOrder, 'id'> }>()
+);
+
+export const updateTransferOrderSuccess = createAction(
+  '[TransferOrders] Update TransferOrder Success',
+  props<{ transferOrder: TransferOrder}>()
+);
+
+export const updateTransferOrderFailure = createAction(
+  '[TransferOrders] Update TransferOrder Failure',
+  props<{ error: any}>()
+);
+
+
 // *** load details ***
 export const loadOrdersDetails = createAction(
   '[TransferOrders] load TransferOrder details'
@@ -61,3 +85,56 @@ export const loadOrdersDetailsFailure = createAction(
   '[TransferOrders] load TransferOrder details Failure',
   props<{ error: any}>()
 );
+
+
+// *** Delete ***
+export const deleteTransferOrder = createAction(
+  '[TransferOrders] Delete TransferOrder',
+  props<{ ids: number[] }>()
+);
+
+export const deleteTransferOrderSuccess = createAction(
+  '[TransferOrders] Delete TransferOrder Success',
+  props<{ ids: number[] }>()
+);
+
+export const deleteTransferOrderFailure = createAction(
+  '[TransferOrders] Delete TransferOrder Failure',
+  props<{ error: any}>()
+);
+
+
+// *** Update OrderItem ***
+export const updateOrderItem = createAction(
+  '[TransferOrders] Update OrderItem',
+  props<{ orderItem: RequireExactlyOne<OrderItem, 'id'> }>()
+);
+
+export const updateOrderItemSuccess = createAction(
+  '[TransferOrders] Update OrderItem Success',
+  props<{ transferOrder: DetailedTransferOrder }>()
+);
+
+export const updateOrderItemFailure = createAction(
+  '[TransferOrders] Update OrderItem Failure',
+  props<{ error: any}>()
+);
+
+
+// *** Update itemTranfer ***
+export const updateItemTransfer = createAction(
+  '[TransferOrders] Update itemTranfer',
+  props<{ transferred: RequireExactlyOne<Transfered, 'id'> }>()
+);
+
+export const updateItemTransferSuccess = createAction(
+  '[TransferOrders] Update itemTranfer Success',
+  props<{ transferOrder: DetailedTransferOrder }>()
+);
+
+export const updateItemTransferFailure = createAction(
+  '[TransferOrders] Update itemTranfer Failure',
+  props<{ error: any}>()
+);
+
+
