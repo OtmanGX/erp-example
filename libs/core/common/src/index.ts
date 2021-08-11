@@ -7,3 +7,4 @@ export * from './lib/services/user.service';
 export * from './lib/utils/flatteningAdapter';
 export * from './lib/models/substance';
 export * from './lib/models/user';
+export * from './lib/utils/utilities';

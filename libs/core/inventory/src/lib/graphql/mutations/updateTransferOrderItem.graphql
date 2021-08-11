@@ -1,0 +1,10 @@
+mutation updateStockOrderItem($id: uuid!, $quantity: Float, $status: String) {
+  update_stock_order_item_by_pk(
+    pk_columns: { id: $id }
+    _set: { quantity: $quantity, status: $status }
+  ) {
+    id
+    quantity
+    status
+  }
+}

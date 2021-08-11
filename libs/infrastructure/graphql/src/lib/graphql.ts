@@ -6793,6 +6793,8 @@ export type Manufacturing_Manufacturing_Line = {
   manufacturing_consumables: Array<Manufacturing_Manufacturing_Consumable>;
   /** An aggregated array relationship */
   manufacturing_consumables_aggregate: Manufacturing_Manufacturing_Consumable_Aggregate;
+  /** An object relationship */
+  manufacturing_line_status: Manufacturing_Manufacturing_Line_Status;
   /** An array relationship */
   manufacturing_services: Array<Manufacturing_Manufacturing_Service>;
   /** An aggregated array relationship */
@@ -6911,6 +6913,7 @@ export type Manufacturing_Manufacturing_Line_Bool_Exp = {
   glass_id?: Maybe<Uuid_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   manufacturing_consumables?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+  manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
   manufacturing_services?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
   status?: Maybe<String_Comparison_Exp>;
 };
@@ -6932,6 +6935,7 @@ export type Manufacturing_Manufacturing_Line_Insert_Input = {
   glass_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['Int']>;
   manufacturing_consumables?: Maybe<Manufacturing_Manufacturing_Consumable_Arr_Rel_Insert_Input>;
+  manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Obj_Rel_Insert_Input>;
   manufacturing_services?: Maybe<Manufacturing_Manufacturing_Service_Arr_Rel_Insert_Input>;
   status?: Maybe<Scalars['String']>;
 };
@@ -6994,6 +6998,7 @@ export type Manufacturing_Manufacturing_Line_Order_By = {
   glass_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   manufacturing_consumables_aggregate?: Maybe<Manufacturing_Manufacturing_Consumable_Aggregate_Order_By>;
+  manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Order_By>;
   manufacturing_services_aggregate?: Maybe<Manufacturing_Manufacturing_Service_Aggregate_Order_By>;
   status?: Maybe<Order_By>;
 };
@@ -7019,6 +7024,164 @@ export type Manufacturing_Manufacturing_Line_Set_Input = {
   id?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
 };
+
+/** columns and relationships of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status = {
+  __typename?: 'manufacturing_manufacturing_line_status';
+  /** An array relationship */
+  manufacturing_lines: Array<Manufacturing_Manufacturing_Line>;
+  /** An aggregated array relationship */
+  manufacturing_lines_aggregate: Manufacturing_Manufacturing_Line_Aggregate;
+  status: Scalars['String'];
+};
+
+
+/** columns and relationships of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_StatusManufacturing_LinesArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+};
+
+
+/** columns and relationships of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_StatusManufacturing_Lines_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+};
+
+/** aggregated selection of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate = {
+  __typename?: 'manufacturing_manufacturing_line_status_aggregate';
+  aggregate?: Maybe<Manufacturing_Manufacturing_Line_Status_Aggregate_Fields>;
+  nodes: Array<Manufacturing_Manufacturing_Line_Status>;
+};
+
+/** aggregate fields of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate_Fields = {
+  __typename?: 'manufacturing_manufacturing_line_status_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Manufacturing_Manufacturing_Line_Status_Max_Fields>;
+  min?: Maybe<Manufacturing_Manufacturing_Line_Status_Min_Fields>;
+};
+
+
+/** aggregate fields of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Manufacturing_Manufacturing_Line_Status_Max_Order_By>;
+  min?: Maybe<Manufacturing_Manufacturing_Line_Status_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Arr_Rel_Insert_Input = {
+  data: Array<Manufacturing_Manufacturing_Line_Status_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "manufacturing.manufacturing_line_status". All fields are combined with a logical 'AND'. */
+export type Manufacturing_Manufacturing_Line_Status_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>>>;
+  _not?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>>>;
+  manufacturing_lines?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+  status?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "manufacturing.manufacturing_line_status" */
+export enum Manufacturing_Manufacturing_Line_Status_Constraint {
+  /** unique or primary key constraint */
+  ManufacturingLineStatusPkey = 'manufacturing_line_status_pkey'
+}
+
+/** input type for inserting data into table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Insert_Input = {
+  manufacturing_lines?: Maybe<Manufacturing_Manufacturing_Line_Arr_Rel_Insert_Input>;
+  status?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Manufacturing_Manufacturing_Line_Status_Max_Fields = {
+  __typename?: 'manufacturing_manufacturing_line_status_max_fields';
+  status?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Max_Order_By = {
+  status?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Manufacturing_Manufacturing_Line_Status_Min_Fields = {
+  __typename?: 'manufacturing_manufacturing_line_status_min_fields';
+  status?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Min_Order_By = {
+  status?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Mutation_Response = {
+  __typename?: 'manufacturing_manufacturing_line_status_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Manufacturing_Manufacturing_Line_Status>;
+};
+
+/** input type for inserting object relation for remote table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Obj_Rel_Insert_Input = {
+  data: Manufacturing_Manufacturing_Line_Status_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+/** on conflict condition type for table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_On_Conflict = {
+  constraint: Manufacturing_Manufacturing_Line_Status_Constraint;
+  update_columns: Array<Manufacturing_Manufacturing_Line_Status_Update_Column>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Order_By = {
+  manufacturing_lines_aggregate?: Maybe<Manufacturing_Manufacturing_Line_Aggregate_Order_By>;
+  status?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Pk_Columns_Input = {
+  status: Scalars['String'];
+};
+
+/** select columns of table "manufacturing.manufacturing_line_status" */
+export enum Manufacturing_Manufacturing_Line_Status_Select_Column {
+  /** column name */
+  Status = 'status'
+}
+
+/** input type for updating data in table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Set_Input = {
+  status?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "manufacturing.manufacturing_line_status" */
+export enum Manufacturing_Manufacturing_Line_Status_Update_Column {
+  /** column name */
+  Status = 'status'
+}
 
 /** aggregate stddev on columns */
 export type Manufacturing_Manufacturing_Line_Stddev_Fields = {
@@ -7458,6 +7621,10 @@ export type Mutation_Root = {
   delete_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** delete single row from the table: "manufacturing.manufacturing_line" */
   delete_manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** delete data from the table: "manufacturing.manufacturing_line_status" */
+  delete_manufacturing_manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Mutation_Response>;
+  /** delete single row from the table: "manufacturing.manufacturing_line_status" */
+  delete_manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
   /** delete data from the table: "manufacturing.manufacturing_service" */
   delete_manufacturing_manufacturing_service?: Maybe<Manufacturing_Manufacturing_Service_Mutation_Response>;
   /** delete single row from the table: "manufacturing.manufacturing_service" */
@@ -7736,6 +7903,10 @@ export type Mutation_Root = {
   insert_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** insert a single row into the table: "manufacturing.manufacturing_line" */
   insert_manufacturing_manufacturing_line_one?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** insert data into the table: "manufacturing.manufacturing_line_status" */
+  insert_manufacturing_manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Mutation_Response>;
+  /** insert a single row into the table: "manufacturing.manufacturing_line_status" */
+  insert_manufacturing_manufacturing_line_status_one?: Maybe<Manufacturing_Manufacturing_Line_Status>;
   /** insert data into the table: "manufacturing.manufacturing_service" */
   insert_manufacturing_manufacturing_service?: Maybe<Manufacturing_Manufacturing_Service_Mutation_Response>;
   /** insert a single row into the table: "manufacturing.manufacturing_service" */
@@ -8018,6 +8189,10 @@ export type Mutation_Root = {
   update_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** update single row of the table: "manufacturing.manufacturing_line" */
   update_manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** update data of the table: "manufacturing.manufacturing_line_status" */
+  update_manufacturing_manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Mutation_Response>;
+  /** update single row of the table: "manufacturing.manufacturing_line_status" */
+  update_manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
   /** update data of the table: "manufacturing.manufacturing_service" */
   update_manufacturing_manufacturing_service?: Maybe<Manufacturing_Manufacturing_Service_Mutation_Response>;
   /** update single row of the table: "manufacturing.manufacturing_service" */
@@ -8488,6 +8663,18 @@ export type Mutation_RootDelete_Manufacturing_Manufacturing_LineArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Manufacturing_Manufacturing_Line_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Manufacturing_Line_StatusArgs = {
+  where: Manufacturing_Manufacturing_Line_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  status: Scalars['String'];
 };
 
 
@@ -9368,6 +9555,20 @@ export type Mutation_RootInsert_Manufacturing_Manufacturing_LineArgs = {
 export type Mutation_RootInsert_Manufacturing_Manufacturing_Line_OneArgs = {
   object: Manufacturing_Manufacturing_Line_Insert_Input;
   on_conflict?: Maybe<Manufacturing_Manufacturing_Line_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Manufacturing_Line_StatusArgs = {
+  objects: Array<Manufacturing_Manufacturing_Line_Status_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Manufacturing_Line_Status_OneArgs = {
+  object: Manufacturing_Manufacturing_Line_Status_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
 };
 
 
@@ -10364,6 +10565,20 @@ export type Mutation_RootUpdate_Manufacturing_Manufacturing_Line_By_PkArgs = {
   _inc?: Maybe<Manufacturing_Manufacturing_Line_Inc_Input>;
   _set?: Maybe<Manufacturing_Manufacturing_Line_Set_Input>;
   pk_columns: Manufacturing_Manufacturing_Line_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Manufacturing_Line_StatusArgs = {
+  _set?: Maybe<Manufacturing_Manufacturing_Line_Status_Set_Input>;
+  where: Manufacturing_Manufacturing_Line_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  _set?: Maybe<Manufacturing_Manufacturing_Line_Status_Set_Input>;
+  pk_columns: Manufacturing_Manufacturing_Line_Status_Pk_Columns_Input;
 };
 
 
@@ -17243,6 +17458,12 @@ export type Query_Root = {
   manufacturing_manufacturing_line_aggregate: Manufacturing_Manufacturing_Line_Aggregate;
   /** fetch data from the table: "manufacturing.manufacturing_line" using primary key columns */
   manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status: Array<Manufacturing_Manufacturing_Line_Status>;
+  /** fetch aggregated fields from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status_aggregate: Manufacturing_Manufacturing_Line_Status_Aggregate;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" using primary key columns */
+  manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
   /** fetch data from the table: "manufacturing.manufacturing_service" */
   manufacturing_manufacturing_service: Array<Manufacturing_Manufacturing_Service>;
   /** fetch aggregated fields from the table: "manufacturing.manufacturing_service" */
@@ -18231,6 +18452,32 @@ export type Query_RootManufacturing_Manufacturing_Line_AggregateArgs = {
 /** query root */
 export type Query_RootManufacturing_Manufacturing_Line_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Line_StatusArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Line_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  status: Scalars['String'];
 };
 
 
@@ -29487,6 +29734,12 @@ export type Subscription_Root = {
   manufacturing_manufacturing_line_aggregate: Manufacturing_Manufacturing_Line_Aggregate;
   /** fetch data from the table: "manufacturing.manufacturing_line" using primary key columns */
   manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status: Array<Manufacturing_Manufacturing_Line_Status>;
+  /** fetch aggregated fields from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status_aggregate: Manufacturing_Manufacturing_Line_Status_Aggregate;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" using primary key columns */
+  manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
   /** fetch data from the table: "manufacturing.manufacturing_service" */
   manufacturing_manufacturing_service: Array<Manufacturing_Manufacturing_Service>;
   /** fetch aggregated fields from the table: "manufacturing.manufacturing_service" */
@@ -30475,6 +30728,32 @@ export type Subscription_RootManufacturing_Manufacturing_Line_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootManufacturing_Manufacturing_Line_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Line_StatusArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Line_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  status: Scalars['String'];
 };
 
 
@@ -32721,6 +33000,19 @@ export type DeleteManyWarehousesMutation = (
   )> }
 );
 
+export type DeleteTransferOrdersMutationVariables = Exact<{
+  ids?: Maybe<Array<Scalars['Int']>>;
+}>;
+
+
+export type DeleteTransferOrdersMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_stock_transfer_order?: Maybe<(
+    { __typename?: 'stock_transfer_order_mutation_response' }
+    & Pick<Stock_Transfer_Order_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type InsertTranfserMutationVariables = Exact<{
   date?: Maybe<Scalars['date']>;
   order_itemid?: Maybe<Scalars['uuid']>;
@@ -32782,6 +33074,55 @@ export type InsertWarehouseMutation = (
       { __typename?: 'management_salesPoint' }
       & Pick<Management_SalesPoint, 'name' | 'id'>
     )> }
+  )> }
+);
+
+export type UpdateStockItemTranferMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  date?: Maybe<Scalars['date']>;
+  quantity?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateStockItemTranferMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_item_tranfer_by_pk?: Maybe<(
+    { __typename?: 'stock_item_tranfer' }
+    & Pick<Stock_Item_Tranfer, 'date' | 'id' | 'quantity' | 'status'>
+  )> }
+);
+
+export type UpdateTransferOrderMutationVariables = Exact<{
+  id: Scalars['Int'];
+  date?: Maybe<Scalars['date']>;
+  deadline?: Maybe<Scalars['date']>;
+  fromWarehouseid?: Maybe<Scalars['uuid']>;
+  status?: Maybe<Scalars['String']>;
+  toWarehouseid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type UpdateTransferOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_transfer_order_by_pk?: Maybe<(
+    { __typename?: 'stock_transfer_order' }
+    & Pick<Stock_Transfer_Order, 'date' | 'deadline' | 'fromWarehouseid' | 'status' | 'toWarehouseid'>
+  )> }
+);
+
+export type UpdateStockOrderItemMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  quantity?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateStockOrderItemMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_order_item_by_pk?: Maybe<(
+    { __typename?: 'stock_order_item' }
+    & Pick<Stock_Order_Item, 'id' | 'quantity' | 'status'>
   )> }
 );
 
@@ -33494,7 +33835,7 @@ export type InsertJobOrderMutation = (
 export type UpdateManufacturingProgressMutationVariables = Exact<{
   services?: Array<Manufacturing_Manufacturing_Service_Insert_Input>;
   consumables?: Array<Manufacturing_Manufacturing_Consumable_Insert_Input>;
-  glass_id: Scalars['uuid'];
+  glass_id?: Maybe<Scalars['uuid']>;
 }>;
 
 
@@ -36307,6 +36648,24 @@ export const DeleteManyWarehousesDocument = gql`
       super(apollo);
     }
   }
+export const DeleteTransferOrdersDocument = gql`
+    mutation DeleteTransferOrders($ids: [Int!]) {
+  delete_stock_transfer_order(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteTransferOrdersGQL extends Apollo.Mutation<DeleteTransferOrdersMutation, DeleteTransferOrdersMutationVariables> {
+    document = DeleteTransferOrdersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertTranfserDocument = gql`
     mutation InsertTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String, $substanceid: uuid, $warehouseid: uuid) {
   createTransferItem(
@@ -36390,6 +36749,78 @@ export const InsertWarehouseDocument = gql`
   })
   export class InsertWarehouseGQL extends Apollo.Mutation<InsertWarehouseMutation, InsertWarehouseMutationVariables> {
     document = InsertWarehouseDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateStockItemTranferDocument = gql`
+    mutation UpdateStockItemTranfer($id: uuid!, $date: date, $quantity: Float, $status: String) {
+  update_stock_item_tranfer_by_pk(
+    pk_columns: {id: $id}
+    _set: {date: $date, quantity: $quantity, status: $status}
+  ) {
+    date
+    id
+    quantity
+    status
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateStockItemTranferGQL extends Apollo.Mutation<UpdateStockItemTranferMutation, UpdateStockItemTranferMutationVariables> {
+    document = UpdateStockItemTranferDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateTransferOrderDocument = gql`
+    mutation UpdateTransferOrder($id: Int!, $date: date, $deadline: date, $fromWarehouseid: uuid, $status: String, $toWarehouseid: uuid) {
+  update_stock_transfer_order_by_pk(
+    pk_columns: {id: $id}
+    _set: {date: $date, deadline: $deadline, fromWarehouseid: $fromWarehouseid, status: $status, toWarehouseid: $toWarehouseid}
+  ) {
+    date
+    deadline
+    fromWarehouseid
+    status
+    toWarehouseid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateTransferOrderGQL extends Apollo.Mutation<UpdateTransferOrderMutation, UpdateTransferOrderMutationVariables> {
+    document = UpdateTransferOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateStockOrderItemDocument = gql`
+    mutation updateStockOrderItem($id: uuid!, $quantity: Float, $status: String) {
+  update_stock_order_item_by_pk(
+    pk_columns: {id: $id}
+    _set: {quantity: $quantity, status: $status}
+  ) {
+    id
+    quantity
+    status
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateStockOrderItemGQL extends Apollo.Mutation<UpdateStockOrderItemMutation, UpdateStockOrderItemMutationVariables> {
+    document = UpdateStockOrderItemDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -37342,7 +37773,7 @@ export const InsertJobOrderDocument = gql`
     }
   }
 export const UpdateManufacturingProgressDocument = gql`
-    mutation UpdateManufacturingProgress($services: [manufacturing_manufacturing_service_insert_input!]! = [], $consumables: [manufacturing_manufacturing_consumable_insert_input!]! = [], $glass_id: uuid!) {
+    mutation UpdateManufacturingProgress($services: [manufacturing_manufacturing_service_insert_input!]! = [], $consumables: [manufacturing_manufacturing_consumable_insert_input!]! = [], $glass_id: uuid) {
   delete_manufacturing_manufacturing_service(
     where: {manufacturing_line: {glass_draft: {id: {_eq: $glass_id}}}}
   ) {

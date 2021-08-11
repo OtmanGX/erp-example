@@ -1,5 +1,5 @@
 import { MAXNUMBER, REQUIRED } from '@tanglass-erp/material';
-import { DetailedTransferOrder, transferStatusDirection, Warehouse } from '@tanglass-erp/store/inventory';
+import { DetailedTransferOrder, transferStatusDirection, orderItemStatus, Warehouse } from '@tanglass-erp/store/inventory';
 import { Observable } from 'rxjs';
 
 type ListObservable = Observable<any> | Array<any>;
@@ -128,7 +128,7 @@ const regConfigTransferOrderItemCard = (data: any, limit?: number) => [
     name: 'status',
     label: 'État',
     value: data.status,
-    options: Object.values(transferStatusDirection).map((elem) => ({
+    options: Object.values(orderItemStatus).map((elem) => ({
       key: elem,
       value: elem,
     })),

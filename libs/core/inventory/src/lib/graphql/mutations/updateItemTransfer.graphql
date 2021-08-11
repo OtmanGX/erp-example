@@ -1,0 +1,16 @@
+mutation UpdateStockItemTranfer(
+  $id: uuid!
+  $date: date
+  $quantity: Float
+  $status: String
+) {
+  update_stock_item_tranfer_by_pk(
+    pk_columns: { id: $id }
+    _set: { date: $date, quantity: $quantity, status: $status }
+  ) {
+    date
+    id
+    quantity
+    status
+  }
+}

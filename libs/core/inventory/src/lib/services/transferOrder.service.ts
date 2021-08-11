@@ -5,53 +5,78 @@ import {
   InsertTransferOrderGQL,
   GetAllOrdersDetailsGQL,
   InsertTranfserGQL,
-  InsertTranfserMutationVariables
+  InsertTranfserMutationVariables,
+  UpdateTransferOrderGQL,
+  UpdateStockOrderItemGQL,
+  UpdateStockItemTranferGQL,
+  DeleteTransferOrdersGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
-import * as fromTransfer from "../models/transrefOrder.model";
-import { AdaptOrderedItems,AdaptTransferOrderDetails } from "../utils/detailOrders.Adapter";
-import { Observable } from "rxjs";
+import * as fromTransfer from '../models/transrefOrder.model';
+import {
+  AdaptOrderedItems,
+  AdaptTransferOrderDetails,
+} from '../utils/detailOrders.Adapter';
+import { Observable } from 'rxjs';
+import { InsertedTransferOrder } from '../models/transrefOrder.model';
+import { RequireExactlyOne } from '@tanglass-erp/core/common';
+import { OrderItem, Transfered } from '../models/transfer.model';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TransferOrderService {
-
   constructor(
     private getAllGQL: GetAllTransfersOrdersGQL,
     private getTransferOrderByIdGQL: GetTransferOrderByIdGQL,
     private insertTransferOrderGQL: InsertTransferOrderGQL,
     private getAllOrdersDetailsGQL: GetAllOrdersDetailsGQL,
     private insertItemTranfserGQL: InsertTranfserGQL,
-
-  ) {
-   
-
-
-   }
+    private updateTransferOrderGQL: UpdateTransferOrderGQL,
+    private updateStockOrderItemGQL: UpdateStockOrderItemGQL,
+    private updateStockItemTranferGQL: UpdateStockItemTranferGQL,
+    private deleteTransferOrdersGQL: DeleteTransferOrdersGQL
+  ) {}
 
   getAll() {
-    return this.getAllGQL.watch().valueChanges
+    return this.getAllGQL.watch().valueChanges;
   }
-
 
   getAllItemsOrders(): Observable<fromTransfer.OrderDetails[]> {
-    return this.getAllOrdersDetailsGQL.watch().valueChanges.pipe(map((data) =>
-      data.data.stock_order_item.map((obj) => AdaptOrderedItems(obj))
-    )
-    )
+    return this.getAllOrdersDetailsGQL
+      .watch()
+      .valueChanges.pipe(
+        map((data) =>
+          data.data.stock_order_item.map((obj) => AdaptOrderedItems(obj))
+        )
+      );
   }
 
-
-  addTransfered(value:InsertTranfserMutationVariables){
-    return this.insertItemTranfserGQL.mutate(value)
-
+  addTransfered(value: InsertTranfserMutationVariables) {
+    return this.insertItemTranfserGQL.mutate(value);
   }
   getOneById(id: number) {
-    return this.getTransferOrderByIdGQL.fetch({ id }).pipe(map((data)=>AdaptTransferOrderDetails(data.data)))
+    return this.getTransferOrderByIdGQL
+      .fetch({ id })
+      .pipe(map((data) => AdaptTransferOrderDetails(data.data)));
   }
 
   insertOne(createdOne: fromTransfer.InsertedTransferOrder) {
-    return this.insertTransferOrderGQL.mutate(createdOne)
+    return this.insertTransferOrderGQL.mutate(createdOne);
   }
 
+  updateTransferOrder(transferOrder: RequireExactlyOne<InsertedTransferOrder, 'id'>) {
+    return this.updateTransferOrderGQL.mutate(transferOrder);
+  }
+
+  deleteTransferOrders(ids: number[]) {
+    return this.deleteTransferOrdersGQL.mutate({ids});
+  }
+
+  updateStockOrderItem(orderItem: RequireExactlyOne<OrderItem, 'id'>) {
+    return this.updateStockOrderItemGQL.mutate(orderItem);
+  }
+
+  updateStockItemTranfer(transfered: RequireExactlyOne<Transfered, 'id'>) {
+    return this.updateStockItemTranferGQL.mutate(transfered);
+  }
 }

@@ -1,11 +1,11 @@
+export enum transferStatusDirection {
+  pending = 'En attente',
+  canceled = 'Annulé',
+  closed = 'Clôturé',
+  suspended = 'suspendu',
+}
 
-
-
-export enum transferStatusDirection{
-confirmed="Confirmé",
-closed="Cloturé",
-suspended="Suspendu",
-delivered="reçue",
-
-
+export enum orderItemStatus {
+  pending = 'En attente',
+  received = 'livré',
 }
