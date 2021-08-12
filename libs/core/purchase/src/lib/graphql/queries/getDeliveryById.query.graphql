@@ -1,0 +1,7 @@
+query GetPurchaseDeliveryById($id: Int = 10) {
+  purchase_delivery_by_pk(id: $id) {
+    date
+    id
+    ref
+  }
+}
