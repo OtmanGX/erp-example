@@ -9,8 +9,10 @@
                      [withCrud]="false"
                      [withDetails]="false"
                      (triggerEvent)="eventTriggering($event)"
-                     height="300px"
                      [rowData]="orderItems"
+                     [detailColumnField]='detailColumnField'
+                     [detailColumnDefs]='detailColumnDefs'
+                     [masterDetail]='true'
                      [permissions]="permissions"
                      rowGroupPanelShow="hide"
                      [columnDefs]="columnDefs">

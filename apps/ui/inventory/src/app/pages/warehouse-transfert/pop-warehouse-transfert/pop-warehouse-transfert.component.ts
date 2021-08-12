@@ -61,11 +61,11 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
 
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
-    ['fromWarehouse', 'toWarehouse'].forEach(item => {
+    ['fromWarehouseid', 'toWarehouseid'].forEach(item => {
       this.transfertForm.get(item).valueChanges
         .subscribe(value => {
           this.syncWarehouses(item, value);
-          if (item == 'toWarehouse') this.loadItems(value)
+          if (item == 'toWarehouseid') this.loadItems(value)
         }
         );
       }
@@ -108,10 +108,10 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   }
 
   syncWarehouses(inputName, value) {
-    const selectInput = this.regConfig.find(elem => elem.name === 'fromWarehouse');
-    const selectInput2 = this.regConfig.find(elem => elem.name === 'toWarehouse');
+    const selectInput = this.regConfig.find(elem => elem.name === 'fromWarehouseid');
+    const selectInput2 = this.regConfig.find(elem => elem.name === 'toWarehouseid');
     this.warehouses$.pipe(takeUntil(this._onDestroy)).subscribe(warhouses => {
-      if (inputName === 'fromWarehouse')
+      if (inputName === 'fromWarehouseid')
         selectInput2.options = warhouses.filter(item => item.key !== value);
       else
         selectInput.options = warhouses.filter(item => item.key !== value);

@@ -36,7 +36,7 @@ const regConfigTransferOrder = (
 ) => [
   {
     type: 'select',
-    name: 'fromWarehouse',
+    name: 'fromWarehouseid',
     label: 'De',
     inputType: 'text',
     value: data?.fromwarehouse?.id,
@@ -45,7 +45,7 @@ const regConfigTransferOrder = (
   },
   {
     type: 'select',
-    name: 'toWarehouse',
+    name: 'toWarehouseid',
     label: 'À',
     inputType: 'text',
     value: data?.towarehouse?.id,

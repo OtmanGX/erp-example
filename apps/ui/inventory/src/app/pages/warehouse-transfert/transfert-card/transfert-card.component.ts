@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
 import { ModelCardComponent } from '@tanglass-erp/material';
-import { DetailedTransferOrder } from '@TanglassStore/inventory/index';
-import { Store } from '@ngrx/store';
-import { AppState } from '@tanglass-erp/store/app';
-import * as transferOrderActions from '@TanglassStore/inventory/lib/actions/transferOrder.actions';
-import * as TranserOrderSelectors from '@TanglassStore/inventory/lib/selectors/trasnferOrder.selectors';
+import { DetailedTransferOrder, TransferOrderFacade } from '@TanglassStore/inventory/index';
 import { ActivatedRoute } from '@angular/router';
 import { GridPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import { orderItemsHeaders } from '@TanglassUi/inventory/utils/grid-headers';
+import { orderItemsHeaders, TransferItemsHeaders } from '@TanglassUi/inventory/utils/grid-headers';
 import { takeUntil } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,8 +17,7 @@ import { PopOrderItemDeliverComponent } from '@TanglassUi/inventory/pages/wareho
   styleUrls: ['./transfert-card.scss']
 })
 export class TransfertCardComponent extends ModelCardComponent implements GridView {
-  data$ = this.store.select(TranserOrderSelectors.getSelectedTransferOrder)
-    .pipe(takeUntil(this._onDestroy));
+  data$ = this.facade.selectedTransferOrder.pipe(takeUntil(this._onDestroy));
   orderItems: Observable<any>;
   title = "Transfert";
   gap = "50px";
@@ -31,12 +26,14 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   // Grid
   agGrid: AgGridAngular;
   columnDefs;
+  detailColumnDefs;
   columnId = "id";
   mainGrid: MainGridComponent;
   permissions: GridPermissions = {
     deliver: true
   }
-  constructor(private store: Store<AppState>,
+  detailColumnField = 'deliveries';
+  constructor(private facade: TransferOrderFacade,
               public dialog: MatDialog,
               public route: ActivatedRoute) {
     super(route);
@@ -50,7 +47,7 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   }
 
   dispatch(): void {
-    this.store.dispatch(transferOrderActions.loadTransferOrderById({id: this.id}));
+    this.facade.getOne(parseInt(this.id, 10));
   }
 
   passData(data?: DetailedTransferOrder) {
@@ -88,7 +85,9 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (action === Operations.update) {}
+        if (action === Operations.update) {
+
+        }
       }
     });
   }
@@ -114,6 +113,7 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
           }
         )},
     ];
+    this.detailColumnDefs = TransferItemsHeaders;
   }
 
 }

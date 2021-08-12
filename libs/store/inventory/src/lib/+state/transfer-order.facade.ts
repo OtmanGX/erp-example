@@ -23,8 +23,16 @@ export class TransferOrderFacade {
     this.store.dispatch(action);
   }
 
-  loadAll() {
-    this.dispatch(transferOrderActions.loadTransferOrders());
+  loadAll(details=false) {
+    if (details)
+      this.dispatch(transferOrderActions.loadOrdersDetails());
+    else
+      this.dispatch(transferOrderActions.loadTransferOrders());
+  }
+
+
+  insertOne(TransferOrder: InsertedTransferOrder) {
+    this.dispatch(transferOrderActions.addTransferOrder({TransferOrder}))
   }
 
   getOne(id: number) {
@@ -33,6 +41,10 @@ export class TransferOrderFacade {
 
   updateOne(transferOrder: RequireExactlyOne<InsertedTransferOrder, 'id'>) {
     this.dispatch(transferOrderActions.updateTransferOrder({transferOrder}));
+  }
+
+  deleteMany(ids: number[]) {
+    this.dispatch(transferOrderActions.deleteTransferOrder({ids}));
   }
 
   updateOrderItem(orderItem: RequireExactlyOne<OrderItem, 'id'>) {
