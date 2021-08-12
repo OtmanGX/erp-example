@@ -5,8 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GridPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { orderItemsHeaders, TransferItemsHeaders } from '@TanglassUi/inventory/utils/grid-headers';
-import { takeUntil } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { PopOrderItemComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-order-item/pop-order-item.component';
 import { PopOrderItemDeliverComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-order-item-deliver/pop-order-item-deliver.component';
@@ -18,10 +17,11 @@ import { PopOrderItemDeliverComponent } from '@TanglassUi/inventory/pages/wareho
 })
 export class TransfertCardComponent extends ModelCardComponent implements GridView {
   data$ = this.facade.selectedTransferOrder.pipe(takeUntil(this._onDestroy));
-  orderItems: Observable<any>;
+  order_items$;
   title = "Transfert";
   gap = "50px";
   deliverEvent = 'deliver';
+  editNested = 'editNested';
 
   // Grid
   agGrid: AgGridAngular;
@@ -30,13 +30,15 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   columnId = "id";
   mainGrid: MainGridComponent;
   permissions: GridPermissions = {
-    deliver: true
+    deliver: true,
+    editNested: true
   }
   detailColumnField = 'deliveries';
   constructor(private facade: TransferOrderFacade,
               public dialog: MatDialog,
               public route: ActivatedRoute) {
     super(route);
+    this.order_items$ = this.data$.pipe(map(e => e?.order_items));
     this.setColumnDefs();
   }
 
@@ -51,7 +53,6 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   }
 
   passData(data?: DetailedTransferOrder) {
-    this.orderItems = of(data?.order_items);
     return [
       {
         label: "Infos Générales",
@@ -85,16 +86,18 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        result["id"] = data["id"];
         if (action === Operations.update) {
-
+            this.facade.updateOrderItem(result)
         }
       }
     });
   }
 
   eventTriggering(event) {
-    console.log(event);
    switch (event.action) {
+     case this.editNested:
+       break;
      case Operations.update:
        this.openDialog(event.action, event.data);
        break;

@@ -71,6 +71,12 @@ const TransferItemsHeaders = [
   { field: 'quantity', headerName: 'Quantité', type: 'numberColumn' },
   { field: 'date', headerName: 'Date', type: 'dateColumn' },
   { field: 'status', headerName: 'Etat' },
+  {field: 'id', headerName: 'Action', type: "editColumn", cellRendererParams: (params) => (
+      {
+        extra: [{ icon: "edit", tooltip: "modifier", event: "editNested" }],
+        hideEdit: true
+      }
+    )},
 ];
 
 const SubstanceGlassHeaders = [

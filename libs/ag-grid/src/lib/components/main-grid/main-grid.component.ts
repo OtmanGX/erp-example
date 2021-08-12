@@ -112,9 +112,9 @@ export class MainGridComponent {
     this.agGrid.gridOptions.detailCellRendererParams = {
       detailGridOptions: {
         columnDefs: this.detailColumnDefs,
-        defaultColDef: {
-          flex: 1,
-        },
+        // defaultColDef: this.defaultColDef,
+        columnTypes: this.columnTypes,
+        context: this.context
       },
       getDetailRowData: function (_params) {
         _params.successCallback(_params.data[this.detailColumnField]);

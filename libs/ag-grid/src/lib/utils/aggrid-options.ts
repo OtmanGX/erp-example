@@ -9,9 +9,6 @@ export const gridOptions = (columnId) => ({
     // the code is unique, so perfect for the ID
     return data[columnId];
   },
-  isRowMaster: function (dataItem) {
-    return true
-  },
   // immutableData: true,
   animateRows: true,
 });
