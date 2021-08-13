@@ -3,10 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PopWarehouseTransfertComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-warehouse-transfert/pop-warehouse-transfert.component';
-import * as TranserOrderSelectors from '@TanglassStore/inventory/lib/selectors/trasnferOrder.selectors';
-import * as transferOrderActions from '@TanglassStore/inventory/lib/actions/transferOrder.actions';
-import { Store } from '@ngrx/store';
 import { ordersDetailsHeaders, warehouseTransferHeaders } from '../../utils/grid-headers';
+import { TransferOrderFacade } from '@tanglass-erp/store/inventory';
+import { RequireExactlyOne } from '@tanglass-erp/core/common';
+import { InsertedTransferOrder } from '@tanglass-erp/core/inventory';
 
 @Component({
   selector: 'tanglass-erp-warehouses',
@@ -18,9 +18,9 @@ export class WarehouseTransfertComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$ = this.store.select(TranserOrderSelectors.getAllTransferOrders);
+  data$ = this.facade.transferOrders$;
 
-  constructor(public dialog: MatDialog, private store: Store) {
+  constructor(public dialog: MatDialog, private facade: TransferOrderFacade) {
     this.setColumnDefs();
   }
 
@@ -29,7 +29,7 @@ export class WarehouseTransfertComponent implements GridView {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(transferOrderActions.loadTransferOrders());
+    this.facade.loadAll();
   }
 
   openDialog(action, data = {}) {
@@ -43,16 +43,19 @@ export class WarehouseTransfertComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-          console.log( result.order_items)
-
-          this.store.dispatch(transferOrderActions.addTransferOrder({TransferOrder: {
-            fromWarehouseid: result.fromWarehouse,
-            toWarehouseid: result.toWarehouse,
+          this.facade.insertOne({
+            fromWarehouseid: result.fromWarehouseid,
+            toWarehouseid: result.toWarehouseid,
             date: result.date,
             deadline: result.deadline,
             substances: result.order_items.map(elt => ({substanceid:elt.substance,quantity:+elt.quantity}))
-          }}))
-        } else { }
+          });
+        } else {
+          result['id'] = data['id'];
+          this.facade.updateOne(
+            result as RequireExactlyOne<InsertedTransferOrder, 'id'>
+          );
+        }
       }
     });
   }
@@ -65,11 +68,11 @@ export class WarehouseTransfertComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.facade.deleteMany(event.data.map((e) => e.id));
         break;
       case Operations.loadDetails:
-
         this.columnDefs = ordersDetailsHeaders ;
-        this.store.dispatch(transferOrderActions.loadOrdersDetails());
+        this.facade.loadAll(true);
         break;
       // ...
     }

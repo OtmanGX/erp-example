@@ -21,6 +21,7 @@ import { StoreSharedModule } from '@tanglass-erp/store/shared';
 import { PopOrderItemComponent } from './pages/warehouse-transfert/pop-order-item/pop-order-item.component';
 import { PopOrderItemDeliverComponent } from './pages/warehouse-transfert/pop-order-item-deliver/pop-order-item-deliver.component';
 import { WarehouseTransferredComponent } from '@TanglassUi/inventory/pages/warehouse-transferred/warehouse-transferred.component';
+import { PopTransferItemComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-transfer-item/pop-transfer-item.component';
 
 
 const routes: Routes = [
@@ -96,6 +97,7 @@ const routes: Routes = [
     WarehouseGlasseComponent,
     WarehouseGlasseCardComponent,
     PopWarehouseTransfertComponent,
+    PopTransferItemComponent,
     WarehouseTransfertComponent,
     TransfertCardComponent,
     PopOrderItemComponent,

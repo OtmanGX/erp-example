@@ -6793,6 +6793,8 @@ export type Manufacturing_Manufacturing_Line = {
   manufacturing_consumables: Array<Manufacturing_Manufacturing_Consumable>;
   /** An aggregated array relationship */
   manufacturing_consumables_aggregate: Manufacturing_Manufacturing_Consumable_Aggregate;
+  /** An object relationship */
+  manufacturing_line_status: Manufacturing_Manufacturing_Line_Status;
   /** An array relationship */
   manufacturing_services: Array<Manufacturing_Manufacturing_Service>;
   /** An aggregated array relationship */
@@ -6911,6 +6913,7 @@ export type Manufacturing_Manufacturing_Line_Bool_Exp = {
   glass_id?: Maybe<Uuid_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   manufacturing_consumables?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
+  manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
   manufacturing_services?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
   status?: Maybe<String_Comparison_Exp>;
 };
@@ -6932,6 +6935,7 @@ export type Manufacturing_Manufacturing_Line_Insert_Input = {
   glass_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['Int']>;
   manufacturing_consumables?: Maybe<Manufacturing_Manufacturing_Consumable_Arr_Rel_Insert_Input>;
+  manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Obj_Rel_Insert_Input>;
   manufacturing_services?: Maybe<Manufacturing_Manufacturing_Service_Arr_Rel_Insert_Input>;
   status?: Maybe<Scalars['String']>;
 };
@@ -6994,6 +6998,7 @@ export type Manufacturing_Manufacturing_Line_Order_By = {
   glass_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   manufacturing_consumables_aggregate?: Maybe<Manufacturing_Manufacturing_Consumable_Aggregate_Order_By>;
+  manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Order_By>;
   manufacturing_services_aggregate?: Maybe<Manufacturing_Manufacturing_Service_Aggregate_Order_By>;
   status?: Maybe<Order_By>;
 };
@@ -7019,6 +7024,164 @@ export type Manufacturing_Manufacturing_Line_Set_Input = {
   id?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
 };
+
+/** columns and relationships of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status = {
+  __typename?: 'manufacturing_manufacturing_line_status';
+  /** An array relationship */
+  manufacturing_lines: Array<Manufacturing_Manufacturing_Line>;
+  /** An aggregated array relationship */
+  manufacturing_lines_aggregate: Manufacturing_Manufacturing_Line_Aggregate;
+  status: Scalars['String'];
+};
+
+
+/** columns and relationships of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_StatusManufacturing_LinesArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+};
+
+
+/** columns and relationships of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_StatusManufacturing_Lines_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+};
+
+/** aggregated selection of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate = {
+  __typename?: 'manufacturing_manufacturing_line_status_aggregate';
+  aggregate?: Maybe<Manufacturing_Manufacturing_Line_Status_Aggregate_Fields>;
+  nodes: Array<Manufacturing_Manufacturing_Line_Status>;
+};
+
+/** aggregate fields of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate_Fields = {
+  __typename?: 'manufacturing_manufacturing_line_status_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Manufacturing_Manufacturing_Line_Status_Max_Fields>;
+  min?: Maybe<Manufacturing_Manufacturing_Line_Status_Min_Fields>;
+};
+
+
+/** aggregate fields of "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Manufacturing_Manufacturing_Line_Status_Max_Order_By>;
+  min?: Maybe<Manufacturing_Manufacturing_Line_Status_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Arr_Rel_Insert_Input = {
+  data: Array<Manufacturing_Manufacturing_Line_Status_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "manufacturing.manufacturing_line_status". All fields are combined with a logical 'AND'. */
+export type Manufacturing_Manufacturing_Line_Status_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>>>;
+  _not?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>>>;
+  manufacturing_lines?: Maybe<Manufacturing_Manufacturing_Line_Bool_Exp>;
+  status?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "manufacturing.manufacturing_line_status" */
+export enum Manufacturing_Manufacturing_Line_Status_Constraint {
+  /** unique or primary key constraint */
+  ManufacturingLineStatusPkey = 'manufacturing_line_status_pkey'
+}
+
+/** input type for inserting data into table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Insert_Input = {
+  manufacturing_lines?: Maybe<Manufacturing_Manufacturing_Line_Arr_Rel_Insert_Input>;
+  status?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Manufacturing_Manufacturing_Line_Status_Max_Fields = {
+  __typename?: 'manufacturing_manufacturing_line_status_max_fields';
+  status?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Max_Order_By = {
+  status?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Manufacturing_Manufacturing_Line_Status_Min_Fields = {
+  __typename?: 'manufacturing_manufacturing_line_status_min_fields';
+  status?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Min_Order_By = {
+  status?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Mutation_Response = {
+  __typename?: 'manufacturing_manufacturing_line_status_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Manufacturing_Manufacturing_Line_Status>;
+};
+
+/** input type for inserting object relation for remote table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Obj_Rel_Insert_Input = {
+  data: Manufacturing_Manufacturing_Line_Status_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+/** on conflict condition type for table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_On_Conflict = {
+  constraint: Manufacturing_Manufacturing_Line_Status_Constraint;
+  update_columns: Array<Manufacturing_Manufacturing_Line_Status_Update_Column>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Order_By = {
+  manufacturing_lines_aggregate?: Maybe<Manufacturing_Manufacturing_Line_Aggregate_Order_By>;
+  status?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Pk_Columns_Input = {
+  status: Scalars['String'];
+};
+
+/** select columns of table "manufacturing.manufacturing_line_status" */
+export enum Manufacturing_Manufacturing_Line_Status_Select_Column {
+  /** column name */
+  Status = 'status'
+}
+
+/** input type for updating data in table "manufacturing.manufacturing_line_status" */
+export type Manufacturing_Manufacturing_Line_Status_Set_Input = {
+  status?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "manufacturing.manufacturing_line_status" */
+export enum Manufacturing_Manufacturing_Line_Status_Update_Column {
+  /** column name */
+  Status = 'status'
+}
 
 /** aggregate stddev on columns */
 export type Manufacturing_Manufacturing_Line_Stddev_Fields = {
@@ -7458,6 +7621,10 @@ export type Mutation_Root = {
   delete_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** delete single row from the table: "manufacturing.manufacturing_line" */
   delete_manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** delete data from the table: "manufacturing.manufacturing_line_status" */
+  delete_manufacturing_manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Mutation_Response>;
+  /** delete single row from the table: "manufacturing.manufacturing_line_status" */
+  delete_manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
   /** delete data from the table: "manufacturing.manufacturing_service" */
   delete_manufacturing_manufacturing_service?: Maybe<Manufacturing_Manufacturing_Service_Mutation_Response>;
   /** delete single row from the table: "manufacturing.manufacturing_service" */
@@ -7536,6 +7703,14 @@ export type Mutation_Root = {
   delete_product_supply?: Maybe<Product_Supply_Mutation_Response>;
   /** delete single row from the table: "product.supply" */
   delete_product_supply_by_pk?: Maybe<Product_Supply>;
+  /** delete data from the table: "purchase.delivery" */
+  delete_purchase_delivery?: Maybe<Purchase_Delivery_Mutation_Response>;
+  /** delete single row from the table: "purchase.delivery" */
+  delete_purchase_delivery_by_pk?: Maybe<Purchase_Delivery>;
+  /** delete data from the table: "purchase.delivery_item" */
+  delete_purchase_delivery_item?: Maybe<Purchase_Delivery_Item_Mutation_Response>;
+  /** delete single row from the table: "purchase.delivery_item" */
+  delete_purchase_delivery_item_by_pk?: Maybe<Purchase_Delivery_Item>;
   /** delete data from the table: "sales.accessory_draft" */
   delete_sales_accessory_draft?: Maybe<Sales_Accessory_Draft_Mutation_Response>;
   /** delete single row from the table: "sales.accessory_draft" */
@@ -7736,6 +7911,10 @@ export type Mutation_Root = {
   insert_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** insert a single row into the table: "manufacturing.manufacturing_line" */
   insert_manufacturing_manufacturing_line_one?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** insert data into the table: "manufacturing.manufacturing_line_status" */
+  insert_manufacturing_manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Mutation_Response>;
+  /** insert a single row into the table: "manufacturing.manufacturing_line_status" */
+  insert_manufacturing_manufacturing_line_status_one?: Maybe<Manufacturing_Manufacturing_Line_Status>;
   /** insert data into the table: "manufacturing.manufacturing_service" */
   insert_manufacturing_manufacturing_service?: Maybe<Manufacturing_Manufacturing_Service_Mutation_Response>;
   /** insert a single row into the table: "manufacturing.manufacturing_service" */
@@ -7816,6 +7995,14 @@ export type Mutation_Root = {
   insert_product_supply?: Maybe<Product_Supply_Mutation_Response>;
   /** insert a single row into the table: "product.supply" */
   insert_product_supply_one?: Maybe<Product_Supply>;
+  /** insert data into the table: "purchase.delivery" */
+  insert_purchase_delivery?: Maybe<Purchase_Delivery_Mutation_Response>;
+  /** insert data into the table: "purchase.delivery_item" */
+  insert_purchase_delivery_item?: Maybe<Purchase_Delivery_Item_Mutation_Response>;
+  /** insert a single row into the table: "purchase.delivery_item" */
+  insert_purchase_delivery_item_one?: Maybe<Purchase_Delivery_Item>;
+  /** insert a single row into the table: "purchase.delivery" */
+  insert_purchase_delivery_one?: Maybe<Purchase_Delivery>;
   /** insert data into the table: "sales.accessory_draft" */
   insert_sales_accessory_draft?: Maybe<Sales_Accessory_Draft_Mutation_Response>;
   /** insert a single row into the table: "sales.accessory_draft" */
@@ -8018,6 +8205,10 @@ export type Mutation_Root = {
   update_manufacturing_manufacturing_line?: Maybe<Manufacturing_Manufacturing_Line_Mutation_Response>;
   /** update single row of the table: "manufacturing.manufacturing_line" */
   update_manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** update data of the table: "manufacturing.manufacturing_line_status" */
+  update_manufacturing_manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Mutation_Response>;
+  /** update single row of the table: "manufacturing.manufacturing_line_status" */
+  update_manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
   /** update data of the table: "manufacturing.manufacturing_service" */
   update_manufacturing_manufacturing_service?: Maybe<Manufacturing_Manufacturing_Service_Mutation_Response>;
   /** update single row of the table: "manufacturing.manufacturing_service" */
@@ -8096,6 +8287,14 @@ export type Mutation_Root = {
   update_product_supply?: Maybe<Product_Supply_Mutation_Response>;
   /** update single row of the table: "product.supply" */
   update_product_supply_by_pk?: Maybe<Product_Supply>;
+  /** update data of the table: "purchase.delivery" */
+  update_purchase_delivery?: Maybe<Purchase_Delivery_Mutation_Response>;
+  /** update single row of the table: "purchase.delivery" */
+  update_purchase_delivery_by_pk?: Maybe<Purchase_Delivery>;
+  /** update data of the table: "purchase.delivery_item" */
+  update_purchase_delivery_item?: Maybe<Purchase_Delivery_Item_Mutation_Response>;
+  /** update single row of the table: "purchase.delivery_item" */
+  update_purchase_delivery_item_by_pk?: Maybe<Purchase_Delivery_Item>;
   /** update data of the table: "sales.accessory_draft" */
   update_sales_accessory_draft?: Maybe<Sales_Accessory_Draft_Mutation_Response>;
   /** update single row of the table: "sales.accessory_draft" */
@@ -8492,6 +8691,18 @@ export type Mutation_RootDelete_Manufacturing_Manufacturing_Line_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Manufacturing_Manufacturing_Line_StatusArgs = {
+  where: Manufacturing_Manufacturing_Line_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Manufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  status: Scalars['String'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Manufacturing_Manufacturing_ServiceArgs = {
   where: Manufacturing_Manufacturing_Service_Bool_Exp;
 };
@@ -8726,6 +8937,30 @@ export type Mutation_RootDelete_Product_SupplyArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Product_Supply_By_PkArgs = {
   code: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Purchase_DeliveryArgs = {
+  where: Purchase_Delivery_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Purchase_Delivery_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Purchase_Delivery_ItemArgs = {
+  where: Purchase_Delivery_Item_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Purchase_Delivery_Item_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -9372,6 +9607,20 @@ export type Mutation_RootInsert_Manufacturing_Manufacturing_Line_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Manufacturing_Manufacturing_Line_StatusArgs = {
+  objects: Array<Manufacturing_Manufacturing_Line_Status_Insert_Input>;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Manufacturing_Manufacturing_Line_Status_OneArgs = {
+  object: Manufacturing_Manufacturing_Line_Status_Insert_Input;
+  on_conflict?: Maybe<Manufacturing_Manufacturing_Line_Status_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Manufacturing_Manufacturing_ServiceArgs = {
   objects: Array<Manufacturing_Manufacturing_Service_Insert_Input>;
   on_conflict?: Maybe<Manufacturing_Manufacturing_Service_On_Conflict>;
@@ -9648,6 +9897,34 @@ export type Mutation_RootInsert_Product_SupplyArgs = {
 export type Mutation_RootInsert_Product_Supply_OneArgs = {
   object: Product_Supply_Insert_Input;
   on_conflict?: Maybe<Product_Supply_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Purchase_DeliveryArgs = {
+  objects: Array<Purchase_Delivery_Insert_Input>;
+  on_conflict?: Maybe<Purchase_Delivery_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Purchase_Delivery_ItemArgs = {
+  objects: Array<Purchase_Delivery_Item_Insert_Input>;
+  on_conflict?: Maybe<Purchase_Delivery_Item_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Purchase_Delivery_Item_OneArgs = {
+  object: Purchase_Delivery_Item_Insert_Input;
+  on_conflict?: Maybe<Purchase_Delivery_Item_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Purchase_Delivery_OneArgs = {
+  object: Purchase_Delivery_Insert_Input;
+  on_conflict?: Maybe<Purchase_Delivery_On_Conflict>;
 };
 
 
@@ -10368,6 +10645,20 @@ export type Mutation_RootUpdate_Manufacturing_Manufacturing_Line_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Manufacturing_Line_StatusArgs = {
+  _set?: Maybe<Manufacturing_Manufacturing_Line_Status_Set_Input>;
+  where: Manufacturing_Manufacturing_Line_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Manufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  _set?: Maybe<Manufacturing_Manufacturing_Line_Status_Set_Input>;
+  pk_columns: Manufacturing_Manufacturing_Line_Status_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Manufacturing_Manufacturing_ServiceArgs = {
   _inc?: Maybe<Manufacturing_Manufacturing_Service_Inc_Input>;
   _set?: Maybe<Manufacturing_Manufacturing_Service_Set_Input>;
@@ -10666,6 +10957,38 @@ export type Mutation_RootUpdate_Product_SupplyArgs = {
 export type Mutation_RootUpdate_Product_Supply_By_PkArgs = {
   _set?: Maybe<Product_Supply_Set_Input>;
   pk_columns: Product_Supply_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Purchase_DeliveryArgs = {
+  _inc?: Maybe<Purchase_Delivery_Inc_Input>;
+  _set?: Maybe<Purchase_Delivery_Set_Input>;
+  where: Purchase_Delivery_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Purchase_Delivery_By_PkArgs = {
+  _inc?: Maybe<Purchase_Delivery_Inc_Input>;
+  _set?: Maybe<Purchase_Delivery_Set_Input>;
+  pk_columns: Purchase_Delivery_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Purchase_Delivery_ItemArgs = {
+  _inc?: Maybe<Purchase_Delivery_Item_Inc_Input>;
+  _set?: Maybe<Purchase_Delivery_Item_Set_Input>;
+  where: Purchase_Delivery_Item_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Purchase_Delivery_Item_By_PkArgs = {
+  _inc?: Maybe<Purchase_Delivery_Item_Inc_Input>;
+  _set?: Maybe<Purchase_Delivery_Item_Set_Input>;
+  pk_columns: Purchase_Delivery_Item_Pk_Columns_Input;
 };
 
 
@@ -17092,6 +17415,590 @@ export enum Product_Supply_Update_Column {
   Substanceid = 'substanceid'
 }
 
+/** columns and relationships of "purchase.delivery" */
+export type Purchase_Delivery = {
+  __typename?: 'purchase_delivery';
+  date: Scalars['date'];
+  id: Scalars['Int'];
+  ref?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "purchase.delivery" */
+export type Purchase_Delivery_Aggregate = {
+  __typename?: 'purchase_delivery_aggregate';
+  aggregate?: Maybe<Purchase_Delivery_Aggregate_Fields>;
+  nodes: Array<Purchase_Delivery>;
+};
+
+/** aggregate fields of "purchase.delivery" */
+export type Purchase_Delivery_Aggregate_Fields = {
+  __typename?: 'purchase_delivery_aggregate_fields';
+  avg?: Maybe<Purchase_Delivery_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Purchase_Delivery_Max_Fields>;
+  min?: Maybe<Purchase_Delivery_Min_Fields>;
+  stddev?: Maybe<Purchase_Delivery_Stddev_Fields>;
+  stddev_pop?: Maybe<Purchase_Delivery_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Purchase_Delivery_Stddev_Samp_Fields>;
+  sum?: Maybe<Purchase_Delivery_Sum_Fields>;
+  var_pop?: Maybe<Purchase_Delivery_Var_Pop_Fields>;
+  var_samp?: Maybe<Purchase_Delivery_Var_Samp_Fields>;
+  variance?: Maybe<Purchase_Delivery_Variance_Fields>;
+};
+
+
+/** aggregate fields of "purchase.delivery" */
+export type Purchase_Delivery_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Purchase_Delivery_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "purchase.delivery" */
+export type Purchase_Delivery_Aggregate_Order_By = {
+  avg?: Maybe<Purchase_Delivery_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Purchase_Delivery_Max_Order_By>;
+  min?: Maybe<Purchase_Delivery_Min_Order_By>;
+  stddev?: Maybe<Purchase_Delivery_Stddev_Order_By>;
+  stddev_pop?: Maybe<Purchase_Delivery_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Purchase_Delivery_Stddev_Samp_Order_By>;
+  sum?: Maybe<Purchase_Delivery_Sum_Order_By>;
+  var_pop?: Maybe<Purchase_Delivery_Var_Pop_Order_By>;
+  var_samp?: Maybe<Purchase_Delivery_Var_Samp_Order_By>;
+  variance?: Maybe<Purchase_Delivery_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "purchase.delivery" */
+export type Purchase_Delivery_Arr_Rel_Insert_Input = {
+  data: Array<Purchase_Delivery_Insert_Input>;
+  on_conflict?: Maybe<Purchase_Delivery_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Purchase_Delivery_Avg_Fields = {
+  __typename?: 'purchase_delivery_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "purchase.delivery" */
+export type Purchase_Delivery_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "purchase.delivery". All fields are combined with a logical 'AND'. */
+export type Purchase_Delivery_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Purchase_Delivery_Bool_Exp>>>;
+  _not?: Maybe<Purchase_Delivery_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Purchase_Delivery_Bool_Exp>>>;
+  date?: Maybe<Date_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  ref?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "purchase.delivery" */
+export enum Purchase_Delivery_Constraint {
+  /** unique or primary key constraint */
+  DeliveryPkey = 'delivery_pkey'
+}
+
+/** input type for incrementing integer column in table "purchase.delivery" */
+export type Purchase_Delivery_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "purchase.delivery" */
+export type Purchase_Delivery_Insert_Input = {
+  date?: Maybe<Scalars['date']>;
+  id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
+};
+
+/** columns and relationships of "purchase.delivery_item" */
+export type Purchase_Delivery_Item = {
+  __typename?: 'purchase_delivery_item';
+  code: Scalars['String'];
+  company_id: Scalars['uuid'];
+  id: Scalars['uuid'];
+  label: Scalars['String'];
+  quantity: Scalars['numeric'];
+  substance_id: Scalars['uuid'];
+  warehouse_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Aggregate = {
+  __typename?: 'purchase_delivery_item_aggregate';
+  aggregate?: Maybe<Purchase_Delivery_Item_Aggregate_Fields>;
+  nodes: Array<Purchase_Delivery_Item>;
+};
+
+/** aggregate fields of "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Aggregate_Fields = {
+  __typename?: 'purchase_delivery_item_aggregate_fields';
+  avg?: Maybe<Purchase_Delivery_Item_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Purchase_Delivery_Item_Max_Fields>;
+  min?: Maybe<Purchase_Delivery_Item_Min_Fields>;
+  stddev?: Maybe<Purchase_Delivery_Item_Stddev_Fields>;
+  stddev_pop?: Maybe<Purchase_Delivery_Item_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Purchase_Delivery_Item_Stddev_Samp_Fields>;
+  sum?: Maybe<Purchase_Delivery_Item_Sum_Fields>;
+  var_pop?: Maybe<Purchase_Delivery_Item_Var_Pop_Fields>;
+  var_samp?: Maybe<Purchase_Delivery_Item_Var_Samp_Fields>;
+  variance?: Maybe<Purchase_Delivery_Item_Variance_Fields>;
+};
+
+
+/** aggregate fields of "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Aggregate_Order_By = {
+  avg?: Maybe<Purchase_Delivery_Item_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Purchase_Delivery_Item_Max_Order_By>;
+  min?: Maybe<Purchase_Delivery_Item_Min_Order_By>;
+  stddev?: Maybe<Purchase_Delivery_Item_Stddev_Order_By>;
+  stddev_pop?: Maybe<Purchase_Delivery_Item_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Purchase_Delivery_Item_Stddev_Samp_Order_By>;
+  sum?: Maybe<Purchase_Delivery_Item_Sum_Order_By>;
+  var_pop?: Maybe<Purchase_Delivery_Item_Var_Pop_Order_By>;
+  var_samp?: Maybe<Purchase_Delivery_Item_Var_Samp_Order_By>;
+  variance?: Maybe<Purchase_Delivery_Item_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Arr_Rel_Insert_Input = {
+  data: Array<Purchase_Delivery_Item_Insert_Input>;
+  on_conflict?: Maybe<Purchase_Delivery_Item_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Purchase_Delivery_Item_Avg_Fields = {
+  __typename?: 'purchase_delivery_item_avg_fields';
+  quantity?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Avg_Order_By = {
+  quantity?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "purchase.delivery_item". All fields are combined with a logical 'AND'. */
+export type Purchase_Delivery_Item_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Purchase_Delivery_Item_Bool_Exp>>>;
+  _not?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Purchase_Delivery_Item_Bool_Exp>>>;
+  code?: Maybe<String_Comparison_Exp>;
+  company_id?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  label?: Maybe<String_Comparison_Exp>;
+  quantity?: Maybe<Numeric_Comparison_Exp>;
+  substance_id?: Maybe<Uuid_Comparison_Exp>;
+  warehouse_id?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "purchase.delivery_item" */
+export enum Purchase_Delivery_Item_Constraint {
+  /** unique or primary key constraint */
+  DeliveryItemPkey = 'delivery_item_pkey'
+}
+
+/** input type for incrementing integer column in table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Inc_Input = {
+  quantity?: Maybe<Scalars['numeric']>;
+};
+
+/** input type for inserting data into table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Insert_Input = {
+  code?: Maybe<Scalars['String']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  label?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['numeric']>;
+  substance_id?: Maybe<Scalars['uuid']>;
+  warehouse_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Purchase_Delivery_Item_Max_Fields = {
+  __typename?: 'purchase_delivery_item_max_fields';
+  code?: Maybe<Scalars['String']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  label?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['numeric']>;
+  substance_id?: Maybe<Scalars['uuid']>;
+  warehouse_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Max_Order_By = {
+  code?: Maybe<Order_By>;
+  company_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  quantity?: Maybe<Order_By>;
+  substance_id?: Maybe<Order_By>;
+  warehouse_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Purchase_Delivery_Item_Min_Fields = {
+  __typename?: 'purchase_delivery_item_min_fields';
+  code?: Maybe<Scalars['String']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  label?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['numeric']>;
+  substance_id?: Maybe<Scalars['uuid']>;
+  warehouse_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Min_Order_By = {
+  code?: Maybe<Order_By>;
+  company_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  quantity?: Maybe<Order_By>;
+  substance_id?: Maybe<Order_By>;
+  warehouse_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Mutation_Response = {
+  __typename?: 'purchase_delivery_item_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Purchase_Delivery_Item>;
+};
+
+/** input type for inserting object relation for remote table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Obj_Rel_Insert_Input = {
+  data: Purchase_Delivery_Item_Insert_Input;
+  on_conflict?: Maybe<Purchase_Delivery_Item_On_Conflict>;
+};
+
+/** on conflict condition type for table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_On_Conflict = {
+  constraint: Purchase_Delivery_Item_Constraint;
+  update_columns: Array<Purchase_Delivery_Item_Update_Column>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Order_By = {
+  code?: Maybe<Order_By>;
+  company_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  label?: Maybe<Order_By>;
+  quantity?: Maybe<Order_By>;
+  substance_id?: Maybe<Order_By>;
+  warehouse_id?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "purchase.delivery_item" */
+export enum Purchase_Delivery_Item_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CompanyId = 'company_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Label = 'label',
+  /** column name */
+  Quantity = 'quantity',
+  /** column name */
+  SubstanceId = 'substance_id',
+  /** column name */
+  WarehouseId = 'warehouse_id'
+}
+
+/** input type for updating data in table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Set_Input = {
+  code?: Maybe<Scalars['String']>;
+  company_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
+  label?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['numeric']>;
+  substance_id?: Maybe<Scalars['uuid']>;
+  warehouse_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate stddev on columns */
+export type Purchase_Delivery_Item_Stddev_Fields = {
+  __typename?: 'purchase_delivery_item_stddev_fields';
+  quantity?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Stddev_Order_By = {
+  quantity?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Purchase_Delivery_Item_Stddev_Pop_Fields = {
+  __typename?: 'purchase_delivery_item_stddev_pop_fields';
+  quantity?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Stddev_Pop_Order_By = {
+  quantity?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Purchase_Delivery_Item_Stddev_Samp_Fields = {
+  __typename?: 'purchase_delivery_item_stddev_samp_fields';
+  quantity?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Stddev_Samp_Order_By = {
+  quantity?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Purchase_Delivery_Item_Sum_Fields = {
+  __typename?: 'purchase_delivery_item_sum_fields';
+  quantity?: Maybe<Scalars['numeric']>;
+};
+
+/** order by sum() on columns of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Sum_Order_By = {
+  quantity?: Maybe<Order_By>;
+};
+
+/** update columns of table "purchase.delivery_item" */
+export enum Purchase_Delivery_Item_Update_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CompanyId = 'company_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Label = 'label',
+  /** column name */
+  Quantity = 'quantity',
+  /** column name */
+  SubstanceId = 'substance_id',
+  /** column name */
+  WarehouseId = 'warehouse_id'
+}
+
+/** aggregate var_pop on columns */
+export type Purchase_Delivery_Item_Var_Pop_Fields = {
+  __typename?: 'purchase_delivery_item_var_pop_fields';
+  quantity?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Var_Pop_Order_By = {
+  quantity?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Purchase_Delivery_Item_Var_Samp_Fields = {
+  __typename?: 'purchase_delivery_item_var_samp_fields';
+  quantity?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Var_Samp_Order_By = {
+  quantity?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Purchase_Delivery_Item_Variance_Fields = {
+  __typename?: 'purchase_delivery_item_variance_fields';
+  quantity?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "purchase.delivery_item" */
+export type Purchase_Delivery_Item_Variance_Order_By = {
+  quantity?: Maybe<Order_By>;
+};
+
+/** aggregate max on columns */
+export type Purchase_Delivery_Max_Fields = {
+  __typename?: 'purchase_delivery_max_fields';
+  date?: Maybe<Scalars['date']>;
+  id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "purchase.delivery" */
+export type Purchase_Delivery_Max_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Purchase_Delivery_Min_Fields = {
+  __typename?: 'purchase_delivery_min_fields';
+  date?: Maybe<Scalars['date']>;
+  id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "purchase.delivery" */
+export type Purchase_Delivery_Min_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "purchase.delivery" */
+export type Purchase_Delivery_Mutation_Response = {
+  __typename?: 'purchase_delivery_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Purchase_Delivery>;
+};
+
+/** input type for inserting object relation for remote table "purchase.delivery" */
+export type Purchase_Delivery_Obj_Rel_Insert_Input = {
+  data: Purchase_Delivery_Insert_Input;
+  on_conflict?: Maybe<Purchase_Delivery_On_Conflict>;
+};
+
+/** on conflict condition type for table "purchase.delivery" */
+export type Purchase_Delivery_On_Conflict = {
+  constraint: Purchase_Delivery_Constraint;
+  update_columns: Array<Purchase_Delivery_Update_Column>;
+  where?: Maybe<Purchase_Delivery_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "purchase.delivery" */
+export type Purchase_Delivery_Order_By = {
+  date?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "purchase.delivery" */
+export type Purchase_Delivery_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "purchase.delivery" */
+export enum Purchase_Delivery_Select_Column {
+  /** column name */
+  Date = 'date',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Ref = 'ref'
+}
+
+/** input type for updating data in table "purchase.delivery" */
+export type Purchase_Delivery_Set_Input = {
+  date?: Maybe<Scalars['date']>;
+  id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Purchase_Delivery_Stddev_Fields = {
+  __typename?: 'purchase_delivery_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "purchase.delivery" */
+export type Purchase_Delivery_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Purchase_Delivery_Stddev_Pop_Fields = {
+  __typename?: 'purchase_delivery_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "purchase.delivery" */
+export type Purchase_Delivery_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Purchase_Delivery_Stddev_Samp_Fields = {
+  __typename?: 'purchase_delivery_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "purchase.delivery" */
+export type Purchase_Delivery_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Purchase_Delivery_Sum_Fields = {
+  __typename?: 'purchase_delivery_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "purchase.delivery" */
+export type Purchase_Delivery_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** update columns of table "purchase.delivery" */
+export enum Purchase_Delivery_Update_Column {
+  /** column name */
+  Date = 'date',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Ref = 'ref'
+}
+
+/** aggregate var_pop on columns */
+export type Purchase_Delivery_Var_Pop_Fields = {
+  __typename?: 'purchase_delivery_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "purchase.delivery" */
+export type Purchase_Delivery_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Purchase_Delivery_Var_Samp_Fields = {
+  __typename?: 'purchase_delivery_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "purchase.delivery" */
+export type Purchase_Delivery_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Purchase_Delivery_Variance_Fields = {
+  __typename?: 'purchase_delivery_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "purchase.delivery" */
+export type Purchase_Delivery_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
 /** query root */
 export type Query_Root = {
   __typename?: 'query_root';
@@ -17243,6 +18150,12 @@ export type Query_Root = {
   manufacturing_manufacturing_line_aggregate: Manufacturing_Manufacturing_Line_Aggregate;
   /** fetch data from the table: "manufacturing.manufacturing_line" using primary key columns */
   manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status: Array<Manufacturing_Manufacturing_Line_Status>;
+  /** fetch aggregated fields from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status_aggregate: Manufacturing_Manufacturing_Line_Status_Aggregate;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" using primary key columns */
+  manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
   /** fetch data from the table: "manufacturing.manufacturing_service" */
   manufacturing_manufacturing_service: Array<Manufacturing_Manufacturing_Service>;
   /** fetch aggregated fields from the table: "manufacturing.manufacturing_service" */
@@ -17381,6 +18294,18 @@ export type Query_Root = {
   product_supply_aggregate: Product_Supply_Aggregate;
   /** fetch data from the table: "product.supply" using primary key columns */
   product_supply_by_pk?: Maybe<Product_Supply>;
+  /** fetch data from the table: "purchase.delivery" */
+  purchase_delivery: Array<Purchase_Delivery>;
+  /** fetch aggregated fields from the table: "purchase.delivery" */
+  purchase_delivery_aggregate: Purchase_Delivery_Aggregate;
+  /** fetch data from the table: "purchase.delivery" using primary key columns */
+  purchase_delivery_by_pk?: Maybe<Purchase_Delivery>;
+  /** fetch data from the table: "purchase.delivery_item" */
+  purchase_delivery_item: Array<Purchase_Delivery_Item>;
+  /** fetch aggregated fields from the table: "purchase.delivery_item" */
+  purchase_delivery_item_aggregate: Purchase_Delivery_Item_Aggregate;
+  /** fetch data from the table: "purchase.delivery_item" using primary key columns */
+  purchase_delivery_item_by_pk?: Maybe<Purchase_Delivery_Item>;
   /** fetch data from the table: "sales.accessory_draft" */
   sales_accessory_draft: Array<Sales_Accessory_Draft>;
   /** fetch aggregated fields from the table: "sales.accessory_draft" */
@@ -18235,6 +19160,32 @@ export type Query_RootManufacturing_Manufacturing_Line_By_PkArgs = {
 
 
 /** query root */
+export type Query_RootManufacturing_Manufacturing_Line_StatusArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Line_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootManufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  status: Scalars['String'];
+};
+
+
+/** query root */
 export type Query_RootManufacturing_Manufacturing_ServiceArgs = {
   distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Service_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -18849,6 +19800,58 @@ export type Query_RootProduct_Supply_AggregateArgs = {
 /** query root */
 export type Query_RootProduct_Supply_By_PkArgs = {
   code: Scalars['String'];
+};
+
+
+/** query root */
+export type Query_RootPurchase_DeliveryArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootPurchase_Delivery_AggregateArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootPurchase_Delivery_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootPurchase_Delivery_ItemArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Item_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootPurchase_Delivery_Item_AggregateArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Item_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootPurchase_Delivery_Item_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -29487,6 +30490,12 @@ export type Subscription_Root = {
   manufacturing_manufacturing_line_aggregate: Manufacturing_Manufacturing_Line_Aggregate;
   /** fetch data from the table: "manufacturing.manufacturing_line" using primary key columns */
   manufacturing_manufacturing_line_by_pk?: Maybe<Manufacturing_Manufacturing_Line>;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status: Array<Manufacturing_Manufacturing_Line_Status>;
+  /** fetch aggregated fields from the table: "manufacturing.manufacturing_line_status" */
+  manufacturing_manufacturing_line_status_aggregate: Manufacturing_Manufacturing_Line_Status_Aggregate;
+  /** fetch data from the table: "manufacturing.manufacturing_line_status" using primary key columns */
+  manufacturing_manufacturing_line_status_by_pk?: Maybe<Manufacturing_Manufacturing_Line_Status>;
   /** fetch data from the table: "manufacturing.manufacturing_service" */
   manufacturing_manufacturing_service: Array<Manufacturing_Manufacturing_Service>;
   /** fetch aggregated fields from the table: "manufacturing.manufacturing_service" */
@@ -29625,6 +30634,18 @@ export type Subscription_Root = {
   product_supply_aggregate: Product_Supply_Aggregate;
   /** fetch data from the table: "product.supply" using primary key columns */
   product_supply_by_pk?: Maybe<Product_Supply>;
+  /** fetch data from the table: "purchase.delivery" */
+  purchase_delivery: Array<Purchase_Delivery>;
+  /** fetch aggregated fields from the table: "purchase.delivery" */
+  purchase_delivery_aggregate: Purchase_Delivery_Aggregate;
+  /** fetch data from the table: "purchase.delivery" using primary key columns */
+  purchase_delivery_by_pk?: Maybe<Purchase_Delivery>;
+  /** fetch data from the table: "purchase.delivery_item" */
+  purchase_delivery_item: Array<Purchase_Delivery_Item>;
+  /** fetch aggregated fields from the table: "purchase.delivery_item" */
+  purchase_delivery_item_aggregate: Purchase_Delivery_Item_Aggregate;
+  /** fetch data from the table: "purchase.delivery_item" using primary key columns */
+  purchase_delivery_item_by_pk?: Maybe<Purchase_Delivery_Item>;
   /** fetch data from the table: "sales.accessory_draft" */
   sales_accessory_draft: Array<Sales_Accessory_Draft>;
   /** fetch aggregated fields from the table: "sales.accessory_draft" */
@@ -30479,6 +31500,32 @@ export type Subscription_RootManufacturing_Manufacturing_Line_By_PkArgs = {
 
 
 /** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Line_StatusArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Line_Status_AggregateArgs = {
+  distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Manufacturing_Manufacturing_Line_Status_Order_By>>;
+  where?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootManufacturing_Manufacturing_Line_Status_By_PkArgs = {
+  status: Scalars['String'];
+};
+
+
+/** subscription root */
 export type Subscription_RootManufacturing_Manufacturing_ServiceArgs = {
   distinct_on?: Maybe<Array<Manufacturing_Manufacturing_Service_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -31093,6 +32140,58 @@ export type Subscription_RootProduct_Supply_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootProduct_Supply_By_PkArgs = {
   code: Scalars['String'];
+};
+
+
+/** subscription root */
+export type Subscription_RootPurchase_DeliveryArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootPurchase_Delivery_AggregateArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootPurchase_Delivery_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** subscription root */
+export type Subscription_RootPurchase_Delivery_ItemArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Item_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootPurchase_Delivery_Item_AggregateArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Item_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootPurchase_Delivery_Item_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -32721,6 +33820,19 @@ export type DeleteManyWarehousesMutation = (
   )> }
 );
 
+export type DeleteTransferOrdersMutationVariables = Exact<{
+  ids?: Maybe<Array<Scalars['Int']>>;
+}>;
+
+
+export type DeleteTransferOrdersMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_stock_transfer_order?: Maybe<(
+    { __typename?: 'stock_transfer_order_mutation_response' }
+    & Pick<Stock_Transfer_Order_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type InsertTranfserMutationVariables = Exact<{
   date?: Maybe<Scalars['date']>;
   order_itemid?: Maybe<Scalars['uuid']>;
@@ -32737,6 +33849,80 @@ export type InsertTranfserMutation = (
     { __typename?: 'InsertItemTranfserOutput' }
     & Pick<InsertItemTranfserOutput, 'date' | 'id' | 'quantity' | 'status'>
   )> }
+);
+
+export type InsertTransferItemMutationVariables = Exact<{
+  date?: Maybe<Scalars['date']>;
+  status?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['Float']>;
+  order_itemid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type InsertTransferItemMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_stock_item_tranfer_one?: Maybe<(
+    { __typename?: 'stock_item_tranfer' }
+    & { tranfer_order_item: (
+      { __typename?: 'stock_order_item' }
+      & { transfer_order: (
+        { __typename?: 'stock_transfer_order' }
+        & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'status'>
+        & { fromwarehouse: (
+          { __typename?: 'stock_warehouse' }
+          & Pick<Stock_Warehouse, 'name'>
+        ), towarehouse: (
+          { __typename?: 'stock_warehouse' }
+          & Pick<Stock_Warehouse, 'name'>
+        ), order_items_aggregate: (
+          { __typename?: 'stock_order_item_aggregate' }
+          & { aggregate?: Maybe<(
+            { __typename?: 'stock_order_item_aggregate_fields' }
+            & Pick<Stock_Order_Item_Aggregate_Fields, 'count'>
+            & { sum?: Maybe<(
+              { __typename?: 'stock_order_item_sum_fields' }
+              & Pick<Stock_Order_Item_Sum_Fields, 'quantity'>
+            )> }
+          )>, nodes: Array<(
+            { __typename?: 'stock_order_item' }
+            & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
+            & { substance: (
+              { __typename?: 'product_substance' }
+              & { productAccessory?: Maybe<(
+                { __typename?: 'product_product_accessory_view' }
+                & Product_Product_Accessory_ViewFragmentFragment
+              )>, productGlass?: Maybe<(
+                { __typename?: 'product_product_glass_view' }
+                & Product_Product_Glass_ViewFragmentFragment
+              )> }
+            ), item_tranfers_aggregate: (
+              { __typename?: 'stock_item_tranfer_aggregate' }
+              & { aggregate?: Maybe<(
+                { __typename?: 'stock_item_tranfer_aggregate_fields' }
+                & { sum?: Maybe<(
+                  { __typename?: 'stock_item_tranfer_sum_fields' }
+                  & Pick<Stock_Item_Tranfer_Sum_Fields, 'quantity'>
+                )> }
+              )>, nodes: Array<(
+                { __typename?: 'stock_item_tranfer' }
+                & Pick<Stock_Item_Tranfer, 'quantity' | 'status' | 'id' | 'date'>
+              )> }
+            ) }
+          )> }
+        ) }
+      ) }
+    ) }
+  )> }
+);
+
+export type Product_Product_Glass_ViewFragmentFragment = (
+  { __typename?: 'product_product_glass_view' }
+  & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
+);
+
+export type Product_Product_Accessory_ViewFragmentFragment = (
+  { __typename?: 'product_product_accessory_view' }
+  & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
 );
 
 export type InsertTransferOrderMutationVariables = Exact<{
@@ -32782,6 +33968,155 @@ export type InsertWarehouseMutation = (
       { __typename?: 'management_salesPoint' }
       & Pick<Management_SalesPoint, 'name' | 'id'>
     )> }
+  )> }
+);
+
+export type UpdateStockItemTranferMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  date?: Maybe<Scalars['date']>;
+  quantity?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateStockItemTranferMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_item_tranfer_by_pk?: Maybe<(
+    { __typename?: 'stock_item_tranfer' }
+    & { tranfer_order_item: (
+      { __typename?: 'stock_order_item' }
+      & { transfer_order: (
+        { __typename?: 'stock_transfer_order' }
+        & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'status'>
+        & { fromwarehouse: (
+          { __typename?: 'stock_warehouse' }
+          & Pick<Stock_Warehouse, 'name'>
+        ), towarehouse: (
+          { __typename?: 'stock_warehouse' }
+          & Pick<Stock_Warehouse, 'name'>
+        ), order_items_aggregate: (
+          { __typename?: 'stock_order_item_aggregate' }
+          & { aggregate?: Maybe<(
+            { __typename?: 'stock_order_item_aggregate_fields' }
+            & Pick<Stock_Order_Item_Aggregate_Fields, 'count'>
+            & { sum?: Maybe<(
+              { __typename?: 'stock_order_item_sum_fields' }
+              & Pick<Stock_Order_Item_Sum_Fields, 'quantity'>
+            )> }
+          )>, nodes: Array<(
+            { __typename?: 'stock_order_item' }
+            & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
+            & { substance: (
+              { __typename?: 'product_substance' }
+              & { productAccessory?: Maybe<(
+                { __typename?: 'product_product_accessory_view' }
+                & Product_Product_Accessory_ViewFragmentFragment
+              )>, productGlass?: Maybe<(
+                { __typename?: 'product_product_glass_view' }
+                & Product_Product_Glass_ViewFragmentFragment
+              )> }
+            ), item_tranfers_aggregate: (
+              { __typename?: 'stock_item_tranfer_aggregate' }
+              & { aggregate?: Maybe<(
+                { __typename?: 'stock_item_tranfer_aggregate_fields' }
+                & { sum?: Maybe<(
+                  { __typename?: 'stock_item_tranfer_sum_fields' }
+                  & Pick<Stock_Item_Tranfer_Sum_Fields, 'quantity'>
+                )> }
+              )>, nodes: Array<(
+                { __typename?: 'stock_item_tranfer' }
+                & Pick<Stock_Item_Tranfer, 'quantity' | 'status' | 'id' | 'date'>
+              )> }
+            ) }
+          )> }
+        ) }
+      ) }
+    ) }
+  )> }
+);
+
+export type UpdateTransferOrderMutationVariables = Exact<{
+  id: Scalars['Int'];
+  date?: Maybe<Scalars['date']>;
+  deadline?: Maybe<Scalars['date']>;
+  fromWarehouseid?: Maybe<Scalars['uuid']>;
+  status?: Maybe<Scalars['String']>;
+  toWarehouseid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type UpdateTransferOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_transfer_order_by_pk?: Maybe<(
+    { __typename?: 'stock_transfer_order' }
+    & Pick<Stock_Transfer_Order, 'date' | 'deadline' | 'status' | 'id'>
+    & { fromwarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ), towarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ) }
+  )> }
+);
+
+export type UpdateStockOrderItemMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  quantity?: Maybe<Scalars['Float']>;
+  status?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateStockOrderItemMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_order_item_by_pk?: Maybe<(
+    { __typename?: 'stock_order_item' }
+    & { transfer_order: (
+      { __typename?: 'stock_transfer_order' }
+      & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'status'>
+      & { fromwarehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name'>
+      ), towarehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name'>
+      ), order_items_aggregate: (
+        { __typename?: 'stock_order_item_aggregate' }
+        & { aggregate?: Maybe<(
+          { __typename?: 'stock_order_item_aggregate_fields' }
+          & Pick<Stock_Order_Item_Aggregate_Fields, 'count'>
+          & { sum?: Maybe<(
+            { __typename?: 'stock_order_item_sum_fields' }
+            & Pick<Stock_Order_Item_Sum_Fields, 'quantity'>
+          )> }
+        )>, nodes: Array<(
+          { __typename?: 'stock_order_item' }
+          & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
+          & { substance: (
+            { __typename?: 'product_substance' }
+            & { productAccessory?: Maybe<(
+              { __typename?: 'product_product_accessory_view' }
+              & Product_Product_Accessory_ViewFragmentFragment
+            )>, productGlass?: Maybe<(
+              { __typename?: 'product_product_glass_view' }
+              & Product_Product_Glass_ViewFragmentFragment
+            )> }
+          ), item_tranfers_aggregate: (
+            { __typename?: 'stock_item_tranfer_aggregate' }
+            & { aggregate?: Maybe<(
+              { __typename?: 'stock_item_tranfer_aggregate_fields' }
+              & { sum?: Maybe<(
+                { __typename?: 'stock_item_tranfer_sum_fields' }
+                & Pick<Stock_Item_Tranfer_Sum_Fields, 'quantity'>
+              )> }
+            )>, nodes: Array<(
+              { __typename?: 'stock_item_tranfer' }
+              & Pick<Stock_Item_Tranfer, 'quantity' | 'status' | 'id' | 'date'>
+            )> }
+          ) }
+        )> }
+      ) }
+    ) }
   )> }
 );
 
@@ -32847,11 +34182,6 @@ export type GetAllAccessoriesStockQuery = (
       )> }
     ) }
   )> }
-);
-
-export type Product_Product_Accessory_ViewFragmentFragment = (
-  { __typename?: 'product_product_accessory_view' }
-  & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
 );
 
 export type GetAllConsumablesStockQueryVariables = Exact<{ [key: string]: never; }>;
@@ -33136,11 +34466,6 @@ export type GetTransferOrderByIdQuery = (
       )> }
     ) }
   )> }
-);
-
-export type Product_Product_Glass_ViewFragmentFragment = (
-  { __typename?: 'product_product_glass_view' }
-  & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
 );
 
 export type GetWarehouseByIdQueryVariables = Exact<{
@@ -33494,7 +34819,7 @@ export type InsertJobOrderMutation = (
 export type UpdateManufacturingProgressMutationVariables = Exact<{
   services?: Array<Manufacturing_Manufacturing_Service_Insert_Input>;
   consumables?: Array<Manufacturing_Manufacturing_Consumable_Insert_Input>;
-  glass_id: Scalars['uuid'];
+  glass_id?: Maybe<Scalars['uuid']>;
 }>;
 
 
@@ -35046,6 +36371,14 @@ export type GetQuotationByIdQuery = (
   )> }
 );
 
+export const Product_Product_Glass_ViewFragmentFragmentDoc = gql`
+    fragment product_product_glass_viewFragment on product_product_glass_view {
+  code
+  label
+  price
+  unit
+}
+    `;
 export const Product_Product_Accessory_ViewFragmentFragmentDoc = gql`
     fragment product_product_accessory_viewFragment on product_product_accessory_view {
   code
@@ -35094,14 +36427,6 @@ export const Management_CompanyFragmentFragmentDoc = gql`
     fragment management_companyFragment on management_company {
   name
   id
-}
-    `;
-export const Product_Product_Glass_ViewFragmentFragmentDoc = gql`
-    fragment product_product_glass_viewFragment on product_product_glass_view {
-  code
-  label
-  price
-  unit
 }
     `;
 export const Product_ProductFragmentFragmentDoc = gql`
@@ -36307,6 +37632,24 @@ export const DeleteManyWarehousesDocument = gql`
       super(apollo);
     }
   }
+export const DeleteTransferOrdersDocument = gql`
+    mutation DeleteTransferOrders($ids: [Int!]) {
+  delete_stock_transfer_order(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteTransferOrdersGQL extends Apollo.Mutation<DeleteTransferOrdersMutation, DeleteTransferOrdersMutationVariables> {
+    document = DeleteTransferOrdersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertTranfserDocument = gql`
     mutation InsertTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String, $substanceid: uuid, $warehouseid: uuid) {
   createTransferItem(
@@ -36330,6 +37673,78 @@ export const InsertTranfserDocument = gql`
   })
   export class InsertTranfserGQL extends Apollo.Mutation<InsertTranfserMutation, InsertTranfserMutationVariables> {
     document = InsertTranfserDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertTransferItemDocument = gql`
+    mutation InsertTransferItem($date: date, $status: String, $quantity: Float, $order_itemid: uuid) {
+  insert_stock_item_tranfer_one(
+    object: {date: $date, status: $status, quantity: $quantity, order_itemid: $order_itemid}
+  ) {
+    tranfer_order_item {
+      transfer_order {
+        id
+        date
+        deadline
+        createdAt
+        createdBy
+        updatedAt
+        updatedBy
+        status
+        fromwarehouse {
+          name
+        }
+        towarehouse {
+          name
+        }
+        order_items_aggregate {
+          aggregate {
+            count(columns: id)
+            sum {
+              quantity
+            }
+          }
+          nodes {
+            quantity
+            status
+            id
+            substance {
+              productAccessory {
+                ...product_product_accessory_viewFragment
+              }
+              productGlass {
+                ...product_product_glass_viewFragment
+              }
+            }
+            item_tranfers_aggregate {
+              aggregate {
+                sum {
+                  quantity
+                }
+              }
+              nodes {
+                quantity
+                status
+                id
+                date
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    ${Product_Product_Accessory_ViewFragmentFragmentDoc}
+${Product_Product_Glass_ViewFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertTransferItemGQL extends Apollo.Mutation<InsertTransferItemMutation, InsertTransferItemMutationVariables> {
+    document = InsertTransferItemDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -36390,6 +37805,182 @@ export const InsertWarehouseDocument = gql`
   })
   export class InsertWarehouseGQL extends Apollo.Mutation<InsertWarehouseMutation, InsertWarehouseMutationVariables> {
     document = InsertWarehouseDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateStockItemTranferDocument = gql`
+    mutation UpdateStockItemTranfer($id: uuid!, $date: date, $quantity: Float, $status: String) {
+  update_stock_item_tranfer_by_pk(
+    pk_columns: {id: $id}
+    _set: {date: $date, quantity: $quantity, status: $status}
+  ) {
+    tranfer_order_item {
+      transfer_order {
+        id
+        date
+        deadline
+        createdAt
+        createdBy
+        updatedAt
+        updatedBy
+        status
+        fromwarehouse {
+          name
+        }
+        towarehouse {
+          name
+        }
+        order_items_aggregate {
+          aggregate {
+            count(columns: id)
+            sum {
+              quantity
+            }
+          }
+          nodes {
+            quantity
+            status
+            id
+            substance {
+              productAccessory {
+                ...product_product_accessory_viewFragment
+              }
+              productGlass {
+                ...product_product_glass_viewFragment
+              }
+            }
+            item_tranfers_aggregate {
+              aggregate {
+                sum {
+                  quantity
+                }
+              }
+              nodes {
+                quantity
+                status
+                id
+                date
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    ${Product_Product_Accessory_ViewFragmentFragmentDoc}
+${Product_Product_Glass_ViewFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateStockItemTranferGQL extends Apollo.Mutation<UpdateStockItemTranferMutation, UpdateStockItemTranferMutationVariables> {
+    document = UpdateStockItemTranferDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateTransferOrderDocument = gql`
+    mutation UpdateTransferOrder($id: Int!, $date: date, $deadline: date, $fromWarehouseid: uuid, $status: String, $toWarehouseid: uuid) {
+  update_stock_transfer_order_by_pk(
+    pk_columns: {id: $id}
+    _set: {date: $date, deadline: $deadline, fromWarehouseid: $fromWarehouseid, status: $status, toWarehouseid: $toWarehouseid}
+  ) {
+    date
+    deadline
+    fromwarehouse {
+      name
+      id
+    }
+    towarehouse {
+      name
+      id
+    }
+    status
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateTransferOrderGQL extends Apollo.Mutation<UpdateTransferOrderMutation, UpdateTransferOrderMutationVariables> {
+    document = UpdateTransferOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateStockOrderItemDocument = gql`
+    mutation updateStockOrderItem($id: uuid!, $quantity: Float, $status: String) {
+  update_stock_order_item_by_pk(
+    pk_columns: {id: $id}
+    _set: {quantity: $quantity, status: $status}
+  ) {
+    transfer_order {
+      id
+      date
+      deadline
+      createdAt
+      createdBy
+      updatedAt
+      updatedBy
+      status
+      fromwarehouse {
+        name
+      }
+      towarehouse {
+        name
+      }
+      order_items_aggregate {
+        aggregate {
+          count(columns: id)
+          sum {
+            quantity
+          }
+        }
+        nodes {
+          quantity
+          status
+          id
+          substance {
+            productAccessory {
+              ...product_product_accessory_viewFragment
+            }
+            productGlass {
+              ...product_product_glass_viewFragment
+            }
+          }
+          item_tranfers_aggregate {
+            aggregate {
+              sum {
+                quantity
+              }
+            }
+            nodes {
+              quantity
+              status
+              id
+              date
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    ${Product_Product_Accessory_ViewFragmentFragmentDoc}
+${Product_Product_Glass_ViewFragmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateStockOrderItemGQL extends Apollo.Mutation<UpdateStockOrderItemMutation, UpdateStockOrderItemMutationVariables> {
+    document = UpdateStockOrderItemDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -37342,7 +38933,7 @@ export const InsertJobOrderDocument = gql`
     }
   }
 export const UpdateManufacturingProgressDocument = gql`
-    mutation UpdateManufacturingProgress($services: [manufacturing_manufacturing_service_insert_input!]! = [], $consumables: [manufacturing_manufacturing_consumable_insert_input!]! = [], $glass_id: uuid!) {
+    mutation UpdateManufacturingProgress($services: [manufacturing_manufacturing_service_insert_input!]! = [], $consumables: [manufacturing_manufacturing_consumable_insert_input!]! = [], $glass_id: uuid) {
   delete_manufacturing_manufacturing_service(
     where: {manufacturing_line: {glass_draft: {id: {_eq: $glass_id}}}}
   ) {

@@ -14,6 +14,7 @@ import { GlassWareHouseEffects } from './effects/warehouseGlass.effects';
 import { TransferOrderEffects } from './effects/transferOrder.effects';
 
 import { WarehousesFacade } from './+state/warehouses.facade';
+import { TransferOrderFacade } from '@TanglassStore/inventory/lib/+state/transfer-order.facade';
 
 @NgModule({
   imports: [
@@ -46,6 +47,6 @@ import { WarehousesFacade } from './+state/warehouses.facade';
       GlassWareHouseEffects
     ]),
   ],
-  providers: [WarehousesFacade],
+  providers: [WarehousesFacade, TransferOrderFacade],
 })
 export class StoreInventoryModule {}
