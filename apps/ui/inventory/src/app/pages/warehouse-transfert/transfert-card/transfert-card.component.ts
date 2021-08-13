@@ -9,6 +9,7 @@ import { map, takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { PopOrderItemComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-order-item/pop-order-item.component';
 import { PopOrderItemDeliverComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-order-item-deliver/pop-order-item-deliver.component';
+import { PopTransferItemComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-transfer-item/pop-transfer-item.component';
 
 @Component({
   selector: 'ngx-warehouse-glasse-card',
@@ -77,7 +78,8 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   }
 
   openDialog(action, data = {}) {
-    const component = action === Operations.update ? PopOrderItemComponent : PopOrderItemDeliverComponent;
+    const component = action === Operations.update ? PopOrderItemComponent :
+      (action===this.editNested?PopTransferItemComponent:PopOrderItemDeliverComponent);
     const dialogRef = this.dialog.open(component, {
       width: '1000px',
       panelClass: 'panel-dialog',
@@ -86,9 +88,15 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        result["id"] = data["id"];
         if (action === Operations.update) {
+            result["id"] = data["id"];
             this.facade.updateOrderItem(result)
+        } else if (action === this.editNested) {
+          result["id"] = data["id"];
+          this.facade.updateItemTransfer(result);
+        } else {
+          result["order_itemid"] = data["id"];
+          this.facade.insertItemTransfer(result);
         }
       }
     });
@@ -97,12 +105,11 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   eventTriggering(event) {
    switch (event.action) {
      case this.editNested:
-       break;
      case Operations.update:
        this.openDialog(event.action, event.data);
        break;
      case this.deliverEvent:
-       this.openDialog(event.action);
+       this.openDialog(event.action, event.data);
        break;
    }
   }

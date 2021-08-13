@@ -121,19 +121,36 @@ export const updateOrderItemFailure = createAction(
 );
 
 
-// *** Update itemTranfer ***
+// *** Update itemTransfer ***
 export const updateItemTransfer = createAction(
-  '[TransferOrders] Update itemTranfer',
+  '[TransferOrders] Update itemTransfer',
   props<{ transferred: RequireExactlyOne<Transfered, 'id'> }>()
 );
 
 export const updateItemTransferSuccess = createAction(
-  '[TransferOrders] Update itemTranfer Success',
+  '[TransferOrders] Update itemTransfer Success',
   props<{ transferOrder: DetailedTransferOrder }>()
 );
 
 export const updateItemTransferFailure = createAction(
-  '[TransferOrders] Update itemTranfer Failure',
+  '[TransferOrders] Update itemTransfer Failure',
+  props<{ error: any}>()
+);
+
+
+// *** Insert itemTransfer ***
+export const insertItemTransfer = createAction(
+  '[TransferOrders] insert itemTransfer',
+  props<{ transferred: Transfered }>()
+);
+
+export const insertItemTransferSuccess = createAction(
+  '[TransferOrders] insert itemTransfer Success',
+  props<{ transferOrder: DetailedTransferOrder }>()
+);
+
+export const insertItemTransferFailure = createAction(
+  '[TransferOrders] insert itemTransfer Failure',
   props<{ error: any}>()
 );
 

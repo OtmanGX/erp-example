@@ -59,6 +59,7 @@ const orderItemsHeaders = [
   { field: 'substance.label', headerName: 'Désignation', type: "textColumn" },
   { field: 'quantity', headerName: 'Quantité', type: 'numberColumn' },
   { field: 'total_deliveries', headerName: 'Livré', type: 'numberColumn',
+    valueGetter: params => params.data.total_deliveries ?? 0,
     cellStyle: {color: 'green'}
   },
   { field: 'substance.unit', headerName: 'Unité', type: 'textColumn' },
@@ -67,9 +68,8 @@ const orderItemsHeaders = [
 
 
 const TransferItemsHeaders = [
-  { field: 'id', headerName: 'ID', type: "textColumn" },
-  { field: 'quantity', headerName: 'Quantité', type: 'numberColumn' },
-  { field: 'date', headerName: 'Date', type: 'dateColumn' },
+  { field: 'quantity', headerName: 'Quantité livrée', type: 'numberColumn' },
+  { field: 'date', headerName: 'Date', type: 'dateTimeColumn' },
   { field: 'status', headerName: 'Etat' },
   {field: 'id', headerName: 'Action', type: "editColumn", cellRendererParams: (params) => (
       {

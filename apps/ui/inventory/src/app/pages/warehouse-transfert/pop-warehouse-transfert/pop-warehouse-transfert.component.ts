@@ -17,7 +17,7 @@ import { SharedFacade } from '@tanglass-erp/store/shared';
   styleUrls: ['./pop-warehouse-transfert.component.scss'],
 })
 export class PopWarehouseTransfertComponent extends FormDialog implements AfterViewInit {
-  title = 'Order de Transfert';
+  title = 'Commande de Transfert';
   regConfig: FieldConfig[];
   formArray = new FormArray([]);
   orderForms = [];
@@ -54,7 +54,6 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
   }
 
   ngOnInit() {
-
     this.facade.loadAllShortWarehouses();
     super.ngOnInit();
   }
@@ -65,7 +64,7 @@ export class PopWarehouseTransfertComponent extends FormDialog implements AfterV
       this.transfertForm.get(item).valueChanges
         .subscribe(value => {
           this.syncWarehouses(item, value);
-          if (item == 'toWarehouseid') this.loadItems(value)
+          if (item === 'fromWarehouseid') this.loadItems(value)
         }
         );
       }

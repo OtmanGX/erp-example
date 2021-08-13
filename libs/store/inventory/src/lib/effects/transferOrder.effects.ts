@@ -103,6 +103,19 @@ export class TransferOrderEffects {
     )
   );
 
+  insertItemTransfer$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TransferOrderActions.insertItemTransfer),
+      mergeMap((action) => this.transferOrderservice.insertStockItemTransfer(action.transferred)
+        .pipe(
+          map((data) =>
+            TransferOrderActions.insertItemTransferSuccess({transferOrder: data})),
+          catchError((error) =>
+            of(TransferOrderActions.insertItemTransferFailure({error})))
+          ))
+    )
+  );
+
   loadTransferOrderDetails$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TransferOrderActions.loadOrdersDetails),

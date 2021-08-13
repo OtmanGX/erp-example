@@ -50,6 +50,9 @@ const TransferOrderReducer = createReducer<State>(
   on(TransferOrderActions.addTransferOrderSuccess, (state, action) =>
     transferOrderAdapter.addOne(action.TransferOrder, state)
   ),
+  on(TransferOrderActions.deleteTransferOrderSuccess, (state, action) =>
+    transferOrderAdapter.removeMany(action.ids, state)
+  ),
   // Update
   on(TransferOrderActions.updateTransferOrderSuccess, (state, action) =>
     transferOrderAdapter.upsertOne(action.transferOrder, state)
@@ -63,6 +66,13 @@ const TransferOrderReducer = createReducer<State>(
   ),
   // Update Transfer Item
   on(TransferOrderActions.updateItemTransferSuccess, (state, action) =>
+    transferOrderAdapter.upsertOne(action.transferOrder, {
+      ...state,
+      selectedTransferOrder: { ...state.selectedTransferOrder, ...action.transferOrder }
+    })
+  ),
+  // Insert Transfer Item
+  on(TransferOrderActions.insertItemTransferSuccess, (state, action) =>
     transferOrderAdapter.upsertOne(action.transferOrder, {
       ...state,
       selectedTransferOrder: { ...state.selectedTransferOrder, ...action.transferOrder }

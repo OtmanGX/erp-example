@@ -9,7 +9,7 @@ import { regConfigDelivery } from '@TanglassUi/inventory/utils/forms';
   styleUrls: ['./pop-order-item-deliver.component.scss'],
 })
 export class PopOrderItemDeliverComponent extends FormDialog {
-  title = 'Order de Transfert';
+  title = 'Effectuer un transfert';
   regConfig: FieldConfig[];
 
   constructor(

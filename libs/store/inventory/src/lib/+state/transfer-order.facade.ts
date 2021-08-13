@@ -55,4 +55,8 @@ export class TransferOrderFacade {
     this.dispatch(transferOrderActions.updateItemTransfer({transferred}))
   }
 
+  insertItemTransfer(transferred: Transfered) {
+    this.dispatch(transferOrderActions.insertItemTransfer({transferred}));
+  }
+
 }

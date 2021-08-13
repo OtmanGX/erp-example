@@ -12,6 +12,7 @@ export {
   ConsumableWarehouse,
   transferStatusDirection,
   orderItemStatus,
+  itemTransferStatus,
   DetailedTransferOrder,
   OrderItem,
 } from '@tanglass-erp/core/inventory';

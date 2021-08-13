@@ -3,7 +3,7 @@ import {
   Input,
   Output,
   ViewChild,
-  EventEmitter,
+  EventEmitter
 } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { DatePipe } from '@angular/common';
@@ -90,6 +90,7 @@ export class MainGridComponent {
   selectedData = new Array();
   context;
   hide = false; // For Search reset  button
+  isRowMaster;
 
   constructor(
     public datepipe: DatePipe,
@@ -97,9 +98,9 @@ export class MainGridComponent {
     public dialog: MatDialog,
     private route: ActivatedRoute
   ) {
-    this.context = {
-      componentParent: this,
-    };
+    this.context = {componentParent: this};
+    this.isRowMaster = dataItem =>
+      dataItem ? dataItem[this.detailColumnField].length > 0 : false;
   }
 
   onGridReady(params) {
@@ -112,7 +113,10 @@ export class MainGridComponent {
     this.agGrid.gridOptions.detailCellRendererParams = {
       detailGridOptions: {
         columnDefs: this.detailColumnDefs,
-        // defaultColDef: this.defaultColDef,
+        defaultColDef: {
+          sortable: true,
+          flex: 1,
+        },
         columnTypes: this.columnTypes,
         context: this.context
       },

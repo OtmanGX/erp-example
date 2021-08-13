@@ -43,11 +43,9 @@ export class WarehouseTransfertComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-          console.log(result.order_items)
-
           this.facade.insertOne({
-            fromWarehouseid: result.fromWarehouse,
-            toWarehouseid: result.toWarehouse,
+            fromWarehouseid: result.fromWarehouseid,
+            toWarehouseid: result.toWarehouseid,
             date: result.date,
             deadline: result.deadline,
             substances: result.order_items.map(elt => ({substanceid:elt.substance,quantity:+elt.quantity}))

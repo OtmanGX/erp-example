@@ -10,6 +10,7 @@ import {
   UpdateStockOrderItemGQL,
   UpdateStockItemTranferGQL,
   DeleteTransferOrdersGQL,
+  InsertTransferItemGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
 import * as fromTransfer from '../models/transrefOrder.model';
@@ -34,7 +35,8 @@ export class TransferOrderService {
     private updateTransferOrderGQL: UpdateTransferOrderGQL,
     private updateStockOrderItemGQL: UpdateStockOrderItemGQL,
     private updateStockItemTranferGQL: UpdateStockItemTranferGQL,
-    private deleteTransferOrdersGQL: DeleteTransferOrdersGQL
+    private deleteTransferOrdersGQL: DeleteTransferOrdersGQL,
+    private insertTransferItemGQL: InsertTransferItemGQL
   ) {}
 
   getAll() {
@@ -96,6 +98,19 @@ export class TransferOrderService {
             stock_transfer_order_by_pk:
               data.data.update_stock_item_tranfer_by_pk.tranfer_order_item
                 .transfer_order,
+          })
+        )
+      );
+  }
+
+
+  insertStockItemTransfer(transfered: Transfered) {
+    return this.insertTransferItemGQL
+      .mutate(transfered)
+      .pipe(
+        map((data) =>
+          AdaptTransferOrderDetails({
+            stock_transfer_order_by_pk: data.data.insert_stock_item_tranfer_one.tranfer_order_item.transfer_order
           })
         )
       );
