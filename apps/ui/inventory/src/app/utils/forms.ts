@@ -1,5 +1,11 @@
 import { MAXNUMBER, REQUIRED } from '@tanglass-erp/material';
-import { DetailedTransferOrder, transferStatusDirection, Warehouse } from '@tanglass-erp/store/inventory';
+import {
+  DetailedTransferOrder,
+  transferStatusDirection,
+  orderItemStatus,
+  Warehouse,
+  itemTransferStatus
+} from '@tanglass-erp/store/inventory';
 import { Observable } from 'rxjs';
 
 type ListObservable = Observable<any> | Array<any>;
@@ -36,7 +42,7 @@ const regConfigTransferOrder = (
 ) => [
   {
     type: 'select',
-    name: 'fromWarehouse',
+    name: 'fromWarehouseid',
     label: 'De',
     inputType: 'text',
     value: data?.fromwarehouse?.id,
@@ -45,7 +51,7 @@ const regConfigTransferOrder = (
   },
   {
     type: 'select',
-    name: 'toWarehouse',
+    name: 'toWarehouseid',
     label: 'À',
     inputType: 'text',
     value: data?.towarehouse?.id,
@@ -128,7 +134,7 @@ const regConfigTransferOrderItemCard = (data: any, limit?: number) => [
     name: 'status',
     label: 'État',
     value: data.status,
-    options: Object.values(transferStatusDirection).map((elem) => ({
+    options: Object.values(orderItemStatus).map((elem) => ({
       key: elem,
       value: elem,
     })),
@@ -158,7 +164,39 @@ const regConfigDelivery = (limit?: number) => [
     name: 'status',
     label: 'État',
     value: null,
-    options: ['Ready', 'out'].map((item) => ({ key: item, value: item })),
+    options: Object.values(itemTransferStatus).map((elem) => ({
+      key: elem,
+      value: elem,
+    })),
+  },
+];
+
+// To edit
+const regConfigTransferItem = (data, limit) => [
+  {
+    type: 'input',
+    inputType: 'number',
+    label: 'Quantité',
+    name: 'quantity',
+    value: data?.quantity,
+    validations: [REQUIRED, MAXNUMBER(limit)],
+  },
+  {
+    type: 'date',
+    label: 'Date',
+    name: 'date',
+    value: data?.date,
+    validations: [REQUIRED],
+  },
+  {
+    type: 'inputSelect',
+    name: 'status',
+    label: 'État',
+    value: data?.status,
+    options: Object.values(itemTransferStatus).map((elem) => ({
+      key: elem,
+      value: elem,
+    })),
   },
 ];
 
@@ -169,4 +207,5 @@ export {
   regConfigTransferOrderEdit,
   regConfigTransferOrderItemCard,
   regConfigDelivery,
+  regConfigTransferItem
 };

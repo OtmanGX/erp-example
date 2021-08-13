@@ -1,19 +1,15 @@
 import { Component } from '@angular/core';
 import { ModelCardComponent } from '@tanglass-erp/material';
-import { DetailedTransferOrder } from '@TanglassStore/inventory/index';
-import { Store } from '@ngrx/store';
-import { AppState } from '@tanglass-erp/store/app';
-import * as transferOrderActions from '@TanglassStore/inventory/lib/actions/transferOrder.actions';
-import * as TranserOrderSelectors from '@TanglassStore/inventory/lib/selectors/trasnferOrder.selectors';
+import { DetailedTransferOrder, TransferOrderFacade } from '@TanglassStore/inventory/index';
 import { ActivatedRoute } from '@angular/router';
 import { GridPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import { orderItemsHeaders } from '@TanglassUi/inventory/utils/grid-headers';
-import { takeUntil } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { orderItemsHeaders, TransferItemsHeaders } from '@TanglassUi/inventory/utils/grid-headers';
+import { map, takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { PopOrderItemComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-order-item/pop-order-item.component';
 import { PopOrderItemDeliverComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-order-item-deliver/pop-order-item-deliver.component';
+import { PopTransferItemComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-transfer-item/pop-transfer-item.component';
 
 @Component({
   selector: 'ngx-warehouse-glasse-card',
@@ -21,25 +17,29 @@ import { PopOrderItemDeliverComponent } from '@TanglassUi/inventory/pages/wareho
   styleUrls: ['./transfert-card.scss']
 })
 export class TransfertCardComponent extends ModelCardComponent implements GridView {
-  data$ = this.store.select(TranserOrderSelectors.getSelectedTransferOrder)
-    .pipe(takeUntil(this._onDestroy));
-  orderItems: Observable<any>;
+  data$ = this.facade.selectedTransferOrder.pipe(takeUntil(this._onDestroy));
+  order_items$;
   title = "Transfert";
   gap = "50px";
   deliverEvent = 'deliver';
+  editNested = 'editNested';
 
   // Grid
   agGrid: AgGridAngular;
   columnDefs;
+  detailColumnDefs;
   columnId = "id";
   mainGrid: MainGridComponent;
   permissions: GridPermissions = {
-    deliver: true
+    deliver: true,
+    editNested: true
   }
-  constructor(private store: Store<AppState>,
+  detailColumnField = 'deliveries';
+  constructor(private facade: TransferOrderFacade,
               public dialog: MatDialog,
               public route: ActivatedRoute) {
     super(route);
+    this.order_items$ = this.data$.pipe(map(e => e?.order_items));
     this.setColumnDefs();
   }
 
@@ -50,11 +50,10 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   }
 
   dispatch(): void {
-    this.store.dispatch(transferOrderActions.loadTransferOrderById({id: this.id}));
+    this.facade.getOne(parseInt(this.id, 10));
   }
 
   passData(data?: DetailedTransferOrder) {
-    this.orderItems = of(data?.order_items);
     return [
       {
         label: "Infos Générales",
@@ -79,7 +78,8 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
   }
 
   openDialog(action, data = {}) {
-    const component = action === Operations.update ? PopOrderItemComponent : PopOrderItemDeliverComponent;
+    const component = action === Operations.update ? PopOrderItemComponent :
+      (action===this.editNested?PopTransferItemComponent:PopOrderItemDeliverComponent);
     const dialogRef = this.dialog.open(component, {
       width: '1000px',
       panelClass: 'panel-dialog',
@@ -88,19 +88,28 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (action === Operations.update) {}
+        if (action === Operations.update) {
+            result["id"] = data["id"];
+            this.facade.updateOrderItem(result)
+        } else if (action === this.editNested) {
+          result["id"] = data["id"];
+          this.facade.updateItemTransfer(result);
+        } else {
+          result["order_itemid"] = data["id"];
+          this.facade.insertItemTransfer(result);
+        }
       }
     });
   }
 
   eventTriggering(event) {
-    console.log(event);
    switch (event.action) {
+     case this.editNested:
      case Operations.update:
        this.openDialog(event.action, event.data);
        break;
      case this.deliverEvent:
-       this.openDialog(event.action);
+       this.openDialog(event.action, event.data);
        break;
    }
   }
@@ -114,6 +123,7 @@ export class TransfertCardComponent extends ModelCardComponent implements GridVi
           }
         )},
     ];
+    this.detailColumnDefs = TransferItemsHeaders;
   }
 
 }

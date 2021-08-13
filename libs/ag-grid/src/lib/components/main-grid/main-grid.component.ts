@@ -3,24 +3,26 @@ import {
   Input,
   Output,
   ViewChild,
-  EventEmitter,
+  EventEmitter
 } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { DatePipe } from '@angular/common';
-import { MatEditComponent } from '../cell-renderers/mat-edit.component';
 import { Observable, of } from 'rxjs';
-import { GridObjectRenderComponentComponent } from '../grid-object-render-component/grid-object-render-component.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ExportBottomSheetComponent } from '../export-bottom-sheet/export-bottom-sheet.component';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '@tanglass-erp/material';
-import { LinkComponent } from '../cell-renderers/link.component';
 import { Operations } from '../../enums/operations';
 import { GridPermissions } from '../../interfaces/grid-permissions';
 import { GroupButton } from '../../interfaces/group-button';
 import { DateFilterComponent } from '../date-filter/date-filter.component';
 import { dateType } from '../../interfaces/date';
+
+import { SIDEBAR, STATUSBAR } from '../../utils/aggrid-bars';
+import { columnTypes } from '../../utils/aggrid-column-types';
+import { PERMISSIONS } from '../../utils/aggrid-utils';
+import { gridOptions, defaultColDef } from '../../utils/aggrid-options';
 
 @Component({
   selector: 'ngx-main-grid',
@@ -28,29 +30,27 @@ import { dateType } from '../../interfaces/date';
   styleUrls: ['./main-grid.component.scss'],
 })
 export class MainGridComponent {
-  operations = Operations;
   @ViewChild('agGrid') public agGrid: AgGridAngular;
-  _rowData: Observable<any> | Array<any>
+  _rowData: Observable<any> | Array<any>;
   @Input() set rowData(obj) {
-    if (obj instanceof Array)
-      this._rowData = of(obj);
+    if (obj instanceof Array) this._rowData = of(obj);
     else this._rowData = obj;
   }
   get rowData() {
     return this._rowData;
   }
-  @Input() columnDefs: any;
+
+  // *** Inputs ***
+  @Input() columnDefs: Array<any>;
+  @Input() detailColumnDefs: Array<any>;
+  @Input() detailColumnField: string;
+  @Input() masterDetail: boolean = false;
   @Input() autoGroupColumnDef: any;
   @Input() columnId = 'id';
   // Toolbar
   @Input() withToolbar: boolean = true;
   @Input() extraActions: Array<GroupButton> = [];
   @Input() withDetails: boolean = false;
-  _permissions: GridPermissions = {
-    add: true,
-    update: true,
-    delete: true,
-  };
   @Input() withCrud: boolean = true;
   @Input()
   set permissions(perms: GridPermissions) {
@@ -71,131 +71,26 @@ export class MainGridComponent {
   @Input() rowGroupPanelShow = 'always';
   @Input() height = '600px';
   @Input() width = '100%';
-  @Input()
-  withDateFilter: boolean = false;
+  @Input() withDateFilter: boolean = false;
+  @Input() dateText;
+
+  sideBar = SIDEBAR;
+  statusBar = STATUSBAR;
+  columnTypes = columnTypes(this.datepipe);
+  _permissions = PERMISSIONS;
+  gridOptions = gridOptions(this.columnId);
+  defaultColDef = defaultColDef;
+  operations = Operations;
+
+  // *** Outputs ***
   @Output() triggerEvent = new EventEmitter<{ action: string; data?: any }>();
+
   private gridApi: any;
   private gridColumnApi: any;
   selectedData = new Array();
   context;
   hide = false; // For Search reset  button
-
-  @Input()
-  dateText;
-
-  // Formatters
-  dateFormatter = (params) =>
-    !params.data
-      ? null
-      : this.datepipe.transform(params.data.date, 'dd/MM/yyyy');
-  dateTimeFormatter = (params) =>
-    !params.data
-      ? null
-      : this.datepipe.transform(params.data.date, 'dd/MM/yyyy HH:mm');
-
-  // Renderers
-  frameworkComponents: {
-    editRenderer: MatEditComponent;
-  };
-  checkboxSelectionColumn = (params) => {
-    const displayedColumns = params.columnApi.getAllDisplayedColumns();
-    return displayedColumns[0] === params.column;
-  };
-
-  // AgGrid Parameters
-  gridOptions = {
-    getRowNodeId: (data) => {
-      // the code is unique, so perfect for the ID
-      return data[this.columnId];
-    },
-    // immutableData: true,
-  };
-  defaultColDef = {
-    sortable: true,
-    floatingFilter: true,
-    filter: true,
-    flex: 1,
-    minWidth: 160,
-    enableRowGroup: true,
-    headerCheckboxSelection: this.checkboxSelectionColumn,
-    headerCheckboxSelectionFilteredOnly: this.checkboxSelectionColumn,
-    checkboxSelection: this.checkboxSelectionColumn,
-  };
-
-  dateColumnByFormatter = (formatter) => ({
-    filter: 'agDateColumnFilter',
-    suppressMenu: true,
-    valueFormatter: formatter,
-    filterParams: {
-      comparator: function (filterLocalDateAtMidnight, cellValue: Date) {
-        const day = cellValue.getDate();
-        const month = cellValue.getMonth();
-        const year = cellValue.getFullYear();
-        const cellDate = new Date(year, month, day);
-        if (cellDate < filterLocalDateAtMidnight) {
-          return -1;
-        } else if (cellDate > filterLocalDateAtMidnight) {
-          return 1;
-        } else {
-          return 0;
-        }
-      },
-    },
-  });
-
-  columnTypes = {
-    nonEditableColumn: { editable: false },
-    textColumn: { filter: 'agTextColumnFilter' },
-    editColumn: { cellRendererFramework: MatEditComponent, filter: false },
-    objectColumn: {
-      cellRendererFramework: GridObjectRenderComponentComponent,
-      filter: true,
-    },
-    dateColumn: this.dateColumnByFormatter(this.dateFormatter),
-    dateTimeColumn: this.dateColumnByFormatter(this.dateTimeFormatter),
-    linkColumn: {
-      cellRendererFramework: LinkComponent,
-      filter: 'agTextColumnFilter',
-    },
-    numberColumn: {
-      filter: 'agNumberColumnFilter',
-    },
-  };
-
-  sideBar = {
-    toolPanels: [
-      {
-        id: 'columns',
-        labelDefault: 'Columns',
-        labelKey: 'columns',
-        iconKey: 'columns',
-        toolPanel: 'agColumnsToolPanel',
-      },
-      {
-        id: 'filters',
-        labelDefault: 'Filters',
-        labelKey: 'filters',
-        iconKey: 'filter',
-        toolPanel: 'agFiltersToolPanel',
-      },
-    ],
-  };
-
-  statusBar = {
-    statusPanels: [
-      {
-        statusPanel: 'agTotalAndFilteredRowCountComponent',
-        align: 'left',
-      },
-      {
-        statusPanel: 'agTotalRowCountComponent',
-        align: 'center',
-      },
-      { statusPanel: 'agFilteredRowCountComponent' },
-      { statusPanel: 'agSelectedRowCountComponent' },
-      { statusPanel: 'agAggregationComponent' },
-    ],
-  };
+  isRowMaster;
 
   constructor(
     public datepipe: DatePipe,
@@ -203,9 +98,9 @@ export class MainGridComponent {
     public dialog: MatDialog,
     private route: ActivatedRoute
   ) {
-    this.context = {
-      componentParent: this,
-    };
+    this.context = {componentParent: this};
+    this.isRowMaster = dataItem =>
+      dataItem ? dataItem[this.detailColumnField].length > 0 : false;
   }
 
   onGridReady(params) {
@@ -214,6 +109,24 @@ export class MainGridComponent {
     this.agGrid.gridOptions.onRowSelected = (event) => {
       this.selectedData = this.getSelectedRows();
     };
+
+    this.agGrid.gridOptions.detailCellRendererParams = {
+      detailGridOptions: {
+        columnDefs: this.detailColumnDefs,
+        defaultColDef: {
+          sortable: true,
+          flex: 1,
+        },
+        columnTypes: this.columnTypes,
+        context: this.context
+      },
+      getDetailRowData: function (_params) {
+        _params.successCallback(_params.data[this.detailColumnField]);
+      }.bind(this),
+    };
+    const sortModel = [{ colId: this.columnId, sort: 'asc' }];
+    this.gridColumnApi.applyColumnState({ state: sortModel });
+    // this.gridApi.sizeColumnsToFit();
     this.route.queryParams.subscribe((params) => {
       if (params.hasOwnProperty('filterby')) {
         this.applyFilter(params.filterby, params.value);

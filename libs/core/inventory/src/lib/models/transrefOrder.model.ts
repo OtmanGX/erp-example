@@ -28,12 +28,14 @@ export interface DetailedTransferOrder extends MetaData {
 
 
 export interface InsertedTransferOrder {
+    id?: number;
     substances: Item[];
     fromWarehouseid: string;
     toWarehouseid: string;
     date: string|Date;
     deadline?: string|Date;
 }
+
 
 export interface Item {
     substanceid: string;

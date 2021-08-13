@@ -10,7 +10,7 @@ import { GridPermissions } from '../../interfaces/grid-permissions';
   selector: 'ngx-mat-edit',
   template: `
     <button
-      *ngIf="(params.data ? true : params.group) && permissions['update']"
+      *ngIf="(params.data ? true : params.group) && permissions['update'] && params?.hideEdit!= true"
       (click)="click()"
       mat-icon-button
       matTooltip="Modifier"

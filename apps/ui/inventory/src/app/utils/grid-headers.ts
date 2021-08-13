@@ -18,8 +18,7 @@ const warehouseTransferHeaders = [
       {
         link: `${params?.data?.id}`,
       }
-    )
-  },
+    )},
   { field: 'fromwarehouse.name', headerName: 'Entrepôt source', type: "textColumn" },
   { field: 'towarehouse.name', headerName: 'Entrepôt destination', type: "textColumn" },
   { field: 'status', headerName: 'Statut' },
@@ -56,14 +55,28 @@ const ordersDetailsHeaders = [
 ];
 
 const orderItemsHeaders = [
-  { field: 'substance.code', headerName: 'Article', type: "textColumn" },
+  { field: 'substance.code', headerName: 'Article', type: "textColumn", cellRenderer: 'agGroupCellRenderer' },
   { field: 'substance.label', headerName: 'Désignation', type: "textColumn" },
   { field: 'quantity', headerName: 'Quantité', type: 'numberColumn' },
-  { field: 'total_deliveries', headerName: 'Livré', type: 'numberColumn', valueGetter: params => params.value || 0,
+  { field: 'total_deliveries', headerName: 'Livré', type: 'numberColumn',
+    valueGetter: params => params.data.total_deliveries ?? 0,
     cellStyle: {color: 'green'}
   },
   { field: 'substance.unit', headerName: 'Unité', type: 'textColumn' },
   { field: 'status', headerName: 'Etat' },
+];
+
+
+const TransferItemsHeaders = [
+  { field: 'quantity', headerName: 'Quantité livrée', type: 'numberColumn' },
+  { field: 'date', headerName: 'Date', type: 'dateTimeColumn' },
+  { field: 'status', headerName: 'Etat' },
+  {field: 'id', headerName: 'Action', type: "editColumn", cellRendererParams: (params) => (
+      {
+        extra: [{ icon: "edit", tooltip: "modifier", event: "editNested" }],
+        hideEdit: true
+      }
+    )},
 ];
 
 const SubstanceGlassHeaders = [
@@ -142,5 +155,6 @@ export {
   ConsumableWarehouseHeaders,
   AccessoryWarehouseHeaders,
   ordersDetailsHeaders,
-  orderItemsHeaders
+  orderItemsHeaders,
+  TransferItemsHeaders
 };
