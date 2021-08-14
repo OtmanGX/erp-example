@@ -47,6 +47,33 @@ export class WarehousesEffects {
   )
   );
 
+  updateOne$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(WarehousesActions.updateWarehouse),
+    mergeMap((action) => this.warehouseService.updateOne(action.warehouse)
+      .pipe(
+        map((data) =>
+          WarehousesActions.updateWarehouseSuccess({warehouse: data.data.update_stock_warehouse_by_pk})),
+        catchError((error) =>
+          of(WarehousesActions.updateWarehouseFailure({error})))
+        ))
+  )
+  );
+
+
+  removeMany$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(WarehousesActions.removeWarehouses),
+      mergeMap((action) => this.warehouseService.removeMany(action.ids)
+        .pipe(
+          map((data) =>
+            WarehousesActions.removeWarehousesSuccess({ids: action.ids})),
+          catchError((error) =>
+            of(WarehousesActions.removeWarehousesFailure({error})))
+        ))
+    )
+  );
+
   constructor(private actions$: Actions,
               private warehouseService: WarehouseService) {}
 }

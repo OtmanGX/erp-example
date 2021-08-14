@@ -10,7 +10,7 @@ import { PopAddressComponent } from '../../components/pop-address/pop-address.co
 import { PopShortContactComponent } from '../../contact/pop-short-contact/pop-short-contact.component';
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { Address, Contact, DetailedProvider } from '@TanglassStore/contact/index';
 
 
@@ -34,7 +34,7 @@ export class ProviderCardComponent extends ModelCardComponent {
   stepContact = null;
   stepAddress = null;
   data$ = this.store.select(getSelectedProvider)
-    .pipe(takeUntil(this._onDestroy));
+    .pipe(filter((e) => !!e), takeUntil(this._onDestroy));
 
   contactPassedData = (contact: Contact) => [
 

@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { InsertedWarehouse, Warehouse } from '@tanglass-erp/core/inventory';
+import { RequireExactlyOne } from '@tanglass-erp/core/common';
 
 export const loadWarehouses = createAction('[Warehouses] Load Warehouses');
 
@@ -50,7 +51,7 @@ export const addWarehouseFailure = createAction(
 // *** Update ***
 export const updateWarehouse = createAction(
   '[Warehouses] update Warehouse',
-  props<{ warehouse: Warehouse }>()
+  props<{ warehouse: RequireExactlyOne<InsertedWarehouse, "id"> }>()
 );
 
 export const updateWarehouseSuccess = createAction(
@@ -66,17 +67,17 @@ export const updateWarehouseFailure = createAction(
 
 
 // *** Remove ***
-// export const removeWarehouse = createAction(
-//   '[Warehouses] reomve Warehouse',
-//   props<{ warehouse: DetailedWarehouse }>()
-// );
-//
-// export const removeWarehouseSuccess = createAction(
-//   '[Warehouses] reomve Warehouse Success',
-//   props<{ warehouses: Warehouse }>()
-// );
-//
-// export const removeWarehouseFailure = createAction(
-//   '[Warehouses] reomve Warehouse Failure',
-//   props<{ error: any}>()
-// );
+export const removeWarehouses = createAction(
+  '[Warehouses] remove Warehouses',
+  props<{ ids: string[] }>()
+);
+
+export const removeWarehousesSuccess = createAction(
+  '[Warehouses] remove Warehouse Success',
+  props<{ ids: string[] }>()
+);
+
+export const removeWarehousesFailure = createAction(
+  '[Warehouses] remove Warehouse Failure',
+  props<{ error: any}>()
+);

@@ -33,11 +33,12 @@ const routes: Routes = [
       },
       {
         path: "profile",
+        data: { title: '', breadcrumb: "Profile", noLink: true },
         children: [
           {
             path: 'overview',
-            data: { title: 'Profile', breadcrumb: "" },
-            component: ProfileComponent
+            component: ProfileComponent,
+            data: { title: 'Profile', breadcrumb: "Profile" },
           }
         ]
       },

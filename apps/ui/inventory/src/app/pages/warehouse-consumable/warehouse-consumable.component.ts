@@ -50,10 +50,7 @@ export class WarehouseConsumableComponent implements GridView {
   }
 
   setColumnDefs(): void {
-    this.columnDefs = [
-      ...ConsumableWarehouseHeaders,
-      {field: 'id', headerName: 'Action', type: "editColumn"},
-    ];
+    this.columnDefs = ConsumableWarehouseHeaders;
   }
 
 }

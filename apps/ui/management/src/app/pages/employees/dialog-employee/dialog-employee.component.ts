@@ -6,6 +6,7 @@ import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoi
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
 import { regConfigEmployee } from '@TanglassUi/management/utils/forms';
 import { map } from 'rxjs/operators';
+import { environment as env } from '../../../../environments/environment';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./dialog-employee.component.scss']
 })
 export class DialogEmployeeComponent extends FormDialog implements OnDestroy {
-
+  title: string;
   regConfig: FieldConfig[];
   reConfigValidator = MustMatch('password', 'confirmPassword');
   salePoints$ = this.store.select(SalePointSelectors.getAllSalePoints)
@@ -28,6 +29,7 @@ export class DialogEmployeeComponent extends FormDialog implements OnDestroy {
 
   ngOnInit(): void {
     super.ngOnInit();
+    this.title = this.data?.id?env.UPDATE_USER_TITLE:env.ADD_USER_TITLE;
     this.store.dispatch(SalePointActions.loadSalePoints());
   }
 

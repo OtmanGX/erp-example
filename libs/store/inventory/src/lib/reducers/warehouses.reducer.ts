@@ -49,6 +49,11 @@ const warehousesReducer = createReducer(
   on(WarehousesActions.updateWarehouseSuccess, (state, action) =>
     warehousesAdapter.upsertOne(action.warehouse, state)
   ),
+  // Remove
+  on(WarehousesActions.removeWarehousesSuccess, (state, action) =>
+    warehousesAdapter.removeMany(action.ids, state)
+  )
+  ,
   // Failure
   on(WarehousesActions.loadWarehousesFailure,
     WarehousesActions.loadWarehouseByIdFailure,

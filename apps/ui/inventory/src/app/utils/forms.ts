@@ -30,7 +30,7 @@ const regConfigWarehouse = (
     name: 'salesPoint',
     label: 'Point de vente',
     inputType: 'text',
-    value: data?.salesPoint,
+    value: data?.salesPoint?.id,
     options: salespoints,
     validations: [REQUIRED],
   },
