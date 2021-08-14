@@ -78,7 +78,7 @@ export class DeliveryLineComponent implements OnInit {
 
   public adaptValue(): DeliveryLine[] {
     const returnedValue = this.deliveryLines.map((e) => {
-      const { product, ...wanted } = {
+      const { product, toDeliver, ...wanted } = {
         ...e,
       };
       return wanted;

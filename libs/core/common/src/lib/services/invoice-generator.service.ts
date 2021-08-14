@@ -31,6 +31,11 @@ export class InvoiceGeneratorService {
     const pdf = new PdfMakeWrapper();
     pdf.pageSize('A4');
     pdf.pageMargins([40, 60, 40, 60]);
+    pdf.styles({
+      header: {
+          bold: true
+      }
+    });
     // Company name and adress
     pdf.add(
       new Txt(invoice.company.name).fontSize(30).bold().alignment('right').end
@@ -64,7 +69,9 @@ export class InvoiceGeneratorService {
             .alignment('left')
             .width(100).end,
         ]).width('30%').end,
-        new Txt(`${CODE_CLIENT}: ` + invoice.client?.code??'').alignment('right').end,
+        new Txt(`${CODE_CLIENT}: ` + invoice.client?.code ?? '').alignment(
+          'right'
+        ).end,
       ]).margin([0, 20]).end
     );
 
@@ -95,15 +102,15 @@ export class InvoiceGeneratorService {
               widths: [110, 110],
               body: [
                 [
-                  { text: 'Total HT', style: 'tableHeader' },
+                  { text: 'Total HT', style: 'header' },
                   { text: invoice.amount_ht },
                 ],
                 [
-                  { text: 'TVA', style: 'tableHeader' },
+                  { text: 'TVA', style: 'header' },
                   { text: invoice.amount_tva },
                 ],
                 [
-                  { text: 'Total TTC', style: 'tableHeader' },
+                  { text: 'Total TTC', style: 'header' },
                   { text: invoice.amount_ttc },
                 ],
               ],
@@ -122,6 +129,11 @@ export class InvoiceGeneratorService {
     const pdf = new PdfMakeWrapper();
     pdf.pageSize('A4');
     pdf.pageMargins([40, 60, 40, 60]);
+    pdf.styles({
+      header: {
+        bold: true
+      }
+    });
     // Company name and adress
     pdf.add(
       new Txt(delivery.client.name).fontSize(30).bold().alignment('right').end
@@ -154,7 +166,9 @@ export class InvoiceGeneratorService {
             .alignment('left')
             .width(100).end,
         ]).width('30%').end,
-        new Txt(`${CODE_CLIENT}: ` + delivery.client.code??'').alignment('right').end,
+        new Txt(`${CODE_CLIENT}: ` + delivery.client.code ?? '').alignment(
+          'right'
+        ).end,
       ]).margin([0, 20]).end
     );
 
@@ -185,15 +199,15 @@ export class InvoiceGeneratorService {
               widths: [110, 110],
               body: [
                 [
-                  { text: 'Total HT', style: 'tableHeader' },
+                  { text: 'Total HT', style: 'header' },
                   { text: delivery.amount_ht },
                 ],
                 [
-                  { text: 'TVA', style: 'tableHeader' },
+                  { text: 'TVA', style: 'header' },
                   { text: delivery.amount_tva },
                 ],
                 [
-                  { text: 'Total TTC', style: 'tableHeader' },
+                  { text: 'Total TTC', style: 'header' },
                   { text: delivery.amount_ttc },
                 ],
               ],
@@ -212,6 +226,11 @@ export class InvoiceGeneratorService {
     const pdf = new PdfMakeWrapper();
     pdf.pageSize('A4');
     pdf.pageMargins([40, 60, 40, 60]);
+    pdf.styles({
+      header: {
+        bold: true
+      }
+    });
     pdf.add(new Txt(order.customer.name).fontSize(20).bold().end);
     pdf.add(
       new Txt('Tél : ' + order.customer.phone + '\n\n').margin([0, 8]).end
@@ -220,7 +239,9 @@ export class InvoiceGeneratorService {
     pdf.add(
       new Columns([
         new Columns([
-          new Txt(`${isQuotation?'Devis':'COMMANDE'} N°\nN° de série`).width(120).end,
+          new Txt(
+            `${isQuotation ? 'Devis' : 'COMMANDE'} N°\nN° de série`
+          ).width(120).end,
           new Txt(`:  ${order.ref}`).alignment('left').width(100).end,
         ]).width('30%').end,
         new Txt(`Date: ${order.date.toLocaleString()}`)
@@ -242,7 +263,7 @@ export class InvoiceGeneratorService {
             (e) =>
               <ProductToPrint>{
                 ...e,
-                quantity: e.count??e.quantity,
+                quantity: e.count ?? e.quantity,
               }
           )
         )
@@ -261,15 +282,15 @@ export class InvoiceGeneratorService {
               widths: [110, 110],
               body: [
                 [
-                  { text: 'Total HT', style: 'tableHeader' },
+                  { text: 'Total HT', style: 'header' },
                   { text: order.total_ht },
                 ],
                 [
-                  { text: 'TVA', style: 'tableHeader' },
+                  { text: 'TVA', style: 'header' },
                   { text: order.total_tax },
                 ],
                 [
-                  { text: 'Total TTC', style: 'tableHeader' },
+                  { text: 'Total TTC', style: 'header' },
                   { text: order.total_ttc },
                 ],
               ],
@@ -285,7 +306,11 @@ export class InvoiceGeneratorService {
   }
 
   addGlasses(products: Product_draft[]) {
-    const table = [['Code', 'Qte', 'Largeur', 'Hauteur', 'M2', 'ML']];
+    const table = [['Code', 'Qte', 'Largeur', 'Hauteur', 'M2', 'ML']
+      .map((e) => ({
+        text: e,
+        style: 'header',
+      }))];
     // Filter only Glasses and client articles
     products = products.filter((e) =>
       ['Verre', 'Article_Client'].includes(e.type)
@@ -294,7 +319,7 @@ export class InvoiceGeneratorService {
     products.forEach((item) => {
       const row = [
         item.product_code,
-        item.count??item.quantity,
+        item.count ?? item.quantity,
         item.width,
         item.heigth,
         item.m2,
@@ -329,15 +354,19 @@ export class InvoiceGeneratorService {
     });
 
     // Header
-    const table: any[] = [['Désignation', 'Qté M2/ML', 'PU', 'Montant H.T']];
-
+    const table: any[] = [
+      ['Désignation', 'Qté M2/ML', 'PU', 'Montant H.T'].map((e) => ({
+        text: e,
+        style: 'header',
+      })),
+    ];
     const accessories = ['ACCESSOIRES', 0, '', 0]; // Initialize accessories
 
     // Group By glass
     const map = new Map<string, Array<any>>();
 
     products
-      .filter((e) => ['Verre', 'Accessoire'].includes(e.type))
+      .filter((e) => ['Verre', 'Accessoire', ''].includes(e.type))
       .forEach((item) => {
         if (item.type === 'Accessoire') {
           // Accessory type
@@ -364,19 +393,24 @@ export class InvoiceGeneratorService {
           (accessories[2] as number) += item.price;
           (accessories[3] as number) += item.total_price;
         } else {
-          services.push([
-            item.label,
-            item.quantity,
-            item.price,
-            item.total_price,
-          ]);
+          const row = [item.label, item.quantity, item.price, item.total_price];
+          if (map.has(item.product_code)) {
+            map.get(item.product_code)[1] += row[1];
+            map.get(item.product_code)[3] += row[3];
+          } else map.set(item.product_code, row);
+          // services.push([
+          //   item.label,
+          //   item.quantity,
+          //   item.price,
+          //   item.total_price,
+          // ]);
         }
       });
 
     // Merge all on the table
     table.push(...Array.from(map.values()));
     if (accessories[3] !== 0) table.push(accessories);
-    table.push(...services);
+    // table.push(...services);
 
     return table;
   }

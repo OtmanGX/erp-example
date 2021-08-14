@@ -6022,6 +6022,7 @@ export type Manufacturing_Job_Order = {
   job_status: Manufacturing_Job_Status;
   order_ref: Scalars['String'];
   ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
   status: Scalars['String'];
 };
 
@@ -6100,11 +6101,13 @@ export type Manufacturing_Job_Order_Arr_Rel_Insert_Input = {
 export type Manufacturing_Job_Order_Avg_Fields = {
   __typename?: 'manufacturing_job_order_avg_fields';
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Avg_Order_By = {
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "manufacturing.job_order". All fields are combined with a logical 'AND'. */
@@ -6119,6 +6122,7 @@ export type Manufacturing_Job_Order_Bool_Exp = {
   job_status?: Maybe<Manufacturing_Job_Status_Bool_Exp>;
   order_ref?: Maybe<String_Comparison_Exp>;
   ref?: Maybe<String_Comparison_Exp>;
+  ref_num?: Maybe<Int_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
 };
 
@@ -6133,6 +6137,7 @@ export enum Manufacturing_Job_Order_Constraint {
 /** input type for incrementing integer column in table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Inc_Input = {
   id?: Maybe<Scalars['Int']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "manufacturing.job_order" */
@@ -6144,6 +6149,7 @@ export type Manufacturing_Job_Order_Insert_Input = {
   job_status?: Maybe<Manufacturing_Job_Status_Obj_Rel_Insert_Input>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -6154,6 +6160,7 @@ export type Manufacturing_Job_Order_Max_Fields = {
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -6163,6 +6170,7 @@ export type Manufacturing_Job_Order_Max_Order_By = {
   id?: Maybe<Order_By>;
   order_ref?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -6173,6 +6181,7 @@ export type Manufacturing_Job_Order_Min_Fields = {
   id?: Maybe<Scalars['Int']>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -6182,6 +6191,7 @@ export type Manufacturing_Job_Order_Min_Order_By = {
   id?: Maybe<Order_By>;
   order_ref?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -6216,6 +6226,7 @@ export type Manufacturing_Job_Order_Order_By = {
   job_status?: Maybe<Manufacturing_Job_Status_Order_By>;
   order_ref?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -6237,6 +6248,8 @@ export enum Manufacturing_Job_Order_Select_Column {
   /** column name */
   Ref = 'ref',
   /** column name */
+  RefNum = 'ref_num',
+  /** column name */
   Status = 'status'
 }
 
@@ -6247,6 +6260,7 @@ export type Manufacturing_Job_Order_Set_Input = {
   isReparing?: Maybe<Scalars['Boolean']>;
   order_ref?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
+  ref_num?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -6254,44 +6268,52 @@ export type Manufacturing_Job_Order_Set_Input = {
 export type Manufacturing_Job_Order_Stddev_Fields = {
   __typename?: 'manufacturing_job_order_stddev_fields';
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Stddev_Order_By = {
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Manufacturing_Job_Order_Stddev_Pop_Fields = {
   __typename?: 'manufacturing_job_order_stddev_pop_fields';
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Stddev_Pop_Order_By = {
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Manufacturing_Job_Order_Stddev_Samp_Fields = {
   __typename?: 'manufacturing_job_order_stddev_samp_fields';
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Stddev_Samp_Order_By = {
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
 export type Manufacturing_Job_Order_Sum_Fields = {
   __typename?: 'manufacturing_job_order_sum_fields';
   id?: Maybe<Scalars['Int']>;
+  ref_num?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Sum_Order_By = {
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** update columns of table "manufacturing.job_order" */
@@ -6307,6 +6329,8 @@ export enum Manufacturing_Job_Order_Update_Column {
   /** column name */
   Ref = 'ref',
   /** column name */
+  RefNum = 'ref_num',
+  /** column name */
   Status = 'status'
 }
 
@@ -6314,33 +6338,39 @@ export enum Manufacturing_Job_Order_Update_Column {
 export type Manufacturing_Job_Order_Var_Pop_Fields = {
   __typename?: 'manufacturing_job_order_var_pop_fields';
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Var_Pop_Order_By = {
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
 export type Manufacturing_Job_Order_Var_Samp_Fields = {
   __typename?: 'manufacturing_job_order_var_samp_fields';
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Var_Samp_Order_By = {
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
 export type Manufacturing_Job_Order_Variance_Fields = {
   __typename?: 'manufacturing_job_order_variance_fields';
   id?: Maybe<Scalars['Float']>;
+  ref_num?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "manufacturing.job_order" */
 export type Manufacturing_Job_Order_Variance_Order_By = {
   id?: Maybe<Order_By>;
+  ref_num?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "manufacturing.job_status" */
@@ -6799,6 +6829,7 @@ export type Manufacturing_Manufacturing_Line = {
   manufacturing_services: Array<Manufacturing_Manufacturing_Service>;
   /** An aggregated array relationship */
   manufacturing_services_aggregate: Manufacturing_Manufacturing_Service_Aggregate;
+  ref?: Maybe<Scalars['String']>;
   status: Scalars['String'];
 };
 
@@ -6915,6 +6946,7 @@ export type Manufacturing_Manufacturing_Line_Bool_Exp = {
   manufacturing_consumables?: Maybe<Manufacturing_Manufacturing_Consumable_Bool_Exp>;
   manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Bool_Exp>;
   manufacturing_services?: Maybe<Manufacturing_Manufacturing_Service_Bool_Exp>;
+  ref?: Maybe<String_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
 };
 
@@ -6937,6 +6969,7 @@ export type Manufacturing_Manufacturing_Line_Insert_Input = {
   manufacturing_consumables?: Maybe<Manufacturing_Manufacturing_Consumable_Arr_Rel_Insert_Input>;
   manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Obj_Rel_Insert_Input>;
   manufacturing_services?: Maybe<Manufacturing_Manufacturing_Service_Arr_Rel_Insert_Input>;
+  ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -6945,6 +6978,7 @@ export type Manufacturing_Manufacturing_Line_Max_Fields = {
   __typename?: 'manufacturing_manufacturing_line_max_fields';
   glass_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -6952,6 +6986,7 @@ export type Manufacturing_Manufacturing_Line_Max_Fields = {
 export type Manufacturing_Manufacturing_Line_Max_Order_By = {
   glass_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -6960,6 +6995,7 @@ export type Manufacturing_Manufacturing_Line_Min_Fields = {
   __typename?: 'manufacturing_manufacturing_line_min_fields';
   glass_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -6967,6 +7003,7 @@ export type Manufacturing_Manufacturing_Line_Min_Fields = {
 export type Manufacturing_Manufacturing_Line_Min_Order_By = {
   glass_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -7000,6 +7037,7 @@ export type Manufacturing_Manufacturing_Line_Order_By = {
   manufacturing_consumables_aggregate?: Maybe<Manufacturing_Manufacturing_Consumable_Aggregate_Order_By>;
   manufacturing_line_status?: Maybe<Manufacturing_Manufacturing_Line_Status_Order_By>;
   manufacturing_services_aggregate?: Maybe<Manufacturing_Manufacturing_Service_Aggregate_Order_By>;
+  ref?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
 };
 
@@ -7015,6 +7053,8 @@ export enum Manufacturing_Manufacturing_Line_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Ref = 'ref',
+  /** column name */
   Status = 'status'
 }
 
@@ -7022,6 +7062,7 @@ export enum Manufacturing_Manufacturing_Line_Select_Column {
 export type Manufacturing_Manufacturing_Line_Set_Input = {
   glass_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['Int']>;
+  ref?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -7233,6 +7274,8 @@ export enum Manufacturing_Manufacturing_Line_Update_Column {
   GlassId = 'glass_id',
   /** column name */
   Id = 'id',
+  /** column name */
+  Ref = 'ref',
   /** column name */
   Status = 'status'
 }
@@ -36075,6 +36118,10 @@ export type GetAllDraftsQuery = (
   & { sales_draft: Array<(
     { __typename?: 'sales_draft' }
     & Pick<Sales_Draft, 'id' | 'date' | 'status'>
+    & { order?: Maybe<(
+      { __typename?: 'sales_order' }
+      & Pick<Sales_Order, 'id'>
+    )> }
   )> }
 );
 
@@ -40776,10 +40823,13 @@ export const GetOrderDeliveriesDocument = gql`
   }
 export const GetAllDraftsDocument = gql`
     query GetAllDrafts {
-  sales_draft {
+  sales_draft(where: {_not: {order: {id: {_is_null: false}}}}) {
     id
     date
     status
+    order {
+      id
+    }
   }
 }
     `;
