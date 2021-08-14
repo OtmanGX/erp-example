@@ -31,6 +31,11 @@ const salePointReducer = createReducer(
     selectedSalePoint: action.salePoint,
     error: null,
   })),
+  on(SalePointActions.loadSalePointById, (state, action) => ({
+    ...state,
+    selectedSalePoint: null,
+    error: null,
+  })),
   on(SalePointActions.loadSalePointsSuccess,
      (state, action) =>
   salePointAdapter.setAll(action.salePoints, { ...state, loaded: true })

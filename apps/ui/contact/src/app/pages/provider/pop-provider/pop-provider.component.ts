@@ -1,8 +1,24 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, QueryList, ViewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  OnDestroy,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
+import {
+  DynamicFormComponent,
+  FieldConfig,
+  FormDialog,
+} from '@tanglass-erp/material';
 import { FormArray, FormGroup } from '@angular/forms';
-import { regConfigAddresses, regConfigContact, regConfigProvider } from '../../../utils/forms';
+import {
+  regConfigAddresses,
+  regConfigContact,
+  regConfigProvider,
+} from '../../../utils/forms';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
@@ -10,16 +26,17 @@ import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.
 import { getSelectedProvider } from '@TanglassStore/contact/lib/selectors/provider.selectors';
 import { loadProviderById } from '@TanglassStore/contact/lib/actions/provider.actions';
 import { Subscription } from 'rxjs';
-
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-pop-contact',
   templateUrl: './pop-provider.component.html',
   styleUrls: ['./pop-provider.component.scss'],
 })
-export class PopProviderComponent extends FormDialog implements AfterViewInit, OnDestroy {
-
-  title = "Ajouter un fournisseur";
+export class PopProviderComponent
+  extends FormDialog
+  implements AfterViewInit, OnDestroy {
+  title = 'Ajouter un fournisseur';
   regConfig: FieldConfig[];
   addressFormGroup: FormGroup;
   contactFormGroup: FormGroup;
@@ -28,7 +45,9 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit, O
   addresses = [];
   contacts = [];
   providerForm: DynamicFormComponent;
-  @ViewChildren(DynamicFormComponent) dynamicForms: QueryList<DynamicFormComponent>;
+  @ViewChildren(DynamicFormComponent) dynamicForms: QueryList<
+    DynamicFormComponent
+  >;
 
   get addressFormArray() {
     return this.addressFormGroup.get('addresses') as FormArray;
@@ -45,21 +64,22 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit, O
     private store: Store<AppState>
   ) {
     super(dialogRef, data);
-    this.addressFormGroup = new FormGroup({addresses: new FormArray([])});
-    this.contactFormGroup = new FormGroup({contacts: new FormArray([])});
+    this.addressFormGroup = new FormGroup({ addresses: new FormArray([]) });
+    this.contactFormGroup = new FormGroup({ contacts: new FormArray([]) });
   }
 
   buildForm(): void {
     this.regConfig = regConfigProvider(this.data, this.contacts$);
     if (this.data?.id) {
-
-      this.title = "Éditer un Fournisseur";
-      this.store.dispatch(loadProviderById({id: this.data.id}));
-      this.selectedSubscription = this.store.select(getSelectedProvider)
-        .subscribe(value => {
+      this.title = 'Éditer un Fournisseur';
+      this.store.dispatch(loadProviderById({ id: this.data.id }));
+      this.selectedSubscription = this.store
+        .select(getSelectedProvider)
+        .pipe(filter((e) => !!e))
+        .subscribe((value) => {
           if (value) {
-            const obj: any = {...value};
-            obj.contacts = obj.contacts.map((elem ) => elem.id);
+            const obj: any = { ...value };
+            obj.contacts = obj.contacts.map((elem) => elem.id);
             this.regConfig = regConfigProvider(obj, this.contacts$);
           }
         });
@@ -69,10 +89,11 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit, O
 
   ngAfterViewInit() {
     this.providerForm = this.dynamicForms.find(
-      component => component.name === 'main');
+      (component) => component.name === 'main'
+    );
     this.cdr.detectChanges();
     this.assignAllForms();
-    this.dynamicForms.changes.subscribe(value => {
+    this.dynamicForms.changes.subscribe((value) => {
       this.assignAllForms();
     });
   }
@@ -83,8 +104,8 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit, O
   }
 
   assignForms(formArray: FormArray, name: string) {
-    const forms = this.dynamicForms.filter(
-      (i, index) => i.name === name)
+    const forms = this.dynamicForms
+      .filter((i, index) => i.name === name)
       .map((dynamicForm: DynamicFormComponent) => dynamicForm.form);
 
     while (formArray.length) {
@@ -98,7 +119,7 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit, O
   }
 
   deleteAddress(addresse) {
-    this.addresses = this.addresses.filter(item => item !== addresse);
+    this.addresses = this.addresses.filter((item) => item !== addresse);
   }
 
   newContact() {
@@ -106,7 +127,7 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit, O
   }
 
   deleteContact(contact) {
-    this.contacts = this.contacts.filter(item => item !== contact);
+    this.contacts = this.contacts.filter((item) => item !== contact);
   }
 
   flattenForm() {
@@ -115,7 +136,7 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit, O
       this.providerForm.form.value,
       this.addressFormGroup.value,
       this.contactFormGroup.value
-      );
+    );
   }
 
   submitAll() {
@@ -127,4 +148,3 @@ export class PopProviderComponent extends FormDialog implements AfterViewInit, O
     this.selectedSubscription && this.selectedSubscription.unsubscribe();
   }
 }
-

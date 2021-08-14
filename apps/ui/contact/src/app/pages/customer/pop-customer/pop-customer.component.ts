@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { getSelectedCustomer } from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-pop-customer',
@@ -53,6 +54,7 @@ export class PopCustomerComponent extends FormDialog implements AfterViewInit, O
       this.title = "Éditer un Client";
       this.store.dispatch(CustomerActions.loadCustomerById({id: this.data.id}));
       this.selectedSubscription = this.store.select(getSelectedCustomer)
+        .pipe(filter((e) => !!e))
         .subscribe(value => {
           if (value?.id === this.data.id) {
             const obj: any = Object.assign({}, value);

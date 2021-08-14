@@ -42,9 +42,9 @@ export class CompanyCardComponent implements OnInit {
               { label: 'E-mail', value: data?.email, type: 'mail' },
               { label: 'Téléphone', value: data?.phone, type: 'phone' },
               { label: 'Site web', value: data?.website, type: 'link' },
-              { label: 'createdAt', value: data?.createdAt },
+              { label: 'createdAt', value: data?.createdAt, type: 'date' },
               { label: 'createdBy', value: data?.createdBy },
-              { label: 'updatedAt', value: data?.updatedAt },
+              { label: 'updatedAt', value: data?.updatedAt, type: 'date' },
               { label: 'updatedBy', value: data?.updatedBy },
             ]
         },

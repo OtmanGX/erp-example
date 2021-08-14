@@ -34163,6 +34163,29 @@ export type UpdateStockOrderItemMutation = (
   )> }
 );
 
+export type UpdateWarehouseMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  companyid: Scalars['uuid'];
+  name: Scalars['String'];
+  salesPointid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type UpdateWarehouseMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_warehouse_by_pk?: Maybe<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'name' | 'id'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), salesPoint?: Maybe<(
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'id'>
+    )> }
+  )> }
+);
+
 export type GetAccessoryWarehousesByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -34653,7 +34676,7 @@ export type UpdateCompanyMutation = (
   { __typename?: 'mutation_root' }
   & { update_management_company_by_pk?: Maybe<(
     { __typename?: 'management_company' }
-    & Pick<Management_Company, 'id' | 'name' | 'phone' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email'>
+    & Pick<Management_Company, 'id' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email' | 'name' | 'phone'>
   )> }
 );
 
@@ -34671,7 +34694,7 @@ export type UpdateSalePointMutation = (
   { __typename?: 'mutation_root' }
   & { update_management_salesPoint_by_pk?: Maybe<(
     { __typename?: 'management_salesPoint' }
-    & Pick<Management_SalesPoint, 'id' | 'address' | 'email' | 'fax' | 'name' | 'phone'>
+    & Pick<Management_SalesPoint, 'address' | 'email' | 'fax' | 'id' | 'name' | 'phone'>
   )> }
 );
 
@@ -34693,14 +34716,7 @@ export type UpdateUserMutation = (
   { __typename?: 'mutation_root' }
   & { update_management_userProfile_by_pk?: Maybe<(
     { __typename?: 'management_userProfile' }
-    & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone' | 'username'>
-    & { user_role: (
-      { __typename?: 'management_user_role' }
-      & Pick<Management_User_Role, 'name' | 'description'>
-    ), SalesPoint?: Maybe<(
-      { __typename?: 'management_salesPoint' }
-      & Pick<Management_SalesPoint, 'name' | 'phone' | 'address'>
-    )> }
+    & Pick<Management_UserProfile, 'CIN' | 'active' | 'firstname' | 'id' | 'email' | 'lastname' | 'phone' | 'username' | 'SalesPointsid' | 'role'>
   )> }
 );
 
@@ -34733,7 +34749,7 @@ export type GetAllUsersQuery = (
   { __typename?: 'query_root' }
   & { management_userProfile: Array<(
     { __typename?: 'management_userProfile' }
-    & Pick<Management_UserProfile, 'CIN' | 'active' | 'firstname' | 'id' | 'email' | 'lastname' | 'phone' | 'username' | 'SalesPointsid'>
+    & Pick<Management_UserProfile, 'CIN' | 'active' | 'firstname' | 'id' | 'email' | 'lastname' | 'phone' | 'username' | 'SalesPointsid' | 'role'>
   )> }
 );
 
@@ -38033,6 +38049,36 @@ ${Product_Product_Glass_ViewFragmentFragmentDoc}`;
       super(apollo);
     }
   }
+export const UpdateWarehouseDocument = gql`
+    mutation UpdateWarehouse($id: uuid!, $companyid: uuid!, $name: String!, $salesPointid: uuid) {
+  update_stock_warehouse_by_pk(
+    pk_columns: {id: $id}
+    _set: {companyid: $companyid, name: $name, salesPointid: $salesPointid}
+  ) {
+    name
+    id
+    company {
+      name
+      id
+    }
+    salesPoint {
+      name
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateWarehouseGQL extends Apollo.Mutation<UpdateWarehouseMutation, UpdateWarehouseMutationVariables> {
+    document = UpdateWarehouseDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAccessoryWarehousesByIdDocument = gql`
     query GetAccessoryWarehousesById($id: uuid!) {
   stock_warehouse_substance_aggregate(where: {substance: {id: {_eq: $id}}}) {
@@ -38613,14 +38659,14 @@ export const UpdateCompanyDocument = gql`
     _set: {CNSS: $CNSS, ICE: $ICE, IF: $IF, RC: $RC, address: $address, email: $email, name: $name, phone: $phone, website: $website}
   ) {
     id
-    name
-    phone
     CNSS
     ICE
     IF
     RC
     address
     email
+    name
+    phone
   }
 }
     `;
@@ -38641,10 +38687,10 @@ export const UpdateSalePointDocument = gql`
     pk_columns: {id: $id}
     _set: {address: $address, email: $email, fax: $fax, id: $id, name: $name, phone: $phone}
   ) {
-    id
     address
     email
     fax
+    id
     name
     phone
   }
@@ -38667,21 +38713,16 @@ export const UpdateUserDocument = gql`
     pk_columns: {id: $id}
     _set: {CIN: $CIN, SalesPointsid: $SalesPointsid, active: $active, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}
   ) {
-    id
+    CIN
     active
     firstname
+    id
+    email
     lastname
     phone
     username
-    user_role {
-      name
-      description
-    }
-    SalesPoint {
-      name
-      phone
-      address
-    }
+    SalesPointsid
+    role
   }
 }
     `;
@@ -38757,6 +38798,7 @@ export const GetAllUsersDocument = gql`
     phone
     username
     SalesPointsid
+    role
   }
 }
     `;

@@ -46,6 +46,15 @@ const CustomerReducer = createReducer<State>(
       }
     )
 ),
+  on( CustomersActions.loadCustomerById,
+    (state, action)  => (
+      {
+        ...state,
+        error: null,
+        selectedCustomer: null,
+      }
+    )
+),
   on(CustomersActions.addCustomerSuccess,
     (state, action) => customerAdapter.addOne(action.customer, state)
   ),

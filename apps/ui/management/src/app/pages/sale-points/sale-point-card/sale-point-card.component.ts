@@ -45,9 +45,9 @@ export class SalePointCardComponent implements OnInit {
               {label: 'Adresse', value: data?.address},
               {label: 'E-mail', value: data?.email},
               {label: 'Téléphone', value: data?.phone},
-              { label: 'createdAt', value: data?.createdAt },
+              { label: 'createdAt', value: data?.createdAt, type: 'date' },
               { label: 'createdBy', value: data?.createdBy },
-              { label: 'updatedAt', value: data?.updatedAt },
+              { label: 'updatedAt', value: data?.updatedAt, type: 'date' },
               { label: 'updatedBy', value: data?.updatedBy },
             ]
         },

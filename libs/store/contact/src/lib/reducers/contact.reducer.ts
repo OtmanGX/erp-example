@@ -46,6 +46,15 @@ const ContactReducer = createReducer<State>(
       }
     )
 ),
+  on( ContactsActions.loadContactById,
+    (state, action)  => (
+      {
+        ...state,
+        error: null,
+        selectedContact: null,
+      }
+    )
+),
   on(ContactsActions.addContactSuccess,
     (state, action) => contactAdapter.addOne(action.contact, state)
   ),

@@ -46,6 +46,15 @@ const ProviderReducer = createReducer<State>(
       }
     )
 ),
+  on( ProvidersActions.loadProviderById,
+    (state, action)  => (
+      {
+        ...state,
+        error: null,
+        selectedProvider: null,
+      }
+    )
+),
 on(ProvidersActions.addContactToProviderSuccess, (state, action) =>
      (
        {

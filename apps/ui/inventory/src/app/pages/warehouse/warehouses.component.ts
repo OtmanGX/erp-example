@@ -8,7 +8,6 @@ import { WarehousesFacade } from '@tanglass-erp/store/inventory';
 import * as wareHouseActions from '@TanglassStore/inventory/lib/actions/warehouses.actions';
 import { Store } from '@ngrx/store';
 
-
 @Component({
   selector: 'tanglass-erp-warehouses',
   templateUrl: './warehouses.component.html',
@@ -21,7 +20,11 @@ export class WarehousesComponent implements GridView {
   columnId: string = 'id';
   data$ = this.facade.allWarehouses$;
 
-  constructor(public dialog: MatDialog, private facade: WarehousesFacade, private store: Store) {
+  constructor(
+    public dialog: MatDialog,
+    private facade: WarehousesFacade,
+    private store: Store
+  ) {
     this.setColumnDefs();
   }
 
@@ -37,20 +40,26 @@ export class WarehousesComponent implements GridView {
     const dialogRef = this.dialog.open(PopWarehouseComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
-      data: data
+      data: data,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-          console.log(result);
-          this.store.dispatch(wareHouseActions.addWarehouse({warehouse: {
+          this.facade.addWarehouse({
             companyid: result.company,
             name: result.name,
-            salePointid: result.salesPoint
-          }}))
-        } else {}
+            salesPointid: result.salesPoint,
+          });
+        } else {
+          this.facade.updateWarehouse({
+            id: data['id'],
+            companyid: result.company,
+            name: result.name,
+            salesPointid: result.salesPoint,
+          });
+        }
       }
     });
   }
@@ -63,6 +72,7 @@ export class WarehousesComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
+        this.facade.removeWarehouses(event.data.map((e) => e.id));
         break;
       // ...
     }
@@ -71,8 +81,7 @@ export class WarehousesComponent implements GridView {
   setColumnDefs(): void {
     this.columnDefs = [
       ...warehouseHeaders,
-      {field: 'id', headerName: 'Action', type: "editColumn"}
+      { field: 'id', headerName: 'Action', type: 'editColumn' },
     ];
   }
-
 }

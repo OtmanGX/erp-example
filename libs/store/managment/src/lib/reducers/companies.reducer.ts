@@ -46,6 +46,13 @@ const companieReducer = createReducer<State>(
       }
     )
 ),
+  on(CompaniesActions.loadCompanieById,
+    (state, action) =>
+      ({
+      ...state,
+      selectedCompanie: null
+    })
+  ),
   on(CompaniesActions.addCompanieSuccess,
     (state, action) => companieAdapter.addOne(action.companie, state)
   ),
