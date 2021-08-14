@@ -174,6 +174,7 @@ const regConfigDelivery = (
     inputType: 'text',
     options: Object.values(PaymentMethod).map((e) => ({ key: e, value: e })),
     value: data?.payment_method,
+    validations: [REQUIRED]
   },
   {
     type: 'select',

@@ -110,7 +110,7 @@ export class InvoiceEffects {
                 color: 'primary',
               });
               this.router.navigate(
-                ['sales/invoice/ready', data.data.insert_sales_invoice_one.id],
+                ['sales/invoice/ready'],
                 {
                   state: { data: data.data.insert_sales_invoice_one },
                 }
