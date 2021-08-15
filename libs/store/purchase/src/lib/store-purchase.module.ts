@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import * as fromPurchases from './+state/deliveries.reducer';
+import * as fromDeliveries from './+state/deliveries.reducer';
 import { PurchasesEffects } from './+state/deliveries.effects';
 import { DeliveriesFacade } from './+state/deliveries.facade';
 
@@ -10,8 +10,8 @@ import { DeliveriesFacade } from './+state/deliveries.facade';
   imports: [
     CommonModule,
     StoreModule.forFeature(
-      fromPurchases.PURCHASES_FEATURE_KEY,
-      fromPurchases.reducer
+      fromDeliveries.DELIVERIES_FEATURE_KEY,
+      fromDeliveries.reducer
     ),
     EffectsModule.forFeature([PurchasesEffects]),
   ],

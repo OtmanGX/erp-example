@@ -15,6 +15,7 @@ import { DraftFacade } from "@tanglass-erp/store/sales";
 import { Subscription } from 'rxjs';
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoint.actions';
+import * as productStore from '@TanglassStore/product/index';
 
 @Component({
   selector: 'ngx-create-draft',
@@ -42,11 +43,17 @@ export class CreateDraftComponent implements OnInit {
     this.facade.createDraft();
     this.store.dispatch(CustomerActions.loadCustomers());
     this.store.dispatch(ContactActions.loadContacts());
+    this.store.dispatch(SalePointActions.loadSalePoints());
+    this.store.dispatch(productStore.loadGlasses());
+    this.store.dispatch(productStore.loadCustomerProducts());
+    this.store.dispatch(productStore.loadAccessories());
+    this.store.dispatch(productStore.loadConsumables());
+    this.store.dispatch(productStore.loadServices());
     this.sharedfacade.loadAllShortCompanies();
     this.sharedfacade.loadAllShortWarehouses();
-    this.store.dispatch(SalePointActions.loadSalePoints());
-    this.buildForm();
     this.dataSub = this.facade.selectedDraft$.subscribe(id => this.draft_id = id)
+    this.buildForm();
+
   }
 
   buildForm(): void {
