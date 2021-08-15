@@ -12,6 +12,8 @@ import { ModelCardComponent } from '@tanglass-erp/material';
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import { Router } from '@angular/router';
 import { JobOrdersFacade } from '@tanglass-erp/store/manufacturing';
+import * as productStore from '@TanglassStore/product/index';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-order-card',
@@ -33,7 +35,9 @@ export class OrderCardComponent extends ModelCardComponent {
     protected deliveryFacade: DeliveryFacade,
     protected sharedfacade: SharedFacade,
     protected productDraftFacade: ProductDraftFacade,
-    protected manufacturingFacade: JobOrdersFacade
+    protected manufacturingFacade: JobOrdersFacade,
+    private store: Store
+
   ) {
     super(activatedRoute);
   }
@@ -74,21 +78,15 @@ export class OrderCardComponent extends ModelCardComponent {
   afterComplete() {}
   edit() {
     this.isCardMode = false;
+    this.store.dispatch(productStore.loadGlasses());
+    this.store.dispatch(productStore.loadCustomerProducts());
+    this.store.dispatch(productStore.loadAccessories());
+    this.store.dispatch(productStore.loadConsumables());
+    this.store.dispatch(productStore.loadServices());
   }
   save() {
     this.productDraftFacade.amounts$.subscribe((amounts) => {
       let total = amounts.pop();
-      console.log({
-        order_id: this.order_id,
-        total_ttc: total.total_ttc,
-        total_tax: total.total_tax,
-        total_ht: total.total_ht,
-        amounts: amounts.map((amount) => ({
-          ...amount,
-          company_name: amount.company_name,
-          draft_id: this.draft_id,
-        })),
-      });
       this.facade.updateOrder({
         order_id: this.order_id,
         total_ttc: total.total_ttc,

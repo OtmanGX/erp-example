@@ -64,7 +64,9 @@
       ],
       "@tanglass-erp/store/cash-register": [
         "libs/store/cash-register/src/index.ts"
-      ]
+      ],
+      "@tanglass-erp/store/purchase": ["libs/store/purchase/src/index.ts"],
+      "@tanglass-erp/core/purchase": ["libs/core/purchase/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

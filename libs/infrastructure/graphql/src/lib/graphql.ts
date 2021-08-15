@@ -35409,6 +35409,43 @@ export type GetServiceConfigByIdQuery = (
   )> }
 );
 
+export type InsertPurchaseDeliveryMutationVariables = Exact<{
+  date?: Maybe<Scalars['date']>;
+}>;
+
+
+export type InsertPurchaseDeliveryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_purchase_delivery_one?: Maybe<(
+    { __typename?: 'purchase_delivery' }
+    & Pick<Purchase_Delivery, 'date' | 'id'>
+  )> }
+);
+
+export type GetAllPurchasesDeliveriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllPurchasesDeliveriesQuery = (
+  { __typename?: 'query_root' }
+  & { purchase_delivery: Array<(
+    { __typename?: 'purchase_delivery' }
+    & Pick<Purchase_Delivery, 'date' | 'id' | 'ref'>
+  )> }
+);
+
+export type GetPurchaseDeliveryByIdQueryVariables = Exact<{
+  id?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type GetPurchaseDeliveryByIdQuery = (
+  { __typename?: 'query_root' }
+  & { purchase_delivery_by_pk?: Maybe<(
+    { __typename?: 'purchase_delivery' }
+    & Pick<Purchase_Delivery, 'date' | 'id' | 'ref'>
+  )> }
+);
+
 export type DeleteDeliveryMutationVariables = Exact<{
   ids?: Array<Scalars['uuid']>;
 }>;
@@ -39819,6 +39856,65 @@ export const GetServiceConfigByIdDocument = gql`
   })
   export class GetServiceConfigByIdGQL extends Apollo.Query<GetServiceConfigByIdQuery, GetServiceConfigByIdQueryVariables> {
     document = GetServiceConfigByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertPurchaseDeliveryDocument = gql`
+    mutation InsertPurchaseDelivery($date: date) {
+  insert_purchase_delivery_one(object: {date: $date}) {
+    date
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertPurchaseDeliveryGQL extends Apollo.Mutation<InsertPurchaseDeliveryMutation, InsertPurchaseDeliveryMutationVariables> {
+    document = InsertPurchaseDeliveryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllPurchasesDeliveriesDocument = gql`
+    query GetAllPurchasesDeliveries {
+  purchase_delivery {
+    date
+    id
+    ref
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllPurchasesDeliveriesGQL extends Apollo.Query<GetAllPurchasesDeliveriesQuery, GetAllPurchasesDeliveriesQueryVariables> {
+    document = GetAllPurchasesDeliveriesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetPurchaseDeliveryByIdDocument = gql`
+    query GetPurchaseDeliveryById($id: Int = 10) {
+  purchase_delivery_by_pk(id: $id) {
+    date
+    id
+    ref
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetPurchaseDeliveryByIdGQL extends Apollo.Query<GetPurchaseDeliveryByIdQuery, GetPurchaseDeliveryByIdQueryVariables> {
+    document = GetPurchaseDeliveryByIdDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
