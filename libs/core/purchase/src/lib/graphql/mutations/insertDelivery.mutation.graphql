@@ -1,0 +1,6 @@
+mutation InsertPurchaseDelivery($date: date) {
+  insert_purchase_delivery_one(object: {date: $date}) {
+    date
+    id
+  }
+}

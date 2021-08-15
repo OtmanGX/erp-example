@@ -3,9 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PurchaseHeaders } from '../../utils/grid-header';
-import { PopDeliveryComponent } from './pop-delivery/pop-delivery.component';
-
-import { of } from 'rxjs';
+import { DeliveriesFacade } from "@tanglass-erp/store/purchase";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tanglass-erp-delivery',
@@ -17,10 +16,13 @@ export class PurchaseDeliveryComponent implements GridView {
   agGrid: AgGridAngular;
   columnDefs;
   columnId: string = 'id';
-  data$=of([{ref:"RC/0001",date:"12/02/2021",status:"réalisé",localisation:"USINE",company:"Tanglass"},
-  {ref:"RC/0002",date:"12/03/2021",status:"En attente",localisation:"USINE",company:"Trimar"}])
+  data$ = this.facade.allDeliveries$;
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private facade: DeliveriesFacade,
+    ) {
     this.setColumnDefs();
   }
 
@@ -29,15 +31,16 @@ export class PurchaseDeliveryComponent implements GridView {
   }
 
   ngOnInit(): void {
+    this.facade.loadDeliveries();
+
   }
-
-
 
   eventTriggering(event) {
     // Store Action Dispatching
     switch (event.action) {
       case Operations.add:
-        this.openDialog(event.action, event.data);
+        this.router.navigateByUrl('purchase/delivery/addDelivery');
+
         break;
       case Operations.update:
         break;
@@ -54,20 +57,5 @@ export class PurchaseDeliveryComponent implements GridView {
     ];
   }
 
-  openDialog(action, data = {}) {
-    const dialogRef = this.dialog.open(PopDeliveryComponent, {
-      width: '1000px',
-      panelClass: 'panel-dialog',
-      data: data
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // Store action dispatching
-        if (action === Operations.add) {
-
-         // this.store.dispatch(....);
-        } else { } // Update
-      }
-    });
-  }
+ 
 }

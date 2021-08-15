@@ -38,7 +38,7 @@ export class PopProductComponent
   products;
   formValue: SalesItem = new SalesItem();
   warehouses;
-  companies;
+  companies;substance_id
   @ViewChild('product_form', { read: DynamicFormComponent })
   productFormComponent: DynamicFormComponent;
   get productForm() {
@@ -66,12 +66,14 @@ export class PopProductComponent
       this.productForm.controls['unit'].setValue(
         found?.product?.unit || found?.unit
       );
-      found?.substanceid
-        ? (this.formValue = {
-            ...this.formValue,
-            labelFactory: found?.labelFactory,
-          })
-        : null;
+      console.log(found?.substanceid)
+      this.formValue.substance_id=found?.substanceid
+      // found?.substanceid
+      //   ? (this.formValue = {
+      //       ...this.formValue,
+      //       labelFactory: found?.labelFactory,
+      //     })
+      //   : null;
       let labelFactory =
         found?.serviceConfig?.labelFactory || found?.product?.labelFactory;
       labelFactory
@@ -118,7 +120,6 @@ export class PopProductComponent
   getItems(type) {
     switch (type) {
       case Sales_Product_Type_Enum.Verre: {
-        this.store.dispatch(productStore.loadGlasses());
         this.glasses$.subscribe((data) => (this.products = data));
         this.regConfig = regConfigs.regConfigGlassItem(
           this.glasses$,
@@ -129,7 +130,6 @@ export class PopProductComponent
         break;
       }
       case Sales_Product_Type_Enum.ArticleClient: {
-        this.store.dispatch(productStore.loadCustomerProducts());
         this.customerItems$.subscribe((data) => (this.products = data));
         this.regConfig = regConfigs.regConfigCustomerItem(
           this.customerItems$,
@@ -138,7 +138,6 @@ export class PopProductComponent
         break;
       }
       case Sales_Product_Type_Enum.Accessoire: {
-        this.store.dispatch(productStore.loadAccessories());
         this.accessories$.subscribe((data) => (this.products = data));
         this.regConfig = regConfigs.regConfigAccessoireItem(
           this.accessories$,
@@ -149,7 +148,6 @@ export class PopProductComponent
         break;
       }
       case Sales_Product_Type_Enum.Consommable: {
-        this.store.dispatch(productStore.loadConsumables());
         this.consumables$.subscribe((data) => (this.products = data));
         this.regConfig = regConfigs.regConfigConsumableItem(
           this.consumables$,
@@ -160,7 +158,6 @@ export class PopProductComponent
         break;
       }
       case Sales_Product_Type_Enum.Service: {
-        this.store.dispatch(productStore.loadServices());
         this.services$.subscribe((data) => (this.products = data));
         this.regConfig = regConfigs.regConfigServiceItem(
           this.services$,

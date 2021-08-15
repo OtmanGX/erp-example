@@ -13,8 +13,8 @@ import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'ngx-delivery-card',
-  templateUrl: './transfert-card.component.html',
-  styleUrls: ['./transfert-card.scss']
+  templateUrl: './delivery-card.component.html',
+  styleUrls: ['./delivery-card.scss']
 })
 export class DeliveryCardComponent extends ModelCardComponent implements GridView {
   data$:any
