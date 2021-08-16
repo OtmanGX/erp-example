@@ -4,10 +4,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopGlasseComponent } from './pop-glasse/pop-glasse.component';
 import { GlassHeaders } from '../../utils/grid-headers';
-import { Store } from '@ngrx/store';
-import { AppState } from '@tanglass-erp/store/app';
-import * as GlassActions from '@TanglassStore/product/lib/actions/glass.actions';
-import * as GlassSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
+import { GlassFacadeService } from '@TanglassStore/product/lib/+state/glass.facade.service';
 
 @Component({
   selector: 'ngx-list-matierePremiere',
@@ -17,7 +14,7 @@ import * as GlassSelectors from '@TanglassStore/product/lib/selectors/glass.sele
 export class ListGlasseComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
 
-  data$ = this.store.select(GlassSelectors.getAllGlasses);;
+  data$ = this.glassFacadeService.allGlasses$;
 
   agGrid: AgGridAngular;
   columnId = 'id';
@@ -25,14 +22,14 @@ export class ListGlasseComponent implements GridView {
 
   constructor(
     private dialog: MatDialog,
-    private store: Store<AppState>
+    private glassFacadeService:GlassFacadeService
 
   ) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
-    this.store.dispatch(GlassActions.loadGlasses());
+    this.glassFacadeService.loadAll();
   }
 
   ngAfterViewInit(): void {
@@ -47,7 +44,7 @@ export class ListGlasseComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
-        this.store.dispatch(GlassActions.removeGlasses({ ids: event.data.map((e) => e.id) }));
+        this.glassFacadeService.removeMany(event.data.map((e) => e.id));
         break;
       // ...
     }
@@ -72,9 +69,13 @@ export class ListGlasseComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-          this.store.dispatch(GlassActions.addGlass({glass : result}));
+          this.glassFacadeService.insertOne(result);
 
-        } else {}
+        } else {
+          result.glasse['id'] = data['id'];
+          result.product['code'] = data['product']['code'];
+          this.glassFacadeService.updateOne(result);
+        }
       }
     });
   }
