@@ -16,8 +16,7 @@ interface AffectedCompany {
 type objToAdapt=insertedAccessory|InsertedConsumable|InsertedGlass|InsertedService
 
 export function adaptProduct(Item: objToAdapt,type:string) {
-
-    let product_companies = {
+    const product_companies = {
         data: Item.product.product_companies.map((id) =>
         ({
             companyid: id
@@ -26,6 +25,18 @@ export function adaptProduct(Item: objToAdapt,type:string) {
         )
     }
     return { ...Item[type], product: { ...Item.product, product_companies } }
+
+}
+
+
+export function adaptProductToUpdate(Item: objToAdapt,type:string) {
+
+  let {product_companies, ...product} = Item.product;
+
+  product_companies = product_companies.map(e => ({companyid: e, productcode: product.code}));
+
+
+    return { ...Item[type], product, companies: product_companies, code: product.code }
 
 }
 

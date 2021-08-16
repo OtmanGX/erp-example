@@ -38,6 +38,7 @@ function getParams(params) {
 const regConfigProduct = (data?: Product, listCompanies: ListObservable = []) => [
   {
     type: "input", label: "Code", inputType: "text", name: "code", value: data?.code,
+    disabled:data?.code?true:false,
     validations: [
       REQUIRED
     ]
@@ -79,7 +80,8 @@ const regConfigProduct = (data?: Product, listCompanies: ListObservable = []) =>
     ]
   },
   {
-    type: "select", label: "Sociétés", multiple: true, name: "product_companies", value: data?.companies,
+    type: "select", label: "Sociétés", multiple: true, name: "product_companies",
+    value: data?.companies.map(e => e.id),
     options: listCompanies
   }
 ];

@@ -8,21 +8,20 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class GlassEffects {
-
   loadGlasses$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GlassActions.loadGlasses),
       mergeMap(() =>
         this.glassService.getAll().pipe(
           map((data) =>
-            GlassActions.loadGlassesSuccess({glasses: data.data.product_glass})
+            GlassActions.loadGlassesSuccess({
+              glasses: data.data.product_glass,
+            })
           ),
-          catchError((error) =>
-            of(GlassActions.loadGlassesFailure({ error }))
-          )
+          catchError((error) => of(GlassActions.loadGlassesFailure({ error })))
         )
       )
-    )
+    );
   });
 
   insertGlass$ = createEffect(() => {
@@ -31,16 +30,34 @@ export class GlassEffects {
       mergeMap((action) =>
         this.glassService.insertOne(action.glass).pipe(
           map((data) =>
-            GlassActions.addGlassSuccess({glass: data.data.insert_product_glass_one})
+            GlassActions.addGlassSuccess({
+              glass: data.data.insert_product_glass_one,
+            })
           ),
-          catchError((error) =>
-            of(GlassActions.addGlassFailure({ error }))
-          )
+          catchError((error) => of(GlassActions.addGlassFailure({ error })))
         )
       )
-    )
+    );
   });
 
+  updateGlass$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GlassActions.updateGlass),
+      mergeMap((action) =>
+        this.glassService.updateGlass(action.glass).pipe(
+          map((data) =>
+            GlassActions.updateGlassesuccess({
+              glass: {
+                ...data.data.update_product_glass_by_pk,
+                product: data.data.update_product_product_by_pk,
+              },
+            })
+          ),
+          catchError((error) => of(GlassActions.updateGlassFailure({ error })))
+        )
+      )
+    );
+  });
 
   getGlassById$ = createEffect(() => {
     return this.actions$.pipe(
@@ -48,14 +65,16 @@ export class GlassEffects {
       mergeMap((action) =>
         this.glassService.getOneById(action.id).pipe(
           map((data) =>
-            GlassActions.loadGlassByIdSuccess({glass: data.data.product_glass_by_pk})
+            GlassActions.loadGlassByIdSuccess({
+              glass: data.data.product_glass_by_pk,
+            })
           ),
           catchError((error) =>
             of(GlassActions.loadGlassByIdFailure({ error }))
           )
         )
       )
-    )
+    );
   });
 
   removeGlass$ = createEffect(() => {
@@ -64,31 +83,26 @@ export class GlassEffects {
       mergeMap((action) =>
         this.glassService.removeOne(action.glassId).pipe(
           map((data) =>
-            GlassActions.removeGlassesuccess({glassId: data.data.delete_product_product_by_pk})
+            GlassActions.removeGlassesuccess({
+              glassId: data.data.delete_product_product_by_pk,
+            })
           ),
-          catchError((error) =>
-            of(GlassActions.removeGlassFailure({ error }))
-          )
+          catchError((error) => of(GlassActions.removeGlassFailure({ error })))
         )
       )
-    )
+    );
   });
-
 
   loadTypes$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GlassActions.loadTypes),
       mergeMap(() =>
         this.glassService.getTypes().pipe(
-          map((data) =>
-            GlassActions.loadTypesSuccess({types: data})
-          ),
-          catchError((error) =>
-            of(GlassActions.loadTypesFailure({ error }))
-          )
+          map((data) => GlassActions.loadTypesSuccess({ types: data })),
+          catchError((error) => of(GlassActions.loadTypesFailure({ error })))
         )
       )
-    )
+    );
   });
 
   loadColors$ = createEffect(() => {
@@ -96,15 +110,11 @@ export class GlassEffects {
       ofType(GlassActions.loadColors),
       mergeMap(() =>
         this.glassService.getColors().pipe(
-          map((data) =>
-            GlassActions.loadColorsSuccess({colors: data})
-          ),
-          catchError((error) =>
-            of(GlassActions.loadColorsFailure({ error }))
-          )
+          map((data) => GlassActions.loadColorsSuccess({ colors: data })),
+          catchError((error) => of(GlassActions.loadColorsFailure({ error })))
         )
       )
-    )
+    );
   });
 
   removeManyGlasses$ = createEffect(() => {
@@ -112,18 +122,14 @@ export class GlassEffects {
       ofType(GlassActions.removeGlasses),
       mergeMap((action) =>
         this.glassService.removeMany(action.ids).pipe(
-          map((data) =>
-          GlassActions.removeGlassesSuccess({  ids: action.ids })
-          ),
+          map((data) => GlassActions.removeGlassesSuccess({ ids: action.ids })),
           catchError((error) =>
             of(GlassActions.removeGlassesFailure({ error }))
           )
         )
       )
-    )
+    );
   });
 
-
-  constructor(private actions$: Actions,
-              private glassService: GlassService) {}
+  constructor(private actions$: Actions, private glassService: GlassService) {}
 }

@@ -10,10 +10,12 @@ import {
   GetGlassColorsGQL,
   AddGlassColorGQL,
   AddGlassTypeGQL,
+  UpdateGlassGQL,
+  UpdateGlassMutationVariables,
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
 import { Glass, DetailedGlass, InsertedGlass } from '../models/glass.model';
-import { adaptProduct } from '../utils/dataAdapter';
+import { adaptProduct, adaptProductToUpdate } from '../utils/dataAdapter';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +30,8 @@ export class GlassService {
     private getGlassTypesGQL: GetGlassTypesGQL,
     private addGlassColorGQL: AddGlassColorGQL,
     private addGlassTypeGQL: AddGlassTypeGQL,
-    private getGlassColorsGQL: GetGlassColorsGQL
+    private getGlassColorsGQL: GetGlassColorsGQL,
+    private updateGlassGQL: UpdateGlassGQL
   ) {}
 
   getAll() {
@@ -45,6 +48,13 @@ export class GlassService {
       'glasse'
     );
     return this.insertOneGQL.mutate(addeValue);
+  }
+
+  updateGlass(glass: InsertedGlass) {
+    const updatedValue: UpdateGlassMutationVariables = adaptProductToUpdate(glass, 'glasse');
+    console.log('item', updatedValue);
+
+    return this.updateGlassGQL.mutate(updatedValue);
   }
 
   removeOne(code: string) {

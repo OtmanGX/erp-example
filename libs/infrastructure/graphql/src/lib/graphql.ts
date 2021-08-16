@@ -35194,6 +35194,36 @@ export type InsertServiceConfigMutation = (
   )> }
 );
 
+export type UpdateGlassMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  thickness?: Maybe<Scalars['Int']>;
+  product?: Maybe<Product_Product_Set_Input>;
+  code: Scalars['String'];
+  companies: Array<Product_Product_Companies_Insert_Input>;
+}>;
+
+
+export type UpdateGlassMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_product_glass_by_pk?: Maybe<(
+    { __typename?: 'product_glass' }
+    & Pick<Product_Glass, 'id' | 'thickness' | 'type' | 'color'>
+  )>, update_product_product_by_pk?: Maybe<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+    & { companies: Array<(
+      { __typename?: 'product_product_companies_view' }
+      & Pick<Product_Product_Companies_View, 'name' | 'id'>
+    )> }
+  )>, delete_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & Pick<Product_Product_Companies_Mutation_Response, 'affected_rows'>
+  )>, insert_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & Pick<Product_Product_Companies_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type GetAccessoryByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -39499,6 +39529,48 @@ export const InsertServiceConfigDocument = gql`
   })
   export class InsertServiceConfigGQL extends Apollo.Mutation<InsertServiceConfigMutation, InsertServiceConfigMutationVariables> {
     document = InsertServiceConfigDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateGlassDocument = gql`
+    mutation UpdateGlass($id: uuid!, $thickness: Int, $product: product_product_set_input, $code: String!, $companies: [product_product_companies_insert_input!]!) {
+  update_product_glass_by_pk(pk_columns: {id: $id}, _set: {thickness: $thickness}) {
+    id
+    thickness
+    type
+    color
+  }
+  update_product_product_by_pk(pk_columns: {code: $code}, _set: $product) {
+    code
+    label
+    unit
+    price
+    priceMax
+    priceMin
+    companies {
+      name
+      id
+    }
+  }
+  delete_product_product_companies(where: {productcode: {_eq: $code}}) {
+    affected_rows
+  }
+  insert_product_product_companies(
+    objects: $companies
+    on_conflict: {constraint: product_companies_pkey, update_columns: []}
+  ) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateGlassGQL extends Apollo.Mutation<UpdateGlassMutation, UpdateGlassMutationVariables> {
+    document = UpdateGlassDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -7,8 +7,8 @@ import * as GlassReducer from './reducers/glass.reducer';
 import * as CustomerProductReducer from './reducers/customer-product.reducer';
 
 import * as ServiceReducer from './reducers/servicesConfig.reducer';
-import * as SupplyReducer from "./reducers/supply.reducer";
-import * as ServiceChildReducer from "./reducers/service.reducer";
+import * as SupplyReducer from './reducers/supply.reducer';
+import * as ServiceChildReducer from './reducers/service.reducer';
 import { AccessoryEffects } from './effects/accessory.effects';
 import { ConsumableEffects } from './effects/consumable.effects';
 import { GlassEffects } from './effects/glass.effects';
@@ -20,7 +20,12 @@ import { ServiceChildsEffects } from './effects/service.effects';
 
 import { ToastrModule } from 'ngx-toastr';
 import { CoreProductModule } from '@tanglass-erp/core/product';
-
+import { GlassFacadeService } from '@TanglassStore/product/lib/+state/glass.facade.service';
+import { AccessoryFacadeService } from '@TanglassStore/product/lib/+state/accessory.facade.service';
+import { SupplyFacadeService } from '@TanglassStore/product/lib/+state/supply.facade.service';
+import { ServiceFacadeService } from '@TanglassStore/product/lib/+state/service.facade.service';
+import { CustomerProductFacadeService } from '@TanglassStore/product/lib/+state/customer-product.facade.service';
+import { ConsumableFacadeService } from '@TanglassStore/product/lib/+state/consumable.facade.service';
 
 @NgModule({
   imports: [
@@ -28,38 +33,32 @@ import { CoreProductModule } from '@tanglass-erp/core/product';
     CoreProductModule,
     StoreModule.forFeature(
       AccessoryReducer.ACCESSORY_FEATURE_KEY,
-      AccessoryReducer.reducer,
-
+      AccessoryReducer.reducer
     ),
     StoreModule.forFeature(
       ConsumableReducer.CONSUMABLE_FEATURE_KEY,
-      ConsumableReducer.reducer,
-
+      ConsumableReducer.reducer
     ),
-   
+
     StoreModule.forFeature(
       GlassReducer.GLASS_FEATURE_KEY,
-      GlassReducer.reducer,
-
+      GlassReducer.reducer
     ),
     StoreModule.forFeature(
       CustomerProductReducer.CUSTOMER_PRODUCT_FEATURE_KEY,
-      CustomerProductReducer.reducer,
-
+      CustomerProductReducer.reducer
     ),
     StoreModule.forFeature(
       ServiceReducer.SERVICE_CONFIG_FEATURE_KEY,
-      ServiceReducer.reducer,
-
+      ServiceReducer.reducer
     ),
     StoreModule.forFeature(
       SupplyReducer.SUPPLY_FEATURE_KEY,
-      SupplyReducer.reducer,
-
+      SupplyReducer.reducer
     ),
     StoreModule.forFeature(
       ServiceChildReducer.SERVICE_FEATURE_KEY,
-      ServiceChildReducer.reducer,
+      ServiceChildReducer.reducer
     ),
     EffectsModule.forFeature([
       AccessoryEffects,
@@ -68,9 +67,17 @@ import { CoreProductModule } from '@tanglass-erp/core/product';
       AlertEffects,
       ServiceEffects,
       ServiceChildsEffects,
-      CutomerProductEffects
+      CutomerProductEffects,
     ]),
     ToastrModule.forRoot(),
+  ],
+  providers: [
+    GlassFacadeService,
+    AccessoryFacadeService,
+    SupplyFacadeService,
+    ServiceFacadeService,
+    CustomerProductFacadeService,
+    ConsumableFacadeService,
   ],
 })
 export class StoreProductModule {}

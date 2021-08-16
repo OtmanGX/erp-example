@@ -28,6 +28,7 @@ export interface DetailedGlass extends MetaData{
 
 
 export interface InsertedGlass {
+  id?: string;
   glass:ShortGlass
   product: InsertedProduct;
   substance?: Substance;

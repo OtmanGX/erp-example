@@ -1,5 +1,6 @@
 import { Glass, DetailedGlass, InsertedGlass } from '@tanglass-erp/core/product';
 import { createAction, props } from '@ngrx/store';
+import { RequireExactlyOne } from '@tanglass-erp/core/common';
 
 /****************************************************************** */
 /*****LOAD Glasses ** */
@@ -65,7 +66,7 @@ export const addGlassFailure = createAction(
 
 export const updateGlass = createAction(
   '[List Glasses Component] Update Glass',
-  props<{ glass: Glass }>()
+  props<{ glass: RequireExactlyOne<InsertedGlass, 'id'> }>()
 );
 export const updateGlassesuccess = createAction(
   '[Glass Effect] Update Glass Success',

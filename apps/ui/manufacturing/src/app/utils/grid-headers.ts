@@ -1,6 +1,6 @@
 export const JobOrderHeaders = [
   {
-    field: 'id',
+    field: 'ref',
     headerName: 'Référence',
     type: 'linkColumn',
     cellRendererParams: (params) => ({
