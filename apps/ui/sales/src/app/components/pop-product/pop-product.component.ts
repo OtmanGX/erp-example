@@ -66,7 +66,6 @@ export class PopProductComponent
       this.productForm.controls['unit'].setValue(
         found?.product?.unit || found?.unit
       );
-      console.log(found?.substanceid)
       this.formValue.substance_id=found?.substanceid
       // found?.substanceid
       //   ? (this.formValue = {

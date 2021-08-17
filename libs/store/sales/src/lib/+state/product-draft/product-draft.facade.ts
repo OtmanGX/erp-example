@@ -58,7 +58,6 @@ export class ProductDraftFacade {
     this.dispatch(ProductsActions.setProductsState({ products }));
   }
   addGlass(product): void {
-    console.log(product)
     let glass = {
       ...product,
       count: parseInt(product.count),
@@ -83,8 +82,6 @@ export class ProductDraftFacade {
     this.dispatch(ProductsActions.addGlass({ glass }));
   }
   addCustomerProduct(product): void {
-    console.log(product)
-
     let glass = {
       ...product,
       count: parseInt(product.count),
@@ -105,7 +102,6 @@ export class ProductDraftFacade {
     this.dispatch(ProductsActions.addGlass({ glass }));
   }
   addAccessory(product: InsertedProduct): void {
-    console.log(product)
     let accessory = {
       ...product,
       total_price: product.quantity * product.price,
@@ -113,7 +109,6 @@ export class ProductDraftFacade {
     this.dispatch(ProductsActions.addAccessory({ accessory }));
   }
   addConsumable(product: InsertedProduct): void {
-    console.log(product)
     let consumable = {
       ...product,
       total_price: product.quantity * product.price,
@@ -121,7 +116,6 @@ export class ProductDraftFacade {
     this.dispatch(ProductsActions.addConsumable({ consumable }));
   }
   addService(product: InsertedProduct): void {
-    console.log(product)
     let service = {
       ...product,
       total_price: product.quantity * product.price,

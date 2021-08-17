@@ -6,7 +6,7 @@ import * as GlassReducers from '../reducers/glass.reducer';
 import { RequireExactlyOne } from '@tanglass-erp/core/common';
 import { InsertedGlass } from '@tanglass-erp/core/product';
 import { Action, Store } from '@ngrx/store';
-
+import * as ProductActions from "@TanglassStore/product/lib/actions/product.actions";
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +37,7 @@ export class GlassFacadeService {
     this.dispatch(GlassActions.updateGlass({glass}));
   }
 
-  removeMany(ids: string[]) {
-    this.dispatch(GlassActions.removeGlasses({ids}));
+  removeMany(codes: string[]) {
+    this.dispatch(ProductActions.removeManyProducts({codes}));
   }
 }

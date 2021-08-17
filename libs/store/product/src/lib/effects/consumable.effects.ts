@@ -5,6 +5,7 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as ConsumableActions from '../actions/consumable.actions';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import * as ProductsActions from '../actions/product.actions';
 
 @Injectable()
 export class ConsumableEffects {
@@ -75,14 +76,14 @@ export class ConsumableEffects {
   });
   removeManyConsumables$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ConsumableActions.removeConsumables),
+      ofType(ProductsActions.removeManyProducts),
       mergeMap((action) =>
-        this.consumableService.removeMany(action.ids).pipe(
+        this.consumableService.removeMany(action.codes).pipe(
           map((data) =>
-          ConsumableActions.removeConsumablesSuccess({  ids: action.ids  })
+          ProductsActions.removeManyProductsSuccess({  codes: action.codes  })
           ),
           catchError((error) =>
-            of(ConsumableActions.removeConsumablesFailure({ error }))
+            of(ProductsActions.removeManyProductsFailure({ error }))
           )
         )
       )

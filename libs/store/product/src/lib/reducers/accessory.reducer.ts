@@ -3,6 +3,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 
 import * as AccessoriesActions from '../actions/accessory.actions';
 import { Accessory, DetailedAccessory } from '@tanglass-erp/core/product';
+import * as ProductsActions from '../actions/product.actions';
 
 export const ACCESSORY_FEATURE_KEY = 'accessories';
 
@@ -19,7 +20,11 @@ export interface accessoryPartialState {
 
 export const accessoryAdapter: EntityAdapter<Accessory> = createEntityAdapter<
 Accessory
->();
+>(
+  {
+    selectId: (product: Accessory) => product.product.code,
+  }
+);
 
 export const initialState: State = accessoryAdapter.getInitialState({
   // set initial required properties
@@ -55,15 +60,15 @@ const AccessoryReducer = createReducer<State>(
   on(AccessoriesActions.removeAccessorySuccess, (state, action) =>
     accessoryAdapter.removeOne(action.accessoryId, state)
   ),
-  on(AccessoriesActions.removeAccessoriesSuccess, (state, action) =>
-    accessoryAdapter.removeMany(action.ids, state)
+  on(ProductsActions.removeManyProductsSuccess, (state, action) =>
+    accessoryAdapter.removeMany(action.codes, state)
   ),
   on(AccessoriesActions.loadAccessoriesFailure,
      AccessoriesActions.updateAccessoryFailure,
      AccessoriesActions.addAccessoryFailure,
      AccessoriesActions.loadAccessoryByIdFailure,
      AccessoriesActions.removeAccessoryFailure,
-     AccessoriesActions.removeAccessoriesFailure,
+     ProductsActions.removeManyProductsFailure,
      (state, { error }) => ({
     ...state,
     error,

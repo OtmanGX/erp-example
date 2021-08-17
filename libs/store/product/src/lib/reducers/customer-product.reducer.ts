@@ -3,6 +3,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 
 import * as customerProductsActions from '../actions/customer-product.actions';
 import { CustomerProduct } from '@tanglass-erp/core/product';
+import * as ProductsActions from '../actions/product.actions';
 
 export const CUSTOMER_PRODUCT_FEATURE_KEY = 'customerProducts';
 
@@ -19,7 +20,11 @@ export interface customerProductPartialState {
 
 export const customerProductAdapter: EntityAdapter<CustomerProduct> = createEntityAdapter<
 CustomerProduct
->();
+>(
+  {
+    selectId: (product: CustomerProduct) => product.product.code,
+  }
+);
 
 export const initialState: State = customerProductAdapter.getInitialState({
   // set initial required properties
@@ -58,14 +63,14 @@ const CustomerProductReducer = createReducer<State>(
   on(customerProductsActions.removeCustomerProductuccess, (state, action) =>
   customerProductAdapter.removeOne(action.customerProductId, state)
   ),
-  on(customerProductsActions.removeCustomerItems, (state, action) =>
-  customerProductAdapter.removeMany(action.ids, state)
+  on(ProductsActions.removeManyProductsSuccess, (state, action) =>
+  customerProductAdapter.removeMany(action.codes, state)
   ),
   on(customerProductsActions.loadCustomerProductsFailure,
     customerProductsActions.loadCustomerProductByIdFailure,
     customerProductsActions.addCustomerProductFailure,
     customerProductsActions.removeCustomerProductFailure,
-    customerProductsActions.removeCustomerItemsFailure,
+    ProductsActions.removeManyProductsFailure,
     (state, { error }) => ({
    ...state,
    error,
