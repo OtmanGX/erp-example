@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PdfMakeWrapper, Table, Txt, Line, Columns } from 'pdfmake-wrapper';
+import { PdfMakeWrapper, Table, Txt, Columns } from 'pdfmake-wrapper';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {
@@ -9,6 +9,11 @@ import {
   UpdatedInvoice,
 } from '@tanglass-erp/core/sales';
 import { ProductToPrint } from '../models/print';
+import { JobOrder } from '@tanglass-erp/core/manufacturing';
+import { JobItem } from '@tanglass-erp/store/manufacturing';
+
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 //
@@ -21,11 +26,76 @@ const PAYMENT_METHOD = 'Mode de paiement';
 const COMMAND = 'Commande';
 const CODE_CLIENT = 'Code client';
 
+const JOB_ORDER = "ORDRE D'EMPLOI (Job Order)";
+const JO_TABLE_HEADER = 'Description/Dimension';
+
 @Injectable({
   providedIn: 'root',
 })
 export class InvoiceGeneratorService {
   constructor() {}
+
+  generateJobOrder(jobOrder: JobOrder, jobItems: JobItem[]) {
+    const pdf = new PdfMakeWrapper();
+    pdf.pageSize('A4');
+    pdf.pageMargins([40, 60, 40, 60]);
+    pdf.pageOrientation('landscape');
+    pdf.styles({
+      header: {
+        bold: true,
+        alignment: 'center',
+      },
+    });
+
+    pdf.add(
+      new Txt(JOB_ORDER)
+        .fontSize(20)
+        .bold()
+        .decoration('underline')
+        .alignment('right').end
+    );
+
+    pdf.add(
+      new Columns([
+        new Columns([
+          new Txt([
+            new Txt('N° B.T: ' + jobOrder.ref).bold().end,
+            new Txt(
+              '\n' + format(new Date(jobOrder.date), 'MM/dd/yyyy HH:mm:ss', {
+                locale: fr,
+              })
+            ).end,
+          ])
+            .width(150)
+            .alignment('left').end,
+        ]).width('50%').end,
+        new Txt('N° B.C: ' + jobOrder.order_ref).alignment('center').bold().end,
+      ]).margin([0, 20]).end
+    );
+
+    const jobItemsAdapted = jobItems.map((e) => [
+      [e.item],
+      [e.dimensions + ' ------------------> ' + e.count],
+    ]);
+    if (jobItemsAdapted.length) {
+      jobItemsAdapted
+        .slice(1)
+        .forEach((value) => jobItemsAdapted[0].push(...value));
+    }
+
+    pdf.add({
+      table: {
+        headerRows: 1,
+        widths: ['*'],
+        body: [
+          [{ text: JO_TABLE_HEADER, style: 'header' }],
+          [jobItemsAdapted[0]],
+        ],
+      },
+    });
+
+    pdf.create().open();
+  }
 
   generateInvoicePDF(invoice: UpdatedInvoice) {
     const pdf = new PdfMakeWrapper();
@@ -33,8 +103,8 @@ export class InvoiceGeneratorService {
     pdf.pageMargins([40, 60, 40, 60]);
     pdf.styles({
       header: {
-          bold: true
-      }
+        bold: true,
+      },
     });
     // Company name and adress
     pdf.add(
@@ -131,8 +201,8 @@ export class InvoiceGeneratorService {
     pdf.pageMargins([40, 60, 40, 60]);
     pdf.styles({
       header: {
-        bold: true
-      }
+        bold: true,
+      },
     });
     // Company name and adress
     pdf.add(
@@ -228,8 +298,8 @@ export class InvoiceGeneratorService {
     pdf.pageMargins([40, 60, 40, 60]);
     pdf.styles({
       header: {
-        bold: true
-      }
+        bold: true,
+      },
     });
     pdf.add(new Txt(order.customer.name).fontSize(20).bold().end);
     pdf.add(
@@ -285,10 +355,7 @@ export class InvoiceGeneratorService {
                   { text: 'Total HT', style: 'header' },
                   { text: order.total_ht },
                 ],
-                [
-                  { text: 'TVA', style: 'header' },
-                  { text: order.total_tax },
-                ],
+                [{ text: 'TVA', style: 'header' }, { text: order.total_tax }],
                 [
                   { text: 'Total TTC', style: 'header' },
                   { text: order.total_ttc },
@@ -306,11 +373,12 @@ export class InvoiceGeneratorService {
   }
 
   addGlasses(products: Product_draft[]) {
-    const table = [['Code', 'Qte', 'Largeur', 'Hauteur', 'M2', 'ML']
-      .map((e) => ({
+    const table = [
+      ['Code', 'Qte', 'Largeur', 'Hauteur', 'M2', 'ML'].map((e) => ({
         text: e,
         style: 'header',
-      }))];
+      })),
+    ];
     // Filter only Glasses and client articles
     products = products.filter((e) =>
       ['Verre', 'Article_Client'].includes(e.type)
