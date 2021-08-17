@@ -38,7 +38,7 @@ const jobOrdersReducer = createReducer(
     loaded: false,
     error: null,
   })),
-    
+
   on(JobOrdersActions.loadJobOrdersSuccess, (state, { jobOrders }) =>
     jobOrdersAdapter.setAll(jobOrders, { ...state, loaded: true })
   ),
@@ -67,7 +67,7 @@ const jobOrdersReducer = createReducer(
   on(JobOrdersActions.loadJobOrderByIdSuccess, (state, action) => ({
     ...state,
     error: null,
-    withBarCodes:action.jobOrder.glass_drafts[0].manufacturing_lines.length?true:false,
+    withBarCodes:action.jobOrder.glass_drafts[0]?.manufacturing_lines.length?true:false,
     selectedJobOrder: action.jobOrder,
     selectedGlasses:JobOrderGlassesAdapter(action.jobOrder.glass_drafts),
   })),

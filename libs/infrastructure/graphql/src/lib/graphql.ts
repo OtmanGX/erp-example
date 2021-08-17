@@ -7726,6 +7726,8 @@ export type Mutation_Root = {
   delete_product_serviceConfig?: Maybe<Product_ServiceConfig_Mutation_Response>;
   /** delete single row from the table: "product.serviceConfig" */
   delete_product_serviceConfig_by_pk?: Maybe<Product_ServiceConfig>;
+  /** delete single row from the table: "product.service" */
+  delete_product_service_by_pk?: Maybe<Product_Service>;
   /** delete data from the table: "product.service_consumable" */
   delete_product_service_consumable?: Maybe<Product_Service_Consumable_Mutation_Response>;
   /** delete single row from the table: "product.service_consumable" */
@@ -8310,6 +8312,8 @@ export type Mutation_Root = {
   update_product_serviceConfig?: Maybe<Product_ServiceConfig_Mutation_Response>;
   /** update single row of the table: "product.serviceConfig" */
   update_product_serviceConfig_by_pk?: Maybe<Product_ServiceConfig>;
+  /** update single row of the table: "product.service" */
+  update_product_service_by_pk?: Maybe<Product_Service>;
   /** update data of the table: "product.service_consumable" */
   update_product_service_consumable?: Maybe<Product_Service_Consumable_Mutation_Response>;
   /** update single row of the table: "product.service_consumable" */
@@ -8918,6 +8922,12 @@ export type Mutation_RootDelete_Product_ServiceConfigArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Product_ServiceConfig_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Product_Service_By_PkArgs = {
+  productcode: Scalars['String'];
 };
 
 
@@ -10926,6 +10936,18 @@ export type Mutation_RootUpdate_Product_ServiceConfig_By_PkArgs = {
   _prepend?: Maybe<Product_ServiceConfig_Prepend_Input>;
   _set?: Maybe<Product_ServiceConfig_Set_Input>;
   pk_columns: Product_ServiceConfig_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Product_Service_By_PkArgs = {
+  _append?: Maybe<Product_Service_Append_Input>;
+  _delete_at_path?: Maybe<Product_Service_Delete_At_Path_Input>;
+  _delete_elem?: Maybe<Product_Service_Delete_Elem_Input>;
+  _delete_key?: Maybe<Product_Service_Delete_Key_Input>;
+  _prepend?: Maybe<Product_Service_Prepend_Input>;
+  _set?: Maybe<Product_Service_Set_Input>;
+  pk_columns: Product_Service_Pk_Columns_Input;
 };
 
 
@@ -15491,10 +15513,6 @@ export type Product_ServiceConfig = {
   name: Scalars['String'];
   params?: Maybe<Scalars['jsonb']>;
   /** An array relationship */
-  service_consumables: Array<Product_Service_Consumable>;
-  /** An aggregated array relationship */
-  service_consumables_aggregate: Product_Service_Consumable_Aggregate;
-  /** An array relationship */
   services: Array<Product_Service>;
   /** An aggregated array relationship */
   services_aggregate: Product_Service_Aggregate;
@@ -15506,26 +15524,6 @@ export type Product_ServiceConfig = {
 /** columns and relationships of "product.serviceConfig" */
 export type Product_ServiceConfigParamsArgs = {
   path?: Maybe<Scalars['String']>;
-};
-
-
-/** columns and relationships of "product.serviceConfig" */
-export type Product_ServiceConfigService_ConsumablesArgs = {
-  distinct_on?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
-  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
-};
-
-
-/** columns and relationships of "product.serviceConfig" */
-export type Product_ServiceConfigService_Consumables_AggregateArgs = {
-  distinct_on?: Maybe<Array<Product_Service_Consumable_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Product_Service_Consumable_Order_By>>;
-  where?: Maybe<Product_Service_Consumable_Bool_Exp>;
 };
 
 
@@ -15599,7 +15597,6 @@ export type Product_ServiceConfig_Bool_Exp = {
   labelFactory?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   params?: Maybe<Jsonb_Comparison_Exp>;
-  service_consumables?: Maybe<Product_Service_Consumable_Bool_Exp>;
   services?: Maybe<Product_Service_Bool_Exp>;
   updatedAt?: Maybe<Date_Comparison_Exp>;
   updatedBy?: Maybe<Uuid_Comparison_Exp>;
@@ -15610,7 +15607,7 @@ export enum Product_ServiceConfig_Constraint {
   /** unique or primary key constraint */
   ServiceConfigNameKey = 'serviceConfig_name_key',
   /** unique or primary key constraint */
-  ServicePkey = 'service_pkey'
+  ServiceConfigPkey = 'serviceConfig_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
@@ -15636,7 +15633,6 @@ export type Product_ServiceConfig_Insert_Input = {
   labelFactory?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   params?: Maybe<Scalars['jsonb']>;
-  service_consumables?: Maybe<Product_Service_Consumable_Arr_Rel_Insert_Input>;
   services?: Maybe<Product_Service_Arr_Rel_Insert_Input>;
   updatedAt?: Maybe<Scalars['date']>;
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -15718,7 +15714,6 @@ export type Product_ServiceConfig_Order_By = {
   labelFactory?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   params?: Maybe<Order_By>;
-  service_consumables_aggregate?: Maybe<Product_Service_Consumable_Aggregate_Order_By>;
   services_aggregate?: Maybe<Product_Service_Aggregate_Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
@@ -15841,7 +15836,9 @@ export type Product_Service_Bool_Exp = {
 /** unique or primary key constraints on table "product.service" */
 export enum Product_Service_Constraint {
   /** unique or primary key constraint */
-  ServiceProductCodeKey = 'service_productCode_key'
+  ServicePkey = 'service_pkey',
+  /** unique or primary key constraint */
+  ServiceProductcodeKey = 'service_productcode_key'
 }
 
 /** columns and relationships of "product.service_consumable" */
@@ -15851,8 +15848,6 @@ export type Product_Service_Consumable = {
   consumable: Product_Consumable;
   consumableid: Scalars['uuid'];
   quota: Scalars['Float'];
-  /** An object relationship */
-  serviceConfig: Product_ServiceConfig;
   serviceid: Scalars['uuid'];
 };
 
@@ -15926,7 +15921,6 @@ export type Product_Service_Consumable_Bool_Exp = {
   consumable?: Maybe<Product_Consumable_Bool_Exp>;
   consumableid?: Maybe<Uuid_Comparison_Exp>;
   quota?: Maybe<Float_Comparison_Exp>;
-  serviceConfig?: Maybe<Product_ServiceConfig_Bool_Exp>;
   serviceid?: Maybe<Uuid_Comparison_Exp>;
 };
 
@@ -15946,7 +15940,6 @@ export type Product_Service_Consumable_Insert_Input = {
   consumable?: Maybe<Product_Consumable_Obj_Rel_Insert_Input>;
   consumableid?: Maybe<Scalars['uuid']>;
   quota?: Maybe<Scalars['Float']>;
-  serviceConfig?: Maybe<Product_ServiceConfig_Obj_Rel_Insert_Input>;
   serviceid?: Maybe<Scalars['uuid']>;
 };
 
@@ -16007,7 +16000,6 @@ export type Product_Service_Consumable_Order_By = {
   consumable?: Maybe<Product_Consumable_Order_By>;
   consumableid?: Maybe<Order_By>;
   quota?: Maybe<Order_By>;
-  serviceConfig?: Maybe<Product_ServiceConfig_Order_By>;
   serviceid?: Maybe<Order_By>;
 };
 
@@ -16200,6 +16192,11 @@ export type Product_Service_Order_By = {
   productcode?: Maybe<Order_By>;
   serviceConfig?: Maybe<Product_ServiceConfig_Order_By>;
   serviceConfigid?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "product.service" */
+export type Product_Service_Pk_Columns_Input = {
+  productcode: Scalars['String'];
 };
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
@@ -18303,6 +18300,8 @@ export type Query_Root = {
   product_serviceConfig_by_pk?: Maybe<Product_ServiceConfig>;
   /** fetch aggregated fields from the table: "product.service" */
   product_service_aggregate: Product_Service_Aggregate;
+  /** fetch data from the table: "product.service" using primary key columns */
+  product_service_by_pk?: Maybe<Product_Service>;
   /** fetch data from the table: "product.service_consumable" */
   product_service_consumable: Array<Product_Service_Consumable>;
   /** fetch aggregated fields from the table: "product.service_consumable" */
@@ -19691,6 +19690,12 @@ export type Query_RootProduct_Service_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Product_Service_Order_By>>;
   where?: Maybe<Product_Service_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootProduct_Service_By_PkArgs = {
+  productcode: Scalars['String'];
 };
 
 
@@ -30643,6 +30648,8 @@ export type Subscription_Root = {
   product_serviceConfig_by_pk?: Maybe<Product_ServiceConfig>;
   /** fetch aggregated fields from the table: "product.service" */
   product_service_aggregate: Product_Service_Aggregate;
+  /** fetch data from the table: "product.service" using primary key columns */
+  product_service_by_pk?: Maybe<Product_Service>;
   /** fetch data from the table: "product.service_consumable" */
   product_service_consumable: Array<Product_Service_Consumable>;
   /** fetch aggregated fields from the table: "product.service_consumable" */
@@ -32031,6 +32038,12 @@ export type Subscription_RootProduct_Service_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Product_Service_Order_By>>;
   where?: Maybe<Product_Service_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootProduct_Service_By_PkArgs = {
+  productcode: Scalars['String'];
 };
 
 

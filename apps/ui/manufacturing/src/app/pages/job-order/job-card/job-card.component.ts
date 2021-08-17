@@ -41,7 +41,7 @@ export class JobCardComponent extends ModelCardComponent implements OnDestroy{
         icons: [{ name: 'edit', tooltip: 'Modification', event: 'editMain' }],
         data: [
           { label: 'Réf ', value: data?.ref },
-          { label: 'Date', value: data?.date },
+          { label: 'Date', value: data?.date, type: 'date' },
           { label: 'Order Ref.', value: data?.order_ref },
           { label: 'Status', value: [data?.status], type: 'chips' },
         ],
@@ -49,7 +49,9 @@ export class JobCardComponent extends ModelCardComponent implements OnDestroy{
     ];
   }
   afterComplete() {}
-  print() {}
+  print() {
+    this.facade.generatePDF(this.data, this.products);
+  }
 
   edit() {}
 

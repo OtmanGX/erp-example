@@ -22,7 +22,6 @@ export abstract class ModelCardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.dispatch();
     this.data$.subscribe(value => {
-      console.log(value);
       this.data = value;
       this.passedData = this.passData(value);
       this.afterComplete();

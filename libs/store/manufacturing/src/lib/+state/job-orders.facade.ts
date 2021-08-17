@@ -6,10 +6,18 @@ import * as JobOrdersActions from './job-orders.actions';
 import {
   InsertedJobOrder,
   InsertedManufacturingLine,
-  JobProduct,ManufacturingLine,ManufacturingState
+  JobOrder,
+  JobProduct,
+  ManufacturingLine,
+  ManufacturingState,
 } from '@tanglass-erp/core/manufacturing';
 import { map } from 'rxjs/operators';
-import { JobOrderGlassesAdapter,ProductionLinesAdapter } from '@tanglass-erp/store/manufacturing';
+import {
+  JobItem,
+  JobOrderGlassesAdapter,
+  ProductionLinesAdapter
+} from '@tanglass-erp/store/manufacturing';
+import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
 @Injectable()
 export class JobOrdersFacade {
   loaded$ = this.store.pipe(select(JobOrdersSelectors.getJobOrdersLoaded));
@@ -23,11 +31,12 @@ export class JobOrdersFacade {
   selectedJobOrderGlasses$ = this.store.pipe(
     select(JobOrdersSelectors.getSelectedJobOrderGlasses)
   );
-  withBarCodes$ = this.store.pipe(
-    select(JobOrdersSelectors.getBarCodeState)
-  );
+  withBarCodes$ = this.store.pipe(select(JobOrdersSelectors.getBarCodeState));
 
-  constructor(private store: Store<fromJobOrders.JobOrdersPartialState>) {}
+  constructor(
+    private store: Store<fromJobOrders.JobOrdersPartialState>,
+    private invoiceGeneratorService: InvoiceGeneratorService
+  ) {}
 
   dispatch(action: Action) {
     this.store.dispatch(action);
@@ -98,8 +107,12 @@ export class JobOrdersFacade {
   updateGlassLine(glass: JobProduct) {
     this.dispatch(JobOrdersActions.updateGlassLine({ glass }));
   }
-  updateManufacturingProgress(linesList:ManufacturingLine[]) {
-    let lines=ProductionLinesAdapter(linesList);
-    this.dispatch(JobOrdersActions.updateLinesStates({lines}));
+  updateManufacturingProgress(linesList: ManufacturingLine[]) {
+    let lines = ProductionLinesAdapter(linesList);
+    this.dispatch(JobOrdersActions.updateLinesStates({ lines }));
+  }
+
+  generatePDF(jobOrder: JobOrder, jobItems:JobItem[]) {
+    this.invoiceGeneratorService.generateJobOrder(jobOrder, jobItems);
   }
 }

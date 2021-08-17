@@ -7,7 +7,7 @@ import {
   TaskState,
 } from '@tanglass-erp/core/manufacturing';
 export function JobOrderGlassesAdapter(glasses: JobProduct[]) {
-  
+
   let result = glasses.map((glass) => ({
         ...glass,
         manufacturing_lines: glass.manufacturing_lines?.map((line) => ({
@@ -52,7 +52,7 @@ export function JobOrderGlassesAdapter(glasses: JobProduct[]) {
           ],
         })),
       }))
-    
+
   ;
 
   return result;

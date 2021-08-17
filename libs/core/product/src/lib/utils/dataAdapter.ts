@@ -33,7 +33,7 @@ export function adaptProductToUpdate(Item: objToAdapt,type:string) {
 
   let {product_companies, ...product} = Item.product;
 
-  product_companies = product_companies.map(e => ({companyid: e, productcode: product.code}));
+  product_companies = product_companies.map(e => ({companyid: e, productcode: product.code})) as any[];
 
 
     return { ...Item[type], product, companies: product_companies, code: product.code }
