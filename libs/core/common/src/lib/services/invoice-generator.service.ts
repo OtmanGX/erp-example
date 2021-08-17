@@ -73,9 +73,20 @@ export class InvoiceGeneratorService {
       ]).margin([0, 20]).end
     );
 
-    const jobItemsAdapted = jobItems.map((e) => [
+    const jobItemsMap = jobItems.reduce((acc, curr) => {
+      if (acc.has(curr.item)) {
+        acc.get(curr.item).dimensions.push(curr.dimensions);
+        acc.get(curr.item).counts.push(curr.count);
+      } else
+        acc.set(curr.item, {...curr, dimensions: [curr.dimensions], counts: [curr.count]})
+
+      return acc;
+    },new Map<string, any>())
+
+    const jobItemsAdapted = [...jobItemsMap.values()].map((e) => [
       [e.item],
-      [e.dimensions + ' ------------------> ' + e.count],
+      e.counts.map((count, index) => [e.dimensions[index] + ' ------------------> ' + count])
+      // [e.dimensions + ' ------------------> ' + e.count],
     ]);
     if (jobItemsAdapted.length) {
       jobItemsAdapted
