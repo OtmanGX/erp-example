@@ -35051,6 +35051,19 @@ export type AddGlassTypeMutation = (
   )> }
 );
 
+export type DeleteManyCustomerProductsMutationVariables = Exact<{
+  ids?: Maybe<Array<Scalars['uuid']>>;
+}>;
+
+
+export type DeleteManyCustomerProductsMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_product_customer_product?: Maybe<(
+    { __typename?: 'product_customer_product_mutation_response' }
+    & Pick<Product_Customer_Product_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type DeleteManyMutationVariables = Exact<{
   codes?: Maybe<Array<Scalars['String']>>;
 }>;
@@ -39324,6 +39337,24 @@ export const AddGlassTypeDocument = gql`
   })
   export class AddGlassTypeGQL extends Apollo.Mutation<AddGlassTypeMutation, AddGlassTypeMutationVariables> {
     document = AddGlassTypeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteManyCustomerProductsDocument = gql`
+    mutation DeleteManyCustomerProducts($ids: [uuid!]) {
+  delete_product_customer_product(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteManyCustomerProductsGQL extends Apollo.Mutation<DeleteManyCustomerProductsMutation, DeleteManyCustomerProductsMutationVariables> {
+    document = DeleteManyCustomerProductsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

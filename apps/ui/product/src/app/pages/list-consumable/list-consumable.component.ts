@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import * as ConsumableActions from '@TanglassStore/product/lib/actions/consumable.actions';
 import * as ConsumableSelectors from '@TanglassStore/product/lib/selectors/consumable.selectors';
+import * as ProductsActions from '@TanglassStore/product/lib/actions/product.actions';
 
 @Component({
   selector: 'ngx-list-consumable',
@@ -48,7 +49,7 @@ export class ListConsumableComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
-        this.store.dispatch(ConsumableActions.removeConsumables({ ids: event.data.map((e) => e.id) }));
+        this.store.dispatch(ProductsActions.removeManyProducts({ codes: event.data.map((e) => e.product.code) }));
         break;
       // ...
     }

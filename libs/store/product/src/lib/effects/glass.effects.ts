@@ -5,6 +5,7 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as GlassActions from '../actions/glass.actions';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import * as ProductsActions from '../actions/product.actions';
 
 @Injectable()
 export class GlassEffects {
@@ -119,12 +120,14 @@ export class GlassEffects {
 
   removeManyGlasses$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(GlassActions.removeGlasses),
+      ofType(ProductsActions.removeManyProducts),
       mergeMap((action) =>
-        this.glassService.removeMany(action.ids).pipe(
-          map((data) => GlassActions.removeGlassesSuccess({ ids: action.ids })),
+        this.glassService.removeMany(action.codes).pipe(
+          map((data) =>
+          ProductsActions.removeManyProductsSuccess({  codes: action.codes })
+          ),
           catchError((error) =>
-            of(GlassActions.removeGlassesFailure({ error }))
+            of(ProductsActions.removeManyProductsFailure({ error }))
           )
         )
       )

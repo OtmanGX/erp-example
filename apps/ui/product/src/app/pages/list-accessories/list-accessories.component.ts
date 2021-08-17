@@ -7,6 +7,7 @@ import { AccessoryHeaders } from '../../utils/grid-headers';
 import * as AccessorySelectors from '@TanglassStore/product/lib/selectors/accessory.selectors';
 import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
 import { Store } from '@ngrx/store';
+import * as ProductsActions from '@TanglassStore/product/lib/actions/product.actions';
 
 
 @Component({
@@ -44,8 +45,7 @@ export class ListAccessoriesComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
-        this.store.dispatch(AccessoryActions.removeAccessories({ ids: event.data.map((e) => e.id) }));
-
+        this.store.dispatch(ProductsActions.removeManyProducts({ codes: event.data.map((e) => e.product.code) }));
         break;
       // ...
     }

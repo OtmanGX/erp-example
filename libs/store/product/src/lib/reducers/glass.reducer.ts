@@ -3,6 +3,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 
 import * as GlassesActions from '../actions/glass.actions';
 import { Glass, DetailedGlass } from '@tanglass-erp/core/product';
+import * as ProductsActions from '../actions/product.actions';
 
 export const GLASS_FEATURE_KEY = 'glasses';
 
@@ -21,7 +22,11 @@ export interface glassPartialState {
 
 export const glassAdapter: EntityAdapter<Glass> = createEntityAdapter<
 Glass
->();
+>(
+  {
+    selectId: (product: Glass) => product.product.code,
+  }
+);
 
 export const initialState: State = glassAdapter.getInitialState({
   // set initial required properties
@@ -73,9 +78,9 @@ on( GlassesActions.loadTypesSuccess,
   on(GlassesActions.removeGlassesuccess, (state, action) =>
      glassAdapter.removeOne(action.glassId, state)
   ),
-  on(GlassesActions.removeGlasses, (state, action) =>
-  glassAdapter.removeMany(action.ids, state)
-),
+  on(ProductsActions.removeManyProductsSuccess, (state, action) =>
+  glassAdapter.removeMany(action.codes, state)
+  ),
   on(GlassesActions.loadGlassesFailure,
     GlassesActions.loadTypesFailure,
     GlassesActions.loadColorsFailure,
@@ -84,6 +89,7 @@ on( GlassesActions.loadTypesSuccess,
      GlassesActions.loadGlassByIdFailure,
      GlassesActions.removeGlassFailure,
      GlassesActions.removeGlassesFailure,
+     ProductsActions.removeManyProductsFailure,
      (state, { error }) => ({
     ...state,
     error,

@@ -8,6 +8,7 @@ import { CustomerProductHeaders } from '../../utils/grid-headers';
 import * as CustomerProductSelectors from '@TanglassStore/product/lib/selectors/customer-product.selectores';
 import * as CustomerProductActions from '@TanglassStore/product/lib/actions/customer-product.actions';
 import { Store } from '@ngrx/store';
+import * as ProductsActions from '@TanglassStore/product/lib/actions/product.actions';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class ListCustomerProductComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
-        this.store.dispatch(CustomerProductActions.removeCustomerItems({ ids: event.data.map((e) => e.id) }));
+        this.store.dispatch(ProductsActions.removeManyProducts({ codes: event.data.map((e) => e.product.code) }));
         break;
       // ...
     }

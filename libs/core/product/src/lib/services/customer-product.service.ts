@@ -4,6 +4,7 @@ import {
   InsertCustomerProductGQL,
   DeleteOneGQL,
   DeleteManyGQL,
+  DeleteManyCustomerProductsGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { CustomerProduct } from "../models/customerProduct.model";
 

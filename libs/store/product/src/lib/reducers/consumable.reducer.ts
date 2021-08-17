@@ -3,6 +3,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 
 import * as ConsumablesActions from '../actions/consumable.actions';
 import { Consumable, DetailedConsumable } from '@tanglass-erp/core/product';
+import * as ProductsActions from '../actions/product.actions';
 
 export const CONSUMABLE_FEATURE_KEY = 'consumables';
 
@@ -19,7 +20,11 @@ export interface consumablePartialState {
 
 export const consumableAdapter: EntityAdapter<Consumable> = createEntityAdapter<
 Consumable
->();
+>(
+  {
+    selectId: (product: Consumable) => product.product.code,
+  }
+);
 
 export const initialState: State = consumableAdapter.getInitialState({
   // set initial required properties
@@ -55,15 +60,15 @@ const ConsumableReducer = createReducer<State>(
   on(ConsumablesActions.removeConsumableSuccess, (state, action) =>
      consumableAdapter.removeOne(action.consumableId, state)
   ),
-  on(ConsumablesActions.removeConsumables, (state, action) =>
-  consumableAdapter.removeMany(action.ids, state)
-),
+  on(ProductsActions.removeManyProductsSuccess, (state, action) =>
+  consumableAdapter.removeMany(action.codes, state)
+  ),
   on(ConsumablesActions.loadConsumablesFailure,
      ConsumablesActions.updateConsumableFailure,
      ConsumablesActions.addConsumableFailure,
      ConsumablesActions.loadConsumableByIdFailure,
      ConsumablesActions.removeConsumableFailure,
-     ConsumablesActions.removeConsumablesFailure,
+     ProductsActions.removeManyProductsFailure,
      (state, { error }) => ({
     ...state,
     error,
