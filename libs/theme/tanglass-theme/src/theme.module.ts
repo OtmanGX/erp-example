@@ -8,6 +8,7 @@ import {
   NumberWithCommasPipe,
 } from './pipes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HighlightDirective } from '@TanglassTheme/directives/highlight.directive';
 
 
 export const NB_MODULES: any[] = [
@@ -24,9 +25,9 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
-  exports: [CommonModule, ...NB_MODULES, ...PIPES],
-  declarations: [...PIPES],
+  imports: [CommonModule, ...NB_MODULES,],
+  exports: [CommonModule, ...NB_MODULES, ...PIPES, HighlightDirective],
+  declarations: [...PIPES, HighlightDirective],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders<ThemeModule> {

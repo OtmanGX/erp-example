@@ -9,6 +9,7 @@ import { JobCardComponent } from '@TanglassUi/manufacturing/pages/job-order/job-
 import { ManufacturingComponent } from './manufacturing.component';
 import { JobProgressComponent } from '@TanglassUi/manufacturing/components/job-progress/job-progress.component';
 import { NgxBarcodeModule } from 'ngx-barcode';
+import { ThemeModule } from '@TanglassTheme/theme.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NgxBarcodeModule } from 'ngx-barcode';
     CommonModule,
     ManufacturingRoutingModule,
     MainAgGridModule,
+    ThemeModule,
     MaterialModule,
     StoreManufacturingModule,
     NgxBarcodeModule
