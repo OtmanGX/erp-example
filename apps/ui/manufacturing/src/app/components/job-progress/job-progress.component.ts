@@ -1,9 +1,10 @@
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import {
   JobOrdersFacade,
   JobProduct,
 } from '@tanglass-erp/store/manufacturing';
 import { Subscription } from 'rxjs';
+import { NgxBarcodeComponent } from 'ngx-barcode';
 @Component({
   selector: 'ngx-job-progress',
   templateUrl: './job-progress.component.html',
@@ -12,6 +13,8 @@ import { Subscription } from 'rxjs';
 export class JobProgressComponent implements OnInit, OnDestroy {
   glass: JobProduct;
   dataSub: Subscription;
+
+  @ViewChildren('barcodes') barcodes: QueryList<NgxBarcodeComponent>;
 
   constructor(protected facade: JobOrdersFacade) {}
 
@@ -23,8 +26,8 @@ export class JobProgressComponent implements OnInit, OnDestroy {
   }
 
   updateState(itemIndex, serviceIndex) {
-    let newGlass = JSON.parse(JSON.stringify(this.glass));
-    let service = this.glass.manufacturing_lines[itemIndex].services[
+    const newGlass = JSON.parse(JSON.stringify(this.glass));
+    const service = this.glass.manufacturing_lines[itemIndex].services[
       serviceIndex
     ];
     service.isReady
@@ -44,5 +47,19 @@ export class JobProgressComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.dataSub.unsubscribe();
+  }
+
+  print() {
+    const windowUrl = 'about:blank';
+    const uniqueName = new Date();
+    const windowName = 'Print' + uniqueName.getTime();
+    const printWindow = window.open(windowUrl, windowName, 'left=50000,top=50000,width=0,height=0');
+    for(const barcode of this.barcodes.map(item => item.bcElement.nativeElement.innerHTML)) {
+      printWindow.document.write(barcode);
+    }
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
   }
 }
