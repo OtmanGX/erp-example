@@ -5,9 +5,10 @@ import {
   GetConsumableByIdGQL,
   DeleteOneGQL,
   DeleteManyGQL,
+  UpdateConsumableGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { InsertedConsumable } from '../models/consumable.model';
-import { adaptProduct } from '../utils/dataAdapter';
+import { adaptProduct, adaptProductToUpdate } from '../utils/dataAdapter';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class ConsumableService {
     private getByIdGQL: GetConsumableByIdGQL,
     private insertOneGQL: InsertConsumableGQL,
     private deleteOneGQL: DeleteOneGQL,
-    private deleteMany: DeleteManyGQL
+    private deleteMany: DeleteManyGQL,
+    private updateConsumableGQL: UpdateConsumableGQL
   ) {}
 
   getAll() {
@@ -35,6 +37,12 @@ export class ConsumableService {
 
     return this.insertOneGQL.mutate(addeValue);
   }
+
+  updateOne(consumable: InsertedConsumable) {
+    const updatedValue = adaptProductToUpdate(consumable, 'consumable');
+    return this.updateConsumableGQL.mutate(updatedValue);
+  }
+
   removeOne(code: string) {
     return this.deleteOneGQL.mutate({ code });
   }

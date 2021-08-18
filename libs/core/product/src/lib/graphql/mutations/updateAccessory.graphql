@@ -1,19 +1,20 @@
-mutation UpdateGlass(
+mutation UpdateAccessory(
   $id: uuid!
-  $thickness: Int
+  $quota: numeric
   $product: product_product_set_input
+  $category: product_accessoryTypes_enum = ACCESSOIRE
   $code: String!
   $companies: [product_product_companies_insert_input!]!
 ) {
-  update_product_glass_by_pk(
+  update_product_accessory_by_pk(
     pk_columns: { id: $id }
-    _set: { thickness: $thickness }
+    _set: { category: $category, quota: $quota }
   ) {
     id
-    thickness
-    type
-    color
+    category
+    quota
   }
+
   update_product_product_by_pk(pk_columns: { code: $code }, _set: $product) {
     code
     label

@@ -1,5 +1,6 @@
 import { Consumable, DetailedConsumable, InsertedConsumable } from '@tanglass-erp/core/product';
 import { createAction, props } from '@ngrx/store';
+import { RequireExactlyOne } from '@tanglass-erp/core/common';
 
 /****************************************************************** */
 /*****LOAD ConsumableS ** */
@@ -65,7 +66,7 @@ export const addConsumableFailure = createAction(
 
 export const updateConsumable = createAction(
   '[List Consumable Component] Update Consumable',
-  props<{ consumable: Consumable }>()
+  props<{ consumable: RequireExactlyOne<InsertedConsumable, 'id'> }>()
 );
 export const updateConsumableSuccess = createAction(
   '[Consumable Effect] Update Consumable Success',

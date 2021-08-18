@@ -1,19 +1,17 @@
-mutation UpdateGlass(
+mutation UpdateConsumable(
   $id: uuid!
-  $thickness: Int
-  $product: product_product_set_input
   $code: String!
+  $product: product_product_set_input
+  $category: product_consumableCategory_enum,
+  $labelFactory : String
   $companies: [product_product_companies_insert_input!]!
 ) {
-  update_product_glass_by_pk(
-    pk_columns: { id: $id }
-    _set: { thickness: $thickness }
-  ) {
+  update_product_consumable_by_pk(pk_columns: {id: $id}, _set: {category: $category, labelFactory: $labelFactory}) {
     id
-    thickness
-    type
-    color
+    category
+    labelFactory
   }
+
   update_product_product_by_pk(pk_columns: { code: $code }, _set: $product) {
     code
     label
@@ -37,4 +35,5 @@ mutation UpdateGlass(
       }
     }
   }
+
 }

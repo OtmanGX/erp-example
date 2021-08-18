@@ -4,10 +4,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopAccessoriesComponent } from './pop-accessories/pop-accessories.component';
 import { AccessoryHeaders } from '../../utils/grid-headers';
-import * as AccessorySelectors from '@TanglassStore/product/lib/selectors/accessory.selectors';
-import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
-import { Store } from '@ngrx/store';
-import * as ProductsActions from '@TanglassStore/product/lib/actions/product.actions';
+import { AccessoryFacadeService } from '@TanglassStore/product/lib/+state/accessory.facade.service';
 
 
 @Component({
@@ -17,20 +14,20 @@ import * as ProductsActions from '@TanglassStore/product/lib/actions/product.act
 })
 export class ListAccessoriesComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$ = this.store.select(AccessorySelectors.getAllAccessories);
+  data$ = this.facade.allAccessories$;
   agGrid: AgGridAngular;
   columnId = 'id';
   columnDefs;
 
   constructor(
     private dialog: MatDialog,
-    private store: Store
+    private facade: AccessoryFacadeService
   ) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
-    this.store.dispatch(AccessoryActions.loadAccessories());
+    this.facade.loadAll();
   }
 
   ngAfterViewInit(): void {
@@ -45,7 +42,7 @@ export class ListAccessoriesComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
-        this.store.dispatch(ProductsActions.removeManyProducts({ codes: event.data.map((e) => e.product.code) }));
+        this.facade.removeMany(event.data.map((e) => e.product.code));
         break;
       // ...
     }
@@ -71,9 +68,12 @@ export class ListAccessoriesComponent implements GridView {
       if (result) {
         // Store action dispatching
         if (action === Operations.add) {
-
-          this.store.dispatch(AccessoryActions.addAccessory({ accessory: result }));
-        } else { } // Update
+          this.facade.insertOne(result);
+        } else {
+          result.accessory['id'] = data['id'];
+          result.product['code'] = data['product']['code'];
+          this.facade.updateOne(result);
+        }
       }
     });
   }

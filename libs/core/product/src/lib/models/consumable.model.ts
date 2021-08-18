@@ -25,7 +25,8 @@ export interface DetailedConsumable extends MetaData{
 
 }
 
-export interface InsertedConsumable extends MetaData{
+export interface InsertedConsumable extends MetaData {
+  id?: string;
   consumable:ShortConsumable
   Substance?: Substance;
   product: InsertedProduct;

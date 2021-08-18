@@ -52,8 +52,6 @@ export class GlassService {
 
   updateGlass(glass: InsertedGlass) {
     const updatedValue: UpdateGlassMutationVariables = adaptProductToUpdate(glass, 'glasse');
-    console.log('item', updatedValue);
-
     return this.updateGlassGQL.mutate(updatedValue);
   }
 

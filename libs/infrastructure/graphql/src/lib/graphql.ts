@@ -35117,7 +35117,7 @@ export type InsertAccessoryMutation = (
 export type InsertConsumableMutationVariables = Exact<{
   product: Product_Product_Insert_Input;
   category?: Maybe<Product_ConsumableCategory_Enum>;
-  subsctance?: Product_Substance_Insert_Input;
+  substance?: Product_Substance_Insert_Input;
   labelFactory?: Maybe<Scalars['String']>;
 }>;
 
@@ -35220,6 +35220,72 @@ export type InsertServiceConfigMutation = (
   )> }
 );
 
+export type UpdateAccessoryMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  quota?: Maybe<Scalars['numeric']>;
+  product?: Maybe<Product_Product_Set_Input>;
+  category?: Maybe<Product_AccessoryTypes_Enum>;
+  code: Scalars['String'];
+  companies: Array<Product_Product_Companies_Insert_Input>;
+}>;
+
+
+export type UpdateAccessoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_product_accessory_by_pk?: Maybe<(
+    { __typename?: 'product_accessory' }
+    & Pick<Product_Accessory, 'id' | 'category' | 'quota'>
+  )>, update_product_product_by_pk?: Maybe<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+  )>, delete_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & Pick<Product_Product_Companies_Mutation_Response, 'affected_rows'>
+  )>, insert_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'product_product_companies' }
+      & { Company: (
+        { __typename?: 'management_company' }
+        & Pick<Management_Company, 'name' | 'id'>
+      ) }
+    )> }
+  )> }
+);
+
+export type UpdateConsumableMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  code: Scalars['String'];
+  product?: Maybe<Product_Product_Set_Input>;
+  category?: Maybe<Product_ConsumableCategory_Enum>;
+  labelFactory?: Maybe<Scalars['String']>;
+  companies: Array<Product_Product_Companies_Insert_Input>;
+}>;
+
+
+export type UpdateConsumableMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_product_consumable_by_pk?: Maybe<(
+    { __typename?: 'product_consumable' }
+    & Pick<Product_Consumable, 'id' | 'category' | 'labelFactory'>
+  )>, update_product_product_by_pk?: Maybe<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+  )>, delete_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & Pick<Product_Product_Companies_Mutation_Response, 'affected_rows'>
+  )>, insert_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'product_product_companies' }
+      & { Company: (
+        { __typename?: 'management_company' }
+        & Pick<Management_Company, 'name' | 'id'>
+      ) }
+    )> }
+  )> }
+);
+
 export type UpdateGlassMutationVariables = Exact<{
   id: Scalars['uuid'];
   thickness?: Maybe<Scalars['Int']>;
@@ -35237,16 +35303,18 @@ export type UpdateGlassMutation = (
   )>, update_product_product_by_pk?: Maybe<(
     { __typename?: 'product_product' }
     & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
-    & { companies: Array<(
-      { __typename?: 'product_product_companies_view' }
-      & Pick<Product_Product_Companies_View, 'name' | 'id'>
-    )> }
   )>, delete_product_product_companies?: Maybe<(
     { __typename?: 'product_product_companies_mutation_response' }
     & Pick<Product_Product_Companies_Mutation_Response, 'affected_rows'>
   )>, insert_product_product_companies?: Maybe<(
     { __typename?: 'product_product_companies_mutation_response' }
-    & Pick<Product_Product_Companies_Mutation_Response, 'affected_rows'>
+    & { returning: Array<(
+      { __typename?: 'product_product_companies' }
+      & { Company: (
+        { __typename?: 'management_company' }
+        & Pick<Management_Company, 'name' | 'id'>
+      ) }
+    )> }
   )> }
 );
 
@@ -39431,9 +39499,9 @@ export const InsertAccessoryDocument = gql`
     }
   }
 export const InsertConsumableDocument = gql`
-    mutation InsertConsumable($product: product_product_insert_input!, $category: product_consumableCategory_enum, $subsctance: product_substance_insert_input! = {type: consumable}, $labelFactory: String) {
+    mutation InsertConsumable($product: product_product_insert_input!, $category: product_consumableCategory_enum, $substance: product_substance_insert_input! = {type: consumable}, $labelFactory: String) {
   insert_product_consumable_one(
-    object: {product: {data: $product}, category: $category, substance: {data: $subsctance}, labelFactory: $labelFactory}
+    object: {product: {data: $product}, category: $category, substance: {data: $substance}, labelFactory: $labelFactory}
   ) {
     id
     product {
@@ -39578,6 +39646,96 @@ export const InsertServiceConfigDocument = gql`
       super(apollo);
     }
   }
+export const UpdateAccessoryDocument = gql`
+    mutation UpdateAccessory($id: uuid!, $quota: numeric, $product: product_product_set_input, $category: product_accessoryTypes_enum = ACCESSOIRE, $code: String!, $companies: [product_product_companies_insert_input!]!) {
+  update_product_accessory_by_pk(
+    pk_columns: {id: $id}
+    _set: {category: $category, quota: $quota}
+  ) {
+    id
+    category
+    quota
+  }
+  update_product_product_by_pk(pk_columns: {code: $code}, _set: $product) {
+    code
+    label
+    unit
+    price
+    priceMax
+    priceMin
+  }
+  delete_product_product_companies(where: {productcode: {_eq: $code}}) {
+    affected_rows
+  }
+  insert_product_product_companies(
+    objects: $companies
+    on_conflict: {constraint: product_companies_pkey, update_columns: []}
+  ) {
+    returning {
+      Company {
+        name
+        id
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateAccessoryGQL extends Apollo.Mutation<UpdateAccessoryMutation, UpdateAccessoryMutationVariables> {
+    document = UpdateAccessoryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateConsumableDocument = gql`
+    mutation UpdateConsumable($id: uuid!, $code: String!, $product: product_product_set_input, $category: product_consumableCategory_enum, $labelFactory: String, $companies: [product_product_companies_insert_input!]!) {
+  update_product_consumable_by_pk(
+    pk_columns: {id: $id}
+    _set: {category: $category, labelFactory: $labelFactory}
+  ) {
+    id
+    category
+    labelFactory
+  }
+  update_product_product_by_pk(pk_columns: {code: $code}, _set: $product) {
+    code
+    label
+    unit
+    price
+    priceMax
+    priceMin
+  }
+  delete_product_product_companies(where: {productcode: {_eq: $code}}) {
+    affected_rows
+  }
+  insert_product_product_companies(
+    objects: $companies
+    on_conflict: {constraint: product_companies_pkey, update_columns: []}
+  ) {
+    returning {
+      Company {
+        name
+        id
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateConsumableGQL extends Apollo.Mutation<UpdateConsumableMutation, UpdateConsumableMutationVariables> {
+    document = UpdateConsumableDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const UpdateGlassDocument = gql`
     mutation UpdateGlass($id: uuid!, $thickness: Int, $product: product_product_set_input, $code: String!, $companies: [product_product_companies_insert_input!]!) {
   update_product_glass_by_pk(pk_columns: {id: $id}, _set: {thickness: $thickness}) {
@@ -39593,10 +39751,6 @@ export const UpdateGlassDocument = gql`
     price
     priceMax
     priceMin
-    companies {
-      name
-      id
-    }
   }
   delete_product_product_companies(where: {productcode: {_eq: $code}}) {
     affected_rows
@@ -39605,7 +39759,12 @@ export const UpdateGlassDocument = gql`
     objects: $companies
     on_conflict: {constraint: product_companies_pkey, update_columns: []}
   ) {
-    affected_rows
+    returning {
+      Company {
+        name
+        id
+      }
+    }
   }
 }
     `;

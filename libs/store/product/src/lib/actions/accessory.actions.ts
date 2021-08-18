@@ -1,5 +1,6 @@
 import { Accessory, DetailedAccessory, insertedAccessory } from '@tanglass-erp/core/product';
 import { createAction, props } from '@ngrx/store';
+import { RequireExactlyOne } from '@tanglass-erp/core/common';
 
 /****************************************************************** */
 /*****LOAD Accessories ** */
@@ -65,7 +66,7 @@ export const addAccessoryFailure = createAction(
 
 export const updateAccessory = createAction(
   '[List accessories Component] Update Accessory',
-  props<{ accessory: Accessory }>()
+  props<{ accessory: RequireExactlyOne<insertedAccessory, 'id'> }>()
 );
 export const updateAccessorySuccess = createAction(
   '[Accessory Effect] Update Accessory Success',
