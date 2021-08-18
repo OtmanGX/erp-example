@@ -6,11 +6,7 @@ import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopConsumableComponent } from './pop-consumable/pop-consumable.component';
 import { ConsumableHeaders } from '../../utils/grid-headers';
 import { Consumable } from '@tanglass-erp/core/product';
-import { Store } from '@ngrx/store';
-import { AppState } from '@tanglass-erp/store/app';
-import * as ConsumableActions from '@TanglassStore/product/lib/actions/consumable.actions';
-import * as ConsumableSelectors from '@TanglassStore/product/lib/selectors/consumable.selectors';
-import * as ProductsActions from '@TanglassStore/product/lib/actions/product.actions';
+import { ConsumableFacadeService } from '@TanglassStore/product/lib/+state/consumable.facade.service';
 
 @Component({
   selector: 'ngx-list-consumable',
@@ -19,7 +15,7 @@ import * as ProductsActions from '@TanglassStore/product/lib/actions/product.act
 })
 export class ListConsumableComponent implements GridView {
   @ViewChild(MainGridComponent) mainGrid;
-  data$: Observable<Consumable[]>=this.store.select(ConsumableSelectors.getAllConsumables);;
+  data$: Observable<Consumable[]>=this.facade.allConsumables$;
 
   agGrid: AgGridAngular;
   columnId = 'id';
@@ -27,13 +23,13 @@ export class ListConsumableComponent implements GridView {
 
   constructor(
     private dialog: MatDialog,
-    private store: Store<AppState>
+    private facade: ConsumableFacadeService
   ) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
-    this.store.dispatch(ConsumableActions.loadConsumables());
+    this.facade.loadAll();
 
   }
 
@@ -49,7 +45,7 @@ export class ListConsumableComponent implements GridView {
         this.openDialog(event.action, event.data);
         break;
       case Operations.delete:
-        this.store.dispatch(ProductsActions.removeManyProducts({ codes: event.data.map((e) => e.product.code) }));
+        this.facade.removeMany(event.data.map((e) => e.product.code));
         break;
       // ...
     }
@@ -72,12 +68,15 @@ export class ListConsumableComponent implements GridView {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result)
         // Store action dispatching
         if (action === Operations.add) {
-          this.store.dispatch(ConsumableActions.addConsumable({consumable : result}));
+          this.facade.insertOne(result);
 
-        } else {} // Update
+        } else {
+          result.consumable['id'] = data['id'];
+          result.product['code'] = data['product']['code'];
+          this.facade.updateOne(result);
+        }
       }
     });
   }

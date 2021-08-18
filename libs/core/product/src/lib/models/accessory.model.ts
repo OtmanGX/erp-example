@@ -28,7 +28,8 @@ export interface DetailedAccessory  extends MetaData{
 }
 //for inserting an accessory
 
-export interface insertedAccessory{
+export interface insertedAccessory {
+  id?: string;
   substance?: Substance;
   product: InsertedProduct;
   accessory:ShortAccessory

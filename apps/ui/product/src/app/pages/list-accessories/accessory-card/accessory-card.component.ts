@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppState } from '@tanglass-erp/store/app';
-import { DetailedAccessory } from '@TanglassStore/product/index';
-import * as AccessoryActions from '@TanglassStore/product/lib/actions/accessory.actions';
-import { getSelectedAccessory } from '@TanglassStore/product/lib/selectors/accessory.selectors';
+import { AccessoryFacadeService, DetailedAccessory } from '@TanglassStore/product/index';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
@@ -15,17 +11,19 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class AccessoryCardComponent extends ModelCardComponent {
   title = "Accessoire/Système Apparent";
-  data$ = this.store.select(getSelectedAccessory)
+  data$ = this.facade.selectedAccessory$
     .pipe(takeUntil(this._onDestroy));
 
-  constructor(private store: Store<AppState>,
+  constructor(
+    private facade: AccessoryFacadeService,
     public route: ActivatedRoute) {
     super(route);
   }
 
   dispatch(): void {
-    this.store.dispatch(AccessoryActions.loadAccessoryById({ id: this.id }));
+    this.facade.loadById(this.id);
   }
+
   passData(data: DetailedAccessory) {
     return [
       {

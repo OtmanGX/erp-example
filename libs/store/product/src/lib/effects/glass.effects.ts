@@ -50,7 +50,10 @@ export class GlassEffects {
             GlassActions.updateGlassesuccess({
               glass: {
                 ...data.data.update_product_glass_by_pk,
-                product: data.data.update_product_product_by_pk,
+                product: {
+                  ...data.data.update_product_product_by_pk,
+                  companies: data.data.insert_product_product_companies.returning.map(e => ({...e.Company}))
+                },
               },
             })
           ),

@@ -6,9 +6,10 @@ import {
   DeleteOneGQL,
   DeleteManyGQL,
   InsertAccessoryMutationVariables,
+  UpdateAccessoryGQL, UpdateAccessoryMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 import { insertedAccessory } from '../models/accessory.model';
-import { adaptProduct } from '../utils/dataAdapter';
+import { adaptProduct, adaptProductToUpdate } from '../utils/dataAdapter';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,8 @@ export class AccessoryService {
     private getByIdGQL: GetAccessoryByIdGQL,
     private insertOneGQL: InsertAccessoryGQL,
     private deleteOneGQL: DeleteOneGQL,
-    private deleteMany: DeleteManyGQL
+    private deleteMany: DeleteManyGQL,
+    private updateAccessoryGQL: UpdateAccessoryGQL
   ) {}
 
   getAll() {
@@ -36,6 +38,11 @@ export class AccessoryService {
       'accessory'
     );
     return this.insertOneGQL.mutate(addeValue);
+  }
+
+  updateOne(accessory: insertedAccessory) {
+    const updatedValue: UpdateAccessoryMutationVariables = adaptProductToUpdate(accessory, 'accessory');
+    return this.updateAccessoryGQL.mutate(updatedValue);
   }
 
   removeOne(code: string) {
