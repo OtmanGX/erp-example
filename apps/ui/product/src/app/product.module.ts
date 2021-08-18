@@ -16,7 +16,6 @@ import { PopServiceConsumableComponent } from './pages/list-service-consumable/p
 import { ServiceCardComponent } from './pages/list-service/service-card/service-card.component';
 import { ServiceCardItemComponent } from './components/service-card-item/service-card-item.component';
 import { AccessoryCardComponent } from './pages/list-accessories/accessory-card/accessory-card.component';
-import { HighlightDirective } from './directives/highlight.directive';
 import { GlassCardComponent } from './pages/list-glasse/glass-card/glass-card.component';
 import { ConsumableCardComponent } from './pages/list-consumable/consumable-card/consumable-card.component';
 import { CustomerProductCardComponent } from './pages/list-customer-product/customer-product-card/customer-product-card.component';
@@ -27,6 +26,7 @@ import { StoreSharedModule } from '@tanglass-erp/store/shared';
 import { PopSuppliesComponent } from '@TanglassUi/product/pages/list-supplies/pop-supplies/pop-supplies.component';
 import { ListSuppliesComponent } from '@TanglassUi/product/pages/list-supplies/list-supplies.component';
 import { SupplyCardComponent } from '@TanglassUi/product/pages/list-supplies/supplies-card/supply-card.component';
+import { ThemeModule } from '@TanglassTheme/theme.module';
 
 
 const popUps = [
@@ -65,9 +65,9 @@ const otherComponents = [
   ServiceCardItemComponent,
 ];
 
-const directives = [
-  HighlightDirective
-];
+// const directives = [
+//   HighlightDirective
+// ];
 
 
 const routes: Routes = [
@@ -136,7 +136,7 @@ const routes: Routes = [
     ...pages,
     ...cardPages,
     ...otherComponents,
-    ...directives,
+    // ...directives,
     ...popUps
   ],
   imports: [
@@ -144,6 +144,7 @@ const routes: Routes = [
     MainAgGridModule,
     StoreProductModule,
     StoreSharedModule,
+    ThemeModule
   ]
 })
 export class ProductModule { }
