@@ -65,9 +65,6 @@ const otherComponents = [
   ServiceCardItemComponent,
 ];
 
-// const directives = [
-//   HighlightDirective
-// ];
 
 
 const routes: Routes = [
@@ -136,7 +133,6 @@ const routes: Routes = [
     ...pages,
     ...cardPages,
     ...otherComponents,
-    // ...directives,
     ...popUps
   ],
   imports: [
