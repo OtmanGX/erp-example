@@ -28,14 +28,7 @@ export class InvoiceEffects {
                 invoices: data.data.sales_invoice,
               })
             ),
-            catchError((error) => {
-              this.notificationService.showToast(
-                'error',
-                'Erreur de chargement',
-                error
-              );
-              return of(InvoiceActions.loadInvoicesFailure({ error }));
-            })
+            catchError((error) => of(InvoiceActions.loadInvoicesFailure({ error })))
           )
       )
     )
@@ -52,14 +45,7 @@ export class InvoiceEffects {
               invoice: <UpdatedInvoice>invoice,
             });
           }),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de chargement',
-              error
-            );
-            return of(InvoiceActions.loadInvoiceByIdFailure({ error }));
-          })
+          catchError((error) => of(InvoiceActions.loadInvoiceByIdFailure({ error })))
         )
       )
     )
@@ -119,14 +105,7 @@ export class InvoiceEffects {
                 invoice: data.data.insert_sales_invoice_one,
               });
             }),
-            catchError((error) => {
-              this.notificationService.showToast(
-                'error',
-                "Erreur d'ajout",
-                error
-              );
-              return of(InvoiceActions.addInvoiceFailure({ error }));
-            })
+            catchError((error) => of(InvoiceActions.addInvoiceFailure({ error })))
           );
       })
     )
@@ -152,14 +131,7 @@ export class InvoiceEffects {
               invoice: data.data.update_sales_invoice_by_pk,
             });
           }),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de mise à jour',
-              error
-            );
-            return of(InvoiceActions.updateInvoiceFailure({ error }));
-          })
+          catchError((error) => of(InvoiceActions.updateInvoiceFailure({ error })))
         )
       )
     )
@@ -182,14 +154,7 @@ export class InvoiceEffects {
             });
             return InvoiceActions.deleteInvoicesSuccess({ ids: action.ids });
           }),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de suppression',
-              error
-            );
-            return of(InvoiceActions.deleteInvoicesFailure({ error }));
-          })
+          catchError((error) => of(InvoiceActions.deleteInvoicesFailure({ error })))
         )
       )
     )

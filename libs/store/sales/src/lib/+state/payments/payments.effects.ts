@@ -17,10 +17,7 @@ export class PaymentsEffects {
           return PaymentsActions.loadPaymentsSuccess({ payments: [] });
         },
 
-        onError: (action, error) => {
-          console.error('Error', error);
-          return PaymentsActions.loadPaymentsFailure({ error });
-        },
+        onError: (action, error) => PaymentsActions.loadPaymentsFailure({ error }),
       })
     )
   );

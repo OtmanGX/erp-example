@@ -39,14 +39,7 @@ export class ExpensesEffects {
               })
             );
           }),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de chargement',
-              error
-            );
-            return of(ExpensesActions.addExpenseFailure({ error }));
-          })
+          catchError((error) => of(ExpensesActions.addExpenseFailure({ error })))
         )
       )
     )
@@ -69,14 +62,7 @@ export class ExpensesEffects {
               })
             )
           ),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de chargement',
-              error
-            );
-            return of(ExpensesActions.loadExpensesCategoriesFailure({ error }));
-          })
+          catchError((error) => of(ExpensesActions.loadExpensesCategoriesFailure({ error })))
         )
       )
     )
@@ -112,14 +98,7 @@ export class ExpensesEffects {
               })
             )
           ),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de suppression',
-              error
-            );
-            return of(ExpensesActions.deleteExpenseFailure({ error }));
-          })
+          catchError((error) => of(ExpensesActions.deleteExpenseFailure({ error })))
         )
       )
     )

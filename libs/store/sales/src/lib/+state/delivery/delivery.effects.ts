@@ -29,14 +29,9 @@ export class DeliveryEffects {
                 delivery: data.data.sales_delivery,
               })
             ),
-            catchError((error) => {
-              this.notificationService.showToast(
-                'error',
-                'Erreur de chargement',
-                error
-              );
-              return of(DeliveryActions.loadDeliveryFailure({ error }));
-            })
+            catchError((error) =>
+              of(DeliveryActions.loadDeliveryFailure({ error }))
+            )
           )
       )
     )
@@ -53,14 +48,9 @@ export class DeliveryEffects {
               delivery: <InsertedDeliveryForm>delivery,
             });
           }),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de chargement',
-              error
-            );
-            return of(DeliveryActions.loadDeliveryByIdFailure({ error }));
-          })
+          catchError((error) =>
+            of(DeliveryActions.loadDeliveryByIdFailure({ error }))
+          )
         )
       )
     )
@@ -104,14 +94,9 @@ export class DeliveryEffects {
                 delivery: <DeliveryForm>data.data.insert_sales_delivery_one,
               });
             }),
-            catchError((error) => {
-              this.notificationService.showToast(
-                'error',
-                "Erreur d'ajout",
-                error
-              );
-              return of(DeliveryActions.addDeliveryFailure({ error }));
-            })
+            catchError((error) =>
+              of(DeliveryActions.addDeliveryFailure({ error }))
+            )
           )
       )
     )
@@ -121,42 +106,39 @@ export class DeliveryEffects {
     this.actions$.pipe(
       ofType(DeliveryActions.updateDelivery),
       mergeMap((action) =>
-        this.deliveryService.updateDelivery({
-          ...action.delivery,
-          ...this.deliveryService.calculateAmounts(
-            action.delivery.delivery_lines
-          ),
-        }).pipe(
-          map((data: Array<any>) => {
-            this.router.navigate(['sales/invoice']);
-            this.notificationService.showNotifToast({
-              message: 'Mise à jour avec succès',
-              operation: 'success',
-              title: 'Bons de livraison',
-              time: new Date(),
-              icon: 'checked',
-              route: 'sales/delivery',
-              color: 'primary',
-            });
-            return DeliveryActions.updateDeliverySuccess({
-              delivery: {
-                ...data[0].data.update_sales_delivery_by_pk,
-                delivery_lines: data
-                  .slice(1, data.length)
-                  .map((e) => e.data.update_sales_delivery_line_by_pk),
-              },
-            });
-          }),
-          tap((e) => this.router.navigate(['/sales/delivery'])),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de mise à jour',
-              error
-            );
-            return of(DeliveryActions.updateDeliveryFailure({ error }));
+        this.deliveryService
+          .updateDelivery({
+            ...action.delivery,
+            ...this.deliveryService.calculateAmounts(
+              action.delivery.delivery_lines
+            ),
           })
-        )
+          .pipe(
+            map((data: Array<any>) => {
+              this.router.navigate(['sales/invoice']);
+              this.notificationService.showNotifToast({
+                message: 'Mise à jour avec succès',
+                operation: 'success',
+                title: 'Bons de livraison',
+                time: new Date(),
+                icon: 'checked',
+                route: 'sales/delivery',
+                color: 'primary',
+              });
+              return DeliveryActions.updateDeliverySuccess({
+                delivery: {
+                  ...data[0].data.update_sales_delivery_by_pk,
+                  delivery_lines: data
+                    .slice(1, data.length)
+                    .map((e) => e.data.update_sales_delivery_line_by_pk),
+                },
+              });
+            }),
+            tap((e) => this.router.navigate(['/sales/delivery'])),
+            catchError((error) =>
+              of(DeliveryActions.updateDeliveryFailure({ error }))
+            )
+          )
       )
     )
   );
@@ -177,14 +159,9 @@ export class DeliveryEffects {
             });
             return DeliveryActions.removeDeliverySuccess({ ids: action.ids });
           }),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de suppression',
-              error
-            );
-            return of(DeliveryActions.removeDeliveryFailure({ error }));
-          })
+          catchError((error) =>
+            of(DeliveryActions.removeDeliveryFailure({ error }))
+          )
         )
       )
     )
@@ -202,14 +179,9 @@ export class DeliveryEffects {
                 deliveries: data.data.sales_delivery_line,
               })
             ),
-            catchError((error) => {
-              this.notificationService.showToast(
-                'error',
-                'Erreur de chargement',
-                error
-              );
-              return of(DeliveryActions.loadOrderDeliveriesFailure({ error }));
-            })
+            catchError((error) =>
+              of(DeliveryActions.loadOrderDeliveriesFailure({ error }))
+            )
           )
       )
     )

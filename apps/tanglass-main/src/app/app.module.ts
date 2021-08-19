@@ -12,6 +12,13 @@ import { InfrastructureGraphqlModule } from '@tanglass-erp/infrastructure/graphq
 import { AuthGuard, AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment as env } from '../environments/environment.prod';
+import {CounterModule} from 'angular-circle-counter';
+import { ErrorInterceptorService } from './shared/services/error-interceptor.service';
+import { StoreModule } from '@ngrx/store';
+import { StoreAppModule } from '@tanglass-erp/store/app';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -37,8 +44,14 @@ registerLocaleData(localeFr, 'fr');
     ),
     RouterModule.forRoot([{ path: '', canActivate: [AuthGuard], loadChildren: () =>
         import('./pages/pages.module').then(m => m.PagesModule) }], { initialNavigation: 'enabled' }),
+
+    StoreModule.forRoot( {}),
+    StoreAppModule,
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot(),
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,
