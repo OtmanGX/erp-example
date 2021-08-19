@@ -26,14 +26,7 @@ export class CashBoxEffects {
             };
             return CashBoxActions.loadCashBoxSuccess({ cashBox });
           }),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de chargement',
-              error
-            );
-            return of(CashBoxActions.loadCashBoxFailure({ error }));
-          })
+          catchError((error) => of(CashBoxActions.loadCashBoxFailure({ error })))
         )
       )
     )
@@ -60,14 +53,7 @@ export class CashBoxEffects {
             ];
           }),
           switchMap((actions) => actions),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              'Erreur de chargement',
-              error
-            );
-            return of(CashBoxActions.addCashBoxFailure({ error }));
-          })
+          catchError((error) => of(CashBoxActions.addCashBoxFailure({ error })))
         )
       )
     )
@@ -102,14 +88,7 @@ export class CashBoxEffects {
               })
             )
           ),
-          catchError((error) => {
-            this.notificationService.showToast(
-              'error',
-              "Erreur lors d'insertion",
-              error
-            );
-            return of(CashBoxActions.addPaymentFailure({ error }));
-          })
+          catchError((error) => of(CashBoxActions.addPaymentFailure({ error })))
         )
       )
     )
@@ -129,16 +108,9 @@ export class CashBoxEffects {
                   salepoints: data.data.management_salesPoint,
                 })
               ),
-              catchError((error) => {
-                this.notificationService.showToast(
-                  'error',
-                  'Erreur de chargement',
-                  error
-                );
-                return of(
+              catchError((error) => of(
                   CashBoxActions.loadCashBoxSalePointsFailure({ error })
-                );
-              })
+                ))
             )
           )
         )

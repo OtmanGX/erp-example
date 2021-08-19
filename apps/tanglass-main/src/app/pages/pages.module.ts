@@ -103,10 +103,6 @@ const routes: Routes = [
     SharedModule,
     MaterialModule,
     RouterModule.forChild(routes),
-    StoreModule.forRoot( {}),
-    StoreAppModule,
-    StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot(),
     PerfectScrollbarModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
