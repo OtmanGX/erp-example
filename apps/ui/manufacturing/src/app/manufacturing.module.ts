@@ -11,6 +11,7 @@ import { JobProgressComponent } from '@TanglassUi/manufacturing/components/job-p
 import { NgxBarcodeModule } from 'ngx-barcode';
 import { ThemeModule } from '@TanglassTheme/theme.module';
 
+
 @NgModule({
   declarations: [
     ManufacturingComponent,
@@ -25,7 +26,7 @@ import { ThemeModule } from '@TanglassTheme/theme.module';
     ThemeModule,
     MaterialModule,
     StoreManufacturingModule,
-    NgxBarcodeModule
-  ],
+    NgxBarcodeModule,
+  ]
 })
 export class ManufacturingModule {}

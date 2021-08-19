@@ -1,20 +1,30 @@
-import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, Input, Output, EventEmitter } from '@angular/core';
 
 @Directive({
   selector: '[appHighlight]'
 })
 export class HighlightDirective {
+  @Input() toggle = false;
+  @Output() toggledEvent = new EventEmitter<any>();
+  toggled: boolean = false;
 
   @HostBinding('style.cursor') cursor = "pointer";
-  @HostBinding('class.light-purple-50') active: boolean;
+  @Input() @HostBinding('class.highlight-color') active: boolean;
   // [class.light-purple-50]="active"
   @HostListener("mouseenter") mouseEnter() {
     this.active = true;
   }
 
   @HostListener("mouseleave") mouseLeave() {
-    this.active = false;
+    this.active = this.toggle?this.toggled:false;
   }
-  constructor(private elementRef: ElementRef<any>) { }
+
+  @HostListener("click") click() {
+    if (this.toggle) {
+      this.toggled = !this.toggled;
+      this.toggledEvent.emit(this);
+    }
+  }
+  constructor(private elementRef: ElementRef<any>) {}
 
 }
