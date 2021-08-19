@@ -18,6 +18,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreAppModule } from '@tanglass-erp/store/app';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({

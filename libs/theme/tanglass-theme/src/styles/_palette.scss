@@ -42,6 +42,10 @@ $success: map-get($app-theme, success);
   .mat-color-danger {
     color: var(--color-warn);
   }
+
+  .highlight-color {
+    background-color: rgba(0, 0, 0, .1);
+  }
 }
 
 

@@ -57,7 +57,7 @@ import { TypeTemplateDirective } from './directives/type-template';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { SelectSearchComponent } from './components/form/select-search.component';
 import { OptionItemDirective } from './directives/option-item';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { AmountCardComponent } from './components/analytic-cards/amount-card/amount-card.component';
 import { RouterModule } from '@angular/router';
 import { TrendingCardComponent } from './components/analytic-cards/trending-card/trending-card.component';
@@ -95,7 +95,8 @@ const MATERIAL_MODULES = [
   NgxMatSelectSearchModule,
   MatGridListModule,
   MatTabsModule,
-  DragDropModule
+  DragDropModule,
+  MatRippleModule
 ];
 
 const OTHER_MODULES = [

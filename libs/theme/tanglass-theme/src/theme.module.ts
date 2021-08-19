@@ -11,6 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighlightDirective } from '@TanglassTheme/directives/highlight.directive';
 
 
+export const DIRECTIVES = [
+  HighlightDirective,
+];
+
 export const NB_MODULES: any[] = [
   ReactiveFormsModule,
   FormsModule,
@@ -26,8 +30,8 @@ const PIPES = [
 
 @NgModule({
   imports: [CommonModule, ...NB_MODULES,],
-  exports: [CommonModule, ...NB_MODULES, ...PIPES, HighlightDirective],
-  declarations: [...PIPES, HighlightDirective],
+  exports: [CommonModule, ...NB_MODULES, ...PIPES, ...DIRECTIVES],
+  declarations: [...PIPES, ...DIRECTIVES],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders<ThemeModule> {

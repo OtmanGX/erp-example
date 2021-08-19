@@ -1,4 +1,4 @@
-import { Component ,OnDestroy} from '@angular/core';
+import { Component, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import {
   JobOrdersFacade,
   JobOrder,
@@ -6,6 +6,7 @@ import {
 } from '@tanglass-erp/store/manufacturing';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
+import { HighlightDirective } from '@TanglassTheme/directives/highlight.directive';
 @Component({
   selector: 'ngx-job-card',
   templateUrl: './job-card.component.html',
@@ -15,6 +16,7 @@ export class JobCardComponent extends ModelCardComponent implements OnDestroy{
   data$ = this.facade.selectedJobOrder$;
   withGeneratedBarCodes$= this.facade.withBarCodes$;
   products: JobItem[];
+  @ViewChildren(HighlightDirective) cards: QueryList<HighlightDirective>;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -63,4 +65,11 @@ export class JobCardComponent extends ModelCardComponent implements OnDestroy{
     this.facade.setSelectedGlass(product.id)
   }
   ngOnDestroy():void{}
+
+  toggled($event: any) {
+    this.cards.filter(e => e!==$event).map(e =>  {
+      e.active=false;
+      e.toggled=false;
+    });
+  }
 }
