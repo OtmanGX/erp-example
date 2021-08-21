@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Payment as PaymentsEntity } from "@tanglass-erp/core/sales";
+import { Payment as PaymentsEntity } from '@tanglass-erp/core/sales';
 
 export const loadPayments = createAction('[Payments] Load Payments');
 

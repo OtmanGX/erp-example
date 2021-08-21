@@ -5,8 +5,10 @@ import {
   JobOrder,
   JobProduct,
 } from '@tanglass-erp/core/manufacturing';
+import { GlassesUpdating, JobOrderGlassesAdapter } from '../+state/job-orders.adapters';
+
 export const JOB_ORDERS_FEATURE_KEY = 'jobOrders';
-import { GlassesUpdating ,JobOrderGlassesAdapter} from "@tanglass-erp/store/manufacturing";
+
 export interface State extends EntityState<JobOrder> {
   selectedId?: string | number; // which JobOrders record has been selected
   selectedJobOrder?: JobOrder;
@@ -80,7 +82,7 @@ const jobOrdersReducer = createReducer(
         ...state.selectedJobOrder.glass_drafts.map((glass) => ({
           ...glass,
           manufacturing_lines: action.manufacturingLines.filter(
-            (line) => line.glass_id == glass.id
+            (line) => line.glass_id === glass.id
           ),
         })),
       ])

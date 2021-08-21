@@ -1,4 +1,4 @@
-import { SalesCustomer, SalesCompany } from './quotation';
+import { SalesCompany, SalesCustomer } from './quotation';
 import { Product_draft } from './product';
 import { Amount } from './amount';
 

@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 import * as ProductDraftSelectors from './product-draft.selectors';
 import * as ProductsActions from './product-draft.actions';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {
-  DraftFacade,
-  PaymentsFacade,
-  ProductGroups,
-  Amount,
-  Sales_Product_Type_Enum,
-  groupeByCode,
-} from '@tanglass-erp/store/sales';
-import { InsertedProduct, Product_draft } from '@tanglass-erp/core/sales';
-import { Bis } from './products-draft.models';
+
+import { InsertedProduct, Product_draft, Sales_Product_Type_Enum } from '@tanglass-erp/core/sales';
+import { Amount, Bis, ProductGroups } from './products-draft.models';
+import { PaymentsFacade } from '../payments/payments.facade';
+import { DraftFacade } from '../draft/draft.facade';
+import { groupeByCode } from './adapters';
+
 @Injectable()
 export class ProductDraftFacade {
   loaded$ = this.store.pipe(select(ProductDraftSelectors.getProductLoaded));
@@ -238,7 +235,7 @@ export class ProductDraftFacade {
 
   addBisItems(products) {
     products = products.map((product) => {
-      let {
+      const {
         status,
         glass_draft,
         delivered,

@@ -4,174 +4,159 @@ import { CardConfig } from '@tanglass-erp/material';
 @Component({
   selector: 'ngx-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   statCardList: CardConfig[] = [
     {
-      icon: "people",
-      title: "New Leads",
+      icon: 'people',
+      title: 'New Leads',
       amount: 3050,
-      color: "primary",
-      withAction:true,
+      color: 'primary',
+      withAction: true,
     },
     {
-      icon: "attach_money",
-      title: "Ventes de cette semaine",
+      icon: 'attach_money',
+      title: 'Ventes de cette semaine',
       amount: 80500,
       amountSuffix: 'MAD',
-      color: "primary",
-      withAction:true,
-
+      color: 'primary',
+      withAction: true,
     },
     {
-      icon: "store",
-      title: "État de stock",
-      amountPrefix: "Surplus de stock de",
-      amountSuffix: "%",
+      icon: 'store',
+      title: 'État de stock',
+      amountPrefix: 'Surplus de stock de',
+      amountSuffix: '%',
       amountFontSize: 48,
       amount: 8.5,
-      color: "accent",
-      withAction:true,
-
+      color: 'accent',
+      withAction: true,
     },
     {
-      icon: "shopping_cart",
-      title: "Commandes",
+      icon: 'shopping_cart',
+      title: 'Commandes',
       amount: 305,
-      amountSuffix: "Commandes de transfert",
+      amountSuffix: 'Commandes de transfert',
       amountFontSize: 48,
-      color: "accent",
-      withAction:true,
-    }
+      color: 'accent',
+      withAction: true,
+    },
   ];
   trending_list: CardConfig[] = [
     {
-      icon: "trending_up",
-      title: "Les utilisateurs actifs",
+      icon: 'trending_up',
+      title: 'Les utilisateurs actifs',
       amount: 10.8,
-      subtitle: "10.8k",
-      amountSuffix: "k",
+      subtitle: '10.8k',
+      amountSuffix: 'k',
       percentage: 21,
-      color: "primary",
+      color: 'primary',
       down: false,
-      withAction:true,
-
-    }
+      withAction: true,
+    },
   ];
 
   salesChartBar: any;
   doughNutPie: any;
 
-  constructor(
-  ) { }
+  constructor() {}
 
   ngOnInit(): void {
     this.initDailyTrafficChartBar();
     this.initDoughNutPie();
   }
 
-
   initDoughNutPie() {
     this.doughNutPie = {
-      backgroundColor: "transparent",
-      color: [
-        "#f44336",
-        "#ff9e43",
-        "rgba(116, 103, 239, 1)"
-      ],
+      backgroundColor: 'transparent',
+      color: ['#f44336', '#ff9e43', 'rgba(116, 103, 239, 1)'],
       legend: {
         show: true,
         itemGap: 20,
-        icon: "circle",
+        icon: 'circle',
         bottom: 0,
         textStyle: {
           fontSize: 13,
-          fontFamily: "roboto"
-        }
+          fontFamily: 'roboto',
+        },
       },
       tooltip: {
         show: false,
-        trigger: "item",
-        formatter: "{a} <br/>{b}: {c} ({d}%)"
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)',
       },
       xAxis: [
         {
           axisLine: {
-            show: false
+            show: false,
           },
           splitLine: {
-            show: false
-          }
-        }
+            show: false,
+          },
+        },
       ],
       yAxis: [
         {
           axisLine: {
-            show: false
+            show: false,
           },
           splitLine: {
-            show: false
-          }
-        }
+            show: false,
+          },
+        },
       ],
 
       series: [
         {
-          name: "Traffic Rate",
-          type: "pie",
-          radius: ["45%", "72.55%"],
-          center: ["50%", "50%"],
+          name: 'Traffic Rate',
+          type: 'pie',
+          radius: ['45%', '72.55%'],
+          center: ['50%', '50%'],
           avoidLabelOverlap: false,
           hoverOffset: 5,
           stillShowZeroSum: false,
 
           label: {
-            normal: {
-              show: false,
-              position: "center",
-              textStyle: {
-                fontSize: "13",
-                fontWeight: "normal"
-              },
-              formatter: "{a}"
-            },
+            // normal: {
+            show: false,
+            position: 'center',
+            fontSize: '13',
+            fontWeight: 'normal',
+            formatter: '{a}',
             emphasis: {
               show: true,
-              textStyle: {
-                fontSize: "15",
-                fontWeight: "normal",
-                color: "rgba(116, 103, 239, 1)"
-              },
-              formatter: "{b} \n{c} ({d}%)"
-            }
+              fontSize: '15',
+              fontWeight: 'normal',
+              color: 'rgba(116, 103, 239, 1)',
+              // },
+              formatter: '{b} \n{c} ({d}%)',
+            },
           },
           labelLine: {
-            normal: {
-              show: false
-            }
+            show: false,
           },
           data: [
             {
               value: 65,
-              name: "Google"
+              name: 'Google',
             },
             {
               value: 20,
-              name: "Facebook"
+              name: 'Facebook',
             },
-            { value: 15, name: "Others" }
+            { value: 15, name: 'Others' },
           ],
 
           itemStyle: {
             emphasis: {
               shadowBlur: 10,
               shadowOffsetX: 0,
-              shadowColor: "rgba(0, 0, 0, 0.5)"
-            }
-          }
-        }
-      ]
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
     };
   }
 
@@ -181,92 +166,92 @@ export class DashboardComponent implements OnInit {
         top: 16,
         left: 36,
         right: 16,
-        bottom: 32
+        bottom: 32,
       },
       legend: {},
       tooltip: {
         show: true,
-        trigger: "axis",
+        trigger: 'axis',
 
         axisPointer: {
-          type: "cross",
+          type: 'cross',
           lineStyle: {
-            opacity: 0
-          }
+            opacity: 0,
+          },
         },
         crossStyle: {
-          color: "#000"
-        }
+          color: '#000',
+        },
       },
       series: [
         {
           data: [30, 34, 36, 45, 47, 53, 49, 48, 46, 40, 33, 40],
-          type: "line",
+          type: 'line',
           areaStyle: {},
           smooth: true,
           lineStyle: {
             width: 2,
-            color: "#fff"
-          }
-        }
+            color: '#fff',
+          },
+        },
       ],
       xAxis: {
         show: true,
-        type: "category",
+        type: 'category',
         showGrid: false,
         boundaryGap: false,
         data: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec',
         ],
         axisLabel: {
-          color: "#ccc",
-          margin: 20
+          color: '#ccc',
+          margin: 20,
         },
         axisLine: {
-          show: false
+          show: false,
         },
         axisTick: {
-          show: false
-        }
+          show: false,
+        },
       },
       yAxis: {
-        type: "value",
+        type: 'value',
         min: 10,
         max: 60,
         axisLabel: {
-          color: "#ccc",
+          color: '#ccc',
           margin: 20,
           fontSize: 13,
-          fontFamily: "roboto"
+          fontFamily: 'roboto',
         },
         splitLine: {
           show: true,
           lineStyle: {
-            color: "rgba(255, 255, 255, .1)"
-          }
+            color: 'rgba(255, 255, 255, .1)',
+          },
         },
 
         axisLine: {
-          show: false
+          show: false,
         },
         axisTick: {
-          show: false
-        }
+          show: false,
+        },
       },
       color: [
         {
-          type: "linear",
+          type: 'linear',
           x: 0,
           y: 0,
           x2: 0,
@@ -274,16 +259,16 @@ export class DashboardComponent implements OnInit {
           colorStops: [
             {
               offset: 0,
-              color: "rgba(255,255,255,0.3)" // color at 0% position
+              color: 'rgba(255,255,255,0.3)', // color at 0% position
             },
             {
               offset: 1,
-              color: "rgba(255,255,255,0)" // color at 100% position
-            }
+              color: 'rgba(255,255,255,0)', // color at 100% position
+            },
           ],
-          global: false // false by default
-        }
-      ]
+          global: false, // false by default
+        },
+      ],
     };
   }
 }

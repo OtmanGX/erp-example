@@ -1,11 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import {
-  invoiceFilter,
-  Quotation,
-  Order,
-  InsertedQuotation,
-  TransformedQuotation,
-} from '@tanglass-erp/core/sales';
+import { InsertedQuotation, invoiceFilter, Order, Quotation, TransformedQuotation } from '@tanglass-erp/core/sales';
+
 export const loadQuotations = createAction(
   '[Quotations] Load Quotations',
   props<invoiceFilter>()

@@ -2,14 +2,8 @@ import { Injectable } from '@angular/core';
 import { PdfMakeWrapper, Table, Txt, Columns } from 'pdfmake-wrapper';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import {
-  InsertedDeliveryForm,
-  Order,
-  Product_draft,
-  UpdatedInvoice,
-} from '@tanglass-erp/core/sales';
+
 import { ProductToPrint } from '../models/print';
-import { JobOrder, JobItem } from '@tanglass-erp/core/manufacturing';
 
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
@@ -34,7 +28,7 @@ const JO_TABLE_HEADER = 'Description/Dimension';
 export class InvoiceGeneratorService {
   constructor() {}
 
-  generateJobOrder(jobOrder: JobOrder, jobItems: JobItem[]) {
+  generateJobOrder(jobOrder, jobItems: any[]) {
     const pdf = new PdfMakeWrapper();
     pdf.pageSize('A4');
     pdf.pageMargins([40, 60, 40, 60]);
@@ -107,7 +101,7 @@ export class InvoiceGeneratorService {
     pdf.create().open();
   }
 
-  generateInvoicePDF(invoice: UpdatedInvoice) {
+  generateInvoicePDF(invoice) {
     const pdf = new PdfMakeWrapper();
     pdf.pageSize('A4');
     pdf.pageMargins([40, 60, 40, 60]);
@@ -205,7 +199,7 @@ export class InvoiceGeneratorService {
     pdf.create().open();
   }
 
-  generateDeliveryLinePDF(delivery: InsertedDeliveryForm) {
+  generateDeliveryLinePDF(delivery) {
     const pdf = new PdfMakeWrapper();
     pdf.pageSize('A4');
     pdf.pageMargins([40, 60, 40, 60]);
@@ -302,7 +296,7 @@ export class InvoiceGeneratorService {
     pdf.create().open();
   }
 
-  generateOrderPDF(order: Order, isQuotation = false) {
+  generateOrderPDF(order, isQuotation = false) {
     const pdf = new PdfMakeWrapper();
     pdf.pageSize('A4');
     pdf.pageMargins([40, 60, 40, 60]);
@@ -382,7 +376,7 @@ export class InvoiceGeneratorService {
     pdf.create().open();
   }
 
-  addGlasses(products: Product_draft[]) {
+  addGlasses(products: any[]) {
     const table = [
       ['Code', 'Qte', 'Largeur', 'Hauteur', 'M2', 'ML'].map((e) => ({
         text: e,

@@ -9,8 +9,7 @@ import {
 import { catchError, filter, map, mergeMap, switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ShortFeatureService } from '@tanglass-erp/core/common';
-import { CashBoxFacade } from '@tanglass-erp/store/cash-register';
-import * as ExpensesActions from '../expenses/expenses.actions';
+import { CashBoxFacade } from '../cashbox/cash-box.facade';
 
 @Injectable()
 export class CashBoxEffects {

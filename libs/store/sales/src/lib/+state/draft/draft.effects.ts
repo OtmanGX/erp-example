@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as DraftActions from './draft.actions';
 
 import { DraftService } from '@tanglass-erp/core/sales';
-import { mergeMap, map, catchError } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ProductDraftFacade } from '../product-draft/product-draft.facade';
 

@@ -1,8 +1,9 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as DraftActions from './draft.actions';
 import { Draft } from '@tanglass-erp/core/sales';
+
 export const DRAFT_FEATURE_KEY = 'draft';
 
 export interface DraftState extends EntityState<Draft> {

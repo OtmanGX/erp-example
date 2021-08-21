@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { OrderService } from '@tanglass-erp/core/sales';
-import { Store } from '@ngrx/store';
 import * as OrdersActions from './orders.actions';
 import { Router } from '@angular/router';
-import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
-import {
-  PaymentsFacade,
-  DraftFacade,
-  ProductDraftFacade,
-} from '@tanglass-erp/store/sales';
+import { ProductDraftFacade } from '../product-draft/product-draft.facade';
+import { DraftFacade } from '../draft/draft.facade';
+import { PaymentsFacade } from '../payments/payments.facade';
+
 @Injectable()
 export class OrdersEffects {
   loadOrders$ = createEffect(() => {
@@ -93,8 +91,8 @@ export class OrdersEffects {
         this.orderService.getOneById(action.id).pipe(
           map((data) => {
             this.draftFacade.selectDraftId(data.draft_id);
-            let products = data.products.map((data) => {
-              let { __typename, ...product } = data;
+            const products = data.products.map((data) => {
+              const { __typename, ...product } = data;
               return product;
             });
             this.productDraftFacade.setDraftProducts(products);
