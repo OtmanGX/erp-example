@@ -3,10 +3,11 @@ mutation UpdateStockItemTranfer(
   $date: date
   $quantity: Float
   $status: String
+  $confirmed: Boolean
 ) {
   update_stock_item_tranfer_by_pk(
     pk_columns: { id: $id }
-    _set: { date: $date, quantity: $quantity, status: $status }
+    _set: { date: $date, quantity: $quantity, status: $status, confirmed: $confirmed }
   ) {
     tranfer_order_item {
       transfer_order
@@ -55,6 +56,7 @@ mutation UpdateStockItemTranfer(
                 status
                 id
                 date
+                confirmed
               }
             }
           }

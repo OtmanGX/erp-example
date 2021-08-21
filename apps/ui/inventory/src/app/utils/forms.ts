@@ -192,6 +192,7 @@ const regConfigTransferItem = (data, limit) => [
     type: 'inputSelect',
     name: 'status',
     label: 'État',
+    disabled: data?.status === itemTransferStatus.out,
     value: data?.status,
     options: Object.values(itemTransferStatus).map((elem) => ({
       key: elem,

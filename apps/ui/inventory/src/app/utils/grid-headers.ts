@@ -71,9 +71,17 @@ const TransferItemsHeaders = [
   { field: 'quantity', headerName: 'Quantité livrée', type: 'numberColumn' },
   { field: 'date', headerName: 'Date', type: 'dateTimeColumn' },
   { field: 'status', headerName: 'Etat' },
+  { field: 'confirmed', headerName: 'Confirmé ?',
+    valueFormatter: params => params.value?'oui':'non',
+    cellStyle: params => {
+        return {color: params.value?'green':'red'};
+    }},
   {field: 'id', headerName: 'Action', type: "editColumn", cellRendererParams: (params) => (
       {
-        extra: [{ icon: "edit", tooltip: "modifier", event: "editNested" }],
+        extra: [
+          { icon: "edit", tooltip: "modifier", event: "editNested"},
+          { icon: "check", tooltip: "confirmer", event: "confirm" }
+        ],
         hideEdit: true
       }
     )},

@@ -124,7 +124,7 @@ export class InvoiceGeneratorService {
     pdf.add(new Txt(CITY).alignment('right').end);
 
     // Delivery Line Ref + verticale line
-    pdf.add(new Txt(`${INVOICE}: ${invoice.ref_num}`).fontSize(20).bold().end);
+    pdf.add(new Txt(`${INVOICE}: ${invoice.ref}`).fontSize(20).bold().end);
     pdf.add({
       table: {
         headerRows: 1,
@@ -136,7 +136,7 @@ export class InvoiceGeneratorService {
 
     // date ,customer and deliveries
     const deliveries = invoice.deliveries
-      .map((e) => e.delivery.ref_num)
+      .map((e) => e.delivery.ref)
       .join(', ');
     pdf.add(
       new Columns([
@@ -223,7 +223,7 @@ export class InvoiceGeneratorService {
 
     // Delivery Line Ref + verticale line
     pdf.add(
-      new Txt(`${DELIVERY_LINE}: ${delivery.ref_num}`).fontSize(20).bold().end
+      new Txt(`${DELIVERY_LINE}: ${delivery.ref}`).fontSize(20).bold().end
     );
     pdf.add({
       table: {
@@ -242,7 +242,7 @@ export class InvoiceGeneratorService {
           new Txt(
             `:  ${delivery.createdAt.toLocaleString()}\n :  ${
               delivery.payment_method
-            }\n :  ${delivery.order.ref_num}`
+            }\n :  ${delivery.order.ref}`
           )
             .alignment('left')
             .width(100).end,

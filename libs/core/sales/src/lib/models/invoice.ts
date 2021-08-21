@@ -62,6 +62,7 @@ export interface UpdatedInvoice extends InsertedInvoice {
   deliveries: Array<{
     delivery?: {
       ref_num: number;
+      ref: string;
     };
     delivery_id: string;
   }>;
