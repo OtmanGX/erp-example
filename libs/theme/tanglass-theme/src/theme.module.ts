@@ -9,6 +9,7 @@ import {
 } from './pipes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighlightDirective } from '@TanglassTheme/directives/highlight.directive';
+import { ToastService } from '@TanglassTheme/services/toast.service';
 
 
 export const DIRECTIVES = [
@@ -38,6 +39,7 @@ export class ThemeModule {
     return {
       ngModule: ThemeModule,
       providers: [
+        ToastService
       ],
     };
   }
