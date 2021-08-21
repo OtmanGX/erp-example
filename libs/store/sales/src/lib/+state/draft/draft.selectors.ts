@@ -1,10 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  DRAFT_FEATURE_KEY,
-  DraftState,
-  DraftPartialState,
-  draftAdapter,
-} from './draft.reducer';
+import { DRAFT_FEATURE_KEY, draftAdapter, DraftPartialState, DraftState } from './draft.reducer';
 
 // Lookup the 'Draft' feature state managed by NgRx
 export const getDraftState = createFeatureSelector<

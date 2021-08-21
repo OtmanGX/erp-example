@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 import {
+  DetailedOrder,
+  InsertedOrder,
   invoiceFilter,
   Order as OrdersEntity,
-  InsertedOrder,
-  DetailedOrder,
   UpdateOrder
 } from '@tanglass-erp/core/sales';
 

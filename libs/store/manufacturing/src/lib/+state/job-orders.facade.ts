@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { select, Store, Action } from '@ngrx/store';
 import * as fromJobOrders from './job-orders.reducer';
 import * as JobOrdersSelectors from './job-orders.selectors';
@@ -12,10 +12,10 @@ import {
   ManufacturingLine,
 } from '@tanglass-erp/core/manufacturing';
 import { map } from 'rxjs/operators';
-import {
-  ProductionLinesAdapter
-} from '@tanglass-erp/store/manufacturing';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
+import { ProductionLinesAdapter } from './job-orders.adapters';
+
+
 @Injectable()
 export class JobOrdersFacade {
   loaded$ = this.store.pipe(select(JobOrdersSelectors.getJobOrdersLoaded));
@@ -33,7 +33,7 @@ export class JobOrdersFacade {
 
   constructor(
     private store: Store<fromJobOrders.JobOrdersPartialState>,
-    private invoiceGeneratorService: InvoiceGeneratorService
+    private injector: Injector
   ) {}
 
   dispatch(action: Action) {
@@ -97,7 +97,7 @@ export class JobOrdersFacade {
   setSelectedGlass(glassId: string) {
     let glass;
     this.selectedJobOrderGlasses$.subscribe(
-      (data) => (glass = data.find((obj) => obj.id == glassId))
+      (data) => (glass = data.find((obj) => obj.id === glassId))
     );
     this.dispatch(JobOrdersActions.selectGlassLine({ glass }));
   }
@@ -111,6 +111,7 @@ export class JobOrdersFacade {
   }
 
   generatePDF(jobOrder: JobOrder, jobItems:JobItem[]) {
-    this.invoiceGeneratorService.generateJobOrder(jobOrder, jobItems);
+    const invoiceGeneratorService = this.injector.get(InvoiceGeneratorService);
+    invoiceGeneratorService.generateJobOrder(jobOrder, jobItems);
   }
 }

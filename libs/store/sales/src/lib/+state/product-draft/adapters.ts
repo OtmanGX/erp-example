@@ -1,4 +1,4 @@
-import { Product } from "./products-draft.models";
+import { Product } from './products-draft.models';
 
 export function groupeByCode(data: Product[]): Product[] {
     return data.map(

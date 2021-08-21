@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
+  DeletePaymentGQL,
   GetPaymentGQL,
   InsertPaymentGQL,
-  InsertPaymentMutationVariables,
-  DeletePaymentGQL,
+  InsertPaymentMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 
 @Injectable({

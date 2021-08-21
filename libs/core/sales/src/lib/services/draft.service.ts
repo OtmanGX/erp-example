@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import {
-  InsertDraftGQL,
-  InsertConsumableDraftGQL,
-  InsertGlassDraftGQL,
-  InsertServiceDraftGQL,
-  InsertAccessoryDraftGQL,
+  DeleteDraftsGQL,
   DeleteProductDraftGQL,
+  DeleteProductsGQL,
   GetAllDraftsGQL,
   GetDraftByIdGQL,
   GetProductsByTypeGQL,
-  DeleteDraftsGQL,
-  Sales_Product_Type_Enum,
-  DeleteProductsGQL,
+  InsertAccessoryDraftGQL,
+  InsertConsumableDraftGQL,
+  InsertDraftGQL,
+  InsertGlassDraftGQL,
+  InsertServiceDraftGQL,
+  Sales_Product_Type_Enum
 } from '@tanglass-erp/infrastructure/graphql';
 import { InsertedProduct } from '@tanglass-erp/core/sales';
+
 @Injectable({
   providedIn: 'root',
 })

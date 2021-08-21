@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 
 import * as fromInvoice from './invoice.reducer';
 import * as InvoiceSelectors from './invoice.selectors';
 import * as InvoiceActions from './invoice.actions';
-import {
-  InsertedInvoice,
-  invoiceFilter,
-  UpdatedInvoice,
-} from '@tanglass-erp/core/sales';
+import { InsertedInvoice, invoiceFilter, UpdatedInvoice } from '@tanglass-erp/core/sales';
 import { filter, switchMap } from 'rxjs/operators';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
-import { getInvoiceLines } from './invoice.selectors';
 
 @Injectable()
 export class InvoiceFacade {

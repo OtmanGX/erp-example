@@ -1,9 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  PRODUCT_FEATURE_KEY,
-  ProductState,
-  productAdapter,
-} from './product-draft.reducer';
+import { PRODUCT_FEATURE_KEY, productAdapter, ProductState } from './product-draft.reducer';
 
 // Lookup the 'Product' feature state managed by NgRx
 export const getProductState = createFeatureSelector<

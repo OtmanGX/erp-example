@@ -1,10 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import {
-  InsertedInvoice,
-  Invoice,
-  invoiceFilter,
-  UpdatedInvoice,
-} from '@tanglass-erp/core/sales';
+import { InsertedInvoice, Invoice, invoiceFilter, UpdatedInvoice } from '@tanglass-erp/core/sales';
 
 export const prepareInvoiceLines = createAction(
   '[Invoice] prepare InvoiceLines',

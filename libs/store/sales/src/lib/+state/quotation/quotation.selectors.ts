@@ -1,10 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  QUOTATION_FEATURE_KEY,
-  QuotationState,
-  QuotationPartialState,
-  quotationAdapter,
-} from './quotation.reducer';
+import { QUOTATION_FEATURE_KEY, quotationAdapter, QuotationPartialState, QuotationState } from './quotation.reducer';
 
 // Lookup the 'Quotation' feature state managed by NgRx
 export const getQuotationState = createFeatureSelector<

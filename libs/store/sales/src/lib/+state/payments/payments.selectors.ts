@@ -1,10 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  PAYMENTS_FEATURE_KEY,
-  PaymentState,
-  PaymentsPartialState,
-  paymentsAdapter,
-} from './payments.reducer';
+import { PAYMENTS_FEATURE_KEY, paymentsAdapter, PaymentsPartialState, PaymentState } from './payments.reducer';
 
 // Lookup the 'Payments' feature state managed by NgRx
 export const getPaymentsState = createFeatureSelector<

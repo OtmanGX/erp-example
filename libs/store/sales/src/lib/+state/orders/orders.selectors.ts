@@ -1,10 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  ORDERS_FEATURE_KEY,
-  OrderState,
-  OrdersPartialState,
-  ordersAdapter,
-} from './orders.reducer';
+import { ORDERS_FEATURE_KEY, ordersAdapter, OrdersPartialState, OrderState } from './orders.reducer';
 
 // Lookup the 'Orders' feature state managed by NgRx
 export const getOrdersState = createFeatureSelector<

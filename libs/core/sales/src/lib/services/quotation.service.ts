@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import {
-  GetAllQuotationsGQL,
-  InsertQuotationGQL,
-  GetQuotationByIdGQL,
   DeleteQuotationsGQL,
+  GetAllQuotationsGQL,
+  GetQuotationByIdGQL,
+  InsertQuotationGQL,
   InsertQuotationMutationVariables,
-  TransformQuotationToOrderGQL,
+  TransformQuotationToOrderGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
-import {
-  invoiceFilter,
-  productAdapter,
-  TransformedQuotation,
-} from '@tanglass-erp/core/sales';
+import { TransformedQuotation } from '../models/quotation';
+import { invoiceFilter } from '../models/invoice';
+import { productAdapter } from '../utils/product-adapter';
+
 @Injectable({
   providedIn: 'root',
 })

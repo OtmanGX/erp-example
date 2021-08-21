@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Product_draft,InsertedProduct} from '@tanglass-erp/core/sales';
-import { Bis } from "@tanglass-erp/store/sales";
+import { InsertedProduct, Product_draft } from '@tanglass-erp/core/sales';
+import { Bis } from '@tanglass-erp/store/sales';
 /****************************************************************** */
 /*****LOAD  Products ** */
 /****************************************************************** */

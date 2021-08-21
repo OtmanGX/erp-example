@@ -1,10 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import {
-  DeliveryForm,
-  InsertedDeliveryForm,
-  DeliveryLine,
-  OrderDelivery,
-} from '@tanglass-erp/core/sales';
+import { DeliveryForm, DeliveryLine, InsertedDeliveryForm, OrderDelivery } from '@tanglass-erp/core/sales';
 
 // Load all
 export const loadDelivery = createAction(

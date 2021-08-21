@@ -1,7 +1,7 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import * as OrdersActions from './orders.actions';
-import { Order as OrdersEntity,DetailedOrder } from '@tanglass-erp/core/sales';
+import { DetailedOrder, Order as OrdersEntity } from '@tanglass-erp/core/sales';
 
 export const ORDERS_FEATURE_KEY = 'orders';
 

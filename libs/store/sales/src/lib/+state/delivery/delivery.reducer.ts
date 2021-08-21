@@ -1,8 +1,8 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as DeliveryActions from './delivery.actions';
-import { DeliveryForm, InsertedDeliveryForm,OrderDelivery } from '@tanglass-erp/core/sales';
+import { DeliveryForm, InsertedDeliveryForm, OrderDelivery } from '@tanglass-erp/core/sales';
 
 export const DELIVERY_FEATURE_KEY = 'delivery';
 

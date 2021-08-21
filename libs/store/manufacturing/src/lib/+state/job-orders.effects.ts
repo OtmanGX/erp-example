@@ -6,7 +6,7 @@ import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { Router } from '@angular/router';
 import * as JobOrdersActions from './job-orders.actions';
 import { JobOrderService } from '@tanglass-erp/core/manufacturing';
-import { select, Store, Action } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import * as JobOrdersSelectors from './job-orders.selectors';
 import * as fromJobOrders from './job-orders.reducer';
 
@@ -95,7 +95,7 @@ export class JobOrdersEffects {
       mergeMap((action) =>
         this.jobOrderService.getOneById(action.id).pipe(
           map((data) => {
-            let jobOrder = {
+            const jobOrder = {
               ...data.data.manufacturing_job_order_by_pk,
               glass_drafts: [
                 ...data.data.manufacturing_job_order_by_pk.glass_drafts.map(
@@ -135,7 +135,7 @@ export class JobOrdersEffects {
     );
   });
 
-  //Generating BarCodes
+  // Generating BarCodes
   addManufacturingLines = createEffect(() => {
     return this.actions$.pipe(
       ofType(JobOrdersActions.addManufacturingLines),
