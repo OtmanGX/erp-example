@@ -1,8 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
 
-import {regConfigDelivery,regConfigDeliveryItem  } from "@TanglassUi/purchase/utils/forms";
+import {regConfigDeliveryInfos} from "@TanglassUi/purchase/utils/forms";
 import {SharedFacade } from '@TanglassStore/shared/index';
 import { map } from 'rxjs/operators';
 import { FormArray } from '@angular/forms';
@@ -20,6 +19,7 @@ export class AddDeliveryComponent   implements AfterViewInit {
   formArray = new FormArray([]);
   orderForms = [];
   substances = [];
+  data
   substances$  = this.facade.allShortProduct$
   .pipe(
     map(elem => elem.map(val => ({key: val.substanceid, value: val.label})))
@@ -28,23 +28,24 @@ export class AddDeliveryComponent   implements AfterViewInit {
     .pipe(
       map(elem => elem.map(val => ({key: val.id, value: val.name})))
     );
-  warehouses: Array<any>;
   providers$=this.facade.allShortProvider$.pipe(
     map(elem=>elem.map(val=>({key:val.code,value:val.name})))
   )
 
   constructor(
-    public dialogRef: MatDialogRef<AddDeliveryComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
     private store: Store,
     private facade: SharedFacade,
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.facade.loadAllShortWarehouses();
     this.facade.loadAllShortProduct();
-    this.facade.loadAllShortProvider()
+    this.facade.loadAllShortProvider();
+    this.regConfig = regConfigDeliveryInfos(
+      this.data,
+      this.providers$,
+      this.warehouses$,
+    );
   }
   ngAfterViewInit(): void {
    

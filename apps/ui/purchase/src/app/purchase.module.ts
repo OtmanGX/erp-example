@@ -17,11 +17,12 @@ const routes: Routes = [
     component: PurchaseComponent,
     children: [
       {
-        path: 'delivery',
+        path: 'reception',
         children: [
           { path: '', component: PurchaseDeliveryComponent },
 
-          { path: 'addDelivery', component: AddDeliveryComponent },
+          { path: 'addDelivery', component: AddDeliveryComponent,
+          data: { breadcrumb: 'Ajouter' }, },
           {
             path: ':id',
             component: DeliveryCardComponent,
