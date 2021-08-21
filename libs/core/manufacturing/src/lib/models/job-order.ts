@@ -1,5 +1,3 @@
-import { Product_draft } from '@tanglass-erp/core/sales';
-import { InsertConsumableGQL } from '@tanglass-erp/infrastructure/graphql';
 export interface JobOrder {
   id: number;
   date: Date;

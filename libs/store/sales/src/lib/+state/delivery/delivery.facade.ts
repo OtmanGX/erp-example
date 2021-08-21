@@ -10,13 +10,11 @@ import {
   DeliveryForm,
   DeliveryLine,
   DeliveryStatus,
-  InsertedDeliveryForm, Order
+  InsertedDeliveryForm
 } from '@tanglass-erp/core/sales';
 import { filter, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { NotificationFacadeService } from '@tanglass-erp/store/app';
-import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
-import { getDeliveryAmount } from './delivery.selectors';
+import { InvoiceGeneratorService, ToastService } from '@tanglass-erp/core/common';
 
 const DELIVERY_WARNING = 'Assurez-vous que tous les bons de livraisons séléctionnés ne sont pas encore facturés';
 
@@ -37,7 +35,7 @@ export class DeliveryFacade {
   constructor(
     private store: Store<fromDelivery.DeliveryPartialState>,
     private router: Router,
-    private notificationService: NotificationFacadeService,
+    private toastService: ToastService,
     public invoiceGeneratorService: InvoiceGeneratorService,
   ) {}
 
@@ -89,7 +87,7 @@ export class DeliveryFacade {
   //  Other
   deliveryToInvoice(data: Array<DeliveryForm>) {
     if (!data.every((e) => e.status === DeliveryStatus.NOT_INVOICED)) {
-      this.notificationService.showToast(
+      this.toastService.showToast(
         'warning',
         'Facture',
         DELIVERY_WARNING

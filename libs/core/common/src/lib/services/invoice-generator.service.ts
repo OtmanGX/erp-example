@@ -9,8 +9,7 @@ import {
   UpdatedInvoice,
 } from '@tanglass-erp/core/sales';
 import { ProductToPrint } from '../models/print';
-import { JobOrder } from '@tanglass-erp/core/manufacturing';
-import { JobItem } from '@tanglass-erp/store/manufacturing';
+import { JobOrder, JobItem } from '@tanglass-erp/core/manufacturing';
 
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
