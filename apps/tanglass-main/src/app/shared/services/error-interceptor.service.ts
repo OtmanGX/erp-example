@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { NotificationFacadeService } from '@tanglass-erp/store/app';
+import { ToastService } from '@tanglass-erp/core/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorInterceptorService implements HttpInterceptor {
-  constructor(private notificationService: NotificationFacadeService) { }
+  constructor(private toastService: ToastService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(err => {
       const error = err.error.message || err.statusText;
-      this.notificationService.showToast(
+      this.toastService.showToast(
         'error',
         'Erreur '+err.status??'',
         error

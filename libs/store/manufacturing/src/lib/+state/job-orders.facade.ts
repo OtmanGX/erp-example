@@ -7,14 +7,12 @@ import {
   InsertedJobOrder,
   InsertedManufacturingLine,
   JobOrder,
+  JobItem,
   JobProduct,
   ManufacturingLine,
-  ManufacturingState,
 } from '@tanglass-erp/core/manufacturing';
 import { map } from 'rxjs/operators';
 import {
-  JobItem,
-  JobOrderGlassesAdapter,
   ProductionLinesAdapter
 } from '@tanglass-erp/store/manufacturing';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
@@ -82,7 +80,7 @@ export class JobOrdersFacade {
     );
   }
   addManufacturingLines() {
-    let manufacturingLines: InsertedManufacturingLine[] = [];
+    const manufacturingLines: InsertedManufacturingLine[] = [];
     this.selectedJobOrder$.subscribe((data) =>
       data.glass_drafts.map((data) =>
         manufacturingLines.push({
@@ -108,7 +106,7 @@ export class JobOrdersFacade {
     this.dispatch(JobOrdersActions.updateGlassLine({ glass }));
   }
   updateManufacturingProgress(linesList: ManufacturingLine[]) {
-    let lines = ProductionLinesAdapter(linesList);
+    const lines = ProductionLinesAdapter(linesList);
     this.dispatch(JobOrdersActions.updateLinesStates({ lines }));
   }
 
