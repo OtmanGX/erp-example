@@ -58,6 +58,7 @@ mutation InsertTransferItem(
                 status
                 id
                 date
+                confirmed
               }
             }
           }

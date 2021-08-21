@@ -9,6 +9,7 @@ query GetInvoiceById($id: uuid!) {
     date
     deliveries {
       delivery {
+        ref
         ref_num
       }
       delivery_id

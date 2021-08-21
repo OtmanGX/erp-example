@@ -44,8 +44,9 @@ export interface ManufacturingLine {
   glass_id: string;
   id: number;
   status: string;
-  manufacturing_services: LineService[];
-  manufacturing_consumables: LineService[];
+  ref?: string;
+  manufacturing_services?: LineService[];
+  manufacturing_consumables?: LineService[];
   services?: ManufacturungService[];
 }
 

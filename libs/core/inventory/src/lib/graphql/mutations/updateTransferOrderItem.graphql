@@ -48,6 +48,7 @@ mutation updateStockOrderItem($id: uuid!, $quantity: Float, $status: String) {
               status
               id
               date
+              confirmed
             }
           }
         }

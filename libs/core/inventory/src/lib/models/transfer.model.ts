@@ -18,10 +18,11 @@ export interface Transfered {
     date: Date;
     quantity: number;
     status?: string// ready or out
+    confirmed?: boolean;
 }
 //for the type and data  of  substances  to transfer
 
-export interface ItemTransfer{
+export interface ItemTransfer {
     productGlass?: ProductTransfer
     productAccessory?:ProductTransfer
 }
@@ -37,6 +38,6 @@ export interface ProductTransfer {
 export interface insertedTransfer {
     id: string;
     date: Date;
-    quantity:number;
+    quantity: number;
     status:string
 }

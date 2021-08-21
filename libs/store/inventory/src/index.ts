@@ -14,5 +14,6 @@ export {
   orderItemStatus,
   itemTransferStatus,
   DetailedTransferOrder,
+  Transfered,
   OrderItem,
 } from '@tanglass-erp/core/inventory';

@@ -4,6 +4,7 @@ import { APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache, ApolloLink } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
+import { onError } from "@apollo/client/link/error";
 
 const uri = 'https://tanglass.hasura.app/v1/graphql';
 
@@ -12,7 +13,18 @@ export function createApollo(httpLink: HttpLink) {
 
   const auth = setContext((operation, context) => {});
 
-  const link = ApolloLink.from([basic, auth, httpLink.create({ uri })]);
+  const errorLink = onError(({ graphQLErrors, networkError }) => {
+    if (graphQLErrors)
+      graphQLErrors.forEach(({ message, locations, path }) =>
+        console.log(
+          `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+        ),
+      );
+
+    if (networkError) console.log(`[Network error]: ${networkError}`);
+  });
+
+  const link = ApolloLink.from([basic, auth, errorLink, httpLink.create({ uri })]);
   const cache = new InMemoryCache();
   const defaultOptions = {
     watchQuery: {

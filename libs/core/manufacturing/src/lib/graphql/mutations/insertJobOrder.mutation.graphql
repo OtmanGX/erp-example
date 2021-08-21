@@ -44,6 +44,7 @@ mutation InsertJobOrder(
         glass_id
         id
         status
+        ref
       }
     }
   }
