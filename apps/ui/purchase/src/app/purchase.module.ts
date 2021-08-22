@@ -11,17 +11,20 @@ import { StoreSharedModule } from '@tanglass-erp/store/shared';
 import { PurchaseReturnedComponent } from '@TanglassUi/purchase/pages/purchase-returned/purchase-returned.component';
 import { StorePurchaseModule } from '@tanglass-erp/store/purchase';
 import { DeliveryCardComponent } from '@TanglassUi/purchase/pages/purchase/delivery-card/delivery-card.component';
+import {PopDeliveryItemComponent  } from "@TanglassUi/purchase/components/pop-delivery-item.component";
+import { StoreProductModule } from '@TanglassStore/product/lib/store-product.module';
 const routes: Routes = [
   {
     path: '',
     component: PurchaseComponent,
     children: [
       {
-        path: 'delivery',
+        path: 'reception',
         children: [
           { path: '', component: PurchaseDeliveryComponent },
 
-          { path: 'addDelivery', component: AddDeliveryComponent },
+          { path: 'addDelivery', component: AddDeliveryComponent,
+          data: { breadcrumb: 'Ajouter' }, },
           {
             path: ':id',
             component: DeliveryCardComponent,
@@ -44,6 +47,7 @@ const routes: Routes = [
     PurchaseDeliveryComponent,
     AddDeliveryComponent,
     PurchaseReturnedComponent,
+    PopDeliveryItemComponent
     // DeliveryCardComponent
   ],
   imports: [
@@ -52,6 +56,7 @@ const routes: Routes = [
     MainAgGridModule,
     StoreSharedModule,
     StorePurchaseModule,
+    StoreProductModule
   ],
 })
 export class PurchaseModule {}

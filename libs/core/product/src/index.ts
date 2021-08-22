@@ -19,3 +19,5 @@ export * from './lib/services/customer-product.service';
 
 export * from './lib/services/servicesConfig.service';
 export * from './lib/services/service.service';
+export * from './lib/services/substance.service'
+//export * from './lib/models/substance.model'

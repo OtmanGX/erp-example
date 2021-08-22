@@ -26,7 +26,9 @@ import { SupplyFacadeService } from '@TanglassStore/product/lib/+state/supply.fa
 import { ServiceFacadeService } from '@TanglassStore/product/lib/+state/service.facade.service';
 import { CustomerProductFacadeService } from '@TanglassStore/product/lib/+state/customer-product.facade.service';
 import { ConsumableFacadeService } from '@TanglassStore/product/lib/+state/consumable.facade.service';
-
+import * as fromSubstances from './reducers/substances.reducer';
+import { SubstancesEffects } from './effects/substances.effects';
+import { SubstancesFacade } from './+state/substances.facade';
 @NgModule({
   imports: [
     CommonModule,
@@ -60,6 +62,8 @@ import { ConsumableFacadeService } from '@TanglassStore/product/lib/+state/consu
       ServiceChildReducer.SERVICE_FEATURE_KEY,
       ServiceChildReducer.reducer
     ),
+ 
+
     EffectsModule.forFeature([
       AccessoryEffects,
       ConsumableEffects,
@@ -70,6 +74,12 @@ import { ConsumableFacadeService } from '@TanglassStore/product/lib/+state/consu
       CutomerProductEffects,
     ]),
     ToastrModule.forRoot(),
+
+    StoreModule.forFeature(
+      fromSubstances.SUBSTANCES_FEATURE_KEY,
+      fromSubstances.reducer
+    ),
+    EffectsModule.forFeature([SubstancesEffects]),
   ],
   providers: [
     GlassFacadeService,
@@ -78,6 +88,7 @@ import { ConsumableFacadeService } from '@TanglassStore/product/lib/+state/consu
     ServiceFacadeService,
     CustomerProductFacadeService,
     ConsumableFacadeService,
+    SubstancesFacade,
   ],
 })
 export class StoreProductModule {}

@@ -2,38 +2,90 @@ import { REQUIRED } from '@tanglass-erp/material';
 
 import { FormDialog } from '@tanglass-erp/material';
 import { Observable } from 'rxjs';
-
-
+import { map } from "rxjs/operators";
 type ListObservable = Observable<any> | Array<any>;
 
-const regConfigDelivery = (data?, providers: ListObservable = [], warehouses: ListObservable = []) => [
-    {
-      type: "select", name: "provider", label: "Fournisseur",
-      inputType: "text", value: data?.fromwarehouse?.id, options: providers, validations: [REQUIRED]
-    },
-    {
-      type: "select", name: "Warehouse", label: "Emplacement",
-      inputType: "text", value: data?.towarehouse?.id, options: warehouses, validations: [REQUIRED]
-    },
-    {
-      type: "date", name: "date", label: "Date",
-      inputType: "text", value: data?.date
-    },
-  ];
+const regConfigDeliveryInfos = (
+  data?,
+  providers: any = [],
+) => [
 
-const regConfigDeliveryItem = (data?, substances: ListObservable = []) => [
-
-    {type: "select", name: "substance", label: "Substance",
-      inputType: "text", value: data?.substance ?? [],
-      options: substances},
-    {
-      type: "input", name: "quantity", label: "Quantité",
-      inputType: "number", value: data?.quantity
-    },
-  ];
+  {
+    type: 'select',
+    name: 'providerid',
+    label: 'Fournisseur',
+    inputType: 'text',
+    value: data?.providerid,
+    options: providers,
+    validations: [REQUIRED],
+  },
+  {
+    type: 'date',
+    name: 'date',
+    label: 'Date',
+    inputType: 'text',
+    value: data?.date,
+  },
 
 
-  export {
-    regConfigDelivery,
-    regConfigDeliveryItem
-  };
+];
+const regConfigDeliveryItem = (
+  data?,
+  substances: any = [],
+  warehouses: any = []
+) => [
+
+  {
+    type: 'selectSearch',
+    name: 'code',
+    label: 'Code',
+    inputType: 'text',
+    value: data?.code,
+    filterFields: ['id', 'label'],
+    fieldsToShow: ['id', 'label'],
+    options: substances,
+  },
+  {
+    type: 'input',
+    name: 'label',
+    label: 'Désignation',
+    inputType: 'text',
+    value: data?.label,
+    validations: [REQUIRED,],
+  },
+  {
+    type: 'input',
+    name: 'quantity',
+    label: 'Quantité',
+    inputType: 'number',
+    value: data?.quantity,
+    validations: [REQUIRED,],
+  },
+  {
+    type: 'input',
+    name: 'unit',
+    label: 'Unité',
+    inputType: 'text',
+    value: data?.unit,
+    validations: [REQUIRED],
+  },
+  {
+    type: 'input',
+    name: 'cost',
+    label: 'Cout',
+    inputType: 'number',
+    value: data?.cost,
+    //validations: [REQUIRED, MAXNUMBER(limit)],
+  },
+  {
+    type: 'select',
+    name: 'warehouseid',
+    label: 'Entrepot',
+    inputType: 'text',
+    value: data?.warehouseid,
+    options: warehouses,
+    validations: [REQUIRED],
+  },
+];
+
+export { regConfigDeliveryInfos, regConfigDeliveryItem };

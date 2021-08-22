@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import * as fromDeliveries from './+state/deliveries.reducer';
-import { PurchasesEffects } from './+state/deliveries.effects';
-import { DeliveriesFacade } from './+state/deliveries.facade';
+import * as fromDeliveries from './+state/deliveries/deliveries.reducer';
+import { PurchasesEffects } from './+state/deliveries/deliveries.effects';
+import { DeliveriesFacade } from './+state/deliveries/deliveries.facade';
 
 @NgModule({
   imports: [

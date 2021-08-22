@@ -3,5 +3,18 @@ query GetPurchaseDeliveryById($id: Int = 10) {
     date
     id
     ref
+    delivery_items {
+      code
+      delivery_id
+      id
+      label
+      quantity
+      substance_id
+      warehouse {
+        id
+        name
+      }
+    }
+    provider_id
   }
 }

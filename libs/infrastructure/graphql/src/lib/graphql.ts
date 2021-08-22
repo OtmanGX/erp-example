@@ -4603,6 +4603,10 @@ export type Management_Company = {
   /** An aggregated array relationship */
   product_companies_aggregate: Product_Product_Companies_Aggregate;
   /** An array relationship */
+  product_drafts: Array<Sales_Product_Draft>;
+  /** An aggregated array relationship */
+  product_drafts_aggregate: Sales_Product_Draft_Aggregate;
+  /** An array relationship */
   quotations: Array<Sales_Quotation>;
   /** An aggregated array relationship */
   quotations_aggregate: Sales_Quotation_Aggregate;
@@ -4737,6 +4741,26 @@ export type Management_CompanyProduct_Companies_AggregateArgs = {
 
 
 /** columns and relationships of "management.company" */
+export type Management_CompanyProduct_DraftsArgs = {
+  distinct_on?: Maybe<Array<Sales_Product_Draft_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Product_Draft_Order_By>>;
+  where?: Maybe<Sales_Product_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "management.company" */
+export type Management_CompanyProduct_Drafts_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sales_Product_Draft_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sales_Product_Draft_Order_By>>;
+  where?: Maybe<Sales_Product_Draft_Bool_Exp>;
+};
+
+
+/** columns and relationships of "management.company" */
 export type Management_CompanyQuotationsArgs = {
   distinct_on?: Maybe<Array<Sales_Quotation_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -4832,6 +4856,7 @@ export type Management_Company_Bool_Exp = {
   payments?: Maybe<Sales_Payment_Bool_Exp>;
   phone?: Maybe<String_Comparison_Exp>;
   product_companies?: Maybe<Product_Product_Companies_Bool_Exp>;
+  product_drafts?: Maybe<Sales_Product_Draft_Bool_Exp>;
   quotations?: Maybe<Sales_Quotation_Bool_Exp>;
   updatedAt?: Maybe<Timestamptz_Comparison_Exp>;
   updatedBy?: Maybe<Uuid_Comparison_Exp>;
@@ -4874,6 +4899,7 @@ export type Management_Company_Insert_Input = {
   payments?: Maybe<Sales_Payment_Arr_Rel_Insert_Input>;
   phone?: Maybe<Scalars['String']>;
   product_companies?: Maybe<Product_Product_Companies_Arr_Rel_Insert_Input>;
+  product_drafts?: Maybe<Sales_Product_Draft_Arr_Rel_Insert_Input>;
   quotations?: Maybe<Sales_Quotation_Arr_Rel_Insert_Input>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
   updatedBy?: Maybe<Scalars['uuid']>;
@@ -4996,6 +5022,7 @@ export type Management_Company_Order_By = {
   payments_aggregate?: Maybe<Sales_Payment_Aggregate_Order_By>;
   phone?: Maybe<Order_By>;
   product_companies_aggregate?: Maybe<Product_Product_Companies_Aggregate_Order_By>;
+  product_drafts_aggregate?: Maybe<Sales_Product_Draft_Aggregate_Order_By>;
   quotations_aggregate?: Maybe<Sales_Quotation_Aggregate_Order_By>;
   updatedAt?: Maybe<Order_By>;
   updatedBy?: Maybe<Order_By>;
@@ -16238,6 +16265,10 @@ export type Product_Substance = {
   accessory?: Maybe<Product_Accessory>;
   /** An object relationship */
   consomable?: Maybe<Product_Consumable>;
+  /** An array relationship */
+  delivery_items: Array<Purchase_Delivery_Item>;
+  /** An aggregated array relationship */
+  delivery_items_aggregate: Purchase_Delivery_Item_Aggregate;
   /** An object relationship */
   glass?: Maybe<Product_Glass>;
   id: Scalars['uuid'];
@@ -16268,6 +16299,26 @@ export type Product_Substance = {
   warehouse_substances: Array<Stock_Warehouse_Substance>;
   /** An aggregated array relationship */
   warehouse_substances_aggregate: Stock_Warehouse_Substance_Aggregate;
+};
+
+
+/** columns and relationships of "product.substance" */
+export type Product_SubstanceDelivery_ItemsArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Item_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
+};
+
+
+/** columns and relationships of "product.substance" */
+export type Product_SubstanceDelivery_Items_AggregateArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Item_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
 };
 
 
@@ -16392,6 +16443,7 @@ export type Product_Substance_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Product_Substance_Bool_Exp>>>;
   accessory?: Maybe<Product_Accessory_Bool_Exp>;
   consomable?: Maybe<Product_Consumable_Bool_Exp>;
+  delivery_items?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
   glass?: Maybe<Product_Glass_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   productAccessory?: Maybe<Product_Product_Accessory_View_Bool_Exp>;
@@ -16416,6 +16468,7 @@ export enum Product_Substance_Constraint {
 export type Product_Substance_Insert_Input = {
   accessory?: Maybe<Product_Accessory_Obj_Rel_Insert_Input>;
   consomable?: Maybe<Product_Consumable_Obj_Rel_Insert_Input>;
+  delivery_items?: Maybe<Purchase_Delivery_Item_Arr_Rel_Insert_Input>;
   glass?: Maybe<Product_Glass_Obj_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
   substance_providers?: Maybe<Product_Substance_Provider_Arr_Rel_Insert_Input>;
@@ -16474,6 +16527,7 @@ export type Product_Substance_On_Conflict = {
 export type Product_Substance_Order_By = {
   accessory?: Maybe<Product_Accessory_Order_By>;
   consomable?: Maybe<Product_Consumable_Order_By>;
+  delivery_items_aggregate?: Maybe<Purchase_Delivery_Item_Aggregate_Order_By>;
   glass?: Maybe<Product_Glass_Order_By>;
   id?: Maybe<Order_By>;
   productAccessory?: Maybe<Product_Product_Accessory_View_Order_By>;
@@ -17289,6 +17343,7 @@ export type Product_Supply = {
   /** An object relationship */
   substance: Product_Substance;
   substanceid: Scalars['uuid'];
+  unit?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "product.supply" */
@@ -17336,6 +17391,7 @@ export type Product_Supply_Bool_Exp = {
   label?: Maybe<String_Comparison_Exp>;
   substance?: Maybe<Product_Substance_Bool_Exp>;
   substanceid?: Maybe<Uuid_Comparison_Exp>;
+  unit?: Maybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "product.supply" */
@@ -17355,6 +17411,7 @@ export type Product_Supply_Insert_Input = {
   label?: Maybe<Scalars['String']>;
   substance?: Maybe<Product_Substance_Obj_Rel_Insert_Input>;
   substanceid?: Maybe<Scalars['uuid']>;
+  unit?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -17363,6 +17420,7 @@ export type Product_Supply_Max_Fields = {
   code?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
   substanceid?: Maybe<Scalars['uuid']>;
+  unit?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "product.supply" */
@@ -17370,6 +17428,7 @@ export type Product_Supply_Max_Order_By = {
   code?: Maybe<Order_By>;
   label?: Maybe<Order_By>;
   substanceid?: Maybe<Order_By>;
+  unit?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -17378,6 +17437,7 @@ export type Product_Supply_Min_Fields = {
   code?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
   substanceid?: Maybe<Scalars['uuid']>;
+  unit?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "product.supply" */
@@ -17385,6 +17445,7 @@ export type Product_Supply_Min_Order_By = {
   code?: Maybe<Order_By>;
   label?: Maybe<Order_By>;
   substanceid?: Maybe<Order_By>;
+  unit?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "product.supply" */
@@ -17416,6 +17477,7 @@ export type Product_Supply_Order_By = {
   label?: Maybe<Order_By>;
   substance?: Maybe<Product_Substance_Order_By>;
   substanceid?: Maybe<Order_By>;
+  unit?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "product.supply" */
@@ -17432,7 +17494,9 @@ export enum Product_Supply_Select_Column {
   /** column name */
   Label = 'label',
   /** column name */
-  Substanceid = 'substanceid'
+  Substanceid = 'substanceid',
+  /** column name */
+  Unit = 'unit'
 }
 
 /** input type for updating data in table "product.supply" */
@@ -17441,6 +17505,7 @@ export type Product_Supply_Set_Input = {
   is_recoverable?: Maybe<Scalars['Boolean']>;
   label?: Maybe<Scalars['String']>;
   substanceid?: Maybe<Scalars['uuid']>;
+  unit?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "product.supply" */
@@ -17452,15 +17517,42 @@ export enum Product_Supply_Update_Column {
   /** column name */
   Label = 'label',
   /** column name */
-  Substanceid = 'substanceid'
+  Substanceid = 'substanceid',
+  /** column name */
+  Unit = 'unit'
 }
 
 /** columns and relationships of "purchase.delivery" */
 export type Purchase_Delivery = {
   __typename?: 'purchase_delivery';
   date: Scalars['date'];
+  /** An array relationship */
+  delivery_items: Array<Purchase_Delivery_Item>;
+  /** An aggregated array relationship */
+  delivery_items_aggregate: Purchase_Delivery_Item_Aggregate;
   id: Scalars['Int'];
+  provider_id: Scalars['uuid'];
   ref?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "purchase.delivery" */
+export type Purchase_DeliveryDelivery_ItemsArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Item_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
+};
+
+
+/** columns and relationships of "purchase.delivery" */
+export type Purchase_DeliveryDelivery_Items_AggregateArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Item_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
 };
 
 /** aggregated selection of "purchase.delivery" */
@@ -17531,7 +17623,9 @@ export type Purchase_Delivery_Bool_Exp = {
   _not?: Maybe<Purchase_Delivery_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Purchase_Delivery_Bool_Exp>>>;
   date?: Maybe<Date_Comparison_Exp>;
+  delivery_items?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
+  provider_id?: Maybe<Uuid_Comparison_Exp>;
   ref?: Maybe<String_Comparison_Exp>;
 };
 
@@ -17549,7 +17643,9 @@ export type Purchase_Delivery_Inc_Input = {
 /** input type for inserting data into table "purchase.delivery" */
 export type Purchase_Delivery_Insert_Input = {
   date?: Maybe<Scalars['date']>;
+  delivery_items?: Maybe<Purchase_Delivery_Item_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['Int']>;
+  provider_id?: Maybe<Scalars['uuid']>;
   ref?: Maybe<Scalars['String']>;
 };
 
@@ -17557,11 +17653,17 @@ export type Purchase_Delivery_Insert_Input = {
 export type Purchase_Delivery_Item = {
   __typename?: 'purchase_delivery_item';
   code: Scalars['String'];
-  company_id: Scalars['uuid'];
+  /** An object relationship */
+  delivery: Purchase_Delivery;
+  delivery_id: Scalars['Int'];
   id: Scalars['uuid'];
   label: Scalars['String'];
   quantity: Scalars['numeric'];
+  /** An object relationship */
+  substance: Product_Substance;
   substance_id: Scalars['uuid'];
+  /** An object relationship */
+  warehouse: Stock_Warehouse;
   warehouse_id: Scalars['uuid'];
 };
 
@@ -17619,11 +17721,13 @@ export type Purchase_Delivery_Item_Arr_Rel_Insert_Input = {
 /** aggregate avg on columns */
 export type Purchase_Delivery_Item_Avg_Fields = {
   __typename?: 'purchase_delivery_item_avg_fields';
+  delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Avg_Order_By = {
+  delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
 
@@ -17633,11 +17737,14 @@ export type Purchase_Delivery_Item_Bool_Exp = {
   _not?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Purchase_Delivery_Item_Bool_Exp>>>;
   code?: Maybe<String_Comparison_Exp>;
-  company_id?: Maybe<Uuid_Comparison_Exp>;
+  delivery?: Maybe<Purchase_Delivery_Bool_Exp>;
+  delivery_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   label?: Maybe<String_Comparison_Exp>;
   quantity?: Maybe<Numeric_Comparison_Exp>;
+  substance?: Maybe<Product_Substance_Bool_Exp>;
   substance_id?: Maybe<Uuid_Comparison_Exp>;
+  warehouse?: Maybe<Stock_Warehouse_Bool_Exp>;
   warehouse_id?: Maybe<Uuid_Comparison_Exp>;
 };
 
@@ -17649,17 +17756,21 @@ export enum Purchase_Delivery_Item_Constraint {
 
 /** input type for incrementing integer column in table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Inc_Input = {
+  delivery_id?: Maybe<Scalars['Int']>;
   quantity?: Maybe<Scalars['numeric']>;
 };
 
 /** input type for inserting data into table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Insert_Input = {
   code?: Maybe<Scalars['String']>;
-  company_id?: Maybe<Scalars['uuid']>;
+  delivery?: Maybe<Purchase_Delivery_Obj_Rel_Insert_Input>;
+  delivery_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
   label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
+  substance?: Maybe<Product_Substance_Obj_Rel_Insert_Input>;
   substance_id?: Maybe<Scalars['uuid']>;
+  warehouse?: Maybe<Stock_Warehouse_Obj_Rel_Insert_Input>;
   warehouse_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -17667,7 +17778,7 @@ export type Purchase_Delivery_Item_Insert_Input = {
 export type Purchase_Delivery_Item_Max_Fields = {
   __typename?: 'purchase_delivery_item_max_fields';
   code?: Maybe<Scalars['String']>;
-  company_id?: Maybe<Scalars['uuid']>;
+  delivery_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
   label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
@@ -17678,7 +17789,7 @@ export type Purchase_Delivery_Item_Max_Fields = {
 /** order by max() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Max_Order_By = {
   code?: Maybe<Order_By>;
-  company_id?: Maybe<Order_By>;
+  delivery_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   label?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
@@ -17690,7 +17801,7 @@ export type Purchase_Delivery_Item_Max_Order_By = {
 export type Purchase_Delivery_Item_Min_Fields = {
   __typename?: 'purchase_delivery_item_min_fields';
   code?: Maybe<Scalars['String']>;
-  company_id?: Maybe<Scalars['uuid']>;
+  delivery_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
   label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
@@ -17701,7 +17812,7 @@ export type Purchase_Delivery_Item_Min_Fields = {
 /** order by min() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Min_Order_By = {
   code?: Maybe<Order_By>;
-  company_id?: Maybe<Order_By>;
+  delivery_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   label?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
@@ -17734,11 +17845,14 @@ export type Purchase_Delivery_Item_On_Conflict = {
 /** ordering options when selecting data from "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Order_By = {
   code?: Maybe<Order_By>;
-  company_id?: Maybe<Order_By>;
+  delivery?: Maybe<Purchase_Delivery_Order_By>;
+  delivery_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   label?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
+  substance?: Maybe<Product_Substance_Order_By>;
   substance_id?: Maybe<Order_By>;
+  warehouse?: Maybe<Stock_Warehouse_Order_By>;
   warehouse_id?: Maybe<Order_By>;
 };
 
@@ -17752,7 +17866,7 @@ export enum Purchase_Delivery_Item_Select_Column {
   /** column name */
   Code = 'code',
   /** column name */
-  CompanyId = 'company_id',
+  DeliveryId = 'delivery_id',
   /** column name */
   Id = 'id',
   /** column name */
@@ -17768,7 +17882,7 @@ export enum Purchase_Delivery_Item_Select_Column {
 /** input type for updating data in table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Set_Input = {
   code?: Maybe<Scalars['String']>;
-  company_id?: Maybe<Scalars['uuid']>;
+  delivery_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
   label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
@@ -17779,44 +17893,52 @@ export type Purchase_Delivery_Item_Set_Input = {
 /** aggregate stddev on columns */
 export type Purchase_Delivery_Item_Stddev_Fields = {
   __typename?: 'purchase_delivery_item_stddev_fields';
+  delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Stddev_Order_By = {
+  delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Purchase_Delivery_Item_Stddev_Pop_Fields = {
   __typename?: 'purchase_delivery_item_stddev_pop_fields';
+  delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Stddev_Pop_Order_By = {
+  delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Purchase_Delivery_Item_Stddev_Samp_Fields = {
   __typename?: 'purchase_delivery_item_stddev_samp_fields';
+  delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Stddev_Samp_Order_By = {
+  delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
 export type Purchase_Delivery_Item_Sum_Fields = {
   __typename?: 'purchase_delivery_item_sum_fields';
+  delivery_id?: Maybe<Scalars['Int']>;
   quantity?: Maybe<Scalars['numeric']>;
 };
 
 /** order by sum() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Sum_Order_By = {
+  delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
 
@@ -17825,7 +17947,7 @@ export enum Purchase_Delivery_Item_Update_Column {
   /** column name */
   Code = 'code',
   /** column name */
-  CompanyId = 'company_id',
+  DeliveryId = 'delivery_id',
   /** column name */
   Id = 'id',
   /** column name */
@@ -17841,33 +17963,39 @@ export enum Purchase_Delivery_Item_Update_Column {
 /** aggregate var_pop on columns */
 export type Purchase_Delivery_Item_Var_Pop_Fields = {
   __typename?: 'purchase_delivery_item_var_pop_fields';
+  delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Var_Pop_Order_By = {
+  delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
 export type Purchase_Delivery_Item_Var_Samp_Fields = {
   __typename?: 'purchase_delivery_item_var_samp_fields';
+  delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Var_Samp_Order_By = {
+  delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
 export type Purchase_Delivery_Item_Variance_Fields = {
   __typename?: 'purchase_delivery_item_variance_fields';
+  delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Variance_Order_By = {
+  delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
 
@@ -17876,6 +18004,7 @@ export type Purchase_Delivery_Max_Fields = {
   __typename?: 'purchase_delivery_max_fields';
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['Int']>;
+  provider_id?: Maybe<Scalars['uuid']>;
   ref?: Maybe<Scalars['String']>;
 };
 
@@ -17883,6 +18012,7 @@ export type Purchase_Delivery_Max_Fields = {
 export type Purchase_Delivery_Max_Order_By = {
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  provider_id?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
 };
 
@@ -17891,6 +18021,7 @@ export type Purchase_Delivery_Min_Fields = {
   __typename?: 'purchase_delivery_min_fields';
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['Int']>;
+  provider_id?: Maybe<Scalars['uuid']>;
   ref?: Maybe<Scalars['String']>;
 };
 
@@ -17898,6 +18029,7 @@ export type Purchase_Delivery_Min_Fields = {
 export type Purchase_Delivery_Min_Order_By = {
   date?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  provider_id?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
 };
 
@@ -17926,7 +18058,9 @@ export type Purchase_Delivery_On_Conflict = {
 /** ordering options when selecting data from "purchase.delivery" */
 export type Purchase_Delivery_Order_By = {
   date?: Maybe<Order_By>;
+  delivery_items_aggregate?: Maybe<Purchase_Delivery_Item_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
+  provider_id?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
 };
 
@@ -17942,6 +18076,8 @@ export enum Purchase_Delivery_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  ProviderId = 'provider_id',
+  /** column name */
   Ref = 'ref'
 }
 
@@ -17949,6 +18085,7 @@ export enum Purchase_Delivery_Select_Column {
 export type Purchase_Delivery_Set_Input = {
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['Int']>;
+  provider_id?: Maybe<Scalars['uuid']>;
   ref?: Maybe<Scalars['String']>;
 };
 
@@ -18002,6 +18139,8 @@ export enum Purchase_Delivery_Update_Column {
   Date = 'date',
   /** column name */
   Id = 'id',
+  /** column name */
+  ProviderId = 'provider_id',
   /** column name */
   Ref = 'ref'
 }
@@ -29527,6 +29666,10 @@ export type Stock_Warehouse = {
   companyid: Scalars['uuid'];
   createdAt: Scalars['date'];
   createdBy?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  delivery_items: Array<Purchase_Delivery_Item>;
+  /** An aggregated array relationship */
+  delivery_items_aggregate: Purchase_Delivery_Item_Aggregate;
   id: Scalars['uuid'];
   name: Scalars['String'];
   /** An object relationship */
@@ -29546,6 +29689,26 @@ export type Stock_Warehouse = {
   warehouse_subsctances: Array<Stock_Warehouse_Substance>;
   /** An aggregated array relationship */
   warehouse_subsctances_aggregate: Stock_Warehouse_Substance_Aggregate;
+};
+
+
+/** columns and relationships of "stock.warehouse" */
+export type Stock_WarehouseDelivery_ItemsArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Item_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
+};
+
+
+/** columns and relationships of "stock.warehouse" */
+export type Stock_WarehouseDelivery_Items_AggregateArgs = {
+  distinct_on?: Maybe<Array<Purchase_Delivery_Item_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Purchase_Delivery_Item_Order_By>>;
+  where?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
 };
 
 
@@ -29652,6 +29815,7 @@ export type Stock_Warehouse_Bool_Exp = {
   companyid?: Maybe<Uuid_Comparison_Exp>;
   createdAt?: Maybe<Date_Comparison_Exp>;
   createdBy?: Maybe<String_Comparison_Exp>;
+  delivery_items?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   salesPoint?: Maybe<Management_SalesPoint_Bool_Exp>;
@@ -29677,6 +29841,7 @@ export type Stock_Warehouse_Insert_Input = {
   companyid?: Maybe<Scalars['uuid']>;
   createdAt?: Maybe<Scalars['date']>;
   createdBy?: Maybe<Scalars['String']>;
+  delivery_items?: Maybe<Purchase_Delivery_Item_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   salesPoint?: Maybe<Management_SalesPoint_Obj_Rel_Insert_Input>;
@@ -29766,6 +29931,7 @@ export type Stock_Warehouse_Order_By = {
   companyid?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
   createdBy?: Maybe<Order_By>;
+  delivery_items_aggregate?: Maybe<Purchase_Delivery_Item_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   salesPoint?: Maybe<Management_SalesPoint_Order_By>;
@@ -33114,14 +33280,26 @@ export type AddExpenseMutationVariables = Exact<{
 }>;
 
 
-export type AddExpenseMutation = { __typename?: 'mutation_root', insert_cash_register_expenses_one?: Maybe<{ __typename?: 'cash_register_expenses', id: number }> };
+export type AddExpenseMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_cash_register_expenses_one?: Maybe<(
+    { __typename?: 'cash_register_expenses' }
+    & Pick<Cash_Register_Expenses, 'id'>
+  )> }
+);
 
 export type DeleteExpensesByIdMutationVariables = Exact<{
-  ids?: Array<Scalars['Int']> | Scalars['Int'];
+  ids?: Array<Scalars['Int']>;
 }>;
 
 
-export type DeleteExpensesByIdMutation = { __typename?: 'mutation_root', delete_cash_register_expenses?: Maybe<{ __typename?: 'cash_register_expenses_mutation_response', affected_rows: number }> };
+export type DeleteExpensesByIdMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_cash_register_expenses?: Maybe<(
+    { __typename?: 'cash_register_expenses_mutation_response' }
+    & Pick<Cash_Register_Expenses_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type InsertCashBoxMutationVariables = Exact<{
   name: Scalars['String'];
@@ -33129,7 +33307,13 @@ export type InsertCashBoxMutationVariables = Exact<{
 }>;
 
 
-export type InsertCashBoxMutation = { __typename?: 'mutation_root', insert_cash_register_cash_box_one?: Maybe<{ __typename?: 'cash_register_cash_box', id: number }> };
+export type InsertCashBoxMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_cash_register_cash_box_one?: Maybe<(
+    { __typename?: 'cash_register_cash_box' }
+    & Pick<Cash_Register_Cash_Box, 'id'>
+  )> }
+);
 
 export type GetCashBoxByIdQueryVariables = Exact<{
   id: Scalars['Int'];
@@ -33137,77 +33321,204 @@ export type GetCashBoxByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetCashBoxByIdQuery = { __typename?: 'query_root', cash_register_cash_box_by_pk?: Maybe<{ __typename?: 'cash_register_cash_box', balance: any, createdAt?: Maybe<any>, salepoint_id: any, updatedAt?: Maybe<any>, name: string, id: number, expenses: Array<{ __typename?: 'cash_register_expenses', amountSpent: any, category: string, createdAt?: Maybe<any>, date?: Maybe<any>, employee_id?: Maybe<string>, id: number, name: string, note?: Maybe<string>, employee?: Maybe<{ __typename?: 'management_userProfile', firstname?: Maybe<string>, lastname?: Maybe<string>, username: string }> }>, salepoint: { __typename?: 'management_salesPoint', name: string } }>, sales_payment: Array<{ __typename?: 'sales_payment', id: any, amount: any, comment?: Maybe<string>, order_id: number, deadline?: Maybe<any>, date: any, company: { __typename?: 'management_company', name: string }, customer: { __typename?: 'contact_customer', name: string } }> };
+export type GetCashBoxByIdQuery = (
+  { __typename?: 'query_root' }
+  & { cash_register_cash_box_by_pk?: Maybe<(
+    { __typename?: 'cash_register_cash_box' }
+    & Pick<Cash_Register_Cash_Box, 'balance' | 'createdAt' | 'salepoint_id' | 'updatedAt' | 'name' | 'id'>
+    & { expenses: Array<(
+      { __typename?: 'cash_register_expenses' }
+      & Pick<Cash_Register_Expenses, 'amountSpent' | 'category' | 'createdAt' | 'date' | 'employee_id' | 'id' | 'name' | 'note'>
+      & { employee?: Maybe<(
+        { __typename?: 'management_userProfile' }
+        & Pick<Management_UserProfile, 'firstname' | 'lastname' | 'username'>
+      )> }
+    )>, salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
+  )>, sales_payment: Array<(
+    { __typename?: 'sales_payment' }
+    & Pick<Sales_Payment, 'id' | 'amount' | 'comment' | 'order_id' | 'deadline' | 'date'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name'>
+    ) }
+  )> }
+);
 
 export type GetExpensesCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetExpensesCategoriesQuery = { __typename?: 'query_root', cash_register_expense_category: Array<{ __typename?: 'cash_register_expense_category', key: string, value: string }> };
+export type GetExpensesCategoriesQuery = (
+  { __typename?: 'query_root' }
+  & { cash_register_expense_category: Array<(
+    { __typename?: 'cash_register_expense_category' }
+    & Pick<Cash_Register_Expense_Category, 'key' | 'value'>
+  )> }
+);
 
 export type GetAccessoriesSubstancesQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetAccessoriesSubstancesQuery = { __typename?: 'query_root', stock_warehouse_substance: Array<{ __typename?: 'stock_warehouse_substance', quantity: number, substance: { __typename?: 'product_substance', productAccessory?: Maybe<{ __typename?: 'product_product_accessory_view', code?: Maybe<string>, label?: Maybe<string>, substanceid?: Maybe<any>, unit?: Maybe<string> }> } }> };
+export type GetAccessoriesSubstancesQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_substance: Array<(
+    { __typename?: 'stock_warehouse_substance' }
+    & Pick<Stock_Warehouse_Substance, 'quantity'>
+    & { substance: (
+      { __typename?: 'product_substance' }
+      & { productAccessory?: Maybe<(
+        { __typename?: 'product_product_accessory_view' }
+        & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'substanceid' | 'unit'>
+      )> }
+    ) }
+  )> }
+);
 
 export type GetGlassesSubstancesQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetGlassesSubstancesQuery = { __typename?: 'query_root', stock_warehouse_substance: Array<{ __typename?: 'stock_warehouse_substance', quantity: number, substance: { __typename?: 'product_substance', productGlass?: Maybe<{ __typename?: 'product_product_glass_view', code?: Maybe<string>, label?: Maybe<string>, substanceid?: Maybe<any>, unit?: Maybe<string> }> } }> };
+export type GetGlassesSubstancesQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_substance: Array<(
+    { __typename?: 'stock_warehouse_substance' }
+    & Pick<Stock_Warehouse_Substance, 'quantity'>
+    & { substance: (
+      { __typename?: 'product_substance' }
+      & { productGlass?: Maybe<(
+        { __typename?: 'product_product_glass_view' }
+        & Pick<Product_Product_Glass_View, 'code' | 'label' | 'substanceid' | 'unit'>
+      )> }
+    ) }
+  )> }
+);
 
 export type GetMyUserQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type GetMyUserQuery = { __typename?: 'query_root', management_userProfile_by_pk?: Maybe<{ __typename?: 'management_userProfile', active: boolean, createdAt: any, email?: Maybe<string>, firstname?: Maybe<string>, id: string, lastname?: Maybe<string>, phone?: Maybe<string>, role: Management_User_Role_Enum, username: string, SalesPointsid?: Maybe<any>, CIN?: Maybe<string> }> };
+export type GetMyUserQuery = (
+  { __typename?: 'query_root' }
+  & { management_userProfile_by_pk?: Maybe<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'active' | 'createdAt' | 'email' | 'firstname' | 'id' | 'lastname' | 'phone' | 'role' | 'username' | 'SalesPointsid' | 'CIN'>
+  )> }
+);
 
 export type GetOrdersBySalepointQueryVariables = Exact<{
   salepoint_id: Scalars['uuid'];
 }>;
 
 
-export type GetOrdersBySalepointQuery = { __typename?: 'query_root', sales_order: Array<{ __typename?: 'sales_order', id: number, ref?: Maybe<string> }> };
+export type GetOrdersBySalepointQuery = (
+  { __typename?: 'query_root' }
+  & { sales_order: Array<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'id' | 'ref'>
+  )> }
+);
 
 export type GetShortCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetShortCompaniesQuery = { __typename?: 'query_root', management_company: Array<{ __typename?: 'management_company', id: any, name: string }> };
+export type GetShortCompaniesQuery = (
+  { __typename?: 'query_root' }
+  & { management_company: Array<(
+    { __typename?: 'management_company' }
+    & Pick<Management_Company, 'id' | 'name'>
+  )> }
+);
 
 export type GetShortEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetShortEmployeesQuery = { __typename?: 'query_root', management_userProfile: Array<{ __typename?: 'management_userProfile', id: string, username: string, firstname?: Maybe<string>, lastname?: Maybe<string> }> };
+export type GetShortEmployeesQuery = (
+  { __typename?: 'query_root' }
+  & { management_userProfile: Array<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'id' | 'username' | 'firstname' | 'lastname'>
+  )> }
+);
 
 export type GetShortProvidersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetShortProvidersQuery = { __typename?: 'query_root', contact_provider: Array<{ __typename?: 'contact_provider', code?: Maybe<string>, name: string }> };
+export type GetShortProvidersQuery = (
+  { __typename?: 'query_root' }
+  & { contact_provider: Array<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'code' | 'name'>
+  )> }
+);
 
 export type GeShortSalePointsQueryVariables = Exact<{
-  ids?: Maybe<Array<Scalars['uuid']> | Scalars['uuid']>;
+  ids?: Maybe<Array<Scalars['uuid']>>;
 }>;
 
 
-export type GeShortSalePointsQuery = { __typename?: 'query_root', management_salesPoint: Array<{ __typename?: 'management_salesPoint', name: string, id: any, cash_boxes: Array<{ __typename?: 'cash_register_cash_box', id: number, name: string }> }> };
+export type GeShortSalePointsQuery = (
+  { __typename?: 'query_root' }
+  & { management_salesPoint: Array<(
+    { __typename?: 'management_salesPoint' }
+    & Pick<Management_SalesPoint, 'name' | 'id'>
+    & { cash_boxes: Array<(
+      { __typename?: 'cash_register_cash_box' }
+      & Pick<Cash_Register_Cash_Box, 'id' | 'name'>
+    )> }
+  )> }
+);
 
 export type GetShortSubstancesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetShortSubstancesQuery = { __typename?: 'query_root', product_product: Array<{ __typename?: 'product_product', label: string, code: string, price: number, priceMax: number, priceMin: number, glass?: Maybe<{ __typename?: 'product_glass', substanceid: any }>, consumable?: Maybe<{ __typename?: 'product_consumable', substanceid: any }>, accessory?: Maybe<{ __typename?: 'product_accessory', substanceid: any }> }> };
+export type GetShortSubstancesQuery = (
+  { __typename?: 'query_root' }
+  & { product_product: Array<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'label' | 'code' | 'price' | 'priceMax' | 'priceMin'>
+    & { glass?: Maybe<(
+      { __typename?: 'product_glass' }
+      & Pick<Product_Glass, 'substanceid'>
+    )>, consumable?: Maybe<(
+      { __typename?: 'product_consumable' }
+      & Pick<Product_Consumable, 'substanceid'>
+    )>, accessory?: Maybe<(
+      { __typename?: 'product_accessory' }
+      & Pick<Product_Accessory, 'substanceid'>
+    )> }
+  )> }
+);
 
 export type GetShortWArehousesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetShortWArehousesQuery = { __typename?: 'query_root', stock_warehouse: Array<{ __typename?: 'stock_warehouse', name: string, id: any, companyid: any }> };
+export type GetShortWArehousesQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse: Array<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'name' | 'id' | 'companyid'>
+  )> }
+);
 
 export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProductsQuery = { __typename?: 'query_root', product_product: Array<{ __typename?: 'product_product', code: string, label: string, price: number, priceMax: number, priceMin: number, unit: Product_Product_Unit_Enum }> };
+export type GetProductsQuery = (
+  { __typename?: 'query_root' }
+  & { product_product: Array<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code' | 'label' | 'price' | 'priceMax' | 'priceMin' | 'unit'>
+  )> }
+);
 
 export type AddContactAddressMutationVariables = Exact<{
   address: Contact_Address_Insert_Input;
@@ -33215,7 +33526,16 @@ export type AddContactAddressMutationVariables = Exact<{
 }>;
 
 
-export type AddContactAddressMutation = { __typename?: 'mutation_root', insert_contact_contact_address_one?: Maybe<{ __typename?: 'contact_contact_address', address: { __typename?: 'contact_address', address?: Maybe<string>, city?: Maybe<string>, id: any, zip?: Maybe<string> } }> };
+export type AddContactAddressMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_contact_address_one?: Maybe<(
+    { __typename?: 'contact_contact_address' }
+    & { address: (
+      { __typename?: 'contact_address' }
+      & Pick<Contact_Address, 'address' | 'city' | 'id' | 'zip'>
+    ) }
+  )> }
+);
 
 export type AddCustomerAddressMutationVariables = Exact<{
   address: Contact_Address_Insert_Input;
@@ -33223,7 +33543,16 @@ export type AddCustomerAddressMutationVariables = Exact<{
 }>;
 
 
-export type AddCustomerAddressMutation = { __typename?: 'mutation_root', insert_contact_customer_address_one?: Maybe<{ __typename?: 'contact_customer_address', address: { __typename?: 'contact_address', address?: Maybe<string>, city?: Maybe<string>, id: any, zip?: Maybe<string> } }> };
+export type AddCustomerAddressMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_customer_address_one?: Maybe<(
+    { __typename?: 'contact_customer_address' }
+    & { address: (
+      { __typename?: 'contact_address' }
+      & Pick<Contact_Address, 'address' | 'city' | 'id' | 'zip'>
+    ) }
+  )> }
+);
 
 export type AddCustomerContactMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33231,7 +33560,16 @@ export type AddCustomerContactMutationVariables = Exact<{
 }>;
 
 
-export type AddCustomerContactMutation = { __typename?: 'mutation_root', insert_contact_customer_contact_one?: Maybe<{ __typename?: 'contact_customer_contact', contact: { __typename?: 'contact_contact', code?: Maybe<string>, mail?: Maybe<string>, name: string, note?: Maybe<string>, phone: string, id: any } }> };
+export type AddCustomerContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_customer_contact_one?: Maybe<(
+    { __typename?: 'contact_customer_contact' }
+    & { contact: (
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'mail' | 'name' | 'note' | 'phone' | 'id'>
+    ) }
+  )> }
+);
 
 export type AddProviderAddressMutationVariables = Exact<{
   address: Contact_Address_Insert_Input;
@@ -33239,7 +33577,16 @@ export type AddProviderAddressMutationVariables = Exact<{
 }>;
 
 
-export type AddProviderAddressMutation = { __typename?: 'mutation_root', insert_contact_provider_address_one?: Maybe<{ __typename?: 'contact_provider_address', address: { __typename?: 'contact_address', address?: Maybe<string>, city?: Maybe<string>, id: any, zip?: Maybe<string> } }> };
+export type AddProviderAddressMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_provider_address_one?: Maybe<(
+    { __typename?: 'contact_provider_address' }
+    & { address: (
+      { __typename?: 'contact_address' }
+      & Pick<Contact_Address, 'address' | 'city' | 'id' | 'zip'>
+    ) }
+  )> }
+);
 
 export type AddProviderContactMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33247,28 +33594,67 @@ export type AddProviderContactMutationVariables = Exact<{
 }>;
 
 
-export type AddProviderContactMutation = { __typename?: 'mutation_root', insert_contact_provider_contact_one?: Maybe<{ __typename?: 'contact_provider_contact', contact: { __typename?: 'contact_contact', code?: Maybe<string>, mail?: Maybe<string>, name: string, note?: Maybe<string>, phone: string, id: any } }> };
+export type AddProviderContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_provider_contact_one?: Maybe<(
+    { __typename?: 'contact_provider_contact' }
+    & { contact: (
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'mail' | 'name' | 'note' | 'phone' | 'id'>
+    ) }
+  )> }
+);
 
 export type AffectCustomerContactMutationVariables = Exact<{
-  affectedContacts: Array<Contact_Customer_Contact_Insert_Input> | Contact_Customer_Contact_Insert_Input;
+  affectedContacts: Array<Contact_Customer_Contact_Insert_Input>;
 }>;
 
 
-export type AffectCustomerContactMutation = { __typename?: 'mutation_root', insert_contact_customer_contact?: Maybe<{ __typename?: 'contact_customer_contact_mutation_response', returning: Array<{ __typename?: 'contact_customer_contact', contact: { __typename?: 'contact_contact', code?: Maybe<string>, id: any, mail?: Maybe<string>, name: string, note?: Maybe<string>, phone: string } }> }> };
+export type AffectCustomerContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_customer_contact?: Maybe<(
+    { __typename?: 'contact_customer_contact_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_customer_contact' }
+      & { contact: (
+        { __typename?: 'contact_contact' }
+        & Pick<Contact_Contact, 'code' | 'id' | 'mail' | 'name' | 'note' | 'phone'>
+      ) }
+    )> }
+  )> }
+);
 
 export type AffectProviderContactMutationVariables = Exact<{
-  affectedContacts: Array<Contact_Provider_Contact_Insert_Input> | Contact_Provider_Contact_Insert_Input;
+  affectedContacts: Array<Contact_Provider_Contact_Insert_Input>;
 }>;
 
 
-export type AffectProviderContactMutation = { __typename?: 'mutation_root', insert_contact_provider_contact?: Maybe<{ __typename?: 'contact_provider_contact_mutation_response', returning: Array<{ __typename?: 'contact_provider_contact', contact: { __typename?: 'contact_contact', code?: Maybe<string>, id: any, mail?: Maybe<string>, name: string, note?: Maybe<string>, phone: string } }> }> };
+export type AffectProviderContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_provider_contact?: Maybe<(
+    { __typename?: 'contact_provider_contact_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_provider_contact' }
+      & { contact: (
+        { __typename?: 'contact_contact' }
+        & Pick<Contact_Contact, 'code' | 'id' | 'mail' | 'name' | 'note' | 'phone'>
+      ) }
+    )> }
+  )> }
+);
 
 export type DeleteContactMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DeleteContactMutation = { __typename?: 'mutation_root', delete_contact_contact_by_pk?: Maybe<{ __typename?: 'contact_contact', id: any, name: string }> };
+export type DeleteContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'name'>
+  )> }
+);
 
 export type DeleteContactAddressMutationVariables = Exact<{
   addressid: Scalars['uuid'];
@@ -33276,14 +33662,26 @@ export type DeleteContactAddressMutationVariables = Exact<{
 }>;
 
 
-export type DeleteContactAddressMutation = { __typename?: 'mutation_root', delete_contact_contact_address_by_pk?: Maybe<{ __typename?: 'contact_contact_address', addressid: any, contactid: any }> };
+export type DeleteContactAddressMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_contact_address_by_pk?: Maybe<(
+    { __typename?: 'contact_contact_address' }
+    & Pick<Contact_Contact_Address, 'addressid' | 'contactid'>
+  )> }
+);
 
 export type DeleteCustomerMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DeleteCustomerMutation = { __typename?: 'mutation_root', delete_contact_customer_by_pk?: Maybe<{ __typename?: 'contact_customer', id: any, name: string }> };
+export type DeleteCustomerMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_customer_by_pk?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'name'>
+  )> }
+);
 
 export type DeleteCustomerAddressMutationVariables = Exact<{
   addressid: Scalars['uuid'];
@@ -33291,7 +33689,13 @@ export type DeleteCustomerAddressMutationVariables = Exact<{
 }>;
 
 
-export type DeleteCustomerAddressMutation = { __typename?: 'mutation_root', delete_contact_customer_address_by_pk?: Maybe<{ __typename?: 'contact_customer_address', addressid: any, customerid: any }> };
+export type DeleteCustomerAddressMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_customer_address_by_pk?: Maybe<(
+    { __typename?: 'contact_customer_address' }
+    & Pick<Contact_Customer_Address, 'addressid' | 'customerid'>
+  )> }
+);
 
 export type DeleteCustomerContactMutationVariables = Exact<{
   contactid: Scalars['uuid'];
@@ -33299,35 +33703,74 @@ export type DeleteCustomerContactMutationVariables = Exact<{
 }>;
 
 
-export type DeleteCustomerContactMutation = { __typename?: 'mutation_root', delete_contact_customer_contact_by_pk?: Maybe<{ __typename?: 'contact_customer_contact', contactid: any, customerid: any }> };
+export type DeleteCustomerContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_customer_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_customer_contact' }
+    & Pick<Contact_Customer_Contact, 'contactid' | 'customerid'>
+  )> }
+);
 
 export type DeleteManyContactsMutationVariables = Exact<{
-  ids?: Maybe<Array<Scalars['uuid']> | Scalars['uuid']>;
+  ids?: Maybe<Array<Scalars['uuid']>>;
 }>;
 
 
-export type DeleteManyContactsMutation = { __typename?: 'mutation_root', delete_contact_contact?: Maybe<{ __typename?: 'contact_contact_mutation_response', returning: Array<{ __typename?: 'contact_contact', id: any }> }> };
+export type DeleteManyContactsMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_contact?: Maybe<(
+    { __typename?: 'contact_contact_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'id'>
+    )> }
+  )> }
+);
 
 export type DeleteManyCustomersMutationVariables = Exact<{
-  ids: Array<Scalars['uuid']> | Scalars['uuid'];
+  ids: Array<Scalars['uuid']>;
 }>;
 
 
-export type DeleteManyCustomersMutation = { __typename?: 'mutation_root', delete_contact_customer?: Maybe<{ __typename?: 'contact_customer_mutation_response', returning: Array<{ __typename?: 'contact_customer', id: any }> }> };
+export type DeleteManyCustomersMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_customer?: Maybe<(
+    { __typename?: 'contact_customer_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'id'>
+    )> }
+  )> }
+);
 
 export type DeleteManyProvidersMutationVariables = Exact<{
-  ids?: Maybe<Array<Scalars['uuid']> | Scalars['uuid']>;
+  ids?: Maybe<Array<Scalars['uuid']>>;
 }>;
 
 
-export type DeleteManyProvidersMutation = { __typename?: 'mutation_root', delete_contact_provider?: Maybe<{ __typename?: 'contact_provider_mutation_response', returning: Array<{ __typename?: 'contact_provider', id: any }> }> };
+export type DeleteManyProvidersMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_provider?: Maybe<(
+    { __typename?: 'contact_provider_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'contact_provider' }
+      & Pick<Contact_Provider, 'id'>
+    )> }
+  )> }
+);
 
 export type DeleteProviderMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DeleteProviderMutation = { __typename?: 'mutation_root', delete_contact_provider_by_pk?: Maybe<{ __typename?: 'contact_provider', id: any, name: string }> };
+export type DeleteProviderMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_provider_by_pk?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'name'>
+  )> }
+);
 
 export type DeleteProviderAddressMutationVariables = Exact<{
   addressid: Scalars['uuid'];
@@ -33335,7 +33778,13 @@ export type DeleteProviderAddressMutationVariables = Exact<{
 }>;
 
 
-export type DeleteProviderAddressMutation = { __typename?: 'mutation_root', delete_contact_provider_address_by_pk?: Maybe<{ __typename?: 'contact_provider_address', addressid: any, providerid: any }> };
+export type DeleteProviderAddressMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_provider_address_by_pk?: Maybe<(
+    { __typename?: 'contact_provider_address' }
+    & Pick<Contact_Provider_Address, 'addressid' | 'providerid'>
+  )> }
+);
 
 export type DeleteProviderContactMutationVariables = Exact<{
   contactid: Scalars['uuid'];
@@ -33343,7 +33792,13 @@ export type DeleteProviderContactMutationVariables = Exact<{
 }>;
 
 
-export type DeleteProviderContactMutation = { __typename?: 'mutation_root', delete_contact_provider_contact_by_pk?: Maybe<{ __typename?: 'contact_provider_contact', contactid: any, providerid: any }> };
+export type DeleteProviderContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_contact_provider_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_provider_contact' }
+    & Pick<Contact_Provider_Contact, 'contactid' | 'providerid'>
+  )> }
+);
 
 export type InsertContactMutationVariables = Exact<{
   code?: Maybe<Scalars['String']>;
@@ -33351,13 +33806,19 @@ export type InsertContactMutationVariables = Exact<{
   name?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
-  addresses?: Array<Contact_Contact_Address_Insert_Input> | Contact_Contact_Address_Insert_Input;
-  customers?: Array<Contact_Customer_Contact_Insert_Input> | Contact_Customer_Contact_Insert_Input;
-  providers?: Array<Contact_Provider_Contact_Insert_Input> | Contact_Provider_Contact_Insert_Input;
+  addresses?: Array<Contact_Contact_Address_Insert_Input>;
+  customers?: Array<Contact_Customer_Contact_Insert_Input>;
+  providers?: Array<Contact_Provider_Contact_Insert_Input>;
 }>;
 
 
-export type InsertContactMutation = { __typename?: 'mutation_root', insert_contact_contact_one?: Maybe<{ __typename?: 'contact_contact', id: any, code?: Maybe<string>, mail?: Maybe<string>, name: string, note?: Maybe<string>, phone: string }> };
+export type InsertContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_contact_one?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
+  )> }
+);
 
 export type InsertCustomerMutationVariables = Exact<{
   FAX?: Maybe<Scalars['String']>;
@@ -33367,15 +33828,21 @@ export type InsertCustomerMutationVariables = Exact<{
   note?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   website?: Maybe<Scalars['String']>;
-  addresses?: Array<Contact_Customer_Address_Insert_Input> | Contact_Customer_Address_Insert_Input;
+  addresses?: Array<Contact_Customer_Address_Insert_Input>;
   ICE?: Maybe<Scalars['String']>;
   IF?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
-  contacts?: Array<Contact_Customer_Contact_Insert_Input> | Contact_Customer_Contact_Insert_Input;
+  contacts?: Array<Contact_Customer_Contact_Insert_Input>;
 }>;
 
 
-export type InsertCustomerMutation = { __typename?: 'mutation_root', insert_contact_customer_one?: Maybe<{ __typename?: 'contact_customer', id: any, ICE?: Maybe<string>, IF?: Maybe<string>, code?: Maybe<string>, mail?: Maybe<string>, name: string, phone: string, type?: Maybe<string> }> };
+export type InsertCustomerMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_customer_one?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
+  )> }
+);
 
 export type InsertProviderMutationVariables = Exact<{
   FAX?: Maybe<Scalars['String']>;
@@ -33385,12 +33852,18 @@ export type InsertProviderMutationVariables = Exact<{
   note?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   website?: Maybe<Scalars['String']>;
-  addresses?: Array<Contact_Provider_Address_Insert_Input> | Contact_Provider_Address_Insert_Input;
-  contacts?: Array<Contact_Provider_Contact_Insert_Input> | Contact_Provider_Contact_Insert_Input;
+  addresses?: Array<Contact_Provider_Address_Insert_Input>;
+  contacts?: Array<Contact_Provider_Contact_Insert_Input>;
 }>;
 
 
-export type InsertProviderMutation = { __typename?: 'mutation_root', insert_contact_provider_one?: Maybe<{ __typename?: 'contact_provider', id: any, code?: Maybe<string>, name: string, note?: Maybe<string>, phone: string, mail?: Maybe<string> }> };
+export type InsertProviderMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_provider_one?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
+  )> }
+);
 
 export type UpdateContactMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33402,14 +33875,26 @@ export type UpdateContactMutationVariables = Exact<{
 }>;
 
 
-export type UpdateContactMutation = { __typename?: 'mutation_root', update_contact_contact_by_pk?: Maybe<{ __typename?: 'contact_contact', id: any, code?: Maybe<string>, mail?: Maybe<string>, name: string, note?: Maybe<string>, phone: string }> };
+export type UpdateContactMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_contact_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
+  )> }
+);
 
 export type UpdateContactAddressesMutationVariables = Exact<{
-  contactAddresses: Array<Contact_Contact_Address_Insert_Input> | Contact_Contact_Address_Insert_Input;
+  contactAddresses: Array<Contact_Contact_Address_Insert_Input>;
 }>;
 
 
-export type UpdateContactAddressesMutation = { __typename?: 'mutation_root', insert_contact_contact_address?: Maybe<{ __typename?: 'contact_contact_address_mutation_response', affected_rows: number }> };
+export type UpdateContactAddressesMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_contact_contact_address?: Maybe<(
+    { __typename?: 'contact_contact_address_mutation_response' }
+    & Pick<Contact_Contact_Address_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type UpdateCustomerMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33426,7 +33911,13 @@ export type UpdateCustomerMutationVariables = Exact<{
 }>;
 
 
-export type UpdateCustomerMutation = { __typename?: 'mutation_root', update_contact_customer_by_pk?: Maybe<{ __typename?: 'contact_customer', id: any, ICE?: Maybe<string>, IF?: Maybe<string>, code?: Maybe<string>, mail?: Maybe<string>, name: string, phone: string, type?: Maybe<string> }> };
+export type UpdateCustomerMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_contact_customer_by_pk?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
+  )> }
+);
 
 export type UpdateProviderMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33440,57 +33931,138 @@ export type UpdateProviderMutationVariables = Exact<{
 }>;
 
 
-export type UpdateProviderMutation = { __typename?: 'mutation_root', update_contact_provider_by_pk?: Maybe<{ __typename?: 'contact_provider', id: any, code?: Maybe<string>, name: string, note?: Maybe<string>, phone: string, mail?: Maybe<string> }> };
+export type UpdateProviderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_contact_provider_by_pk?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
+  )> }
+);
 
 export type GetAllContactsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllContactsQuery = { __typename?: 'query_root', contact_contact: Array<{ __typename?: 'contact_contact', id: any, code?: Maybe<string>, mail?: Maybe<string>, name: string, note?: Maybe<string>, phone: string }> };
+export type GetAllContactsQuery = (
+  { __typename?: 'query_root' }
+  & { contact_contact: Array<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'note' | 'phone'>
+  )> }
+);
 
 export type GetAllCustomersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllCustomersQuery = { __typename?: 'query_root', contact_customer: Array<{ __typename?: 'contact_customer', id: any, ICE?: Maybe<string>, IF?: Maybe<string>, code?: Maybe<string>, mail?: Maybe<string>, name: string, phone: string, type?: Maybe<string> }> };
+export type GetAllCustomersQuery = (
+  { __typename?: 'query_root' }
+  & { contact_customer: Array<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'type'>
+  )> }
+);
 
 export type GetAllProvidersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllProvidersQuery = { __typename?: 'query_root', contact_provider: Array<{ __typename?: 'contact_provider', id: any, code?: Maybe<string>, name: string, note?: Maybe<string>, phone: string, mail?: Maybe<string> }> };
+export type GetAllProvidersQuery = (
+  { __typename?: 'query_root' }
+  & { contact_provider: Array<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail'>
+  )> }
+);
 
 export type GetContactByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetContactByIdQuery = { __typename?: 'query_root', contact_contact_by_pk?: Maybe<{ __typename?: 'contact_contact', id: any, code?: Maybe<string>, mail?: Maybe<string>, name: string, phone: string, note?: Maybe<string>, createdAt?: Maybe<any>, createdBy?: Maybe<any>, updatedBy?: Maybe<any>, updatedAt?: Maybe<any>, addresses: Array<{ __typename?: 'contact_contact_addresses_view', id?: Maybe<any>, address?: Maybe<string>, city?: Maybe<string>, zip?: Maybe<string> }>, cutomers: Array<{ __typename?: 'contact_contact_customers_view', id?: Maybe<any>, code?: Maybe<string>, name?: Maybe<string>, phone?: Maybe<string>, mail?: Maybe<string>, note?: Maybe<string> }>, providers: Array<{ __typename?: 'contact_contact_providers_view', id?: Maybe<any>, code?: Maybe<string>, name?: Maybe<string>, phone?: Maybe<string>, mail?: Maybe<string>, note?: Maybe<string> }> }> };
+export type GetContactByIdQuery = (
+  { __typename?: 'query_root' }
+  & { contact_contact_by_pk?: Maybe<(
+    { __typename?: 'contact_contact' }
+    & Pick<Contact_Contact, 'id' | 'code' | 'mail' | 'name' | 'phone' | 'note' | 'createdAt' | 'createdBy' | 'updatedBy' | 'updatedAt'>
+    & { addresses: Array<(
+      { __typename?: 'contact_contact_addresses_view' }
+      & Pick<Contact_Contact_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
+    )>, cutomers: Array<(
+      { __typename?: 'contact_contact_customers_view' }
+      & Pick<Contact_Contact_Customers_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
+    )>, providers: Array<(
+      { __typename?: 'contact_contact_providers_view' }
+      & Pick<Contact_Contact_Providers_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
+    )> }
+  )> }
+);
 
 export type GetCustomerByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetCustomerByIdQuery = { __typename?: 'query_root', contact_customer_by_pk?: Maybe<{ __typename?: 'contact_customer', id: any, ICE?: Maybe<string>, IF?: Maybe<string>, code?: Maybe<string>, mail?: Maybe<string>, name: string, phone: string, note?: Maybe<string>, website?: Maybe<string>, FAX?: Maybe<string>, type?: Maybe<string>, createdAt?: Maybe<any>, createdBy?: Maybe<any>, updatedBy?: Maybe<any>, updatedAt?: Maybe<any>, addresses: Array<{ __typename?: 'contact_customer_addresses_view', id?: Maybe<any>, address?: Maybe<string>, city?: Maybe<string>, zip?: Maybe<string> }>, contacts: Array<{ __typename?: 'contact_customer_contacts_view', id?: Maybe<any>, code?: Maybe<string>, name?: Maybe<string>, phone?: Maybe<string>, mail?: Maybe<string>, note?: Maybe<string> }> }> };
+export type GetCustomerByIdQuery = (
+  { __typename?: 'query_root' }
+  & { contact_customer_by_pk?: Maybe<(
+    { __typename?: 'contact_customer' }
+    & Pick<Contact_Customer, 'id' | 'ICE' | 'IF' | 'code' | 'mail' | 'name' | 'phone' | 'note' | 'website' | 'FAX' | 'type' | 'createdAt' | 'createdBy' | 'updatedBy' | 'updatedAt'>
+    & { addresses: Array<(
+      { __typename?: 'contact_customer_addresses_view' }
+      & Pick<Contact_Customer_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
+    )>, contacts: Array<(
+      { __typename?: 'contact_customer_contacts_view' }
+      & Pick<Contact_Customer_Contacts_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
+    )> }
+  )> }
+);
 
 export type GetProviderByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetProviderByIdQuery = { __typename?: 'query_root', contact_provider_by_pk?: Maybe<{ __typename?: 'contact_provider', id: any, code?: Maybe<string>, name: string, note?: Maybe<string>, phone: string, mail?: Maybe<string>, FAX?: Maybe<string>, website?: Maybe<string>, createdAt?: Maybe<any>, createdBy?: Maybe<any>, updatedAt?: Maybe<any>, updatedBy?: Maybe<any>, contacts: Array<{ __typename?: 'contact_provider_contacts_view', id?: Maybe<any>, code?: Maybe<string>, name?: Maybe<string>, phone?: Maybe<string>, mail?: Maybe<string>, note?: Maybe<string> }>, addresses: Array<{ __typename?: 'contact_provider_addresses_view', id?: Maybe<any>, address?: Maybe<string>, city?: Maybe<string>, zip?: Maybe<string> }> }> };
+export type GetProviderByIdQuery = (
+  { __typename?: 'query_root' }
+  & { contact_provider_by_pk?: Maybe<(
+    { __typename?: 'contact_provider' }
+    & Pick<Contact_Provider, 'id' | 'code' | 'name' | 'note' | 'phone' | 'mail' | 'FAX' | 'website' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy'>
+    & { contacts: Array<(
+      { __typename?: 'contact_provider_contacts_view' }
+      & Pick<Contact_Provider_Contacts_View, 'id' | 'code' | 'name' | 'phone' | 'mail' | 'note'>
+    )>, addresses: Array<(
+      { __typename?: 'contact_provider_addresses_view' }
+      & Pick<Contact_Provider_Addresses_View, 'id' | 'address' | 'city' | 'zip'>
+    )> }
+  )> }
+);
 
 export type DeleteManyWarehousesMutationVariables = Exact<{
-  ids?: Maybe<Array<Scalars['uuid']> | Scalars['uuid']>;
+  ids?: Maybe<Array<Scalars['uuid']>>;
 }>;
 
 
-export type DeleteManyWarehousesMutation = { __typename?: 'mutation_root', delete_stock_warehouse?: Maybe<{ __typename?: 'stock_warehouse_mutation_response', returning: Array<{ __typename?: 'stock_warehouse', id: any }> }> };
+export type DeleteManyWarehousesMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_stock_warehouse?: Maybe<(
+    { __typename?: 'stock_warehouse_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'id'>
+    )> }
+  )> }
+);
 
 export type DeleteTransferOrdersMutationVariables = Exact<{
-  ids?: Maybe<Array<Scalars['Int']> | Scalars['Int']>;
+  ids?: Maybe<Array<Scalars['Int']>>;
 }>;
 
 
-export type DeleteTransferOrdersMutation = { __typename?: 'mutation_root', delete_stock_transfer_order?: Maybe<{ __typename?: 'stock_transfer_order_mutation_response', affected_rows: number }> };
+export type DeleteTransferOrdersMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_stock_transfer_order?: Maybe<(
+    { __typename?: 'stock_transfer_order_mutation_response' }
+    & Pick<Stock_Transfer_Order_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type InsertTranfserMutationVariables = Exact<{
   date?: Maybe<Scalars['date']>;
@@ -33502,7 +34074,13 @@ export type InsertTranfserMutationVariables = Exact<{
 }>;
 
 
-export type InsertTranfserMutation = { __typename?: 'mutation_root', createTransferItem?: Maybe<{ __typename?: 'InsertItemTranfserOutput', date?: Maybe<any>, id: any, quantity?: Maybe<number>, status?: Maybe<string> }> };
+export type InsertTranfserMutation = (
+  { __typename?: 'mutation_root' }
+  & { createTransferItem?: Maybe<(
+    { __typename?: 'InsertItemTranfserOutput' }
+    & Pick<InsertItemTranfserOutput, 'date' | 'id' | 'quantity' | 'status'>
+  )> }
+);
 
 export type InsertTransferItemMutationVariables = Exact<{
   date?: Maybe<Scalars['date']>;
@@ -33512,22 +34090,95 @@ export type InsertTransferItemMutationVariables = Exact<{
 }>;
 
 
-export type InsertTransferItemMutation = { __typename?: 'mutation_root', insert_stock_item_tranfer_one?: Maybe<{ __typename?: 'stock_item_tranfer', tranfer_order_item: { __typename?: 'stock_order_item', transfer_order: { __typename?: 'stock_transfer_order', id: number, date: any, deadline?: Maybe<any>, createdAt: any, createdBy?: Maybe<string>, updatedAt: any, updatedBy?: Maybe<string>, status: string, fromwarehouse: { __typename?: 'stock_warehouse', name: string }, towarehouse: { __typename?: 'stock_warehouse', name: string }, order_items_aggregate: { __typename?: 'stock_order_item_aggregate', aggregate?: Maybe<{ __typename?: 'stock_order_item_aggregate_fields', count?: Maybe<number>, sum?: Maybe<{ __typename?: 'stock_order_item_sum_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_order_item', quantity: number, status: string, id: any, substance: { __typename?: 'product_substance', productAccessory?: Maybe<{ __typename?: 'product_product_accessory_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }>, productGlass?: Maybe<{ __typename?: 'product_product_glass_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }> }, item_tranfers_aggregate: { __typename?: 'stock_item_tranfer_aggregate', aggregate?: Maybe<{ __typename?: 'stock_item_tranfer_aggregate_fields', sum?: Maybe<{ __typename?: 'stock_item_tranfer_sum_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_item_tranfer', quantity: number, status: string, id: any, date: any, confirmed?: Maybe<boolean> }> } }> } } } }> };
+export type InsertTransferItemMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_stock_item_tranfer_one?: Maybe<(
+    { __typename?: 'stock_item_tranfer' }
+    & { tranfer_order_item: (
+      { __typename?: 'stock_order_item' }
+      & { transfer_order: (
+        { __typename?: 'stock_transfer_order' }
+        & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'status'>
+        & { fromwarehouse: (
+          { __typename?: 'stock_warehouse' }
+          & Pick<Stock_Warehouse, 'name'>
+        ), towarehouse: (
+          { __typename?: 'stock_warehouse' }
+          & Pick<Stock_Warehouse, 'name'>
+        ), order_items_aggregate: (
+          { __typename?: 'stock_order_item_aggregate' }
+          & { aggregate?: Maybe<(
+            { __typename?: 'stock_order_item_aggregate_fields' }
+            & Pick<Stock_Order_Item_Aggregate_Fields, 'count'>
+            & { sum?: Maybe<(
+              { __typename?: 'stock_order_item_sum_fields' }
+              & Pick<Stock_Order_Item_Sum_Fields, 'quantity'>
+            )> }
+          )>, nodes: Array<(
+            { __typename?: 'stock_order_item' }
+            & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
+            & { substance: (
+              { __typename?: 'product_substance' }
+              & { productAccessory?: Maybe<(
+                { __typename?: 'product_product_accessory_view' }
+                & Product_Product_Accessory_ViewFragmentFragment
+              )>, productGlass?: Maybe<(
+                { __typename?: 'product_product_glass_view' }
+                & Product_Product_Glass_ViewFragmentFragment
+              )> }
+            ), item_tranfers_aggregate: (
+              { __typename?: 'stock_item_tranfer_aggregate' }
+              & { aggregate?: Maybe<(
+                { __typename?: 'stock_item_tranfer_aggregate_fields' }
+                & { sum?: Maybe<(
+                  { __typename?: 'stock_item_tranfer_sum_fields' }
+                  & Pick<Stock_Item_Tranfer_Sum_Fields, 'quantity'>
+                )> }
+              )>, nodes: Array<(
+                { __typename?: 'stock_item_tranfer' }
+                & Pick<Stock_Item_Tranfer, 'quantity' | 'status' | 'id' | 'date' | 'confirmed'>
+              )> }
+            ) }
+          )> }
+        ) }
+      ) }
+    ) }
+  )> }
+);
 
-export type Product_Product_Glass_ViewFragmentFragment = { __typename?: 'product_product_glass_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> };
+export type Product_Product_Glass_ViewFragmentFragment = (
+  { __typename?: 'product_product_glass_view' }
+  & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
+);
 
-export type Product_Product_Accessory_ViewFragmentFragment = { __typename?: 'product_product_accessory_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> };
+export type Product_Product_Accessory_ViewFragmentFragment = (
+  { __typename?: 'product_product_accessory_view' }
+  & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
+);
 
 export type InsertTransferOrderMutationVariables = Exact<{
   date: Scalars['date'];
   deadline?: Maybe<Scalars['date']>;
   fromWarehouseid: Scalars['uuid'];
   toWarehouseid: Scalars['uuid'];
-  substances: Array<Stock_Order_Item_Insert_Input> | Stock_Order_Item_Insert_Input;
+  substances: Array<Stock_Order_Item_Insert_Input>;
 }>;
 
 
-export type InsertTransferOrderMutation = { __typename?: 'mutation_root', insert_stock_transfer_order_one?: Maybe<{ __typename?: 'stock_transfer_order', date: any, deadline?: Maybe<any>, status: string, id: number, fromwarehouse: { __typename?: 'stock_warehouse', name: string, id: any }, towarehouse: { __typename?: 'stock_warehouse', name: string, id: any } }> };
+export type InsertTransferOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_stock_transfer_order_one?: Maybe<(
+    { __typename?: 'stock_transfer_order' }
+    & Pick<Stock_Transfer_Order, 'date' | 'deadline' | 'status' | 'id'>
+    & { fromwarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ), towarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ) }
+  )> }
+);
 
 export type InsertWarehouseMutationVariables = Exact<{
   companyid: Scalars['uuid'];
@@ -33536,7 +34187,20 @@ export type InsertWarehouseMutationVariables = Exact<{
 }>;
 
 
-export type InsertWarehouseMutation = { __typename?: 'mutation_root', insert_stock_warehouse_one?: Maybe<{ __typename?: 'stock_warehouse', name: string, id: any, company: { __typename?: 'management_company', name: string, id: any }, salesPoint?: Maybe<{ __typename?: 'management_salesPoint', name: string, id: any }> }> };
+export type InsertWarehouseMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_stock_warehouse_one?: Maybe<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'name' | 'id'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), salesPoint?: Maybe<(
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'id'>
+    )> }
+  )> }
+);
 
 export type UpdateStockItemTranferMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33547,7 +34211,61 @@ export type UpdateStockItemTranferMutationVariables = Exact<{
 }>;
 
 
-export type UpdateStockItemTranferMutation = { __typename?: 'mutation_root', update_stock_item_tranfer_by_pk?: Maybe<{ __typename?: 'stock_item_tranfer', tranfer_order_item: { __typename?: 'stock_order_item', transfer_order: { __typename?: 'stock_transfer_order', id: number, date: any, deadline?: Maybe<any>, createdAt: any, createdBy?: Maybe<string>, updatedAt: any, updatedBy?: Maybe<string>, status: string, fromwarehouse: { __typename?: 'stock_warehouse', name: string }, towarehouse: { __typename?: 'stock_warehouse', name: string }, order_items_aggregate: { __typename?: 'stock_order_item_aggregate', aggregate?: Maybe<{ __typename?: 'stock_order_item_aggregate_fields', count?: Maybe<number>, sum?: Maybe<{ __typename?: 'stock_order_item_sum_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_order_item', quantity: number, status: string, id: any, substance: { __typename?: 'product_substance', productAccessory?: Maybe<{ __typename?: 'product_product_accessory_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }>, productGlass?: Maybe<{ __typename?: 'product_product_glass_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }> }, item_tranfers_aggregate: { __typename?: 'stock_item_tranfer_aggregate', aggregate?: Maybe<{ __typename?: 'stock_item_tranfer_aggregate_fields', sum?: Maybe<{ __typename?: 'stock_item_tranfer_sum_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_item_tranfer', quantity: number, status: string, id: any, date: any, confirmed?: Maybe<boolean> }> } }> } } } }> };
+export type UpdateStockItemTranferMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_item_tranfer_by_pk?: Maybe<(
+    { __typename?: 'stock_item_tranfer' }
+    & { tranfer_order_item: (
+      { __typename?: 'stock_order_item' }
+      & { transfer_order: (
+        { __typename?: 'stock_transfer_order' }
+        & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'status'>
+        & { fromwarehouse: (
+          { __typename?: 'stock_warehouse' }
+          & Pick<Stock_Warehouse, 'name'>
+        ), towarehouse: (
+          { __typename?: 'stock_warehouse' }
+          & Pick<Stock_Warehouse, 'name'>
+        ), order_items_aggregate: (
+          { __typename?: 'stock_order_item_aggregate' }
+          & { aggregate?: Maybe<(
+            { __typename?: 'stock_order_item_aggregate_fields' }
+            & Pick<Stock_Order_Item_Aggregate_Fields, 'count'>
+            & { sum?: Maybe<(
+              { __typename?: 'stock_order_item_sum_fields' }
+              & Pick<Stock_Order_Item_Sum_Fields, 'quantity'>
+            )> }
+          )>, nodes: Array<(
+            { __typename?: 'stock_order_item' }
+            & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
+            & { substance: (
+              { __typename?: 'product_substance' }
+              & { productAccessory?: Maybe<(
+                { __typename?: 'product_product_accessory_view' }
+                & Product_Product_Accessory_ViewFragmentFragment
+              )>, productGlass?: Maybe<(
+                { __typename?: 'product_product_glass_view' }
+                & Product_Product_Glass_ViewFragmentFragment
+              )> }
+            ), item_tranfers_aggregate: (
+              { __typename?: 'stock_item_tranfer_aggregate' }
+              & { aggregate?: Maybe<(
+                { __typename?: 'stock_item_tranfer_aggregate_fields' }
+                & { sum?: Maybe<(
+                  { __typename?: 'stock_item_tranfer_sum_fields' }
+                  & Pick<Stock_Item_Tranfer_Sum_Fields, 'quantity'>
+                )> }
+              )>, nodes: Array<(
+                { __typename?: 'stock_item_tranfer' }
+                & Pick<Stock_Item_Tranfer, 'quantity' | 'status' | 'id' | 'date' | 'confirmed'>
+              )> }
+            ) }
+          )> }
+        ) }
+      ) }
+    ) }
+  )> }
+);
 
 export type UpdateTransferOrderMutationVariables = Exact<{
   id: Scalars['Int'];
@@ -33559,7 +34277,20 @@ export type UpdateTransferOrderMutationVariables = Exact<{
 }>;
 
 
-export type UpdateTransferOrderMutation = { __typename?: 'mutation_root', update_stock_transfer_order_by_pk?: Maybe<{ __typename?: 'stock_transfer_order', date: any, deadline?: Maybe<any>, status: string, id: number, fromwarehouse: { __typename?: 'stock_warehouse', name: string, id: any }, towarehouse: { __typename?: 'stock_warehouse', name: string, id: any } }> };
+export type UpdateTransferOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_transfer_order_by_pk?: Maybe<(
+    { __typename?: 'stock_transfer_order' }
+    & Pick<Stock_Transfer_Order, 'date' | 'deadline' | 'status' | 'id'>
+    & { fromwarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ), towarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ) }
+  )> }
+);
 
 export type UpdateStockOrderItemMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33568,7 +34299,58 @@ export type UpdateStockOrderItemMutationVariables = Exact<{
 }>;
 
 
-export type UpdateStockOrderItemMutation = { __typename?: 'mutation_root', update_stock_order_item_by_pk?: Maybe<{ __typename?: 'stock_order_item', transfer_order: { __typename?: 'stock_transfer_order', id: number, date: any, deadline?: Maybe<any>, createdAt: any, createdBy?: Maybe<string>, updatedAt: any, updatedBy?: Maybe<string>, status: string, fromwarehouse: { __typename?: 'stock_warehouse', name: string }, towarehouse: { __typename?: 'stock_warehouse', name: string }, order_items_aggregate: { __typename?: 'stock_order_item_aggregate', aggregate?: Maybe<{ __typename?: 'stock_order_item_aggregate_fields', count?: Maybe<number>, sum?: Maybe<{ __typename?: 'stock_order_item_sum_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_order_item', quantity: number, status: string, id: any, substance: { __typename?: 'product_substance', productAccessory?: Maybe<{ __typename?: 'product_product_accessory_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }>, productGlass?: Maybe<{ __typename?: 'product_product_glass_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }> }, item_tranfers_aggregate: { __typename?: 'stock_item_tranfer_aggregate', aggregate?: Maybe<{ __typename?: 'stock_item_tranfer_aggregate_fields', sum?: Maybe<{ __typename?: 'stock_item_tranfer_sum_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_item_tranfer', quantity: number, status: string, id: any, date: any, confirmed?: Maybe<boolean> }> } }> } } }> };
+export type UpdateStockOrderItemMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_order_item_by_pk?: Maybe<(
+    { __typename?: 'stock_order_item' }
+    & { transfer_order: (
+      { __typename?: 'stock_transfer_order' }
+      & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'status'>
+      & { fromwarehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name'>
+      ), towarehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name'>
+      ), order_items_aggregate: (
+        { __typename?: 'stock_order_item_aggregate' }
+        & { aggregate?: Maybe<(
+          { __typename?: 'stock_order_item_aggregate_fields' }
+          & Pick<Stock_Order_Item_Aggregate_Fields, 'count'>
+          & { sum?: Maybe<(
+            { __typename?: 'stock_order_item_sum_fields' }
+            & Pick<Stock_Order_Item_Sum_Fields, 'quantity'>
+          )> }
+        )>, nodes: Array<(
+          { __typename?: 'stock_order_item' }
+          & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
+          & { substance: (
+            { __typename?: 'product_substance' }
+            & { productAccessory?: Maybe<(
+              { __typename?: 'product_product_accessory_view' }
+              & Product_Product_Accessory_ViewFragmentFragment
+            )>, productGlass?: Maybe<(
+              { __typename?: 'product_product_glass_view' }
+              & Product_Product_Glass_ViewFragmentFragment
+            )> }
+          ), item_tranfers_aggregate: (
+            { __typename?: 'stock_item_tranfer_aggregate' }
+            & { aggregate?: Maybe<(
+              { __typename?: 'stock_item_tranfer_aggregate_fields' }
+              & { sum?: Maybe<(
+                { __typename?: 'stock_item_tranfer_sum_fields' }
+                & Pick<Stock_Item_Tranfer_Sum_Fields, 'quantity'>
+              )> }
+            )>, nodes: Array<(
+              { __typename?: 'stock_item_tranfer' }
+              & Pick<Stock_Item_Tranfer, 'quantity' | 'status' | 'id' | 'date' | 'confirmed'>
+            )> }
+          ) }
+        )> }
+      ) }
+    ) }
+  )> }
+);
 
 export type UpdateWarehouseMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33578,107 +34360,432 @@ export type UpdateWarehouseMutationVariables = Exact<{
 }>;
 
 
-export type UpdateWarehouseMutation = { __typename?: 'mutation_root', update_stock_warehouse_by_pk?: Maybe<{ __typename?: 'stock_warehouse', name: string, id: any, company: { __typename?: 'management_company', name: string, id: any }, salesPoint?: Maybe<{ __typename?: 'management_salesPoint', name: string, id: any }> }> };
+export type UpdateWarehouseMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_stock_warehouse_by_pk?: Maybe<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'name' | 'id'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), salesPoint?: Maybe<(
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'id'>
+    )> }
+  )> }
+);
 
 export type GetAccessoryWarehousesByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetAccessoryWarehousesByIdQuery = { __typename?: 'query_root', stock_warehouse_substance_aggregate: { __typename?: 'stock_warehouse_substance_aggregate', aggregate?: Maybe<{ __typename?: 'stock_warehouse_substance_aggregate_fields', count?: Maybe<number>, sum?: Maybe<{ __typename?: 'stock_warehouse_substance_sum_fields', quantity?: Maybe<number> }>, max?: Maybe<{ __typename?: 'stock_warehouse_substance_max_fields', quantity?: Maybe<number> }>, min?: Maybe<{ __typename?: 'stock_warehouse_substance_min_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_warehouse_substance', quantity: number, quantity_min?: Maybe<number>, substance: { __typename?: 'product_substance', productAccessory?: Maybe<{ __typename?: 'product_product_accessory_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }> }, warehouse: { __typename?: 'stock_warehouse', name: string } }> } };
+export type GetAccessoryWarehousesByIdQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_substance_aggregate: (
+    { __typename?: 'stock_warehouse_substance_aggregate' }
+    & { aggregate?: Maybe<(
+      { __typename?: 'stock_warehouse_substance_aggregate_fields' }
+      & Pick<Stock_Warehouse_Substance_Aggregate_Fields, 'count'>
+      & { sum?: Maybe<(
+        { __typename?: 'stock_warehouse_substance_sum_fields' }
+        & Pick<Stock_Warehouse_Substance_Sum_Fields, 'quantity'>
+      )>, max?: Maybe<(
+        { __typename?: 'stock_warehouse_substance_max_fields' }
+        & Pick<Stock_Warehouse_Substance_Max_Fields, 'quantity'>
+      )>, min?: Maybe<(
+        { __typename?: 'stock_warehouse_substance_min_fields' }
+        & Pick<Stock_Warehouse_Substance_Min_Fields, 'quantity'>
+      )> }
+    )>, nodes: Array<(
+      { __typename?: 'stock_warehouse_substance' }
+      & Pick<Stock_Warehouse_Substance, 'quantity' | 'quantity_min'>
+      & { substance: (
+        { __typename?: 'product_substance' }
+        & { productAccessory?: Maybe<(
+          { __typename?: 'product_product_accessory_view' }
+          & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
+        )> }
+      ), warehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name'>
+      ) }
+    )> }
+  ) }
+);
 
 export type GetAllAccessoriesStockQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllAccessoriesStockQuery = { __typename?: 'query_root', stock_warehouse_substance: Array<{ __typename?: 'stock_warehouse_substance', quantity: number, warehouse: { __typename?: 'stock_warehouse', name: string, id: any, company: { __typename?: 'management_company', name: string, id: any }, salesPoint?: Maybe<{ __typename?: 'management_salesPoint', name: string, id: any }> }, substance: { __typename?: 'product_substance', id: any, productAccessory?: Maybe<{ __typename?: 'product_product_accessory_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }>, accessory?: Maybe<{ __typename?: 'product_accessory', category: Product_AccessoryTypes_Enum, id: any }> } }> };
+export type GetAllAccessoriesStockQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_substance: Array<(
+    { __typename?: 'stock_warehouse_substance' }
+    & Pick<Stock_Warehouse_Substance, 'quantity'>
+    & { warehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Stock_WarehouseFragmentFragment
+    ), substance: (
+      { __typename?: 'product_substance' }
+      & Pick<Product_Substance, 'id'>
+      & { productAccessory?: Maybe<(
+        { __typename?: 'product_product_accessory_view' }
+        & Product_Product_Accessory_ViewFragmentFragment
+      )>, accessory?: Maybe<(
+        { __typename?: 'product_accessory' }
+        & Pick<Product_Accessory, 'category' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllConsumablesStockQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllConsumablesStockQuery = { __typename?: 'query_root', stock_warehouse_substance: Array<{ __typename?: 'stock_warehouse_substance', quantity: number, warehouse: { __typename?: 'stock_warehouse', name: string, id: any, company: { __typename?: 'management_company', name: string, id: any }, salesPoint?: Maybe<{ __typename?: 'management_salesPoint', name: string, id: any }> }, substance: { __typename?: 'product_substance', id: any, productConsumable?: Maybe<{ __typename?: 'product_product_consumable_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }>, consomable?: Maybe<{ __typename?: 'product_consumable', category: Product_ConsumableCategory_Enum, id: any }> } }> };
+export type GetAllConsumablesStockQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_substance: Array<(
+    { __typename?: 'stock_warehouse_substance' }
+    & Pick<Stock_Warehouse_Substance, 'quantity'>
+    & { warehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Stock_WarehouseFragmentFragment
+    ), substance: (
+      { __typename?: 'product_substance' }
+      & Pick<Product_Substance, 'id'>
+      & { productConsumable?: Maybe<(
+        { __typename?: 'product_product_consumable_view' }
+        & Product_Product_Consumable_ViewFragmentFragment
+      )>, consomable?: Maybe<(
+        { __typename?: 'product_consumable' }
+        & Pick<Product_Consumable, 'category' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
-export type Product_Product_Consumable_ViewFragmentFragment = { __typename?: 'product_product_consumable_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> };
+export type Product_Product_Consumable_ViewFragmentFragment = (
+  { __typename?: 'product_product_consumable_view' }
+  & Pick<Product_Product_Consumable_View, 'code' | 'label' | 'price' | 'unit'>
+);
 
 export type GetAllGlassesStockQueryVariables = Exact<{
   type?: Maybe<Product_Substance_Type_Enum_Comparison_Exp>;
 }>;
 
 
-export type GetAllGlassesStockQuery = { __typename?: 'query_root', stock_warehouse_substance: Array<{ __typename?: 'stock_warehouse_substance', quantity: number, warehouse: { __typename?: 'stock_warehouse', name: string, id: any, company: { __typename?: 'management_company', name: string, id: any }, salesPoint?: Maybe<{ __typename?: 'management_salesPoint', name: string, id: any }> }, substance: { __typename?: 'product_substance', id: any, productGlass?: Maybe<{ __typename?: 'product_product_glass_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }>, glass?: Maybe<{ __typename?: 'product_glass', thickness: number, type?: Maybe<Product_GlassType_Enum>, color?: Maybe<Product_GlassColor_Enum>, id: any }> } }> };
+export type GetAllGlassesStockQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_substance: Array<(
+    { __typename?: 'stock_warehouse_substance' }
+    & Pick<Stock_Warehouse_Substance, 'quantity'>
+    & { warehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Stock_WarehouseFragmentFragment
+    ), substance: (
+      { __typename?: 'product_substance' }
+      & Pick<Product_Substance, 'id'>
+      & { productGlass?: Maybe<(
+        { __typename?: 'product_product_glass_view' }
+        & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
+      )>, glass?: Maybe<(
+        { __typename?: 'product_glass' }
+        & Pick<Product_Glass, 'thickness' | 'type' | 'color' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
-export type Stock_WarehouseFragmentFragment = { __typename?: 'stock_warehouse', name: string, id: any, company: { __typename?: 'management_company', name: string, id: any }, salesPoint?: Maybe<{ __typename?: 'management_salesPoint', name: string, id: any }> };
+export type Stock_WarehouseFragmentFragment = (
+  { __typename?: 'stock_warehouse' }
+  & Pick<Stock_Warehouse, 'name' | 'id'>
+  & { company: (
+    { __typename?: 'management_company' }
+    & Pick<Management_Company, 'name' | 'id'>
+  ), salesPoint?: Maybe<(
+    { __typename?: 'management_salesPoint' }
+    & Pick<Management_SalesPoint, 'name' | 'id'>
+  )> }
+);
 
-export type Product_ProductGlassFragmentFragment = { __typename?: 'product_product_accessory_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> };
+export type Product_ProductGlassFragmentFragment = (
+  { __typename?: 'product_product_accessory_view' }
+  & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
+);
 
 export type GetAllOrdersDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllOrdersDetailsQuery = { __typename?: 'query_root', stock_order_item: Array<{ __typename?: 'stock_order_item', quantity: number, status: string, id: any, substance: { __typename?: 'product_substance', productGlass?: Maybe<{ __typename?: 'product_product_glass_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }>, productAccessory?: Maybe<{ __typename?: 'product_product_accessory_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }> }, transfer_order: { __typename?: 'stock_transfer_order', id: number, date: any, deadline?: Maybe<any>, fromwarehouse: { __typename?: 'stock_warehouse', name: string }, towarehouse: { __typename?: 'stock_warehouse', name: string } } }> };
+export type GetAllOrdersDetailsQuery = (
+  { __typename?: 'query_root' }
+  & { stock_order_item: Array<(
+    { __typename?: 'stock_order_item' }
+    & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
+    & { substance: (
+      { __typename?: 'product_substance' }
+      & { productGlass?: Maybe<(
+        { __typename?: 'product_product_glass_view' }
+        & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price' | 'unit'>
+      )>, productAccessory?: Maybe<(
+        { __typename?: 'product_product_accessory_view' }
+        & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'price' | 'unit'>
+      )> }
+    ), transfer_order: (
+      { __typename?: 'stock_transfer_order' }
+      & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline'>
+      & { fromwarehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name'>
+      ), towarehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name'>
+      ) }
+    ) }
+  )> }
+);
 
 export type GetAllTransfersOrdersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllTransfersOrdersQuery = { __typename?: 'query_root', stock_transfer_order: Array<{ __typename?: 'stock_transfer_order', date: any, deadline?: Maybe<any>, status: string, id: number, fromwarehouse: { __typename?: 'stock_warehouse', name: string, id: any }, towarehouse: { __typename?: 'stock_warehouse', name: string, id: any } }> };
+export type GetAllTransfersOrdersQuery = (
+  { __typename?: 'query_root' }
+  & { stock_transfer_order: Array<(
+    { __typename?: 'stock_transfer_order' }
+    & Pick<Stock_Transfer_Order, 'date' | 'deadline' | 'status' | 'id'>
+    & { fromwarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ), towarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name' | 'id'>
+    ) }
+  )> }
+);
 
 export type GetAllWarehousesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllWarehousesQuery = { __typename?: 'query_root', stock_warehouse: Array<{ __typename?: 'stock_warehouse', id: any, name: string, company: { __typename?: 'management_company', name: string, id: any }, salesPoint?: Maybe<{ __typename?: 'management_salesPoint', name: string, id: any }> }> };
+export type GetAllWarehousesQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse: Array<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'id' | 'name'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Management_CompanyFragmentFragment
+    ), salesPoint?: Maybe<(
+      { __typename?: 'management_salesPoint' }
+      & Management_SalesPointFragmentFragment
+    )> }
+  )> }
+);
 
-export type Management_SalesPointFragmentFragment = { __typename?: 'management_salesPoint', name: string, id: any };
+export type Management_SalesPointFragmentFragment = (
+  { __typename?: 'management_salesPoint' }
+  & Pick<Management_SalesPoint, 'name' | 'id'>
+);
 
-export type Management_CompanyFragmentFragment = { __typename?: 'management_company', name: string, id: any };
+export type Management_CompanyFragmentFragment = (
+  { __typename?: 'management_company' }
+  & Pick<Management_Company, 'name' | 'id'>
+);
 
 export type GetConsumableWarehousesByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetConsumableWarehousesByIdQuery = { __typename?: 'query_root', stock_warehouse_substance_aggregate: { __typename?: 'stock_warehouse_substance_aggregate', aggregate?: Maybe<{ __typename?: 'stock_warehouse_substance_aggregate_fields', count?: Maybe<number>, sum?: Maybe<{ __typename?: 'stock_warehouse_substance_sum_fields', quantity?: Maybe<number> }>, max?: Maybe<{ __typename?: 'stock_warehouse_substance_max_fields', quantity?: Maybe<number> }>, min?: Maybe<{ __typename?: 'stock_warehouse_substance_min_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_warehouse_substance', quantity: number, substance: { __typename?: 'product_substance', productConsumable?: Maybe<{ __typename?: 'product_product_consumable_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number> }> }, warehouse: { __typename?: 'stock_warehouse', name: string, id: any } }> } };
+export type GetConsumableWarehousesByIdQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_substance_aggregate: (
+    { __typename?: 'stock_warehouse_substance_aggregate' }
+    & { aggregate?: Maybe<(
+      { __typename?: 'stock_warehouse_substance_aggregate_fields' }
+      & Pick<Stock_Warehouse_Substance_Aggregate_Fields, 'count'>
+      & { sum?: Maybe<(
+        { __typename?: 'stock_warehouse_substance_sum_fields' }
+        & Pick<Stock_Warehouse_Substance_Sum_Fields, 'quantity'>
+      )>, max?: Maybe<(
+        { __typename?: 'stock_warehouse_substance_max_fields' }
+        & Pick<Stock_Warehouse_Substance_Max_Fields, 'quantity'>
+      )>, min?: Maybe<(
+        { __typename?: 'stock_warehouse_substance_min_fields' }
+        & Pick<Stock_Warehouse_Substance_Min_Fields, 'quantity'>
+      )> }
+    )>, nodes: Array<(
+      { __typename?: 'stock_warehouse_substance' }
+      & Pick<Stock_Warehouse_Substance, 'quantity'>
+      & { substance: (
+        { __typename?: 'product_substance' }
+        & { productConsumable?: Maybe<(
+          { __typename?: 'product_product_consumable_view' }
+          & Pick<Product_Product_Consumable_View, 'code' | 'label' | 'price'>
+        )> }
+      ), warehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name' | 'id'>
+      ) }
+    )> }
+  ) }
+);
 
 export type GetGlassWarehousesByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetGlassWarehousesByIdQuery = { __typename?: 'query_root', stock_warehouse_substance_aggregate: { __typename?: 'stock_warehouse_substance_aggregate', aggregate?: Maybe<{ __typename?: 'stock_warehouse_substance_aggregate_fields', count?: Maybe<number>, sum?: Maybe<{ __typename?: 'stock_warehouse_substance_sum_fields', quantity?: Maybe<number> }>, max?: Maybe<{ __typename?: 'stock_warehouse_substance_max_fields', quantity?: Maybe<number> }>, min?: Maybe<{ __typename?: 'stock_warehouse_substance_min_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_warehouse_substance', quantity: number, substance: { __typename?: 'product_substance', productGlass?: Maybe<{ __typename?: 'product_product_glass_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number> }> }, warehouse: { __typename?: 'stock_warehouse', name: string, id: any } }> } };
+export type GetGlassWarehousesByIdQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_substance_aggregate: (
+    { __typename?: 'stock_warehouse_substance_aggregate' }
+    & { aggregate?: Maybe<(
+      { __typename?: 'stock_warehouse_substance_aggregate_fields' }
+      & Pick<Stock_Warehouse_Substance_Aggregate_Fields, 'count'>
+      & { sum?: Maybe<(
+        { __typename?: 'stock_warehouse_substance_sum_fields' }
+        & Pick<Stock_Warehouse_Substance_Sum_Fields, 'quantity'>
+      )>, max?: Maybe<(
+        { __typename?: 'stock_warehouse_substance_max_fields' }
+        & Pick<Stock_Warehouse_Substance_Max_Fields, 'quantity'>
+      )>, min?: Maybe<(
+        { __typename?: 'stock_warehouse_substance_min_fields' }
+        & Pick<Stock_Warehouse_Substance_Min_Fields, 'quantity'>
+      )> }
+    )>, nodes: Array<(
+      { __typename?: 'stock_warehouse_substance' }
+      & Pick<Stock_Warehouse_Substance, 'quantity'>
+      & { substance: (
+        { __typename?: 'product_substance' }
+        & { productGlass?: Maybe<(
+          { __typename?: 'product_product_glass_view' }
+          & Pick<Product_Product_Glass_View, 'code' | 'label' | 'price'>
+        )> }
+      ), warehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'name' | 'id'>
+      ) }
+    )> }
+  ) }
+);
 
 export type GetTransferOrderByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetTransferOrderByIdQuery = { __typename?: 'query_root', stock_transfer_order_by_pk?: Maybe<{ __typename?: 'stock_transfer_order', id: number, date: any, deadline?: Maybe<any>, createdAt: any, createdBy?: Maybe<string>, updatedAt: any, updatedBy?: Maybe<string>, status: string, fromwarehouse: { __typename?: 'stock_warehouse', name: string }, towarehouse: { __typename?: 'stock_warehouse', name: string }, order_items_aggregate: { __typename?: 'stock_order_item_aggregate', aggregate?: Maybe<{ __typename?: 'stock_order_item_aggregate_fields', count?: Maybe<number>, sum?: Maybe<{ __typename?: 'stock_order_item_sum_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_order_item', quantity: number, status: string, id: any, substance: { __typename?: 'product_substance', productAccessory?: Maybe<{ __typename?: 'product_product_accessory_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }>, productGlass?: Maybe<{ __typename?: 'product_product_glass_view', code?: Maybe<string>, label?: Maybe<string>, price?: Maybe<number>, unit?: Maybe<string> }> }, item_tranfers_aggregate: { __typename?: 'stock_item_tranfer_aggregate', aggregate?: Maybe<{ __typename?: 'stock_item_tranfer_aggregate_fields', sum?: Maybe<{ __typename?: 'stock_item_tranfer_sum_fields', quantity?: Maybe<number> }> }>, nodes: Array<{ __typename?: 'stock_item_tranfer', quantity: number, status: string, id: any, date: any, confirmed?: Maybe<boolean> }> } }> } }> };
+export type GetTransferOrderByIdQuery = (
+  { __typename?: 'query_root' }
+  & { stock_transfer_order_by_pk?: Maybe<(
+    { __typename?: 'stock_transfer_order' }
+    & Pick<Stock_Transfer_Order, 'id' | 'date' | 'deadline' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'status'>
+    & { fromwarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name'>
+    ), towarehouse: (
+      { __typename?: 'stock_warehouse' }
+      & Pick<Stock_Warehouse, 'name'>
+    ), order_items_aggregate: (
+      { __typename?: 'stock_order_item_aggregate' }
+      & { aggregate?: Maybe<(
+        { __typename?: 'stock_order_item_aggregate_fields' }
+        & Pick<Stock_Order_Item_Aggregate_Fields, 'count'>
+        & { sum?: Maybe<(
+          { __typename?: 'stock_order_item_sum_fields' }
+          & Pick<Stock_Order_Item_Sum_Fields, 'quantity'>
+        )> }
+      )>, nodes: Array<(
+        { __typename?: 'stock_order_item' }
+        & Pick<Stock_Order_Item, 'quantity' | 'status' | 'id'>
+        & { substance: (
+          { __typename?: 'product_substance' }
+          & { productAccessory?: Maybe<(
+            { __typename?: 'product_product_accessory_view' }
+            & Product_Product_Accessory_ViewFragmentFragment
+          )>, productGlass?: Maybe<(
+            { __typename?: 'product_product_glass_view' }
+            & Product_Product_Glass_ViewFragmentFragment
+          )> }
+        ), item_tranfers_aggregate: (
+          { __typename?: 'stock_item_tranfer_aggregate' }
+          & { aggregate?: Maybe<(
+            { __typename?: 'stock_item_tranfer_aggregate_fields' }
+            & { sum?: Maybe<(
+              { __typename?: 'stock_item_tranfer_sum_fields' }
+              & Pick<Stock_Item_Tranfer_Sum_Fields, 'quantity'>
+            )> }
+          )>, nodes: Array<(
+            { __typename?: 'stock_item_tranfer' }
+            & Pick<Stock_Item_Tranfer, 'quantity' | 'status' | 'id' | 'date' | 'confirmed'>
+          )> }
+        ) }
+      )> }
+    ) }
+  )> }
+);
 
 export type GetWarehouseByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetWarehouseByIdQuery = { __typename?: 'query_root', stock_warehouse_by_pk?: Maybe<{ __typename?: 'stock_warehouse', id: any, name: string, createdAt: any, createdBy?: Maybe<string>, updatedAt: any, updatedBy?: Maybe<string>, salesPoint?: Maybe<{ __typename?: 'management_salesPoint', name: string, id: any }>, company: { __typename?: 'management_company', name: string, id: any } }> };
+export type GetWarehouseByIdQuery = (
+  { __typename?: 'query_root' }
+  & { stock_warehouse_by_pk?: Maybe<(
+    { __typename?: 'stock_warehouse' }
+    & Pick<Stock_Warehouse, 'id' | 'name' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy'>
+    & { salesPoint?: Maybe<(
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'id'>
+    )>, company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ) }
+  )> }
+);
 
-export type Product_ProductFragmentFragment = { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number };
+export type Product_ProductFragmentFragment = (
+  { __typename?: 'product_product' }
+  & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price'>
+);
 
 export type DeleteCompanyMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DeleteCompanyMutation = { __typename?: 'mutation_root', delete_management_company_by_pk?: Maybe<{ __typename?: 'management_company', name: string, id: any }> };
+export type DeleteCompanyMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_management_company_by_pk?: Maybe<(
+    { __typename?: 'management_company' }
+    & Pick<Management_Company, 'name' | 'id'>
+  )> }
+);
 
 export type DeleteSalePointMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DeleteSalePointMutation = { __typename?: 'mutation_root', delete_management_salesPoint_by_pk?: Maybe<{ __typename?: 'management_salesPoint', name: string, id: any }> };
+export type DeleteSalePointMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_management_salesPoint_by_pk?: Maybe<(
+    { __typename?: 'management_salesPoint' }
+    & Pick<Management_SalesPoint, 'name' | 'id'>
+  )> }
+);
 
 export type DeleteUserMutationVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type DeleteUserMutation = { __typename?: 'mutation_root', delete_management_userProfile_by_pk?: Maybe<{ __typename?: 'management_userProfile', username: string, id: string }> };
+export type DeleteUserMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_management_userProfile_by_pk?: Maybe<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'username' | 'id'>
+  )> }
+);
 
 export type InsertCompanyMutationVariables = Exact<{
   CNSS: Scalars['String'];
@@ -33693,7 +34800,13 @@ export type InsertCompanyMutationVariables = Exact<{
 }>;
 
 
-export type InsertCompanyMutation = { __typename?: 'mutation_root', insert_management_company_one?: Maybe<{ __typename?: 'management_company', id: any, name: string, phone: string, CNSS: string, ICE: string, IF: string, RC: string, address: string, email?: Maybe<string> }> };
+export type InsertCompanyMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_management_company_one?: Maybe<(
+    { __typename?: 'management_company' }
+    & Pick<Management_Company, 'id' | 'name' | 'phone' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email'>
+  )> }
+);
 
 export type InsertSalePointMutationVariables = Exact<{
   address: Scalars['String'];
@@ -33704,7 +34817,13 @@ export type InsertSalePointMutationVariables = Exact<{
 }>;
 
 
-export type InsertSalePointMutation = { __typename?: 'mutation_root', insert_management_salesPoint_one?: Maybe<{ __typename?: 'management_salesPoint', id: any, address: string, email?: Maybe<string>, fax?: Maybe<string>, name: string, phone: string }> };
+export type InsertSalePointMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_management_salesPoint_one?: Maybe<(
+    { __typename?: 'management_salesPoint' }
+    & Pick<Management_SalesPoint, 'id' | 'address' | 'email' | 'fax' | 'name' | 'phone'>
+  )> }
+);
 
 export type InsertUserMutationVariables = Exact<{
   email: Scalars['String'];
@@ -33720,7 +34839,13 @@ export type InsertUserMutationVariables = Exact<{
 }>;
 
 
-export type InsertUserMutation = { __typename?: 'mutation_root', SignUp?: Maybe<{ __typename?: 'SignUpOutput', CIN?: Maybe<string>, active?: Maybe<boolean>, firstname?: Maybe<string>, id: string, lastname?: Maybe<string>, phone?: Maybe<string>, username?: Maybe<string>, email: string }> };
+export type InsertUserMutation = (
+  { __typename?: 'mutation_root' }
+  & { SignUp?: Maybe<(
+    { __typename?: 'SignUpOutput' }
+    & Pick<SignUpOutput, 'CIN' | 'active' | 'firstname' | 'id' | 'lastname' | 'phone' | 'username' | 'email'>
+  )> }
+);
 
 export type UpdateCompanyMutationVariables = Exact<{
   CNSS?: Maybe<Scalars['String']>;
@@ -33736,7 +34861,13 @@ export type UpdateCompanyMutationVariables = Exact<{
 }>;
 
 
-export type UpdateCompanyMutation = { __typename?: 'mutation_root', update_management_company_by_pk?: Maybe<{ __typename?: 'management_company', id: any, CNSS: string, ICE: string, IF: string, RC: string, address: string, email?: Maybe<string>, name: string, phone: string }> };
+export type UpdateCompanyMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_management_company_by_pk?: Maybe<(
+    { __typename?: 'management_company' }
+    & Pick<Management_Company, 'id' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email' | 'name' | 'phone'>
+  )> }
+);
 
 export type UpdateSalePointMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33748,7 +34879,13 @@ export type UpdateSalePointMutationVariables = Exact<{
 }>;
 
 
-export type UpdateSalePointMutation = { __typename?: 'mutation_root', update_management_salesPoint_by_pk?: Maybe<{ __typename?: 'management_salesPoint', address: string, email?: Maybe<string>, fax?: Maybe<string>, id: any, name: string, phone: string }> };
+export type UpdateSalePointMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_management_salesPoint_by_pk?: Maybe<(
+    { __typename?: 'management_salesPoint' }
+    & Pick<Management_SalesPoint, 'address' | 'email' | 'fax' | 'id' | 'name' | 'phone'>
+  )> }
+);
 
 export type UpdateUserMutationVariables = Exact<{
   CIN?: Maybe<Scalars['String']>;
@@ -33764,122 +34901,370 @@ export type UpdateUserMutationVariables = Exact<{
 }>;
 
 
-export type UpdateUserMutation = { __typename?: 'mutation_root', update_management_userProfile_by_pk?: Maybe<{ __typename?: 'management_userProfile', CIN?: Maybe<string>, active: boolean, firstname?: Maybe<string>, id: string, email?: Maybe<string>, lastname?: Maybe<string>, phone?: Maybe<string>, username: string, SalesPointsid?: Maybe<any>, role: Management_User_Role_Enum }> };
+export type UpdateUserMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_management_userProfile_by_pk?: Maybe<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'CIN' | 'active' | 'firstname' | 'id' | 'email' | 'lastname' | 'phone' | 'username' | 'SalesPointsid' | 'role'>
+  )> }
+);
 
 export type GetAllCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllCompaniesQuery = { __typename?: 'query_root', management_company: Array<{ __typename?: 'management_company', id: any, CNSS: string, ICE: string, IF: string, RC: string, address: string, email?: Maybe<string>, name: string, phone: string }> };
+export type GetAllCompaniesQuery = (
+  { __typename?: 'query_root' }
+  & { management_company: Array<(
+    { __typename?: 'management_company' }
+    & Pick<Management_Company, 'id' | 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email' | 'name' | 'phone'>
+  )> }
+);
 
 export type GetAllSalesPointsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllSalesPointsQuery = { __typename?: 'query_root', management_salesPoint: Array<{ __typename?: 'management_salesPoint', address: string, email?: Maybe<string>, fax?: Maybe<string>, id: any, name: string, phone: string }> };
+export type GetAllSalesPointsQuery = (
+  { __typename?: 'query_root' }
+  & { management_salesPoint: Array<(
+    { __typename?: 'management_salesPoint' }
+    & Pick<Management_SalesPoint, 'address' | 'email' | 'fax' | 'id' | 'name' | 'phone'>
+  )> }
+);
 
 export type GetAllUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllUsersQuery = { __typename?: 'query_root', management_userProfile: Array<{ __typename?: 'management_userProfile', CIN?: Maybe<string>, active: boolean, firstname?: Maybe<string>, id: string, email?: Maybe<string>, lastname?: Maybe<string>, phone?: Maybe<string>, username: string, SalesPointsid?: Maybe<any>, role: Management_User_Role_Enum }> };
+export type GetAllUsersQuery = (
+  { __typename?: 'query_root' }
+  & { management_userProfile: Array<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'CIN' | 'active' | 'firstname' | 'id' | 'email' | 'lastname' | 'phone' | 'username' | 'SalesPointsid' | 'role'>
+  )> }
+);
 
 export type GetCompanyByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetCompanyByIdQuery = { __typename?: 'query_root', management_company_by_pk?: Maybe<{ __typename?: 'management_company', CNSS: string, ICE: string, IF: string, RC: string, address: string, email?: Maybe<string>, name: string, phone: string, website?: Maybe<string>, createdAt: any, createdBy?: Maybe<string>, updatedAt: any, updatedBy?: Maybe<any>, id: any }> };
+export type GetCompanyByIdQuery = (
+  { __typename?: 'query_root' }
+  & { management_company_by_pk?: Maybe<(
+    { __typename?: 'management_company' }
+    & Pick<Management_Company, 'CNSS' | 'ICE' | 'IF' | 'RC' | 'address' | 'email' | 'name' | 'phone' | 'website' | 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy' | 'id'>
+  )> }
+);
 
 export type GetSalePointByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetSalePointByIdQuery = { __typename?: 'query_root', management_salesPoint_by_pk?: Maybe<{ __typename?: 'management_salesPoint', id: any, address: string, email?: Maybe<string>, fax?: Maybe<string>, name: string, phone: string, createdBy?: Maybe<any>, updatedBy?: Maybe<any>, createdAt?: Maybe<any>, updatedAt?: Maybe<any>, usersProfiles: Array<{ __typename?: 'management_userProfile', id: string, active: boolean, firstname?: Maybe<string>, lastname?: Maybe<string>, phone?: Maybe<string>, username: string, user_role: { __typename?: 'management_user_role', name: string, description: string } }> }> };
+export type GetSalePointByIdQuery = (
+  { __typename?: 'query_root' }
+  & { management_salesPoint_by_pk?: Maybe<(
+    { __typename?: 'management_salesPoint' }
+    & Pick<Management_SalesPoint, 'id' | 'address' | 'email' | 'fax' | 'name' | 'phone' | 'createdBy' | 'updatedBy' | 'createdAt' | 'updatedAt'>
+    & { usersProfiles: Array<(
+      { __typename?: 'management_userProfile' }
+      & Pick<Management_UserProfile, 'id' | 'active' | 'firstname' | 'lastname' | 'phone' | 'username'>
+      & { user_role: (
+        { __typename?: 'management_user_role' }
+        & Pick<Management_User_Role, 'name' | 'description'>
+      ) }
+    )> }
+  )> }
+);
 
 export type GetUserByIdQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type GetUserByIdQuery = { __typename?: 'query_root', management_userProfile_by_pk?: Maybe<{ __typename?: 'management_userProfile', CIN?: Maybe<string>, active: boolean, createdAt: any, createdBy?: Maybe<any>, email?: Maybe<string>, firstname?: Maybe<string>, id: string, joinUs?: Maybe<any>, lastname?: Maybe<string>, leftUs?: Maybe<any>, phone?: Maybe<string>, role: Management_User_Role_Enum, updatedAt: any, updatedBy?: Maybe<any>, username: string, SalesPointsid?: Maybe<any>, user_role: { __typename?: 'management_user_role', description: string, name: string }, SalesPoint?: Maybe<{ __typename?: 'management_salesPoint', name: string, phone: string, address: string }> }> };
+export type GetUserByIdQuery = (
+  { __typename?: 'query_root' }
+  & { management_userProfile_by_pk?: Maybe<(
+    { __typename?: 'management_userProfile' }
+    & Pick<Management_UserProfile, 'CIN' | 'active' | 'createdAt' | 'createdBy' | 'email' | 'firstname' | 'id' | 'joinUs' | 'lastname' | 'leftUs' | 'phone' | 'role' | 'updatedAt' | 'updatedBy' | 'username' | 'SalesPointsid'>
+    & { user_role: (
+      { __typename?: 'management_user_role' }
+      & Pick<Management_User_Role, 'description' | 'name'>
+    ), SalesPoint?: Maybe<(
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name' | 'phone' | 'address'>
+    )> }
+  )> }
+);
 
 export type GenerateBarCodesMutationVariables = Exact<{
-  objects: Array<Manufacturing_Manufacturing_Line_Insert_Input> | Manufacturing_Manufacturing_Line_Insert_Input;
+  objects: Array<Manufacturing_Manufacturing_Line_Insert_Input>;
 }>;
 
 
-export type GenerateBarCodesMutation = { __typename?: 'mutation_root', insert_manufacturing_manufacturing_line?: Maybe<{ __typename?: 'manufacturing_manufacturing_line_mutation_response', affected_rows: number, returning: Array<{ __typename?: 'manufacturing_manufacturing_line', id: number, status: string, glass_id: any, manufacturing_services: Array<{ __typename?: 'manufacturing_manufacturing_service', service_draft: { __typename?: 'sales_service_draft', labelFactory?: Maybe<string>, id: any } }>, manufacturing_consumables: Array<{ __typename?: 'manufacturing_manufacturing_consumable', consumable_draft: { __typename?: 'sales_consumable_draft', labelFactory?: Maybe<string>, id: any } }> }> }> };
+export type GenerateBarCodesMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_manufacturing_manufacturing_line?: Maybe<(
+    { __typename?: 'manufacturing_manufacturing_line_mutation_response' }
+    & Pick<Manufacturing_Manufacturing_Line_Mutation_Response, 'affected_rows'>
+    & { returning: Array<(
+      { __typename?: 'manufacturing_manufacturing_line' }
+      & Pick<Manufacturing_Manufacturing_Line, 'id' | 'status' | 'glass_id'>
+      & { manufacturing_services: Array<(
+        { __typename?: 'manufacturing_manufacturing_service' }
+        & { service_draft: (
+          { __typename?: 'sales_service_draft' }
+          & Pick<Sales_Service_Draft, 'labelFactory' | 'id'>
+        ) }
+      )>, manufacturing_consumables: Array<(
+        { __typename?: 'manufacturing_manufacturing_consumable' }
+        & { consumable_draft: (
+          { __typename?: 'sales_consumable_draft' }
+          & Pick<Sales_Consumable_Draft, 'labelFactory' | 'id'>
+        ) }
+      )> }
+    )> }
+  )> }
+);
 
 export type InsertJobOrderMutationVariables = Exact<{
   order_ref?: Maybe<Scalars['String']>;
   isReparing?: Maybe<Scalars['Boolean']>;
-  ids: Array<Sales_Glass_Draft_Insert_Input> | Sales_Glass_Draft_Insert_Input;
+  ids: Array<Sales_Glass_Draft_Insert_Input>;
 }>;
 
 
-export type InsertJobOrderMutation = { __typename?: 'mutation_root', insert_manufacturing_job_order_one?: Maybe<{ __typename?: 'manufacturing_job_order', id: number, order_ref: string, status: string, isReparing: boolean, date: any, ref?: Maybe<string>, glass_drafts: Array<{ __typename?: 'sales_glass_draft', id: any, product_draft?: Maybe<{ __typename?: 'sales_product_draft', type?: Maybe<Sales_Product_Type_Enum>, count?: Maybe<any>, heigth?: Maybe<any>, width?: Maybe<any>, label: string, product_code: string }>, consumable_drafts: Array<{ __typename?: 'sales_consumable_draft', labelFactory?: Maybe<string>, id: any }>, service_drafts: Array<{ __typename?: 'sales_service_draft', id: any, labelFactory?: Maybe<string> }>, manufacturing_lines: Array<{ __typename?: 'manufacturing_manufacturing_line', glass_id: any, id: number, status: string, ref?: Maybe<string> }> }> }>, update_sales_product_draft?: Maybe<{ __typename?: 'sales_product_draft_mutation_response', affected_rows: number }>, update_sales_draft?: Maybe<{ __typename?: 'sales_draft_mutation_response', affected_rows: number }> };
+export type InsertJobOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_manufacturing_job_order_one?: Maybe<(
+    { __typename?: 'manufacturing_job_order' }
+    & Pick<Manufacturing_Job_Order, 'id' | 'order_ref' | 'status' | 'isReparing' | 'date' | 'ref'>
+    & { glass_drafts: Array<(
+      { __typename?: 'sales_glass_draft' }
+      & Pick<Sales_Glass_Draft, 'id'>
+      & { product_draft?: Maybe<(
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'type' | 'count' | 'heigth' | 'width' | 'label' | 'product_code'>
+      )>, consumable_drafts: Array<(
+        { __typename?: 'sales_consumable_draft' }
+        & Pick<Sales_Consumable_Draft, 'labelFactory' | 'id'>
+      )>, service_drafts: Array<(
+        { __typename?: 'sales_service_draft' }
+        & Pick<Sales_Service_Draft, 'id' | 'labelFactory'>
+      )>, manufacturing_lines: Array<(
+        { __typename?: 'manufacturing_manufacturing_line' }
+        & Pick<Manufacturing_Manufacturing_Line, 'glass_id' | 'id' | 'status' | 'ref'>
+      )> }
+    )> }
+  )>, update_sales_product_draft?: Maybe<(
+    { __typename?: 'sales_product_draft_mutation_response' }
+    & Pick<Sales_Product_Draft_Mutation_Response, 'affected_rows'>
+  )>, update_sales_draft?: Maybe<(
+    { __typename?: 'sales_draft_mutation_response' }
+    & Pick<Sales_Draft_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type UpdateManufacturingProgressMutationVariables = Exact<{
-  services?: Array<Manufacturing_Manufacturing_Service_Insert_Input> | Manufacturing_Manufacturing_Service_Insert_Input;
-  consumables?: Array<Manufacturing_Manufacturing_Consumable_Insert_Input> | Manufacturing_Manufacturing_Consumable_Insert_Input;
+  services?: Array<Manufacturing_Manufacturing_Service_Insert_Input>;
+  consumables?: Array<Manufacturing_Manufacturing_Consumable_Insert_Input>;
   glass_id?: Maybe<Scalars['uuid']>;
 }>;
 
 
-export type UpdateManufacturingProgressMutation = { __typename?: 'mutation_root', delete_manufacturing_manufacturing_service?: Maybe<{ __typename?: 'manufacturing_manufacturing_service_mutation_response', affected_rows: number }>, delete_manufacturing_manufacturing_consumable?: Maybe<{ __typename?: 'manufacturing_manufacturing_consumable_mutation_response', affected_rows: number }>, insert_manufacturing_manufacturing_service?: Maybe<{ __typename?: 'manufacturing_manufacturing_service_mutation_response', returning: Array<{ __typename?: 'manufacturing_manufacturing_service', manufacturing_line_id: number, service_draft_id: any, service_draft: { __typename?: 'sales_service_draft', labelFactory?: Maybe<string> }, manufacturing_line: { __typename?: 'manufacturing_manufacturing_line', status: string } }> }>, insert_manufacturing_manufacturing_consumable?: Maybe<{ __typename?: 'manufacturing_manufacturing_consumable_mutation_response', returning: Array<{ __typename?: 'manufacturing_manufacturing_consumable', consumable_draft_id: any, manufacturing_line_id: number, consumable_draft: { __typename?: 'sales_consumable_draft', labelFactory?: Maybe<string> }, manufacturing_line: { __typename?: 'manufacturing_manufacturing_line', status: string } }> }> };
+export type UpdateManufacturingProgressMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_manufacturing_manufacturing_service?: Maybe<(
+    { __typename?: 'manufacturing_manufacturing_service_mutation_response' }
+    & Pick<Manufacturing_Manufacturing_Service_Mutation_Response, 'affected_rows'>
+  )>, delete_manufacturing_manufacturing_consumable?: Maybe<(
+    { __typename?: 'manufacturing_manufacturing_consumable_mutation_response' }
+    & Pick<Manufacturing_Manufacturing_Consumable_Mutation_Response, 'affected_rows'>
+  )>, insert_manufacturing_manufacturing_service?: Maybe<(
+    { __typename?: 'manufacturing_manufacturing_service_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'manufacturing_manufacturing_service' }
+      & Pick<Manufacturing_Manufacturing_Service, 'manufacturing_line_id' | 'service_draft_id'>
+      & { service_draft: (
+        { __typename?: 'sales_service_draft' }
+        & Pick<Sales_Service_Draft, 'labelFactory'>
+      ), manufacturing_line: (
+        { __typename?: 'manufacturing_manufacturing_line' }
+        & Pick<Manufacturing_Manufacturing_Line, 'status'>
+      ) }
+    )> }
+  )>, insert_manufacturing_manufacturing_consumable?: Maybe<(
+    { __typename?: 'manufacturing_manufacturing_consumable_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'manufacturing_manufacturing_consumable' }
+      & Pick<Manufacturing_Manufacturing_Consumable, 'consumable_draft_id' | 'manufacturing_line_id'>
+      & { consumable_draft: (
+        { __typename?: 'sales_consumable_draft' }
+        & Pick<Sales_Consumable_Draft, 'labelFactory'>
+      ), manufacturing_line: (
+        { __typename?: 'manufacturing_manufacturing_line' }
+        & Pick<Manufacturing_Manufacturing_Line, 'status'>
+      ) }
+    )> }
+  )> }
+);
 
 export type GetAllJobsOrdersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllJobsOrdersQuery = { __typename?: 'query_root', manufacturing_job_order: Array<{ __typename?: 'manufacturing_job_order', id: number, date: any, isReparing: boolean, status: string, order_ref: string, ref?: Maybe<string> }> };
+export type GetAllJobsOrdersQuery = (
+  { __typename?: 'query_root' }
+  & { manufacturing_job_order: Array<(
+    { __typename?: 'manufacturing_job_order' }
+    & Pick<Manufacturing_Job_Order, 'id' | 'date' | 'isReparing' | 'status' | 'order_ref' | 'ref'>
+  )> }
+);
 
 export type GetJobOrderByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetJobOrderByIdQuery = { __typename?: 'query_root', manufacturing_job_order_by_pk?: Maybe<{ __typename?: 'manufacturing_job_order', date: any, id: number, order_ref: string, ref?: Maybe<string>, status: string, isReparing: boolean, glass_drafts: Array<{ __typename?: 'sales_glass_draft', id: any, consumable_drafts: Array<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string>, id: any }>, service_drafts: Array<{ __typename?: 'sales_service_draft', dependent_id: any, labelFactory?: Maybe<string>, id: any }>, product_draft?: Maybe<{ __typename?: 'sales_product_draft', type?: Maybe<Sales_Product_Type_Enum>, count?: Maybe<any>, heigth?: Maybe<any>, width?: Maybe<any>, label: string, product_code: string }>, manufacturing_lines: Array<{ __typename?: 'manufacturing_manufacturing_line', glass_id: any, id: number, status: string, ref?: Maybe<string>, manufacturing_services: Array<{ __typename?: 'manufacturing_manufacturing_service', service_draft: { __typename?: 'sales_service_draft', labelFactory?: Maybe<string>, id: any } }>, manufacturing_consumables: Array<{ __typename?: 'manufacturing_manufacturing_consumable', consumable_draft: { __typename?: 'sales_consumable_draft', labelFactory?: Maybe<string>, id: any } }> }> }> }> };
+export type GetJobOrderByIdQuery = (
+  { __typename?: 'query_root' }
+  & { manufacturing_job_order_by_pk?: Maybe<(
+    { __typename?: 'manufacturing_job_order' }
+    & Pick<Manufacturing_Job_Order, 'date' | 'id' | 'order_ref' | 'ref' | 'status' | 'isReparing'>
+    & { glass_drafts: Array<(
+      { __typename?: 'sales_glass_draft' }
+      & Pick<Sales_Glass_Draft, 'id'>
+      & { consumable_drafts: Array<(
+        { __typename?: 'sales_consumable_draft' }
+        & Pick<Sales_Consumable_Draft, 'dependent_id' | 'labelFactory' | 'id'>
+      )>, service_drafts: Array<(
+        { __typename?: 'sales_service_draft' }
+        & Pick<Sales_Service_Draft, 'dependent_id' | 'labelFactory' | 'id'>
+      )>, product_draft?: Maybe<(
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'type' | 'count' | 'heigth' | 'width' | 'label' | 'product_code'>
+      )>, manufacturing_lines: Array<(
+        { __typename?: 'manufacturing_manufacturing_line' }
+        & Pick<Manufacturing_Manufacturing_Line, 'glass_id' | 'id' | 'status' | 'ref'>
+        & { manufacturing_services: Array<(
+          { __typename?: 'manufacturing_manufacturing_service' }
+          & { service_draft: (
+            { __typename?: 'sales_service_draft' }
+            & Pick<Sales_Service_Draft, 'labelFactory' | 'id'>
+          ) }
+        )>, manufacturing_consumables: Array<(
+          { __typename?: 'manufacturing_manufacturing_consumable' }
+          & { consumable_draft: (
+            { __typename?: 'sales_consumable_draft' }
+            & Pick<Sales_Consumable_Draft, 'labelFactory' | 'id'>
+          ) }
+        )> }
+      )> }
+    )> }
+  )> }
+);
 
 export type GetManufacturingGlassByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetManufacturingGlassByIdQuery = { __typename?: 'query_root', sales_glass_draft_by_pk?: Maybe<{ __typename?: 'sales_glass_draft', id: any, consumable_drafts: Array<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string>, id: any }>, service_drafts: Array<{ __typename?: 'sales_service_draft', dependent_id: any, labelFactory?: Maybe<string>, id: any }>, product_draft?: Maybe<{ __typename?: 'sales_product_draft', type?: Maybe<Sales_Product_Type_Enum>, count?: Maybe<any>, heigth?: Maybe<any>, width?: Maybe<any>, label: string, product_code: string }>, manufacturing_lines: Array<{ __typename?: 'manufacturing_manufacturing_line', glass_id: any, id: number, status: string, manufacturing_services: Array<{ __typename?: 'manufacturing_manufacturing_service', service_draft: { __typename?: 'sales_service_draft', labelFactory?: Maybe<string>, id: any } }>, manufacturing_consumables: Array<{ __typename?: 'manufacturing_manufacturing_consumable', consumable_draft: { __typename?: 'sales_consumable_draft', labelFactory?: Maybe<string>, id: any } }> }> }> };
+export type GetManufacturingGlassByIdQuery = (
+  { __typename?: 'query_root' }
+  & { sales_glass_draft_by_pk?: Maybe<(
+    { __typename?: 'sales_glass_draft' }
+    & Pick<Sales_Glass_Draft, 'id'>
+    & { consumable_drafts: Array<(
+      { __typename?: 'sales_consumable_draft' }
+      & Pick<Sales_Consumable_Draft, 'dependent_id' | 'labelFactory' | 'id'>
+    )>, service_drafts: Array<(
+      { __typename?: 'sales_service_draft' }
+      & Pick<Sales_Service_Draft, 'dependent_id' | 'labelFactory' | 'id'>
+    )>, product_draft?: Maybe<(
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'type' | 'count' | 'heigth' | 'width' | 'label' | 'product_code'>
+    )>, manufacturing_lines: Array<(
+      { __typename?: 'manufacturing_manufacturing_line' }
+      & Pick<Manufacturing_Manufacturing_Line, 'glass_id' | 'id' | 'status'>
+      & { manufacturing_services: Array<(
+        { __typename?: 'manufacturing_manufacturing_service' }
+        & { service_draft: (
+          { __typename?: 'sales_service_draft' }
+          & Pick<Sales_Service_Draft, 'labelFactory' | 'id'>
+        ) }
+      )>, manufacturing_consumables: Array<(
+        { __typename?: 'manufacturing_manufacturing_consumable' }
+        & { consumable_draft: (
+          { __typename?: 'sales_consumable_draft' }
+          & Pick<Sales_Consumable_Draft, 'labelFactory' | 'id'>
+        ) }
+      )> }
+    )> }
+  )> }
+);
 
 export type AddGlassColorMutationVariables = Exact<{
   color?: Maybe<Scalars['String']>;
 }>;
 
 
-export type AddGlassColorMutation = { __typename?: 'mutation_root', insert_product_glassColor_one?: Maybe<{ __typename?: 'product_glassColor', color: string }> };
+export type AddGlassColorMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_product_glassColor_one?: Maybe<(
+    { __typename?: 'product_glassColor' }
+    & Pick<Product_GlassColor, 'color'>
+  )> }
+);
 
 export type AddGlassTypeMutationVariables = Exact<{
   type?: Maybe<Scalars['String']>;
 }>;
 
 
-export type AddGlassTypeMutation = { __typename?: 'mutation_root', insert_product_glassType_one?: Maybe<{ __typename?: 'product_glassType', type: string }> };
+export type AddGlassTypeMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_product_glassType_one?: Maybe<(
+    { __typename?: 'product_glassType' }
+    & Pick<Product_GlassType, 'type'>
+  )> }
+);
 
 export type DeleteManyCustomerProductsMutationVariables = Exact<{
-  ids?: Maybe<Array<Scalars['uuid']> | Scalars['uuid']>;
+  ids?: Maybe<Array<Scalars['uuid']>>;
 }>;
 
 
-export type DeleteManyCustomerProductsMutation = { __typename?: 'mutation_root', delete_product_customer_product?: Maybe<{ __typename?: 'product_customer_product_mutation_response', affected_rows: number }> };
+export type DeleteManyCustomerProductsMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_product_customer_product?: Maybe<(
+    { __typename?: 'product_customer_product_mutation_response' }
+    & Pick<Product_Customer_Product_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type DeleteManyMutationVariables = Exact<{
-  codes?: Maybe<Array<Scalars['String']> | Scalars['String']>;
+  codes?: Maybe<Array<Scalars['String']>>;
 }>;
 
 
-export type DeleteManyMutation = { __typename?: 'mutation_root', delete_product_product?: Maybe<{ __typename?: 'product_product_mutation_response', affected_rows: number }> };
+export type DeleteManyMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_product_product?: Maybe<(
+    { __typename?: 'product_product_mutation_response' }
+    & Pick<Product_Product_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type DeleteOneMutationVariables = Exact<{
   code: Scalars['String'];
 }>;
 
 
-export type DeleteOneMutation = { __typename?: 'mutation_root', delete_product_product_by_pk?: Maybe<{ __typename?: 'product_product', code: string }> };
+export type DeleteOneMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_product_product_by_pk?: Maybe<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code'>
+  )> }
+);
 
 export type InsertAccessoryMutationVariables = Exact<{
   product: Product_Product_Insert_Input;
@@ -33889,7 +35274,21 @@ export type InsertAccessoryMutationVariables = Exact<{
 }>;
 
 
-export type InsertAccessoryMutation = { __typename?: 'mutation_root', insert_product_accessory_one?: Maybe<{ __typename?: 'product_accessory', id: any, category: Product_AccessoryTypes_Enum, quota?: Maybe<any>, product: { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> };
+export type InsertAccessoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_product_accessory_one?: Maybe<(
+    { __typename?: 'product_accessory' }
+    & Pick<Product_Accessory, 'id' | 'category' | 'quota'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type InsertConsumableMutationVariables = Exact<{
   product: Product_Product_Insert_Input;
@@ -33899,7 +35298,21 @@ export type InsertConsumableMutationVariables = Exact<{
 }>;
 
 
-export type InsertConsumableMutation = { __typename?: 'mutation_root', insert_product_consumable_one?: Maybe<{ __typename?: 'product_consumable', id: any, category: Product_ConsumableCategory_Enum, product: { __typename?: 'product_product', code: string, label: string, price: number, unit: Product_Product_Unit_Enum, priceMax: number, priceMin: number, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> };
+export type InsertConsumableMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_product_consumable_one?: Maybe<(
+    { __typename?: 'product_consumable' }
+    & Pick<Product_Consumable, 'id' | 'category'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'price' | 'unit' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type InsertCustomerProductMutationVariables = Exact<{
   code?: Maybe<Scalars['String']>;
@@ -33911,7 +35324,17 @@ export type InsertCustomerProductMutationVariables = Exact<{
 }>;
 
 
-export type InsertCustomerProductMutation = { __typename?: 'mutation_root', insert_product_customer_product_one?: Maybe<{ __typename?: 'product_customer_product', id: any, thickness: any, product: { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum } }> };
+export type InsertCustomerProductMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_product_customer_product_one?: Maybe<(
+    { __typename?: 'product_customer_product' }
+    & Pick<Product_Customer_Product, 'id' | 'thickness'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'unit'>
+    ) }
+  )> }
+);
 
 export type InsertGlassMutationVariables = Exact<{
   thickness?: Maybe<Scalars['Int']>;
@@ -33920,7 +35343,21 @@ export type InsertGlassMutationVariables = Exact<{
 }>;
 
 
-export type InsertGlassMutation = { __typename?: 'mutation_root', insert_product_glass_one?: Maybe<{ __typename?: 'product_glass', color?: Maybe<Product_GlassColor_Enum>, id: any, thickness: number, type?: Maybe<Product_GlassType_Enum>, product: { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> };
+export type InsertGlassMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_product_glass_one?: Maybe<(
+    { __typename?: 'product_glass' }
+    & Pick<Product_Glass, 'color' | 'id' | 'thickness' | 'type'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type InsertServiceMutationVariables = Exact<{
   serviceConfigid?: Maybe<Scalars['uuid']>;
@@ -33929,7 +35366,20 @@ export type InsertServiceMutationVariables = Exact<{
 }>;
 
 
-export type InsertServiceMutation = { __typename?: 'mutation_root', insert_product_service_one?: Maybe<{ __typename?: 'product_service', product: { __typename?: 'product_product', code: string, label: string, price: number, priceMax: number, priceMin: number, unit: Product_Product_Unit_Enum, companies: Array<{ __typename?: 'product_product_companies_view', id?: Maybe<any>, name?: Maybe<string> }> } }> };
+export type InsertServiceMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_product_service_one?: Maybe<(
+    { __typename?: 'product_service' }
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'price' | 'priceMax' | 'priceMin' | 'unit'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'id' | 'name'>
+      )> }
+    ) }
+  )> }
+);
 
 export type InsertServiceConfigMutationVariables = Exact<{
   labelFactory?: Maybe<Scalars['String']>;
@@ -33938,7 +35388,13 @@ export type InsertServiceConfigMutationVariables = Exact<{
 }>;
 
 
-export type InsertServiceConfigMutation = { __typename?: 'mutation_root', insert_product_serviceConfig_one?: Maybe<{ __typename?: 'product_serviceConfig', labelFactory: string, name: string, id: any, params?: Maybe<any> }> };
+export type InsertServiceConfigMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_product_serviceConfig_one?: Maybe<(
+    { __typename?: 'product_serviceConfig' }
+    & Pick<Product_ServiceConfig, 'labelFactory' | 'name' | 'id' | 'params'>
+  )> }
+);
 
 export type UpdateAccessoryMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33946,11 +35402,32 @@ export type UpdateAccessoryMutationVariables = Exact<{
   product?: Maybe<Product_Product_Set_Input>;
   category?: Maybe<Product_AccessoryTypes_Enum>;
   code: Scalars['String'];
-  companies: Array<Product_Product_Companies_Insert_Input> | Product_Product_Companies_Insert_Input;
+  companies: Array<Product_Product_Companies_Insert_Input>;
 }>;
 
 
-export type UpdateAccessoryMutation = { __typename?: 'mutation_root', update_product_accessory_by_pk?: Maybe<{ __typename?: 'product_accessory', id: any, category: Product_AccessoryTypes_Enum, quota?: Maybe<any> }>, update_product_product_by_pk?: Maybe<{ __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number }>, delete_product_product_companies?: Maybe<{ __typename?: 'product_product_companies_mutation_response', affected_rows: number }>, insert_product_product_companies?: Maybe<{ __typename?: 'product_product_companies_mutation_response', returning: Array<{ __typename?: 'product_product_companies', Company: { __typename?: 'management_company', name: string, id: any } }> }> };
+export type UpdateAccessoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_product_accessory_by_pk?: Maybe<(
+    { __typename?: 'product_accessory' }
+    & Pick<Product_Accessory, 'id' | 'category' | 'quota'>
+  )>, update_product_product_by_pk?: Maybe<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+  )>, delete_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & Pick<Product_Product_Companies_Mutation_Response, 'affected_rows'>
+  )>, insert_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'product_product_companies' }
+      & { Company: (
+        { __typename?: 'management_company' }
+        & Pick<Management_Company, 'name' | 'id'>
+      ) }
+    )> }
+  )> }
+);
 
 export type UpdateConsumableMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -33958,116 +35435,384 @@ export type UpdateConsumableMutationVariables = Exact<{
   product?: Maybe<Product_Product_Set_Input>;
   category?: Maybe<Product_ConsumableCategory_Enum>;
   labelFactory?: Maybe<Scalars['String']>;
-  companies: Array<Product_Product_Companies_Insert_Input> | Product_Product_Companies_Insert_Input;
+  companies: Array<Product_Product_Companies_Insert_Input>;
 }>;
 
 
-export type UpdateConsumableMutation = { __typename?: 'mutation_root', update_product_consumable_by_pk?: Maybe<{ __typename?: 'product_consumable', id: any, category: Product_ConsumableCategory_Enum, labelFactory?: Maybe<string> }>, update_product_product_by_pk?: Maybe<{ __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number }>, delete_product_product_companies?: Maybe<{ __typename?: 'product_product_companies_mutation_response', affected_rows: number }>, insert_product_product_companies?: Maybe<{ __typename?: 'product_product_companies_mutation_response', returning: Array<{ __typename?: 'product_product_companies', Company: { __typename?: 'management_company', name: string, id: any } }> }> };
+export type UpdateConsumableMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_product_consumable_by_pk?: Maybe<(
+    { __typename?: 'product_consumable' }
+    & Pick<Product_Consumable, 'id' | 'category' | 'labelFactory'>
+  )>, update_product_product_by_pk?: Maybe<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+  )>, delete_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & Pick<Product_Product_Companies_Mutation_Response, 'affected_rows'>
+  )>, insert_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'product_product_companies' }
+      & { Company: (
+        { __typename?: 'management_company' }
+        & Pick<Management_Company, 'name' | 'id'>
+      ) }
+    )> }
+  )> }
+);
 
 export type UpdateGlassMutationVariables = Exact<{
   id: Scalars['uuid'];
   thickness?: Maybe<Scalars['Int']>;
   product?: Maybe<Product_Product_Set_Input>;
   code: Scalars['String'];
-  companies: Array<Product_Product_Companies_Insert_Input> | Product_Product_Companies_Insert_Input;
+  companies: Array<Product_Product_Companies_Insert_Input>;
 }>;
 
 
-export type UpdateGlassMutation = { __typename?: 'mutation_root', update_product_glass_by_pk?: Maybe<{ __typename?: 'product_glass', id: any, thickness: number, type?: Maybe<Product_GlassType_Enum>, color?: Maybe<Product_GlassColor_Enum> }>, update_product_product_by_pk?: Maybe<{ __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number }>, delete_product_product_companies?: Maybe<{ __typename?: 'product_product_companies_mutation_response', affected_rows: number }>, insert_product_product_companies?: Maybe<{ __typename?: 'product_product_companies_mutation_response', returning: Array<{ __typename?: 'product_product_companies', Company: { __typename?: 'management_company', name: string, id: any } }> }> };
+export type UpdateGlassMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_product_glass_by_pk?: Maybe<(
+    { __typename?: 'product_glass' }
+    & Pick<Product_Glass, 'id' | 'thickness' | 'type' | 'color'>
+  )>, update_product_product_by_pk?: Maybe<(
+    { __typename?: 'product_product' }
+    & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+  )>, delete_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & Pick<Product_Product_Companies_Mutation_Response, 'affected_rows'>
+  )>, insert_product_product_companies?: Maybe<(
+    { __typename?: 'product_product_companies_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'product_product_companies' }
+      & { Company: (
+        { __typename?: 'management_company' }
+        & Pick<Management_Company, 'name' | 'id'>
+      ) }
+    )> }
+  )> }
+);
 
 export type GetAccessoryByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetAccessoryByIdQuery = { __typename?: 'query_root', product_accessory_by_pk?: Maybe<{ __typename?: 'product_accessory', createdAt?: Maybe<any>, createdBy?: Maybe<string>, id: any, category: Product_AccessoryTypes_Enum, quota?: Maybe<any>, updatedAt?: Maybe<any>, updatedBy?: Maybe<string>, product: { __typename?: 'product_product', code: string, unit: Product_Product_Unit_Enum, label: string, price: number, priceMax: number, priceMin: number, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> };
+export type GetAccessoryByIdQuery = (
+  { __typename?: 'query_root' }
+  & { product_accessory_by_pk?: Maybe<(
+    { __typename?: 'product_accessory' }
+    & Pick<Product_Accessory, 'createdAt' | 'createdBy' | 'id' | 'category' | 'quota' | 'updatedAt' | 'updatedBy'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'unit' | 'label' | 'price' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllAccessoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllAccessoriesQuery = { __typename?: 'query_root', product_accessory: Array<{ __typename?: 'product_accessory', id: any, category: Product_AccessoryTypes_Enum, quota?: Maybe<any>, substanceid: any, product: { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> };
+export type GetAllAccessoriesQuery = (
+  { __typename?: 'query_root' }
+  & { product_accessory: Array<(
+    { __typename?: 'product_accessory' }
+    & Pick<Product_Accessory, 'id' | 'category' | 'quota' | 'substanceid'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllConsumablesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllConsumablesQuery = { __typename?: 'query_root', product_consumable: Array<{ __typename?: 'product_consumable', id: any, category: Product_ConsumableCategory_Enum, substanceid: any, labelFactory?: Maybe<string>, product: { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> };
+export type GetAllConsumablesQuery = (
+  { __typename?: 'query_root' }
+  & { product_consumable: Array<(
+    { __typename?: 'product_consumable' }
+    & Pick<Product_Consumable, 'id' | 'category' | 'substanceid' | 'labelFactory'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllCustomerProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllCustomerProductsQuery = { __typename?: 'query_root', product_customer_product: Array<{ __typename?: 'product_customer_product', id: any, thickness: any, product: { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum } }> };
+export type GetAllCustomerProductsQuery = (
+  { __typename?: 'query_root' }
+  & { product_customer_product: Array<(
+    { __typename?: 'product_customer_product' }
+    & Pick<Product_Customer_Product, 'id' | 'thickness'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'unit'>
+    ) }
+  )> }
+);
 
 export type GetAllGlassesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllGlassesQuery = { __typename?: 'query_root', product_glass: Array<{ __typename?: 'product_glass', id: any, thickness: number, substanceid: any, product: { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> };
+export type GetAllGlassesQuery = (
+  { __typename?: 'query_root' }
+  & { product_glass: Array<(
+    { __typename?: 'product_glass' }
+    & Pick<Product_Glass, 'id' | 'thickness' | 'substanceid'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllServicesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllServicesQuery = { __typename?: 'query_root', product_service: Array<{ __typename?: 'product_service', paramValues?: Maybe<any>, serviceConfig?: Maybe<{ __typename?: 'product_serviceConfig', labelFactory: string, id: any, name: string, params?: Maybe<any> }>, product: { __typename?: 'product_product', code: string, label: string, price: number, priceMax: number, priceMin: number, unit: Product_Product_Unit_Enum, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> };
+export type GetAllServicesQuery = (
+  { __typename?: 'query_root' }
+  & { product_service: Array<(
+    { __typename?: 'product_service' }
+    & Pick<Product_Service, 'paramValues'>
+    & { serviceConfig?: Maybe<(
+      { __typename?: 'product_serviceConfig' }
+      & Pick<Product_ServiceConfig, 'labelFactory' | 'id' | 'name' | 'params'>
+    )>, product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'price' | 'priceMax' | 'priceMin' | 'unit'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type GetAllServiceConfigQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllServiceConfigQuery = { __typename?: 'query_root', product_serviceConfig: Array<{ __typename?: 'product_serviceConfig', labelFactory: string, name: string, id: any, params?: Maybe<any> }> };
+export type GetAllServiceConfigQuery = (
+  { __typename?: 'query_root' }
+  & { product_serviceConfig: Array<(
+    { __typename?: 'product_serviceConfig' }
+    & Pick<Product_ServiceConfig, 'labelFactory' | 'name' | 'id' | 'params'>
+  )> }
+);
 
 export type GetConsumableByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetConsumableByIdQuery = { __typename?: 'query_root', product_consumable_by_pk?: Maybe<{ __typename?: 'product_consumable', category: Product_ConsumableCategory_Enum, createdAt: any, createdBy?: Maybe<string>, id: any, updatedAt: any, updatedBy?: Maybe<string>, product: { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> };
+export type GetConsumableByIdQuery = (
+  { __typename?: 'query_root' }
+  & { product_consumable_by_pk?: Maybe<(
+    { __typename?: 'product_consumable' }
+    & Pick<Product_Consumable, 'category' | 'createdAt' | 'createdBy' | 'id' | 'updatedAt' | 'updatedBy'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type GetGlassByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetGlassByIdQuery = { __typename?: 'query_root', product_glass_by_pk?: Maybe<{ __typename?: 'product_glass', createdBy?: Maybe<any>, createdAt?: Maybe<any>, id: any, thickness: number, updatedAt?: Maybe<any>, updatedBy?: Maybe<any>, product: { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> };
+export type GetGlassByIdQuery = (
+  { __typename?: 'query_root' }
+  & { product_glass_by_pk?: Maybe<(
+    { __typename?: 'product_glass' }
+    & Pick<Product_Glass, 'createdBy' | 'createdAt' | 'id' | 'thickness' | 'updatedAt' | 'updatedBy'>
+    & { product: (
+      { __typename?: 'product_product' }
+      & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+      & { companies: Array<(
+        { __typename?: 'product_product_companies_view' }
+        & Pick<Product_Product_Companies_View, 'name' | 'id'>
+      )> }
+    ) }
+  )> }
+);
 
 export type GetGlassColorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetGlassColorsQuery = { __typename?: 'query_root', product_glassColor: Array<{ __typename?: 'product_glassColor', color: string }> };
+export type GetGlassColorsQuery = (
+  { __typename?: 'query_root' }
+  & { product_glassColor: Array<(
+    { __typename?: 'product_glassColor' }
+    & Pick<Product_GlassColor, 'color'>
+  )> }
+);
 
 export type GetGlassTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetGlassTypesQuery = { __typename?: 'query_root', product_glassType: Array<{ __typename?: 'product_glassType', type: string }> };
+export type GetGlassTypesQuery = (
+  { __typename?: 'query_root' }
+  & { product_glassType: Array<(
+    { __typename?: 'product_glassType' }
+    & Pick<Product_GlassType, 'type'>
+  )> }
+);
 
 export type GetServiceConfigByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetServiceConfigByIdQuery = { __typename?: 'query_root', product_serviceConfig_by_pk?: Maybe<{ __typename?: 'product_serviceConfig', id: any, labelFactory: string, name: string, params?: Maybe<any>, services: Array<{ __typename?: 'product_service', paramValues?: Maybe<any>, product: { __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number, companies: Array<{ __typename?: 'product_product_companies_view', name?: Maybe<string>, id?: Maybe<any> }> } }> }> };
+export type GetServiceConfigByIdQuery = (
+  { __typename?: 'query_root' }
+  & { product_serviceConfig_by_pk?: Maybe<(
+    { __typename?: 'product_serviceConfig' }
+    & Pick<Product_ServiceConfig, 'id' | 'labelFactory' | 'name' | 'params'>
+    & { services: Array<(
+      { __typename?: 'product_service' }
+      & Pick<Product_Service, 'paramValues'>
+      & { product: (
+        { __typename?: 'product_product' }
+        & Pick<Product_Product, 'code' | 'label' | 'unit' | 'price' | 'priceMax' | 'priceMin'>
+        & { companies: Array<(
+          { __typename?: 'product_product_companies_view' }
+          & Pick<Product_Product_Companies_View, 'name' | 'id'>
+        )> }
+      ) }
+    )> }
+  )> }
+);
 
-export type InsertPurchaseDeliveryMutationVariables = Exact<{
-  date?: Maybe<Scalars['date']>;
+export type GetAllSubstancesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllSubstancesQuery = (
+  { __typename?: 'query_root' }
+  & { product_substance: Array<(
+    { __typename?: 'product_substance' }
+    & Pick<Product_Substance, 'id'>
+    & { productAccessory?: Maybe<(
+      { __typename?: 'product_product_accessory_view' }
+      & Pick<Product_Product_Accessory_View, 'code' | 'label' | 'unit'>
+    )>, productConsumable?: Maybe<(
+      { __typename?: 'product_product_consumable_view' }
+      & Pick<Product_Product_Consumable_View, 'code' | 'label' | 'unit'>
+    )>, productGlass?: Maybe<(
+      { __typename?: 'product_product_glass_view' }
+      & Pick<Product_Product_Glass_View, 'code' | 'label' | 'unit'>
+    )>, supply?: Maybe<(
+      { __typename?: 'product_supply' }
+      & Pick<Product_Supply, 'code' | 'label' | 'unit'>
+    )> }
+  )> }
+);
+
+export type DeletePurchaseDeliveryMutationVariables = Exact<{
+  ids: Array<Scalars['Int']>;
 }>;
 
 
-export type InsertPurchaseDeliveryMutation = { __typename?: 'mutation_root', insert_purchase_delivery_one?: Maybe<{ __typename?: 'purchase_delivery', date: any, id: number }> };
+export type DeletePurchaseDeliveryMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_purchase_delivery?: Maybe<(
+    { __typename?: 'purchase_delivery_mutation_response' }
+    & Pick<Purchase_Delivery_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type InsertPurchaseDeliveryMutationVariables = Exact<{
+  date?: Maybe<Scalars['date']>;
+  provider_id?: Maybe<Scalars['uuid']>;
+  items?: Array<Purchase_Delivery_Item_Insert_Input>;
+}>;
+
+
+export type InsertPurchaseDeliveryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_purchase_delivery_one?: Maybe<(
+    { __typename?: 'purchase_delivery' }
+    & Pick<Purchase_Delivery, 'date' | 'id' | 'provider_id'>
+    & { delivery_items: Array<(
+      { __typename?: 'purchase_delivery_item' }
+      & Pick<Purchase_Delivery_Item, 'id' | 'code' | 'delivery_id' | 'label' | 'quantity' | 'substance_id'>
+      & { warehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'id' | 'name'>
+      ) }
+    )> }
+  )> }
+);
 
 export type GetAllPurchasesDeliveriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllPurchasesDeliveriesQuery = { __typename?: 'query_root', purchase_delivery: Array<{ __typename?: 'purchase_delivery', date: any, id: number, ref?: Maybe<string> }> };
+export type GetAllPurchasesDeliveriesQuery = (
+  { __typename?: 'query_root' }
+  & { purchase_delivery: Array<(
+    { __typename?: 'purchase_delivery' }
+    & Pick<Purchase_Delivery, 'date' | 'id' | 'ref' | 'provider_id'>
+  )> }
+);
 
 export type GetPurchaseDeliveryByIdQueryVariables = Exact<{
   id?: Maybe<Scalars['Int']>;
 }>;
 
 
-export type GetPurchaseDeliveryByIdQuery = { __typename?: 'query_root', purchase_delivery_by_pk?: Maybe<{ __typename?: 'purchase_delivery', date: any, id: number, ref?: Maybe<string> }> };
+export type GetPurchaseDeliveryByIdQuery = (
+  { __typename?: 'query_root' }
+  & { purchase_delivery_by_pk?: Maybe<(
+    { __typename?: 'purchase_delivery' }
+    & Pick<Purchase_Delivery, 'date' | 'id' | 'ref' | 'provider_id'>
+    & { delivery_items: Array<(
+      { __typename?: 'purchase_delivery_item' }
+      & Pick<Purchase_Delivery_Item, 'code' | 'delivery_id' | 'id' | 'label' | 'quantity' | 'substance_id'>
+      & { warehouse: (
+        { __typename?: 'stock_warehouse' }
+        & Pick<Stock_Warehouse, 'id' | 'name'>
+      ) }
+    )> }
+  )> }
+);
 
 export type DeleteDeliveryMutationVariables = Exact<{
-  ids?: Array<Scalars['uuid']> | Scalars['uuid'];
+  ids?: Array<Scalars['uuid']>;
 }>;
 
 
-export type DeleteDeliveryMutation = { __typename?: 'mutation_root', delete_sales_delivery?: Maybe<{ __typename?: 'sales_delivery_mutation_response', affected_rows: number }> };
+export type DeleteDeliveryMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_delivery?: Maybe<(
+    { __typename?: 'sales_delivery_mutation_response' }
+    & Pick<Sales_Delivery_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type InsertDeliveryMutationVariables = Exact<{
   order_id: Scalars['Int'];
@@ -34076,7 +35821,7 @@ export type InsertDeliveryMutationVariables = Exact<{
   company_id: Scalars['uuid'];
   contact_id: Scalars['uuid'];
   isReturned?: Maybe<Scalars['Boolean']>;
-  delivery_lines?: Array<Sales_Delivery_Line_Insert_Input> | Sales_Delivery_Line_Insert_Input;
+  delivery_lines?: Array<Sales_Delivery_Line_Insert_Input>;
   payment_method: Scalars['String'];
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
@@ -34084,7 +35829,23 @@ export type InsertDeliveryMutationVariables = Exact<{
 }>;
 
 
-export type InsertDeliveryMutation = { __typename?: 'mutation_root', insert_sales_delivery_one?: Maybe<{ __typename?: 'sales_delivery', id: any, status: string, contact_id?: Maybe<any>, payment_method: string, predicted_date: any, isReturned: boolean, order_id: number, amount_ttc: any, amount_tva: any, amount_ht: any, company: { __typename?: 'management_company', name: string }, client: { __typename?: 'contact_customer', name: string, mail?: Maybe<string> }, contact?: Maybe<{ __typename?: 'contact_contact', mail?: Maybe<string>, name: string, phone: string }> }> };
+export type InsertDeliveryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_delivery_one?: Maybe<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'id' | 'status' | 'contact_id' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order_id' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'mail'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
+    )> }
+  )> }
+);
 
 export type UpdateDeliveryMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -34100,7 +35861,13 @@ export type UpdateDeliveryMutationVariables = Exact<{
 }>;
 
 
-export type UpdateDeliveryMutation = { __typename?: 'mutation_root', update_sales_delivery_by_pk?: Maybe<{ __typename?: 'sales_delivery', id: any, order_id: number, status: string, company_id: any, payment_method: string, isReturned: boolean, predicted_date: any, client_id: any, contact_id?: Maybe<any>, amount_ttc: any, amount_tva: any, amount_ht: any }> };
+export type UpdateDeliveryMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_sales_delivery_by_pk?: Maybe<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'id' | 'order_id' | 'status' | 'company_id' | 'payment_method' | 'isReturned' | 'predicted_date' | 'client_id' | 'contact_id' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
+  )> }
+);
 
 export type UpdateDeliveryLineMutationVariables = Exact<{
   amount?: Maybe<Scalars['numeric']>;
@@ -34110,28 +35877,52 @@ export type UpdateDeliveryLineMutationVariables = Exact<{
 }>;
 
 
-export type UpdateDeliveryLineMutation = { __typename?: 'mutation_root', update_sales_delivery_line_by_pk?: Maybe<{ __typename?: 'sales_delivery_line', id: any, amount: any, delivered: any, product_draft_id: any }> };
+export type UpdateDeliveryLineMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_sales_delivery_line_by_pk?: Maybe<(
+    { __typename?: 'sales_delivery_line' }
+    & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product_draft_id'>
+  )> }
+);
 
 export type DeleteDraftsMutationVariables = Exact<{
-  ids?: Array<Scalars['Int']> | Scalars['Int'];
+  ids?: Array<Scalars['Int']>;
 }>;
 
 
-export type DeleteDraftsMutation = { __typename?: 'mutation_root', delete_sales_draft?: Maybe<{ __typename?: 'sales_draft_mutation_response', affected_rows: number }> };
+export type DeleteDraftsMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_draft?: Maybe<(
+    { __typename?: 'sales_draft_mutation_response' }
+    & Pick<Sales_Draft_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type InsertDraftMutationVariables = Exact<{
   status?: Maybe<Sales_Draft_Status_Enum>;
 }>;
 
 
-export type InsertDraftMutation = { __typename?: 'mutation_root', insert_sales_draft_one?: Maybe<{ __typename?: 'sales_draft', id: number }> };
+export type InsertDraftMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_draft_one?: Maybe<(
+    { __typename?: 'sales_draft' }
+    & Pick<Sales_Draft, 'id'>
+  )> }
+);
 
 export type DeleteInvoicesMutationVariables = Exact<{
-  ids?: Array<Scalars['uuid']> | Scalars['uuid'];
+  ids?: Array<Scalars['uuid']>;
 }>;
 
 
-export type DeleteInvoicesMutation = { __typename?: 'mutation_root', delete_sales_invoice?: Maybe<{ __typename?: 'sales_invoice_mutation_response', affected_rows: number }> };
+export type DeleteInvoicesMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_invoice?: Maybe<(
+    { __typename?: 'sales_invoice_mutation_response' }
+    & Pick<Sales_Invoice_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type InsertInvoiceMutationVariables = Exact<{
   client_id: Scalars['uuid'];
@@ -34139,16 +35930,32 @@ export type InsertInvoiceMutationVariables = Exact<{
   company_id: Scalars['uuid'];
   payment_method: Scalars['String'];
   date: Scalars['date'];
-  invoice_lines?: Array<Sales_Invoice_Line_Insert_Input> | Sales_Invoice_Line_Insert_Input;
-  deliveries?: Array<Sales_Invoice_Delivery_Insert_Input> | Sales_Invoice_Delivery_Insert_Input;
-  deliveries_ids?: Array<Scalars['uuid']> | Scalars['uuid'];
+  invoice_lines?: Array<Sales_Invoice_Line_Insert_Input>;
+  deliveries?: Array<Sales_Invoice_Delivery_Insert_Input>;
+  deliveries_ids?: Array<Scalars['uuid']>;
   amount_ttc?: Maybe<Scalars['numeric']>;
   amount_ht?: Maybe<Scalars['numeric']>;
   amount_tva?: Maybe<Scalars['numeric']>;
 }>;
 
 
-export type InsertInvoiceMutation = { __typename?: 'mutation_root', insert_sales_invoice_one?: Maybe<{ __typename?: 'sales_invoice', id: any, ref?: Maybe<string>, client_id: any, company_id: any, contact_id?: Maybe<any>, date: any, payment_method: string, amount_ttc: any, amount_ht: any, amount_tva: any, deliveries: Array<{ __typename?: 'sales_invoice_delivery', delivery_id: any }>, invoice_lines: Array<{ __typename?: 'sales_invoice_line', id: any, unit_price: any, product_code: string, product_label: string, quantity: any, total: any, product_type: string }> }>, update_sales_delivery?: Maybe<{ __typename?: 'sales_delivery_mutation_response', affected_rows: number }> };
+export type InsertInvoiceMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_invoice_one?: Maybe<(
+    { __typename?: 'sales_invoice' }
+    & Pick<Sales_Invoice, 'id' | 'ref' | 'client_id' | 'company_id' | 'contact_id' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva'>
+    & { deliveries: Array<(
+      { __typename?: 'sales_invoice_delivery' }
+      & Pick<Sales_Invoice_Delivery, 'delivery_id'>
+    )>, invoice_lines: Array<(
+      { __typename?: 'sales_invoice_line' }
+      & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'quantity' | 'total' | 'product_type'>
+    )> }
+  )>, update_sales_delivery?: Maybe<(
+    { __typename?: 'sales_delivery_mutation_response' }
+    & Pick<Sales_Delivery_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type UpdateInvoiceMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -34160,14 +35967,39 @@ export type UpdateInvoiceMutationVariables = Exact<{
 }>;
 
 
-export type UpdateInvoiceMutation = { __typename?: 'mutation_root', update_sales_invoice_by_pk?: Maybe<{ __typename?: 'sales_invoice', id: any, date: any, payment_method: string, amount_ttc: any, amount_ht: any, amount_tva: any, ref?: Maybe<string>, createdAt?: Maybe<any>, updated_at?: Maybe<any>, client: { __typename?: 'contact_customer', name: string, phone: string, mail?: Maybe<string> }, company: { __typename?: 'management_company', id: any, name: string }, contact?: Maybe<{ __typename?: 'contact_contact', mail?: Maybe<string>, name: string, phone: string }>, deliveries: Array<{ __typename?: 'sales_invoice_delivery', delivery_id: any }> }> };
+export type UpdateInvoiceMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_sales_invoice_by_pk?: Maybe<(
+    { __typename?: 'sales_invoice' }
+    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_ttc' | 'amount_ht' | 'amount_tva' | 'ref' | 'createdAt' | 'updated_at'>
+    & { client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'phone' | 'mail'>
+    ), company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'id' | 'name'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
+    )>, deliveries: Array<(
+      { __typename?: 'sales_invoice_delivery' }
+      & Pick<Sales_Invoice_Delivery, 'delivery_id'>
+    )> }
+  )> }
+);
 
 export type DeleteOrdersMutationVariables = Exact<{
-  ids?: Array<Scalars['Int']> | Scalars['Int'];
+  ids?: Array<Scalars['Int']>;
 }>;
 
 
-export type DeleteOrdersMutation = { __typename?: 'mutation_root', delete_sales_order?: Maybe<{ __typename?: 'sales_order_mutation_response', affected_rows: number }> };
+export type DeleteOrdersMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_order?: Maybe<(
+    { __typename?: 'sales_order_mutation_response' }
+    & Pick<Sales_Order_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type InsertOrderMutationVariables = Exact<{
   draft_id: Scalars['Int'];
@@ -34183,29 +36015,85 @@ export type InsertOrderMutationVariables = Exact<{
   delivery_status?: Maybe<Scalars['String']>;
   salepoint_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Sales_Draft_Status_Enum>;
-  amounts: Array<Sales_Amount_Insert_Input> | Sales_Amount_Insert_Input;
+  amounts: Array<Sales_Amount_Insert_Input>;
 }>;
 
 
-export type InsertOrderMutation = { __typename?: 'mutation_root', insert_sales_order_one?: Maybe<{ __typename?: 'sales_order', date: any, deadline: any, draft_id: number, id: number, delivery_status: string, payment_status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, contact?: Maybe<{ __typename?: 'contact_contact', code?: Maybe<string>, name: string }>, customer: { __typename?: 'contact_customer', code?: Maybe<string>, name: string, phone: string }, salepoint: { __typename?: 'management_salesPoint', name: string } }>, insert_sales_amount?: Maybe<{ __typename?: 'sales_amount_mutation_response', affected_rows: number }>, update_sales_draft_by_pk?: Maybe<{ __typename?: 'sales_draft', id: number }> };
+export type InsertOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_order_one?: Maybe<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'name'>
+    )>, customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
+  )>, insert_sales_amount?: Maybe<(
+    { __typename?: 'sales_amount_mutation_response' }
+    & Pick<Sales_Amount_Mutation_Response, 'affected_rows'>
+  )>, update_sales_draft_by_pk?: Maybe<(
+    { __typename?: 'sales_draft' }
+    & Pick<Sales_Draft, 'id'>
+  )> }
+);
 
 export type UpdateOrderMutationVariables = Exact<{
   order_id: Scalars['Int'];
   total_ht?: Maybe<Scalars['numeric']>;
   total_tax?: Maybe<Scalars['numeric']>;
   total_ttc?: Maybe<Scalars['numeric']>;
-  amounts: Array<Sales_Amount_Insert_Input> | Sales_Amount_Insert_Input;
+  amounts: Array<Sales_Amount_Insert_Input>;
 }>;
 
 
-export type UpdateOrderMutation = { __typename?: 'mutation_root', update_sales_order_by_pk?: Maybe<{ __typename?: 'sales_order', date: any, deadline: any, draft_id: number, id: number, delivery_status: string, payment_status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, contact?: Maybe<{ __typename?: 'contact_contact', code?: Maybe<string>, name: string }>, customer: { __typename?: 'contact_customer', code?: Maybe<string>, name: string, phone: string }, salepoint: { __typename?: 'management_salesPoint', name: string } }>, delete_sales_amount?: Maybe<{ __typename?: 'sales_amount_mutation_response', affected_rows: number }>, insert_sales_amount?: Maybe<{ __typename?: 'sales_amount_mutation_response', affected_rows: number }> };
+export type UpdateOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_sales_order_by_pk?: Maybe<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'name'>
+    )>, customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
+  )>, delete_sales_amount?: Maybe<(
+    { __typename?: 'sales_amount_mutation_response' }
+    & Pick<Sales_Amount_Mutation_Response, 'affected_rows'>
+  )>, insert_sales_amount?: Maybe<(
+    { __typename?: 'sales_amount_mutation_response' }
+    & Pick<Sales_Amount_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type DeletePaymentMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DeletePaymentMutation = { __typename?: 'mutation_root', delete_sales_payment_by_pk?: Maybe<{ __typename?: 'sales_payment', id: any }> };
+export type DeletePaymentMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_payment_by_pk?: Maybe<(
+    { __typename?: 'sales_payment' }
+    & Pick<Sales_Payment, 'id'>
+  )> }
+);
 
 export type InsertPaymentMutationVariables = Exact<{
   amount?: Maybe<Scalars['numeric']>;
@@ -34220,21 +36108,43 @@ export type InsertPaymentMutationVariables = Exact<{
 }>;
 
 
-export type InsertPaymentMutation = { __typename?: 'mutation_root', insert_sales_payment_one?: Maybe<{ __typename?: 'sales_payment', amount: any, date: any, deadline?: Maybe<any>, id: any, order_id: number, customer_id: any, payment_method: string, company: { __typename?: 'management_company', name: string, id: any } }> };
+export type InsertPaymentMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_payment_one?: Maybe<(
+    { __typename?: 'sales_payment' }
+    & Pick<Sales_Payment, 'amount' | 'date' | 'deadline' | 'id' | 'order_id' | 'customer_id' | 'payment_method'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ) }
+  )> }
+);
 
 export type DeleteProductsMutationVariables = Exact<{
-  ids?: Array<Scalars['uuid']> | Scalars['uuid'];
+  ids?: Array<Scalars['uuid']>;
 }>;
 
 
-export type DeleteProductsMutation = { __typename?: 'mutation_root', delete_sales_product_draft?: Maybe<{ __typename?: 'sales_product_draft_mutation_response', affected_rows: number }> };
+export type DeleteProductsMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_product_draft?: Maybe<(
+    { __typename?: 'sales_product_draft_mutation_response' }
+    & Pick<Sales_Product_Draft_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type DeleteProductDraftMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DeleteProductDraftMutation = { __typename?: 'mutation_root', delete_sales_product_draft_by_pk?: Maybe<{ __typename?: 'sales_product_draft', id: any }> };
+export type DeleteProductDraftMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_product_draft_by_pk?: Maybe<(
+    { __typename?: 'sales_product_draft' }
+    & Pick<Sales_Product_Draft, 'id'>
+  )> }
+);
 
 export type InsertAccessoryDraftMutationVariables = Exact<{
   warehouse_id?: Maybe<Scalars['uuid']>;
@@ -34252,7 +36162,17 @@ export type InsertAccessoryDraftMutationVariables = Exact<{
 }>;
 
 
-export type InsertAccessoryDraftMutation = { __typename?: 'mutation_root', insert_sales_accessory_draft_one?: Maybe<{ __typename?: 'sales_accessory_draft', id: any, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, substance_id?: Maybe<any>, warehouse_id?: Maybe<any> } }> };
+export type InsertAccessoryDraftMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_accessory_draft_one?: Maybe<(
+    { __typename?: 'sales_accessory_draft' }
+    & Pick<Sales_Accessory_Draft, 'id'>
+    & { product_draft: (
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'substance_id' | 'warehouse_id'>
+    ) }
+  )> }
+);
 
 export type InsertConsumableDraftMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
@@ -34275,7 +36195,17 @@ export type InsertConsumableDraftMutationVariables = Exact<{
 }>;
 
 
-export type InsertConsumableDraftMutation = { __typename?: 'mutation_root', insert_sales_consumable_draft_one?: Maybe<{ __typename?: 'sales_consumable_draft', id: any, dependent_id?: Maybe<any>, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, substance_id?: Maybe<any>, warehouse_id?: Maybe<any>, draft_id: number } }> };
+export type InsertConsumableDraftMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_consumable_draft_one?: Maybe<(
+    { __typename?: 'sales_consumable_draft' }
+    & Pick<Sales_Consumable_Draft, 'id' | 'dependent_id'>
+    & { product_draft: (
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'isRepeated' | 'isLaunched' | 'total_price' | 'type' | 'unit' | 'width' | 'substance_id' | 'warehouse_id' | 'draft_id'>
+    ) }
+  )> }
+);
 
 export type InsertGlassDraftMutationVariables = Exact<{
   heigth?: Maybe<Scalars['numeric']>;
@@ -34299,28 +36229,76 @@ export type InsertGlassDraftMutationVariables = Exact<{
 }>;
 
 
-export type InsertGlassDraftMutation = { __typename?: 'mutation_root', insert_sales_glass_draft_one?: Maybe<{ __typename?: 'sales_glass_draft', product_draft?: Maybe<{ __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, company_id?: Maybe<any>, count?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, substance_id?: Maybe<any>, warehouse_id?: Maybe<any>, draft_id: number, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }> }> }> };
+export type InsertGlassDraftMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_glass_draft_one?: Maybe<(
+    { __typename?: 'sales_glass_draft' }
+    & { product_draft?: Maybe<(
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'company_id' | 'count' | 'isRepeated' | 'isLaunched' | 'substance_id' | 'warehouse_id' | 'draft_id'>
+      & { glass_draft?: Maybe<(
+        { __typename?: 'sales_glass_draft' }
+        & Pick<Sales_Glass_Draft, 'id'>
+      )> }
+    )> }
+  )> }
+);
 
 export type InsertManyConsumablesMutationVariables = Exact<{
-  consumables: Array<Sales_Consumable_Draft_Insert_Input> | Sales_Consumable_Draft_Insert_Input;
+  consumables: Array<Sales_Consumable_Draft_Insert_Input>;
 }>;
 
 
-export type InsertManyConsumablesMutation = { __typename?: 'mutation_root', insert_sales_consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft_mutation_response', returning: Array<{ __typename?: 'sales_consumable_draft', id: any, dependent_id?: Maybe<any>, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, width?: Maybe<any>, company_id?: Maybe<any>, count?: Maybe<any> } }> }> };
+export type InsertManyConsumablesMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_consumable_draft?: Maybe<(
+    { __typename?: 'sales_consumable_draft_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'sales_consumable_draft' }
+      & Pick<Sales_Consumable_Draft, 'id' | 'dependent_id'>
+      & { product_draft: (
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'isRepeated' | 'isLaunched' | 'width' | 'company_id' | 'count'>
+      ) }
+    )> }
+  )> }
+);
 
 export type InsertManyProductsMutationVariables = Exact<{
-  objects: Array<Sales_Product_Draft_Insert_Input> | Sales_Product_Draft_Insert_Input;
+  objects: Array<Sales_Product_Draft_Insert_Input>;
 }>;
 
 
-export type InsertManyProductsMutation = { __typename?: 'mutation_root', insert_sales_product_draft?: Maybe<{ __typename?: 'sales_product_draft_mutation_response', returning: Array<{ __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, substance_id?: Maybe<any>, warehouse_id?: Maybe<any>, draft_id: number }> }> };
+export type InsertManyProductsMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_product_draft?: Maybe<(
+    { __typename?: 'sales_product_draft_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'isRepeated' | 'isLaunched' | 'total_price' | 'type' | 'unit' | 'width' | 'substance_id' | 'warehouse_id' | 'draft_id'>
+    )> }
+  )> }
+);
 
 export type InsertManyServicesMutationVariables = Exact<{
-  services: Array<Sales_Service_Draft_Insert_Input> | Sales_Service_Draft_Insert_Input;
+  services: Array<Sales_Service_Draft_Insert_Input>;
 }>;
 
 
-export type InsertManyServicesMutation = { __typename?: 'mutation_root', insert_sales_service_draft?: Maybe<{ __typename?: 'sales_service_draft_mutation_response', returning: Array<{ __typename?: 'sales_service_draft', id: any, dependent_id: any, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, company_id?: Maybe<any>, count?: Maybe<any> } }> }> };
+export type InsertManyServicesMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_service_draft?: Maybe<(
+    { __typename?: 'sales_service_draft_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'sales_service_draft' }
+      & Pick<Sales_Service_Draft, 'id' | 'dependent_id'>
+      & { product_draft: (
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width' | 'isRepeated' | 'isLaunched' | 'company_id' | 'count'>
+      ) }
+    )> }
+  )> }
+);
 
 export type InsertServiceDraftMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
@@ -34341,7 +36319,17 @@ export type InsertServiceDraftMutationVariables = Exact<{
 }>;
 
 
-export type InsertServiceDraftMutation = { __typename?: 'mutation_root', insert_sales_service_draft_one?: Maybe<{ __typename?: 'sales_service_draft', id: any, dependent_id: any, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, width?: Maybe<any>, company_id?: Maybe<any>, count?: Maybe<any> } }> };
+export type InsertServiceDraftMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_service_draft_one?: Maybe<(
+    { __typename?: 'sales_service_draft' }
+    & Pick<Sales_Service_Draft, 'id' | 'dependent_id'>
+    & { product_draft: (
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'company_name' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'isRepeated' | 'isLaunched' | 'width' | 'company_id' | 'count'>
+    ) }
+  )> }
+);
 
 export type UpdateGlassesJobOrderIdMutationVariables = Exact<{
   draft_id?: Maybe<Scalars['Int']>;
@@ -34349,14 +36337,26 @@ export type UpdateGlassesJobOrderIdMutationVariables = Exact<{
 }>;
 
 
-export type UpdateGlassesJobOrderIdMutation = { __typename?: 'mutation_root', update_sales_glass_draft?: Maybe<{ __typename?: 'sales_glass_draft_mutation_response', affected_rows: number }> };
+export type UpdateGlassesJobOrderIdMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_sales_glass_draft?: Maybe<(
+    { __typename?: 'sales_glass_draft_mutation_response' }
+    & Pick<Sales_Glass_Draft_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type DeleteQuotationsMutationVariables = Exact<{
-  ids?: Array<Scalars['Int']> | Scalars['Int'];
+  ids?: Array<Scalars['Int']>;
 }>;
 
 
-export type DeleteQuotationsMutation = { __typename?: 'mutation_root', delete_sales_quotation?: Maybe<{ __typename?: 'sales_quotation_mutation_response', affected_rows: number }> };
+export type DeleteQuotationsMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_sales_quotation?: Maybe<(
+    { __typename?: 'sales_quotation_mutation_response' }
+    & Pick<Sales_Quotation_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type InsertQuotationMutationVariables = Exact<{
   draft_id: Scalars['Int'];
@@ -34370,11 +36370,33 @@ export type InsertQuotationMutationVariables = Exact<{
   total_ttc?: Maybe<Scalars['numeric']>;
   salepoint_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Sales_Draft_Status_Enum>;
-  amounts: Array<Sales_Amount_Insert_Input> | Sales_Amount_Insert_Input;
+  amounts: Array<Sales_Amount_Insert_Input>;
 }>;
 
 
-export type InsertQuotationMutation = { __typename?: 'mutation_root', insert_sales_quotation_one?: Maybe<{ __typename?: 'sales_quotation', status: string, ref?: Maybe<string>, date: any, deadline: any, draft_id: number, id: number, total_ht: any, total_tax: any, total_ttc: any, contact_id?: Maybe<any>, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', code?: Maybe<string>, id: any, name: string, phone: string }, salepoint: { __typename?: 'management_salesPoint', name: string } }>, insert_sales_amount?: Maybe<{ __typename?: 'sales_amount_mutation_response', affected_rows: number }>, update_sales_draft_by_pk?: Maybe<{ __typename?: 'sales_draft', id: number }> };
+export type InsertQuotationMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_sales_quotation_one?: Maybe<(
+    { __typename?: 'sales_quotation' }
+    & Pick<Sales_Quotation, 'status' | 'ref' | 'date' | 'deadline' | 'draft_id' | 'id' | 'total_ht' | 'total_tax' | 'total_ttc' | 'contact_id'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
+  )>, insert_sales_amount?: Maybe<(
+    { __typename?: 'sales_amount_mutation_response' }
+    & Pick<Sales_Amount_Mutation_Response, 'affected_rows'>
+  )>, update_sales_draft_by_pk?: Maybe<(
+    { __typename?: 'sales_draft' }
+    & Pick<Sales_Draft, 'id'>
+  )> }
+);
 
 export type TransformQuotationToOrderMutationVariables = Exact<{
   draft_id: Scalars['Int'];
@@ -34394,7 +36416,32 @@ export type TransformQuotationToOrderMutationVariables = Exact<{
 }>;
 
 
-export type TransformQuotationToOrderMutation = { __typename?: 'mutation_root', update_sales_draft_by_pk?: Maybe<{ __typename?: 'sales_draft', status: Sales_Draft_Status_Enum }>, insert_sales_order_one?: Maybe<{ __typename?: 'sales_order', date: any, deadline: any, draft_id: number, id: number, delivery_status: string, payment_status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, contact?: Maybe<{ __typename?: 'contact_contact', code?: Maybe<string>, name: string }>, customer: { __typename?: 'contact_customer', code?: Maybe<string>, name: string, phone: string }, salepoint: { __typename?: 'management_salesPoint', name: string } }>, update_sales_quotation?: Maybe<{ __typename?: 'sales_quotation_mutation_response', affected_rows: number }> };
+export type TransformQuotationToOrderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_sales_draft_by_pk?: Maybe<(
+    { __typename?: 'sales_draft' }
+    & Pick<Sales_Draft, 'status'>
+  )>, insert_sales_order_one?: Maybe<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'name'>
+    )>, customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
+  )>, update_sales_quotation?: Maybe<(
+    { __typename?: 'sales_quotation_mutation_response' }
+    & Pick<Sales_Quotation_Mutation_Response, 'affected_rows'>
+  )> }
+);
 
 export type GetDeliveriesByQueryVariables = Exact<{
   dateStart?: Maybe<Scalars['date']>;
@@ -34403,33 +36450,105 @@ export type GetDeliveriesByQueryVariables = Exact<{
 }>;
 
 
-export type GetDeliveriesByQuery = { __typename?: 'query_root', sales_delivery: Array<{ __typename?: 'sales_delivery', id: any, order_id: number, status: string, payment_method: string, predicted_date: any, isReturned: boolean, amount_ttc: any, amount_tva: any, amount_ht: any, ref?: Maybe<string>, createdAt: any, updated_at?: Maybe<any>, company: { __typename?: 'management_company', name: string }, client: { __typename?: 'contact_customer', name: string, mail?: Maybe<string> }, contact?: Maybe<{ __typename?: 'contact_contact', mail?: Maybe<string>, name: string, phone: string }> }> };
+export type GetDeliveriesByQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery: Array<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'id' | 'order_id' | 'status' | 'payment_method' | 'predicted_date' | 'isReturned' | 'amount_ttc' | 'amount_tva' | 'amount_ht' | 'ref' | 'createdAt' | 'updated_at'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'mail'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
+    )> }
+  )> }
+);
 
 export type GetDeliveryByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetDeliveryByIdQuery = { __typename?: 'query_root', sales_delivery_by_pk?: Maybe<{ __typename?: 'sales_delivery', id: any, status: string, ref?: Maybe<string>, ref_num?: Maybe<number>, client_id: any, company_id: any, contact_id?: Maybe<any>, payment_method: string, predicted_date: any, isReturned: boolean, order_id: number, createdAt: any, amount_ttc: any, amount_tva: any, amount_ht: any, delivery_lines: Array<{ __typename?: 'sales_delivery_line', id: any, amount: any, delivered: any, product_draft_id: any, product: { __typename?: 'sales_product_draft', type?: Maybe<Sales_Product_Type_Enum>, label: string, product_code: string, price?: Maybe<any>, quantity?: Maybe<any>, count?: Maybe<any>, delivered: any, unit?: Maybe<string> } }>, company: { __typename?: 'management_company', name: string }, client: { __typename?: 'contact_customer', name: string, mail?: Maybe<string>, phone: string, code?: Maybe<string> }, contact?: Maybe<{ __typename?: 'contact_contact', mail?: Maybe<string>, name: string, phone: string }>, order: { __typename?: 'sales_order', ref?: Maybe<string>, ref_num?: Maybe<number> } }> };
+export type GetDeliveryByIdQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery_by_pk?: Maybe<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'id' | 'status' | 'ref' | 'ref_num' | 'client_id' | 'company_id' | 'contact_id' | 'payment_method' | 'predicted_date' | 'isReturned' | 'order_id' | 'createdAt' | 'amount_ttc' | 'amount_tva' | 'amount_ht'>
+    & { delivery_lines: Array<(
+      { __typename?: 'sales_delivery_line' }
+      & Pick<Sales_Delivery_Line, 'id' | 'amount' | 'delivered' | 'product_draft_id'>
+      & { product: (
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'type' | 'label' | 'product_code' | 'price' | 'quantity' | 'count' | 'delivered' | 'unit'>
+      ) }
+    )>, company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name'>
+    ), client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'mail' | 'phone' | 'code'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
+    )>, order: (
+      { __typename?: 'sales_order' }
+      & Pick<Sales_Order, 'ref' | 'ref_num'>
+    ) }
+  )> }
+);
 
 export type GetOrderDeliveriesQueryVariables = Exact<{
   draft_id?: Maybe<Scalars['Int']>;
 }>;
 
 
-export type GetOrderDeliveriesQuery = { __typename?: 'query_root', sales_delivery_line: Array<{ __typename?: 'sales_delivery_line', amount: any, delivered: any, id: any, product_draft_id: any, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, count?: Maybe<any>, delivered: any, draft_id: number, heigth?: Maybe<any>, id: any, isLaunched?: Maybe<boolean>, isRepeated?: Maybe<boolean>, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, status: string, substance_id?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, warehouse_id?: Maybe<any>, width?: Maybe<any> } }> };
+export type GetOrderDeliveriesQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery_line: Array<(
+    { __typename?: 'sales_delivery_line' }
+    & Pick<Sales_Delivery_Line, 'amount' | 'delivered' | 'id' | 'product_draft_id'>
+    & { product_draft: (
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'company_name' | 'count' | 'delivered' | 'draft_id' | 'heigth' | 'id' | 'isLaunched' | 'isRepeated' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'status' | 'substance_id' | 'total_price' | 'type' | 'unit' | 'warehouse_id' | 'width'>
+    ) }
+  )> }
+);
 
 export type GetAllDraftsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllDraftsQuery = { __typename?: 'query_root', sales_draft: Array<{ __typename?: 'sales_draft', id: number, date: any, status: Sales_Draft_Status_Enum, order?: Maybe<{ __typename?: 'sales_order', id: number }> }> };
+export type GetAllDraftsQuery = (
+  { __typename?: 'query_root' }
+  & { sales_draft: Array<(
+    { __typename?: 'sales_draft' }
+    & Pick<Sales_Draft, 'id' | 'date' | 'status'>
+    & { order?: Maybe<(
+      { __typename?: 'sales_order' }
+      & Pick<Sales_Order, 'id'>
+    )> }
+  )> }
+);
 
 export type GetDraftByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetDraftByIdQuery = { __typename?: 'query_root', sales_draft_by_pk?: Maybe<{ __typename?: 'sales_draft', date: any, id: number, status: Sales_Draft_Status_Enum, product_drafts: Array<{ __typename?: 'sales_product_draft', id: any, product_code: string, label: string, quantity?: Maybe<any>, m2?: Maybe<any>, ml?: Maybe<any>, unit?: Maybe<string>, width?: Maybe<any>, heigth?: Maybe<any>, price?: Maybe<any>, total_price?: Maybe<any>, company_name?: Maybe<string>, delivered: any }> }> };
+export type GetDraftByIdQuery = (
+  { __typename?: 'query_root' }
+  & { sales_draft_by_pk?: Maybe<(
+    { __typename?: 'sales_draft' }
+    & Pick<Sales_Draft, 'date' | 'id' | 'status'>
+    & { product_drafts: Array<(
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'id' | 'product_code' | 'label' | 'quantity' | 'm2' | 'ml' | 'unit' | 'width' | 'heigth' | 'price' | 'total_price' | 'company_name' | 'delivered'>
+    )> }
+  )> }
+);
 
 export type GetAllInvoicesQueryVariables = Exact<{
   dateStart?: Maybe<Scalars['date']>;
@@ -34437,28 +36556,89 @@ export type GetAllInvoicesQueryVariables = Exact<{
 }>;
 
 
-export type GetAllInvoicesQuery = { __typename?: 'query_root', sales_invoice: Array<{ __typename?: 'sales_invoice', id: any, date: any, payment_method: string, amount_tva: any, amount_ttc: any, amount_ht: any, ref?: Maybe<string>, createdAt?: Maybe<any>, updated_at?: Maybe<any>, client: { __typename?: 'contact_customer', name: string, phone: string, mail?: Maybe<string> }, company: { __typename?: 'management_company', id: any, name: string }, contact?: Maybe<{ __typename?: 'contact_contact', mail?: Maybe<string>, name: string, phone: string }>, deliveries: Array<{ __typename?: 'sales_invoice_delivery', delivery_id: any }> }> };
+export type GetAllInvoicesQuery = (
+  { __typename?: 'query_root' }
+  & { sales_invoice: Array<(
+    { __typename?: 'sales_invoice' }
+    & Pick<Sales_Invoice, 'id' | 'date' | 'payment_method' | 'amount_tva' | 'amount_ttc' | 'amount_ht' | 'ref' | 'createdAt' | 'updated_at'>
+    & { client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'phone' | 'mail'>
+    ), company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'id' | 'name'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
+    )>, deliveries: Array<(
+      { __typename?: 'sales_invoice_delivery' }
+      & Pick<Sales_Invoice_Delivery, 'delivery_id'>
+    )> }
+  )> }
+);
 
 export type GetDeliveriesAmountsQueryVariables = Exact<{
-  ids?: Maybe<Array<Scalars['uuid']> | Scalars['uuid']>;
+  ids?: Maybe<Array<Scalars['uuid']>>;
 }>;
 
 
-export type GetDeliveriesAmountsQuery = { __typename?: 'query_root', sales_delivery: Array<{ __typename?: 'sales_delivery', amount_ht: any, amount_ttc: any, amount_tva: any }> };
+export type GetDeliveriesAmountsQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery: Array<(
+    { __typename?: 'sales_delivery' }
+    & Pick<Sales_Delivery, 'amount_ht' | 'amount_ttc' | 'amount_tva'>
+  )> }
+);
 
 export type GetDeliveryLinesQueryVariables = Exact<{
-  deliveries?: Array<Scalars['uuid']> | Scalars['uuid'];
+  deliveries?: Array<Scalars['uuid']>;
 }>;
 
 
-export type GetDeliveryLinesQuery = { __typename?: 'query_root', sales_delivery_line: Array<{ __typename?: 'sales_delivery_line', delivered: any, amount: any, product_draft: { __typename?: 'sales_product_draft', type?: Maybe<Sales_Product_Type_Enum>, product_code: string, price?: Maybe<any>, label: string } }> };
+export type GetDeliveryLinesQuery = (
+  { __typename?: 'query_root' }
+  & { sales_delivery_line: Array<(
+    { __typename?: 'sales_delivery_line' }
+    & Pick<Sales_Delivery_Line, 'delivered' | 'amount'>
+    & { product_draft: (
+      { __typename?: 'sales_product_draft' }
+      & Pick<Sales_Product_Draft, 'type' | 'product_code' | 'price' | 'label'>
+    ) }
+  )> }
+);
 
 export type GetInvoiceByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetInvoiceByIdQuery = { __typename?: 'query_root', sales_invoice_by_pk?: Maybe<{ __typename?: 'sales_invoice', id: any, ref?: Maybe<string>, ref_num?: Maybe<number>, client_id: any, company_id: any, contact_id?: Maybe<any>, date: any, payment_method: string, amount_tva: any, amount_ttc: any, amount_ht: any, deliveries: Array<{ __typename?: 'sales_invoice_delivery', delivery_id: any, delivery: { __typename?: 'sales_delivery', ref?: Maybe<string>, ref_num?: Maybe<number> } }>, invoice_lines: Array<{ __typename?: 'sales_invoice_line', id: any, unit_price: any, product_code: string, product_label: string, product_type: string, quantity: any, total: any }>, client: { __typename?: 'contact_customer', name: string, phone: string, mail?: Maybe<string>, code?: Maybe<string> }, company: { __typename?: 'management_company', id: any, name: string }, contact?: Maybe<{ __typename?: 'contact_contact', mail?: Maybe<string>, name: string, phone: string }> }> };
+export type GetInvoiceByIdQuery = (
+  { __typename?: 'query_root' }
+  & { sales_invoice_by_pk?: Maybe<(
+    { __typename?: 'sales_invoice' }
+    & Pick<Sales_Invoice, 'id' | 'ref' | 'ref_num' | 'client_id' | 'company_id' | 'contact_id' | 'date' | 'payment_method' | 'amount_tva' | 'amount_ttc' | 'amount_ht'>
+    & { deliveries: Array<(
+      { __typename?: 'sales_invoice_delivery' }
+      & Pick<Sales_Invoice_Delivery, 'delivery_id'>
+      & { delivery: (
+        { __typename?: 'sales_delivery' }
+        & Pick<Sales_Delivery, 'ref' | 'ref_num'>
+      ) }
+    )>, invoice_lines: Array<(
+      { __typename?: 'sales_invoice_line' }
+      & Pick<Sales_Invoice_Line, 'id' | 'unit_price' | 'product_code' | 'product_label' | 'product_type' | 'quantity' | 'total'>
+    )>, client: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'name' | 'phone' | 'mail' | 'code'>
+    ), company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'id' | 'name'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'mail' | 'name' | 'phone'>
+    )> }
+  )> }
+);
 
 export type GetAllOrdersQueryVariables = Exact<{
   dateStart?: Maybe<Scalars['date']>;
@@ -34466,21 +36646,90 @@ export type GetAllOrdersQueryVariables = Exact<{
 }>;
 
 
-export type GetAllOrdersQuery = { __typename?: 'query_root', sales_order: Array<{ __typename?: 'sales_order', delivery_status: string, payment_status: string, id: number, draft_id: number, ref?: Maybe<string>, total_ht: any, total_tax: any, total_ttc: any, date: any, deadline: any, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', code?: Maybe<string>, id: any, name: string, phone: string }, salepoint: { __typename?: 'management_salesPoint', name: string } }> };
+export type GetAllOrdersQuery = (
+  { __typename?: 'query_root' }
+  & { sales_order: Array<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'delivery_status' | 'payment_status' | 'id' | 'draft_id' | 'ref' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
+  )> }
+);
 
 export type GetOrderByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetOrderByIdQuery = { __typename?: 'query_root', sales_order_by_pk?: Maybe<{ __typename?: 'sales_order', date: any, deadline: any, draft_id: number, id: number, ref?: Maybe<string>, ref_num?: Maybe<number>, delivery_status: string, payment_status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, contact?: Maybe<{ __typename?: 'contact_contact', code?: Maybe<string>, name: string, phone: string, id: any }>, customer: { __typename?: 'contact_customer', id: any, name: string, phone: string, code?: Maybe<string>, ICE?: Maybe<string> }, draft: { __typename?: 'sales_draft', status: Sales_Draft_Status_Enum, product_drafts: Array<{ __typename?: 'sales_product_draft', id: any, label: string, heigth?: Maybe<any>, company_name?: Maybe<string>, count?: Maybe<any>, delivered: any, warehouse_id?: Maybe<any>, substance_id?: Maybe<any>, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, status: string, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, draft_id: number, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }>, consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any> }>, service_draft?: Maybe<{ __typename?: 'sales_service_draft', dependent_id: any }> }> }, payments: Array<{ __typename?: 'sales_payment', amount: any, date: any, deadline?: Maybe<any>, paper_ref?: Maybe<string>, payment_method: string, order_id: number, id: any, comment?: Maybe<string>, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', name: string, id: any } }> }> };
+export type GetOrderByIdQuery = (
+  { __typename?: 'query_root' }
+  & { sales_order_by_pk?: Maybe<(
+    { __typename?: 'sales_order' }
+    & Pick<Sales_Order, 'date' | 'deadline' | 'draft_id' | 'id' | 'ref' | 'ref_num' | 'delivery_status' | 'payment_status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), contact?: Maybe<(
+      { __typename?: 'contact_contact' }
+      & Pick<Contact_Contact, 'code' | 'name' | 'phone' | 'id'>
+    )>, customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'id' | 'name' | 'phone' | 'code' | 'ICE'>
+    ), draft: (
+      { __typename?: 'sales_draft' }
+      & Pick<Sales_Draft, 'status'>
+      & { product_drafts: Array<(
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'id' | 'label' | 'heigth' | 'company_name' | 'count' | 'delivered' | 'warehouse_id' | 'substance_id' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'status' | 'total_price' | 'type' | 'unit' | 'width' | 'isRepeated' | 'isLaunched' | 'draft_id'>
+        & { glass_draft?: Maybe<(
+          { __typename?: 'sales_glass_draft' }
+          & Pick<Sales_Glass_Draft, 'id'>
+        )>, consumable_draft?: Maybe<(
+          { __typename?: 'sales_consumable_draft' }
+          & Pick<Sales_Consumable_Draft, 'dependent_id'>
+        )>, service_draft?: Maybe<(
+          { __typename?: 'sales_service_draft' }
+          & Pick<Sales_Service_Draft, 'dependent_id'>
+        )> }
+      )> }
+    ), payments: Array<(
+      { __typename?: 'sales_payment' }
+      & Pick<Sales_Payment, 'amount' | 'date' | 'deadline' | 'paper_ref' | 'payment_method' | 'order_id' | 'id' | 'comment'>
+      & { company: (
+        { __typename?: 'management_company' }
+        & Pick<Management_Company, 'name' | 'id'>
+      ), customer: (
+        { __typename?: 'contact_customer' }
+        & Pick<Contact_Customer, 'name' | 'id'>
+      ) }
+    )> }
+  )> }
+);
 
 export type GetPaymentQueryVariables = Exact<{
   order_id: Scalars['Int'];
 }>;
 
 
-export type GetPaymentQuery = { __typename?: 'query_root', sales_payment: Array<{ __typename?: 'sales_payment', amount: any, customer_id: any, date: any, deadline?: Maybe<any>, id: any, payment_method: string, order_id: number, company: { __typename?: 'management_company', name: string, id: any } }> };
+export type GetPaymentQuery = (
+  { __typename?: 'query_root' }
+  & { sales_payment: Array<(
+    { __typename?: 'sales_payment' }
+    & Pick<Sales_Payment, 'amount' | 'customer_id' | 'date' | 'deadline' | 'id' | 'payment_method' | 'order_id'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ) }
+  )> }
+);
 
 export type GetProductsByTypeQueryVariables = Exact<{
   draft_id: Scalars['Int'];
@@ -34488,15 +36737,31 @@ export type GetProductsByTypeQueryVariables = Exact<{
 }>;
 
 
-export type GetProductsByTypeQuery = { __typename?: 'query_root', sales_product_draft: Array<{ __typename?: 'sales_product_draft', company_id?: Maybe<any>, company_name?: Maybe<string>, draft_id: number, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }> }> };
+export type GetProductsByTypeQuery = (
+  { __typename?: 'query_root' }
+  & { sales_product_draft: Array<(
+    { __typename?: 'sales_product_draft' }
+    & Pick<Sales_Product_Draft, 'company_id' | 'company_name' | 'draft_id' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
+    & { glass_draft?: Maybe<(
+      { __typename?: 'sales_glass_draft' }
+      & Pick<Sales_Glass_Draft, 'id'>
+    )> }
+  )> }
+);
 
 export type GetProductsGroupQueryVariables = Exact<{
   draft_id: Scalars['Int'];
-  _nin?: Maybe<Array<Sales_Product_Type_Enum> | Sales_Product_Type_Enum>;
+  _nin?: Maybe<Array<Sales_Product_Type_Enum>>;
 }>;
 
 
-export type GetProductsGroupQuery = { __typename?: 'query_root', sales_product_draft: Array<{ __typename?: 'sales_product_draft', company_id?: Maybe<any>, company_name?: Maybe<string>, draft_id: number, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any> }> };
+export type GetProductsGroupQuery = (
+  { __typename?: 'query_root' }
+  & { sales_product_draft: Array<(
+    { __typename?: 'sales_product_draft' }
+    & Pick<Sales_Product_Draft, 'company_id' | 'company_name' | 'draft_id' | 'heigth' | 'id' | 'label' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'total_price' | 'type' | 'unit' | 'width'>
+  )> }
+);
 
 export type GetAllQuotationsQueryVariables = Exact<{
   dateStart?: Maybe<Scalars['date']>;
@@ -34504,14 +36769,62 @@ export type GetAllQuotationsQueryVariables = Exact<{
 }>;
 
 
-export type GetAllQuotationsQuery = { __typename?: 'query_root', sales_quotation: Array<{ __typename?: 'sales_quotation', status: string, id: number, ref?: Maybe<string>, total_ht: any, total_tax: any, total_ttc: any, date: any, deadline: any, draft_id: number, contact_id?: Maybe<any>, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', code?: Maybe<string>, id: any, name: string, phone: string }, salepoint: { __typename?: 'management_salesPoint', name: string } }> };
+export type GetAllQuotationsQuery = (
+  { __typename?: 'query_root' }
+  & { sales_quotation: Array<(
+    { __typename?: 'sales_quotation' }
+    & Pick<Sales_Quotation, 'status' | 'id' | 'ref' | 'total_ht' | 'total_tax' | 'total_ttc' | 'date' | 'deadline' | 'draft_id' | 'contact_id'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'code' | 'id' | 'name' | 'phone'>
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
+  )> }
+);
 
 export type GetQuotationByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetQuotationByIdQuery = { __typename?: 'query_root', sales_quotation_by_pk?: Maybe<{ __typename?: 'sales_quotation', date: any, deadline: any, draft_id: number, id: number, status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', id: any, name: string, phone: string, code?: Maybe<string> }, draft: { __typename?: 'sales_draft', product_drafts: Array<{ __typename?: 'sales_product_draft', id: any, label: string, heigth?: Maybe<any>, company_name?: Maybe<string>, count?: Maybe<any>, delivered: any, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, status: string, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }>, consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any> }>, service_draft?: Maybe<{ __typename?: 'sales_service_draft', dependent_id: any }> }> }, salepoint: { __typename?: 'management_salesPoint', name: string } }> };
+export type GetQuotationByIdQuery = (
+  { __typename?: 'query_root' }
+  & { sales_quotation_by_pk?: Maybe<(
+    { __typename?: 'sales_quotation' }
+    & Pick<Sales_Quotation, 'date' | 'deadline' | 'draft_id' | 'id' | 'status' | 'total_ht' | 'total_tax' | 'total_ttc'>
+    & { company: (
+      { __typename?: 'management_company' }
+      & Pick<Management_Company, 'name' | 'id'>
+    ), customer: (
+      { __typename?: 'contact_customer' }
+      & Pick<Contact_Customer, 'id' | 'name' | 'phone' | 'code'>
+    ), draft: (
+      { __typename?: 'sales_draft' }
+      & { product_drafts: Array<(
+        { __typename?: 'sales_product_draft' }
+        & Pick<Sales_Product_Draft, 'id' | 'label' | 'heigth' | 'company_name' | 'count' | 'delivered' | 'm2' | 'ml' | 'price' | 'product_code' | 'quantity' | 'status' | 'total_price' | 'type' | 'unit' | 'width'>
+        & { glass_draft?: Maybe<(
+          { __typename?: 'sales_glass_draft' }
+          & Pick<Sales_Glass_Draft, 'id'>
+        )>, consumable_draft?: Maybe<(
+          { __typename?: 'sales_consumable_draft' }
+          & Pick<Sales_Consumable_Draft, 'dependent_id'>
+        )>, service_draft?: Maybe<(
+          { __typename?: 'sales_service_draft' }
+          & Pick<Sales_Service_Draft, 'dependent_id'>
+        )> }
+      )> }
+    ), salepoint: (
+      { __typename?: 'management_salesPoint' }
+      & Pick<Management_SalesPoint, 'name'>
+    ) }
+  )> }
+);
 
 export const Product_Product_Glass_ViewFragmentFragmentDoc = gql`
     fragment product_product_glass_viewFragment on product_product_glass_view {
@@ -38060,11 +40373,83 @@ export const GetServiceConfigByIdDocument = gql`
       super(apollo);
     }
   }
+export const GetAllSubstancesDocument = gql`
+    query GetAllSubstances {
+  product_substance {
+    id
+    productAccessory {
+      code
+      label
+      unit
+    }
+    productConsumable {
+      code
+      label
+      unit
+    }
+    productGlass {
+      code
+      label
+      unit
+    }
+    supply {
+      code
+      label
+      unit
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllSubstancesGQL extends Apollo.Query<GetAllSubstancesQuery, GetAllSubstancesQueryVariables> {
+    document = GetAllSubstancesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeletePurchaseDeliveryDocument = gql`
+    mutation DeletePurchaseDelivery($ids: [Int!]!) {
+  delete_purchase_delivery(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeletePurchaseDeliveryGQL extends Apollo.Mutation<DeletePurchaseDeliveryMutation, DeletePurchaseDeliveryMutationVariables> {
+    document = DeletePurchaseDeliveryDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertPurchaseDeliveryDocument = gql`
-    mutation InsertPurchaseDelivery($date: date) {
-  insert_purchase_delivery_one(object: {date: $date}) {
+    mutation InsertPurchaseDelivery($date: date, $provider_id: uuid, $items: [purchase_delivery_item_insert_input!]! = []) {
+  insert_purchase_delivery_one(
+    object: {date: $date, provider_id: $provider_id, delivery_items: {data: $items, on_conflict: {constraint: delivery_item_pkey, update_columns: delivery_id}}}
+  ) {
     date
     id
+    delivery_items {
+      id
+      code
+      delivery_id
+      id
+      label
+      quantity
+      substance_id
+      warehouse {
+        id
+        name
+      }
+    }
+    provider_id
   }
 }
     `;
@@ -38085,6 +40470,7 @@ export const GetAllPurchasesDeliveriesDocument = gql`
     date
     id
     ref
+    provider_id
   }
 }
     `;
@@ -38105,6 +40491,19 @@ export const GetPurchaseDeliveryByIdDocument = gql`
     date
     id
     ref
+    delivery_items {
+      code
+      delivery_id
+      id
+      label
+      quantity
+      substance_id
+      warehouse {
+        id
+        name
+      }
+    }
+    provider_id
   }
 }
     `;

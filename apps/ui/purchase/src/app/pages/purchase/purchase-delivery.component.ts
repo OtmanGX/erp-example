@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PurchaseHeaders } from '../../utils/grid-header';
@@ -19,7 +18,6 @@ export class PurchaseDeliveryComponent implements GridView {
   data$ = this.facade.allDeliveries$;
 
   constructor(
-    public dialog: MatDialog,
     private router: Router,
     private facade: DeliveriesFacade,
     ) {
@@ -39,7 +37,7 @@ export class PurchaseDeliveryComponent implements GridView {
     // Store Action Dispatching
     switch (event.action) {
       case Operations.add:
-        this.router.navigateByUrl('purchase/delivery/addDelivery');
+        this.router.navigateByUrl('purchase/reception/addDelivery');
 
         break;
       case Operations.update:
