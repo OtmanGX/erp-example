@@ -67,12 +67,6 @@ export class PopProductComponent
         found?.product?.unit || found?.unit
       );
       this.formValue.substance_id=found?.substanceid
-      // found?.substanceid
-      //   ? (this.formValue = {
-      //       ...this.formValue,
-      //       labelFactory: found?.labelFactory,
-      //     })
-      //   : null;
       let labelFactory =
         found?.serviceConfig?.labelFactory || found?.product?.labelFactory;
       labelFactory

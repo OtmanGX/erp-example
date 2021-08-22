@@ -3,6 +3,7 @@ import {
   GetAllPurchasesDeliveriesGQL,
   GetPurchaseDeliveryByIdGQL,
   InsertPurchaseDeliveryGQL,
+  DeletePurchaseDeliveryGQL
 } from '@tanglass-erp/infrastructure/graphql';
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ export class DeliveryService {
   constructor(
     private getPurchaseDeliveriesGQL: GetAllPurchasesDeliveriesGQL,
     private insertPurchaseDeliveryGQL: InsertPurchaseDeliveryGQL,
-    private getPurchaseDeliveryByIdGQL: GetPurchaseDeliveryByIdGQL
+    private getPurchaseDeliveryByIdGQL: GetPurchaseDeliveryByIdGQL,
+    private deletePurchaseDeliveryGQL:DeletePurchaseDeliveryGQL
   ) {}
 
   getAll() {
@@ -24,5 +26,8 @@ export class DeliveryService {
 
   insertOne(delivery) {
     return this.insertPurchaseDeliveryGQL.mutate(delivery);
+  }
+  removeMany(ids:number[]){
+    return this.deletePurchaseDeliveryGQL.mutate({ids})
   }
 }

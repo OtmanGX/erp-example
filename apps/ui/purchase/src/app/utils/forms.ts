@@ -2,23 +2,22 @@ import { REQUIRED } from '@tanglass-erp/material';
 
 import { FormDialog } from '@tanglass-erp/material';
 import { Observable } from 'rxjs';
-
+import { map } from "rxjs/operators";
 type ListObservable = Observable<any> | Array<any>;
 
 const regConfigDeliveryInfos = (
   data?,
   providers: any = [],
-  warehouses: any = []
 ) => [
+
   {
-    type: 'selectSearch',
+    type: 'select',
     name: 'providerid',
-    label: 'Fournisseurs',
+    label: 'Fournisseur',
     inputType: 'text',
     value: data?.providerid,
-    filterFields: ['name', 'phone'],
-    fieldsToShow: ['name', 'phone'],
     options: providers,
+    validations: [REQUIRED],
   },
   {
     type: 'date',
@@ -27,14 +26,66 @@ const regConfigDeliveryInfos = (
     inputType: 'text',
     value: data?.date,
   },
+
+
+];
+const regConfigDeliveryItem = (
+  data?,
+  substances: any = [],
+  warehouses: any = []
+) => [
+
   {
     type: 'selectSearch',
+    name: 'code',
+    label: 'Code',
+    inputType: 'text',
+    value: data?.code,
+    filterFields: ['id', 'label'],
+    fieldsToShow: ['id', 'label'],
+    options: substances,
+  },
+  {
+    type: 'input',
+    name: 'label',
+    label: 'Désignation',
+    inputType: 'text',
+    value: data?.label,
+    validations: [REQUIRED,],
+  },
+  {
+    type: 'input',
+    name: 'quantity',
+    label: 'Quantité',
+    inputType: 'number',
+    value: data?.quantity,
+    validations: [REQUIRED,],
+  },
+  {
+    type: 'input',
+    name: 'unit',
+    label: 'Unité',
+    inputType: 'text',
+    value: data?.unit,
+    validations: [REQUIRED],
+  },
+  {
+    type: 'input',
+    name: 'cost',
+    label: 'Cout',
+    inputType: 'number',
+    value: data?.cost,
+    //validations: [REQUIRED, MAXNUMBER(limit)],
+  },
+  {
+    type: 'select',
     name: 'warehouseid',
     label: 'Entrepot',
     inputType: 'text',
     value: data?.warehouseid,
     options: warehouses,
+    validations: [REQUIRED],
   },
 ];
 
-export { regConfigDeliveryInfos };
+export { regConfigDeliveryInfos, regConfigDeliveryItem };

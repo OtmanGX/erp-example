@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */
-/*****LOAD Accessories ** */
+/*****LOAD Supplies ** */
 /****************************************************************** */
 
 export const loadSupplies= createAction('[List supplies Component] Load Supplies');

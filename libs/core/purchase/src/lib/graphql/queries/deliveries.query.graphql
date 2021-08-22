@@ -3,5 +3,6 @@ query GetAllPurchasesDeliveries {
     date
     id
     ref
+    provider_id
   }
 }

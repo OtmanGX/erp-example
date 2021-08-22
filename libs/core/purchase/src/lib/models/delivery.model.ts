@@ -1,23 +1,22 @@
 export interface PurchaseDelivery{
-    id:number;
+    id?:number;
     date:Date;
     ref?:string;
+    provider_id:string;
     items?:PurchaseItem[];
-
 }
-
 
 export interface PurchaseItem{
     substance_id:string;
     quantity:number;
     warehouse_id:string;
-    code;string;
+    code:string;
     label:string;
+    cost:number;
 }
 
 export interface InsertedPurchaseDelivery{
-    id:number;
     date:Date;
-    ref:string;
+    provider_id:string;
     items:PurchaseItem[];
 }
