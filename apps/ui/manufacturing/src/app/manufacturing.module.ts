@@ -10,6 +10,7 @@ import { ManufacturingComponent } from './manufacturing.component';
 import { JobProgressComponent } from '@TanglassUi/manufacturing/components/job-progress/job-progress.component';
 import { NgxBarcodeModule } from 'ngx-barcode';
 import { ThemeModule } from '@TanglassTheme/theme.module';
+import { NgxPrintModule } from 'ngx-print';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ThemeModule } from '@TanglassTheme/theme.module';
     MaterialModule,
     StoreManufacturingModule,
     NgxBarcodeModule,
+    NgxPrintModule
   ]
 })
 export class ManufacturingModule {}

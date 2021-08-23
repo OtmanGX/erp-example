@@ -4,7 +4,9 @@
     [disabled]='!glass?.manufacturing_lines.length'
     id="printer-button"
     mat-icon-button
-    (click)="print()"
+    ngxPrint
+    printSectionId='barcodes'
+    [useExistingCss]='true'
     color="primary"
     style="width: 10em; margin-right: 8px"
   >
@@ -31,15 +33,13 @@
       >
         {{ step?.labelFactory }}
       </button>
-      <ngx-barcode
-        #barcodes
-        bc-element-type="img"
-        [bc-value]="line?.id"
-        [bc-display-value]="true"
-      ></ngx-barcode>
+
+
     </div>
+
   </div>
   <mat-divider></mat-divider>
+
 </section>
 <div fxLayout="row" fxLayoutAlign="end">
   <button
@@ -50,4 +50,19 @@
   >
     Confirm
   </button>
+</div>
+
+<div id='barcodes' class='font-weight-bold' [hidden]='true'>
+  <div class='text-justify barcode mr-12' *ngFor="let line of glass?.manufacturing_lines; let itemIndex = index">
+    <span>N°BC: {{data?.order_ref}}</span>
+    <span>N°BT: {{data?.ref}}</span>
+    <span>DESIGN: {{glassDesig }}</span>
+    <span>Dimensions: {{dimensions }}</span>
+    <ngx-barcode
+      bc-element-type="img"
+      style='display: inline'
+      [bc-value]="line?.id"
+      [bc-display-value]="true"
+    ></ngx-barcode>
+  </div>
 </div>

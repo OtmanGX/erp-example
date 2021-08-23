@@ -1,27 +1,36 @@
-import { Component, OnInit, OnChanges, OnDestroy, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input
+} from '@angular/core';
+import {
+  JobOrder,
   JobOrdersFacade,
-  JobProduct,
+  JobProduct
 } from '@tanglass-erp/store/manufacturing';
 import { Subscription } from 'rxjs';
-import { NgxBarcodeComponent } from 'ngx-barcode';
+import { filter } from 'rxjs/operators';
 @Component({
   selector: 'ngx-job-progress',
   templateUrl: './job-progress.component.html',
   styleUrls: ['./job-progress.component.scss'],
 })
 export class JobProgressComponent implements OnInit, OnDestroy {
+  @Input() data: JobOrder
   glass: JobProduct;
+  glassDesig: string;
+  dimensions: string;
   dataSub: Subscription;
-
-  @ViewChildren('barcodes') barcodes: QueryList<NgxBarcodeComponent>;
 
   constructor(protected facade: JobOrdersFacade) {}
 
   ngOnInit() {
-    this.dataSub = this.facade.selectedGlassLine$.subscribe((data) => {
+    this.dataSub = this.facade.selectedGlassLine$.pipe(filter(e => !!e)).subscribe((data) => {
       this.glass = data;
-      console.log(data)
+      this.glassDesig = data.product_draft.product_code + ' ' +
+        data.service_drafts.map(e => e.labelFactory).join(' ');
+      this.dimensions = data.product_draft.heigth + ' X ' + data.product_draft.width;
     });
   }
 
@@ -49,17 +58,18 @@ export class JobProgressComponent implements OnInit, OnDestroy {
     this.dataSub.unsubscribe();
   }
 
-  print() {
-    const windowUrl = 'about:blank';
-    const uniqueName = new Date();
-    const windowName = 'Print' + uniqueName.getTime();
-    const printWindow = window.open(windowUrl, windowName, 'left=50000,top=50000,width=0,height=0');
-    for(const barcode of this.barcodes.map(item => item.bcElement.nativeElement.innerHTML)) {
-      printWindow.document.write(barcode);
-    }
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-    printWindow.close();
-  }
+  // print() {
+  //   const windowUrl = 'about:blank';
+  //   const uniqueName = new Date();
+  //   const windowName = 'Print' + uniqueName.getTime();
+  //   const printWindow = window.open(windowUrl, windowName, 'left=50000,top=50000,width=0,height=0');
+  //   for(const barcode of this.barcodes) {
+  //     console.log(barcode?.nativeElement)
+  //     printWindow.document.write(barcode?.nativeElement.innerHTML);
+  //   }
+  //   printWindow.document.close();
+  //   printWindow.focus();
+  //   printWindow.print();
+  //   printWindow.close();
+  // }
 }
