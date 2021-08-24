@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DynamicFormComponent, FieldConfig, PageForm } from '@tanglass-erp/material';
 import { deliveryFormType, regConfigDelivery } from '@TanglassUi/sales/utils/forms';
 import { DeliveryFacade, DraftFacade, Order, OrdersFacade } from '@tanglass-erp/store/sales';
@@ -14,6 +14,8 @@ import { Store } from '@ngrx/store';
 import { DeliveryLineComponent } from '@TanglassUi/sales/components/delivery-line/delivery-line.component';
 import { InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 import { cloneDeep } from 'lodash';
+import { AuthFacadeService } from '@tanglass-erp/store/app';
+import { DeliveryPermissions } from '@TanglassUi/sales/utils/permissions';
 
 @Component({
   selector: 'ngx-delivery-add',
@@ -23,9 +25,10 @@ import { cloneDeep } from 'lodash';
 export class DeliveryAddComponent
   extends PageForm
   implements AfterViewInit {
+  permissions = DeliveryPermissions[this.auth.currentUser.role];
   @ViewChild('table', { read: DeliveryLineComponent }) table;
   @ViewChild('form', { read: DynamicFormComponent, static: false }) form;
-
+  DeliveryPermissions = DeliveryPermissions;
   regConfig: FieldConfig[];
 
   // Selectors
@@ -54,7 +57,8 @@ export class DeliveryAddComponent
     private deliveryFacade: DeliveryFacade,
     private draftFacade: DraftFacade,
     private ordersFacade: OrdersFacade,
-    public activatedRoute: ActivatedRoute) {
+    public activatedRoute: ActivatedRoute,
+    private auth: AuthFacadeService) {
     super(activatedRoute);
   }
 

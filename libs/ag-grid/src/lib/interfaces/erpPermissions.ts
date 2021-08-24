@@ -1,4 +1,4 @@
-export interface GridPermissions {
+export interface ErpPermissions {
   add?: boolean;
   update?: boolean;
   delete?: boolean;

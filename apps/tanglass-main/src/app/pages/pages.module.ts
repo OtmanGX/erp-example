@@ -5,18 +5,16 @@ import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '@tanglass-erp/material';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { StoreModule } from '@ngrx/store';
-import { reducers, StoreAppModule } from '@tanglass-erp/store/app';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { AuthGuard } from '@auth0/auth0-angular';
 import { ProfileComponent } from './auth/profile/profile.component';
+import { Auth0Guard } from '../shared/services/auth0-guard.service';
+import { ROLES } from '@tanglass-erp/store/app';
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
+    canActivate: [Auth0Guard],
     children: [
       {
         path: "",
@@ -29,7 +27,8 @@ const routes: Routes = [
       {
         path: "dashboard/analytics",
         component: DashboardComponent,
-        canActivate: [AuthGuard],
+        canActivate: [Auth0Guard],
+        data: {roles: [ROLES.admin]}
       },
       {
         path: "profile",
@@ -74,7 +73,8 @@ const routes: Routes = [
       },
       {
         path: 'sales',
-        data: { title: 'Ventes', breadcrumb: "Ventes", noLink: true},
+        data: { title: 'Ventes', breadcrumb: "Ventes", noLink: true, roles: [ROLES.admin]},
+        canActivate: [Auth0Guard],
         loadChildren: () =>
           import('@TanglassUi/sales/sales.module').then(m => m.SalesModule),
       },{

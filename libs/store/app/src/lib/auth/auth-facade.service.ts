@@ -10,9 +10,12 @@ import { Action, Store } from '@ngrx/store';
 export class AuthFacadeService {
 
   currentUser$ = this.store.select(AuthSelectors.getUser);
+  currentUser;
   constructor(
     private store: Store,
-  ) {}
+  ) {
+    this.loadUser();
+  }
 
   dispatch(action: Action) {
     this.store.dispatch(action);

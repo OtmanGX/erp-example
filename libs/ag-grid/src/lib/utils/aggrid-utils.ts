@@ -1,6 +1,6 @@
-import { GridPermissions } from '@tanglass-erp/ag-grid';
+import { ErpPermissions } from '@tanglass-erp/ag-grid';
 
-export const PERMISSIONS: GridPermissions = {
+export const PERMISSIONS: ErpPermissions = {
   add: true,
   update: true,
   delete: true,

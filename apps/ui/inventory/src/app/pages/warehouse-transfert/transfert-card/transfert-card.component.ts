@@ -6,7 +6,7 @@ import {
 } from '@TanglassStore/inventory/index';
 import { ActivatedRoute } from '@angular/router';
 import {
-  GridPermissions,
+  ErpPermissions,
   GridView,
   MainGridComponent,
   Operations,
@@ -46,7 +46,7 @@ export class TransfertCardComponent
   detailColumnDefs;
   columnId = 'id';
   mainGrid: MainGridComponent;
-  permissions: GridPermissions = {
+  permissions: ErpPermissions = {
     deliver: true,
     editNested: true,
     confirm: true

@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '@tanglass-erp/material';
 import { Operations } from '../../enums/operations';
-import { GridPermissions } from '../../interfaces/grid-permissions';
+import { ErpPermissions } from '../../interfaces/erpPermissions';
 import { GroupButton } from '../../interfaces/group-button';
 import { DateFilterComponent } from '../date-filter/date-filter.component';
 import { dateType } from '../../interfaces/date';
@@ -53,7 +53,7 @@ export class MainGridComponent {
   @Input() withDetails: boolean = false;
   @Input() withCrud: boolean = true;
   @Input()
-  set permissions(perms: GridPermissions) {
+  set permissions(perms: ErpPermissions) {
     this._permissions = {
       add: true,
       update: true,

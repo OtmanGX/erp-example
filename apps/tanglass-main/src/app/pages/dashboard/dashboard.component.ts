@@ -60,7 +60,8 @@ export class DashboardComponent implements OnInit {
   salesChartBar: any;
   doughNutPie: any;
 
-  constructor() {}
+  constructor(
+  ) {}
 
   ngOnInit(): void {
     this.initDailyTrafficChartBar();

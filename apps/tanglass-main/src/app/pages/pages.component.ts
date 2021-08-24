@@ -39,8 +39,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     public themeService: ThemeService,
     private layout: LayoutService,
-    private cdr: ChangeDetectorRef,
-    private authFacadeService: AuthFacadeService
+    private cdr: ChangeDetectorRef
   ) {
 
 
@@ -53,7 +52,6 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.authFacadeService.loadUser();
     // this.layoutConf = this.layout.layoutConf;
     this.layoutConfSub = this.layout.layoutConf$.subscribe((layoutConf) => {
       this.layoutConf = layoutConf;

@@ -14,6 +14,7 @@ import { InvoiceListComponent } from '@TanglassUi/sales/pages/invoice/invoice-li
 import { InvoiceAddComponent } from '@TanglassUi/sales/pages/invoice/invoice-add/invoice-add.component';
 import { InvoiceReadyComponent } from '@TanglassUi/sales/pages/invoice/invoice-ready/invoice-ready.component';
 import { QuotationCardComponent } from "@TanglassUi/sales/pages/quotation/quotation-card/quotation-card.component";
+import { ROLES } from '@tanglass-erp/store/app';
 const routes: Routes = [
   {
     path: '',
@@ -50,11 +51,11 @@ const routes: Routes = [
       {
         path: 'delivery',
         children: [
-          { path: '', component: DeliveryListComponent },
+          { path: '', component: DeliveryListComponent, data: {roles: [ROLES.admin]} },
           { path: 'add', component: DeliveryAddComponent, data: { breadcrumb: "Ajouter"} },
           { path: 'update', component: DeliveryAddComponent,  data: { breadcrumb: "Mettre à jour"} },
         ],
-        data: { title: 'Bons de livraison', breadcrumb: "Bons de livraison" }
+        data: { title: 'Bons de livraison', breadcrumb: "Bons de livraison", roles: [ROLES.admin] }
       },
       {
         path: 'invoice',

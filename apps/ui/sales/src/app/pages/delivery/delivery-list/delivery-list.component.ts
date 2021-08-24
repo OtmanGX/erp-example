@@ -9,10 +9,11 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { deliveryHeaders } from '@TanglassUi/sales/utils/grid-headers';
 import { Router } from '@angular/router';
 import { DeliveryFacade } from '@tanglass-erp/store/sales';
-import { GridPermissions } from '@tanglass-erp/ag-grid';
-import startOfMonth from 'date-fns/fp/startOfMonth'
+import { ErpPermissions } from '@tanglass-erp/ag-grid';
+import startOfMonth from 'date-fns/fp/startOfMonth';
 import { fr } from 'date-fns/locale';
-
+import { AuthFacadeService } from '@tanglass-erp/store/app';
+import { DeliveryPermissions } from '@TanglassUi/sales/utils/permissions';
 
 @Component({
   selector: 'ngx-delivery-list',
@@ -24,29 +25,36 @@ export class DeliveryListComponent implements GridView {
   columnDefs;
   columnId = 'id';
   data$ = this.deliveryFacade.allDelivery$;
-  permissions: GridPermissions = {
-    INVOICE: true,
-  };
+  permissions: ErpPermissions = DeliveryPermissions.get(
+    this.authFacadeService.currentUser.role
+  );
   mainGrid: MainGridComponent;
   extraActions: GroupButton[] = [
     {
       event: 'INVOICE',
       icon: 'receipt',
       tooltip: 'Générer la facture',
-      selectToShow: true
+      selectToShow: true,
     },
   ];
   dateText: string;
 
-  constructor(private router: Router, private deliveryFacade: DeliveryFacade) {
+  constructor(
+    private router: Router,
+    private authFacadeService: AuthFacadeService,
+    private deliveryFacade: DeliveryFacade
+  ) {
     this.setColumnDefs();
   }
 
   ngOnInit(): void {
     const date = new Date();
-    this.dateText = date.getFullYear() + ' ' + fr.localize.month(date.getMonth(), { width: 'abbreviated' });
+    this.dateText =
+      date.getFullYear() +
+      ' ' +
+      fr.localize.month(date.getMonth(), { width: 'abbreviated' });
     this.deliveryFacade.loadDeliveries({
-      dateStart: startOfMonth(date)
+      dateStart: startOfMonth(date),
     });
   }
 

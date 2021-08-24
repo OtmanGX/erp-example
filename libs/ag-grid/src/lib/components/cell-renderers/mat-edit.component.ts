@@ -4,7 +4,7 @@ import { ICellRendererParams } from 'ag-grid-community';
 import { Operations } from '../../enums/operations';
 import { GroupButton } from '../../interfaces/group-button';
 import { MainGridComponent } from '@tanglass-erp/ag-grid';
-import { GridPermissions } from '../../interfaces/grid-permissions';
+import { ErpPermissions } from '../../interfaces/erpPermissions';
 
 @Component({
   selector: 'ngx-mat-edit',
@@ -37,7 +37,7 @@ export class MatEditComponent implements ICellRendererAngularComp {
   params;
   extra: GroupButton[];
   agGrid: MainGridComponent;
-  permissions: GridPermissions;
+  permissions: ErpPermissions;
   constructor() {}
 
   agInit(params: ICellRendererParams | any): void {

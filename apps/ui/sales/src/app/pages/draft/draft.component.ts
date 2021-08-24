@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
+import { ErpPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { QuotationHeaders } from '@TanglassUi/sales/utils/grid-headers';
 import { Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class DraftComponent implements GridView {
   columnDefs;
   columnId: string = 'id';
   data$ = this.facade.allDraft$;
-  permissions: GridPermissions = {
+  permissions: ErpPermissions = {
     add: false,
     delete: true
   }
@@ -53,5 +53,5 @@ export class DraftComponent implements GridView {
       { field: 'id', headerName: 'Action', type: "editColumn" }
     ];
   }
-  
+
 }
