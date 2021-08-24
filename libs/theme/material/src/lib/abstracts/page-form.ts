@@ -12,7 +12,7 @@ export abstract class PageForm implements OnInit, OnDestroy {
   protected _onDestroy = new Subject<void>();
   abstract regConfig: FieldConfig[];
   abstract data: any;
-  abstract permissions?;
+  permissions?;
   id: string;
 
   constructor(protected activatedRoute: ActivatedRoute) {
