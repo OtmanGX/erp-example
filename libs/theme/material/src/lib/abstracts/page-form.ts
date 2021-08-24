@@ -3,6 +3,7 @@ import { FieldConfig } from '@tanglass-erp/material';
 import { Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   template: '',
 })
@@ -11,6 +12,7 @@ export abstract class PageForm implements OnInit, OnDestroy {
   protected _onDestroy = new Subject<void>();
   abstract regConfig: FieldConfig[];
   abstract data: any;
+  abstract permissions?;
   id: string;
 
   constructor(protected activatedRoute: ActivatedRoute) {

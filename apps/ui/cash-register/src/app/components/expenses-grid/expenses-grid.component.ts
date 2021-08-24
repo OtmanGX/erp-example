@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { GridPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
+import { ErpPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { ExpensesFacade } from '@tanglass-erp/store/cash-register';
@@ -27,7 +27,7 @@ export class ExpensesGridComponent implements GridView {
   columnId: string = 'id';
   @Input() data$;
   mainGrid: MainGridComponent;
-  permissions: GridPermissions = {
+  permissions: ErpPermissions = {
     update: false
   };
 

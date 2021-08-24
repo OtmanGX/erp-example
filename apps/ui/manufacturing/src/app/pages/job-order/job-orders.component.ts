@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
+import { ErpPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from '@angular/router';
 import { JobOrdersFacade } from "@tanglass-erp/store/manufacturing";
@@ -17,7 +17,7 @@ export class JobOrdersComponent implements GridView {
   columnDefs;
   columnId: string = 'id';
   data$ = this.facade.allJobOrders$;
-  permissions: GridPermissions = {
+  permissions: ErpPermissions = {
     add: false,
     delete: true
   }
@@ -52,5 +52,5 @@ export class JobOrdersComponent implements GridView {
       { field: 'id', headerName: 'Action', type: "editColumn" }
     ];
   }
-  
+
 }

@@ -13,6 +13,9 @@ import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { SharedDirectivesModule } from './directives/shared-directives.module';
 import { MaterialModule } from '@tanglass-erp/material';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../../environments/environment.prod';
+import { Auth0Guard } from './services/auth0-guard.service';
 
 @NgModule({
   imports: [
@@ -30,7 +33,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     RoutePartsService,
     AppConfirmService,
     AppLoaderService,
-    MaterialModule
+    MaterialModule,
+    Auth0Guard
   ],
   exports: [
     SharedComponentsModule,

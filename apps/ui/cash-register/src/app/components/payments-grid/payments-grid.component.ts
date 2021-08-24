@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {
-  GridPermissions,
+  ErpPermissions,
   GridView,
   MainGridComponent,
   Operations,
@@ -23,7 +23,7 @@ export class PaymentsGridComponent implements GridView {
   columnId: string = 'id';
   @Input() data$;
   mainGrid: MainGridComponent;
-  permissions: GridPermissions = {
+  permissions: ErpPermissions = {
     delete: false,
     update: false,
   };

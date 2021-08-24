@@ -18,6 +18,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreAppModule } from '@tanglass-erp/store/app';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { Auth0Guard } from './shared/services/auth0-guard.service';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -27,22 +28,14 @@ registerLocaleData(localeFr, 'fr');
     BrowserModule,
     BrowserAnimationsModule,
     InfrastructureGraphqlModule,
-    SharedModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
         ...env.httpInterceptor,
       },
     }),
-    ToastrModule.forRoot(
-      {
-        disableTimeOut: true,
-        positionClass: 'toast-top-center',
-        preventDuplicates: true,
-        closeButton: true
-      }
-    ),
-    RouterModule.forRoot([{ path: '', canActivate: [AuthGuard], loadChildren: () =>
+    SharedModule,
+    RouterModule.forRoot([{ path: '', canActivate: [Auth0Guard], loadChildren: () =>
         import('./pages/pages.module').then(m => m.PagesModule) }], { initialNavigation: 'enabled' }),
 
     StoreModule.forRoot( {}),

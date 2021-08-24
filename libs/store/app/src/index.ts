@@ -4,6 +4,7 @@ import {
 } from '@ngrx/store';
 import * as fromAuth from './lib/auth/auth.reducer';
 import * as fromNotif from './lib/notification/notification.reducer'
+import { rolesDirection } from '@tanglass-erp/core/management';
 
 export interface AppState {
   [fromAuth.authFeatureKey]: fromAuth.State,
@@ -19,9 +20,6 @@ export const reducers: ActionReducerMap<AppState> = {
 
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
-    console.log('state auth', state);
-    console.log('action', action);
-
     return reducer(state, action);
   };
 }
@@ -31,3 +29,4 @@ export *  from './lib/notification/notification.model';
 export *  from './lib/notification/notification-facade.service';
 export * from './lib/auth/auth-facade.service';
 export * from './lib/store-app.module';
+export {rolesDirection as ROLES} from '@tanglass-erp/core/management';
