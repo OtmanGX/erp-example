@@ -19,7 +19,7 @@ import { Store } from '@ngrx/store';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { combineLatest, of } from 'rxjs';
 import { Location } from '@angular/common';
 

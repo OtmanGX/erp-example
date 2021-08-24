@@ -42,7 +42,7 @@
         [data]="orderLines"
         #table
       ></ngx-delivery-line>
-      <mat-card-actions class="mt-12 ml-12" *ngIf=''>
+      <mat-card-actions class="mt-12 ml-12" *ngIf='permissions.update'>
         <button mat-raised-button color="primary">Confirmer</button>
       </mat-card-actions>
     </dynamic-form>

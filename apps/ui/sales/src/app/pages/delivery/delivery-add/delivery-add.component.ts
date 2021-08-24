@@ -25,7 +25,7 @@ import { DeliveryPermissions } from '@TanglassUi/sales/utils/permissions';
 export class DeliveryAddComponent
   extends PageForm
   implements AfterViewInit {
-  permissions = DeliveryPermissions[this.auth.currentUser.role];
+  permissions = DeliveryPermissions.get(this.auth.currentUser.role);
   @ViewChild('table', { read: DeliveryLineComponent }) table;
   @ViewChild('form', { read: DynamicFormComponent, static: false }) form;
   DeliveryPermissions = DeliveryPermissions;
