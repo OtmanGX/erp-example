@@ -21,6 +21,8 @@
         <app-header-side
           *ngIf="layoutConf.navigationPos === 'side'"
           [notificPanel]="notificationPanel">
+          <!-- Breadcrumb -->
+          <app-breadcrumb></app-breadcrumb>
         </app-header-side>
 
         <div class="rightside-content-hold" id="rightside-content-hold" [perfectScrollbar]="scrollConfig" [disabled]="!layoutConf.topbarFixed || !layoutConf.perfectScrollbar">
@@ -32,8 +34,7 @@
               <div class="double-bounce2 mat-bg-primary"></div>
             </div>
           </div>
-          <!-- Breadcrumb -->
-          <app-breadcrumb></app-breadcrumb>
+
           <!-- View outlet -->
           <router-outlet></router-outlet>
           <span class="m-auto" *ngIf="!layoutConf.footerFixed"></span>

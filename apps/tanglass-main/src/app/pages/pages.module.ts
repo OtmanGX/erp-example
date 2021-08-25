@@ -43,7 +43,7 @@ const routes: Routes = [
       },
       {
         path: 'management',
-        data: { title: 'Gestion', breadcrumb: "Gestion", noLink: true},
+        data: { title: 'Gestion', breadcrumb: "Gestion", noLink: true, roles: [ROLES.admin]},
         loadChildren: () =>
           import('@TanglassUi/management/management.module').then(m => m.ManagementModule)
       },
