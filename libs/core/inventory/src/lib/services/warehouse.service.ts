@@ -9,6 +9,8 @@ import {
 import * as fromWarehouse from '../models/warehouse.model';
 import { RequireExactlyOne } from '@tanglass-erp/core/common';
 
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,8 +20,10 @@ export class WarehouseService {
     private getByIdGQL: GetWarehouseByIdGQL,
     private deleteMany: DeleteManyWarehousesGQL,
     private insertWarehouseGQL: InsertWarehouseGQL,
-    private updateWarehouseGQL: UpdateWarehouseGQL
+    private updateWarehouseGQL: UpdateWarehouseGQL,
   ) {}
+
+
 
   getAll() {
     return this.getAllGQL.watch().valueChanges;
