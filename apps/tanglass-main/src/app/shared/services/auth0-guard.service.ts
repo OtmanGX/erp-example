@@ -30,12 +30,12 @@ export class Auth0Guard extends AuthGuard {
   ): Observable<boolean> {
     return super.canActivate(route, state).pipe(
       switchMap((e) => {
-        if (e && route.data.roles) {
+        if (e) {
           return this.authFacadeService.currentUser$.pipe(
             filter((val) => !!val),
             map((user) => {
               this.authFacadeService.currentUser = user;
-              if (route.data.roles.indexOf(user.role) === -1) {
+              if (route.data.roles && route.data.roles.indexOf(user.role) === -1) {
                 this.router.navigate(['/404']);
                 return false;
               }
