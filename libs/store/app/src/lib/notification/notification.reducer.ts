@@ -40,7 +40,7 @@ export const reducer = createReducer(
   on(NotifActions.AddNotification, (state, action) =>
     notificationsAdapter.addOne(
       {
-        id: Math.random(),
+        id: Math.random().toString(10),
         time: new Date(),
         color: 'primary',
         icon: 'checked',

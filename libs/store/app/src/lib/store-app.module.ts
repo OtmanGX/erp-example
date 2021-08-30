@@ -6,6 +6,7 @@ import * as NotificationReducer from './notification/notification.reducer';
 import { ToastrModule } from 'ngx-toastr';
 import * as fromAuth from './auth/auth.reducer';
 import { AuthEffects } from './auth/auth.effects';
+import { NotificationEffects } from './notification/notification.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthFacadeService } from './auth/auth-facade.service';
 
@@ -13,12 +14,14 @@ import { AuthFacadeService } from './auth/auth-facade.service';
   imports: [
     CommonModule,
     // BrowserAnimationsModule, // required animations module
+
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
+    EffectsModule.forFeature([AuthEffects]),
     StoreModule.forFeature(
       NotificationReducer.notificationFeatureKey,
       NotificationReducer.reducer
     ),
-    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
-    EffectsModule.forFeature([AuthEffects]),
+    EffectsModule.forFeature([NotificationEffects]),
     ToastrModule.forRoot({
       disableTimeOut: true,
       positionClass: 'toast-top-right',

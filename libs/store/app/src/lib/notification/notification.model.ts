@@ -1,5 +1,5 @@
 export interface MNotification {
-  id?: number;
+  id?: string;
   message: string;
   title?: string;
   operation?: string;
@@ -7,4 +7,5 @@ export interface MNotification {
   time?: Date;
   route?: string;
   color: string;
+  read?: boolean;
 }

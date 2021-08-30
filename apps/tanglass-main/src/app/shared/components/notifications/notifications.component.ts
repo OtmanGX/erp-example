@@ -20,7 +20,6 @@ export class NotificationsComponent implements OnInit {
         this.notificPanel.close();
       }
     });
-    this.notifService.warehouses$.subscribe(value => console.log(value));
   }
   clearAll(e) {
     this.notifService.clearNotifications();

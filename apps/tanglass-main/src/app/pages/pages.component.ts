@@ -18,7 +18,6 @@ import { Subscription } from "rxjs";
 import { filter } from 'rxjs/operators';
 import { ThemeService } from '../shared/services/theme.service';
 import { LayoutService } from '../shared/services/layout.service';
-import { AuthFacadeService } from '@tanglass-erp/store/app';
 
 @Component({
   selector: 'ngx-pages',
@@ -39,7 +38,7 @@ export class PagesComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     public themeService: ThemeService,
     private layout: LayoutService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {
 
 

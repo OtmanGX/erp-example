@@ -14,6 +14,18 @@ export const loadNotificationsFailure = createAction(
   props<{error: any}>()
 );
 
+export const changeNotificationsState = createAction(
+  '[Notification Component] change Notifications State',
+  props<{ids: string[], user_id: string, hide: boolean}>()
+);
+export const changeNotificationsStateSuccess = createAction(
+  '[Notification Component] change Notifications State Succces',
+);
+export const changeNotificationsStateFailure = createAction(
+  '[Notification Component] change Notifications State Failure',
+  props<{error: any}>()
+);
+
 
 export const clearNotification = createAction(
   '[Alert effect] Clear Notifications',
