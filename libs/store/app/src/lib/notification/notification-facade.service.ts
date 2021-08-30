@@ -2,51 +2,49 @@ import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import * as NotificationSelectors from './notification.selectors';
 import * as NotificationActions from './notification.actions';
-import { ToastService } from '@tanglass-erp/core/common';
+import { ToastService, NotificationService } from '@tanglass-erp/core/common';
 import { MNotification } from './notification.model';
-import { Apollo } from 'apollo-angular';
-import {WarehouseSubscriptionGQL, WarehouseOnetimeGQL} from '@tanglass-erp/infrastructure/graphql';
+import { AuthFacadeService } from '../auth/auth-facade.service';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationFacadeService {
   notifications$ = this.store.select(NotificationSelectors.getAllNotifications);
-  warehouses$= this.warehouseOnetimeGQL.watch().valueChanges;
-
 
   constructor(
     private store: Store,
     private toastrService: ToastService,
-    private warehouseOnetimeGQL: WarehouseOnetimeGQL,
-    private warehouseSubscriptionGQL: WarehouseSubscriptionGQL,
+    private notificationService: NotificationService,
+    private authService: AuthFacadeService
+  ) {}
 
-    ) {
-    this.subscribe();
+  private dispatch(action: Action) {
+    this.store.dispatch(action);
   }
+
+  public loadNotifications() {
+    this.dispatch(NotificationActions.loadNotifications());
+    const { user_id, role } = this.authService.currentUser;
+    this.notificationService.loadNotifications(user_id, role);
+  }
+
+  changeNotificationState(hide: boolean) {
+    this.notifications$.pipe(take(1)).subscribe((notifications) =>
+      this.dispatch(
+        NotificationActions.changeNotificationsState({
+          ids: notifications.map((e) => e.id),
+          hide,
+          user_id: this.authService.currentUser.id,
+        })
+      )
+    );
+  }
+
 
   showNotification(notification: MNotification) {
     this.dispatch(NotificationActions.AddNotification({ notification }));
-  }
-
-  subscribe() {
-      this.warehouseOnetimeGQL.watch().subscribeToMore({
-        document: this.warehouseSubscriptionGQL.document,
-        updateQuery: (prev, {subscriptionData}) => {
-          if (!subscriptionData.data) {
-            return prev;
-          }
-
-          const newFeedItem = subscriptionData.data.stock_warehouse;
-
-          return {
-            ...prev,
-            entry: {
-              comments: [newFeedItem, ...prev.stock_warehouse]
-            }
-          };
-        }
-      })
   }
 
   showNotifToast(notification: MNotification) {
@@ -59,10 +57,15 @@ export class NotificationFacadeService {
   }
 
   clearNotifications() {
+    this.notifications$.pipe(take(1)).subscribe((notifications) =>
+      this.dispatch(
+        NotificationActions.changeNotificationsState({
+          ids: notifications.map((e) => e.id),
+          hide: true,
+          user_id: this.authService.currentUser.id,
+        })
+      )
+    );
     this.dispatch(NotificationActions.clearNotification());
-  }
-
-  private dispatch(action: Action) {
-    this.store.dispatch(action);
   }
 }
