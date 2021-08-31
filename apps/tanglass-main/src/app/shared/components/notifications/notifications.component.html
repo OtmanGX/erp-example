@@ -4,7 +4,9 @@
 <mat-nav-list class="notification-list" role="list" *ngIf="notifications$ | async; let notifications">
   <!-- Notification item -->
   <mat-list-item *ngFor="let n of notifications.reverse()" class="notific-item" role="listitem" routerLinkActive="open">
-    <mat-icon [color]="n.color" class="notific-icon mr-1">{{n.icon}}</mat-icon>
+    <mat-icon [color]="n.color" class="notific-icon mr-1">
+      {{n.icon}}
+    </mat-icon>
     <a [routerLink]="[n.route || '/dashboard']">
       <div class="mat-list-text">
         <h4 class="font-weight-bold">{{n.title}}</h4>

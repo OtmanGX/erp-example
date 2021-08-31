@@ -55,7 +55,7 @@ export class CustomerService {
 this.updateOne({id:"67740a6b-2e68-4bf6-a6cb-ea81442ac43a",code:"code",name:"nouveau",phone:"4554514"}).subscribe(obj=>console.log(obj.data.update_contact_customer_by_pk))
 
     */
-  
+
   }
 
   getAll() {
@@ -90,8 +90,19 @@ this.updateOne({id:"67740a6b-2e68-4bf6-a6cb-ea81442ac43a",code:"code",name:"nouv
   addAddress(value:InsertAddressContact){
     return this.addCustomerAddressGQL.mutate(value)
   }
-  addContact(value:InsertContact){
-    return this.addCustomerContact.mutate(value)
+  addContact(value:InsertContact) {
+    return this.addCustomerContact.mutate({
+      id: value.id,
+      contact: {
+        ...value.contact,
+        addresses: {
+          data: value.contact?.addresses
+        },
+        providers: {
+          data: value.contact?.providers
+        }
+      }
+    })
   }
   deleteContact(value:DeleteAffectedContact){
   return this.deleteCustomerContactGQL.mutate(value)

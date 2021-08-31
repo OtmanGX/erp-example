@@ -28,7 +28,7 @@ export interface InsertedCustomer extends MetaData{
     note?: string;
     website?: string;
     FAX?: string;
-    type?:string;//individual or company
+    type?:string; // individual or company
     contacts?:InsertedContact[];
     affectedContacts?:string[];
     addresses?:Address[];
