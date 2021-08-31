@@ -11437,13 +11437,11 @@ export type Notification_Notification = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   id: Scalars['uuid'];
   message: Scalars['String'];
-  /** An object relationship */
-  notification_priority: Notification_Notification_Priority;
   /** An array relationship */
   notification_status: Array<Notification_Notification_Status>;
   /** An aggregate relationship */
   notification_status_aggregate: Notification_Notification_Status_Aggregate;
-  priority: Notification_Notification_Priority_Enum;
+  priority: Scalars['String'];
   ref?: Maybe<Scalars['String']>;
   role?: Maybe<Management_User_Role_Enum>;
   route?: Maybe<Scalars['String']>;
@@ -11506,9 +11504,8 @@ export type Notification_Notification_Bool_Exp = {
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   message?: Maybe<String_Comparison_Exp>;
-  notification_priority?: Maybe<Notification_Notification_Priority_Bool_Exp>;
   notification_status?: Maybe<Notification_Notification_Status_Bool_Exp>;
-  priority?: Maybe<Notification_Notification_Priority_Enum_Comparison_Exp>;
+  priority?: Maybe<String_Comparison_Exp>;
   ref?: Maybe<String_Comparison_Exp>;
   role?: Maybe<Management_User_Role_Enum_Comparison_Exp>;
   route?: Maybe<String_Comparison_Exp>;
@@ -11532,9 +11529,8 @@ export type Notification_Notification_Insert_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
-  notification_priority?: Maybe<Notification_Notification_Priority_Obj_Rel_Insert_Input>;
   notification_status?: Maybe<Notification_Notification_Status_Arr_Rel_Insert_Input>;
-  priority?: Maybe<Notification_Notification_Priority_Enum>;
+  priority?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   role?: Maybe<Management_User_Role_Enum>;
   route?: Maybe<Scalars['String']>;
@@ -11551,6 +11547,7 @@ export type Notification_Notification_Max_Fields = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
+  priority?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   route?: Maybe<Scalars['String']>;
   subject?: Maybe<Scalars['String']>;
@@ -11564,6 +11561,7 @@ export type Notification_Notification_Min_Fields = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
+  priority?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   route?: Maybe<Scalars['String']>;
   subject?: Maybe<Scalars['String']>;
@@ -11592,7 +11590,6 @@ export type Notification_Notification_Order_By = {
   createdAt?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   message?: Maybe<Order_By>;
-  notification_priority?: Maybe<Notification_Notification_Priority_Order_By>;
   notification_status_aggregate?: Maybe<Notification_Notification_Status_Aggregate_Order_By>;
   priority?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
@@ -11651,26 +11648,10 @@ export type Notification_Notification_Priority_Bool_Exp = {
 /** unique or primary key constraints on table "notification.notification_priority" */
 export enum Notification_Notification_Priority_Constraint {
   /** unique or primary key constraint */
-  NotificationPriorityPkey = 'notification_priority_pkey'
+  NotificationPriorityPkey = 'notification_priority_pkey',
+  /** unique or primary key constraint */
+  NotificationPriorityValueKey = 'notification_priority_value_key'
 }
-
-export enum Notification_Notification_Priority_Enum {
-  /** high */
-  High = 'HIGH',
-  /** low */
-  Low = 'LOW',
-  /** medium */
-  Medium = 'MEDIUM'
-}
-
-/** Boolean expression to compare columns of type "notification_notification_priority_enum". All fields are combined with logical 'AND'. */
-export type Notification_Notification_Priority_Enum_Comparison_Exp = {
-  _eq?: Maybe<Notification_Notification_Priority_Enum>;
-  _in?: Maybe<Array<Notification_Notification_Priority_Enum>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _neq?: Maybe<Notification_Notification_Priority_Enum>;
-  _nin?: Maybe<Array<Notification_Notification_Priority_Enum>>;
-};
 
 /** input type for inserting data into table "notification.notification_priority" */
 export type Notification_Notification_Priority_Insert_Input = {
@@ -11699,13 +11680,6 @@ export type Notification_Notification_Priority_Mutation_Response = {
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Notification_Notification_Priority>;
-};
-
-/** input type for inserting object relation for remote table "notification.notification_priority" */
-export type Notification_Notification_Priority_Obj_Rel_Insert_Input = {
-  data: Notification_Notification_Priority_Insert_Input;
-  /** on conflict condition */
-  on_conflict?: Maybe<Notification_Notification_Priority_On_Conflict>;
 };
 
 /** on conflict condition type for table "notification.notification_priority" */
@@ -11777,7 +11751,7 @@ export type Notification_Notification_Set_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
-  priority?: Maybe<Notification_Notification_Priority_Enum>;
+  priority?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
   role?: Maybe<Management_User_Role_Enum>;
   route?: Maybe<Scalars['String']>;
@@ -32608,7 +32582,7 @@ export type NotificationQueryQueryVariables = Exact<{
 }>;
 
 
-export type NotificationQueryQuery = { __typename?: 'query_root', notification_notification: Array<{ __typename?: 'notification_notification', id: any, message: string, priority: Notification_Notification_Priority_Enum, ref?: Maybe<string>, role?: Maybe<Management_User_Role_Enum>, subject?: Maybe<string>, createdAt?: Maybe<any>, title: string, route?: Maybe<string>, user_id?: Maybe<string>, notification_status: Array<{ __typename?: 'notification_notification_status', read: boolean, hide: boolean }> }> };
+export type NotificationQueryQuery = { __typename?: 'query_root', notification_notification: Array<{ __typename?: 'notification_notification', id: any, message: string, priority: string, ref?: Maybe<string>, role?: Maybe<Management_User_Role_Enum>, subject?: Maybe<string>, createdAt?: Maybe<any>, title: string, route?: Maybe<string>, user_id?: Maybe<string>, notification_status: Array<{ __typename?: 'notification_notification_status', read: boolean, hide: boolean }> }> };
 
 export type NotificationSubscriptionSubscriptionVariables = Exact<{
   user_id?: Maybe<Scalars['String']>;
@@ -32616,7 +32590,7 @@ export type NotificationSubscriptionSubscriptionVariables = Exact<{
 }>;
 
 
-export type NotificationSubscriptionSubscription = { __typename?: 'subscription_root', notification_notification: Array<{ __typename?: 'notification_notification', id: any, message: string, priority: Notification_Notification_Priority_Enum, route?: Maybe<string>, ref?: Maybe<string>, role?: Maybe<Management_User_Role_Enum>, subject?: Maybe<string>, createdAt?: Maybe<any>, title: string, user_id?: Maybe<string>, notification_status: Array<{ __typename?: 'notification_notification_status', read: boolean, hide: boolean }> }> };
+export type NotificationSubscriptionSubscription = { __typename?: 'subscription_root', notification_notification: Array<{ __typename?: 'notification_notification', id: any, message: string, priority: string, route?: Maybe<string>, ref?: Maybe<string>, role?: Maybe<Management_User_Role_Enum>, subject?: Maybe<string>, createdAt?: Maybe<any>, title: string, user_id?: Maybe<string>, notification_status: Array<{ __typename?: 'notification_notification_status', read: boolean, hide: boolean }> }> };
 
 export type WarehouseOnetimeQueryVariables = Exact<{ [key: string]: never; }>;
 
