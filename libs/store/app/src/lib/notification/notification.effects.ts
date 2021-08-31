@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { NotificationService } from '@tanglass-erp/core/common';
+import { InsertedErpNotificationStatus, NotificationService } from '@tanglass-erp/core/common';
 import * as NotificationActions from '../notification/notification.actions';
 import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NotificationPriority } from '@tanglass-erp/core/common';
-import { InsertedErpNotificationStatus } from '../../../../../core/common/src/lib/models/erp-notification';
 import { NotificationFacadeService } from '../notification/notification-facade.service';
 
 @Injectable()
@@ -27,7 +26,7 @@ export class NotificationEffects {
                   time: notification.createdAt,
                   title: notification.title,
                   message: notification.message,
-                  color: 'warn',
+                  color: {[NotificationPriority.HIGH]: 'warn'}[notification.priority],
                   read: notification.notification_status.length?notification.notification_status[0].read:false
                 })),
             })

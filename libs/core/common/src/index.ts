@@ -9,5 +9,6 @@ export * from '@TanglassTheme/services/toast.service';
 export * from './lib/utils/flatteningAdapter';
 export * from './lib/models/substance';
 export * from './lib/models/user';
+export * from './lib/models/erp-notification';
 export * from './lib/utils/utilities';
 export * from './lib/enums';

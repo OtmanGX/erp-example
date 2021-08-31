@@ -81,8 +81,19 @@ export class ProviderService {
     return this.addProviderAddressGQL.mutate(value)
   }
 
-  addContact(value:InsertContact){
-    return this.addProviderContact.mutate(value)
+  addContact(value:InsertContact) {
+    return this.addProviderContact.mutate({
+      id: value.id,
+      contact: {
+        ...value.contact,
+        addresses: {
+          data: value.contact?.addresses
+        },
+        providers: {
+          data: value.contact?.providers
+        }
+      }
+    })
 
   }
   deleteContact(value:DeleteAffectedContact){
