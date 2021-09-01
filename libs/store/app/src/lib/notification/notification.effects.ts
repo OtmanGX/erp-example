@@ -14,8 +14,12 @@ export class NotificationEffects {
   loadNotifications$ = createEffect(() =>
     this.actions$.pipe(
       ofType(NotificationActions.loadNotifications),
-      mergeMap((action) =>
-        this.notificationService.notificationSubscription$.pipe(
+      mergeMap((action) => {
+        const subscription$ = this.notificationService.loadNotifications(
+          action.user_id,
+          action.role
+        );
+        return subscription$.valueChanges.pipe(
           map((res) =>
             NotificationActions.loadNotificationsSuccess({
               notifications: res.data.notification_notification
@@ -47,8 +51,8 @@ export class NotificationEffects {
                 })),
             })
           )
-        )
-      ),
+        );
+      }),
       catchError((error) =>
         of(NotificationActions.loadNotificationsFailure({ error }))
       )

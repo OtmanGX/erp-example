@@ -7,6 +7,8 @@ import { SalePointsComponent } from '@TanglassUi/management/pages/sale-points/sa
 import { SalePointCardComponent } from '@TanglassUi/management/pages/sale-points/sale-point-card/sale-point-card.component';
 import { EmployeeCardComponent } from '@TanglassUi/management/pages/employees/employee-card/employee-card.component';
 import { CompanyCardComponent } from '@TanglassUi/management/pages/companies/company-card/company-card.component';
+import { ROLES } from '@tanglass-erp/store/app';
+import { Auth0Guard } from '../../../../tanglass-main/src/app/shared/services/auth0-guard.service';
 
 const routes: Routes = [
   {
@@ -31,11 +33,12 @@ const routes: Routes = [
       },
       {
         path: 'users',
+        canActivate: [Auth0Guard],
         children: [
           { path: '', component: EmployeesComponent },
           { path: ':id', component: EmployeeCardComponent, data: {breadcrumb: "Détails"} },
         ],
-        data: {title: 'Employées', breadcrumb: "Employées"},
+        data: {title: 'Employées', breadcrumb: "Employées", roles: [ROLES.admin]},
       },
     ],
   },

@@ -32582,7 +32582,7 @@ export type NotificationQueryQueryVariables = Exact<{
 }>;
 
 
-export type NotificationQueryQuery = { __typename?: 'query_root', notification_notification: Array<{ __typename?: 'notification_notification', id: any, message: string, priority: string, ref?: Maybe<string>, role?: Maybe<Management_User_Role_Enum>, subject?: Maybe<string>, createdAt?: Maybe<any>, title: string, route?: Maybe<string>, user_id?: Maybe<string>, notification_status: Array<{ __typename?: 'notification_notification_status', read: boolean, hide: boolean }> }> };
+export type NotificationQueryQuery = { __typename?: 'query_root', notification_notification: Array<{ __typename?: 'notification_notification', id: any, message: string, priority: string, route?: Maybe<string>, ref?: Maybe<string>, role?: Maybe<Management_User_Role_Enum>, subject?: Maybe<string>, createdAt?: Maybe<any>, title: string, user_id?: Maybe<string>, notification_status: Array<{ __typename?: 'notification_notification_status', id: any, read: boolean, hide: boolean }> }> };
 
 export type NotificationSubscriptionSubscriptionVariables = Exact<{
   user_id?: Maybe<Scalars['String']>;
@@ -32590,7 +32590,7 @@ export type NotificationSubscriptionSubscriptionVariables = Exact<{
 }>;
 
 
-export type NotificationSubscriptionSubscription = { __typename?: 'subscription_root', notification_notification: Array<{ __typename?: 'notification_notification', id: any, message: string, priority: string, route?: Maybe<string>, ref?: Maybe<string>, role?: Maybe<Management_User_Role_Enum>, subject?: Maybe<string>, createdAt?: Maybe<any>, title: string, user_id?: Maybe<string>, notification_status: Array<{ __typename?: 'notification_notification_status', read: boolean, hide: boolean }> }> };
+export type NotificationSubscriptionSubscription = { __typename?: 'subscription_root', notification_notification: Array<{ __typename?: 'notification_notification', id: any, message: string, priority: string, route?: Maybe<string>, ref?: Maybe<string>, role?: Maybe<Management_User_Role_Enum>, subject?: Maybe<string>, createdAt?: Maybe<any>, title: string, user_id?: Maybe<string>, notification_status: Array<{ __typename?: 'notification_notification_status', id: any, read: boolean, hide: boolean }> }> };
 
 export type WarehouseOnetimeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -34406,19 +34406,20 @@ export const ChangeNotificationStateDocument = gql`
 export const NotificationQueryDocument = gql`
     query NotificationQuery($user_id: String, $role: management_user_role_enum) {
   notification_notification(
-    where: {user_id: {_eq: $user_id}, _or: {user_id: {_is_null: true}, _and: {role: {_is_null: true}}, _or: {role: {_eq: $role}}}}
+    where: {_or: [{role: {_eq: $role}}, {user_id: {_eq: $user_id}}, {role: {_is_null: true}, user_id: {_is_null: true}}], _and: {notification_status: {hide: {_neq: true}}}}
   ) {
     id
     message
     priority
+    route
     ref
     role
     subject
     createdAt
     title
-    route
     user_id
     notification_status(where: {user_id: {_eq: $user_id}}) {
+      id
       read
       hide
     }
@@ -34439,7 +34440,7 @@ export const NotificationQueryDocument = gql`
 export const NotificationSubscriptionDocument = gql`
     subscription NotificationSubscription($user_id: String, $role: management_user_role_enum) {
   notification_notification(
-    where: {user_id: {_eq: $user_id}, _or: {user_id: {_is_null: true}, _and: {role: {_is_null: true}}, _or: {role: {_eq: $role}}}}
+    where: {_or: [{role: {_eq: $role}}, {user_id: {_eq: $user_id}}, {role: {_is_null: true}, user_id: {_is_null: true}}], _and: {notification_status: {hide: {_neq: true}}}}
   ) {
     id
     message
@@ -34452,6 +34453,7 @@ export const NotificationSubscriptionDocument = gql`
     title
     user_id
     notification_status(where: {user_id: {_eq: $user_id}}) {
+      id
       read
       hide
     }
