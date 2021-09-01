@@ -3,7 +3,8 @@ import { MNotification } from './notification.model';
 
 
 export const loadNotifications = createAction(
-  '[Notification Component] Load Notifications'
+  '[Notification Component] Load Notifications',
+  props<{user_id: string, role}>()
 );
 export const loadNotificationsSuccess = createAction(
   '[Alert effect] Load Notifications Succces',

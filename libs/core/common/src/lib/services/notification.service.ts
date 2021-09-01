@@ -11,26 +11,33 @@ import { InsertedErpNotificationStatus } from '../models/erp-notification';
   providedIn: 'root',
 })
 export class NotificationService {
-  notificationSubscription$ = this.notificationQueryGQL.watch().valueChanges;
-
   constructor(
     private notificationQueryGQL: NotificationQueryGQL,
     private notificationSubscriptionGQL: NotificationSubscriptionGQL,
     private changeNotificationStateGQL: ChangeNotificationStateGQL
   ) {}
 
-  loadNotifications(user_id: string, role: rolesDirection) {
-    this.notificationQueryGQL.watch().subscribeToMore({
-      document: this.notificationSubscriptionGQL.document,
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) {
-          return prev;
-        }
+  loadNotifications(user_id: string, role) {
+    const notificationSubscription$ = this.notificationQueryGQL
+      .watch({user_id, role});
 
-        const newFeedItem = subscriptionData.data;
-        return newFeedItem;
-      },
-    });
+    notificationSubscription$.subscribeToMore({
+        document: this.notificationSubscriptionGQL.document,
+        variables: {
+          user_id,
+          role,
+        },
+        updateQuery: (prev, { subscriptionData }) => {
+          if (!subscriptionData.data) {
+            console.log('Oh no');
+            return prev;
+          }
+
+          const newFeedItem = subscriptionData.data;
+          return { ...newFeedItem };
+        },
+      });
+    return notificationSubscription$;
   }
 
   changeNotificationsState(states: InsertedErpNotificationStatus[]) {

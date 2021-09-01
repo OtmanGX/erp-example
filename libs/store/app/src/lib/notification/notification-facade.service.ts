@@ -25,9 +25,8 @@ export class NotificationFacadeService {
   }
 
   public loadNotifications() {
-    this.dispatch(NotificationActions.loadNotifications());
-    const { user_id, role } = this.authService.currentUser;
-    this.notificationService.loadNotifications(user_id, role);
+    const { id, role } = this.authService.currentUser;
+    this.dispatch(NotificationActions.loadNotifications({user_id: id, role}));
   }
 
   changeNotificationState(hide: boolean) {
