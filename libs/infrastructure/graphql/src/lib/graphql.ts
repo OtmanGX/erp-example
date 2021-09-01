@@ -34406,7 +34406,7 @@ export const ChangeNotificationStateDocument = gql`
 export const NotificationQueryDocument = gql`
     query NotificationQuery($user_id: String, $role: management_user_role_enum) {
   notification_notification(
-    where: {_or: [{role: {_eq: $role}}, {user_id: {_eq: $user_id}}, {role: {_is_null: true}, user_id: {_is_null: true}}], _and: {notification_status: {hide: {_neq: true}}}}
+    where: {_or: [{role: {_eq: $role}}, {user_id: {_eq: $user_id}}, {role: {_is_null: true}, user_id: {_is_null: true}}]}
   ) {
     id
     message
@@ -34440,7 +34440,7 @@ export const NotificationQueryDocument = gql`
 export const NotificationSubscriptionDocument = gql`
     subscription NotificationSubscription($user_id: String, $role: management_user_role_enum) {
   notification_notification(
-    where: {_or: [{role: {_eq: $role}}, {user_id: {_eq: $user_id}}, {role: {_is_null: true}, user_id: {_is_null: true}}], _and: {notification_status: {hide: {_neq: true}}}}
+    where: {_or: [{role: {_eq: $role}}, {user_id: {_eq: $user_id}}, {role: {_is_null: true}, user_id: {_is_null: true}}]}
   ) {
     id
     message
