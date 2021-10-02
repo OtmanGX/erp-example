@@ -8,13 +8,14 @@
 </div>
 <div class="mt--72">
   <div fxLayout="row wrap">
-    <div fxFlex="100" fxFlex.sm="70" fxFlex.gt-sm="70">
+    <div *ngIf='stats$ | async' fxFlex="100" fxFlex.sm="70" fxFlex.gt-sm="70">
       <div fxLayout="row wrap">
         <ngx-amount-card
           fxFlex="100"
           fxFlex.sm="50"
           fxFlex.gt-sm="50"
           *ngFor="let item of statCardList"
+          [amount]='5000'
           [config]="item">
         </ngx-amount-card>
       </div>

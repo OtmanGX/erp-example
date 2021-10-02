@@ -39,7 +39,7 @@ export class HeaderSideComponent implements OnInit {
     private notifFacade: NotificationFacadeService
   ) {}
   ngOnInit() {
-    this.notifFacade.loadNotifications();
+    // this.notifFacade.loadNotifications();
     this.matxThemes = this.themeService.matxThemes;
     this.layoutConf = this.layout.layoutConf;
   }

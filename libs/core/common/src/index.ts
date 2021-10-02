@@ -5,6 +5,7 @@ export * from './lib/services/shortFeature.service';
 export * from './lib/services/invoice-generator.service';
 export * from './lib/services/user.service';
 export * from './lib/services/notification.service';
+export * from './lib/services/dashboard.service';
 export * from '@TanglassTheme/services/toast.service';
 export * from './lib/utils/flatteningAdapter';
 export * from './lib/models/substance';

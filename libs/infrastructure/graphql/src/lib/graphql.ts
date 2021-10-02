@@ -32504,6 +32504,14 @@ export type GetExpensesCategoriesQueryVariables = Exact<{ [key: string]: never; 
 
 export type GetExpensesCategoriesQuery = { __typename?: 'query_root', cash_register_expense_category: Array<{ __typename?: 'cash_register_expense_category', key: string, value: string }> };
 
+export type DashboardQueryQueryVariables = Exact<{
+  date1?: Maybe<Scalars['date']>;
+  date2?: Maybe<Scalars['date']>;
+}>;
+
+
+export type DashboardQueryQuery = { __typename?: 'query_root', contact_customer_aggregate: { __typename?: 'contact_customer_aggregate', aggregate?: Maybe<{ __typename?: 'contact_customer_aggregate_fields', count: number }> }, management_userProfile_aggregate: { __typename?: 'management_userProfile_aggregate', aggregate?: Maybe<{ __typename?: 'management_userProfile_aggregate_fields', count: number }> }, stock_transfer_order_aggregate: { __typename?: 'stock_transfer_order_aggregate', aggregate?: Maybe<{ __typename?: 'stock_transfer_order_aggregate_fields', count: number }> }, sales_order_aggregate: { __typename?: 'sales_order_aggregate', aggregate?: Maybe<{ __typename?: 'sales_order_aggregate_fields', sum?: Maybe<{ __typename?: 'sales_order_sum_fields', total_ttc?: Maybe<any> }> }> } };
+
 export type GetAccessoriesSubstancesQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -34116,6 +34124,43 @@ export const GetExpensesCategoriesDocument = gql`
   })
   export class GetExpensesCategoriesGQL extends Apollo.Query<GetExpensesCategoriesQuery, GetExpensesCategoriesQueryVariables> {
     document = GetExpensesCategoriesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DashboardQueryDocument = gql`
+    query DashboardQuery($date1: date, $date2: date) {
+  contact_customer_aggregate {
+    aggregate {
+      count
+    }
+  }
+  management_userProfile_aggregate {
+    aggregate {
+      count
+    }
+  }
+  stock_transfer_order_aggregate(where: {status: {_eq: "En attente"}}) {
+    aggregate {
+      count
+    }
+  }
+  sales_order_aggregate(where: {date: {_gte: $date1, _lte: $date2}}) {
+    aggregate {
+      sum {
+        total_ttc
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DashboardQueryGQL extends Apollo.Query<DashboardQueryQuery, DashboardQueryQueryVariables> {
+    document = DashboardQueryDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
