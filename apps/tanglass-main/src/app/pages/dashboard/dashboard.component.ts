@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardConfig } from '@tanglass-erp/material';
+import { DashboardService } from '@tanglass-erp/core/common';
+import { addWeeks, addYears, endOfWeek, startOfWeek } from 'date-fns/fp';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -11,14 +13,14 @@ export class DashboardComponent implements OnInit {
     {
       icon: 'people',
       title: 'New Leads',
-      amount: 3050,
+      amount: null,
       color: 'primary',
       withAction: true,
     },
     {
       icon: 'attach_money',
       title: 'Ventes de cette semaine',
-      amount: 80500,
+      amount: null,
       amountSuffix: 'MAD',
       color: 'primary',
       withAction: true,
@@ -36,7 +38,7 @@ export class DashboardComponent implements OnInit {
     {
       icon: 'shopping_cart',
       title: 'Commandes',
-      amount: 305,
+      amount: null,
       amountSuffix: 'Commandes de transfert',
       amountFontSize: 48,
       color: 'accent',
@@ -59,9 +61,12 @@ export class DashboardComponent implements OnInit {
 
   salesChartBar: any;
   doughNutPie: any;
+  stats$ = this.dashboardService.load(startOfWeek(Date.now()), endOfWeek(Date.now()));
 
   constructor(
-  ) {}
+    private dashboardService: DashboardService
+  ) {
+  }
 
   ngOnInit(): void {
     this.initDailyTrafficChartBar();

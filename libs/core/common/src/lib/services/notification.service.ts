@@ -4,7 +4,6 @@ import {
   NotificationSubscriptionGQL,
   ChangeNotificationStateGQL,
 } from '@tanglass-erp/infrastructure/graphql';
-import { rolesDirection } from '@tanglass-erp/core/management';
 import { InsertedErpNotificationStatus } from '../models/erp-notification';
 
 @Injectable({
@@ -29,7 +28,6 @@ export class NotificationService {
         },
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) {
-            console.log('Oh no');
             return prev;
           }
 

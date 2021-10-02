@@ -10,7 +10,7 @@ import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { OperationDefinitionNode } from 'graphql';
 
-const uri = 'https://tanglass.hasura.app/v1/graphql';
+const uri = 'http://65.21.182.51:8080/v1/graphql';
 
 export function createApollo(httpLink: HttpLink, toastService: ToastService) {
   const basic = setContext((operation, context) => ({}));
@@ -35,18 +35,18 @@ export function createApollo(httpLink: HttpLink, toastService: ToastService) {
   });
 
   // Create a WebSocket link:
-  const ws = new WebSocketLink({
-    uri: `wss://tanglass.hasura.app/v1/graphql`,
-    options: {
-      reconnect: true,
-      connectionParams: {
-        headers: {
-          Accept: 'charset=utf-8',
-          'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv',
-        },
-      },
-    },
-  });
+  // const ws = new WebSocketLink({
+  //   uri: `wss://65.21.182.51/v1/graphql`,
+  //   options: {
+  //     reconnect: true,
+  //     connectionParams: {
+  //       headers: {
+  //         Accept: 'charset=utf-8',
+  //         'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv',
+  //       },
+  //     },
+  //   },
+  // });
 
   const link2 = split(
     // split based on operation type
@@ -56,7 +56,7 @@ export function createApollo(httpLink: HttpLink, toastService: ToastService) {
       );
       return kind === 'OperationDefinition' && operation === 'subscription';
     },
-    ws,
+    // ws,
     httpLink.create({ uri })
   );
 

@@ -14,7 +14,6 @@ import {
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
 import { Substance, ShortSubstance, } from '../models/substance';
-import { ShortProvider } from '../models/shortFeature.models';
 
 @Injectable({
   providedIn: 'root'
