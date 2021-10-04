@@ -35,18 +35,18 @@ export function createApollo(httpLink: HttpLink, toastService: ToastService) {
   });
 
   // Create a WebSocket link:
-  // const ws = new WebSocketLink({
-  //   uri: `wss://65.21.182.51/v1/graphql`,
-  //   options: {
-  //     reconnect: true,
-  //     connectionParams: {
-  //       headers: {
-  //         Accept: 'charset=utf-8',
-  //         'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv',
-  //       },
-  //     },
-  //   },
-  // });
+  const ws = new WebSocketLink({
+    uri: `ws://65.21.182.51:8080/v1/graphql`,
+    options: {
+      reconnect: true,
+      connectionParams: {
+        headers: {
+          Accept: 'charset=utf-8',
+          'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv',
+        },
+      },
+    },
+  });
 
   const link2 = split(
     // split based on operation type
@@ -56,7 +56,7 @@ export function createApollo(httpLink: HttpLink, toastService: ToastService) {
       );
       return kind === 'OperationDefinition' && operation === 'subscription';
     },
-    // ws,
+    ws,
     httpLink.create({ uri })
   );
 
