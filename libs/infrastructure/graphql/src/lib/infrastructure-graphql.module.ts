@@ -10,10 +10,15 @@ import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { OperationDefinitionNode } from 'graphql';
 
-const uri = 'http://65.21.182.51:8080/v1/graphql';
+const uri = 'https://hasuratg.cloudvision.dev:8000/v1/graphql';
 
 export function createApollo(httpLink: HttpLink, toastService: ToastService) {
-  const basic = setContext((operation, context) => ({}));
+  const basic = setContext((operation, context) => ({
+    headers: {
+      Accept: 'charset=utf-8',
+      'X-Hasura-Admin-Secret': 'FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv',
+    },
+  }));
 
   const auth = setContext((operation, context) => {});
 
@@ -36,7 +41,7 @@ export function createApollo(httpLink: HttpLink, toastService: ToastService) {
 
   // Create a WebSocket link:
   const ws = new WebSocketLink({
-    uri: `ws://65.21.182.51:8080/v1/graphql`,
+    uri: `wss://hasuratg.cloudvision.dev:8000/v1/graphql`,
     options: {
       reconnect: true,
       connectionParams: {
