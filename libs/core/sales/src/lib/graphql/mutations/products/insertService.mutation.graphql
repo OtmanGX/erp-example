@@ -12,7 +12,6 @@ mutation insertServiceDraft(
   $quantity: numeric
   $ml: numeric
   $draft_id: Int
-  $warehouse_id: uuid = "null"
   $labelFactory: String
 ) {
   insert_sales_service_draft_one(
