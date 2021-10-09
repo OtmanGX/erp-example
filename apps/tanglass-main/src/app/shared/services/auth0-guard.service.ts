@@ -15,6 +15,7 @@ import { filter, map, switchMap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class Auth0Guard extends AuthGuard {
+  userLoaded = false;
   constructor(
     auth: AuthService,
     private router: Router,
@@ -30,12 +31,13 @@ export class Auth0Guard extends AuthGuard {
   ): Observable<boolean> {
     return super.canActivate(route, state).pipe(
       switchMap((e) => {
-        console.log(e)
         if (e) {
+          console.log('can activate', e)
+          if (!this.userLoaded) this.authFacadeService.loadUser();
           return this.authFacadeService.currentUser$.pipe(
             filter((val) => !!val),
             map((user) => {
-              console.log('user', user)
+              console.log(user)
               this.authFacadeService.currentUser = user;
               if (route.data.roles && route.data.roles.indexOf(user.role) === -1) {
                 this.router.navigate(['/404']);

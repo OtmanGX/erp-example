@@ -54,7 +54,7 @@ export class DeliveryListComponent implements GridView {
       ' ' +
       fr.localize.month(date.getMonth(), { width: 'abbreviated' });
     this.deliveryFacade.loadDeliveries({
-      dateStart: startOfMonth(date),
+      dateStart: startOfMonth(date), dateEnd: new Date()
     });
   }
 

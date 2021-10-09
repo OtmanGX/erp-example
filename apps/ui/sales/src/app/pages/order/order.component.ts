@@ -41,7 +41,7 @@ export class OrderComponent implements GridView {
     const date = new Date();
     this.dateText = date.getFullYear() + ' ' + fr.localize.month(date.getMonth(), { width: 'abbreviated' });
     this.facade.loadAllOrders({
-      dateStart: startOfMonth(date)
+      dateStart: startOfMonth(date), dateEnd: new Date()
     });
   }
 

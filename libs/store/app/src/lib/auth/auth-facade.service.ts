@@ -14,7 +14,7 @@ export class AuthFacadeService {
   constructor(
     private store: Store,
   ) {
-    this.loadUser();
+    // this.loadUser();
   }
 
   dispatch(action: Action) {
