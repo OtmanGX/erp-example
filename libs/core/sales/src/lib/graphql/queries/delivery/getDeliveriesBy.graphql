@@ -1,5 +1,5 @@
-query getDeliveriesBy($dateStart: date, $dateEnd: date, $status: String) {
-  sales_delivery(where: {createdAt: {_gte: $dateStart, _lte: $dateEnd}, status: {_eq: $status}}) {
+query getDeliveriesBy($date: date_comparison_exp, $status: String_comparison_exp) {
+  sales_delivery(where: {createdAt: $date, status: $status}) {
     id
     order_id
     status

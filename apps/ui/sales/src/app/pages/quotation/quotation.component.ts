@@ -39,7 +39,7 @@ export class QuotationComponent implements GridView {
     const date = new Date();
     this.dateText = date.getFullYear() + ' ' + fr.localize.month(date.getMonth(), { width: 'abbreviated' });
     this.facade.loadAllQuotations({
-      dateStart: startOfMonth(date)
+      dateStart: startOfMonth(date), dateEnd: new Date()
     });
   }
 

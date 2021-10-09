@@ -317,6 +317,13 @@ export type Cash_Register_Cash_Box_Mutation_Response = {
   returning: Array<Cash_Register_Cash_Box>;
 };
 
+/** input type for inserting object relation for remote table "cash_register.cash_box" */
+export type Cash_Register_Cash_Box_Obj_Rel_Insert_Input = {
+  data: Cash_Register_Cash_Box_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<Cash_Register_Cash_Box_On_Conflict>;
+};
+
 /** on conflict condition type for table "cash_register.cash_box" */
 export type Cash_Register_Cash_Box_On_Conflict = {
   constraint: Cash_Register_Cash_Box_Constraint;
@@ -477,8 +484,32 @@ export type Cash_Register_Cash_Box_Variance_Order_By = {
 /** columns and relationships of "cash_register.expense_category" */
 export type Cash_Register_Expense_Category = {
   __typename?: 'cash_register_expense_category';
+  /** An array relationship */
+  expenses: Array<Cash_Register_Expenses>;
+  /** An aggregate relationship */
+  expenses_aggregate: Cash_Register_Expenses_Aggregate;
   key: Scalars['String'];
   value: Scalars['String'];
+};
+
+
+/** columns and relationships of "cash_register.expense_category" */
+export type Cash_Register_Expense_CategoryExpensesArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expenses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expenses_Order_By>>;
+  where?: Maybe<Cash_Register_Expenses_Bool_Exp>;
+};
+
+
+/** columns and relationships of "cash_register.expense_category" */
+export type Cash_Register_Expense_CategoryExpenses_AggregateArgs = {
+  distinct_on?: Maybe<Array<Cash_Register_Expenses_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Cash_Register_Expenses_Order_By>>;
+  where?: Maybe<Cash_Register_Expenses_Bool_Exp>;
 };
 
 /** aggregated selection of "cash_register.expense_category" */
@@ -508,6 +539,7 @@ export type Cash_Register_Expense_Category_Bool_Exp = {
   _and?: Maybe<Array<Cash_Register_Expense_Category_Bool_Exp>>;
   _not?: Maybe<Cash_Register_Expense_Category_Bool_Exp>;
   _or?: Maybe<Array<Cash_Register_Expense_Category_Bool_Exp>>;
+  expenses?: Maybe<Cash_Register_Expenses_Bool_Exp>;
   key?: Maybe<String_Comparison_Exp>;
   value?: Maybe<String_Comparison_Exp>;
 };
@@ -522,6 +554,7 @@ export enum Cash_Register_Expense_Category_Constraint {
 
 /** input type for inserting data into table "cash_register.expense_category" */
 export type Cash_Register_Expense_Category_Insert_Input = {
+  expenses?: Maybe<Cash_Register_Expenses_Arr_Rel_Insert_Input>;
   key?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
 };
@@ -549,6 +582,13 @@ export type Cash_Register_Expense_Category_Mutation_Response = {
   returning: Array<Cash_Register_Expense_Category>;
 };
 
+/** input type for inserting object relation for remote table "cash_register.expense_category" */
+export type Cash_Register_Expense_Category_Obj_Rel_Insert_Input = {
+  data: Cash_Register_Expense_Category_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<Cash_Register_Expense_Category_On_Conflict>;
+};
+
 /** on conflict condition type for table "cash_register.expense_category" */
 export type Cash_Register_Expense_Category_On_Conflict = {
   constraint: Cash_Register_Expense_Category_Constraint;
@@ -558,6 +598,7 @@ export type Cash_Register_Expense_Category_On_Conflict = {
 
 /** Ordering options when selecting data from "cash_register.expense_category". */
 export type Cash_Register_Expense_Category_Order_By = {
+  expenses_aggregate?: Maybe<Cash_Register_Expenses_Aggregate_Order_By>;
   key?: Maybe<Order_By>;
   value?: Maybe<Order_By>;
 };
@@ -593,6 +634,8 @@ export enum Cash_Register_Expense_Category_Update_Column {
 export type Cash_Register_Expenses = {
   __typename?: 'cash_register_expenses';
   amountSpent: Scalars['numeric'];
+  /** An object relationship */
+  cash_box: Cash_Register_Cash_Box;
   cash_box_id: Scalars['Int'];
   category: Scalars['String'];
   createdAt?: Maybe<Scalars['timestamptz']>;
@@ -600,6 +643,8 @@ export type Cash_Register_Expenses = {
   /** An object relationship */
   employee?: Maybe<Management_UserProfile>;
   employee_id?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  expense_category: Cash_Register_Expense_Category;
   id: Scalars['Int'];
   name: Scalars['String'];
   note?: Maybe<Scalars['String']>;
@@ -682,12 +727,14 @@ export type Cash_Register_Expenses_Bool_Exp = {
   _not?: Maybe<Cash_Register_Expenses_Bool_Exp>;
   _or?: Maybe<Array<Cash_Register_Expenses_Bool_Exp>>;
   amountSpent?: Maybe<Numeric_Comparison_Exp>;
+  cash_box?: Maybe<Cash_Register_Cash_Box_Bool_Exp>;
   cash_box_id?: Maybe<Int_Comparison_Exp>;
   category?: Maybe<String_Comparison_Exp>;
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
   date?: Maybe<Timestamptz_Comparison_Exp>;
   employee?: Maybe<Management_UserProfile_Bool_Exp>;
   employee_id?: Maybe<String_Comparison_Exp>;
+  expense_category?: Maybe<Cash_Register_Expense_Category_Bool_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   note?: Maybe<String_Comparison_Exp>;
@@ -712,12 +759,14 @@ export type Cash_Register_Expenses_Inc_Input = {
 /** input type for inserting data into table "cash_register.expenses" */
 export type Cash_Register_Expenses_Insert_Input = {
   amountSpent?: Maybe<Scalars['numeric']>;
+  cash_box?: Maybe<Cash_Register_Cash_Box_Obj_Rel_Insert_Input>;
   cash_box_id?: Maybe<Scalars['Int']>;
   category?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
   date?: Maybe<Scalars['timestamptz']>;
   employee?: Maybe<Management_UserProfile_Obj_Rel_Insert_Input>;
   employee_id?: Maybe<Scalars['String']>;
+  expense_category?: Maybe<Cash_Register_Expense_Category_Obj_Rel_Insert_Input>;
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
@@ -806,12 +855,14 @@ export type Cash_Register_Expenses_On_Conflict = {
 /** Ordering options when selecting data from "cash_register.expenses". */
 export type Cash_Register_Expenses_Order_By = {
   amountSpent?: Maybe<Order_By>;
+  cash_box?: Maybe<Cash_Register_Cash_Box_Order_By>;
   cash_box_id?: Maybe<Order_By>;
   category?: Maybe<Order_By>;
   createdAt?: Maybe<Order_By>;
   date?: Maybe<Order_By>;
   employee?: Maybe<Management_UserProfile_Order_By>;
   employee_id?: Maybe<Order_By>;
+  expense_category?: Maybe<Cash_Register_Expense_Category_Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   note?: Maybe<Order_By>;
@@ -11437,6 +11488,8 @@ export type Notification_Notification = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   id: Scalars['uuid'];
   message: Scalars['String'];
+  /** An object relationship */
+  notification_priority: Notification_Notification_Priority;
   /** An array relationship */
   notification_status: Array<Notification_Notification_Status>;
   /** An aggregate relationship */
@@ -11496,6 +11549,20 @@ export type Notification_Notification_Aggregate_FieldsCountArgs = {
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "notification.notification" */
+export type Notification_Notification_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Notification_Notification_Max_Order_By>;
+  min?: Maybe<Notification_Notification_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "notification.notification" */
+export type Notification_Notification_Arr_Rel_Insert_Input = {
+  data: Array<Notification_Notification_Insert_Input>;
+  /** on conflict condition */
+  on_conflict?: Maybe<Notification_Notification_On_Conflict>;
+};
+
 /** Boolean expression to filter rows from the table "notification.notification". All fields are combined with a logical 'AND'. */
 export type Notification_Notification_Bool_Exp = {
   _and?: Maybe<Array<Notification_Notification_Bool_Exp>>;
@@ -11504,6 +11571,7 @@ export type Notification_Notification_Bool_Exp = {
   createdAt?: Maybe<Timestamptz_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   message?: Maybe<String_Comparison_Exp>;
+  notification_priority?: Maybe<Notification_Notification_Priority_Bool_Exp>;
   notification_status?: Maybe<Notification_Notification_Status_Bool_Exp>;
   priority?: Maybe<String_Comparison_Exp>;
   ref?: Maybe<String_Comparison_Exp>;
@@ -11529,6 +11597,7 @@ export type Notification_Notification_Insert_Input = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
+  notification_priority?: Maybe<Notification_Notification_Priority_Obj_Rel_Insert_Input>;
   notification_status?: Maybe<Notification_Notification_Status_Arr_Rel_Insert_Input>;
   priority?: Maybe<Scalars['String']>;
   ref?: Maybe<Scalars['String']>;
@@ -11555,6 +11624,19 @@ export type Notification_Notification_Max_Fields = {
   user_id?: Maybe<Scalars['String']>;
 };
 
+/** order by max() on columns of table "notification.notification" */
+export type Notification_Notification_Max_Order_By = {
+  createdAt?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  message?: Maybe<Order_By>;
+  priority?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  route?: Maybe<Order_By>;
+  subject?: Maybe<Order_By>;
+  title?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
 /** aggregate min on columns */
 export type Notification_Notification_Min_Fields = {
   __typename?: 'notification_notification_min_fields';
@@ -11569,6 +11651,19 @@ export type Notification_Notification_Min_Fields = {
   user_id?: Maybe<Scalars['String']>;
 };
 
+/** order by min() on columns of table "notification.notification" */
+export type Notification_Notification_Min_Order_By = {
+  createdAt?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  message?: Maybe<Order_By>;
+  priority?: Maybe<Order_By>;
+  ref?: Maybe<Order_By>;
+  route?: Maybe<Order_By>;
+  subject?: Maybe<Order_By>;
+  title?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
 /** response of any mutation on the table "notification.notification" */
 export type Notification_Notification_Mutation_Response = {
   __typename?: 'notification_notification_mutation_response';
@@ -11576,6 +11671,13 @@ export type Notification_Notification_Mutation_Response = {
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Notification_Notification>;
+};
+
+/** input type for inserting object relation for remote table "notification.notification" */
+export type Notification_Notification_Obj_Rel_Insert_Input = {
+  data: Notification_Notification_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<Notification_Notification_On_Conflict>;
 };
 
 /** on conflict condition type for table "notification.notification" */
@@ -11590,6 +11692,7 @@ export type Notification_Notification_Order_By = {
   createdAt?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   message?: Maybe<Order_By>;
+  notification_priority?: Maybe<Notification_Notification_Priority_Order_By>;
   notification_status_aggregate?: Maybe<Notification_Notification_Status_Aggregate_Order_By>;
   priority?: Maybe<Order_By>;
   ref?: Maybe<Order_By>;
@@ -11611,7 +11714,31 @@ export type Notification_Notification_Pk_Columns_Input = {
 export type Notification_Notification_Priority = {
   __typename?: 'notification_notification_priority';
   key: Scalars['String'];
+  /** An array relationship */
+  notifications: Array<Notification_Notification>;
+  /** An aggregate relationship */
+  notifications_aggregate: Notification_Notification_Aggregate;
   value: Scalars['String'];
+};
+
+
+/** columns and relationships of "notification.notification_priority" */
+export type Notification_Notification_PriorityNotificationsArgs = {
+  distinct_on?: Maybe<Array<Notification_Notification_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Notification_Notification_Order_By>>;
+  where?: Maybe<Notification_Notification_Bool_Exp>;
+};
+
+
+/** columns and relationships of "notification.notification_priority" */
+export type Notification_Notification_PriorityNotifications_AggregateArgs = {
+  distinct_on?: Maybe<Array<Notification_Notification_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Notification_Notification_Order_By>>;
+  where?: Maybe<Notification_Notification_Bool_Exp>;
 };
 
 /** aggregated selection of "notification.notification_priority" */
@@ -11642,6 +11769,7 @@ export type Notification_Notification_Priority_Bool_Exp = {
   _not?: Maybe<Notification_Notification_Priority_Bool_Exp>;
   _or?: Maybe<Array<Notification_Notification_Priority_Bool_Exp>>;
   key?: Maybe<String_Comparison_Exp>;
+  notifications?: Maybe<Notification_Notification_Bool_Exp>;
   value?: Maybe<String_Comparison_Exp>;
 };
 
@@ -11656,6 +11784,7 @@ export enum Notification_Notification_Priority_Constraint {
 /** input type for inserting data into table "notification.notification_priority" */
 export type Notification_Notification_Priority_Insert_Input = {
   key?: Maybe<Scalars['String']>;
+  notifications?: Maybe<Notification_Notification_Arr_Rel_Insert_Input>;
   value?: Maybe<Scalars['String']>;
 };
 
@@ -11682,6 +11811,13 @@ export type Notification_Notification_Priority_Mutation_Response = {
   returning: Array<Notification_Notification_Priority>;
 };
 
+/** input type for inserting object relation for remote table "notification.notification_priority" */
+export type Notification_Notification_Priority_Obj_Rel_Insert_Input = {
+  data: Notification_Notification_Priority_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<Notification_Notification_Priority_On_Conflict>;
+};
+
 /** on conflict condition type for table "notification.notification_priority" */
 export type Notification_Notification_Priority_On_Conflict = {
   constraint: Notification_Notification_Priority_Constraint;
@@ -11692,6 +11828,7 @@ export type Notification_Notification_Priority_On_Conflict = {
 /** Ordering options when selecting data from "notification.notification_priority". */
 export type Notification_Notification_Priority_Order_By = {
   key?: Maybe<Order_By>;
+  notifications_aggregate?: Maybe<Notification_Notification_Aggregate_Order_By>;
   value?: Maybe<Order_By>;
 };
 
@@ -11765,8 +11902,12 @@ export type Notification_Notification_Status = {
   __typename?: 'notification_notification_status';
   hide: Scalars['Boolean'];
   id: Scalars['uuid'];
+  /** An object relationship */
+  notification: Notification_Notification;
   notification_id: Scalars['uuid'];
   read: Scalars['Boolean'];
+  /** An object relationship */
+  userProfile: Management_UserProfile;
   user_id: Scalars['String'];
 };
 
@@ -11813,8 +11954,10 @@ export type Notification_Notification_Status_Bool_Exp = {
   _or?: Maybe<Array<Notification_Notification_Status_Bool_Exp>>;
   hide?: Maybe<Boolean_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  notification?: Maybe<Notification_Notification_Bool_Exp>;
   notification_id?: Maybe<Uuid_Comparison_Exp>;
   read?: Maybe<Boolean_Comparison_Exp>;
+  userProfile?: Maybe<Management_UserProfile_Bool_Exp>;
   user_id?: Maybe<String_Comparison_Exp>;
 };
 
@@ -11830,8 +11973,10 @@ export enum Notification_Notification_Status_Constraint {
 export type Notification_Notification_Status_Insert_Input = {
   hide?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['uuid']>;
+  notification?: Maybe<Notification_Notification_Obj_Rel_Insert_Input>;
   notification_id?: Maybe<Scalars['uuid']>;
   read?: Maybe<Scalars['Boolean']>;
+  userProfile?: Maybe<Management_UserProfile_Obj_Rel_Insert_Input>;
   user_id?: Maybe<Scalars['String']>;
 };
 
@@ -11885,8 +12030,10 @@ export type Notification_Notification_Status_On_Conflict = {
 export type Notification_Notification_Status_Order_By = {
   hide?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  notification?: Maybe<Notification_Notification_Order_By>;
   notification_id?: Maybe<Order_By>;
   read?: Maybe<Order_By>;
+  userProfile?: Maybe<Management_UserProfile_Order_By>;
   user_id?: Maybe<Order_By>;
 };
 
@@ -17637,6 +17784,7 @@ export type Purchase_Delivery_Insert_Input = {
 export type Purchase_Delivery_Item = {
   __typename?: 'purchase_delivery_item';
   code: Scalars['String'];
+  cost?: Maybe<Scalars['numeric']>;
   /** An object relationship */
   delivery: Purchase_Delivery;
   delivery_id: Scalars['Int'];
@@ -17646,6 +17794,7 @@ export type Purchase_Delivery_Item = {
   /** An object relationship */
   substance: Product_Substance;
   substance_id: Scalars['uuid'];
+  unit: Scalars['String'];
   /** An object relationship */
   warehouse: Stock_Warehouse;
   warehouse_id: Scalars['uuid'];
@@ -17706,12 +17855,14 @@ export type Purchase_Delivery_Item_Arr_Rel_Insert_Input = {
 /** aggregate avg on columns */
 export type Purchase_Delivery_Item_Avg_Fields = {
   __typename?: 'purchase_delivery_item_avg_fields';
+  cost?: Maybe<Scalars['Float']>;
   delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Avg_Order_By = {
+  cost?: Maybe<Order_By>;
   delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
@@ -17722,6 +17873,7 @@ export type Purchase_Delivery_Item_Bool_Exp = {
   _not?: Maybe<Purchase_Delivery_Item_Bool_Exp>;
   _or?: Maybe<Array<Purchase_Delivery_Item_Bool_Exp>>;
   code?: Maybe<String_Comparison_Exp>;
+  cost?: Maybe<Numeric_Comparison_Exp>;
   delivery?: Maybe<Purchase_Delivery_Bool_Exp>;
   delivery_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
@@ -17729,6 +17881,7 @@ export type Purchase_Delivery_Item_Bool_Exp = {
   quantity?: Maybe<Numeric_Comparison_Exp>;
   substance?: Maybe<Product_Substance_Bool_Exp>;
   substance_id?: Maybe<Uuid_Comparison_Exp>;
+  unit?: Maybe<String_Comparison_Exp>;
   warehouse?: Maybe<Stock_Warehouse_Bool_Exp>;
   warehouse_id?: Maybe<Uuid_Comparison_Exp>;
 };
@@ -17741,6 +17894,7 @@ export enum Purchase_Delivery_Item_Constraint {
 
 /** input type for incrementing numeric columns in table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Inc_Input = {
+  cost?: Maybe<Scalars['numeric']>;
   delivery_id?: Maybe<Scalars['Int']>;
   quantity?: Maybe<Scalars['numeric']>;
 };
@@ -17748,6 +17902,7 @@ export type Purchase_Delivery_Item_Inc_Input = {
 /** input type for inserting data into table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Insert_Input = {
   code?: Maybe<Scalars['String']>;
+  cost?: Maybe<Scalars['numeric']>;
   delivery?: Maybe<Purchase_Delivery_Obj_Rel_Insert_Input>;
   delivery_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
@@ -17755,6 +17910,7 @@ export type Purchase_Delivery_Item_Insert_Input = {
   quantity?: Maybe<Scalars['numeric']>;
   substance?: Maybe<Product_Substance_Obj_Rel_Insert_Input>;
   substance_id?: Maybe<Scalars['uuid']>;
+  unit?: Maybe<Scalars['String']>;
   warehouse?: Maybe<Stock_Warehouse_Obj_Rel_Insert_Input>;
   warehouse_id?: Maybe<Scalars['uuid']>;
 };
@@ -17763,22 +17919,26 @@ export type Purchase_Delivery_Item_Insert_Input = {
 export type Purchase_Delivery_Item_Max_Fields = {
   __typename?: 'purchase_delivery_item_max_fields';
   code?: Maybe<Scalars['String']>;
+  cost?: Maybe<Scalars['numeric']>;
   delivery_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
   label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
   substance_id?: Maybe<Scalars['uuid']>;
+  unit?: Maybe<Scalars['String']>;
   warehouse_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Max_Order_By = {
   code?: Maybe<Order_By>;
+  cost?: Maybe<Order_By>;
   delivery_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   label?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
   substance_id?: Maybe<Order_By>;
+  unit?: Maybe<Order_By>;
   warehouse_id?: Maybe<Order_By>;
 };
 
@@ -17786,22 +17946,26 @@ export type Purchase_Delivery_Item_Max_Order_By = {
 export type Purchase_Delivery_Item_Min_Fields = {
   __typename?: 'purchase_delivery_item_min_fields';
   code?: Maybe<Scalars['String']>;
+  cost?: Maybe<Scalars['numeric']>;
   delivery_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
   label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
   substance_id?: Maybe<Scalars['uuid']>;
+  unit?: Maybe<Scalars['String']>;
   warehouse_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Min_Order_By = {
   code?: Maybe<Order_By>;
+  cost?: Maybe<Order_By>;
   delivery_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   label?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
   substance_id?: Maybe<Order_By>;
+  unit?: Maybe<Order_By>;
   warehouse_id?: Maybe<Order_By>;
 };
 
@@ -17824,6 +17988,7 @@ export type Purchase_Delivery_Item_On_Conflict = {
 /** Ordering options when selecting data from "purchase.delivery_item". */
 export type Purchase_Delivery_Item_Order_By = {
   code?: Maybe<Order_By>;
+  cost?: Maybe<Order_By>;
   delivery?: Maybe<Purchase_Delivery_Order_By>;
   delivery_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -17831,6 +17996,7 @@ export type Purchase_Delivery_Item_Order_By = {
   quantity?: Maybe<Order_By>;
   substance?: Maybe<Product_Substance_Order_By>;
   substance_id?: Maybe<Order_By>;
+  unit?: Maybe<Order_By>;
   warehouse?: Maybe<Stock_Warehouse_Order_By>;
   warehouse_id?: Maybe<Order_By>;
 };
@@ -17845,6 +18011,8 @@ export enum Purchase_Delivery_Item_Select_Column {
   /** column name */
   Code = 'code',
   /** column name */
+  Cost = 'cost',
+  /** column name */
   DeliveryId = 'delivery_id',
   /** column name */
   Id = 'id',
@@ -17855,29 +18023,35 @@ export enum Purchase_Delivery_Item_Select_Column {
   /** column name */
   SubstanceId = 'substance_id',
   /** column name */
+  Unit = 'unit',
+  /** column name */
   WarehouseId = 'warehouse_id'
 }
 
 /** input type for updating data in table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Set_Input = {
   code?: Maybe<Scalars['String']>;
+  cost?: Maybe<Scalars['numeric']>;
   delivery_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['uuid']>;
   label?: Maybe<Scalars['String']>;
   quantity?: Maybe<Scalars['numeric']>;
   substance_id?: Maybe<Scalars['uuid']>;
+  unit?: Maybe<Scalars['String']>;
   warehouse_id?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate stddev on columns */
 export type Purchase_Delivery_Item_Stddev_Fields = {
   __typename?: 'purchase_delivery_item_stddev_fields';
+  cost?: Maybe<Scalars['Float']>;
   delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Stddev_Order_By = {
+  cost?: Maybe<Order_By>;
   delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
@@ -17885,12 +18059,14 @@ export type Purchase_Delivery_Item_Stddev_Order_By = {
 /** aggregate stddev_pop on columns */
 export type Purchase_Delivery_Item_Stddev_Pop_Fields = {
   __typename?: 'purchase_delivery_item_stddev_pop_fields';
+  cost?: Maybe<Scalars['Float']>;
   delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Stddev_Pop_Order_By = {
+  cost?: Maybe<Order_By>;
   delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
@@ -17898,12 +18074,14 @@ export type Purchase_Delivery_Item_Stddev_Pop_Order_By = {
 /** aggregate stddev_samp on columns */
 export type Purchase_Delivery_Item_Stddev_Samp_Fields = {
   __typename?: 'purchase_delivery_item_stddev_samp_fields';
+  cost?: Maybe<Scalars['Float']>;
   delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Stddev_Samp_Order_By = {
+  cost?: Maybe<Order_By>;
   delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
@@ -17911,12 +18089,14 @@ export type Purchase_Delivery_Item_Stddev_Samp_Order_By = {
 /** aggregate sum on columns */
 export type Purchase_Delivery_Item_Sum_Fields = {
   __typename?: 'purchase_delivery_item_sum_fields';
+  cost?: Maybe<Scalars['numeric']>;
   delivery_id?: Maybe<Scalars['Int']>;
   quantity?: Maybe<Scalars['numeric']>;
 };
 
 /** order by sum() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Sum_Order_By = {
+  cost?: Maybe<Order_By>;
   delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
@@ -17926,6 +18106,8 @@ export enum Purchase_Delivery_Item_Update_Column {
   /** column name */
   Code = 'code',
   /** column name */
+  Cost = 'cost',
+  /** column name */
   DeliveryId = 'delivery_id',
   /** column name */
   Id = 'id',
@@ -17936,18 +18118,22 @@ export enum Purchase_Delivery_Item_Update_Column {
   /** column name */
   SubstanceId = 'substance_id',
   /** column name */
+  Unit = 'unit',
+  /** column name */
   WarehouseId = 'warehouse_id'
 }
 
 /** aggregate var_pop on columns */
 export type Purchase_Delivery_Item_Var_Pop_Fields = {
   __typename?: 'purchase_delivery_item_var_pop_fields';
+  cost?: Maybe<Scalars['Float']>;
   delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Var_Pop_Order_By = {
+  cost?: Maybe<Order_By>;
   delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
@@ -17955,12 +18141,14 @@ export type Purchase_Delivery_Item_Var_Pop_Order_By = {
 /** aggregate var_samp on columns */
 export type Purchase_Delivery_Item_Var_Samp_Fields = {
   __typename?: 'purchase_delivery_item_var_samp_fields';
+  cost?: Maybe<Scalars['Float']>;
   delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Var_Samp_Order_By = {
+  cost?: Maybe<Order_By>;
   delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
@@ -17968,12 +18156,14 @@ export type Purchase_Delivery_Item_Var_Samp_Order_By = {
 /** aggregate variance on columns */
 export type Purchase_Delivery_Item_Variance_Fields = {
   __typename?: 'purchase_delivery_item_variance_fields';
+  cost?: Maybe<Scalars['Float']>;
   delivery_id?: Maybe<Scalars['Float']>;
   quantity?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "purchase.delivery_item" */
 export type Purchase_Delivery_Item_Variance_Order_By = {
+  cost?: Maybe<Order_By>;
   delivery_id?: Maybe<Order_By>;
   quantity?: Maybe<Order_By>;
 };
@@ -33751,7 +33941,6 @@ export type InsertServiceDraftMutationVariables = Exact<{
   quantity?: Maybe<Scalars['numeric']>;
   ml?: Maybe<Scalars['numeric']>;
   draft_id?: Maybe<Scalars['Int']>;
-  warehouse_id?: Maybe<Scalars['uuid']>;
   labelFactory?: Maybe<Scalars['String']>;
 }>;
 
@@ -33812,9 +34001,8 @@ export type TransformQuotationToOrderMutationVariables = Exact<{
 export type TransformQuotationToOrderMutation = { __typename?: 'mutation_root', update_sales_draft_by_pk?: Maybe<{ __typename?: 'sales_draft', status: Sales_Draft_Status_Enum }>, insert_sales_order_one?: Maybe<{ __typename?: 'sales_order', date: any, deadline: any, draft_id: number, id: number, delivery_status: string, payment_status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, contact?: Maybe<{ __typename?: 'contact_contact', code?: Maybe<string>, name: string }>, customer: { __typename?: 'contact_customer', code?: Maybe<string>, name: string, phone: string }, salepoint: { __typename?: 'management_salesPoint', name: string } }>, update_sales_quotation?: Maybe<{ __typename?: 'sales_quotation_mutation_response', affected_rows: number }> };
 
 export type GetDeliveriesByQueryVariables = Exact<{
-  dateStart?: Maybe<Scalars['date']>;
-  dateEnd?: Maybe<Scalars['date']>;
-  status?: Maybe<Scalars['String']>;
+  date?: Maybe<Date_Comparison_Exp>;
+  status?: Maybe<String_Comparison_Exp>;
 }>;
 
 
@@ -38489,7 +38677,7 @@ export const InsertManyServicesDocument = gql`
     }
   }
 export const InsertServiceDraftDocument = gql`
-    mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int, $warehouse_id: uuid = "null", $labelFactory: String) {
+    mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int, $labelFactory: String) {
   insert_sales_service_draft_one(
     object: {product_draft: {data: {company_id: $company_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id}}, dependent_id: $dependent_id, labelFactory: $labelFactory}
   ) {
@@ -38671,10 +38859,8 @@ export const TransformQuotationToOrderDocument = gql`
     }
   }
 export const GetDeliveriesByDocument = gql`
-    query getDeliveriesBy($dateStart: date, $dateEnd: date, $status: String) {
-  sales_delivery(
-    where: {createdAt: {_gte: $dateStart, _lte: $dateEnd}, status: {_eq: $status}}
-  ) {
+    query getDeliveriesBy($date: date_comparison_exp, $status: String_comparison_exp) {
+  sales_delivery(where: {createdAt: $date, status: $status}) {
     id
     order_id
     status

@@ -29,7 +29,11 @@ export class DeliveryService {
   ) {}
 
   getBy(params: deliveryFilter) {
-    return this.getDeliveriesByGQL.fetch(params);
+    const paramsToPass = {date: {}, status: {}};
+    if (params.dateStart)  paramsToPass['date']["_gte"] = params.dateStart;
+    if (params.dateEnd)  paramsToPass['date']["_lte"] = params.dateEnd;
+    if (params.status)  paramsToPass['status'] = {"_eq": params.status};
+    return this.getDeliveriesByGQL.fetch(paramsToPass);
   }
 
   getOneById(id: string) {

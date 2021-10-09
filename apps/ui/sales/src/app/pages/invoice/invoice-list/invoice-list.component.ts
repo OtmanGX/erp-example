@@ -28,7 +28,7 @@ export class InvoiceListComponent implements GridView {
     const date = new Date();
     this.dateText = date.getFullYear() + ' ' + fr.localize.month(date.getMonth(), { width: 'abbreviated' });
     this.invoiceFacade.loadAll({
-      dateStart: startOfMonth(date)
+      dateStart: startOfMonth(date), dateEnd: new Date()
     });
   }
 
