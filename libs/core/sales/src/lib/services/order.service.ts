@@ -25,7 +25,10 @@ export class OrderService {
   ) {}
 
   getAll(params: invoiceFilter = {}) {
-    return this.getAllOrdersGQL.watch(params).valueChanges;
+    const paramsToPass = {date: {}};
+    if (params.dateStart)  paramsToPass['date']["_gte"] = params.dateStart;
+    if (params.dateEnd)  paramsToPass['date']["_lte"] = params.dateEnd;
+    return this.getAllOrdersGQL.watch(paramsToPass).valueChanges;
   }
 
   removeMany(ids: number[]) {

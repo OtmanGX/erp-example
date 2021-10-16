@@ -14,7 +14,7 @@ import { ROLES } from '@tanglass-erp/store/app';
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
-    // canActivate: [Auth0Guard],
+    canActivate: [Auth0Guard],
     children: [
       {
         path: "",

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ErpPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import { QuotationHeaders } from '@TanglassUi/sales/utils/grid-headers';
+import { DraftHeaders } from '@TanglassUi/sales/utils/grid-headers';
 import { Router } from '@angular/router';
 import { DraftFacade } from '@tanglass-erp/store/sales';
 
@@ -49,7 +49,7 @@ export class DraftComponent implements GridView {
 
   setColumnDefs(): void {
     this.columnDefs = [
-      ...QuotationHeaders,
+      ...DraftHeaders,
       { field: 'id', headerName: 'Action', type: "editColumn" }
     ];
   }

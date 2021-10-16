@@ -37,11 +37,13 @@ import { PopQuotationTransferComponent } from '@TanglassUi/sales/components/pop-
 import { InvoiceLinesComponent } from '@TanglassUi/sales/components/invoice-lines/invoice-lines.component';
 import { StoreManufacturingModule } from '@tanglass-erp/store/manufacturing';
 import { OrderRepairsComponent } from '@TanglassUi/sales/components/order-repairs/order-repairs.component';
+import { UpdateQuotationComponent } from '@TanglassUi/sales/pages/quotation/update-quotation/update-quotation.component';
 
 @NgModule({
   declarations: [
     SalesComponent,
     DraftComponent,
+    UpdateQuotationComponent,
     CreateDraftComponent,
     ProductDraftComponent,
     PopProductComponent,

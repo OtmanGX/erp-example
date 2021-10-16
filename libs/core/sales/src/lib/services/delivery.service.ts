@@ -70,8 +70,8 @@ export class DeliveryService {
     return this.deleteDeliveryGQL.mutate({ ids });
   }
 
-  getOrderDeliveries(draft_id: number) {
-    return this.getOrderDeliveriesGQL.fetch({ draft_id });
+  getOrderDeliveries(draft_id) {
+    return this.getOrderDeliveriesGQL.fetch({ "draft_id": draft_id?{"_eq": draft_id}:{}});
   }
 
   calculateAmounts(delivery_lines: DeliveryLine[]) {

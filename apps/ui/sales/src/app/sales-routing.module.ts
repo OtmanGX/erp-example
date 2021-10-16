@@ -15,6 +15,7 @@ import { InvoiceAddComponent } from '@TanglassUi/sales/pages/invoice/invoice-add
 import { InvoiceReadyComponent } from '@TanglassUi/sales/pages/invoice/invoice-ready/invoice-ready.component';
 import { QuotationCardComponent } from "@TanglassUi/sales/pages/quotation/quotation-card/quotation-card.component";
 import { ROLES } from '@tanglass-erp/store/app';
+import { UpdateQuotationComponent } from '@TanglassUi/sales/pages/quotation/update-quotation/update-quotation.component';
 const routes: Routes = [
   {
     path: '',
@@ -32,6 +33,7 @@ const routes: Routes = [
         children: [
           { path: '', component: QuotationComponent },
           { path: 'createQuotation', component: CreateQuotationComponent },
+          { path: 'update/:id', component: UpdateQuotationComponent, data: {breadcrumb: "Mettre à jour"} },
           { path: ':id', component: QuotationCardComponent, data: {breadcrumb: "Détails"} },
 
         ],

@@ -1,5 +1,5 @@
-query GeShortSalePoints($ids: [uuid!] = null) {
-  management_salesPoint(where: {id: {_in: $ids}}) {
+query GeShortSalePoints($ids: uuid_comparison_exp) {
+  management_salesPoint(where: {id: $ids}) {
     name
     id
     cash_boxes {

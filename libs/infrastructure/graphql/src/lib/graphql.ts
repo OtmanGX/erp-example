@@ -32746,7 +32746,7 @@ export type GetShortProvidersQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetShortProvidersQuery = { __typename?: 'query_root', contact_provider: Array<{ __typename?: 'contact_provider', code?: Maybe<string>, name: string }> };
 
 export type GeShortSalePointsQueryVariables = Exact<{
-  ids?: Maybe<Array<Scalars['uuid']> | Scalars['uuid']>;
+  ids?: Maybe<Uuid_Comparison_Exp>;
 }>;
 
 
@@ -34000,6 +34000,14 @@ export type TransformQuotationToOrderMutationVariables = Exact<{
 
 export type TransformQuotationToOrderMutation = { __typename?: 'mutation_root', update_sales_draft_by_pk?: Maybe<{ __typename?: 'sales_draft', status: Sales_Draft_Status_Enum }>, insert_sales_order_one?: Maybe<{ __typename?: 'sales_order', date: any, deadline: any, draft_id: number, id: number, delivery_status: string, payment_status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, contact?: Maybe<{ __typename?: 'contact_contact', code?: Maybe<string>, name: string }>, customer: { __typename?: 'contact_customer', code?: Maybe<string>, name: string, phone: string }, salepoint: { __typename?: 'management_salesPoint', name: string } }>, update_sales_quotation?: Maybe<{ __typename?: 'sales_quotation_mutation_response', affected_rows: number }> };
 
+export type UpdateQuotationMutationVariables = Exact<{
+  id: Scalars['Int'];
+  params?: Maybe<Sales_Quotation_Set_Input>;
+}>;
+
+
+export type UpdateQuotationMutation = { __typename?: 'mutation_root', update_sales_quotation_by_pk?: Maybe<{ __typename?: 'sales_quotation', id: number }> };
+
 export type GetDeliveriesByQueryVariables = Exact<{
   date?: Maybe<Date_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
@@ -34016,7 +34024,7 @@ export type GetDeliveryByIdQueryVariables = Exact<{
 export type GetDeliveryByIdQuery = { __typename?: 'query_root', sales_delivery_by_pk?: Maybe<{ __typename?: 'sales_delivery', id: any, status: string, ref?: Maybe<string>, ref_num?: Maybe<number>, client_id: any, company_id: any, contact_id?: Maybe<any>, payment_method: string, predicted_date: any, isReturned: boolean, order_id: number, createdAt: any, amount_ttc: any, amount_tva: any, amount_ht: any, delivery_lines: Array<{ __typename?: 'sales_delivery_line', id: any, amount: any, delivered: any, product_draft_id: any, product: { __typename?: 'sales_product_draft', type?: Maybe<Sales_Product_Type_Enum>, label: string, product_code: string, price?: Maybe<any>, quantity?: Maybe<any>, count?: Maybe<any>, delivered: any, unit?: Maybe<string> } }>, company: { __typename?: 'management_company', name: string }, client: { __typename?: 'contact_customer', name: string, mail?: Maybe<string>, phone: string, code?: Maybe<string> }, contact?: Maybe<{ __typename?: 'contact_contact', mail?: Maybe<string>, name: string, phone: string }>, order: { __typename?: 'sales_order', ref?: Maybe<string>, ref_num?: Maybe<number> } }> };
 
 export type GetOrderDeliveriesQueryVariables = Exact<{
-  draft_id?: Maybe<Scalars['Int']>;
+  draft_id?: Maybe<Int_Comparison_Exp>;
 }>;
 
 
@@ -34064,8 +34072,7 @@ export type GetInvoiceByIdQueryVariables = Exact<{
 export type GetInvoiceByIdQuery = { __typename?: 'query_root', sales_invoice_by_pk?: Maybe<{ __typename?: 'sales_invoice', id: any, ref?: Maybe<string>, ref_num?: Maybe<number>, client_id: any, company_id: any, contact_id?: Maybe<any>, date: any, payment_method: string, amount_tva: any, amount_ttc: any, amount_ht: any, deliveries: Array<{ __typename?: 'sales_invoice_delivery', delivery_id: any, delivery: { __typename?: 'sales_delivery', ref?: Maybe<string>, ref_num?: Maybe<number> } }>, invoice_lines: Array<{ __typename?: 'sales_invoice_line', id: any, unit_price: any, product_code: string, product_label: string, product_type: string, quantity: any, total: any }>, client: { __typename?: 'contact_customer', name: string, phone: string, mail?: Maybe<string>, code?: Maybe<string> }, company: { __typename?: 'management_company', id: any, name: string }, contact?: Maybe<{ __typename?: 'contact_contact', mail?: Maybe<string>, name: string, phone: string }> }> };
 
 export type GetAllOrdersQueryVariables = Exact<{
-  dateStart?: Maybe<Scalars['date']>;
-  dateEnd?: Maybe<Scalars['date']>;
+  date?: Maybe<Date_Comparison_Exp>;
 }>;
 
 
@@ -34114,7 +34121,7 @@ export type GetQuotationByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetQuotationByIdQuery = { __typename?: 'query_root', sales_quotation_by_pk?: Maybe<{ __typename?: 'sales_quotation', date: any, deadline: any, draft_id: number, id: number, status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', id: any, name: string, phone: string, code?: Maybe<string> }, draft: { __typename?: 'sales_draft', product_drafts: Array<{ __typename?: 'sales_product_draft', id: any, label: string, heigth?: Maybe<any>, company_name?: Maybe<string>, count?: Maybe<any>, delivered: any, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, status: string, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }>, consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any> }>, service_draft?: Maybe<{ __typename?: 'sales_service_draft', dependent_id: any }> }> }, salepoint: { __typename?: 'management_salesPoint', name: string } }> };
+export type GetQuotationByIdQuery = { __typename?: 'query_root', sales_quotation_by_pk?: Maybe<{ __typename?: 'sales_quotation', contact_id?: Maybe<any>, date: any, deadline: any, draft_id: number, id: number, status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', id: any, name: string, phone: string, code?: Maybe<string> }, draft: { __typename?: 'sales_draft', product_drafts: Array<{ __typename?: 'sales_product_draft', id: any, label: string, heigth?: Maybe<any>, company_name?: Maybe<string>, count?: Maybe<any>, delivered: any, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, status: string, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }>, consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any> }>, service_draft?: Maybe<{ __typename?: 'sales_service_draft', dependent_id: any }> }> }, salepoint: { __typename?: 'management_salesPoint', id: any, name: string } }> };
 
 export const Product_Product_Glass_ViewFragmentFragmentDoc = gql`
     fragment product_product_glass_viewFragment on product_product_glass_view {
@@ -34519,8 +34526,8 @@ export const GetShortProvidersDocument = gql`
     }
   }
 export const GeShortSalePointsDocument = gql`
-    query GeShortSalePoints($ids: [uuid!] = null) {
-  management_salesPoint(where: {id: {_in: $ids}}) {
+    query GeShortSalePoints($ids: uuid_comparison_exp) {
+  management_salesPoint(where: {id: $ids}) {
     name
     id
     cash_boxes {
@@ -38858,6 +38865,24 @@ export const TransformQuotationToOrderDocument = gql`
       super(apollo);
     }
   }
+export const UpdateQuotationDocument = gql`
+    mutation updateQuotation($id: Int!, $params: sales_quotation_set_input) {
+  update_sales_quotation_by_pk(pk_columns: {id: $id}, _set: $params) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateQuotationGQL extends Apollo.Mutation<UpdateQuotationMutation, UpdateQuotationMutationVariables> {
+    document = UpdateQuotationDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetDeliveriesByDocument = gql`
     query getDeliveriesBy($date: date_comparison_exp, $status: String_comparison_exp) {
   sales_delivery(where: {createdAt: $date, status: $status}) {
@@ -38966,8 +38991,8 @@ export const GetDeliveryByIdDocument = gql`
     }
   }
 export const GetOrderDeliveriesDocument = gql`
-    query GetOrderDeliveries($draft_id: Int) {
-  sales_delivery_line(where: {product_draft: {draft_id: {_eq: $draft_id}}}) {
+    query GetOrderDeliveries($draft_id: Int_comparison_exp) {
+  sales_delivery_line(where: {product_draft: {draft_id: $draft_id}}) {
     amount
     delivered
     id
@@ -39215,8 +39240,8 @@ export const GetInvoiceByIdDocument = gql`
     }
   }
 export const GetAllOrdersDocument = gql`
-    query GetAllOrders($dateStart: date, $dateEnd: date) {
-  sales_order(where: {date: {_gte: $dateStart, _lte: $dateEnd}}) {
+    query GetAllOrders($date: date_comparison_exp) {
+  sales_order(where: {date: $date}) {
     company {
       name
       id
@@ -39501,6 +39526,7 @@ export const GetQuotationByIdDocument = gql`
       phone
       code
     }
+    contact_id
     draft {
       product_drafts {
         id
@@ -39539,6 +39565,7 @@ export const GetQuotationByIdDocument = gql`
     total_tax
     total_ttc
     salepoint {
+      id
       name
     }
   }

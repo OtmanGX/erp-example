@@ -48,7 +48,7 @@ export class ShortFeatureService {
   }
 
   getAllSalePoints(ids?: string[]) {
-    return this.getShortSalePointsGQL.watch({ids}).valueChanges;
+    return this.getShortSalePointsGQL.watch({"ids": ids?{"_in": ids}:{}}).valueChanges;
   }
 
   getAllWarehouses() {

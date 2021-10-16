@@ -1,5 +1,5 @@
-query GetAllOrders($dateStart: date, $dateEnd: date) {
-  sales_order(where: {date: {_gte: $dateStart, _lte: $dateEnd}}) {
+query GetAllOrders($date: date_comparison_exp) {
+  sales_order(where: {date: $date}) {
       company {
         name
         id

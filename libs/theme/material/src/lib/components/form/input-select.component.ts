@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from "@angular/forms";
 import { FieldConfig } from "../../interfaces/field.interface";
+import { REQUIRED } from '../../../helpers/validators';
+
 @Component({
   selector: "app-input-select",
   template: `
@@ -11,7 +13,7 @@ import { FieldConfig } from "../../interfaces/field.interface";
     </mat-option>
   </mat-autocomplete>
   <mat-label>{{field.label}}</mat-label>
-  <input matInput [matAutocomplete]="auto" [formControlName]="field.name" [type]="field.inputType">
+  <input matInput [matAutocomplete]="auto" [formControlName]="field.name" [type]="field.inputType" [required]='field?.validations?.includes(REQUIRED)'>
 <ng-container *ngFor="let validation of field.validations;" ngProjectAs="mat-error">
 <mat-error *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</mat-error>
 </ng-container>
@@ -22,6 +24,8 @@ import { FieldConfig } from "../../interfaces/field.interface";
 export class InputSelectComponent implements OnInit {
   field: FieldConfig;
   group: FormGroup;
+  REQUIRED = REQUIRED;
+
   constructor() {}
   ngOnInit() {}
 }

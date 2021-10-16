@@ -26,7 +26,7 @@ export function MustMatch(controlName: string, matchingControlName: string) {
 const REQUIRED = {
   name: "required",
   validator: Validators.required,
-  message: "Required"
+  message: "Requis"
 };
 const MAXNUMBER = (limit) =>
   ({
@@ -49,14 +49,14 @@ const MINLENGTH = (length) => (
   {
     name: "minlength",
     validator: Validators.minLength(length),
-    message: `Min ${length} characters`
+    message: `Min ${length} caractères`
   }
 );
 const MAXLENGTH = (length) => (
   {
     name: "maxlength",
     validator: Validators.maxLength(length),
-    message: `Max ${length} characters`
+    message: `Max ${length} caractères`
   }
 );
 const PASSWORD = [

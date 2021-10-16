@@ -24,7 +24,7 @@ const regConfigDeliveryInfos = (
     name: 'date',
     label: 'Date',
     inputType: 'text',
-    value: data?.date,
+    value: data?.date ?? new Date(),
   },
 
 

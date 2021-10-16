@@ -82,7 +82,10 @@ const regConfigProduct = (data?: Product, listCompanies: ListObservable = []) =>
   {
     type: "select", label: "Sociétés", multiple: true, name: "product_companies",
     value: data?.companies.map(e => e.id),
-    options: listCompanies
+    options: listCompanies,
+    validations: [
+      REQUIRED,
+    ]
   }
 ];
 
