@@ -10,6 +10,7 @@ query GetQuotationById($id: Int!) {
       phone
       code
     }
+    contact_id
     draft {
       product_drafts {
         id
@@ -48,6 +49,7 @@ query GetQuotationById($id: Int!) {
     total_tax
     total_ttc
     salepoint {
+      id
       name
     }
   }

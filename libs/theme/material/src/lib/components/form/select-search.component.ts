@@ -4,6 +4,8 @@ import { FieldConfig } from "../../interfaces/field.interface";
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { MatSelect } from '@angular/material/select';
 import { takeUntil } from 'rxjs/operators';
+import { REQUIRED } from '../../../helpers/validators';
+
 @Component({
   selector: "app-select",
   template: `
@@ -13,6 +15,7 @@ import { takeUntil } from 'rxjs/operators';
                   [placeholder]="field.label"
                   [formControlName]="field.name"
                   [(value)]="field.value"
+                  [required]='field?.validations?.includes(REQUIRED)'
                   #multiSelect>
         <mat-option>
           <ngx-mat-select-search
@@ -34,6 +37,7 @@ import { takeUntil } from 'rxjs/operators';
 export class SelectSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   field: FieldConfig;
   group: FormGroup;
+  REQUIRED = REQUIRED;
   options: Array<any> = [];
   public filterCtrl: FormControl = new FormControl();
   public filteredDataMulti$: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);

@@ -89,6 +89,22 @@ export const QuotationHeaders = [
   { field: 'status', headerName: 'Statut', type: 'textColumn' },
 ];
 
+export const DraftHeaders = [
+  {
+    field: 'id',
+    headerName: 'N°',
+  },
+  { field: 'customer.name', headerName: 'Client', type: 'textColumn' },
+  { field: 'customer.phone', headerName: 'Phone.N°', type: 'textColumn' },
+  { field: 'date', headerName: 'Date', type: 'textColumn' },
+  { field: 'deadline', headerName: 'Expiration', type: 'textColumn' },
+  { field: 'company.name', headerName: 'Société', type: 'textColumn' },
+  { field: 'total_ttc', headerName: 'Total TTC', type: 'numberColumn' },
+  { field: 'total_tax', headerName: 'Total TVA', type: 'numberColumn' },
+  { field: 'total_ht', headerName: 'Total HT', type: 'numberColumn' },
+  { field: 'status', headerName: 'Statut', type: 'textColumn' },
+];
+
 export const OrderHeaders = [
   {
     field: 'id',

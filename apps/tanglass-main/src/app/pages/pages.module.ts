@@ -14,7 +14,7 @@ import { ROLES } from '@tanglass-erp/store/app';
 
 const routes: Routes = [
   { path: '', component: PagesComponent,
-    // canActivate: [Auth0Guard],
+    canActivate: [Auth0Guard],
     children: [
       {
         path: "",
@@ -51,12 +51,14 @@ const routes: Routes = [
       {
         path: 'contact',
         data: { title: 'Contact', breadcrumb: "Contact", noLink: true},
+        canActivate: [Auth0Guard],
         loadChildren: () =>
           import('@TanglassUi/contact/contact.module').then(m => m.ContactModule),
       },
       {
         path: 'inventory',
         data: { title: 'Stock', breadcrumb: "Stock", noLink: true},
+        canActivate: [Auth0Guard],
         loadChildren: () =>
           import('@TanglassUi/inventory/inventory.module').then(m => m.InventoryModule),
       },
@@ -69,6 +71,7 @@ const routes: Routes = [
       {
         path: 'purchase',
         data: { title: 'Achat', breadcrumb: "Achat", noLink: true},
+        canActivate: [Auth0Guard],
         loadChildren: () =>
           import('@TanglassUi/purchase/purchase.module').then(m => m.PurchaseModule),
       },
@@ -81,12 +84,14 @@ const routes: Routes = [
       },{
         path: 'cash-register',
         data: { title: 'Caisse', breadcrumb: "Caisse"},
+        canActivate: [Auth0Guard],
         loadChildren: () =>
           import('@TanglassUi/cash-register/cash-register.module').then(m => m.CashRegisterModule),
       },
       {
         path: 'manufacturing',
         data: { title: 'Fabricarion', breadcrumb: "Fabrication", noLink: true},
+        canActivate: [Auth0Guard],
         loadChildren: () =>
           import('@TanglassUi/manufacturing/manufacturing.module').then(m => m.ManufacturingModule),
       },

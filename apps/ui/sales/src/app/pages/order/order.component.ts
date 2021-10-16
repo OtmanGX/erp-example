@@ -58,7 +58,8 @@ export class OrderComponent implements GridView {
         break;
       case Operations.dateChange:
         this.facade.loadAllOrders(event.data);
-        case this.deliverEvent:
+        break;
+      case this.deliverEvent:
         break;
     }
   }
@@ -68,11 +69,11 @@ export class OrderComponent implements GridView {
   setColumnDefs(): void {
     this.columnDefs = [
       ...OrderHeaders,
-      {field: 'id', headerName: 'Action', type: "editColumn", cellRendererParams: (params) => (
-          {
-            extra: [{ icon: "delivery_dining", tooltip: "délivrer", event: "deliver" }],
-          }
-        )},
+      // {field: 'id', headerName: 'Action', type: "editColumn", cellRendererParams: (params) => (
+      //     {
+      //       extra: [{ icon: "delivery_dining", tooltip: "délivrer", event: "deliver" }],
+      //     }
+      //   )},
     ];
   }
 

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { ProductDraftFacade } from '../product-draft/product-draft.facade';
 import { DraftFacade } from '../draft/draft.facade';
+import { ToastService } from '@TanglassTheme/services/toast.service';
 
 @Injectable()
 export class QuotationEffects {
@@ -65,6 +66,33 @@ export class QuotationEffects {
       )
     );
   });
+
+  updateQuotation$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(QuotationActions.updateQuotation),
+      mergeMap((action) =>
+        this.quotationService.updateOne(action.quotation).pipe(
+          map((data) => {
+            this.toastrService.showToast(
+              'success',
+              'Devis',
+              'Mise à jour avec succès',
+            );
+            this.router.navigate([
+              'sales/quotation',
+            ]);
+            return QuotationActions.updateQuotationSuccess({
+              quotation: data.data.update_sales_quotation_by_pk,
+            });
+          }),
+          catchError((error) =>
+            of(QuotationActions.updateQuotationFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
 
   getQuotationById$ = createEffect(() => {
     return this.actions$.pipe(
@@ -150,6 +178,7 @@ export class QuotationEffects {
     private router: Router,
     private productDraftFacade: ProductDraftFacade,
     private notificationService: NotificationFacadeService,
+    private toastrService: ToastService,
     private draftFacade: DraftFacade
   ) {}
 }

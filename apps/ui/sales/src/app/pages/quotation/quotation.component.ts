@@ -48,7 +48,9 @@ export class QuotationComponent implements GridView {
     switch (event.action) {
       case Operations.add:
         this.router.navigateByUrl('sales/quotation/createQuotation');
+        break;
       case Operations.update:
+        this.router.navigateByUrl(`sales/quotation/update/${event.data.id}`)
         break;
       case Operations.delete:
         this.facade.removeMany(event.data.map(e => e.id));

@@ -5,7 +5,7 @@ import * as NotificationActions from './notification.actions';
 import { ToastService, NotificationService } from '@tanglass-erp/core/common';
 import { MNotification } from './notification.model';
 import { AuthFacadeService } from '../auth/auth-facade.service';
-import { take } from 'rxjs/operators';
+import { take, filter, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -25,12 +25,14 @@ export class NotificationFacadeService {
   }
 
   public loadNotifications() {
-    const { id, role } = this.authService.currentUser;
-    this.dispatch(NotificationActions.loadNotifications({user_id: id, role}));
+    this.authService.currentUser$.pipe(filter(e => !!e)).subscribe(value => {
+      const { id, role } = value;
+      this.dispatch(NotificationActions.loadNotifications({user_id: id, role}));
+    })
   }
 
   changeNotificationState(hide: boolean) {
-    this.notifications$.pipe(take(1)).subscribe((notifications) =>
+    this.notifications$.pipe(map(value => value.filter(x=> x.id)), take(1)).subscribe((notifications) =>
       this.dispatch(
         NotificationActions.changeNotificationsState({
           ids: notifications.map((e) => e.id),

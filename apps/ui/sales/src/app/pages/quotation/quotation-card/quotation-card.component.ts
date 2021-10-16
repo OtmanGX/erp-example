@@ -69,11 +69,16 @@ export class QuotationCardComponent extends ModelCardComponent {
   //   this.isCardMode = false;
   // }
   save() {}
+
   cancel() {
-    this.router.navigate(['/sales/quotaion']);
+    this.router.navigate(['/sales/quotation']);
   }
   print() {
     this.facade.printQuotation(this.data);
+  }
+
+  edit() {
+    this.router.navigate(['/sales/quotation/update/'+this.id]);
   }
   transformToOrder(): void {
     let amount: Amount;

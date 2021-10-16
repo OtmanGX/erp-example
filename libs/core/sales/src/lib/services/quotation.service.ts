@@ -5,10 +5,12 @@ import {
   GetQuotationByIdGQL,
   InsertQuotationGQL,
   InsertQuotationMutationVariables,
+  UpdateQuotationGQL,
+  UpdateQuotationMutationVariables,
   TransformQuotationToOrderGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
-import { TransformedQuotation } from '../models/quotation';
+import { TransformedQuotation, InsertedQuotation } from '../models/quotation';
 import { invoiceFilter } from '../models/invoice';
 import { productAdapter } from '../utils/product-adapter';
 
@@ -19,6 +21,7 @@ export class QuotationService {
   constructor(
     private getAllQuotationsGQL: GetAllQuotationsGQL,
     private insertQuotationGQL: InsertQuotationGQL,
+    private updateQuotationGQL: UpdateQuotationGQL,
     private getQuotationByIdGQL: GetQuotationByIdGQL,
     private deleteQuotationsGQL: DeleteQuotationsGQL,
     private transformQuotationToOrderGQL: TransformQuotationToOrderGQL
@@ -44,6 +47,12 @@ export class QuotationService {
   insertOne(order: InsertQuotationMutationVariables) {
     return this.insertQuotationGQL.mutate(order);
   }
+
+  updateOne(quotation: Partial<InsertedQuotation>) {
+    const {id, ...params} = quotation;
+    return this.updateQuotationGQL.mutate({id, params})
+  }
+
   removeMany(ids: number[]) {
     return this.deleteQuotationsGQL.mutate({ ids });
   }

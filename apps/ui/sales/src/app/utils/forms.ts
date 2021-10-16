@@ -15,6 +15,7 @@ import {
   InsertedInvoice,
   PaymentMethod,
 } from '@tanglass-erp/core/sales';
+import { addDays } from 'date-fns';
 
 type ListObservable = Observable<any> | Array<any>;
 
@@ -193,60 +194,63 @@ const regConfigDraftInfos = (
   contacts: any = [],
   companies: any = [],
   salesPoints: any = []
-) => [
-  {
-    type: 'selectSearch',
-    name: 'customer_id',
-    label: 'Clients',
-    inputType: 'text',
-    value: data?.customer_id,
-    filterFields: ['name', 'phone'],
-    fieldsToShow: ['name', 'phone'],
-    options: customers,
-  },
-  {
-    type: 'selectSearch',
-    name: 'contact_id',
-    label: 'Contacts',
-    inputType: 'text',
-    value: data?.contact_id,
-    filterFields: ['name', 'code'],
-    fieldsToShow: ['name', 'code'],
-    options: contacts,
-  },
-  {
-    type: 'select',
-    name: 'company_id',
-    label: 'Société',
-    inputType: 'text',
-    value: data?.company_id,
-    options: companies,
-    validations: [REQUIRED],
-  },
-  {
-    type: 'select',
-    name: 'salepoint_id',
-    label: 'Point de vente',
-    inputType: 'text',
-    options: salesPoints,
-    value: data?.salepoint_id,
-    validations: [],
-  },
-  {
-    type: 'date',
-    name: 'date',
-    label: 'Date',
-    inputType: 'text',
-    value: data?.date,
-  },
-  {
-    type: 'date',
-    name: 'deadline',
-    label: 'Délai',
-    inputType: 'text',
-    value: data?.deadline,
-  },
-];
+) => {
+  return [
+    {
+      type: 'selectSearch',
+      name: 'customer_id',
+      label: 'Clients',
+      inputType: 'text',
+      value: data?.customer_id ?? data?.customer?.id,
+      filterFields: ['name', 'phone'],
+      fieldsToShow: ['name', 'phone'],
+      options: customers,
+      validations: [REQUIRED],
+    },
+    {
+      type: 'selectSearch',
+      name: 'contact_id',
+      label: 'Contacts',
+      inputType: 'text',
+      value: data?.contact_id ?? data?.contact?.id,
+      filterFields: ['name', 'code'],
+      fieldsToShow: ['name', 'code'],
+      options: contacts,
+    },
+    {
+      type: 'select',
+      name: 'company_id',
+      label: 'Société',
+      inputType: 'text',
+      value: data?.company_id ?? data?.company?.id,
+      options: companies,
+      validations: [REQUIRED],
+    },
+    {
+      type: 'select',
+      name: 'salepoint_id',
+      label: 'Point de vente',
+      inputType: 'text',
+      options: salesPoints,
+      value: data?.salepoint_id ?? data?.salepoint?.id,
+      validations: [],
+    },
+    {
+      type: 'date',
+      name: 'date',
+      label: 'Date',
+      inputType: 'text',
+      value: data?.date ?? new Date(),
+    },
+    {
+      type: 'date',
+      name: 'deadline',
+      label: 'Délai',
+      inputType: 'text',
+      value: data?.deadline ?? addDays(new Date(), 30),
+    },
+  ];
+}
 
 const regConfigGlassItem = (
   glasses: Observable<Glass[]>,
@@ -303,7 +307,7 @@ const regConfigGlassItem = (
     label: 'N° de piéces',
     inputType: 'number',
     value: data?.data?.count,
-    validations: [REQUIRED, MAXNUMBER(limit)],
+    validations: [MAXNUMBER(limit)],
   },
   {
     type: 'input',
@@ -393,7 +397,7 @@ const regConfigCustomerItem = (
     label: 'N° de piéces',
     inputType: 'number',
     value: data?.data?.count,
-    validations: [REQUIRED, MAXNUMBER(limit)],
+    validations: [MAXNUMBER(limit)],
   },
 
   {

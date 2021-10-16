@@ -5,6 +5,7 @@ import * as QuotationSelectors from './quotation.selectors';
 import * as QuotationsActions from './quotation.actions';
 import { InsertedQuotation, invoiceFilter, Order, Quotation, TransformedQuotation } from '@tanglass-erp/core/sales';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
+import { filter } from 'rxjs/operators';
 
 @Injectable()
 export class QuotationFacade {
@@ -14,7 +15,8 @@ export class QuotationFacade {
     select(QuotationSelectors.getSelectedQuotation)
   );
   loadedQuotation$ = this.store.pipe(
-    select(QuotationSelectors.getLoadedQuotation)
+    select(QuotationSelectors.getLoadedQuotation),
+    filter(e => !!e)
   );
   constructor(
     private store: Store<fromQuotation.QuotationPartialState>,
@@ -32,12 +34,17 @@ export class QuotationFacade {
     this.dispatch(QuotationsActions.addQuotation({ quotation }));
   }
 
+  updateQuotation(quotation: Partial<InsertedQuotation>) {
+    this.dispatch(QuotationsActions.updateQuotation({quotation}))
+  }
+
   removeMany(ids: number[]) {
     this.dispatch(QuotationsActions.deleteQuotations({ ids }));
   }
   loadQuotationById(id) {
     this.dispatch(QuotationsActions.loadQuotationById({ id }));
   }
+
   TransformToOrder(transformingVariables: TransformedQuotation) {
     this.dispatch(
       QuotationsActions.TransformToOrder({ transformingVariables })

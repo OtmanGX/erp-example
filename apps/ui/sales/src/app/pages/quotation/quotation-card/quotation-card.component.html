@@ -5,7 +5,7 @@
     <span> Votre Devis !</span>
     <span class="example-spacer"></span>
     <button mat-flat-button *ngIf="data?.status=='non confirmé'" (click)='transformToOrder()' color="primary" style="width : 8em;margin-right: 8px;">
-         COMMANDER  
+         COMMANDER
     </button>
     <!-- <button mat-flat-button (click)='edit()'class=" mat-bg-warn" style="width : 8em;">
         MODIFIER
@@ -15,6 +15,16 @@
     </button> -->
 
     <button
+      class='mr-12'
+    mat-flat-button
+    (click)="edit()"
+    color='primary'>
+    <mat-icon>
+      edit
+    </mat-icon>
+    &nbsp;Modifier
+  </button>
+  <button
     id='printer-button'
     mat-flat-button
     (click)="print()"
@@ -26,7 +36,7 @@
   </button>
 
 </mat-toolbar>
- 
+
 
 <mat-toolbar *ngIf="!isCardMode" style='background-color:transparent'>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
@@ -41,7 +51,7 @@
         ANNULER
     </button>
 </mat-toolbar>
-    <ngx-fiche-card  
+    <ngx-fiche-card
     [data]="passedData"
     [withToolbar]='false'>
     <ngx-product-draft [isCardMode]='isCardMode' ></ngx-product-draft>
