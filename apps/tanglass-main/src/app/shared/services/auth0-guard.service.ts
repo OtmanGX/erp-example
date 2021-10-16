@@ -29,7 +29,8 @@ export class Auth0Guard extends AuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    return super.canActivate(route, state).pipe(
+    return super.canActivate(route, state)
+      .pipe(
       switchMap((e) => {
         if (e) {
           if (!this.userLoaded) this.authFacadeService.loadUser();

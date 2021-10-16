@@ -29,7 +29,7 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
     this.menuItemsSub = this.navService.menuItems$
       .subscribe((menuItem) => {
         this.menuItems = menuItem.filter(
-          item => !item?.roles || item.roles.indexOf(this.authService.currentUser.role) !== -1
+          item => !item?.roles || item.roles.indexOf(this.authService?.currentUser?.role) !== -1
         );
         //Checks item list has any icon type.
         this.hasIconTypeMenuItem = !!this.menuItems.filter(
