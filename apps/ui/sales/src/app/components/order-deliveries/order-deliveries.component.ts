@@ -7,6 +7,7 @@ import {
 } from '@tanglass-erp/store/sales';
 import { ProductDeliveriesHeaders } from '@TanglassUi/sales//utils/grid-headers';
 import { Column } from '@tanglass-erp/material';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-order-deliveries',
@@ -26,7 +27,7 @@ export class OrderDeliveriesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.draft_facade.selectedDraft$.subscribe((id) =>
+    this.draft_facade.selectedDraftId$.pipe(debounceTime(500)).subscribe((id) =>
       this.facade.loadOrderDeliveries(id)
     );
     this.facade.orderDeliveries$.subscribe(

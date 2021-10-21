@@ -4,12 +4,15 @@ import * as ProductDraftSelectors from './product-draft.selectors';
 import * as ProductsActions from './product-draft.actions';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-import { InsertedProduct, Product_draft, Sales_Product_Type_Enum } from '@tanglass-erp/core/sales';
+import {
+  InsertedProduct,
+  Product_draft,
+  Sales_Product_Type_Enum,
+} from '@tanglass-erp/core/sales';
 import { Amount, Bis, ProductGroups } from './products-draft.models';
 import { PaymentsFacade } from '../payments/payments.facade';
-import { DraftFacade } from '../draft/draft.facade';
 import { groupeByCode } from './adapters';
+import { Product } from '@tanglass-erp/store/sales';
 
 @Injectable()
 export class ProductDraftFacade {
@@ -18,15 +21,18 @@ export class ProductDraftFacade {
   selectedProduct$ = this.store.pipe(
     select(ProductDraftSelectors.getSelectedProduct)
   );
+  selectedGlasses$ = this.store.pipe(
+    select(ProductDraftSelectors.getSelectedGlasses)
+  );
+  selectedM2$ = this.store.pipe(select(ProductDraftSelectors.getSelectedM2));
+  selectedML$ = this.store.pipe(select(ProductDraftSelectors.getSelectedML));
   amounts$ = new BehaviorSubject<Amount[]>([new Amount()]);
   orderCompanies;
 
-  constructor(
-    private store: Store,
-    public paymentsFacade: PaymentsFacade,
-    private draft_facade: DraftFacade
-  ) {}
-
+  constructor(private store: Store, public paymentsFacade: PaymentsFacade) {}
+  dispatch(action: Action): void {
+    this.store.dispatch(action);
+  }
   getProductsGroups(): Observable<ProductGroups> {
     return this.allProduct$.pipe(
       map((items) => ({
@@ -48,77 +54,161 @@ export class ProductDraftFacade {
       }))
     );
   }
-  dispatch(action: Action): void {
-    this.store.dispatch(action);
-  }
   setDraftProducts(products: Product_draft[]): void {
     this.dispatch(ProductsActions.setProductsState({ products }));
   }
-  addGlass(product): void {
-    let glass = {
-      ...product,
-      count: parseInt(product.count),
-      quantity:
-        parseFloat(product.heigth) *
-        parseFloat(product.width) *
-        parseFloat(product.count),
-      m2:
-        parseFloat(product.heigth) *
-        parseFloat(product.width) *
-        parseFloat(product.count),
-      ml:
-        2 *
-        (parseFloat(product.heigth) + parseFloat(product.width)) *
-        product.count,
-      total_price:
-        parseFloat(product.heigth) *
-        parseFloat(product.width) *
-        parseFloat(product.price) *
-        parseFloat(product.count),
-    };
-    this.dispatch(ProductsActions.addGlass({ glass }));
+  addGlass(product: Product): void {
+    let glasses = [];
+
+    product.dimensions.map((dimension) => {
+      let { dimensions, ...glass } = product;
+      glasses.push({
+        ...glass,
+        count: dimension.count,
+        heigth: dimension.heigth,
+        width: dimension.width,
+        quantity: parseFloat(
+          (dimension.heigth * dimension.width * dimension.count).toFixed(2)
+        ),
+        m2: parseFloat(
+          (dimension.heigth * dimension.width * dimension.count).toFixed(2)
+        ),
+        ml: parseFloat(
+          (2 * (dimension.heigth + dimension.width) * dimension.count).toFixed(
+            2
+          )
+        ),
+        total_price: parseFloat(
+          (
+            dimension.heigth *
+            dimension.width *
+            dimension.count *
+            product.price
+          ).toFixed(2)
+        ),
+      });
+    });
+    this.dispatch(ProductsActions.addManyGlasses({ glasses }));
   }
-  addCustomerProduct(product): void {
-    let glass = {
-      ...product,
-      count: parseInt(product.count),
-      quantity:
-        parseFloat(product.heigth) *
-        parseFloat(product.width) *
-        parseFloat(product.count),
-      m2:
-        parseFloat(product.heigth) *
-        parseFloat(product.width) *
-        parseFloat(product.count),
-      ml:
-        2 *
-        (parseFloat(product.heigth) + parseFloat(product.width)) *
-        product.count,
-      total_price: 0,
-    };
-    this.dispatch(ProductsActions.addGlass({ glass }));
+  addCustomerProduct(product: Product): void {
+    let glasses = [];
+    product.dimensions.map((dimension) => {
+      let { dimensions, ...glass } = product;
+      glasses.push({
+        ...glass,
+        price: 0,
+        count: dimension.count,
+        heigth: dimension.heigth,
+        width: dimension.width,
+        quantity: parseFloat((
+          dimension.heigth *
+          dimension.width *
+          dimension.count
+        ).toFixed(2)),
+        m2: parseFloat((dimension.heigth * dimension.width * dimension.count).toFixed(2)),
+        ml:parseFloat ((
+          2 *
+          (dimension.heigth + dimension.width) *
+          dimension.count
+        ).toFixed(2)),
+        total_price: 0,
+      });
+    });
+    this.dispatch(ProductsActions.addManyGlasses({ glasses }));
   }
   addAccessory(product: InsertedProduct): void {
     let accessory = {
       ...product,
-      total_price: product.quantity * product.price,
+      total_price: parseFloat((product.quantity * product.price).toFixed(2)),
     };
     this.dispatch(ProductsActions.addAccessory({ accessory }));
   }
   addConsumable(product: InsertedProduct): void {
     let consumable = {
       ...product,
-      total_price: product.quantity * product.price,
+      total_price:parseFloat((product.quantity * product.price).toFixed(2)),
     };
     this.dispatch(ProductsActions.addConsumable({ consumable }));
   }
-  addService(product: InsertedProduct): void {
-    let service = {
-      ...product,
-      total_price: product.quantity * product.price,
-    };
-    this.dispatch(ProductsActions.addService({ service }));
+  addManyServices(product: InsertedProduct): void {
+    let services = [];
+    let withM2: Boolean;
+    this.selectedM2$.subscribe((value) =>
+      product.quantity == value ? (withM2 = true) : null
+    );
+
+    this.selectedGlasses$
+      .subscribe((glasses) => {
+        glasses?.map((glass) => {
+          let quantity;
+          withM2 ? (quantity = glass.m2) : (quantity = glass.ml);
+          services?.push({
+            ...product,
+            dependent_id: glass.glass_draft.id,
+            quantity: quantity,
+            total_price: parseFloat((quantity * product.price).toFixed(2)),
+          });
+        });
+      })
+      .unsubscribe();
+    this.dispatch(ProductsActions.addManyServices({ services }));
   }
+  addManyConsumables(
+    product: InsertedProduct,
+    asAService: boolean = true
+  ): void {
+    let consumables = [];
+    let withM2: Boolean;
+    this.selectedM2$.pipe(
+      map((value) => (product.quantity == value ? (withM2 = true) : null))
+    );
+    asAService
+      ? this.selectedGlasses$
+          .subscribe((glasses) => {
+            glasses.map((glass) => {
+              let quantity;
+              withM2 ? (quantity = glass.m2) : (quantity = glass.ml);
+              consumables.push({
+                ...product,
+                dependent_id: glass?.glass_draft?.id,
+                quantity: quantity,
+                total_price: parseFloat((quantity * product.price).toFixed(2)),
+              });
+            });
+            this.dispatch(ProductsActions.addManyConsumables({ consumables }));
+          })
+          .unsubscribe()
+      : this.addConsumable(product);
+  }
+  setSelectedGlasses(glasses: Product_draft[]) {
+    this.dispatch(ProductsActions.selectManyGlasses({ glasses }));
+  }
+  updateAmounts(): void {
+    let amounts: Amount[] = [];
+    this.getCompanies();
+    this.orderCompanies?.forEach((element) => {
+      element ? amounts.push(this.updateCompanyAmount(element)) : {};
+    });
+    amounts.push(
+      amounts.reduce(function (accumulator, product: Amount) {
+        return {
+          company_name: 'Total',
+          total_ht: parseFloat(
+            (product.total_ht + accumulator.total_ht).toFixed(2)
+          ),
+          total_ttc: parseFloat(
+            (product.total_ttc + accumulator.total_ttc).toFixed(2)
+          ),
+          total_tax: parseFloat(
+            (product.total_tax + accumulator.total_tax).toFixed(2)
+          ),
+        };
+      }, new Amount())
+    );
+
+    this.amounts$.next(amounts);
+  }
+  //Define each company amount from a specific order
   updateCompanyAmount(company: string): Amount {
     let amount: Amount;
     this.allProduct$
@@ -151,37 +241,13 @@ export class ProductDraftFacade {
       .subscribe((data) => (amount = data));
     return amount;
   }
+  //Get companies that involve in a known order
   getCompanies(): void {
     this.allProduct$.subscribe((products) => {
       this.orderCompanies = [
         ...new Set(products.map((product) => product.company_name)),
       ];
     });
-  }
-  updateAmounts(): void {
-    let amounts: Amount[] = [];
-    this.getCompanies();
-    this.orderCompanies?.forEach((element) => {
-      element ? amounts.push(this.updateCompanyAmount(element)) : {};
-    });
-    amounts.push(
-      amounts.reduce(function (accumulator, product: Amount) {
-        return {
-          company_name: 'Total',
-          total_ht: parseFloat(
-            (product.total_ht + accumulator.total_ht).toFixed(2)
-          ),
-          total_ttc: parseFloat(
-            (product.total_ttc + accumulator.total_ttc).toFixed(2)
-          ),
-          total_tax: parseFloat(
-            (product.total_tax + accumulator.total_tax).toFixed(2)
-          ),
-        };
-      }, new Amount())
-    );
-
-    this.amounts$.next(amounts);
   }
   removeProduct(id: string, dependent_id?: string): void {
     let ids: string[];
@@ -197,6 +263,7 @@ export class ProductDraftFacade {
   removeProducts(ids: string[]): void {
     this.dispatch(ProductsActions.removeProducts({ ids }));
   }
+  //Each service depend on a glass product  dependent_id belown to glass
   getDependencies(id: string): Product_draft[] {
     let dependent_products: Product_draft[];
     this.allProduct$.subscribe((data) => {
@@ -204,36 +271,8 @@ export class ProductDraftFacade {
     });
     return dependent_products;
   }
-  getRepairingDimensions(
-    products: Product_draft[],
-    new_count: number
-  ): Product_draft[] {
-    let old_count: number;
-    let response = products.map((product) => {
-      product.type == Sales_Product_Type_Enum.Verre ||
-      product.type == Sales_Product_Type_Enum.ArticleClient
-        ? (old_count = product.count)
-        : null;
-      return {
-        ...product,
-        m2: product?.m2
-          ? parseFloat(((product?.m2 / old_count) * new_count).toFixed(2))
-          : null,
-        ml: product.ml
-          ? parseFloat(((product?.ml / old_count) * new_count).toFixed(2))
-          : null,
-        quantity: parseFloat(
-          ((product?.quantity / old_count) * new_count).toFixed(2)
-        ),
-        price: 0,
-        total_price: 0,
-        count: product.count ? new_count : null,
-      };
-    });
-    return response;
-  }
-
-  addBisItems(products) {
+  // Bis items are the products that will be reproduced again ; because of a problem in the manufacturing
+  addBisItems(products): void {
     products = products.map((product) => {
       const {
         status,
@@ -267,5 +306,37 @@ export class ProductDraftFacade {
       consumables,
     };
     this.dispatch(ProductsActions.addReparationProducts({ item }));
+  }
+  // get the glass's dimensions to be reproduced , depending to number of pieces to be launched
+  getRepairingDimensions(
+    products: Product_draft[],
+    new_count: number
+  ): Product_draft[] {
+    let old_count: number;
+    let response = products.map((product) => {
+      product.type == Sales_Product_Type_Enum.Verre ||
+      product.type == Sales_Product_Type_Enum.ArticleClient
+        ? (old_count = product.count)
+        : null;
+      return {
+        ...product,
+        m2: product?.m2
+          ? parseFloat(((product?.m2 / old_count) * new_count).toFixed(2))
+          : null,
+        ml: product.ml
+          ? parseFloat(((product?.ml / old_count) * new_count).toFixed(2))
+          : null,
+        quantity: parseFloat(
+          ((product?.quantity / old_count) * new_count).toFixed(2)
+        ),
+        price: 0,
+        total_price: 0,
+        count: product.count ? new_count : null,
+      };
+    });
+    return response;
+  }
+  clearProducts(): void {
+    this.dispatch(ProductsActions.clearProducts());
   }
 }

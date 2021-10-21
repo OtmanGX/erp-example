@@ -38,6 +38,12 @@ export const getSelectedIdDraft = createSelector(
   (state: DraftState) => state.selectedId
 );
 
+
+export const getCopieDraftId = createSelector(
+  getDraftState,
+  (state: DraftState) => state.copieDraft_id
+);
+
 export const getSelectedDraft = createSelector(
   getDraftEntities,
   getSelectedIdDraft,

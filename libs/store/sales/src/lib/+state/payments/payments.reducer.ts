@@ -38,10 +38,10 @@ const paymentsReducer = createReducer(
   on(PaymentsActions.loadPaymentsSuccess, (state, { payments }) =>
     paymentsAdapter.setAll(payments, { ...state, loaded: true })
   ),
-  on(PaymentsActions.loadOrderPaymentsSuccess, (state, { payments }) => ({
-    ...state,
-    selectedPayments: payments,
-  })),
+  // on(PaymentsActions.loadOrderPaymentsSuccess, (state, { payments }) => ({
+  //   ...state,
+  //   selectedPayments: payments,
+  // })),
   on(PaymentsActions.addPaymentSuccess, (state, action) =>
     paymentsAdapter.addOne(action.payment, state)
   ),
@@ -50,7 +50,7 @@ const paymentsReducer = createReducer(
   ),
   on(
     PaymentsActions.loadPaymentsFailure,
-    PaymentsActions.loadOrderPaymentsFailure,
+    ///PaymentsActions.loadOrderPaymentsFailure,
     PaymentsActions.addPaymentFailure,
     PaymentsActions.removePaymentFailure,
     (state, { error }) => ({

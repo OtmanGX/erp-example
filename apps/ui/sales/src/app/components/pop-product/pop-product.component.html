@@ -1,9 +1,21 @@
 <ngx-dialog-body title="Nouveau">
   <div class="radio">
     <mat-radio-group aria-label="Select an option" [(ngModel)]="type">
-      <mat-radio-button *ngFor="let type of types" [value]="type" (change)="getItems($event.value)">{{type}} </mat-radio-button>
+      <mat-radio-button *ngFor="let type of types" [value]="type" (change)="getItems($event.value)">{{type}}
+      </mat-radio-button>
     </mat-radio-group>
   </div>
-  <dynamic-form #product_form [fields]="regConfig" (close)="closePopup()" (submit)="submitForm()">
+  <div *ngIf='!regConfig' class="row radio">
+    Manque de données vérifiezr que vous avez déja sélectionner du verre!! </div>
+  <dynamic-form *ngIf='regConfig' [withActions]='false' #product_form [fields]="regConfig" (close)="closePopup()" (submit)="submitForm()">
+   
   </dynamic-form>
+  <ngx-dimensions #dimensions_form *ngIf='type == product_types.Verre||type ==product_types.ArticleClient'>
+  </ngx-dimensions>
+
+  
+  <div  class="mt-12"  fxLayout="row" fxLayoutAlign="center center"  mat-dialog-actions>
+    <button matTooltip="Confirmer" mat-raised-button color="primary"  (click)='submitForm()'>Confirmer</button>
+    <button matTooltip="Annuler" mat-raised-button color="warn" type="button" (click)="close()">Annuler</button>
+  </div>
 </ngx-dialog-body>

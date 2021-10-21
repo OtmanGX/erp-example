@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 import { TransformedQuotation, InsertedQuotation } from '../models/quotation';
 import { invoiceFilter } from '../models/invoice';
 import { productAdapter } from '../utils/product-adapter';
-
+import { transfertQuotationAdapter } from "../utils/transfertQuotation-adapter";
 @Injectable({
   providedIn: 'root',
 })
@@ -60,6 +60,8 @@ export class QuotationService {
     return this.deleteQuotationsGQL.mutate({ ids });
   }
   transformQuotationToOrder(order: TransformedQuotation) {
-    return this.transformQuotationToOrderGQL.mutate(order);
+     console.log(order)
+     console.log(transfertQuotationAdapter(order))
+    return this.transformQuotationToOrderGQL.mutate( transfertQuotationAdapter(order));
   }
 }

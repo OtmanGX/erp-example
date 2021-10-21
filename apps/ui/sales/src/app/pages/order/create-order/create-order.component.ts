@@ -5,7 +5,7 @@ import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-
 import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
-import { map } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
@@ -38,7 +38,6 @@ export class CreateOrderComponent implements OnInit ,OnDestroy{
     private store: Store,
     private productDraftFacade: ProductDraftFacade,
     private router: Router,
-
     ) {}
   buildForm(): void {
     let data;
@@ -63,13 +62,10 @@ export class CreateOrderComponent implements OnInit ,OnDestroy{
   }
   ngOnInit(): void {
     this.buildForm();
-    this.dataSub = this.draftFacade.selectedDraft$.subscribe(
+    this.dataSub = this.draftFacade.selectedDraftId$.pipe(debounceTime(500)).subscribe(
       (id) => (this.draft_id = id)
     );
   }
-
-  ngOnChanges() {}
-
   save() {
     this.productDraftFacade.amounts$.subscribe((amounts) => {
       let total = amounts.pop();
@@ -85,7 +81,7 @@ export class CreateOrderComponent implements OnInit ,OnDestroy{
           draft_id: this.draft_id,
         })),
       })
-    })
+    }).unsubscribe()
   }
 
   cancel() {

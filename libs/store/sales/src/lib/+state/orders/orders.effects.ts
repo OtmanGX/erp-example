@@ -122,6 +122,10 @@ export class OrdersEffects {
               route: 'sales/order',
               color: 'primary',
             });
+            this.router.navigate([
+              '/sales/order',
+               data.data.update_sales_order_by_pk.id,
+            ]);
             return OrdersActions.updateOrderSuccess({
               order: data.data.update_sales_order_by_pk,
             });

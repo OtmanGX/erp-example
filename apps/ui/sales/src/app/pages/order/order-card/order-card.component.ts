@@ -33,10 +33,10 @@ export class OrderCardComponent extends ModelCardComponent {
     protected facade: OrdersFacade,
     private router: Router,
     protected deliveryFacade: DeliveryFacade,
-    protected sharedfacade: SharedFacade,
+    //protected sharedfacade: SharedFacade,
     protected productDraftFacade: ProductDraftFacade,
     protected manufacturingFacade: JobOrdersFacade,
-    private store: Store
+  //  private store: Store
 
   ) {
     super(activatedRoute);
@@ -45,8 +45,7 @@ export class OrderCardComponent extends ModelCardComponent {
   dispatch(): void {
     this.isLaunched = false;
     this.facade.loadOrderById(this.id);
-    this.sharedfacade.loadAllShortCompanies();
-    this.sharedfacade.loadAllShortWarehouses();
+
   }
   passData(data: DetailedOrder) {
     data?.draft_status == Sales_Draft_Status_Enum.Lance
@@ -78,13 +77,14 @@ export class OrderCardComponent extends ModelCardComponent {
   afterComplete() {}
   edit() {
     this.isCardMode = false;
-    this.store.dispatch(productStore.loadGlasses());
-    this.store.dispatch(productStore.loadCustomerProducts());
-    this.store.dispatch(productStore.loadAccessories());
-    this.store.dispatch(productStore.loadConsumables());
-    this.store.dispatch(productStore.loadServices());
+    // this.store.dispatch(productStore.loadGlasses());
+    // this.store.dispatch(productStore.loadCustomerProducts());
+    // this.store.dispatch(productStore.loadAccessories());
+    // this.store.dispatch(productStore.loadConsumables());
+    // this.store.dispatch(productStore.loadServices());
   }
   save() {
+    this.isCardMode = true;
     this.productDraftFacade.amounts$.subscribe((amounts) => {
       let total = amounts.pop();
       this.facade.updateOrder({
@@ -97,8 +97,8 @@ export class OrderCardComponent extends ModelCardComponent {
           company_name: amount.company_name,
           draft_id: this.draft_id,
         })),
-      });
-    });
+      })
+    }).unsubscribe();
   }
   cancel() {
     this.router.navigate(['/sales/order']);

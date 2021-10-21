@@ -12,8 +12,8 @@ import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
-import { SharedFacade } from '@tanglass-erp/store/shared';
 import { PopQuotationTransferComponent } from '@TanglassUi/sales/components/pop-quotation-transfer/pop-quotation-transfer.component';
+
 @Component({
   selector: 'ngx-quotation-card',
   templateUrl: './quotation-card.component.html',
@@ -25,23 +25,26 @@ export class QuotationCardComponent extends ModelCardComponent {
   status = Sales_Draft_Status_Enum;
   data$ = this.facade.loadedQuotation$.pipe(takeUntil(this._onDestroy));
   isCardMode: boolean = true;
+  copierDraftId = this.draft_facade.copieDraftId$.pipe(
+    takeUntil(this._onDestroy)
+  );
   constructor(
     public dialog: MatDialog,
     public activatedRoute: ActivatedRoute,
     protected facade: QuotationFacade,
-    private sharedfacade: SharedFacade,
     private productDraftFacade: ProductDraftFacade,
     private draft_facade: DraftFacade,
-    private router: Router
+    private router: Router,
+
   ) {
     super(activatedRoute);
   }
 
   dispatch(): void {
     this.facade.loadQuotationById(this.id);
-    this.sharedfacade.loadAllShortCompanies();
-    this.sharedfacade.loadAllShortWarehouses();
-    this.sharedfacade.loadAllShortSalePoint();
+    // this.sharedfacade.loadAllShortCompanies();
+    // this.sharedfacade.loadAllShortWarehouses();
+    // this.store.dispatch(SalePointActions.loadSalePoints());
   }
 
   passData(data: Quotation) {
@@ -82,22 +85,27 @@ export class QuotationCardComponent extends ModelCardComponent {
   }
   transformToOrder(): void {
     let amount: Amount;
-    let draft_id;
-    this.draft_facade.selectedDraft$.subscribe((id) => (draft_id = id));
-    this.productDraftFacade.amounts$.subscribe((val) => (amount = val.pop()));
+    let copierDraft_id;
+    this.draft_facade.copierDraft();
+    this.productDraftFacade.amounts$
+      .subscribe((val) => (amount = val.pop()))
+      .unsubscribe();
     const dialogRef = this.dialog.open(PopQuotationTransferComponent, {
       width: '1000px',
       panelClass: 'panel-dialog',
       data: null,
     });
-    dialogRef.afterClosed().subscribe((result) =>
-      this.facade.TransformToOrder({
+    this.copierDraftId.subscribe((id) => (copierDraft_id = id));
+    dialogRef.afterClosed().subscribe((result) => {
+      result?this.facade.transformToOrder({
         ...result,
-        draft_id,
+        copierDraft_id,
         total_ht: amount?.total_ht,
         total_tax: amount?.total_tax,
         total_ttc: amount?.total_ttc,
-      })
-    );
+      }):null;
+    });
   }
 }
+
+

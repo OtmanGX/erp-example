@@ -8,9 +8,9 @@ import { map } from 'rxjs/operators';
 import { DynamicFormComponent } from '@tanglass-erp/material';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
-import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
-import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';
+import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
+
 @Component({
   selector: 'ngx-pop-quotation-transfer',
   templateUrl: './pop-quotation-transfer.component.html',
@@ -31,9 +31,14 @@ export class PopQuotationTransferComponent extends FormDialog {
       item.map((company) => ({ key: company.id, value: company.name }))
     )
   );
-  listSalesPoints$ = this.facade.allShortSalePoint$.pipe(
-    map((item) => item.map((SP) => ({ key: SP.id, value: SP.name })))
-  );
+
+  listSalesPoints$ = this.store
+    .select(SalePointSelectors.getAllSalePoints)
+    .pipe(
+      map((item) =>
+        item.map((salePoint) => ({ key: salePoint.id, value: salePoint.name }))
+      )
+    );
 
   constructor(
     public dialogRef: MatDialogRef<PopQuotationTransferComponent>,
@@ -47,8 +52,6 @@ export class PopQuotationTransferComponent extends FormDialog {
     this.submit(this.transferForm.value);
   }
   buildForm() {
-    this.store.dispatch(CustomerActions.loadCustomers());
-    this.store.dispatch(ContactActions.loadContacts());
     if (this.data?.id) {
       this.title = 'Éditer accessoire';
     }

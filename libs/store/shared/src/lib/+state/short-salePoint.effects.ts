@@ -24,6 +24,7 @@ export class ShortSalePointEffects {
     )
   });
 
-  constructor(private actions$: Actions,
+  constructor(
+    private actions$: Actions,
     private companieService: ShortFeatureService) { }
 }
