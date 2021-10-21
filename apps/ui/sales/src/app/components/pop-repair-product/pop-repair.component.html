@@ -19,9 +19,14 @@
       {{product.unit}}
 
     </mat-list-item>
-    <button mat-button (click)='confirm()' *ngIf="countFormControl.valid" color="primary"
+    <div mat-dialog-actions >
+      <button mat-button (click)='confirm()' *ngIf="countFormControl.valid" color="primary"
       [mat-dialog-close]="true">CONFIRMER</button>
     <button mat-button color="warn" cdkFocusInitial>ANNULER</button>
+    </div>
   </mat-list>
+
+
+
 
 </ngx-dialog-body>

@@ -40,23 +40,23 @@ export class PaymentsEffects {
     );
   });
 
-  getOrderPayments$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(PaymentsActions.loadOrderPayments),
-      mergeMap((action) =>
-        this.paymentService.getOrderPayments(action.order_id).pipe(
-          map((data) =>
-            PaymentsActions.loadOrderPaymentsSuccess({
-              payments: data.data.sales_payment,
-            })
-          ),
-          catchError((error) =>
-            of(PaymentsActions.loadOrderPaymentsFailure({ error }))
-          )
-        )
-      )
-    );
-  });
+  // getOrderPayments$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(PaymentsActions.loadOrderPayments),
+  //     mergeMap((action) =>
+  //       this.paymentService.getOrderPayments(action.order_id).pipe(
+  //         map((data) =>
+  //           PaymentsActions.loadOrderPaymentsSuccess({
+  //             payments: data.data.sales_payment,
+  //           })
+  //         ),
+  //         catchError((error) =>
+  //           of(PaymentsActions.loadOrderPaymentsFailure({ error }))
+  //         )
+  //       )
+  //     )
+  //   );
+  // });
 
   constructor(
     private actions$: Actions,

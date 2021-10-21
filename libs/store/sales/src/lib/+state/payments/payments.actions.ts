@@ -40,21 +40,21 @@ export const loadPaymentByIdFailure = createAction(
 /*****LOAD ORDER PAYMENTS ** */
 /****************************************************************** */
 
-export const loadOrderPayments = createAction(
-  '[payment  ] Load Order Payments ',
-  props<{ order_id: number }>()
-);
+// export const loadOrderPayments = createAction(
+//   '[payment  ] Load Order Payments ',
+//   props<{ order_id: number }>()
+// );
 
 
-export const loadOrderPaymentsSuccess = createAction(
-  '[payment ] Load Order Payments Success',
-  props<{ payments: PaymentsEntity[] }>()
-);
+// export const loadOrderPaymentsSuccess = createAction(
+//   '[payment ] Load Order Payments Success',
+//   props<{ payments: PaymentsEntity[] }>()
+// );
 
-export const loadOrderPaymentsFailure = createAction(
-  '[payment ] Load Order Payments  Failure',
-  props<{ error: any }>()
-);
+// export const loadOrderPaymentsFailure = createAction(
+//   '[payment ] Load Order Payments  Failure',
+//   props<{ error: any }>()
+// );
 
 /****************************************************************** */
 /*****ADD INDIVIDUAL PAYMENT ** */

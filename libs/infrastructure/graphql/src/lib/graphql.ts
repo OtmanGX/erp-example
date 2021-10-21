@@ -27346,9 +27346,9 @@ export type Sales_Quotation_Variance_Order_By = {
 /** columns and relationships of "sales.service_draft" */
 export type Sales_Service_Draft = {
   __typename?: 'sales_service_draft';
-  dependent_id: Scalars['uuid'];
+  dependent_id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
-  glass_draft: Sales_Glass_Draft;
+  glass_draft?: Maybe<Sales_Glass_Draft>;
   id: Scalars['uuid'];
   labelFactory?: Maybe<Scalars['String']>;
   /** An array relationship */
@@ -33428,14 +33428,14 @@ export type GetJobOrderByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetJobOrderByIdQuery = { __typename?: 'query_root', manufacturing_job_order_by_pk?: Maybe<{ __typename?: 'manufacturing_job_order', date: any, id: number, order_ref: string, ref?: Maybe<string>, status: string, isReparing: boolean, glass_drafts: Array<{ __typename?: 'sales_glass_draft', id: any, consumable_drafts: Array<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string>, id: any }>, service_drafts: Array<{ __typename?: 'sales_service_draft', dependent_id: any, labelFactory?: Maybe<string>, id: any }>, product_draft?: Maybe<{ __typename?: 'sales_product_draft', type?: Maybe<Sales_Product_Type_Enum>, count?: Maybe<any>, heigth?: Maybe<any>, width?: Maybe<any>, label: string, product_code: string }>, manufacturing_lines: Array<{ __typename?: 'manufacturing_manufacturing_line', glass_id: any, id: number, status: string, ref?: Maybe<string>, manufacturing_services: Array<{ __typename?: 'manufacturing_manufacturing_service', service_draft: { __typename?: 'sales_service_draft', labelFactory?: Maybe<string>, id: any } }>, manufacturing_consumables: Array<{ __typename?: 'manufacturing_manufacturing_consumable', consumable_draft: { __typename?: 'sales_consumable_draft', labelFactory?: Maybe<string>, id: any } }> }> }> }> };
+export type GetJobOrderByIdQuery = { __typename?: 'query_root', manufacturing_job_order_by_pk?: Maybe<{ __typename?: 'manufacturing_job_order', date: any, id: number, order_ref: string, ref?: Maybe<string>, status: string, isReparing: boolean, glass_drafts: Array<{ __typename?: 'sales_glass_draft', id: any, consumable_drafts: Array<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string>, id: any }>, service_drafts: Array<{ __typename?: 'sales_service_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string>, id: any }>, product_draft?: Maybe<{ __typename?: 'sales_product_draft', type?: Maybe<Sales_Product_Type_Enum>, count?: Maybe<any>, heigth?: Maybe<any>, width?: Maybe<any>, label: string, product_code: string }>, manufacturing_lines: Array<{ __typename?: 'manufacturing_manufacturing_line', glass_id: any, id: number, status: string, ref?: Maybe<string>, manufacturing_services: Array<{ __typename?: 'manufacturing_manufacturing_service', service_draft: { __typename?: 'sales_service_draft', labelFactory?: Maybe<string>, id: any } }>, manufacturing_consumables: Array<{ __typename?: 'manufacturing_manufacturing_consumable', consumable_draft: { __typename?: 'sales_consumable_draft', labelFactory?: Maybe<string>, id: any } }> }> }> }> };
 
 export type GetManufacturingGlassByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetManufacturingGlassByIdQuery = { __typename?: 'query_root', sales_glass_draft_by_pk?: Maybe<{ __typename?: 'sales_glass_draft', id: any, consumable_drafts: Array<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string>, id: any }>, service_drafts: Array<{ __typename?: 'sales_service_draft', dependent_id: any, labelFactory?: Maybe<string>, id: any }>, product_draft?: Maybe<{ __typename?: 'sales_product_draft', type?: Maybe<Sales_Product_Type_Enum>, count?: Maybe<any>, heigth?: Maybe<any>, width?: Maybe<any>, label: string, product_code: string }>, manufacturing_lines: Array<{ __typename?: 'manufacturing_manufacturing_line', glass_id: any, id: number, status: string, manufacturing_services: Array<{ __typename?: 'manufacturing_manufacturing_service', service_draft: { __typename?: 'sales_service_draft', labelFactory?: Maybe<string>, id: any } }>, manufacturing_consumables: Array<{ __typename?: 'manufacturing_manufacturing_consumable', consumable_draft: { __typename?: 'sales_consumable_draft', labelFactory?: Maybe<string>, id: any } }> }> }> };
+export type GetManufacturingGlassByIdQuery = { __typename?: 'query_root', sales_glass_draft_by_pk?: Maybe<{ __typename?: 'sales_glass_draft', id: any, consumable_drafts: Array<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string>, id: any }>, service_drafts: Array<{ __typename?: 'sales_service_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string>, id: any }>, product_draft?: Maybe<{ __typename?: 'sales_product_draft', type?: Maybe<Sales_Product_Type_Enum>, count?: Maybe<any>, heigth?: Maybe<any>, width?: Maybe<any>, label: string, product_code: string }>, manufacturing_lines: Array<{ __typename?: 'manufacturing_manufacturing_line', glass_id: any, id: number, status: string, manufacturing_services: Array<{ __typename?: 'manufacturing_manufacturing_service', service_draft: { __typename?: 'sales_service_draft', labelFactory?: Maybe<string>, id: any } }>, manufacturing_consumables: Array<{ __typename?: 'manufacturing_manufacturing_consumable', consumable_draft: { __typename?: 'sales_consumable_draft', labelFactory?: Maybe<string>, id: any } }> }> }> };
 
 export type AddGlassColorMutationVariables = Exact<{
   color?: Maybe<Scalars['String']>;
@@ -33731,6 +33731,17 @@ export type InsertDraftMutationVariables = Exact<{
 
 export type InsertDraftMutation = { __typename?: 'mutation_root', insert_sales_draft_one?: Maybe<{ __typename?: 'sales_draft', id: number }> };
 
+export type UpdateDraftMutationVariables = Exact<{
+  id: Scalars['Int'];
+  status?: Maybe<Sales_Draft_Status_Enum>;
+  glasses?: Array<Sales_Glass_Draft_Insert_Input> | Sales_Glass_Draft_Insert_Input;
+  accessories?: Array<Sales_Accessory_Draft_Insert_Input> | Sales_Accessory_Draft_Insert_Input;
+  consumables?: Array<Sales_Consumable_Draft_Insert_Input> | Sales_Consumable_Draft_Insert_Input;
+}>;
+
+
+export type UpdateDraftMutation = { __typename?: 'mutation_root', update_sales_draft_by_pk?: Maybe<{ __typename?: 'sales_draft', id: number }>, insert_sales_glass_draft?: Maybe<{ __typename?: 'sales_glass_draft_mutation_response', affected_rows: number }>, insert_sales_accessory_draft?: Maybe<{ __typename?: 'sales_accessory_draft_mutation_response', affected_rows: number }>, insert_sales_consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft_mutation_response', affected_rows: number }> };
+
 export type DeleteInvoicesMutationVariables = Exact<{
   ids?: Array<Scalars['uuid']> | Scalars['uuid'];
 }>;
@@ -33913,6 +33924,13 @@ export type InsertManyConsumablesMutationVariables = Exact<{
 
 export type InsertManyConsumablesMutation = { __typename?: 'mutation_root', insert_sales_consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft_mutation_response', returning: Array<{ __typename?: 'sales_consumable_draft', id: any, dependent_id?: Maybe<any>, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, width?: Maybe<any>, company_id?: Maybe<any>, count?: Maybe<any> } }> }> };
 
+export type InsertManyGlassesMutationVariables = Exact<{
+  glasses: Array<Sales_Glass_Draft_Insert_Input> | Sales_Glass_Draft_Insert_Input;
+}>;
+
+
+export type InsertManyGlassesMutation = { __typename?: 'mutation_root', insert_sales_glass_draft?: Maybe<{ __typename?: 'sales_glass_draft_mutation_response', returning: Array<{ __typename?: 'sales_glass_draft', id: any, product_draft?: Maybe<{ __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, company_id?: Maybe<any>, count?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, substance_id?: Maybe<any>, warehouse_id?: Maybe<any>, draft_id: number, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }> }> }> }> };
+
 export type InsertManyProductsMutationVariables = Exact<{
   objects: Array<Sales_Product_Draft_Insert_Input> | Sales_Product_Draft_Insert_Input;
 }>;
@@ -33925,7 +33943,7 @@ export type InsertManyServicesMutationVariables = Exact<{
 }>;
 
 
-export type InsertManyServicesMutation = { __typename?: 'mutation_root', insert_sales_service_draft?: Maybe<{ __typename?: 'sales_service_draft_mutation_response', returning: Array<{ __typename?: 'sales_service_draft', id: any, dependent_id: any, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, company_id?: Maybe<any>, count?: Maybe<any> } }> }> };
+export type InsertManyServicesMutation = { __typename?: 'mutation_root', insert_sales_service_draft?: Maybe<{ __typename?: 'sales_service_draft_mutation_response', returning: Array<{ __typename?: 'sales_service_draft', id: any, dependent_id?: Maybe<any>, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, company_id?: Maybe<any>, count?: Maybe<any> } }> }> };
 
 export type InsertServiceDraftMutationVariables = Exact<{
   company_id?: Maybe<Scalars['uuid']>;
@@ -33942,10 +33960,11 @@ export type InsertServiceDraftMutationVariables = Exact<{
   ml?: Maybe<Scalars['numeric']>;
   draft_id?: Maybe<Scalars['Int']>;
   labelFactory?: Maybe<Scalars['String']>;
+  warehouse_id?: Maybe<Scalars['uuid']>;
 }>;
 
 
-export type InsertServiceDraftMutation = { __typename?: 'mutation_root', insert_sales_service_draft_one?: Maybe<{ __typename?: 'sales_service_draft', id: any, dependent_id: any, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, width?: Maybe<any>, company_id?: Maybe<any>, count?: Maybe<any> } }> };
+export type InsertServiceDraftMutation = { __typename?: 'mutation_root', insert_sales_service_draft_one?: Maybe<{ __typename?: 'sales_service_draft', id: any, dependent_id?: Maybe<any>, product_draft: { __typename?: 'sales_product_draft', company_name?: Maybe<string>, heigth?: Maybe<any>, id: any, label: string, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, width?: Maybe<any>, company_id?: Maybe<any>, count?: Maybe<any> } }> };
 
 export type UpdateGlassesJobOrderIdMutationVariables = Exact<{
   draft_id?: Maybe<Scalars['Int']>;
@@ -33982,6 +34001,7 @@ export type InsertQuotationMutation = { __typename?: 'mutation_root', insert_sal
 
 export type TransformQuotationToOrderMutationVariables = Exact<{
   draft_id: Scalars['Int'];
+  copierDraft_id: Scalars['Int'];
   status?: Maybe<Sales_Draft_Status_Enum>;
   company_id?: Maybe<Scalars['uuid']>;
   customer_id?: Maybe<Scalars['uuid']>;
@@ -33995,10 +34015,13 @@ export type TransformQuotationToOrderMutationVariables = Exact<{
   payment_status?: Maybe<Scalars['String']>;
   delivery_status?: Maybe<Scalars['String']>;
   quotationStatus?: Maybe<Scalars['String']>;
+  glasses?: Array<Sales_Glass_Draft_Insert_Input> | Sales_Glass_Draft_Insert_Input;
+  accessories?: Array<Sales_Accessory_Draft_Insert_Input> | Sales_Accessory_Draft_Insert_Input;
+  consumables?: Array<Sales_Consumable_Draft_Insert_Input> | Sales_Consumable_Draft_Insert_Input;
 }>;
 
 
-export type TransformQuotationToOrderMutation = { __typename?: 'mutation_root', update_sales_draft_by_pk?: Maybe<{ __typename?: 'sales_draft', status: Sales_Draft_Status_Enum }>, insert_sales_order_one?: Maybe<{ __typename?: 'sales_order', date: any, deadline: any, draft_id: number, id: number, delivery_status: string, payment_status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, contact?: Maybe<{ __typename?: 'contact_contact', code?: Maybe<string>, name: string }>, customer: { __typename?: 'contact_customer', code?: Maybe<string>, name: string, phone: string }, salepoint: { __typename?: 'management_salesPoint', name: string } }>, update_sales_quotation?: Maybe<{ __typename?: 'sales_quotation_mutation_response', affected_rows: number }> };
+export type TransformQuotationToOrderMutation = { __typename?: 'mutation_root', update_sales_draft_by_pk?: Maybe<{ __typename?: 'sales_draft', status: Sales_Draft_Status_Enum, product_drafts: Array<{ __typename?: 'sales_product_draft', id: any, label: string, heigth?: Maybe<any>, company_name?: Maybe<string>, count?: Maybe<any>, delivered: any, warehouse_id?: Maybe<any>, substance_id?: Maybe<any>, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, status: string, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, draft_id: number, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }>, consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any> }>, service_draft?: Maybe<{ __typename?: 'sales_service_draft', dependent_id?: Maybe<any> }> }> }>, insert_sales_order_one?: Maybe<{ __typename?: 'sales_order', date: any, deadline: any, draft_id: number, id: number, delivery_status: string, payment_status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, contact?: Maybe<{ __typename?: 'contact_contact', code?: Maybe<string>, name: string }>, customer: { __typename?: 'contact_customer', code?: Maybe<string>, name: string, phone: string }, salepoint: { __typename?: 'management_salesPoint', name: string } }>, update_sales_quotation?: Maybe<{ __typename?: 'sales_quotation_mutation_response', affected_rows: number }>, insert_sales_glass_draft?: Maybe<{ __typename?: 'sales_glass_draft_mutation_response', affected_rows: number }>, insert_sales_accessory_draft?: Maybe<{ __typename?: 'sales_accessory_draft_mutation_response', affected_rows: number }>, insert_sales_consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft_mutation_response', affected_rows: number }> };
 
 export type UpdateQuotationMutationVariables = Exact<{
   id: Scalars['Int'];
@@ -34083,7 +34106,7 @@ export type GetOrderByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetOrderByIdQuery = { __typename?: 'query_root', sales_order_by_pk?: Maybe<{ __typename?: 'sales_order', date: any, deadline: any, draft_id: number, id: number, ref?: Maybe<string>, ref_num?: Maybe<number>, delivery_status: string, payment_status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, contact?: Maybe<{ __typename?: 'contact_contact', code?: Maybe<string>, name: string, phone: string, id: any }>, customer: { __typename?: 'contact_customer', id: any, name: string, phone: string, code?: Maybe<string>, ICE?: Maybe<string> }, draft: { __typename?: 'sales_draft', status: Sales_Draft_Status_Enum, product_drafts: Array<{ __typename?: 'sales_product_draft', id: any, label: string, heigth?: Maybe<any>, company_name?: Maybe<string>, count?: Maybe<any>, delivered: any, warehouse_id?: Maybe<any>, substance_id?: Maybe<any>, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, status: string, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, draft_id: number, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }>, consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any> }>, service_draft?: Maybe<{ __typename?: 'sales_service_draft', dependent_id: any }> }> }, payments: Array<{ __typename?: 'sales_payment', amount: any, date: any, deadline?: Maybe<any>, paper_ref?: Maybe<string>, payment_method: string, order_id: number, id: any, comment?: Maybe<string>, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', name: string, id: any } }> }> };
+export type GetOrderByIdQuery = { __typename?: 'query_root', sales_order_by_pk?: Maybe<{ __typename?: 'sales_order', date: any, deadline: any, draft_id: number, id: number, ref?: Maybe<string>, ref_num?: Maybe<number>, delivery_status: string, payment_status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, contact?: Maybe<{ __typename?: 'contact_contact', code?: Maybe<string>, name: string, phone: string, id: any }>, customer: { __typename?: 'contact_customer', id: any, name: string, phone: string, code?: Maybe<string>, ICE?: Maybe<string> }, draft: { __typename?: 'sales_draft', status: Sales_Draft_Status_Enum, product_drafts: Array<{ __typename?: 'sales_product_draft', id: any, label: string, heigth?: Maybe<any>, company_name?: Maybe<string>, count?: Maybe<any>, delivered: any, warehouse_id?: Maybe<any>, substance_id?: Maybe<any>, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, status: string, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, isRepeated?: Maybe<boolean>, isLaunched?: Maybe<boolean>, draft_id: number, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }>, consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string> }>, service_draft?: Maybe<{ __typename?: 'sales_service_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string> }> }> }, payments: Array<{ __typename?: 'sales_payment', amount: any, date: any, deadline?: Maybe<any>, paper_ref?: Maybe<string>, payment_method: string, order_id: number, id: any, comment?: Maybe<string>, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', name: string, id: any } }> }> };
 
 export type GetPaymentQueryVariables = Exact<{
   order_id: Scalars['Int'];
@@ -34121,7 +34144,7 @@ export type GetQuotationByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetQuotationByIdQuery = { __typename?: 'query_root', sales_quotation_by_pk?: Maybe<{ __typename?: 'sales_quotation', contact_id?: Maybe<any>, date: any, deadline: any, draft_id: number, id: number, status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', id: any, name: string, phone: string, code?: Maybe<string> }, draft: { __typename?: 'sales_draft', product_drafts: Array<{ __typename?: 'sales_product_draft', id: any, label: string, heigth?: Maybe<any>, company_name?: Maybe<string>, count?: Maybe<any>, delivered: any, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, status: string, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }>, consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any> }>, service_draft?: Maybe<{ __typename?: 'sales_service_draft', dependent_id: any }> }> }, salepoint: { __typename?: 'management_salesPoint', id: any, name: string } }> };
+export type GetQuotationByIdQuery = { __typename?: 'query_root', sales_quotation_by_pk?: Maybe<{ __typename?: 'sales_quotation', contact_id?: Maybe<any>, date: any, deadline: any, draft_id: number, id: number, status: string, total_ht: any, total_tax: any, total_ttc: any, company: { __typename?: 'management_company', name: string, id: any }, customer: { __typename?: 'contact_customer', id: any, name: string, phone: string, code?: Maybe<string> }, draft: { __typename?: 'sales_draft', product_drafts: Array<{ __typename?: 'sales_product_draft', id: any, label: string, heigth?: Maybe<any>, company_name?: Maybe<string>, count?: Maybe<any>, delivered: any, m2?: Maybe<any>, ml?: Maybe<any>, price?: Maybe<any>, product_code: string, quantity?: Maybe<any>, status: string, total_price?: Maybe<any>, type?: Maybe<Sales_Product_Type_Enum>, unit?: Maybe<string>, width?: Maybe<any>, glass_draft?: Maybe<{ __typename?: 'sales_glass_draft', id: any }>, consumable_draft?: Maybe<{ __typename?: 'sales_consumable_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string> }>, service_draft?: Maybe<{ __typename?: 'sales_service_draft', dependent_id?: Maybe<any>, labelFactory?: Maybe<string> }> }> }, salepoint: { __typename?: 'management_salesPoint', id: any, name: string } }> };
 
 export const Product_Product_Glass_ViewFragmentFragmentDoc = gql`
     fragment product_product_glass_viewFragment on product_product_glass_view {
@@ -38130,6 +38153,33 @@ export const InsertDraftDocument = gql`
       super(apollo);
     }
   }
+export const UpdateDraftDocument = gql`
+    mutation UpdateDraft($id: Int!, $status: sales_draft_status_enum = commande, $glasses: [sales_glass_draft_insert_input!]! = [], $accessories: [sales_accessory_draft_insert_input!]! = [], $consumables: [sales_consumable_draft_insert_input!]! = []) {
+  update_sales_draft_by_pk(pk_columns: {id: $id}, _set: {status: $status}) {
+    id
+  }
+  insert_sales_glass_draft(objects: $glasses) {
+    affected_rows
+  }
+  insert_sales_accessory_draft(objects: $accessories) {
+    affected_rows
+  }
+  insert_sales_consumable_draft(objects: $consumables) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateDraftGQL extends Apollo.Mutation<UpdateDraftMutation, UpdateDraftMutationVariables> {
+    document = UpdateDraftDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const DeleteInvoicesDocument = gql`
     mutation deleteInvoices($ids: [uuid!]! = []) {
   delete_sales_invoice(where: {id: {_in: $ids}}) {
@@ -38606,6 +38656,51 @@ export const InsertManyConsumablesDocument = gql`
       super(apollo);
     }
   }
+export const InsertManyGlassesDocument = gql`
+    mutation InsertManyGlasses($glasses: [sales_glass_draft_insert_input!]!) {
+  insert_sales_glass_draft(objects: $glasses) {
+    returning {
+      id
+      product_draft {
+        company_name
+        heigth
+        id
+        label
+        m2
+        ml
+        price
+        product_code
+        quantity
+        total_price
+        type
+        unit
+        width
+        company_id
+        count
+        isRepeated
+        isLaunched
+        substance_id
+        warehouse_id
+        draft_id
+        glass_draft {
+          id
+        }
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertManyGlassesGQL extends Apollo.Mutation<InsertManyGlassesMutation, InsertManyGlassesMutationVariables> {
+    document = InsertManyGlassesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InsertManyProductsDocument = gql`
     mutation InsertManyProducts($objects: [sales_product_draft_insert_input!]!) {
   insert_sales_product_draft(objects: $objects) {
@@ -38684,9 +38779,9 @@ export const InsertManyServicesDocument = gql`
     }
   }
 export const InsertServiceDraftDocument = gql`
-    mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int, $labelFactory: String) {
+    mutation insertServiceDraft($company_id: uuid, $company_name: String, $label: String, $price: numeric, $product_code: String, $total_price: numeric, $type: sales_product_type_enum, $unit: String, $dependent_id: uuid, $m2: numeric, $quantity: numeric, $ml: numeric, $draft_id: Int, $labelFactory: String, $warehouse_id: uuid = null) {
   insert_sales_service_draft_one(
-    object: {product_draft: {data: {company_id: $company_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id}}, dependent_id: $dependent_id, labelFactory: $labelFactory}
+    object: {product_draft: {data: {company_id: $company_id, company_name: $company_name, label: $label, price: $price, product_code: $product_code, total_price: $total_price, type: $type, unit: $unit, m2: $m2, quantity: $quantity, ml: $ml, draft_id: $draft_id, warehouse_id: $warehouse_id}}, dependent_id: $dependent_id, labelFactory: $labelFactory}
   ) {
     id
     dependent_id
@@ -38813,12 +38908,47 @@ export const InsertQuotationDocument = gql`
     }
   }
 export const TransformQuotationToOrderDocument = gql`
-    mutation TransformQuotationToOrder($draft_id: Int!, $status: sales_draft_status_enum = commande, $company_id: uuid, $customer_id: uuid, $contact_id: uuid, $date: date, $deadline: date, $salepoint_id: uuid, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré", $quotationStatus: String = "confirmé") {
-  update_sales_draft_by_pk(pk_columns: {id: $draft_id}, _set: {status: $status}) {
+    mutation TransformQuotationToOrder($draft_id: Int!, $copierDraft_id: Int!, $status: sales_draft_status_enum = commande, $company_id: uuid, $customer_id: uuid, $contact_id: uuid, $date: date, $deadline: date, $salepoint_id: uuid, $total_ht: numeric, $total_tax: numeric, $total_ttc: numeric, $payment_status: String = "non payé", $delivery_status: String = "non livré", $quotationStatus: String = "confirmé", $glasses: [sales_glass_draft_insert_input!]! = [], $accessories: [sales_accessory_draft_insert_input!]! = [], $consumables: [sales_consumable_draft_insert_input!]! = []) {
+  update_sales_draft_by_pk(
+    pk_columns: {id: $copierDraft_id}
+    _set: {status: $status}
+  ) {
     status
+    product_drafts {
+      id
+      label
+      heigth
+      company_name
+      count
+      delivered
+      warehouse_id
+      substance_id
+      m2
+      ml
+      price
+      product_code
+      quantity
+      status
+      total_price
+      type
+      unit
+      width
+      isRepeated
+      isLaunched
+      draft_id
+      glass_draft {
+        id
+      }
+      consumable_draft {
+        dependent_id
+      }
+      service_draft {
+        dependent_id
+      }
+    }
   }
   insert_sales_order_one(
-    object: {company_id: $company_id, draft_id: $draft_id, customer_id: $customer_id, contact_id: $contact_id, date: $date, deadline: $deadline, total_ht: $total_ht, salepoint_id: $salepoint_id, total_tax: $total_tax, total_ttc: $total_ttc, payment_status: $payment_status, delivery_status: $delivery_status}
+    object: {company_id: $company_id, draft_id: $copierDraft_id, customer_id: $customer_id, contact_id: $contact_id, date: $date, deadline: $deadline, total_ht: $total_ht, salepoint_id: $salepoint_id, total_tax: $total_tax, total_ttc: $total_ttc, payment_status: $payment_status, delivery_status: $delivery_status}
   ) {
     company {
       name
@@ -38850,6 +38980,15 @@ export const TransformQuotationToOrderDocument = gql`
     where: {draft_id: {_eq: $draft_id}}
     _set: {status: $quotationStatus}
   ) {
+    affected_rows
+  }
+  insert_sales_glass_draft(objects: $glasses) {
+    affected_rows
+  }
+  insert_sales_accessory_draft(objects: $accessories) {
+    affected_rows
+  }
+  insert_sales_consumable_draft(objects: $consumables) {
     affected_rows
   }
 }
@@ -39340,9 +39479,11 @@ export const GetOrderByIdDocument = gql`
         }
         consumable_draft {
           dependent_id
+          labelFactory
         }
         service_draft {
           dependent_id
+          labelFactory
         }
       }
     }
@@ -39550,9 +39691,11 @@ export const GetQuotationByIdDocument = gql`
         }
         consumable_draft {
           dependent_id
+          labelFactory
         }
         service_draft {
           dependent_id
+          labelFactory
         }
       }
     }

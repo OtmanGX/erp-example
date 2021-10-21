@@ -126,8 +126,11 @@ $success: map-get($app-theme, success);
   // Header backgrounds
   .topbar-#{"" + $colorName + ""} {
     .topbar.mat-toolbar {
-      background: $primary_color !important;
-      color: $color500 !important;
+     // background: $primary_color !important;
+    background-color:transparent !important;
+    color: $color500 !important;
+    box-shadow: 0.45px 0.45px  0.5px #888888;
+
     }
   }
 

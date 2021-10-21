@@ -35,7 +35,7 @@ export class OrdersFacade {
   }
 
   loadOrderById(id) {
-    this.paymentsFacade.loadOrderPayments({ order_id: id });
+   // this.paymentsFacade.loadOrderPayments({ order_id: id });
     this.dispatch(OrdersActions.loadOrderById({ id }));
   }
 

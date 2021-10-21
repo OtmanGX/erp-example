@@ -14,16 +14,28 @@ import {
   InsertedDeliveryForm,
   InsertedInvoice,
   PaymentMethod,
+  Product_draft,
 } from '@tanglass-erp/core/sales';
 import { addDays } from 'date-fns';
 
 type ListObservable = Observable<any> | Array<any>;
 
-function getGlassQuantities(row: Product) {
-  return [
-    { key: row.m2, value: row.m2 + '  m2' },
-    { key: row.ml, value: row.ml + '  ml' },
-  ];
+function getGlassQuantities(rows: Product_draft[]) {
+  console.log( 'rows',rows)
+  let res;
+  let m2 = 0;
+  let ml = 0;
+  rows?.forEach((row) => {
+    m2 += row.m2;
+    ml += row.ml;
+  });
+  rows
+    ? (res = [
+        { key: m2, value: m2 + '  m2' },
+        { key: ml, value: ml + '  ml' },
+      ])
+    : null;
+  return res;
 }
 
 export type deliveryFormType = {
@@ -66,35 +78,35 @@ const regConfigInvoice = (
     validations: [REQUIRED],
   },
   {
-    type: "select",
-    name: "company_id",
-    label: "Société",
-    inputType: "text",
+    type: 'select',
+    name: 'company_id',
+    label: 'Société',
+    inputType: 'text',
     options: companies,
 
     value: data?.company_id,
-    validations: [REQUIRED]
+    validations: [REQUIRED],
   },
   {
-    type: "selectSearch",
-    name: "client_id",
-    label: "Client",
+    type: 'selectSearch',
+    name: 'client_id',
+    label: 'Client',
     filterFields: ['name', 'phone'],
     fieldsToShow: ['name', 'phone'],
     inputType: 'text',
     options: clients,
     value: data?.client_id,
-    validations: [REQUIRED]
+    validations: [REQUIRED],
   },
   {
-    type: "selectSearch",
-    name: "contact_id",
-    label: "Contact",
+    type: 'selectSearch',
+    name: 'contact_id',
+    label: 'Contact',
     filterFields: ['name', 'code'],
     fieldsToShow: ['name', 'code'],
     inputType: 'text',
     options: contacts,
-    value: data?.contact_id
+    value: data?.contact_id,
   },
   {
     type: 'select',
@@ -175,7 +187,7 @@ const regConfigDelivery = (
     inputType: 'text',
     options: Object.values(PaymentMethod).map((e) => ({ key: e, value: e })),
     value: data?.payment_method,
-    validations: [REQUIRED]
+    validations: [REQUIRED],
   },
   {
     type: 'select',
@@ -286,38 +298,6 @@ const regConfigGlassItem = (
     validations: [REQUIRED, MAXNUMBER(limit)],
   },
   {
-    type: 'input',
-    name: 'width',
-    label: 'Largeur',
-    inputType: 'number',
-    value: data?.data?.width,
-    validations: [REQUIRED, MAXNUMBER(limit)],
-  },
-  {
-    type: 'input',
-    name: 'heigth',
-    label: 'Hauteur',
-    inputType: 'number',
-    value: data?.data?.heigth,
-    validations: [REQUIRED, MAXNUMBER(limit)],
-  },
-  {
-    type: 'input',
-    name: 'count',
-    label: 'N° de piéces',
-    inputType: 'number',
-    value: data?.data?.count,
-    validations: [MAXNUMBER(limit)],
-  },
-  {
-    type: 'input',
-    name: 'price',
-    label: 'P.U',
-    inputType: 'number',
-    value: data?.data?.price,
-    //validations: [REQUIRED, MAXNUMBER(limit)],
-  },
-  {
     type: 'select',
     name: 'company_id',
     label: 'Société',
@@ -334,6 +314,14 @@ const regConfigGlassItem = (
     value: data?.data?.warehouse_id,
     options: warehouses,
     //validations: [REQUIRED],
+  },
+  {
+    type: 'input',
+    name: 'price',
+    label: 'P.U',
+    inputType: 'number',
+    value: data?.data?.price,
+    //validations: [REQUIRED, MAXNUMBER(limit)],
   },
   {
     type: 'input',
@@ -375,31 +363,6 @@ const regConfigCustomerItem = (
     value: data?.data?.label,
     validations: [REQUIRED, MAXNUMBER(limit)],
   },
-  {
-    type: 'input',
-    name: 'width',
-    label: 'Largeur',
-    inputType: 'number',
-    value: data?.data?.width,
-    validations: [REQUIRED, MAXNUMBER(limit)],
-  },
-  {
-    type: 'input',
-    name: 'heigth',
-    label: 'Hauteur',
-    inputType: 'number',
-    value: data?.data?.heigth,
-    validations: [REQUIRED, MAXNUMBER(limit)],
-  },
-  {
-    type: 'input',
-    name: 'count',
-    label: 'N° de piéces',
-    inputType: 'number',
-    value: data?.data?.count,
-    validations: [MAXNUMBER(limit)],
-  },
-
   {
     type: 'input',
     name: 'unit',
@@ -450,14 +413,7 @@ const regConfigAccessoireItem = (
     value: data?.data?.quantity,
     validations: [REQUIRED, MAXNUMBER(limit)],
   },
-  {
-    type: 'input',
-    name: 'price',
-    label: 'P.U',
-    inputType: 'number',
-    value: data?.data?.price,
-    validations: [REQUIRED, MAXNUMBER(limit)],
-  },
+
   {
     type: 'select',
     name: 'company_id',
@@ -475,6 +431,14 @@ const regConfigAccessoireItem = (
     value: data?.data?.warehouse_id,
     options: warehouses,
     validations: [REQUIRED],
+  },
+  {
+    type: 'input',
+    name: 'price',
+    label: 'P.U',
+    inputType: 'number',
+    value: data?.data?.price,
+    validations: [REQUIRED, MAXNUMBER(limit)],
   },
   {
     type: 'input',
@@ -523,16 +487,9 @@ const regConfigServiceItem = (
     label: 'Quantité',
     inputType: 'number',
     value: data?.data?.quantity,
-    options: getGlassQuantities(data.row) ?? [],
+    options: getGlassQuantities(data.rows) ?? [],
   },
-  {
-    type: 'input',
-    name: 'price',
-    label: 'P.U',
-    inputType: 'number',
-    value: data?.data?.price,
-    validations: [REQUIRED, MAXNUMBER(limit)],
-  },
+
   {
     type: 'select',
     name: 'company_id',
@@ -543,14 +500,22 @@ const regConfigServiceItem = (
     //validations: [REQUIRED],
   },
   {
-  type: 'select',
-  name: 'warehouse_id',
-  label: 'Stock',
-  inputType: 'text',
-  value: data?.data?.warehouse_id,
-  options: [],
-  //validations: [REQUIRED],
-},
+    type: 'select',
+    name: 'warehouse_id',
+    label: 'Stock',
+    inputType: 'text',
+    value: data?.data?.warehouse_id,
+    options: [],
+    //validations: [REQUIRED],
+  },
+  {
+    type: 'input',
+    name: 'price',
+    label: 'P.U',
+    inputType: 'number',
+    value: data?.data?.price,
+    validations: [REQUIRED, MAXNUMBER(limit)],
+  },
   {
     type: 'input',
     name: 'unit',
@@ -600,16 +565,9 @@ const regConfigConsumableItem = (
     label: 'Quantité',
     inputType: 'number',
     value: data?.data?.quantity,
-    options: data.row.ml || data.row.m2 ? getGlassQuantities(data.row) : null,
+    options: getGlassQuantities(data.rows) ?? [],
   },
-  {
-    type: 'input',
-    name: 'price',
-    label: 'P.U',
-    inputType: 'number',
-    value: data?.data?.price,
-    validations: [REQUIRED, MAXNUMBER(limit)],
-  },
+
   {
     type: 'select',
     name: 'company_id',
@@ -627,6 +585,14 @@ const regConfigConsumableItem = (
     value: data?.data?.warehouse_id,
     options: warehouses,
     //validations: [REQUIRED],
+  },
+  {
+    type: 'input',
+    name: 'price',
+    label: 'P.U',
+    inputType: 'number',
+    value: data?.data?.price,
+    validations: [REQUIRED, MAXNUMBER(limit)],
   },
   {
     type: 'input',

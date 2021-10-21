@@ -95,3 +95,22 @@ export const selectDraft = createAction(
   '[Draft ] Select Draft ID ',
   props<{ id: number }>()
 );
+
+
+/****************************************************************** */
+/*****COPIER INDIVIDUAL Draft ** */
+/****************************************************************** */
+
+export const copierDraft = createAction(
+  '[List drafts Component] Copier Draft'
+);
+
+export const copierDraftSuccess = createAction(
+  '[Draft Effect] Copier Draft Success',
+  props<{ draft: Draft }>()
+);
+
+export const copierDraftFailure = createAction(
+  '[Draft Effect] Copier Draft Failure',
+  props<{ error: any }>()
+);

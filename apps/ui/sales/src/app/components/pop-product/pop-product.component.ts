@@ -14,10 +14,13 @@ import {
   GlassGroup,
   ServiceGroup,
   AccessoryGroup,
+  ProductDraftFacade,
 } from '@tanglass-erp/store/sales';
 import { DynamicFormComponent } from '@tanglass-erp/material';
 import * as productStore from '@TanglassStore/product/index';
 import { Intermediate_Data, SalesItem } from '@TanglassUi/sales/utils/models';
+import { DimensionsComponent } from '@TanglassUi/sales/components/pop-product/product-dimensions/product-dimensions.component';
+
 @Component({
   selector: 'ngx-pop-product',
   templateUrl: './pop-product.component.html',
@@ -38,24 +41,33 @@ export class PopProductComponent
   products;
   formValue: SalesItem = new SalesItem();
   warehouses;
-  companies;substance_id
+  companies;
+  substance_id;
+
   @ViewChild('product_form', { read: DynamicFormComponent })
   productFormComponent: DynamicFormComponent;
+  @ViewChild('dimensions_form', { read: DimensionsComponent })
+  dimensions_form: DimensionsComponent;
   get productForm() {
     return this.productFormComponent?.form;
   }
   constructor(
     public dialogRef: MatDialogRef<PopProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Intermediate_Data,
-    private store: Store
+    private store: Store,
+    private facade: ProductDraftFacade
   ) {
     super(dialogRef, data);
-    this.companies = this.data.companies;
-    this.warehouses = this.data.warehouses;
+    this.data.companies
+      .subscribe((companies) => (this.companies = companies))
+      .unsubscribe();
+    this.data.warehouses
+      .subscribe((warehouses) => (this.warehouses = warehouses))
+      .unsubscribe();
   }
 
   ngAfterViewInit(): void {
-    this.productForm.get('product_code')?.valueChanges?.subscribe((val) => {
+    this.productForm?.get('product_code')?.valueChanges?.subscribe((val) => {
       const found = this.products?.find(
         (element) => element.product?.code == val || element?.code == val
       );
@@ -66,7 +78,7 @@ export class PopProductComponent
       this.productForm.controls['unit'].setValue(
         found?.product?.unit || found?.unit
       );
-      this.formValue.substance_id=found?.substanceid
+      this.formValue.substance_id = found?.substanceid;
       let labelFactory =
         found?.serviceConfig?.labelFactory || found?.product?.labelFactory;
       labelFactory
@@ -76,10 +88,10 @@ export class PopProductComponent
           })
         : null;
     });
-    this.productForm.get('company_id')?.valueChanges?.subscribe((val) => {
+    this.productForm?.get('company_id')?.valueChanges?.subscribe((val) => {
       let found = this.companies.find((element) => element.key == val);
       this.formValue = { ...this.formValue, company_name: found?.value };
-      this.warehouses = this.data.warehouses.filter(
+      this.warehouses = this.warehouses.filter(
         (warehouse) => warehouse.company_id == val
       );
       this.data.data = this.productForm.value;
@@ -99,7 +111,7 @@ export class PopProductComponent
         break;
       }
       case Sales_Product_Type_Enum.Service: {
-        this.formValue['dependent_id'] = this.data.row.glass_draft.id;
+        // this.formValue['dependent_id'] = this.data.row.glass_draft.id;
         this.types = Object.values(ServiceGroup);
         this.type = Sales_Product_Type_Enum.Service;
         break;
@@ -113,7 +125,7 @@ export class PopProductComponent
   getItems(type) {
     switch (type) {
       case Sales_Product_Type_Enum.Verre: {
-        this.glasses$.subscribe((data) => (this.products = data));
+        this.glasses$.subscribe((data) => (this.products = data)).unsubscribe();
         this.regConfig = regConfigs.regConfigGlassItem(
           this.glasses$,
           this.companies,
@@ -123,7 +135,9 @@ export class PopProductComponent
         break;
       }
       case Sales_Product_Type_Enum.ArticleClient: {
-        this.customerItems$.subscribe((data) => (this.products = data));
+        this.customerItems$
+          .subscribe((data) => (this.products = data))
+          .unsubscribe();
         this.regConfig = regConfigs.regConfigCustomerItem(
           this.customerItems$,
           this.data
@@ -131,7 +145,9 @@ export class PopProductComponent
         break;
       }
       case Sales_Product_Type_Enum.Accessoire: {
-        this.accessories$.subscribe((data) => (this.products = data));
+        this.accessories$
+          .subscribe((data) => (this.products = data))
+          .unsubscribe();
         this.regConfig = regConfigs.regConfigAccessoireItem(
           this.accessories$,
           this.companies,
@@ -141,32 +157,47 @@ export class PopProductComponent
         break;
       }
       case Sales_Product_Type_Enum.Consommable: {
-        this.consumables$.subscribe((data) => (this.products = data));
+        this.consumables$
+          .subscribe((data) => (this.products = data))
+          .unsubscribe();
+        let rows = [];
+        this.facade.selectedGlasses$
+          .subscribe((glasses) => (rows = glasses))
+          .unsubscribe();
         this.regConfig = regConfigs.regConfigConsumableItem(
           this.consumables$,
           this.companies,
           this.warehouses,
-          this.data
+          { ...this.data, rows: rows.length ? rows : null }
         );
         break;
       }
       case Sales_Product_Type_Enum.Service: {
         this.services$.subscribe((data) => (this.products = data));
-        this.regConfig = regConfigs.regConfigServiceItem(
-          this.services$,
-          this.companies,
-          this.data
+        let selectedGlasses = [];
+        this.facade.selectedGlasses$.subscribe(
+          (glasses) => (selectedGlasses = glasses)
         );
+        selectedGlasses.length
+          ? (this.regConfig = regConfigs.regConfigServiceItem(
+              this.services$,
+              this.companies,
+              { ...this.data, rows: selectedGlasses }
+            ))
+          : null;
         break;
       }
     }
   }
-
+  close() {
+    this.dialogRef.close();
+  }
   submitForm() {
     this.formValue = {
       ...this.formValue,
       ...this.productForm.value,
       type: this.type,
+      dimensions: this.dimensions_form?.dimensions?.value,
     };
     this.submit(this.formValue);
   }

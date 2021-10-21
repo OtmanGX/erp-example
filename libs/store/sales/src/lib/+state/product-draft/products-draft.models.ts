@@ -11,8 +11,8 @@ export class Product {
   product_code?: string;
   label?: string;
   count?: number;
-  heigth?: number;
-  width?: number;
+  //heigth?: number;
+  //width?: number;
   m2?: number = 0;
   ml?: number = 0;
   unit?: string;
@@ -22,6 +22,7 @@ export class Product {
   company_name?: string;
   warehouse_id?: string;
   type?: string;
+  dimensions?:Dimension[];
 }
 export class ProductGroups {
   glasses: Product_draft[];
@@ -33,4 +34,9 @@ export class Bis {
   glass: InsertedProduct;
   services: InsertedProduct[];
   consumables: InsertedProduct[];
+}
+export class Dimension{
+  count: number;
+  heigth: number;
+  width: number;
 }

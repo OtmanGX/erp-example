@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as QuotationActions from './quotation.actions';
-import { QuotationService } from '@tanglass-erp/core/sales';
+import { Product_draft, QuotationService } from '@tanglass-erp/core/sales';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
@@ -101,9 +101,13 @@ export class QuotationEffects {
         this.quotationService.getOneById(action.id).pipe(
           map((data) => {
             this.draftFacade.selectDraftId(data.draft_id);
-            this.productDraftFacade.setDraftProducts(data.products);
+           let products:Product_draft[]= data.products.map(productDB=>{
+              let {__typename,...product}=productDB
+              return product
+            });
+            this.productDraftFacade.setDraftProducts(products);
             return QuotationActions.loadQuotationByIdSuccess({
-              quotation: data,
+              quotation: {...data,products},
             });
           }),
           catchError((error) =>

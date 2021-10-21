@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { InsertedProduct, Product_draft } from '@tanglass-erp/core/sales';
-import { Bis } from '@tanglass-erp/store/sales';
+import { Bis, Dimension } from '@tanglass-erp/store/sales';
 /****************************************************************** */
 /*****LOAD  Products ** */
 /****************************************************************** */
@@ -151,13 +151,9 @@ export const removeProductFailure = createAction(
   props<{ error: any }>()
 );
 
-export const setProductsState = createAction(
-  '[Products]  Set  Products Success ',
-  props<{ products: Product_draft[] }>()
-);
 
 
-// remove Products Form
+// remove Many  Products Form
 export const removeProducts = createAction(
   '[Products] remove Products',
   props<{ ids: string[] }>()
@@ -173,15 +169,98 @@ export const removeProductsFailure = createAction(
   props<{ error: any }>()
 );
 
-
 /****************************************************************** */
 /*****Process the  BIS(Product Reparing )  Product  addition ** */
 /****************************************************************** */
 
 export const addReparationProducts = createAction(
   '[Reparation Products ] Add Reparation Products ',
-  props<{ item:Bis }>()
+  props<{ item: Bis }>()
 );
 
+/****************************************************************** */
+/*****ADD INDIVIDUAL Many Glasses ** */
+/****************************************************************** */
+
+export const addManyGlasses = createAction(
+  '[List  Glass Component] Add Many Glasses',
+  props<{ glasses: InsertedProduct[] }>()
+);
+
+export const addManyGlassesSuccess = createAction(
+  '[  Glass Effect] Add Many  Glasses Success',
+  props<{ glasses: Product_draft[] }>()
+);
+
+export const addManyGlassesFailure = createAction(
+  '[  Glass Effect] Add Many  Glasses Failure',
+  props<{ error: any }>()
+);
+
+/****************************************************************** */
+/*****SELECT  Many Glasses ** */
+/****************************************************************** */
+
+export const selectManyGlasses = createAction(
+  '[List  Glass Component] select Many Glasses',
+  props<{ glasses: Product_draft[] }>()
+);
+
+export const clearSelectedGlasses = createAction(
+  '[  Glass Effect] clear Many Glasses'
+);
+
+/****************************************************************** */
+/*****ADD Many Services ** */
+/****************************************************************** */
+
+export const addManyServices = createAction(
+  '[List  Service Component] Add Many Services',
+  props<{ services: InsertedProduct[] }>()
+);
+
+export const addManyServicesSuccess = createAction(
+  '[  Service Effect] Add Many  Services Success',
+  props<{ services: Product_draft[] }>()
+);
+
+export const addManyServicesFailure = createAction(
+  '[  Service Effect] Add  Many  Services Failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****ADD Many Consumables ** */
+/****************************************************************** */
+
+export const addManyConsumables = createAction(
+  '[List  Consumables Component] Add Many Consumables',
+  props<{ consumables: InsertedProduct[] }>()
+);
+
+export const addManyConsumablesSuccess = createAction(
+  '[  Consumables Effect] Add Many  Consumables Success',
+  props<{ consumables: Product_draft[] }>()
+);
+
+export const addManyConsumablesFailure = createAction(
+  '[  Consumables Effect] Add  Many  Consumables Failure',
+  props<{ error: any }>()
+);
+
+
+/****************************************************************** */
+/*****Set and Clear  Products ** */
+/****************************************************************** */
+
+export const setProductsState = createAction(
+  '[Products]  Set  Products Success ',
+  props<{ products: Product_draft[] }>()
+);
+
+export const clearProducts = createAction(
+  '[List  products Component] Clear Products',
+);
 
 

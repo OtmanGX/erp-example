@@ -39,6 +39,7 @@ import { StoreManufacturingModule } from '@tanglass-erp/store/manufacturing';
 import { OrderRepairsComponent } from '@TanglassUi/sales/components/order-repairs/order-repairs.component';
 import { UpdateQuotationComponent } from '@TanglassUi/sales/pages/quotation/update-quotation/update-quotation.component';
 
+import { DimensionsComponent } from '@TanglassUi/sales/components/pop-product/product-dimensions/product-dimensions.component';
 @NgModule({
   declarations: [
     SalesComponent,
@@ -69,6 +70,7 @@ import { UpdateQuotationComponent } from '@TanglassUi/sales/pages/quotation/upda
     PopQuotationTransferComponent,
     InvoiceLinesComponent,
     OrderRepairsComponent,
+    DimensionsComponent,
   ],
   imports: [
     CommonModule,

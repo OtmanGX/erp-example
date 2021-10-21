@@ -1,5 +1,12 @@
-import { Product_draft } from './product';
+import {
+  Product_draft,
+  InsertedProduct,
+  InsertedConsumable,
+  InsertedGlass,
+  InsertedAccessory,
+} from './product';
 import { Amount } from './amount';
+import { InsertedService } from '@tanglass-erp/core/product';
 
 export interface Quotation {
   id: number;
@@ -7,7 +14,7 @@ export interface Quotation {
   ref?: string;
   status?: string;
   customer: SalesCustomer;
-  salepoint: {name:string};
+  salepoint: { name: string };
   contact_id?: string;
   date?: Date;
   deadline?: Date;
@@ -31,32 +38,51 @@ export interface SalesCompany {
   name: string;
 }
 
-
 export interface InsertedQuotation {
-    id: number;
-    draft_id: number;
-    customer_id: string;
-    contact_id?: string;
-    date?: Date;
-    deadline?: Date;
-    company_id: string;
-    total_ttc: number;
-    total_tax: number;
-    total_ht: number;
-    products: Product_draft[];
-    amounts: Amount[];
-  }
+  id: number;
+  draft_id: number;
+  customer_id: string;
+  contact_id?: string;
+  date?: Date;
+  deadline?: Date;
+  company_id: string;
+  total_ttc: number;
+  total_tax: number;
+  total_ht: number;
+  products: Product_draft[];
+  amounts: Amount[];
+}
+
+export interface TransformedQuotation {
+  draft_id: number;
+  copierDraft_id: number;
+  company_id: string;
+  contact_id?: string;
+  customer_id: string;
+  date: Date;
+  deadline?: Date;
+  total_ht: number;
+  total_tax: number;
+  total_ttc: number;
+  salepoint_id: string;
+  quotation: Quotation;
+}
+
+export interface Transfert {
+  draft_id: number;
+  copierDraft_id: number;
+  company_id: string;
+  contact_id?: string;
+  customer_id: string;
+  salepoint_id: string;
+  date: Date;
+  deadline?: Date;
+  total_ht: number;
+  total_tax: number;
+  total_ttc: number;
+  glasses?: InsertedGlass[];
+  accessories?: InsertedAccessory[];
+  consumables?: InsertedAccessory[];
+}
 
 
-  export interface TransformedQuotation {
-    draft_id:number;
-    company_id: string,
-    contact_id?: string,
-    customer_id: string,
-    date: Date,
-    deadline?: Date,
-    total_ht: number,
-    total_tax: number,
-    total_ttc: number,
-    salepoint_id: string,
-  }

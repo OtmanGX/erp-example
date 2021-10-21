@@ -1,0 +1,27 @@
+<mat-card class="mat-elevation-z0">
+  <mat-card-title>
+    <span>Dimensions </span>
+
+  </mat-card-title>
+  <form [formGroup]="dimensionsForm" >
+    <div formArrayName="dimensions" *ngFor="let dimension of dimensions.controls; let i = index" class='row'>
+      <div [formGroupName]="i">
+        <mat-form-field style="margin-left: 10px  ;">
+          <mat-label for="width">Largeur</mat-label>
+          <input matInput type="number" name="width" formControlName="width">
+        </mat-form-field>
+        <mat-form-field style="margin-left: 10px  ;">
+          <mat-label for="heigth">Hauteur</mat-label>
+          <input matInput type="number" name="heigth" formControlName="heigth">
+        </mat-form-field>
+        <mat-form-field style="margin-left: 10px  ;">
+          <mat-label for="count">N° de piéces</mat-label>
+          <input matInput type="number" name="count " formControlName="count">
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <button class="fab-button" (click)="addItem()" mat-fab color="primary">
+    <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
+  </button>
+</mat-card>

@@ -9,6 +9,7 @@ export const DRAFT_FEATURE_KEY = 'draft';
 export interface DraftState extends EntityState<Draft> {
   selectedId: number; // which Draft record has been selected
   draftLoadedById?: Draft;
+  copieDraft_id?: number; //for transforming a quotation into order ( create other draft )
   loaded: boolean; // has the Draft list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -22,6 +23,7 @@ export const draftAdapter: EntityAdapter<Draft> = createEntityAdapter<Draft>();
 export const initialDraftState: DraftState = draftAdapter.getInitialState({
   // set initial required properties
   selectedId: null,
+  copieDraft_id:null,
   loaded: false,
 });
 
@@ -57,10 +59,17 @@ const draftReducer = createReducer(
   on(DraftActions.clearDraftState, (state) =>
     draftAdapter.removeAll(initialDraftState)
   ),
+  on(DraftActions.copierDraftSuccess, (state, action) =>
+    draftAdapter.addOne(action.draft, {
+      ...state,
+      copieDraft_id: action.draft.id,
+    })
+  ),
   on(
     DraftActions.loadDraftFailure,
     DraftActions.addDraftFailure,
     DraftActions.loadDraftByIdFailure,
+    DraftActions.copierDraftFailure,
 
     (state, { error }) => ({ ...state, error })
   )

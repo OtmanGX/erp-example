@@ -12,10 +12,11 @@ export class DraftEffects {
   insertDraft$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(DraftActions.addDraft),
-      mergeMap((action) =>
+      mergeMap(() =>
         this.draftervice.insertOne().pipe(
           map((data) => {
-            this.productDraftFacade.setDraftProducts([]);
+            //this.productDraftFacade.setDraftProducts([]);
+            
             return DraftActions.addDraftSuccess({
               draft: data.data.insert_sales_draft_one,
             });
@@ -26,21 +27,7 @@ export class DraftEffects {
     );
   });
 
-  insertDraftForQuotationTransfer$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(DraftActions.addDraft),
-      mergeMap((action) =>
-        this.draftervice.insertOne().pipe(
-          map((data) => {
-            return DraftActions.addDraftSuccess({
-              draft: data.data.insert_sales_draft_one,
-            });
-          }),
-          catchError((error) => of(DraftActions.addDraftFailure({ error })))
-        )
-      )
-    );
-  });
+
 
   loadDraftById$ = createEffect(() => {
     return this.actions$.pipe(
@@ -74,6 +61,21 @@ export class DraftEffects {
     );
   });
 
+  copierDraft$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DraftActions.copierDraft),
+      mergeMap((action) =>
+        this.draftervice.insertOne().pipe(
+          map((data) => {
+            return DraftActions.copierDraftSuccess({
+              draft: data.data.insert_sales_draft_one,
+            });
+          }),
+          catchError((error) => of(DraftActions.copierDraftFailure({ error })))
+        )
+      )
+    );
+  });
   removeDrafts$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(DraftActions.removeDrafts),

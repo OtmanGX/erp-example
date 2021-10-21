@@ -34,9 +34,11 @@ query GetQuotationById($id: Int!) {
         }
         consumable_draft {
           dependent_id
+          labelFactory
         }
         service_draft {
           dependent_id
+          labelFactory
         }
       }
     }

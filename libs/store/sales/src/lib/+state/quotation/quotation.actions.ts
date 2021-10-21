@@ -99,7 +99,7 @@ export const deleteQuotationsFailure = createAction(
 
 export const TransformToOrder = createAction(
   '[Quotation Card  Component] Transform Quotation To Order',
-  props<{ transformingVariables: TransformedQuotation }>()
+  props<{ transformingVariables: TransformedQuotation}>()
 );
 
 export const TransformToOrderSuccess = createAction(

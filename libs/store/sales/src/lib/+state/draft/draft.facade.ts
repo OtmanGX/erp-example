@@ -10,8 +10,9 @@ import * as DraftActions from './draft.actions';
 export class DraftFacade {
   loaded$ = this.store.pipe(select(DraftSelectors.getDraftLoaded));
   allDraft$ = this.store.pipe(select(DraftSelectors.getAllDraft));
-  selectedDraft$ = this.store.pipe(select(DraftSelectors.getSelectedIdDraft));
+  selectedDraftId$ = this.store.pipe(select(DraftSelectors.getSelectedIdDraft));
   draftLoadedById$ = this.store.pipe(select(DraftSelectors.getDraftLoadedById));
+  copieDraftId$=this.store.pipe(select(DraftSelectors.getCopieDraftId));
   constructor(private store: Store<fromDraft.DraftPartialState>) {}
 
   dispatch(action: Action) {
@@ -23,6 +24,9 @@ export class DraftFacade {
   }
   createDraft() {
     this.dispatch(DraftActions.addDraft());
+  }
+  copierDraft() {
+    this.dispatch(DraftActions.copierDraft());
   }
 
   selectDraftId(id: number) {
