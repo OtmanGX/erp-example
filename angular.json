@@ -114,6 +114,9 @@
               "echarts",
               "chart.js",
               "lodash",
+              "ngx-barcode",
+              "highlight.js",
+              "ag-grid-enterprise",
               "zrender/lib/svg/svg",
               "zrender/lib/vml/vml",
               "style-loader!leaflet/dist/leaflet.css"
@@ -1362,7 +1365,21 @@
               "libs/theme/tanglass-theme/src/styles/app.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "angular2-chartjs",
+              "echarts",
+              "chart.js",
+              "lodash",
+              "jsbarcode",
+              "ngx-barcode",
+              "highlight.js",
+              "subscriptions-transport-ws",
+              "ag-grid-enterprise",
+              "zrender/lib/svg/svg",
+              "zrender/lib/vml/vml",
+              "style-loader!leaflet/dist/leaflet.css"
+            ]
           },
           "configurations": {
             "production": {

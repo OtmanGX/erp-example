@@ -1,6 +1,5 @@
 import { TransformedQuotation, Transfert } from '../models/quotation';
-import { Sales_Product_Type_Enum } from '../../index';
-
+import {Sales_Product_Type_Enum} from '@tanglass-erp/infrastructure/graphql'
 export function transfertQuotationAdapter(
   data: TransformedQuotation
 ): Transfert {
