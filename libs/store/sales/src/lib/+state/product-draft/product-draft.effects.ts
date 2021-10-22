@@ -5,7 +5,7 @@ import { DraftService } from '@tanglass-erp/core/sales';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { NotificationFacadeService } from '@tanglass-erp/store/app';
+import { ToastService } from '@TanglassTheme/services/toast.service';
 
 @Injectable()
 export class ProductDraftEffects {
@@ -127,14 +127,11 @@ export class ProductDraftEffects {
       mergeMap((action) =>
         this.ProductService.addManyGlasses(action.glasses).pipe(
           map((data) => {
-            this.notificationService.showNotifToast({
-              message: 'Verres enregistrés avec succès',
-              operation: 'info',
-              title: 'Glasses',
-              icon: 'closed',
-              route: 'sales/order',
-              color: 'warn',
-            });
+            this.toastrService.showToast(
+              'info',
+              'Verres',
+              'Verres enregistrés avec succès',
+            );
             return ProductActions.addManyGlassesSuccess({
               glasses: data.data.insert_sales_glass_draft.returning.map(
                 (glass) => glass.product_draft
@@ -154,14 +151,13 @@ export class ProductDraftEffects {
       mergeMap((action) =>
         this.ProductService.addManyServices(action.services).pipe(
           map((data) => {
-            this.notificationService.showNotifToast({
-              message: 'Services enregistrés avec succès',
-              operation: 'info',
-              title: 'Services',
-              icon: 'closed',
-              route: 'sales/order',
-              color: 'warn',
-            });
+
+
+            this.toastrService.showToast(
+              'info',
+              'Services',
+              'Services enregistrés avec succès',
+            );
             return ProductActions.addManyServicesSuccess({
               services: data.data.insert_sales_service_draft.returning.map(
                 (service) => ({
@@ -268,6 +264,7 @@ export class ProductDraftEffects {
     private actions$: Actions,
     private ProductService: DraftService,
     private store: Store,
-    private notificationService: NotificationFacadeService
+    private toastrService: ToastService,
+
   ) {}
 }

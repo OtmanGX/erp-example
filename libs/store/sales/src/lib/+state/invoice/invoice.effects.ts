@@ -3,9 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as InvoiceActions from './invoice.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { InvoiceService, UpdatedInvoice } from '@tanglass-erp/core/sales';
-import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastService } from '@TanglassTheme/services/toast.service';
 
 @Injectable()
 export class InvoiceEffects {
@@ -82,15 +82,11 @@ export class InvoiceEffects {
           )
           .pipe(
             map((data) => {
-              this.notificationService.showNotifToast({
-                message: 'Ajouté avec succès',
-                operation: 'success',
-                title: 'Factures',
-                time: new Date(),
-                icon: 'recipt',
-                route: 'sales/invoice',
-                color: 'primary',
-              });
+              this.toastService.showToast(
+                'success',
+                'Factures',
+                'Ajouté avec succès',
+              );
               this.router.navigate(
                 ['sales/invoice/ready'],
                 {
@@ -114,15 +110,11 @@ export class InvoiceEffects {
         this.service.updateOne(action.invoice).pipe(
           map((data) => {
             this.router.navigate(['sales/invoice']);
-            this.notificationService.showNotifToast({
-              message: 'Mise à jour avec succès',
-              operation: 'info',
-              title: 'Factures',
-              time: new Date(),
-              icon: 'checked',
-              route: 'sales/invoice',
-              color: 'accent',
-            });
+            this.toastService.showToast(
+              'info',
+              'Factures',
+              'Mise à jour avec succès',
+            );
             return InvoiceActions.updateInvoiceSuccess({
               invoice: data.data.update_sales_invoice_by_pk,
             });
@@ -139,15 +131,11 @@ export class InvoiceEffects {
       mergeMap((action) =>
         this.service.deleteMany(action.ids).pipe(
           map((data) => {
-            this.notificationService.showNotifToast({
-              message: 'Supprimé avec succès',
-              operation: 'info',
-              title: 'Factures',
-              time: new Date(),
-              icon: 'close',
-              route: 'sales/invoice',
-              color: 'warn',
-            });
+            this.toastService.showToast(
+              'info',
+              'Factures',
+              'Supprimé avec succès',
+            );
             return InvoiceActions.deleteInvoicesSuccess({ ids: action.ids });
           }),
           catchError((error) => of(InvoiceActions.deleteInvoicesFailure({ error })))
@@ -160,6 +148,6 @@ export class InvoiceEffects {
     private actions$: Actions,
     private service: InvoiceService,
     private router: Router,
-    private notificationService: NotificationFacadeService
+    private toastService: ToastService
   ) {}
 }

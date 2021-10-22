@@ -5,7 +5,7 @@ import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { DeliveryForm, DeliveryService, InsertedDeliveryForm } from '@tanglass-erp/core/sales';
 import { Router } from '@angular/router';
-import { NotificationFacadeService } from '@tanglass-erp/store/app';
+import { ToastService } from '@TanglassTheme/services/toast.service';
 
 @Injectable()
 export class DeliveryEffects {
@@ -77,15 +77,11 @@ export class DeliveryEffects {
           .pipe(
             map((data) => {
               this.router.navigate(['/sales/delivery']);
-              this.notificationService.showNotifToast({
-                message: 'Ajouté avec succès',
-                operation: 'success',
-                title: 'Bons de livraison',
-                time: new Date(),
-                icon: 'checked',
-                route: 'sales/delivery',
-                color: 'primary',
-              });
+              this.toastService.showToast(
+                'success',
+                'Bons de livraison',
+                'Ajouté avec succès',
+              );
               return DeliveryActions.addDeliverySuccess({
                 delivery: <DeliveryForm>data.data.insert_sales_delivery_one,
               });
@@ -112,15 +108,11 @@ export class DeliveryEffects {
           .pipe(
             map((data: Array<any>) => {
               this.router.navigate(['sales/invoice']);
-              this.notificationService.showNotifToast({
-                message: 'Mise à jour avec succès',
-                operation: 'success',
-                title: 'Bons de livraison',
-                time: new Date(),
-                icon: 'checked',
-                route: 'sales/delivery',
-                color: 'primary',
-              });
+              this.toastService.showToast(
+                'success',
+                'Bons de livraison',
+                'Mise à jour avec succès',
+              );
               return DeliveryActions.updateDeliverySuccess({
                 delivery: {
                   ...data[0].data.update_sales_delivery_by_pk,
@@ -145,14 +137,11 @@ export class DeliveryEffects {
       mergeMap((action) =>
         this.deliveryService.deleteMany(action.ids).pipe(
           map((data) => {
-            this.notificationService.showNotifToast({
-              message: 'Supprimé avec succès',
-              operation: 'info',
-              title: 'Livraison',
-              icon: 'closed',
-              route: 'sales/delivery',
-              color: 'warn',
-            });
+            this.toastService.showToast(
+              'info',
+              'Bons de livraison',
+              'Supprimé avec succès',
+            );
             return DeliveryActions.removeDeliverySuccess({ ids: action.ids });
           }),
           catchError((error) =>
@@ -186,6 +175,6 @@ export class DeliveryEffects {
     private router: Router,
     private actions$: Actions,
     private deliveryService: DeliveryService,
-    private notificationService: NotificationFacadeService
+    private toastService: ToastService,
   ) {}
 }

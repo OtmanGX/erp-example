@@ -49,7 +49,7 @@ export class NotificationFacadeService {
   }
 
   showNotifToast(notification: MNotification) {
-    this.showNotification(notification);
+    // this.showNotification(notification);
     this.toastrService.showToast(
       notification.operation,
       notification.title,

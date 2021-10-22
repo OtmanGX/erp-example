@@ -5,6 +5,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-header-side',
@@ -89,6 +90,6 @@ export class HeaderSideComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+    this.auth.logout({returnTo: window.location.origin});
   }
 }

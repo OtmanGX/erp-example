@@ -20,7 +20,6 @@ export class SalesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('hhelo')
     this.store.dispatch(CustomerActions.loadCustomers());
     this.store.dispatch(ContactActions.loadContacts());
     this.store.dispatch(SalePointActions.loadSalePoints());
