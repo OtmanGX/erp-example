@@ -14,6 +14,7 @@ import { Store } from '@ngrx/store';
 export class ListServiceComponent implements OnInit {
 
   data$ = this.store.select(ServiceGroupeSelectors.getAllServiceConfigs);
+  viewActions: boolean = false;
 
   constructor(private dialog: MatDialog,
     private store: Store
