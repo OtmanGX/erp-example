@@ -24,8 +24,7 @@ export class ProductDraftFacade {
   selectedGlasses$ = this.store.pipe(
     select(ProductDraftSelectors.getSelectedGlasses)
   );
-  selectedM2$ = this.store.pipe(select(ProductDraftSelectors.getSelectedM2));
-  selectedML$ = this.store.pipe(select(ProductDraftSelectors.getSelectedML));
+  dimensions$ = this.store.pipe(select(ProductDraftSelectors.getDimensions));
   amounts$ = new BehaviorSubject<Amount[]>([new Amount()]);
   orderCompanies;
 
@@ -59,7 +58,6 @@ export class ProductDraftFacade {
   }
   addGlass(product: Product): void {
     let glasses = [];
-
     product.dimensions.map((dimension) => {
       let { dimensions, ...glass } = product;
       glasses.push({
@@ -100,17 +98,17 @@ export class ProductDraftFacade {
         count: dimension.count,
         heigth: dimension.heigth,
         width: dimension.width,
-        quantity: parseFloat((
-          dimension.heigth *
-          dimension.width *
-          dimension.count
-        ).toFixed(2)),
-        m2: parseFloat((dimension.heigth * dimension.width * dimension.count).toFixed(2)),
-        ml:parseFloat ((
-          2 *
-          (dimension.heigth + dimension.width) *
-          dimension.count
-        ).toFixed(2)),
+        quantity: parseFloat(
+          (dimension.heigth * dimension.width * dimension.count).toFixed(2)
+        ),
+        m2: parseFloat(
+          (dimension.heigth * dimension.width * dimension.count).toFixed(2)
+        ),
+        ml: parseFloat(
+          (2 * (dimension.heigth + dimension.width) * dimension.count).toFixed(
+            2
+          )
+        ),
         total_price: 0,
       });
     });
@@ -126,22 +124,40 @@ export class ProductDraftFacade {
   addConsumable(product: InsertedProduct): void {
     let consumable = {
       ...product,
-      total_price:parseFloat((product.quantity * product.price).toFixed(2)),
+      total_price: parseFloat((product.quantity * product.price).toFixed(2)),
     };
     this.dispatch(ProductsActions.addConsumable({ consumable }));
   }
+  dimensionChoice(product: InsertedProduct) {
+    let withM2: Boolean;
+    let withML: Boolean;
+    this.dimensions$
+      .subscribe((value) => {
+        if (product.quantity == value.selectedM2) {
+          withM2 = true;
+        } else if (product.quantity == value.selectedML) {
+          withML = true;
+        } else {
+          withM2 = false;
+          withML = false;
+        }
+      })
+      .unsubscribe();
+    return { withM2, withML };
+  }
   addManyServices(product: InsertedProduct): void {
     let services = [];
-    let withM2: Boolean;
-    this.selectedM2$.subscribe((value) =>
-      product.quantity == value ? (withM2 = true) : null
-    );
-
     this.selectedGlasses$
       .subscribe((glasses) => {
         glasses?.map((glass) => {
           let quantity;
-          withM2 ? (quantity = glass.m2) : (quantity = glass.ml);
+          if (this.dimensionChoice(product).withM2) {
+            quantity = glass.m2;
+          } else if (this.dimensionChoice(product).withML) {
+            quantity = glass.ml;
+          } else {
+            quantity = product.quantity;
+          }
           services?.push({
             ...product,
             dependent_id: glass.glass_draft.id,
@@ -158,16 +174,18 @@ export class ProductDraftFacade {
     asAService: boolean = true
   ): void {
     let consumables = [];
-    let withM2: Boolean;
-    this.selectedM2$.pipe(
-      map((value) => (product.quantity == value ? (withM2 = true) : null))
-    );
     asAService
       ? this.selectedGlasses$
           .subscribe((glasses) => {
             glasses.map((glass) => {
               let quantity;
-              withM2 ? (quantity = glass.m2) : (quantity = glass.ml);
+              if (this.dimensionChoice(product).withM2) {
+                quantity = glass.m2;
+              } else if (this.dimensionChoice(product).withML) {
+                quantity = glass.ml;
+              } else {
+                quantity = product.quantity;
+              }
               consumables.push({
                 ...product,
                 dependent_id: glass?.glass_draft?.id,

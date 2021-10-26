@@ -11,8 +11,7 @@ export interface ProductState extends EntityState<Product_draft> {
   selectedId?: string; // which Product record has been selected
   selectedProducts?: Product_draft[];
   selectedGlasses?: Product_draft[];
-  selectedM2?: number;
-  selectedML?: number;
+  dimensions?: { selectedM2?: number; selectedML?: number };
   loaded: boolean; // has the Product list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -71,8 +70,15 @@ const productReducer = createReducer(
   on(ProductActions.selectManyGlasses, (state, action) => ({
     ...state,
     selectedGlasses: action.glasses,
-    selectedM2: action.glasses.reduce((acc, val) => acc + val.m2, 0),
-    selectedML: action.glasses.reduce((acc, val) => acc + val.ml, 0),
+    dimensions: action.glasses.reduce(
+      function (acc, val) {
+        return {
+          selectedM2: acc.selectedM2 + val.m2,
+          selectedML: acc.selectedML + val.ml,
+        };
+      },
+      { selectedM2: 0, selectedML: 0 }
+    ),
     error: null,
   })),
   on(ProductActions.clearSelectedGlasses, (state, action) => ({

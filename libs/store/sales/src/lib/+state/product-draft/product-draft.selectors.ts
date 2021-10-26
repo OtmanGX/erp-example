@@ -41,15 +41,11 @@ export const getSelectedGlasses = createSelector(
   getProductState,
   (state: ProductState) => state.selectedGlasses
 );
-export const getSelectedM2 = createSelector(
-  getProductState,
-  (state: ProductState) => state.selectedM2
-);
-export const getSelectedML = createSelector(
-  getProductState,
-  (state: ProductState) => state.selectedML
-);
 
+export const getDimensions = createSelector(
+  getProductState,
+  (state: ProductState) => state.dimensions
+);
 export const getSelectedProduct = createSelector(
   getProductEntities,
   getSelectedIdProduct,
