@@ -1,11 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Glass } from '@tanglass-erp/core/product';
 
-import {
-  GLASS_FEATURE_KEY,
-  State,
-  glassAdapter
-} from '../reducers/glass.reducer';
+import { GLASS_FEATURE_KEY, glassAdapter, State } from '../reducers/glass.reducer';
 
 // Lookup the 'Glasses' feature state managed by NgRx
 export const getGlassesState = createFeatureSelector<

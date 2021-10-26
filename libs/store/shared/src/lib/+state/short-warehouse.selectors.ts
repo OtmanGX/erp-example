@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   SHORTWAREHOUSE_FEATURE_KEY,
-  State,
-  ShortWarehousePartialState,
   shortWarehouseAdapter,
+  ShortWarehousePartialState,
+  State
 } from './short-warehouse.reducer';
 
 // Lookup the 'ShortWarehouse' feature state managed by NgRx

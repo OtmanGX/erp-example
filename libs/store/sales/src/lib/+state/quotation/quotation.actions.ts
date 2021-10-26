@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 import { InsertedQuotation, invoiceFilter, Order, Quotation, TransformedQuotation } from '@tanglass-erp/core/sales';
-import { Optional } from '@angular/core';
 
 export const loadQuotations = createAction(
   '[Quotations] Load Quotations',

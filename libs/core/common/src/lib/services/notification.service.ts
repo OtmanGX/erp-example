@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
-  NotificationQueryGQL,
-  NotificationSubscriptionGQL,
   ChangeNotificationStateGQL,
+  NotificationQueryGQL,
+  NotificationSubscriptionGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { InsertedErpNotificationStatus } from '../models/erp-notification';
 

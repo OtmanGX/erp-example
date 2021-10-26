@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { JobOrdersComponent } from '@TanglassUi/manufacturing/pages/job-order/job-orders.component';
 import { JobCardComponent } from '@TanglassUi/manufacturing/pages/job-order/job-card/job-card.component';
 import { ManufacturingComponent } from '@TanglassUi/manufacturing/manufacturing.component';
+
 const routes: Routes = [
   {
     path: '',

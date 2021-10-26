@@ -1,8 +1,8 @@
-import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as ServiceConfigActions from '../actions/servicesConfig.actions';
-import { ServiceConfig, DetailedServiceConfig } from '@tanglass-erp/core/product';
+import { DetailedServiceConfig, ServiceConfig } from '@tanglass-erp/core/product';
 
 export const SERVICE_CONFIG_FEATURE_KEY = 'serviceGroup';
 

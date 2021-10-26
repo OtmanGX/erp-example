@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import {
+  DeleteManyGQL,
+  DeleteServiceGQL,
   GetAllServiceConfigGQL,
-  InsertServiceConfigGQL,
   GetServiceConfigByIdGQL,
+  InsertServiceConfigGQL,
   InsertServiceGQL,
   InsertServiceMutationVariables,
-  DeleteManyGQL,
+  UpdateServiceGQL
 } from '@tanglass-erp/infrastructure/graphql';
-import {
-  InsertedServiceConfig,
-  InsertedService,
-} from '../models/service.model';
+import { InsertedService, InsertedServiceConfig } from '../models/service.model';
 import { adaptProduct } from '../utils/dataAdapter';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -21,7 +21,9 @@ export class ServicesConfigService {
     private getByIdGQL: GetServiceConfigByIdGQL,
     private insertOneGQL: InsertServiceConfigGQL,
     private insertOneItemGQL: InsertServiceGQL,
-    private deleteMany: DeleteManyGQL
+    private deleteMany: DeleteManyGQL,
+    private updateServiceGQL: UpdateServiceGQL,
+    private deleteServiceGQL: DeleteServiceGQL,
   ) {}
 
   getAll() {
@@ -47,5 +49,13 @@ export class ServicesConfigService {
 
   removeManyItems(codes: string[]) {
     return this.deleteMany.mutate({ codes });
+  }
+
+  update(id: string, labelFactory: string, name: string) {
+    return this.updateServiceGQL.mutate({id, labelFactory, name})
+  }
+
+  delete(id: string) {
+    return this.deleteServiceGQL.mutate({id});
   }
 }

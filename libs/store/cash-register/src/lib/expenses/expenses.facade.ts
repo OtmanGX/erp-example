@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 
 import * as fromExpenses from './expenses.reducer';
 import * as ExpensesSelectors from './expenses.selectors';

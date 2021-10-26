@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ProductDraftFacade, Product_draft } from '@tanglass-erp/store/sales';
+import { Product_draft, ProductDraftFacade } from '@tanglass-erp/store/sales';
 import { MatSelectionList } from '@angular/material/list';
 
 @Component({

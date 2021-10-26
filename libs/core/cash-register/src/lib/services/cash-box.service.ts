@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {GetCashBoxByIdGQL, InsertCashBoxGQL, InsertPaymentGQL} from '@tanglass-erp/infrastructure/graphql';
+import { GetCashBoxByIdGQL, InsertCashBoxGQL, InsertPaymentGQL } from '@tanglass-erp/infrastructure/graphql';
 import { InsertedCashBox, InsertedPayment } from '../models/cash-box';
+
 @Injectable({
   providedIn: 'root'
 })

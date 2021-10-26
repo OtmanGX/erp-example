@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
-
-import * as fromWarehouseAccessory from './warehouse-accessory.reducer';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as WarehouseAccessoryActions from './warehouse-accessory.actions';
-import { mergeMap, map, catchError } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { ShortFeatureService } from '@tanglass-erp/core/common';
 import { of } from 'rxjs';
 
@@ -28,5 +25,5 @@ export class WarehouseAccessoryEffects {
 
   constructor(private actions$: Actions,
     private warehouseSubstanceService: ShortFeatureService) {}
-    
+
 }

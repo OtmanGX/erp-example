@@ -1,5 +1,5 @@
-import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as customerProductsActions from '../actions/customer-product.actions';
 import { CustomerProduct } from '@tanglass-erp/core/product';

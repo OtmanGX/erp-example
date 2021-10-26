@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
-  GetAllConsumablesGQL,
-  InsertConsumableGQL,
-  GetConsumableByIdGQL,
-  DeleteOneGQL,
   DeleteManyGQL,
+  DeleteOneGQL,
+  GetAllConsumablesGQL,
+  GetConsumableByIdGQL,
+  InsertConsumableGQL,
   UpdateConsumableGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { InsertedConsumable } from '../models/consumable.model';

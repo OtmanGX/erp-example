@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
-  GetAllCustomerProductsGQL,
-  InsertCustomerProductGQL,
-  DeleteOneGQL,
   DeleteManyGQL,
-  DeleteManyCustomerProductsGQL
+  DeleteOneGQL,
+  GetAllCustomerProductsGQL,
+  InsertCustomerProductGQL
 } from '@tanglass-erp/infrastructure/graphql';
-import { CustomerProduct } from "../models/customerProduct.model";
+import { CustomerProduct } from '../models/customerProduct.model';
 
 @Injectable({
   providedIn: 'root'

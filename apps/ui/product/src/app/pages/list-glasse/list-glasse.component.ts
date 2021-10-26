@@ -5,11 +5,6 @@ import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopGlasseComponent } from './pop-glasse/pop-glasse.component';
 import { GlassHeaders } from '../../utils/grid-headers';
 import { GlassFacadeService } from '@TanglassStore/product/lib/+state/glass.facade.service';
-import { Store } from '@ngrx/store';
-import { AppState } from '@tanglass-erp/store/app';
-import * as GlassActions from '@TanglassStore/product/lib/actions/glass.actions';
-import * as GlassSelectors from '@TanglassStore/product/lib/selectors/glass.selectors';
-import * as ProductsActions from '@TanglassStore/product/lib/actions/product.actions';
 
 @Component({
   selector: 'ngx-list-matierePremiere',

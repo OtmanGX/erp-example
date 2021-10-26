@@ -2,11 +2,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopProductComponent } from '@TanglassUi/sales/components/pop-product/pop-product.component';
 import { TableComponent } from '@tanglass-erp/material';
 import { Product } from '@TanglassUi/sales/utils/models';
-import {
-  ProductDraftFacade,
-  Sales_Product_Type_Enum,
-  Product_draft,
-} from '@tanglass-erp/store/sales';
+import { Product_draft, ProductDraftFacade, Sales_Product_Type_Enum } from '@tanglass-erp/store/sales';
 import { PopRemovingComponent } from '@TanglassUi/sales/components/pop-remove-dependencies/pop-removing.component';
 import { PopRepairComponent } from '@TanglassUi/sales/components/pop-repair-product/pop-repair.component';
 import { SharedFacade } from '@tanglass-erp/store/shared';

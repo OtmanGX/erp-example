@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import {ShortSubstance  } from "@tanglass-erp/core/common";
+import { ShortSubstance } from '@tanglass-erp/core/common';
+
 export const loadShortProduct = createAction(
   '[ShortProduct] Load ShortProduct'
 );

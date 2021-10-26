@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Attribute, OnInit } from '@angular/core';
+import { Attribute, Directive, ElementRef, OnInit } from '@angular/core';
 
 @Directive({ selector: '[fontSize]' })
 export class FontSizeDirective implements OnInit {

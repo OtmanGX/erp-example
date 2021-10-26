@@ -1,8 +1,8 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as ShortProductActions from './short-product.actions';
-import {ShortSubstance  } from "@tanglass-erp/core/common";
+import { ShortSubstance } from '@tanglass-erp/core/common';
 
 export const SHORT_PRODUCT_FEATURE_KEY = 'shortProduct';
 

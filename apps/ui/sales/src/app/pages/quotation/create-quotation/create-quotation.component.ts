@@ -1,9 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  DraftFacade,
-  ProductDraftFacade,
-  QuotationFacade,
-} from '@tanglass-erp/store/sales';
+import { DraftFacade, ProductDraftFacade, QuotationFacade } from '@tanglass-erp/store/sales';
 import { DynamicFormComponent, FieldConfig } from '@tanglass-erp/material';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';
@@ -14,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import * as SalePointSelectors from '@TanglassStore/management/lib/selectors/sale-point.selectors';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'ngx-create-quotation',
   templateUrl: './create-quotation.component.html',

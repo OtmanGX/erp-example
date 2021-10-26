@@ -1,11 +1,6 @@
-import { map } from 'rxjs/operators';
 import { Sales_Product_Type_Enum } from '@tanglass-erp/core/sales';
-import {
-  JobProduct,
-  ManufacturingLine,
-  ManufacturingState,
-  TaskState,
-} from '@tanglass-erp/core/manufacturing';
+import { JobProduct, ManufacturingLine, ManufacturingState, TaskState } from '@tanglass-erp/core/manufacturing';
+
 export function JobOrderGlassesAdapter(glasses: JobProduct[]) {
 
   let result = glasses.map((glass) => ({

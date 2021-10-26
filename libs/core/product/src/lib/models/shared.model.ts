@@ -1,9 +1,5 @@
-import {
-  Product_Product_Insert_Input,
-  Product_Product_Unit_Enum,
-  Product_AccessoryTypes_Enum,
-} from '@tanglass-erp/infrastructure/graphql';
-import { product_companies } from '../utils/dataAdapter';
+import { Product_Product_Unit_Enum } from '@tanglass-erp/infrastructure/graphql';
+
 export interface Product {
   id?: string;
   code: string;

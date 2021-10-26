@@ -1,11 +1,10 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormDialog, FieldConfig } from '@tanglass-erp/material';
+import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import { map } from 'rxjs/operators';
-import { DynamicFormComponent } from '@tanglass-erp/material';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
 import { regConfigDraftInfos } from '@TanglassUi/sales/utils/forms';

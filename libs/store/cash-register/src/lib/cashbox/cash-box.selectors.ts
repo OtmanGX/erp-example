@@ -1,10 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  CASHBOX_FEATURE_KEY,
-  State,
-  CashBoxPartialState,
-  cashBoxAdapter,
-} from './cash-box.reducer';
+import { CASHBOX_FEATURE_KEY, cashBoxAdapter, CashBoxPartialState, State } from './cash-box.reducer';
 
 // Lookup the 'CashBox' feature state managed by NgRx
 export const getCashBoxState = createFeatureSelector<

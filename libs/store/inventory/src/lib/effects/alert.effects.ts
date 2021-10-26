@@ -1,13 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { tap } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { tap } from 'rxjs/operators';
 import * as fromWarehousesActions from '../actions/warehouses.actions';
 import * as fromTransferOrderActions from '../actions/transferOrder.actions';
 import * as fromAccessoryWarehouseActions from '../actions/wareHouseAccessory.actions';
 import * as fromConsumableWarehouseActions from '../actions/warehouseConsumable.actions';
 import * as fromGlassWarehouseActions from '../actions/warehouseGlass.actions';
 import { ToastrService } from 'ngx-toastr';
-
 
 
 const OPTIONS = {

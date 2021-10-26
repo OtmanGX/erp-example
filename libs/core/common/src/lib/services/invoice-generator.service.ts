@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PdfMakeWrapper, Table, Txt, Columns } from 'pdfmake-wrapper';
+import { Columns, PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 
@@ -7,6 +7,7 @@ import { ProductToPrint } from '../models/print';
 
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 //

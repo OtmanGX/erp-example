@@ -1,6 +1,6 @@
-import { Directive, Host, Self, Optional, OnDestroy, OnInit } from '@angular/core';
-import { MediaChange, MediaObserver } from "@angular/flex-layout";
-import { Subscription } from "rxjs";
+import { Directive, Host, OnDestroy, OnInit, Optional, Self } from '@angular/core';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { Subscription } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 
 
@@ -13,7 +13,7 @@ export class MatXSideNavToggleDirective implements OnInit, OnDestroy {
   constructor(
     private mediaObserver: MediaObserver,
     @Host() @Self() @Optional() public sideNav: MatSidenav
-  ) { 
+  ) {
   }
 
   ngOnInit() {

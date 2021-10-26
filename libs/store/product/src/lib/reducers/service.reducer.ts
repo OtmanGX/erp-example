@@ -1,8 +1,8 @@
-import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as ServicesActions from '../actions/service.actions';
-import { Service, DetailedService } from '@tanglass-erp/core/product';
+import { DetailedService, Service } from '@tanglass-erp/core/product';
 
 export const SERVICE_FEATURE_KEY = 'services';
 
@@ -52,7 +52,7 @@ const ServiceReducer = createReducer<State>(
     (state, action) => serviceAdapter.addOne(action.service, state)
   ),
   on(ServicesActions.updateServiceSuccess, (state, action) =>
-     serviceAdapter.upsertOne(action.service, state)
+     serviceAdapter.upsertOne({id: "sasasa",}, state)
   ),
   on(ServicesActions.removeServiceSuccess, (state, action) =>
      serviceAdapter.removeOne(action.service.id, state)

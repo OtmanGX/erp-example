@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
-import {
-  GetAllConsumablesStockGQL,
-  GetConsumableWarehousesByIdGQL,
-} from '@tanglass-erp/infrastructure/graphql';
+import { GetAllConsumablesStockGQL, GetConsumableWarehousesByIdGQL } from '@tanglass-erp/infrastructure/graphql';
 import { AdaptSubstanceStockDetails } from '../utils/detailOrders.Adapter';
 import { map } from 'rxjs/operators';
-
-import * as fromWConso from "../models/consumableWarehouse.model";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +12,8 @@ export class WarehouseConsumableService {
     private getAllGQL: GetAllConsumablesStockGQL,
     private getConsumableWarehousesById: GetConsumableWarehousesByIdGQL,
 
-  ) { 
-    /** 
+  ) {
+    /**
     let data:fromWConso.ConsumableWarehouse[];
     this.getAll().subscribe(o=>data=o.data.stock_warehouse_substance)
     */

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MediaObserver, MediaChange } from '@angular/flex-layout';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class MatchMediaService {
   activeMediaQuery: string;
   onMediaChange: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  
+
   constructor(
     private mediaObserver: MediaObserver
   ) {

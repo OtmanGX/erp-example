@@ -1,12 +1,8 @@
-import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as TransferOrderActions from '../actions/transferOrder.actions';
-import {
-  TransferOrder,
-  DetailedTransferOrder,
-  OrderDetails,
-} from '@tanglass-erp/core/inventory';
+import { DetailedTransferOrder, OrderDetails, TransferOrder } from '@tanglass-erp/core/inventory';
 
 export const TRANSFERORDER_FEATURE_KEY = 'transferOrders';
 

@@ -1,10 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 import {
-  TransferOrder,
   DetailedTransferOrder,
   InsertedTransferOrder,
   OrderDetails,
-  OrderItem, Transfered
+  OrderItem,
+  Transfered,
+  TransferOrder
 } from '@tanglass-erp/core/inventory';
 import { RequireExactlyOne } from '@tanglass-erp/core/common';
 

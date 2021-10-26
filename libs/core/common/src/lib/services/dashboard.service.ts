@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { DashboardQueryGQL} from '@tanglass-erp/infrastructure/graphql';
+import { DashboardQueryGQL } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
 import { adaptDashboardQuery } from '../utils/flatteningAdapter';
+
 @Injectable({
   providedIn: 'root'
 })

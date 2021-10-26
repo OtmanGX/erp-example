@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
-  SUBSTANCES_FEATURE_KEY,
   State,
-  SubstancesPartialState,
+  SUBSTANCES_FEATURE_KEY,
   substancesAdapter,
+  SubstancesPartialState
 } from '../reducers/substances.reducer';
 
 // Lookup the 'Substances' feature state managed by NgRx

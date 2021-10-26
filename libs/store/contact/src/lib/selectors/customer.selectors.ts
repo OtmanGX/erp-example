@@ -1,10 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import {
-  CUSTOMER_FEATURE_KEY,
-  State,
-  customerAdapter
-} from '../reducers/customer.reducer';
+import { CUSTOMER_FEATURE_KEY, customerAdapter, State } from '../reducers/customer.reducer';
 
 // Lookup the 'Customers' feature state managed by NgRx
 export const getCustomersState = createFeatureSelector<

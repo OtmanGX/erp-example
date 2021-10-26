@@ -1,7 +1,8 @@
-import { SalePointForUser } from "./sale-point.models";
+import { SalePointForUser } from './sale-point.models';
 
 import { MetaData } from '@tanglass-erp/core/common';
-import { Management_User_Role_Enum } from "@tanglass-erp/infrastructure/graphql";
+import { Management_User_Role_Enum } from '@tanglass-erp/infrastructure/graphql';
+
 export interface User {
   id: string;
   CIN?:string;

@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
 import {
-  GetAllProvidersGQL,
-  GetProviderByIdGQL,
-  UpdateProviderGQL,
-  InsertProviderGQL,
-  DeleteProviderGQL,
-  InsertProviderMutationVariables,
-  DeleteManyProvidersGQL,
   AddProviderAddressGQL,
   AddProviderContactGQL,
   AffectProviderContactGQL,
+  DeleteManyProvidersGQL,
   DeleteProviderAddressGQL,
-  DeleteProviderContactGQL
-
+  DeleteProviderContactGQL,
+  DeleteProviderGQL,
+  GetAllProvidersGQL,
+  GetProviderByIdGQL,
+  InsertProviderGQL,
+  InsertProviderMutationVariables,
+  UpdateProviderGQL
 } from '@tanglass-erp/infrastructure/graphql';
-import { DetailedProvider, InsertedProvider } from "../models/provider.models";
+import { DetailedProvider, InsertedProvider } from '../models/provider.models';
 import { dataAdapter } from '../utils/dataAdapter';
-import { InsertAddressContact,InsertContact,AffectContactProvider,DeleteAddress,DeleteAffectedContact} from "../models/shared.models";
+import {
+  AffectContactProvider,
+  DeleteAddress,
+  DeleteAffectedContact,
+  InsertAddressContact,
+  InsertContact
+} from '../models/shared.models';
+
 @Injectable({
   providedIn: 'root'
 })

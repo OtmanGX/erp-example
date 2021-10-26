@@ -1,4 +1,4 @@
-import { UsersProfileForSalePoint } from "./user.models";
+import { UsersProfileForSalePoint } from './user.models';
 import { MetaData } from '@tanglass-erp/core/common';
 
 

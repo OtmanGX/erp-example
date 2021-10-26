@@ -1,10 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import {
-SUPPLY_FEATURE_KEY,
-  State,
-  supplyAdapter
-} from '../reducers/supply.reducer';
+import { State, SUPPLY_FEATURE_KEY, supplyAdapter } from '../reducers/supply.reducer';
 
 // Lookup the 'Supplies' feature state managed by NgRx
 export const getSuppliesState = createFeatureSelector<

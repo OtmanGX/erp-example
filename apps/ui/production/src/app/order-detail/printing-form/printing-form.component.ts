@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Article } from '@TanglassCore/models/production/productionOrder.model';
 
 @Component({
   selector: 'ngx-printing-form',

@@ -1,4 +1,4 @@
-import { SalePoint, DetailedSalePoint } from '@tanglass-erp/core/management';
+import { DetailedSalePoint, SalePoint } from '@tanglass-erp/core/management';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */

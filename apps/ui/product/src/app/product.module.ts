@@ -27,6 +27,7 @@ import { PopSuppliesComponent } from '@TanglassUi/product/pages/list-supplies/po
 import { ListSuppliesComponent } from '@TanglassUi/product/pages/list-supplies/list-supplies.component';
 import { SupplyCardComponent } from '@TanglassUi/product/pages/list-supplies/supplies-card/supply-card.component';
 import { ThemeModule } from '@TanglassTheme/theme.module';
+import { PopServiceConfigUpdateComponent } from '@TanglassUi/product/pages/list-service/pop-service-config-update/pop-service-config-update.component';
 
 
 const popUps = [
@@ -34,6 +35,7 @@ const popUps = [
   PopAccessoriesComponent,
   PopGlasseComponent,
   PopServiceConfigComponent,
+  PopServiceConfigUpdateComponent,
   PopServiceConsumableComponent,
   PopCustomerProductComponent,
   PopServiceComponent,

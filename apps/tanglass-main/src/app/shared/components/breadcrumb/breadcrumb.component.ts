@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { IRoutePart, RoutePartsService } from '../../../shared/services/route-parts.service';
 import { LayoutService } from '../../../shared/services/layout.service';
-import { Subscription } from "rxjs";
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 @Component({

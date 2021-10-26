@@ -1,5 +1,5 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as WarehouseGlassActions from './warehouse-glass.actions';
 import { Substance } from '@tanglass-erp/core/common';
@@ -8,7 +8,7 @@ export const WAREHOUSE_GLASS_FEATURE_KEY = 'warehouseSubstance';
 
 export interface State extends EntityState<Substance> {
   selectedId?: string | number;// which WarehouseSubstance record has been selected
-  
+
   loaded: boolean; // has the WarehouseSubstance list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -52,5 +52,5 @@ const warehouseGlassReducer = createReducer(
 
 export function reducer(state: State , action: Action) {
   return warehouseGlassReducer(state, action);
-  
+
 }

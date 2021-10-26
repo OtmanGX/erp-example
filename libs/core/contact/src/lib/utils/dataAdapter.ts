@@ -5,7 +5,7 @@ import { AffectedProvider, InsertedProvider } from '../models/provider.models';
 import {
   InsertContactMutationVariables,
   InsertCustomerMutationVariables,
-  InsertProviderMutationVariables,
+  InsertProviderMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 
 interface InsertedContactPlus

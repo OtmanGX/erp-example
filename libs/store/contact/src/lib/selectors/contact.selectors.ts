@@ -1,10 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import {
-  CONTACT_FEATURE_KEY,
-  State,
-  contactAdapter
-} from '../reducers/contact.reducer';
+import { CONTACT_FEATURE_KEY, contactAdapter, State } from '../reducers/contact.reducer';
 
 // Lookup the 'Contacts' feature state managed by NgRx
 export const getContactsState = createFeatureSelector<

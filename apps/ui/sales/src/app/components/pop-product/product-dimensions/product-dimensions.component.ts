@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'ngx-dimensions',
   templateUrl: './product-dimensions.component.html',

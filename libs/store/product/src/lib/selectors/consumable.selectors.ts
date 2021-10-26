@@ -1,11 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Consumable } from '@tanglass-erp/core/product';
 
-import {
-  CONSUMABLE_FEATURE_KEY,
-  State,
-  consumableAdapter
-} from '../reducers/consumable.reducer';
+import { CONSUMABLE_FEATURE_KEY, consumableAdapter, State } from '../reducers/consumable.reducer';
 
 // Lookup the 'Consumables' feature state managed by NgRx
 export const getConsumablesState = createFeatureSelector<

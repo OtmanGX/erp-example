@@ -1,4 +1,4 @@
-import { InsertedContact } from "./contact.models";
+import { InsertedContact } from './contact.models';
 
 export interface PartialContact {
     id?: string;
@@ -35,30 +35,30 @@ export interface AddressDB {
 export interface InsertContact {
     id: string,
     contact: InsertedContact
-    
+
 }
 
 // for inserting   a new address to a contact/customer/provider
 
 export interface InsertAddressContact {
-    id: string,   
+    id: string,
     address: Address
 
 }
 // for affecting an existing  contact to a customer
 
 export interface AffectContactCustomer {
-    
+
     customerid: string,
     contactid: string
-    
+
 }
 // for affecting an existing  contact to a provider
 
 export interface AffectContactProvider {
     providerid: string,
     contactid: string
-    
+
 }
 // for deleting  an existing  address from a contact/customer/provider
 

@@ -1,8 +1,6 @@
-import { Accessory, Glass } from "@tanglass-erp/core/product";
-import { Substance } from "libs/core/product/src/lib/models/shared.model";
-import {TransferOrder, DetailedTransferOrder } from "../models/transrefOrder.model";
-import { Warehouse } from "../models/warehouse.model";
-
+import { Accessory, Glass } from '@tanglass-erp/core/product';
+import { DetailedTransferOrder, TransferOrder } from '../models/transrefOrder.model';
+import { Warehouse } from '../models/warehouse.model';
 
 
 //list of transfers orders
@@ -13,7 +11,7 @@ export interface TransferOrderVM {
 }
 
 
-// transfer order  fiche 
+// transfer order  fiche
 export interface DetailedTransferOrderVM{
     detailedTransfer:DetailedTransferOrder;
     loading:boolean;

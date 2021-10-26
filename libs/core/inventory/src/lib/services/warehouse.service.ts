@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import {
+  DeleteManyWarehousesGQL,
   GetAllWarehousesGQL,
   GetWarehouseByIdGQL,
-  DeleteManyWarehousesGQL,
-  UpdateWarehouseGQL,
   InsertWarehouseGQL,
+  UpdateWarehouseGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import * as fromWarehouse from '../models/warehouse.model';
 import { RequireExactlyOne } from '@tanglass-erp/core/common';
-
 
 
 @Injectable({

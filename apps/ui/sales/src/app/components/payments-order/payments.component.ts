@@ -1,14 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CardConfig } from '@tanglass-erp/material';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CardConfig, Column } from '@tanglass-erp/material';
 import { PopPaymentComponent } from './pop-payement/pop-payment.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Operations } from '@tanglass-erp/ag-grid';
-import { PaymentsFacade, OrdersFacade } from '@tanglass-erp/store/sales';
-import { Subscription, Observable } from 'rxjs';
-import { Column } from '@tanglass-erp/material';
-import { PaymentsHeaders } from "@TanglassUi/sales/utils/grid-headers";
+import { OrdersFacade, PaymentsFacade } from '@tanglass-erp/store/sales';
+import { Observable, Subscription } from 'rxjs';
+import { PaymentsHeaders } from '@TanglassUi/sales/utils/grid-headers';
 
 import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'ngx-payments',
   templateUrl: './payments.component.html',

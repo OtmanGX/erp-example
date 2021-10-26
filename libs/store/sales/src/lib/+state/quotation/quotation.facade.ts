@@ -3,13 +3,7 @@ import { Action, select, Store } from '@ngrx/store';
 import * as fromQuotation from './quotation.reducer';
 import * as QuotationSelectors from './quotation.selectors';
 import * as QuotationsActions from './quotation.actions';
-import {
-  InsertedQuotation,
-  invoiceFilter,
-  Order,
-  Quotation,
-  TransformedQuotation,
-} from '@tanglass-erp/core/sales';
+import { InsertedQuotation, invoiceFilter, Order, Quotation, TransformedQuotation } from '@tanglass-erp/core/sales';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';
 import { filter } from 'rxjs/operators';
 

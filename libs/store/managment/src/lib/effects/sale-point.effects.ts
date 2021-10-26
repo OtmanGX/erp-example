@@ -1,9 +1,9 @@
 import { SalePointService } from '@tanglass-erp/core/management';
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as SalePointActions from '../actions/salePoint.actions';
-import { mergeMap, map, catchError } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable()

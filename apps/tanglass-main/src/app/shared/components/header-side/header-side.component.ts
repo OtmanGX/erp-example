@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 import { LayoutService } from '../../services/layout.service';
 import { AuthService } from '@auth0/auth0-angular';
 import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-header-side',

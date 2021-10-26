@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { SalesComponent } from './sales.component';
 import { DraftComponent } from './pages/draft/draft.component';
-import { QuotationComponent } from "./pages/quotation/quotation.component";
-import { CreateQuotationComponent } from "./pages/quotation/create-quotation/create-quotation.component";
+import { QuotationComponent } from './pages/quotation/quotation.component';
+import { CreateQuotationComponent } from './pages/quotation/create-quotation/create-quotation.component';
 
-import { OrderComponent } from "./pages/order/order.component";
-import { CreateOrderComponent } from "./pages/order/create-order/create-order.component";
+import { OrderComponent } from './pages/order/order.component';
+import { CreateOrderComponent } from './pages/order/create-order/create-order.component';
 import { DeliveryListComponent } from '@TanglassUi/sales/pages/delivery/delivery-list/delivery-list.component';
 import { DeliveryAddComponent } from '@TanglassUi/sales/pages/delivery/delivery-add/delivery-add.component';
-import { OrderCardComponent } from "./pages/order/order-card/order-card.component";
+import { OrderCardComponent } from './pages/order/order-card/order-card.component';
 import { InvoiceListComponent } from '@TanglassUi/sales/pages/invoice/invoice-list/invoice-list.component';
 import { InvoiceAddComponent } from '@TanglassUi/sales/pages/invoice/invoice-add/invoice-add.component';
 import { InvoiceReadyComponent } from '@TanglassUi/sales/pages/invoice/invoice-ready/invoice-ready.component';
-import { QuotationCardComponent } from "@TanglassUi/sales/pages/quotation/quotation-card/quotation-card.component";
+import { QuotationCardComponent } from '@TanglassUi/sales/pages/quotation/quotation-card/quotation-card.component';
 import { ROLES } from '@tanglass-erp/store/app';
 import { UpdateQuotationComponent } from '@TanglassUi/sales/pages/quotation/update-quotation/update-quotation.component';
+
 const routes: Routes = [
   {
     path: '',

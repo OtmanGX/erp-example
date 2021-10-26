@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { DetailedTransferOrder } from '@TanglassStore/inventory/index';
-
-import * as transferOrderActions from '@TanglassStore/inventory/lib/actions/transferOrder.actions';
-import * as TranserOrderSelectors from '@TanglassStore/inventory/lib/selectors/trasnferOrder.selectors';
 import { ActivatedRoute } from '@angular/router';
 import { GridView, MainGridComponent } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { DeliveredItemsHeaders } from '@TanglassUi/purchase/utils/grid-header';
-import { takeUntil } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 @Component({

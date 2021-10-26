@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  OrderPrint,
-} from '../models/orderPrinting';
-import { PdfMakeWrapper, Txt, Table } from 'pdfmake-wrapper';
+import { OrderPrint } from '../models/orderPrinting';
+import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
+
 @Component({
   selector: 'ngx-print-order',
   templateUrl: './print-order.component.html',

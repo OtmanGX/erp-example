@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import {
-  GetAllGlassesGQL,
-  GetGlassByIdGQL,
-  InsertGlassGQL,
-  DeleteOneGQL,
-  DeleteManyGQL,
-  InsertGlassMutationVariables,
-  GetGlassTypesGQL,
-  GetGlassColorsGQL,
   AddGlassColorGQL,
   AddGlassTypeGQL,
+  DeleteManyGQL,
+  DeleteOneGQL,
+  GetAllGlassesGQL,
+  GetGlassByIdGQL,
+  GetGlassColorsGQL,
+  GetGlassTypesGQL,
+  InsertGlassGQL,
+  InsertGlassMutationVariables,
   UpdateGlassGQL,
-  UpdateGlassMutationVariables,
+  UpdateGlassMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
-import { Glass, DetailedGlass, InsertedGlass } from '../models/glass.model';
+import { InsertedGlass } from '../models/glass.model';
 import { adaptProduct, adaptProductToUpdate } from '../utils/dataAdapter';
 
 @Injectable({

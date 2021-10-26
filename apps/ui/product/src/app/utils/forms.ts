@@ -3,8 +3,8 @@ import { paramOptions } from './enum';
 import {
   Accessory,
   Consumable,
-  Glass,
   CustomerProduct,
+  Glass,
   Product,
   Product_AccessoryTypes_Enum,
   Product_ConsumableCategory_Enum,
@@ -181,6 +181,26 @@ const regConfigServiceConfig = (data?: ServiceConfig) => [
   },
 ];
 
+const regConfigServiceConfigUpdate = (data?: ServiceConfig) => [
+  {
+    name: "service",
+    label: "Service",
+    headerVisible: false,
+    fields: [
+      {
+        type: "input", label: "Nom", inputType: "text", name: "name", value: data?.name,
+        validations: [
+          REQUIRED
+        ]
+      },
+      {
+        type: "input", label: "Etiquette d\'usine", inputType: "text", name: "labelFactory",
+        value: data?.labelFactory, validations: [REQUIRED]
+      },
+    ]
+  },
+];
+
 const regConfService = (data?: Service, listCompanies: ListObservable = [], params?: ParamField[]) => [
   {
     name: "product",
@@ -265,6 +285,7 @@ export {
   regConfigConsumable,
   regConfigGlass,
   regConfigServiceConfig,
+  regConfigServiceConfigUpdate,
   regConfService,
   regParamForm,
   regConfigServiceConsumable,

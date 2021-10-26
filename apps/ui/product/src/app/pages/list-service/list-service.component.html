@@ -21,6 +21,8 @@
       [routerLink]="[item?.id]"
       [state]="{ id: item?.id }"
       *ngFor="let item of data$ | async"
+      (deleteEvent)="deleteEvent($event)"
+      (updateEvent)="updateEvent($event)"
     >
     </ngx-service-card-item>
   </div>

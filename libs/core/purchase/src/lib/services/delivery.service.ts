@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
+  DeletePurchaseDeliveryGQL,
   GetAllPurchasesDeliveriesGQL,
   GetPurchaseDeliveryByIdGQL,
-  InsertPurchaseDeliveryGQL,
-  DeletePurchaseDeliveryGQL
+  InsertPurchaseDeliveryGQL
 } from '@tanglass-erp/infrastructure/graphql';
+
 @Injectable({
   providedIn: 'root',
 })

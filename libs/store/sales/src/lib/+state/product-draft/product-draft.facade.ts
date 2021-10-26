@@ -4,11 +4,7 @@ import * as ProductDraftSelectors from './product-draft.selectors';
 import * as ProductsActions from './product-draft.actions';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {
-  InsertedProduct,
-  Product_draft,
-  Sales_Product_Type_Enum,
-} from '@tanglass-erp/core/sales';
+import { InsertedProduct, Product_draft, Sales_Product_Type_Enum } from '@tanglass-erp/core/sales';
 import { Amount, Bis, ProductGroups } from './products-draft.models';
 import { PaymentsFacade } from '../payments/payments.facade';
 import { groupeByCode } from './adapters';

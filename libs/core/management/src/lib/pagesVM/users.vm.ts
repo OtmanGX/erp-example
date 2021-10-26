@@ -1,5 +1,5 @@
-import { SalePoint } from "../models/sale-point.models";
-import { User,DetailedUser } from "../models/user.models";
+import { SalePoint } from '../models/sale-point.models';
+import { DetailedUser, User } from '../models/user.models';
 
 //list of Users
 export interface UsersVM {
@@ -9,7 +9,7 @@ export interface UsersVM {
 }
 
 
-//User  fiche 
+//User  fiche
 export interface DetailedUserVM{
     user:DetailedUser;
     loading:boolean;
@@ -17,12 +17,12 @@ export interface DetailedUserVM{
 }
 
 
-//User fiche Creation or editing 
+//User fiche Creation or editing
 
 export interface UserCreationVM{
 
     salesPoints:SalePoint[];
     loading:boolean;
     error?:string;
-    
+
 }

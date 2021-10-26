@@ -1,21 +1,10 @@
 import { Component } from '@angular/core';
 import { ModelCardComponent } from '@tanglass-erp/material';
-import {
-  DetailedTransferOrder, Transfered,
-  TransferOrderFacade
-} from '@TanglassStore/inventory/index';
+import { DetailedTransferOrder, Transfered, TransferOrderFacade } from '@TanglassStore/inventory/index';
 import { ActivatedRoute } from '@angular/router';
-import {
-  ErpPermissions,
-  GridView,
-  MainGridComponent,
-  Operations,
-} from '@tanglass-erp/ag-grid';
+import { ErpPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
-import {
-  orderItemsHeaders,
-  TransferItemsHeaders,
-} from '@TanglassUi/inventory/utils/grid-headers';
+import { orderItemsHeaders, TransferItemsHeaders } from '@TanglassUi/inventory/utils/grid-headers';
 import { map, takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { PopOrderItemComponent } from '@TanglassUi/inventory/pages/warehouse-transfert/pop-order-item/pop-order-item.component';

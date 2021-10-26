@@ -1,9 +1,6 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-} from '@ngrx/store';
+import { ActionReducer, ActionReducerMap } from '@ngrx/store';
 import * as fromAuth from './lib/auth/auth.reducer';
-import * as fromNotif from './lib/notification/notification.reducer'
+import * as fromNotif from './lib/notification/notification.reducer';
 import { rolesDirection } from '@tanglass-erp/core/management';
 
 export interface AppState {

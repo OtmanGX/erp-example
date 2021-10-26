@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Store, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import * as ContactReducer from './reducers/contact.reducer';
 import * as CustomerReducer from './reducers/customer.reducer';
 import * as ProviderReducer from './reducers/provider.reducer';

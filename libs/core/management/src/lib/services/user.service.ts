@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
 import {
+  DeleteUserGQL,
   GetAllUsersGQL,
   GetUserByIdGQL,
   InsertUserGQL,
   InsertUserMutationVariables,
   UpdateUserGQL,
-  UpdateUserMutationVariables,
-  DeleteUserGQL,
+  UpdateUserMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';

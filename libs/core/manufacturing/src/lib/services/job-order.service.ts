@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import {
-  GetAllJobsOrdersGQL,
-  InsertJobOrderGQL,
-  GetJobOrderByIdGQL,
   GenerateBarCodesGQL,
+  GetAllJobsOrdersGQL,
+  GetJobOrderByIdGQL,
+  InsertJobOrderGQL,
   UpdateManufacturingProgressGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import {
   InsertedJobOrder,
   InsertedManufacturingLine,
-  ManufacturingLine,
   InsertedManufacturingState,
+  ManufacturingLine
 } from '@tanglass-erp/core/manufacturing';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })

@@ -1,4 +1,4 @@
-import { DetailedSalePoint, SalePoint } from "../models/sale-point.models";
+import { DetailedSalePoint, SalePoint } from '../models/sale-point.models';
 
 //list of sales Points
 export interface SalePointsVM {
@@ -8,7 +8,7 @@ export interface SalePointsVM {
 }
 
 
-//Sale Point  fiche 
+//Sale Point  fiche
 export interface DetailedSalePointVM{
     salePoint:DetailedSalePoint;
     loading:boolean;

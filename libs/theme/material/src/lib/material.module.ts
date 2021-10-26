@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // Angular Material imports
@@ -21,12 +21,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTabsModule } from '@angular/material/tabs';
 
-import {CounterModule} from 'angular-circle-counter';
-import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { CounterModule } from 'angular-circle-counter';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 // Components
 import { SelectComponent } from './components/form/select.component';

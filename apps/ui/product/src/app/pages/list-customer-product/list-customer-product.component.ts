@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { PopCustomerProductComponent } from './pop-customer-product/pop-customer-product.component';

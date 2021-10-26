@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'ngx-service-card-item',
@@ -8,6 +8,8 @@ import { AfterViewInit, Component, Input } from '@angular/core';
 export class ServiceCardItemComponent implements AfterViewInit {
   @Input() data;
   @Input() showActions = false;
+  @Output() updateEvent = new EventEmitter<any>();
+  @Output() deleteEvent = new EventEmitter<string>();
   constructor() {
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as TransferOrderActions from '../actions/transferOrder.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { TransferOrderService } from '@tanglass-erp/core/inventory';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GetAllServicesGQL} from '@tanglass-erp/infrastructure/graphql';
+import { GetAllServicesGQL } from '@tanglass-erp/infrastructure/graphql';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 
 import * as ShortWarehouseSelectors from './short-warehouse.selectors';
 import * as ShortWarehouseActions from './short-warehouse.actions';
@@ -25,6 +25,7 @@ import * as WarehouseAccessoryActions from './warehouse-accessory.actions';
 import * as WarehouseAccessorySelectors from './warehouse-accessory.selectors';
 import * as WarehouseGlassActions from './warehouse-glass.actions';
 import * as WarehouseGlassSelectors from './warehouse-glass.selectors';
+
 @Injectable()
 export class SharedFacade {
   allShortEmployees$ = this.store.pipe(select(ShortEmployeesSelectors.getAllEmployees));

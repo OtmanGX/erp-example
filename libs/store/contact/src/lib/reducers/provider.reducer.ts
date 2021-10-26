@@ -1,8 +1,8 @@
-import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as ProvidersActions from '../actions/provider.actions';
-import { Provider, DetailedProvider } from '@tanglass-erp/core/contact';
+import { DetailedProvider, Provider } from '@tanglass-erp/core/contact';
 
 export const PROVIDER_FEATURE_KEY = 'Providers';
 

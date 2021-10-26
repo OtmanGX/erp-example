@@ -1,20 +1,15 @@
-import { Component, OnInit, ViewChild, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Column, FieldConfig, TableComponent } from '@tanglass-erp/material';
-import {
-  ProductHeaders,
-  ProductGlassHeaders,
-} from '@TanglassUi/sales/utils/grid-headers';
+import { ProductGlassHeaders, ProductHeaders } from '@TanglassUi/sales/utils/grid-headers';
 import { Product } from '@TanglassUi/sales/utils/models';
-import {
-  ProductDraftFacade,
-  DraftFacade,
-} from '@tanglass-erp/store/sales';
+import { DraftFacade, ProductDraftFacade } from '@tanglass-erp/store/sales';
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import { Subscription } from 'rxjs';
-import { ActionsComponent } from "@TanglassUi/sales/components/product-draft/actions.component";
+import { ActionsComponent } from '@TanglassUi/sales/components/product-draft/actions.component';
 import { debounceTime } from 'rxjs/operators';
+
 @Component({
   selector: 'ngx-product-draft',
   templateUrl: './product-draft.component.html',
@@ -53,7 +48,7 @@ export class ProductDraftComponent extends ActionsComponent implements OnInit, O
       this.dataSourceArticles = items.articles;
     });
   }
-  
+
 
   ngOnDestroy(): void {
     this.productsSub?.unsubscribe();

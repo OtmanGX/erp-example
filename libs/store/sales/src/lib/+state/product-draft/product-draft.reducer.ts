@@ -2,8 +2,6 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import * as ProductActions from './product-draft.actions';
 import { Product_draft } from '@tanglass-erp/core/sales';
-import { ProductDraftEffects } from './product-draft.effects';
-import { Actions } from '@ngrx/effects';
 
 export const PRODUCT_FEATURE_KEY = 'product';
 

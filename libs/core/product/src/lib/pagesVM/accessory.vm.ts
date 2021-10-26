@@ -1,4 +1,4 @@
-import { Accessory,DetailedAccessory} from "../models/accessory.model";
+import { Accessory, DetailedAccessory } from '../models/accessory.model';
 
 //list of accessories
 export interface AccesoriesVM {
@@ -8,7 +8,7 @@ export interface AccesoriesVM {
 }
 
 
-//Accessory  fiche 
+//Accessory  fiche
 export interface DetailedAccessoryVM{
     accessory:DetailedAccessory;
     loading:boolean;

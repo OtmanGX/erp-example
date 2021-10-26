@@ -5,7 +5,8 @@ import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.acti
 import * as SalePointActions from '@TanglassStore/management/lib/actions/salePoint.actions';
 import * as productStore from '@TanglassStore/product/index';
 import { Store } from '@ngrx/store';
-import { DraftFacade } from "@tanglass-erp/store/sales";
+import { DraftFacade } from '@tanglass-erp/store/sales';
+
 @Component({
   selector: 'ngx-sales',
   templateUrl: './sales.component.html',

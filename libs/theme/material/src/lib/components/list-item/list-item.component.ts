@@ -2,10 +2,11 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
+  EventEmitter,
   Input,
-  QueryList,
+  OnInit,
   Output,
-  EventEmitter, OnInit
+  QueryList
 } from '@angular/core';
 import { GroupItems } from '../../interfaces/group-items';
 import { TypeTemplateDirective } from '../../directives/type-template';

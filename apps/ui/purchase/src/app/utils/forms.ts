@@ -1,8 +1,6 @@
 import { REQUIRED } from '@tanglass-erp/material';
-
-import { FormDialog } from '@tanglass-erp/material';
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
+
 type ListObservable = Observable<any> | Array<any>;
 
 const regConfigDeliveryInfos = (

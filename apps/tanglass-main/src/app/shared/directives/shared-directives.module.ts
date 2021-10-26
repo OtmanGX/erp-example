@@ -7,7 +7,10 @@ import { AppDropdownDirective } from './dropdown.directive';
 import { DropdownAnchorDirective } from './dropdown-anchor.directive';
 import { DropdownLinkDirective } from './dropdown-link.directive';
 import { MatXSideNavToggleDirective } from './matx-side-nav-toggle.directive';
-import { MatXSidenavHelperDirective, MatXSidenavTogglerDirective } from './matx-sidenav-helper/matx-sidenav-helper.directive';
+import {
+  MatXSidenavHelperDirective,
+  MatXSidenavTogglerDirective
+} from './matx-sidenav-helper/matx-sidenav-helper.directive';
 import { MatXHighlightDirective } from './matx-highlight.directive';
 
 

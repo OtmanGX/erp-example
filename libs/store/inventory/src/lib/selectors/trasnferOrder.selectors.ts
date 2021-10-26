@@ -1,10 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import {
-  TRANSFERORDER_FEATURE_KEY,
-  State,
-  transferOrderAdapter
-} from '../reducers/transferOrder.reducer';
+import { State, TRANSFERORDER_FEATURE_KEY, transferOrderAdapter } from '../reducers/transferOrder.reducer';
 
 // Lookup the 'TransferOrders' feature state managed by NgRx
 export const getTransferOrdersState = createFeatureSelector<

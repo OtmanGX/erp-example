@@ -1,17 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-import {MatTable, MatTableDataSource} from '@angular/material/table';
-import {MatDialog} from "@angular/material/dialog";
-import {SelectionModel} from "@angular/cdk/collections";
-import {Column, ColumnType} from "../../interfaces/Column";
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Column, ColumnType } from '../../interfaces/Column';
 import { get } from 'lodash';
 
 const initialSelection = [];

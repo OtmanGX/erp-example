@@ -1,8 +1,7 @@
-import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { createReducer, on } from '@ngrx/store';
 import * as NotifActions from './notification.actions';
 import { MNotification } from './notification.model';
-import { clearNotification } from './notification.actions';
 
 export const notificationFeatureKey = 'notifications';
 

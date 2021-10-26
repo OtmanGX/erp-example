@@ -1,5 +1,5 @@
-import { Warehouse } from "./warehouse.model";
-import { ProductItem } from "./shared.models";
+import { Warehouse } from './warehouse.model';
+import { ProductItem } from './shared.models';
 
 
 export interface AccessoryWarehouse {

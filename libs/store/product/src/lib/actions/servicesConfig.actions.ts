@@ -1,4 +1,10 @@
-import { ServiceConfig, DetailedServiceConfig, InsertedServiceConfig, InsertedService, Service } from '@tanglass-erp/core/product';
+import {
+  DetailedServiceConfig,
+  InsertedService,
+  InsertedServiceConfig,
+  Service,
+  ServiceConfig
+} from '@tanglass-erp/core/product';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */

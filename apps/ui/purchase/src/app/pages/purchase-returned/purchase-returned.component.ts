@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { of } from 'rxjs';
@@ -49,5 +49,5 @@ export class PurchaseReturnedComponent implements GridView {
     ];
   }
 
-  
+
 }

@@ -1,4 +1,4 @@
-import { ClassProvider, FactoryProvider, InjectionToken } from "@angular/core";
+import { ClassProvider, FactoryProvider, InjectionToken } from '@angular/core';
 
 export function _window(): any {
   return window;

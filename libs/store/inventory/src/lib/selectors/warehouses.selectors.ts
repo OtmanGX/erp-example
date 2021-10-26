@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
-  WAREHOUSES_FEATURE_KEY,
   State,
-  WarehousesPartialState,
+  WAREHOUSES_FEATURE_KEY,
   warehousesAdapter,
+  WarehousesPartialState
 } from '../reducers/warehouses.reducer';
 
 // Lookup the 'Warehouses' feature state managed by NgRx

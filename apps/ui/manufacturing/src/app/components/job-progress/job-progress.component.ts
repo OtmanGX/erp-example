@@ -1,16 +1,8 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  Input
-} from '@angular/core';
-import {
-  JobOrder,
-  JobOrdersFacade,
-  JobProduct
-} from '@tanglass-erp/store/manufacturing';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { JobOrder, JobOrdersFacade, JobProduct } from '@tanglass-erp/store/manufacturing';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
 @Component({
   selector: 'ngx-job-progress',
   templateUrl: './job-progress.component.html',

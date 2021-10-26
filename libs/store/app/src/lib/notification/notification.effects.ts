@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  InsertedErpNotificationStatus,
-  NotificationService,
-} from '@tanglass-erp/core/common';
+import { InsertedErpNotificationStatus, NotificationPriority, NotificationService } from '@tanglass-erp/core/common';
 import * as NotificationActions from '../notification/notification.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { NotificationPriority } from '@tanglass-erp/core/common';
 
 @Injectable()
 export class NotificationEffects {

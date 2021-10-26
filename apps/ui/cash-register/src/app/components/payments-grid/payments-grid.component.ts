@@ -1,10 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {
-  ErpPermissions,
-  GridView,
-  MainGridComponent,
-  Operations,
-} from '@tanglass-erp/ag-grid';
+import { ErpPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PaymentsHeaders } from '@TanglassUi/cash-register/utils/grid-headers';
 import { MatDialog } from '@angular/material/dialog';

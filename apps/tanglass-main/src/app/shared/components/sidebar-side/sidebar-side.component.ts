@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationService } from '../../../shared/services/navigation.service';
 import { ThemeService } from '../../services/theme.service';
 import { Subscription } from 'rxjs';
 import { ILayoutConf, LayoutService } from '../../services/layout.service';
-import { filter } from 'rxjs/operators';
 import { AuthFacadeService } from '@tanglass-erp/store/app';
 
 @Component({

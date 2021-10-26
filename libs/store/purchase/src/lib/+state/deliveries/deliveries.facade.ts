@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 
 import * as fromPurchases from './deliveries.reducer';
 import * as DeliveriesSelectors from './deliveries.selectors';
 import * as DeliveryActions from './deliveries.actions';
-import {
-  InsertedPurchaseDelivery,
-  PurchaseItem,
-} from '@tanglass-erp/core/purchase';
+import { InsertedPurchaseDelivery, PurchaseItem } from '@tanglass-erp/core/purchase';
 
 @Injectable()
 export class DeliveriesFacade {

@@ -28,11 +28,11 @@
     class="m-0 p-0"
     (click)="$event.stopPropagation()"
   >
-    <button mat-icon-button color="accent">
+    <button mat-icon-button color="accent" (click)="updateEvent.emit(data)">
       <mat-icon> edit </mat-icon>
     </button>
 
-    <button mat-icon-button color="warn">
+    <button mat-icon-button color="warn" (click)="deleteEvent.emit(data.id)">
       <mat-icon> delete </mat-icon>
     </button>
   </mat-card-actions>

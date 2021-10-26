@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AuthGuard } from '@auth0/auth0-angular';
-import { AuthService } from '@auth0/auth0-angular';
-import {
-  ActivatedRoute,
-  ActivatedRouteSnapshot,
-  Router,
-  RouterStateSnapshot
-} from '@angular/router';
+import { AuthGuard, AuthService } from '@auth0/auth0-angular';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AuthFacadeService } from '@tanglass-erp/store/app';
 import { filter, map, switchMap } from 'rxjs/operators';

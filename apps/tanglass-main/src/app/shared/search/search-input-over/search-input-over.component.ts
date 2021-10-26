@@ -1,16 +1,9 @@
-import {
-  Component,
-  OnInit,
-  Output,
-  EventEmitter,
-  OnDestroy,
-  Input
-} from "@angular/core";
-import { FormControl } from "@angular/forms";
-import { Subscription } from "rxjs";
-import { debounceTime } from "rxjs/operators";
-import { SearchService } from "../search.service";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { SearchService } from '../search.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: "matx-search-input-over",

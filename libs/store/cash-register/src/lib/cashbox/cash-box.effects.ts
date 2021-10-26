@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as CashBoxActions from './cash-box.actions';
 import { CashBoxService } from '@tanglass-erp/core/cash-register';
-import {
-  AuthFacadeService,
-  NotificationFacadeService,
-} from '@tanglass-erp/store/app';
+import { AuthFacadeService, NotificationFacadeService } from '@tanglass-erp/store/app';
 import { catchError, filter, map, mergeMap, switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ShortFeatureService } from '@tanglass-erp/core/common';

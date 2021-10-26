@@ -1,14 +1,4 @@
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
-} from 'date-fns';
-import { MatXCalendarEvent } from '../../shared/models/event.model';
+import { addDays, addHours, endOfMonth, startOfDay, subDays } from 'date-fns';
 
 export class CalendarEventDB {
   private colors: any = {

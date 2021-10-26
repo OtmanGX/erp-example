@@ -1,8 +1,5 @@
 import { MetaData } from '@tanglass-erp/core/common';
-import { Substance, Product,InsertedProduct } from './shared.model';
-
-import { Service } from "./service.model";
-import { ShortConsumable } from './consumable.model';
+import { InsertedProduct, Product, Substance } from './shared.model';
 
 
 export interface Glass {
