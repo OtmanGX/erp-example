@@ -1,16 +1,9 @@
-import {
-  Directive,
-  OnInit,
-  OnDestroy,
-  HostBinding,
-  Input,
-  HostListener
-} from "@angular/core";
-import { takeUntil } from "rxjs/operators";
-import { Subject } from "rxjs";
-import { MatXSidenavHelperService } from "./matx-sidenav-helper.service";
-import { MatSidenav } from "@angular/material/sidenav";
-import { MediaObserver } from "@angular/flex-layout";
+import { Directive, HostBinding, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { MatXSidenavHelperService } from './matx-sidenav-helper.service';
+import { MatSidenav } from '@angular/material/sidenav';
+import { MediaObserver } from '@angular/flex-layout';
 import { MatchMediaService } from '../../services/match-media.service';
 
 @Directive({

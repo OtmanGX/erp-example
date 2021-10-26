@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 
 import * as fromCashBox from './cash-box.reducer';
 import * as CashBoxSelectors from './cash-box.selectors';
 import * as CashBoxActions from './cash-box.actions';
-import {
-  InsertedCashBox,
-  InsertedPayment,
-} from '@tanglass-erp/core/cash-register';
-import { filter, map, switchMap, take } from 'rxjs/operators';
+import { InsertedCashBox, InsertedPayment } from '@tanglass-erp/core/cash-register';
+import { filter, switchMap } from 'rxjs/operators';
 import { AuthFacadeService } from '@tanglass-erp/store/app';
-import { UserProfile } from '@tanglass-erp/core/common';
 
 @Injectable()
 export class CashBoxFacade {

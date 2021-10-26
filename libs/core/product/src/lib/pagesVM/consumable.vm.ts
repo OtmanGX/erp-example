@@ -1,4 +1,4 @@
-import { Consumable,DetailedConsumable} from "../models/consumable.model";
+import { Consumable, DetailedConsumable } from '../models/consumable.model';
 
 //list of Consumables
 export interface consumablesVM {
@@ -8,7 +8,7 @@ export interface consumablesVM {
 }
 
 
-//Consumable  fiche 
+//Consumable  fiche
 export interface DetailedConsumableVM{
     consumable:DetailedConsumable;
     loading:boolean;

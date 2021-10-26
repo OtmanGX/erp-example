@@ -1,10 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  DELIVERIES_FEATURE_KEY,
-  State,
-  DeliveriesPartialState,
-  deliveriesAdapter,
-} from './deliveries.reducer';
+import { DELIVERIES_FEATURE_KEY, deliveriesAdapter, DeliveriesPartialState, State } from './deliveries.reducer';
 
 // Lookup the 'Deliveries' feature state managed by NgRx
 export const getDeliveriesState = createFeatureSelector<

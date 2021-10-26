@@ -1,13 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import {
-  JobOrder,
   InsertedJobOrder,
   InsertedManufacturingLine,
-  ManufacturingLine,
-  ManufacturingState,
-  LineService,
+  InsertedManufacturingState,
+  JobOrder,
   JobProduct,
-  InsertedManufacturingState
+  ManufacturingLine,
+  ManufacturingState
 } from '@tanglass-erp/core/manufacturing';
 
 /****************************************************************** */

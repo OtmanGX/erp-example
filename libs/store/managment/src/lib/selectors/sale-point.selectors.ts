@@ -1,11 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { SalePoint } from '@tanglass-erp/core/management';
 
-import {
-  SALE_POINT_FEATURE_KEY,
-  State,
-  salePointAdapter,
-} from '../reducers/sale-point-reducer';
+import { SALE_POINT_FEATURE_KEY, salePointAdapter, State } from '../reducers/sale-point-reducer';
 
 // Lookup the 'SalePoints' feature state managed by NgRx
 export const getSalePointsState = createFeatureSelector<

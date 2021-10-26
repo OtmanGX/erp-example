@@ -1,9 +1,9 @@
 import { ServiceService } from '@tanglass-erp/core/product';
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as ServiceActions from '../actions/service.actions';
-import { mergeMap, map, catchError } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable()

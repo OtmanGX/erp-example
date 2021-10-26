@@ -1,5 +1,4 @@
 import { MetaData } from '@tanglass-erp/core/common';
-import { SalePoint } from '@tanglass-erp/core/management';
 import { PartialData } from './shared.models';
 
 export interface Warehouse {

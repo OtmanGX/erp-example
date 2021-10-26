@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 
 import * as fromSubstances from '../reducers/substances.reducer';
 import * as SubstancesSelectors from '../selectors/substances.selectors';
-import * as SubstanceActions from "../actions/substances.actions";
+import * as SubstanceActions from '../actions/substances.actions';
+
 @Injectable()
 export class SubstancesFacade {
   loaded$ = this.store.pipe(select(SubstancesSelectors.getSubstancesLoaded));

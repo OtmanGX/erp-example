@@ -1,10 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import {
-  GLASS_WAREHOUSE_FEATURE_KEY,
-  glassWarehouseAdapter,
-  State
-} from '../reducers/warehouseGlass.reducer';
+import { GLASS_WAREHOUSE_FEATURE_KEY, glassWarehouseAdapter, State } from '../reducers/warehouseGlass.reducer';
 
 // Lookup the 'GlassWarehouses' feature state managed by NgRx
 export const getGlassWarehousesState = createFeatureSelector<

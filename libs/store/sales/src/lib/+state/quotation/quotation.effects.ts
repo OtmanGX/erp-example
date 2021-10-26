@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as QuotationActions from './quotation.actions';
 import { Product_draft, QuotationService } from '@tanglass-erp/core/sales';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
-import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { ProductDraftFacade } from '../product-draft/product-draft.facade';
 import { DraftFacade } from '../draft/draft.facade';
 import { ToastService } from '@TanglassTheme/services/toast.service';
@@ -41,15 +40,11 @@ export class QuotationEffects {
       mergeMap((action) =>
         this.quotationService.insertOne(action.quotation).pipe(
           map((data) => {
-            this.notificationService.showNotifToast({
-              message: 'Ajouté avec succès',
-              operation: 'success',
-              title: 'Devis',
-              time: new Date(),
-              icon: 'check',
-              route: 'sales/quotation',
-              color: 'primary',
-            });
+            this.toastrService.showToast(
+              'success',
+              'Devis',
+              'Ajouté avec succès',
+            );
             this.router.navigate([
               'sales/quotation',
               data.data.insert_sales_quotation_one.id,
@@ -123,15 +118,13 @@ export class QuotationEffects {
       ofType(QuotationActions.deleteQuotations),
       mergeMap(({ ids }) =>
         this.quotationService.deleteMany(ids).pipe(
+          take(1),
           map((data) => {
-            this.notificationService.showNotifToast({
-              message: 'Supprimé avec succès',
-              operation: 'info',
-              title: 'Devis',
-              icon: 'closed',
-              route: 'sales/quotation',
-              color: 'warn',
-            });
+            this.toastrService.showToast(
+              'info',
+              'Devis',
+              'Supprimé avec succès',
+            );
             return QuotationActions.deleteQuotationsSuccess({ ids });
           }),
           catchError((error) =>
@@ -150,15 +143,11 @@ export class QuotationEffects {
           .transformQuotationToOrder(action.transformingVariables)
           .pipe(
             map((data) => {
-              this.notificationService.showNotifToast({
-                message: 'Transférer au Commande avec succès',
-                operation: 'success',
-                title: 'Devis',
-                time: new Date(),
-                icon: 'check',
-                route: 'sales/quotation',
-                color: 'primary',
-              });
+              this.toastrService.showToast(
+                'success',
+                'Devis',
+                'Transférée au Commande avec succès',
+              );
               this.router.navigate([
                 'sales/order',
                 data.data.insert_sales_order_one.id,
@@ -181,7 +170,6 @@ export class QuotationEffects {
     private quotationService: QuotationService,
     private router: Router,
     private productDraftFacade: ProductDraftFacade,
-    private notificationService: NotificationFacadeService,
     private toastrService: ToastService,
     private draftFacade: DraftFacade
   ) {}

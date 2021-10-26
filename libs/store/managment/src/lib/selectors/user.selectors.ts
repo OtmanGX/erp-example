@@ -1,11 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { User } from '@tanglass-erp/core/management';
 
-import {
-  USER_FEATURE_KEY,
-  State,
-  userAdapter,
-} from '../reducers/users.reducer';
+import { State, USER_FEATURE_KEY, userAdapter } from '../reducers/users.reducer';
 
 // Lookup the 'Users' feature state managed by NgRx
 export const getUsersState = createFeatureSelector<

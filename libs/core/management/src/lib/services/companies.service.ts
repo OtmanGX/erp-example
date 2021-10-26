@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
+  DeleteCompanyGQL,
   GetAllCompaniesGQL,
   GetCompanyByIdGQL,
   InsertCompanyGQL,
   InsertCompanyMutationVariables,
   UpdateCompanyGQL,
-  UpdateCompanyMutationVariables,
-  DeleteCompanyGQL,
-
+  UpdateCompanyMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 
-import { Companie, DetailedCompanie } from "../models/companies.models";
 @Injectable({
   providedIn: 'root'
 })

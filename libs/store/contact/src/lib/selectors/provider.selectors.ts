@@ -1,10 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import {
-  PROVIDER_FEATURE_KEY,
-  State,
-  providerAdapter
-} from '../reducers/provider.reducer';
+import { PROVIDER_FEATURE_KEY, providerAdapter, State } from '../reducers/provider.reducer';
 
 // Lookup the 'Providers' feature state managed by NgRx
 export const getProvidersState = createFeatureSelector<

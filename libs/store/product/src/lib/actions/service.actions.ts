@@ -1,4 +1,4 @@
-import { Service, DetailedService } from '@tanglass-erp/core/product';
+import { DetailedService, Service } from '@tanglass-erp/core/product';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */

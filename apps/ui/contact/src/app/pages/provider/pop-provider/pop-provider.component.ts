@@ -1,24 +1,8 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  Inject,
-  OnDestroy,
-  QueryList,
-  ViewChildren,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {
-  DynamicFormComponent,
-  FieldConfig,
-  FormDialog,
-} from '@tanglass-erp/material';
+import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
 import { FormArray, FormGroup } from '@angular/forms';
-import {
-  regConfigAddresses,
-  regConfigContact,
-  regConfigProvider,
-} from '../../../utils/forms';
+import { regConfigAddresses, regConfigContact, regConfigProvider } from '../../../utils/forms';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';

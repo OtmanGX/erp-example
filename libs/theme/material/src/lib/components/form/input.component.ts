@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup } from "@angular/forms";
-import { FieldConfig } from "../../interfaces/field.interface";
+import { FormGroup } from '@angular/forms';
+import { FieldConfig } from '../../interfaces/field.interface';
 import { REQUIRED } from '../../../helpers/validators';
+
 @Component({
   selector: "app-input",
   template: `

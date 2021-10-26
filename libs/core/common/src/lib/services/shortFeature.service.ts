@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { flattenObj } from "../utils/flatteningAdapter";
+import { flattenObj } from '../utils/flatteningAdapter';
 import {
-  GetShortCompaniesGQL,
   GeShortSalePointsGQL,
-  GetShortWArehousesGQL,
-  GetProductsGQL,
   GetAccessoriesSubstancesGQL,
   GetGlassesSubstancesGQL,
-  GetShortSubstancesGQL,
-  GetShortProvidersGQL,
   GetOrdersBySalepointGQL,
-  GetShortEmployeesGQL
+  GetProductsGQL,
+  GetShortCompaniesGQL,
+  GetShortEmployeesGQL,
+  GetShortProvidersGQL,
+  GetShortSubstancesGQL,
+  GetShortWArehousesGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
-import { Substance, ShortSubstance, } from '../models/substance';
+import { ShortSubstance, Substance } from '../models/substance';
 
 @Injectable({
   providedIn: 'root'

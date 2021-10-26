@@ -1,5 +1,5 @@
 import { Directive } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { DropdownLinkDirective } from './dropdown-link.directive';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -9,9 +9,9 @@ import { filter } from 'rxjs/operators';
 })
 export class AppDropdownDirective {
   protected navlinks: Array<DropdownLinkDirective> = [];
-  
+
     private _router: Subscription;
-  
+
     public closeOtherLinks(openLink: DropdownLinkDirective): void {
       this.navlinks.forEach((link: DropdownLinkDirective) => {
         if (link !== openLink) {
@@ -19,22 +19,22 @@ export class AppDropdownDirective {
         }
       });
     }
-  
+
     public addLink(link: DropdownLinkDirective): void {
       this.navlinks.push(link);
     }
-  
+
     public removeGroup(link: DropdownLinkDirective): void {
       const index = this.navlinks.indexOf(link);
       if (index !== -1) {
         this.navlinks.splice(index, 1);
       }
     }
-  
+
     public getUrl() {
       return this.router.url;
     }
-  
+
     public ngOnInit(): any {
       this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
         this.navlinks.forEach((link: DropdownLinkDirective) => {
@@ -49,7 +49,7 @@ export class AppDropdownDirective {
         });
       });
     }
-  
+
     constructor( private router: Router) {}
 
 }

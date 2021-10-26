@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import {  
-  ProductDraftFacade, Product_draft,
-} from '@tanglass-erp/store/sales';
+import { Product_draft, ProductDraftFacade } from '@tanglass-erp/store/sales';
 import { Column } from '@tanglass-erp/material';
 import { ProductColumns } from '@TanglassUi/sales/utils/grid-headers';
 
@@ -14,7 +12,7 @@ import { ProductColumns } from '@TanglassUi/sales/utils/grid-headers';
 export class OrderRepairsComponent implements OnInit {
   displayedColumns: Array<Column> = ProductColumns;
   dataSource: Product_draft[] = [];
-  
+
 
   @ViewChild(MatTable, { static: true }) table: MatTable<Product_draft>;
 
@@ -32,6 +30,6 @@ export class OrderRepairsComponent implements OnInit {
     )
   }
   launch(){
-    
+
   }
 }

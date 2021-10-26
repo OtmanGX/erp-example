@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 
 import * as fromWarehouses from '../reducers/warehouses.reducer';
 import * as WarehousesSelectors from '../selectors/warehouses.selectors';
 import * as WarehousesActions from '../actions/warehouses.actions';
-import { InsertedWarehouse, Warehouse } from '@tanglass-erp/core/inventory';
+import { InsertedWarehouse } from '@tanglass-erp/core/inventory';
 import { RequireExactlyOne } from '@tanglass-erp/core/common';
 
 @Injectable()

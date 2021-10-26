@@ -1,6 +1,5 @@
-import { Glass } from "@tanglass-erp/core/product";
-import { Warehouse } from "./warehouse.model";
-import { ProductItem } from "./shared.models";
+import { Warehouse } from './warehouse.model';
+import { ProductItem } from './shared.models';
 
 export interface GlassWarehouse{
     substance: SubstanceGlass;

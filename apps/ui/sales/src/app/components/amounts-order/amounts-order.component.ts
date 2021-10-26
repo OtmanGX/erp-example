@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { ProductDraftFacade, Amount } from "@tanglass-erp/store/sales";
-import { displayedAmountsColumns } from "@TanglassUi/sales//utils/grid-headers";
+import { Amount, ProductDraftFacade } from '@tanglass-erp/store/sales';
+import { displayedAmountsColumns } from '@TanglassUi/sales//utils/grid-headers';
 import { Column } from '@tanglass-erp/material';
 
 @Component({

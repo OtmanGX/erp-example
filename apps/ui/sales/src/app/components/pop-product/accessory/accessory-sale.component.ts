@@ -1,23 +1,13 @@
-import {
-    Component,
-    Inject,
-    AfterViewInit,
-    ViewChild,
-    OnDestroy,
-  } from '@angular/core';
-  import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-  import { FieldConfig, FormDialog } from '@tanglass-erp/material';
-  import * as regConfigs from '@TanglassUi/sales/utils/forms';
-  import { Store } from '@ngrx/store';
-  import {
-    Sales_Product_Type_Enum,
-    ServiceGroup,
-    AccessoryGroup,
-  } from '@tanglass-erp/store/sales';
-  import { DynamicFormComponent } from '@tanglass-erp/material';
-  import * as productStore from '@TanglassStore/product/index';
-  import { Intermediate_Data, SalesItem } from '@TanglassUi/sales/utils/models';
-  @Component({
+import { AfterViewInit, Component, Inject, OnDestroy, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
+import * as regConfigs from '@TanglassUi/sales/utils/forms';
+import { Store } from '@ngrx/store';
+import { AccessoryGroup, Sales_Product_Type_Enum, ServiceGroup } from '@tanglass-erp/store/sales';
+import * as productStore from '@TanglassStore/product/index';
+import { Intermediate_Data, SalesItem } from '@TanglassUi/sales/utils/models';
+
+@Component({
     selector: 'ngx-accessory-sale',
     templateUrl: './accessory-sale.component.html',
     styleUrls: ['./accessory-sale.component.scss'],
@@ -50,7 +40,7 @@ import {
       this.companies = this.data.companies;
       this.warehouses = this.data.warehouses;
     }
-  
+
     ngAfterViewInit(): void {
       this.productForm.get('product_code')?.valueChanges?.subscribe((val) => {
         const found = this.products?.find(
@@ -135,7 +125,7 @@ import {
         }
       }
     }
-  
+
     submitForm() {
       this.formValue = {
         ...this.formValue,
@@ -145,4 +135,3 @@ import {
       this.submit(this.formValue);
     }
   }
-  

@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  ViewChild,
-  EventEmitter
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { DatePipe } from '@angular/common';
 import { Observable, of } from 'rxjs';
@@ -22,7 +16,7 @@ import { dateType } from '../../interfaces/date';
 import { SIDEBAR, STATUSBAR } from '../../utils/aggrid-bars';
 import { columnTypes } from '../../utils/aggrid-column-types';
 import { PERMISSIONS } from '../../utils/aggrid-utils';
-import { gridOptions, defaultColDef } from '../../utils/aggrid-options';
+import { defaultColDef, gridOptions } from '../../utils/aggrid-options';
 
 @Component({
   selector: 'ngx-main-grid',

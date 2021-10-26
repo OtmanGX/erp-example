@@ -1,5 +1,10 @@
-import { Contact, DetailedContact, InsertedContact,
-   InsertAddressContact, DeleteAddress, Address } from '@tanglass-erp/core/contact';
+import {
+  Contact,
+  DeleteAddress,
+  DetailedContact,
+  InsertAddressContact,
+  InsertedContact
+} from '@tanglass-erp/core/contact';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */

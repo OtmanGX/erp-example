@@ -1,4 +1,4 @@
-import { domain, clientId, audience, apiUri } from '../auth_config.json';
+import { apiUri, audience, clientId, domain } from '../auth_config.json';
 
 
 // The file contents for the current environment will overwrite these during build.

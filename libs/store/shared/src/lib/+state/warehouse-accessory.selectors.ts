@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
-  WAREHOUSE_ACCESSORY_FEATURE_KEY,
   State,
-  WarehouseAccessoryPartialState,
+  WAREHOUSE_ACCESSORY_FEATURE_KEY,
   warehouseAccessoryAdapter,
+  WarehouseAccessoryPartialState
 } from './warehouse-accessory.reducer';
 
 // Lookup the 'WarehouseAccessory' feature state managed by NgRx

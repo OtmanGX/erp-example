@@ -1,10 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  JOB_ORDERS_FEATURE_KEY,
-  State,
-  JobOrdersPartialState,
-  jobOrdersAdapter,
-} from './job-orders.reducer';
+import { JOB_ORDERS_FEATURE_KEY, jobOrdersAdapter, JobOrdersPartialState, State } from './job-orders.reducer';
 
 // Lookup the 'JobOrders' feature state managed by NgRx
 export const getJobOrdersState = createFeatureSelector<
@@ -55,10 +50,10 @@ export const getSelected = createSelector(
 export const getSelectedGlassLine = createSelector(
   getJobOrdersState,
   (state: State) => state.selectedGlass
-); 
+);
 
 
 export const getBarCodeState = createSelector(
   getJobOrdersState,
   (state: State) => state.withBarCodes
-); 
+);

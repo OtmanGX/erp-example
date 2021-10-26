@@ -1,20 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import {
-  DynamicFormComponent,
-  FieldConfig,
-  PageForm,
-} from '@tanglass-erp/material';
+import { DynamicFormComponent, FieldConfig, PageForm } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
 import { regConfigInvoice } from '@TanglassUi/sales/utils/forms';
 import * as ShortCompanieActions from '@TanglassStore/shared/lib/+state/short-company.actions';
 import * as CustomerActions from '@TanglassStore/contact/lib/actions/customer.actions';
 import * as ContactActions from '@TanglassStore/contact/lib/actions/contact.actions';
-import {
-  DeliveryFacade,
-  DeliveryForm,
-  DeliveryStatus,
-  InvoiceFacade,
-} from '@tanglass-erp/store/sales';
+import { DeliveryFacade, DeliveryForm, DeliveryStatus, InvoiceFacade } from '@tanglass-erp/store/sales';
 import { Store } from '@ngrx/store';
 import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-company.selectors';
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';

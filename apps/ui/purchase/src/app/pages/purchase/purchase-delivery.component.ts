@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { PurchaseHeaders } from '../../utils/grid-header';
-import { DeliveriesFacade } from "@tanglass-erp/store/purchase";
+import { DeliveriesFacade } from '@tanglass-erp/store/purchase';
 import { Router } from '@angular/router';
 
 @Component({
@@ -55,5 +55,5 @@ export class PurchaseDeliveryComponent implements GridView {
     ];
   }
 
- 
+
 }

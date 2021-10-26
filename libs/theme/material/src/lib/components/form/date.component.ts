@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup } from "@angular/forms";
-import { FieldConfig } from "../../interfaces/field.interface";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FieldConfig } from '../../interfaces/field.interface';
 import { REQUIRED } from '../../../helpers/validators';
 
 @Component({

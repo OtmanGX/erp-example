@@ -1,12 +1,9 @@
 import { Component, OnDestroy, QueryList, ViewChildren } from '@angular/core';
-import {
-  JobOrdersFacade,
-  JobOrder,
-  JobItem,
-} from '@tanglass-erp/store/manufacturing';
+import { JobItem, JobOrder, JobOrdersFacade } from '@tanglass-erp/store/manufacturing';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
 import { HighlightDirective } from '@TanglassTheme/directives/highlight.directive';
+
 @Component({
   selector: 'ngx-job-card',
   templateUrl: './job-card.component.html',

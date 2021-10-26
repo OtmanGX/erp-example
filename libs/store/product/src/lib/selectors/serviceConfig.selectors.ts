@@ -1,11 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ServiceConfig } from '@tanglass-erp/core/product';
 
-import {
-    SERVICE_CONFIG_FEATURE_KEY,
-  State,
-  serviceConfigAdapter
-} from '../reducers/servicesConfig.reducer';
+import { SERVICE_CONFIG_FEATURE_KEY, serviceConfigAdapter, State } from '../reducers/servicesConfig.reducer';
 
 // Lookup the 'SERVICE GROUPES' feature state managed by NgRx
 export const getServiceConfigsState = createFeatureSelector<

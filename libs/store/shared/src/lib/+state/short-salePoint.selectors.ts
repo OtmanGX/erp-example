@@ -1,9 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  SHORTSALEPOINT_FEATURE_KEY,
-  State,
-  shortSalePointAdapter
-} from './short-salePoint.reducer';
+import { SHORTSALEPOINT_FEATURE_KEY, shortSalePointAdapter, State } from './short-salePoint.reducer';
 
 // Lookup the 'ShortSalePoint' feature state managed by NgRx
 export const getShortSalePointState = createFeatureSelector<

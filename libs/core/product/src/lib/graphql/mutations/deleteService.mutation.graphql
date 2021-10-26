@@ -1,0 +1,5 @@
+mutation deleteService($id: uuid!) {
+  delete_product_service(where: {serviceConfigid: {_eq: $id}}) {
+    affected_rows
+  }
+}

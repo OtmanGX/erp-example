@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { PurchaseDelivery,InsertedPurchaseDelivery,PurchaseItem} from '@tanglass-erp/core/purchase';
+import { InsertedPurchaseDelivery, PurchaseDelivery, PurchaseItem } from '@tanglass-erp/core/purchase';
 
 export const loadDeliveries = createAction('[deliveries] Load deliveries');
 

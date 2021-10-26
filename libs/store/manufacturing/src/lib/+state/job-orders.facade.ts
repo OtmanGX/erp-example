@@ -1,15 +1,15 @@
 import { Injectable, Injector } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 import * as fromJobOrders from './job-orders.reducer';
 import * as JobOrdersSelectors from './job-orders.selectors';
 import * as JobOrdersActions from './job-orders.actions';
 import {
   InsertedJobOrder,
   InsertedManufacturingLine,
-  JobOrder,
   JobItem,
+  JobOrder,
   JobProduct,
-  ManufacturingLine,
+  ManufacturingLine
 } from '@tanglass-erp/core/manufacturing';
 import { map } from 'rxjs/operators';
 import { InvoiceGeneratorService } from '@tanglass-erp/core/common';

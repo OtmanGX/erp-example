@@ -2,7 +2,6 @@ import { createAction, props } from '@ngrx/store';
 import { ShortFeature } from '@tanglass-erp/core/common';
 
 
-
 /****************************************************************** */
 /*****LOAD SHORT COMPANIES ** */
 /****************************************************************** */

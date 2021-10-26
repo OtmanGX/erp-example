@@ -1,11 +1,7 @@
-import { InsertedProduct, Substance } from './shared.model';
-import { Service } from "./service.model";
-import {  Product } from './shared.model';
+import { InsertedProduct, Product, Substance } from './shared.model';
+import { Service } from './service.model';
 import { MetaData } from '@tanglass-erp/core/common';
-import {
-
-  Product_ConsumableCategory_Enum
-} from '@tanglass-erp/infrastructure/graphql';
+import { Product_ConsumableCategory_Enum } from '@tanglass-erp/infrastructure/graphql';
 
 export interface Consumable {
   id: string;

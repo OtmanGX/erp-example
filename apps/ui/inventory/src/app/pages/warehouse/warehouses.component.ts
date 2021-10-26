@@ -5,7 +5,6 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { PopWarehouseComponent } from '@TanglassUi/inventory/pages/warehouse/pop-warehouse/pop-warehouse.component';
 import { warehouseHeaders } from '@TanglassUi/inventory/utils/grid-headers';
 import { WarehousesFacade } from '@tanglass-erp/store/inventory';
-import * as wareHouseActions from '@TanglassStore/inventory/lib/actions/warehouses.actions';
 import { Store } from '@ngrx/store';
 
 @Component({

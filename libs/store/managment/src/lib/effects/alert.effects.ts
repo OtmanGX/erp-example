@@ -1,13 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { tap } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { tap } from 'rxjs/operators';
 import * as fromCompaniesActions from '../actions/companies.actions';
 import * as fromSalepointActions from '../actions/salePoint.actions';
 import * as fromUserActions from '../actions/user.actions';
 import { ToastrService } from 'ngx-toastr';
-import { Store } from "@ngrx/store";
-import { AppState } from '@tanglass-erp/store/app';
-import { AddNotification } from '@tanglass-erp/store/app';
+import { Store } from '@ngrx/store';
+import { AddNotification, AppState } from '@tanglass-erp/store/app';
 
 
 const OPTIONS = {

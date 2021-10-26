@@ -1,8 +1,8 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as SubstancesActions from '../actions/substances.actions';
-import { Substance} from '@tanglass-erp/core/product';
+import { Substance } from '@tanglass-erp/core/product';
 
 export const SUBSTANCES_FEATURE_KEY = 'substances';
 

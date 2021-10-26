@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'relativeTime' })
 export class RelativeTimePipe implements PipeTransform {
@@ -8,7 +8,7 @@ export class RelativeTimePipe implements PipeTransform {
 
     let seconds: number = Math.floor(((new Date()).getTime() - value.getTime()) / 1000);
     let interval: number = Math.floor(seconds / 31536000);
-    
+
     if (interval > 1) {
       return interval + " years ago";
     }

@@ -1,8 +1,8 @@
-import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as ConsumableWarehouseActions from '../actions/warehouseConsumable.actions';
-import { ConsumableWarehouse,SubstanceStocksDetails } from '@tanglass-erp/core/inventory';
+import { ConsumableWarehouse, SubstanceStocksDetails } from '@tanglass-erp/core/inventory';
 
 export const CONSUMABLE_WAREHOUSE_FEATURE_KEY = 'consumable_warehouse';
 

@@ -1,6 +1,6 @@
-import { Injectable, Inject, Renderer2, RendererFactory2, EventEmitter } from '@angular/core';
+import { EventEmitter, Inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import  { getQueryParam } from '../helpers/url.helper';
+import { getQueryParam } from '../helpers/url.helper';
 
 export interface ITheme {
   name: string,
@@ -31,7 +31,7 @@ export class ThemeService {
   }, {
     "name": "matx-navy",
     "baseColor": "#10174c",
-    "isActive": false 
+    "isActive": false
   }];
   public activatedTheme: ITheme;
   private renderer: Renderer2;
@@ -45,7 +45,7 @@ export class ThemeService {
   // Invoked in AppComponent and apply 'activatedTheme' on startup
   applyMatTheme( themeName: string) {
 
-    this.activatedTheme = this.matxThemes.find(t => t.name === themeName); 
+    this.activatedTheme = this.matxThemes.find(t => t.name === themeName);
     this.flipActiveFlag(themeName);
 
     // *********** ONLY FOR DEMO **********
@@ -80,7 +80,7 @@ export class ThemeService {
     try {
       this.activatedTheme = JSON.parse(themeStr);
       console.log(this.activatedTheme);
-      
+
       this.flipActiveFlag(this.activatedTheme.name);
     } catch(e) {}
   }

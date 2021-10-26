@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import {
+  DeleteSalePointGQL,
   GetAllSalesPointsGQL,
   GetSalePointByIdGQL,
   InsertSalePointGQL,
   InsertSalePointMutationVariables,
   UpdateSalePointGQL,
-  UpdateSalePointMutationVariables,
-  DeleteSalePointGQL,
+  UpdateSalePointMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
-import { DetailedSalePoint, SalePoint } from '../models/sale-point.models';
 
 
 @Injectable({

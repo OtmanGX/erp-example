@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Store, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import * as AccessoryReducer from './reducers/accessory.reducer';
 import * as ConsumableReducer from './reducers/consumable.reducer';
 import * as GlassReducer from './reducers/glass.reducer';
@@ -29,6 +29,7 @@ import { ConsumableFacadeService } from '@TanglassStore/product/lib/+state/consu
 import * as fromSubstances from './reducers/substances.reducer';
 import { SubstancesEffects } from './effects/substances.effects';
 import { SubstancesFacade } from './+state/substances.facade';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -62,7 +63,7 @@ import { SubstancesFacade } from './+state/substances.facade';
       ServiceChildReducer.SERVICE_FEATURE_KEY,
       ServiceChildReducer.reducer
     ),
- 
+
 
     EffectsModule.forFeature([
       AccessoryEffects,

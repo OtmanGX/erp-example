@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardConfig } from '@tanglass-erp/material';
 import { DashboardService } from '@tanglass-erp/core/common';
-import { addWeeks, addYears, endOfWeek, startOfWeek } from 'date-fns/fp';
+import { endOfWeek, startOfWeek } from 'date-fns/fp';
 
 @Component({
   selector: 'ngx-dashboard',

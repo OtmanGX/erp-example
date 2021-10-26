@@ -1,4 +1,4 @@
-import { Glass,DetailedGlass} from "../models/glass.model";
+import { DetailedGlass, Glass } from '../models/glass.model';
 
 //list of Glasses
 export interface GlassesVM {
@@ -8,7 +8,7 @@ export interface GlassesVM {
 }
 
 
-//Glass  fiche 
+//Glass  fiche
 export interface DetailedGlassVM{
     glass:DetailedGlass;
     loading:boolean;

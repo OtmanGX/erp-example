@@ -1,4 +1,3 @@
-
 import { MetaData } from '@tanglass-erp/core/common';
 
 export interface Companie {

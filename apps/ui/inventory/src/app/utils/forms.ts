@@ -1,10 +1,10 @@
 import { MAXNUMBER, REQUIRED } from '@tanglass-erp/material';
 import {
   DetailedTransferOrder,
-  transferStatusDirection,
+  itemTransferStatus,
   orderItemStatus,
-  Warehouse,
-  itemTransferStatus
+  transferStatusDirection,
+  Warehouse
 } from '@tanglass-erp/store/inventory';
 import { Observable } from 'rxjs';
 

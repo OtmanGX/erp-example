@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { GlassWarehouse,SubstanceStocksDetails } from '@tanglass-erp/core/inventory';
+import { GlassWarehouse, SubstanceStocksDetails } from '@tanglass-erp/core/inventory';
 
 export const loadGlassWarehouses = createAction('[GlassWarehouses] Load GlassWarehouses');
 

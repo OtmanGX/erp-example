@@ -1,12 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  CapitalizePipe,
-  PluralPipe,
-  RoundPipe,
-  TimingPipe,
-  NumberWithCommasPipe,
-} from './pipes';
+import { CapitalizePipe, NumberWithCommasPipe, PluralPipe, RoundPipe, TimingPipe } from './pipes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighlightDirective } from '@TanglassTheme/directives/highlight.directive';
 import { ToastService } from '@TanglassTheme/services/toast.service';

@@ -1,22 +1,15 @@
-import {
-  Component,
-  Inject,
-  AfterViewInit,
-  ViewChild,
-  OnDestroy,
-} from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FieldConfig, FormDialog } from '@tanglass-erp/material';
+import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
 import * as regConfigs from '@TanglassUi/sales/utils/forms';
 import { Store } from '@ngrx/store';
 import {
-  Sales_Product_Type_Enum,
-  GlassGroup,
-  ServiceGroup,
   AccessoryGroup,
+  GlassGroup,
   ProductDraftFacade,
+  Sales_Product_Type_Enum,
+  ServiceGroup
 } from '@tanglass-erp/store/sales';
-import { DynamicFormComponent } from '@tanglass-erp/material';
 import * as productStore from '@TanglassStore/product/index';
 import { Intermediate_Data, SalesItem } from '@TanglassUi/sales/utils/models';
 import { DimensionsComponent } from '@TanglassUi/sales/components/pop-product/product-dimensions/product-dimensions.component';

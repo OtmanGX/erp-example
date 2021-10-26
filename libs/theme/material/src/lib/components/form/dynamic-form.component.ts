@@ -1,19 +1,6 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  OnChanges
-} from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  AbstractControl
-} from '@angular/forms';
-import { FieldConfig } from "../../interfaces/field.interface";
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FieldConfig } from '../../interfaces/field.interface';
 import { Groupfield } from '../../interfaces/groupfield.interface';
 
 @Component({

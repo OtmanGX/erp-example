@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 
 import * as transferOrderReducers from '../reducers/transferOrder.reducer';
 import * as transferOrderSelectors from '../selectors/trasnferOrder.selectors';

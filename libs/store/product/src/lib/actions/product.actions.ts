@@ -1,4 +1,3 @@
-import { Glass, DetailedGlass, InsertedGlass } from '@tanglass-erp/core/product';
 import { createAction, props } from '@ngrx/store';
 
 
@@ -19,4 +18,3 @@ export const removeManyProducts = createAction(
     '[Products ] Delete Products failure',
     props<{ error: any }>()
   );
-  

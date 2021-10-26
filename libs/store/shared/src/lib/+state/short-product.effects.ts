@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
-import * as fromShortProduct from './short-product.reducer';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ShortFeatureService } from '@tanglass-erp/core/common';
 import * as ShortProductActions from './short-product.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';

@@ -40,6 +40,7 @@ import { OrderRepairsComponent } from '@TanglassUi/sales/components/order-repair
 import { UpdateQuotationComponent } from '@TanglassUi/sales/pages/quotation/update-quotation/update-quotation.component';
 
 import { DimensionsComponent } from '@TanglassUi/sales/components/pop-product/product-dimensions/product-dimensions.component';
+
 @NgModule({
   declarations: [
     SalesComponent,

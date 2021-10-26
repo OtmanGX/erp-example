@@ -1,11 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Accessory } from '@tanglass-erp/core/product';
 
-import {
-  ACCESSORY_FEATURE_KEY,
-  State,
-  accessoryAdapter
-} from '../reducers/accessory.reducer';
+import { ACCESSORY_FEATURE_KEY, accessoryAdapter, State } from '../reducers/accessory.reducer';
 
 // Lookup the 'Companies' feature state managed by NgRx
 export const getAccessoriesState = createFeatureSelector<

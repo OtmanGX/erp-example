@@ -3,8 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErpPermissions, GridView, MainGridComponent, Operations } from '@tanglass-erp/ag-grid';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from '@angular/router';
-import { JobOrdersFacade } from "@tanglass-erp/store/manufacturing";
-import { JobOrderHeaders } from "@TanglassUi/manufacturing/utils/grid-headers";
+import { JobOrdersFacade } from '@tanglass-erp/store/manufacturing';
+import { JobOrderHeaders } from '@TanglassUi/manufacturing/utils/grid-headers';
+
 @Component({
   selector: 'ngx-job-orders',
   templateUrl: './job-orders.component.html',

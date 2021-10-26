@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { MainAgGridModule } from '@tanglass-erp/ag-grid';
@@ -11,8 +11,9 @@ import { StoreSharedModule } from '@tanglass-erp/store/shared';
 import { PurchaseReturnedComponent } from '@TanglassUi/purchase/pages/purchase-returned/purchase-returned.component';
 import { StorePurchaseModule } from '@tanglass-erp/store/purchase';
 import { DeliveryCardComponent } from '@TanglassUi/purchase/pages/purchase/delivery-card/delivery-card.component';
-import {PopDeliveryItemComponent  } from "@TanglassUi/purchase/components/pop-delivery-item.component";
+import { PopDeliveryItemComponent } from '@TanglassUi/purchase/components/pop-delivery-item.component';
 import { StoreProductModule } from '@TanglassStore/product/lib/store-product.module';
+
 const routes: Routes = [
   {
     path: '',

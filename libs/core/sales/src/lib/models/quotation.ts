@@ -1,12 +1,5 @@
-import {
-  Product_draft,
-  InsertedProduct,
-  InsertedConsumable,
-  InsertedGlass,
-  InsertedAccessory,
-} from './product';
+import { InsertedAccessory, InsertedGlass, Product_draft } from './product';
 import { Amount } from './amount';
-import { InsertedService } from '@tanglass-erp/core/product';
 
 export interface Quotation {
   id: number;

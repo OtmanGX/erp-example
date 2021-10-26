@@ -16,15 +16,24 @@
       fxFlex="0 1 100%"
       class="mb-8"
       style="box-sizing: border-box"
+      [showActions]='viewActions'
       [data]="item"
       [routerLink]="[item?.id]"
       [state]="{ id: item?.id }"
       *ngFor="let item of data$ | async"
+      (deleteEvent)="deleteEvent($event)"
+      (updateEvent)="updateEvent($event)"
     >
     </ngx-service-card-item>
   </div>
 </div>
 
-<button class="fab-button" (click)="openDialog('add')" mat-fab color="primary">
+<span class="fab-button">
+<button class="mr-12" (click)="viewActions=!viewActions" mat-fab color="primary">
+  <mat-icon>list</mat-icon>
+</button>
+
+<button (click)="openDialog('add')" mat-fab color="primary">
   <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
 </button>
+</span>

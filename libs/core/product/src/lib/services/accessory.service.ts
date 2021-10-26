@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {
+  DeleteManyGQL,
+  DeleteOneGQL,
+  GetAccessoryByIdGQL,
   GetAllAccessoriesGQL,
   InsertAccessoryGQL,
-  GetAccessoryByIdGQL,
-  DeleteOneGQL,
-  DeleteManyGQL,
   InsertAccessoryMutationVariables,
-  UpdateAccessoryGQL, UpdateAccessoryMutationVariables
+  UpdateAccessoryGQL,
+  UpdateAccessoryMutationVariables
 } from '@tanglass-erp/infrastructure/graphql';
 import { insertedAccessory } from '../models/accessory.model';
 import { adaptProduct, adaptProductToUpdate } from '../utils/dataAdapter';

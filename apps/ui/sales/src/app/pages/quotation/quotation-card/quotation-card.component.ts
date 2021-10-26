@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import {
-  QuotationFacade,
-  Quotation,
-  ProductDraftFacade,
   Amount,
   DraftFacade,
-  Sales_Draft_Status_Enum,
+  ProductDraftFacade,
+  Quotation,
+  QuotationFacade,
+  Sales_Draft_Status_Enum
 } from '@tanglass-erp/store/sales';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { PopQuotationTransferComponent } from '@TanglassUi/sales/components/pop-quotation-transfer/pop-quotation-transfer.component';
 

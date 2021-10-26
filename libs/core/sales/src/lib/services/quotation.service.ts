@@ -5,15 +5,15 @@ import {
   GetQuotationByIdGQL,
   InsertQuotationGQL,
   InsertQuotationMutationVariables,
-  UpdateQuotationGQL,
-  UpdateQuotationMutationVariables,
-  TransformQuotationToOrderGQL
+  TransformQuotationToOrderGQL,
+  UpdateQuotationGQL
 } from '@tanglass-erp/infrastructure/graphql';
 import { map } from 'rxjs/operators';
-import { TransformedQuotation, InsertedQuotation } from '../models/quotation';
+import { InsertedQuotation, TransformedQuotation } from '../models/quotation';
 import { invoiceFilter } from '../models/invoice';
 import { productAdapter } from '../utils/product-adapter';
-import { transfertQuotationAdapter } from "../utils/transfertQuotation-adapter";
+import { transfertQuotationAdapter } from '../utils/transfertQuotation-adapter';
+
 @Injectable({
   providedIn: 'root',
 })

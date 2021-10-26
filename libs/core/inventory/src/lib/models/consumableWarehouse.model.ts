@@ -1,6 +1,5 @@
-import { Consumable } from "@tanglass-erp/core/product";
-import { Warehouse } from "./warehouse.model";
-import { ProductItem } from "./shared.models";
+import { Warehouse } from './warehouse.model';
+import { ProductItem } from './shared.models';
 
 export interface ConsumableWarehouse{
 substance: SubstanceConsumable;

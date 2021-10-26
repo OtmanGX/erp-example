@@ -1,20 +1,18 @@
 import {
+  ChangeDetectorRef,
   Directive,
   ElementRef,
-  Attribute,
-  OnInit,
   Input,
-  Renderer2,
   NgZone,
-  SimpleChanges,
   OnChanges,
   OnDestroy,
-  ChangeDetectorRef
-} from "@angular/core";
-import * as hl from "highlight.js";
-import { HttpClient } from "@angular/common/http";
-import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
+import * as hl from 'highlight.js';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Directive({
   host: {

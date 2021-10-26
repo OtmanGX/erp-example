@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { tap } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { tap } from 'rxjs/operators';
 import * as fromContactActions from '../actions/contact.actions';
 import * as fromCustomerActions from '../actions/customer.actions';
 import * as fromProviderActions from '../actions/provider.actions';

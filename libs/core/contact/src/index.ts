@@ -1,4 +1,3 @@
-import { from } from 'rxjs';
 import { ContactService } from './lib/services/contact.service';
 
 export * from './lib/core-contact.module';

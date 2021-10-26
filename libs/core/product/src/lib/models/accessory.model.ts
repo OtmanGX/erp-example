@@ -1,10 +1,6 @@
 import { MetaData } from '@tanglass-erp/core/common';
-import { Substance, Product, InsertedProduct } from './shared.model';
-import {
-  Product_Product_Insert_Input,
-  Product_Product_Unit_Enum,
-  Product_AccessoryTypes_Enum
-} from '@tanglass-erp/infrastructure/graphql';
+import { InsertedProduct, Product, Substance } from './shared.model';
+import { Product_AccessoryTypes_Enum } from '@tanglass-erp/infrastructure/graphql';
 
 //for displaying the accessory grid
 export interface Accessory {

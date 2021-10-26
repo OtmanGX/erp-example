@@ -1,9 +1,7 @@
-import { InsertAccessoryMutationVariables } from "@tanglass-erp/infrastructure/graphql"
-import { Accessory, insertedAccessory } from "../models/accessory.model"
-import { InsertedConsumable } from "../models/consumable.model"
-import { InsertedGlass } from "../models/glass.model"
-import { InsertedService } from "../models/service.model"
-import { InsertedProduct, Product } from "../models/shared.model"
+import { insertedAccessory } from '../models/accessory.model';
+import { InsertedConsumable } from '../models/consumable.model';
+import { InsertedGlass } from '../models/glass.model';
+import { InsertedService } from '../models/service.model';
 
 
 export interface product_companies {

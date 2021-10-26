@@ -1,7 +1,7 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import {Observable, of as observableOf, merge, BehaviorSubject} from 'rxjs';
+import { BehaviorSubject, merge, Observable, of as observableOf } from 'rxjs';
 
 
 export class TableDataSource<T> extends DataSource<T> {

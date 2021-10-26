@@ -1,10 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  EMPLOYEES_FEATURE_KEY,
-  State,
-  EmployeesPartialState,
-  employeesAdapter,
-} from './employees.reducer';
+import { EMPLOYEES_FEATURE_KEY, employeesAdapter, EmployeesPartialState, State } from './employees.reducer';
 
 // Lookup the 'Employees' feature state managed by NgRx
 export const getEmployeesState = createFeatureSelector<

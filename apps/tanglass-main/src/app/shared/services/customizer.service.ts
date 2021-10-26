@@ -1,7 +1,6 @@
-import { Injectable } from "@angular/core";
-import { Router, NavigationStart } from "@angular/router";
-import { filter } from "rxjs/operators";
-import { LayoutService } from "./layout.service";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { LayoutService } from './layout.service';
 
 @Injectable({
   providedIn: "root",

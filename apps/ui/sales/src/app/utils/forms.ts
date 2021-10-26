@@ -1,20 +1,14 @@
 import { MAXNUMBER, REQUIRED } from '@tanglass-erp/material';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {
-  Accessory,
-  Consumable,
-  CustomerProduct,
-  Glass,
-  Service,
-} from '@TanglassStore/product/index';
-import { Product, Intermediate_Data } from './models';
+import { Accessory, Consumable, CustomerProduct, Glass, Service } from '@TanglassStore/product/index';
+import { Intermediate_Data } from './models';
 import {
   DeliveryStatus,
   InsertedDeliveryForm,
   InsertedInvoice,
   PaymentMethod,
-  Product_draft,
+  Product_draft
 } from '@tanglass-erp/core/sales';
 import { addDays } from 'date-fns';
 

@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import * as SupplyActions from '@TanglassStore/product/lib/actions/supply.actions';
 import { getSelectedSupply } from '@TanglassStore/product/lib/selectors/supply.selectors';
 import { takeUntil } from 'rxjs/operators';

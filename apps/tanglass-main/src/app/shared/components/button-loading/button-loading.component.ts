@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'button-loading',
@@ -14,7 +14,7 @@ export class ButtonLoadingComponent implements OnInit {
   @Input('type') type: 'button' | 'submit' = 'submit';
   @Input('color') color: 'primary' | 'accent' | 'warn';
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit() {

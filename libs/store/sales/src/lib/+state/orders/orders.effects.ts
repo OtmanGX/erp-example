@@ -5,10 +5,11 @@ import * as OrdersActions from './orders.actions';
 import { Router } from '@angular/router';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { NotificationFacadeService } from '@tanglass-erp/store/app';
 import { ProductDraftFacade } from '../product-draft/product-draft.facade';
 import { DraftFacade } from '../draft/draft.facade';
 import { PaymentsFacade } from '../payments/payments.facade';
+import { ToastService } from '@TanglassTheme/services/toast.service';
+
 
 @Injectable()
 export class OrdersEffects {
@@ -39,14 +40,11 @@ export class OrdersEffects {
       mergeMap(({ ids }) =>
         this.orderService.removeMany(ids).pipe(
           map((data) => {
-            this.notificationService.showNotifToast({
-              message: 'Supprimé avec succès',
-              operation: 'info',
-              title: 'Commandes',
-              icon: 'closed',
-              route: 'sales/order',
-              color: 'warn',
-            });
+            this.toastrService.showToast(
+              'info',
+              'Commandes',
+              'Supprimé avec succès',
+            );
             return OrdersActions.removeOrderSuccess({ ids });
           }),
           catchError((error) => of(OrdersActions.removeOrderFailure({ error })))
@@ -61,15 +59,11 @@ export class OrdersEffects {
       mergeMap((action) =>
         this.orderService.insertOne(action.order).pipe(
           map((data) => {
-            this.notificationService.showNotifToast({
-              message: 'Ajouté avec succès',
-              operation: 'success',
-              title: 'Commandes',
-              time: new Date(),
-              icon: 'check',
-              route: 'sales/order',
-              color: 'primary',
-            });
+            this.toastrService.showToast(
+              'success',
+              'Commandes',
+              'Ajouté avec succès',
+            );
             this.router.navigate([
               '/sales/order',
               data.data.insert_sales_order_one.id,
@@ -113,15 +107,11 @@ export class OrdersEffects {
       mergeMap((action) =>
         this.orderService.updateOrder(action.order).pipe(
           map((data) => {
-            this.notificationService.showNotifToast({
-              message: 'La Commande est mise à jour avec succès',
-              operation: 'success',
-              title: 'Commandes',
-              time: new Date(),
-              icon: 'check',
-              route: 'sales/order',
-              color: 'primary',
-            });
+            this.toastrService.showToast(
+              'success',
+              'Commandes',
+              'La Commande est mise à jour avec succès',
+            );
             this.router.navigate([
               '/sales/order',
                data.data.update_sales_order_by_pk.id,
@@ -139,8 +129,8 @@ export class OrdersEffects {
     private actions$: Actions,
     private orderService: OrderService,
     private router: Router,
-    private notificationService: NotificationFacadeService,
     private productDraftFacade: ProductDraftFacade,
+    private toastrService: ToastService,
     private draftFacade: DraftFacade,
     private paymentFacade: PaymentsFacade,
   ) {}

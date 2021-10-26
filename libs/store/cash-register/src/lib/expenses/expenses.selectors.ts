@@ -1,10 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  EXPENSES_FEATURE_KEY,
-  State,
-  ExpensesPartialState,
-  ExpensesCategoriesAdapter,
-} from './expenses.reducer';
+import { EXPENSES_FEATURE_KEY, ExpensesCategoriesAdapter, ExpensesPartialState, State } from './expenses.reducer';
 
 // Lookup the 'Expenses' feature state managed by NgRx
 export const getExpensesState = createFeatureSelector<

@@ -1,12 +1,4 @@
-import {
-  trigger,
-  animate,
-  style,
-  transition,
-  state,
-  animation,
-  useAnimation
-} from "@angular/animations";
+import { animate, animation, state, style, transition, trigger, useAnimation } from '@angular/animations';
 
 const reusable = animation(
   [

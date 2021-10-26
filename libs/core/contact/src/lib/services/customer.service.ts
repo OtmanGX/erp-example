@@ -1,21 +1,28 @@
 import { Injectable } from '@angular/core';
 import {
-  GetAllCustomersGQL,
-  GetCustomerByIdGQL,
-  DeleteCustomerGQL,
-  UpdateCustomerGQL,
-  InsertCustomerGQL,
-  InsertCustomerMutationVariables,
-  DeleteManyCustomersGQL,
   AddCustomerAddressGQL,
   AddCustomerContactGQL,
   AffectCustomerContactGQL,
   DeleteCustomerAddressGQL,
-  DeleteCustomerContactGQL
+  DeleteCustomerContactGQL,
+  DeleteCustomerGQL,
+  DeleteManyCustomersGQL,
+  GetAllCustomersGQL,
+  GetCustomerByIdGQL,
+  InsertCustomerGQL,
+  InsertCustomerMutationVariables,
+  UpdateCustomerGQL
 } from '@tanglass-erp/infrastructure/graphql';
-import {  DetailedCustomer, InsertedCustomer,Customer } from '../models/customer.models';
-import {  dataAdapter } from '../utils/dataAdapter';
-import { InsertAddressContact ,InsertContact,AffectContactCustomer,DeleteAddress,Address, DeleteAffectedContact} from "../models/shared.models";
+import { DetailedCustomer, InsertedCustomer } from '../models/customer.models';
+import { dataAdapter } from '../utils/dataAdapter';
+import {
+  AffectContactCustomer,
+  DeleteAddress,
+  DeleteAffectedContact,
+  InsertAddressContact,
+  InsertContact
+} from '../models/shared.models';
+
 @Injectable({
   providedIn: 'root'
 })

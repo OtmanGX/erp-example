@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
 import * as _moment from 'moment';
+import { default as _rollupMoment } from 'moment';
 
 // FP variation:
 import addMonths from 'date-fns/fp/addMonths';
-import { default as _rollupMoment, Moment } from 'moment';
 import { fr } from 'date-fns/locale';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { addWeeks, addYears, endOfWeek, startOfWeek } from 'date-fns/fp';

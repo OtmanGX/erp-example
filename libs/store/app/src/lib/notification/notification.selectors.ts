@@ -2,8 +2,9 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import {
   notificationFeatureKey,
-  NotificationState,
-  notificationsAdapter, NotificationPartialState
+  NotificationPartialState,
+  notificationsAdapter,
+  NotificationState
 } from './notification.reducer';
 
 // Lookup the 'TransferOrders' feature state managed by NgRx

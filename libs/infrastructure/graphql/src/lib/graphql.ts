@@ -1,6 +1,7 @@
+import * as Apollo from 'apollo-angular';
 import { gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
-import * as Apollo from 'apollo-angular';
+
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -33472,6 +33473,13 @@ export type DeleteOneMutationVariables = Exact<{
 
 export type DeleteOneMutation = { __typename?: 'mutation_root', delete_product_product_by_pk?: Maybe<{ __typename?: 'product_product', code: string }> };
 
+export type DeleteServiceMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteServiceMutation = { __typename?: 'mutation_root', delete_product_service?: Maybe<{ __typename?: 'product_service_mutation_response', affected_rows: number }> };
+
 export type InsertAccessoryMutationVariables = Exact<{
   product: Product_Product_Insert_Input;
   quota?: Maybe<Scalars['numeric']>;
@@ -33565,6 +33573,15 @@ export type UpdateGlassMutationVariables = Exact<{
 
 
 export type UpdateGlassMutation = { __typename?: 'mutation_root', update_product_glass_by_pk?: Maybe<{ __typename?: 'product_glass', id: any, thickness: number, type?: Maybe<Product_GlassType_Enum>, color?: Maybe<Product_GlassColor_Enum> }>, update_product_product_by_pk?: Maybe<{ __typename?: 'product_product', code: string, label: string, unit: Product_Product_Unit_Enum, price: number, priceMax: number, priceMin: number }>, delete_product_product_companies?: Maybe<{ __typename?: 'product_product_companies_mutation_response', affected_rows: number }>, insert_product_product_companies?: Maybe<{ __typename?: 'product_product_companies_mutation_response', returning: Array<{ __typename?: 'product_product_companies', Company: { __typename?: 'management_company', name: string, id: any } }> }> };
+
+export type UpdateServiceMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  labelFactory: Scalars['String'];
+  name: Scalars['String'];
+}>;
+
+
+export type UpdateServiceMutation = { __typename?: 'mutation_root', update_product_serviceConfig_by_pk?: Maybe<{ __typename?: 'product_serviceConfig', labelFactory: string, name: string, id: any, params?: Maybe<any> }> };
 
 export type GetAccessoryByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -34227,7 +34244,7 @@ export const AddExpenseDocument = gql`
   })
   export class AddExpenseGQL extends Apollo.Mutation<AddExpenseMutation, AddExpenseMutationVariables> {
     document = AddExpenseDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34245,7 +34262,7 @@ export const DeleteExpensesByIdDocument = gql`
   })
   export class DeleteExpensesByIdGQL extends Apollo.Mutation<DeleteExpensesByIdMutation, DeleteExpensesByIdMutationVariables> {
     document = DeleteExpensesByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34265,7 +34282,7 @@ export const InsertCashBoxDocument = gql`
   })
   export class InsertCashBoxGQL extends Apollo.Mutation<InsertCashBoxMutation, InsertCashBoxMutationVariables> {
     document = InsertCashBoxDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34323,7 +34340,7 @@ export const GetCashBoxByIdDocument = gql`
   })
   export class GetCashBoxByIdGQL extends Apollo.Query<GetCashBoxByIdQuery, GetCashBoxByIdQueryVariables> {
     document = GetCashBoxByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34342,7 +34359,7 @@ export const GetExpensesCategoriesDocument = gql`
   })
   export class GetExpensesCategoriesGQL extends Apollo.Query<GetExpensesCategoriesQuery, GetExpensesCategoriesQueryVariables> {
     document = GetExpensesCategoriesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34379,7 +34396,7 @@ export const DashboardQueryDocument = gql`
   })
   export class DashboardQueryGQL extends Apollo.Query<DashboardQueryQuery, DashboardQueryQueryVariables> {
     document = DashboardQueryDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34407,7 +34424,7 @@ export const GetAccessoriesSubstancesDocument = gql`
   })
   export class GetAccessoriesSubstancesGQL extends Apollo.Query<GetAccessoriesSubstancesQuery, GetAccessoriesSubstancesQueryVariables> {
     document = GetAccessoriesSubstancesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34435,7 +34452,7 @@ export const GetGlassesSubstancesDocument = gql`
   })
   export class GetGlassesSubstancesGQL extends Apollo.Query<GetGlassesSubstancesQuery, GetGlassesSubstancesQueryVariables> {
     document = GetGlassesSubstancesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34463,7 +34480,7 @@ export const GetMyUserDocument = gql`
   })
   export class GetMyUserGQL extends Apollo.Query<GetMyUserQuery, GetMyUserQueryVariables> {
     document = GetMyUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34484,7 +34501,7 @@ export const GetOrdersBySalepointDocument = gql`
   })
   export class GetOrdersBySalepointGQL extends Apollo.Query<GetOrdersBySalepointQuery, GetOrdersBySalepointQueryVariables> {
     document = GetOrdersBySalepointDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34503,7 +34520,7 @@ export const GetShortCompaniesDocument = gql`
   })
   export class GetShortCompaniesGQL extends Apollo.Query<GetShortCompaniesQuery, GetShortCompaniesQueryVariables> {
     document = GetShortCompaniesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34524,7 +34541,7 @@ export const GetShortEmployeesDocument = gql`
   })
   export class GetShortEmployeesGQL extends Apollo.Query<GetShortEmployeesQuery, GetShortEmployeesQueryVariables> {
     document = GetShortEmployeesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34543,7 +34560,7 @@ export const GetShortProvidersDocument = gql`
   })
   export class GetShortProvidersGQL extends Apollo.Query<GetShortProvidersQuery, GetShortProvidersQueryVariables> {
     document = GetShortProvidersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34566,7 +34583,7 @@ export const GeShortSalePointsDocument = gql`
   })
   export class GeShortSalePointsGQL extends Apollo.Query<GeShortSalePointsQuery, GeShortSalePointsQueryVariables> {
     document = GeShortSalePointsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34597,7 +34614,7 @@ export const GetShortSubstancesDocument = gql`
   })
   export class GetShortSubstancesGQL extends Apollo.Query<GetShortSubstancesQuery, GetShortSubstancesQueryVariables> {
     document = GetShortSubstancesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34617,7 +34634,7 @@ export const GetShortWArehousesDocument = gql`
   })
   export class GetShortWArehousesGQL extends Apollo.Query<GetShortWArehousesQuery, GetShortWArehousesQueryVariables> {
     document = GetShortWArehousesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34640,7 +34657,7 @@ export const GetProductsDocument = gql`
   })
   export class GetProductsGQL extends Apollo.Query<GetProductsQuery, GetProductsQueryVariables> {
     document = GetProductsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34661,7 +34678,7 @@ export const ChangeNotificationStateDocument = gql`
   })
   export class ChangeNotificationStateGQL extends Apollo.Mutation<ChangeNotificationStateMutation, ChangeNotificationStateMutationVariables> {
     document = ChangeNotificationStateDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34695,7 +34712,7 @@ export const NotificationQueryDocument = gql`
   })
   export class NotificationQueryGQL extends Apollo.Query<NotificationQueryQuery, NotificationQueryQueryVariables> {
     document = NotificationQueryDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34729,7 +34746,7 @@ export const NotificationSubscriptionDocument = gql`
   })
   export class NotificationSubscriptionGQL extends Apollo.Subscription<NotificationSubscriptionSubscription, NotificationSubscriptionSubscriptionVariables> {
     document = NotificationSubscriptionDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34748,7 +34765,7 @@ export const WarehouseOnetimeDocument = gql`
   })
   export class WarehouseOnetimeGQL extends Apollo.Query<WarehouseOnetimeQuery, WarehouseOnetimeQueryVariables> {
     document = WarehouseOnetimeDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34767,7 +34784,7 @@ export const WarehouseSubscriptionDocument = gql`
   })
   export class WarehouseSubscriptionGQL extends Apollo.Subscription<WarehouseSubscriptionSubscription, WarehouseSubscriptionSubscriptionVariables> {
     document = WarehouseSubscriptionDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34792,7 +34809,7 @@ export const AddContactAddressDocument = gql`
   })
   export class AddContactAddressGQL extends Apollo.Mutation<AddContactAddressMutation, AddContactAddressMutationVariables> {
     document = AddContactAddressDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34817,7 +34834,7 @@ export const AddCustomerAddressDocument = gql`
   })
   export class AddCustomerAddressGQL extends Apollo.Mutation<AddCustomerAddressMutation, AddCustomerAddressMutationVariables> {
     document = AddCustomerAddressDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34844,7 +34861,7 @@ export const AddCustomerContactDocument = gql`
   })
   export class AddCustomerContactGQL extends Apollo.Mutation<AddCustomerContactMutation, AddCustomerContactMutationVariables> {
     document = AddCustomerContactDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34869,7 +34886,7 @@ export const AddProviderAddressDocument = gql`
   })
   export class AddProviderAddressGQL extends Apollo.Mutation<AddProviderAddressMutation, AddProviderAddressMutationVariables> {
     document = AddProviderAddressDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34896,7 +34913,7 @@ export const AddProviderContactDocument = gql`
   })
   export class AddProviderContactGQL extends Apollo.Mutation<AddProviderContactMutation, AddProviderContactMutationVariables> {
     document = AddProviderContactDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34923,7 +34940,7 @@ export const AffectCustomerContactDocument = gql`
   })
   export class AffectCustomerContactGQL extends Apollo.Mutation<AffectCustomerContactMutation, AffectCustomerContactMutationVariables> {
     document = AffectCustomerContactDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34950,7 +34967,7 @@ export const AffectProviderContactDocument = gql`
   })
   export class AffectProviderContactGQL extends Apollo.Mutation<AffectProviderContactMutation, AffectProviderContactMutationVariables> {
     document = AffectProviderContactDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34969,7 +34986,7 @@ export const DeleteContactDocument = gql`
   })
   export class DeleteContactGQL extends Apollo.Mutation<DeleteContactMutation, DeleteContactMutationVariables> {
     document = DeleteContactDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -34988,7 +35005,7 @@ export const DeleteContactAddressDocument = gql`
   })
   export class DeleteContactAddressGQL extends Apollo.Mutation<DeleteContactAddressMutation, DeleteContactAddressMutationVariables> {
     document = DeleteContactAddressDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35007,7 +35024,7 @@ export const DeleteCustomerDocument = gql`
   })
   export class DeleteCustomerGQL extends Apollo.Mutation<DeleteCustomerMutation, DeleteCustomerMutationVariables> {
     document = DeleteCustomerDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35026,7 +35043,7 @@ export const DeleteCustomerAddressDocument = gql`
   })
   export class DeleteCustomerAddressGQL extends Apollo.Mutation<DeleteCustomerAddressMutation, DeleteCustomerAddressMutationVariables> {
     document = DeleteCustomerAddressDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35045,7 +35062,7 @@ export const DeleteCustomerContactDocument = gql`
   })
   export class DeleteCustomerContactGQL extends Apollo.Mutation<DeleteCustomerContactMutation, DeleteCustomerContactMutationVariables> {
     document = DeleteCustomerContactDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35065,7 +35082,7 @@ export const DeleteManyContactsDocument = gql`
   })
   export class DeleteManyContactsGQL extends Apollo.Mutation<DeleteManyContactsMutation, DeleteManyContactsMutationVariables> {
     document = DeleteManyContactsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35085,7 +35102,7 @@ export const DeleteManyCustomersDocument = gql`
   })
   export class DeleteManyCustomersGQL extends Apollo.Mutation<DeleteManyCustomersMutation, DeleteManyCustomersMutationVariables> {
     document = DeleteManyCustomersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35105,7 +35122,7 @@ export const DeleteManyProvidersDocument = gql`
   })
   export class DeleteManyProvidersGQL extends Apollo.Mutation<DeleteManyProvidersMutation, DeleteManyProvidersMutationVariables> {
     document = DeleteManyProvidersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35124,7 +35141,7 @@ export const DeleteProviderDocument = gql`
   })
   export class DeleteProviderGQL extends Apollo.Mutation<DeleteProviderMutation, DeleteProviderMutationVariables> {
     document = DeleteProviderDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35143,7 +35160,7 @@ export const DeleteProviderAddressDocument = gql`
   })
   export class DeleteProviderAddressGQL extends Apollo.Mutation<DeleteProviderAddressMutation, DeleteProviderAddressMutationVariables> {
     document = DeleteProviderAddressDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35162,7 +35179,7 @@ export const DeleteProviderContactDocument = gql`
   })
   export class DeleteProviderContactGQL extends Apollo.Mutation<DeleteProviderContactMutation, DeleteProviderContactMutationVariables> {
     document = DeleteProviderContactDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35187,7 +35204,7 @@ export const InsertContactDocument = gql`
   })
   export class InsertContactGQL extends Apollo.Mutation<InsertContactMutation, InsertContactMutationVariables> {
     document = InsertContactDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35214,7 +35231,7 @@ export const InsertCustomerDocument = gql`
   })
   export class InsertCustomerGQL extends Apollo.Mutation<InsertCustomerMutation, InsertCustomerMutationVariables> {
     document = InsertCustomerDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35239,7 +35256,7 @@ export const InsertProviderDocument = gql`
   })
   export class InsertProviderGQL extends Apollo.Mutation<InsertProviderMutation, InsertProviderMutationVariables> {
     document = InsertProviderDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35265,7 +35282,7 @@ export const UpdateContactDocument = gql`
   })
   export class UpdateContactGQL extends Apollo.Mutation<UpdateContactMutation, UpdateContactMutationVariables> {
     document = UpdateContactDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35283,7 +35300,7 @@ export const UpdateContactAddressesDocument = gql`
   })
   export class UpdateContactAddressesGQL extends Apollo.Mutation<UpdateContactAddressesMutation, UpdateContactAddressesMutationVariables> {
     document = UpdateContactAddressesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35311,7 +35328,7 @@ export const UpdateCustomerDocument = gql`
   })
   export class UpdateCustomerGQL extends Apollo.Mutation<UpdateCustomerMutation, UpdateCustomerMutationVariables> {
     document = UpdateCustomerDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35337,7 +35354,7 @@ export const UpdateProviderDocument = gql`
   })
   export class UpdateProviderGQL extends Apollo.Mutation<UpdateProviderMutation, UpdateProviderMutationVariables> {
     document = UpdateProviderDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35360,7 +35377,7 @@ export const GetAllContactsDocument = gql`
   })
   export class GetAllContactsGQL extends Apollo.Query<GetAllContactsQuery, GetAllContactsQueryVariables> {
     document = GetAllContactsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35385,7 +35402,7 @@ export const GetAllCustomersDocument = gql`
   })
   export class GetAllCustomersGQL extends Apollo.Query<GetAllCustomersQuery, GetAllCustomersQueryVariables> {
     document = GetAllCustomersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35408,7 +35425,7 @@ export const GetAllProvidersDocument = gql`
   })
   export class GetAllProvidersGQL extends Apollo.Query<GetAllProvidersQuery, GetAllProvidersQueryVariables> {
     document = GetAllProvidersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35457,7 +35474,7 @@ export const GetContactByIdDocument = gql`
   })
   export class GetContactByIdGQL extends Apollo.Query<GetContactByIdQuery, GetContactByIdQueryVariables> {
     document = GetContactByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35503,7 +35520,7 @@ export const GetCustomerByIdDocument = gql`
   })
   export class GetCustomerByIdGQL extends Apollo.Query<GetCustomerByIdQuery, GetCustomerByIdQueryVariables> {
     document = GetCustomerByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35546,7 +35563,7 @@ export const GetProviderByIdDocument = gql`
   })
   export class GetProviderByIdGQL extends Apollo.Query<GetProviderByIdQuery, GetProviderByIdQueryVariables> {
     document = GetProviderByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35566,7 +35583,7 @@ export const DeleteManyWarehousesDocument = gql`
   })
   export class DeleteManyWarehousesGQL extends Apollo.Mutation<DeleteManyWarehousesMutation, DeleteManyWarehousesMutationVariables> {
     document = DeleteManyWarehousesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35584,7 +35601,7 @@ export const DeleteTransferOrdersDocument = gql`
   })
   export class DeleteTransferOrdersGQL extends Apollo.Mutation<DeleteTransferOrdersMutation, DeleteTransferOrdersMutationVariables> {
     document = DeleteTransferOrdersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35612,7 +35629,7 @@ export const InsertTranfserDocument = gql`
   })
   export class InsertTranfserGQL extends Apollo.Mutation<InsertTranfserMutation, InsertTranfserMutationVariables> {
     document = InsertTranfserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35685,7 +35702,7 @@ ${Product_Product_Glass_ViewFragmentFragmentDoc}`;
   })
   export class InsertTransferItemGQL extends Apollo.Mutation<InsertTransferItemMutation, InsertTransferItemMutationVariables> {
     document = InsertTransferItemDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35716,7 +35733,7 @@ export const InsertTransferOrderDocument = gql`
   })
   export class InsertTransferOrderGQL extends Apollo.Mutation<InsertTransferOrderMutation, InsertTransferOrderMutationVariables> {
     document = InsertTransferOrderDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35745,7 +35762,7 @@ export const InsertWarehouseDocument = gql`
   })
   export class InsertWarehouseGQL extends Apollo.Mutation<InsertWarehouseMutation, InsertWarehouseMutationVariables> {
     document = InsertWarehouseDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35819,7 +35836,7 @@ ${Product_Product_Glass_ViewFragmentFragmentDoc}`;
   })
   export class UpdateStockItemTranferGQL extends Apollo.Mutation<UpdateStockItemTranferMutation, UpdateStockItemTranferMutationVariables> {
     document = UpdateStockItemTranferDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35851,7 +35868,7 @@ export const UpdateTransferOrderDocument = gql`
   })
   export class UpdateTransferOrderGQL extends Apollo.Mutation<UpdateTransferOrderMutation, UpdateTransferOrderMutationVariables> {
     document = UpdateTransferOrderDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35923,7 +35940,7 @@ ${Product_Product_Glass_ViewFragmentFragmentDoc}`;
   })
   export class UpdateStockOrderItemGQL extends Apollo.Mutation<UpdateStockOrderItemMutation, UpdateStockOrderItemMutationVariables> {
     document = UpdateStockOrderItemDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35953,7 +35970,7 @@ export const UpdateWarehouseDocument = gql`
   })
   export class UpdateWarehouseGQL extends Apollo.Mutation<UpdateWarehouseMutation, UpdateWarehouseMutationVariables> {
     document = UpdateWarehouseDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -35997,7 +36014,7 @@ export const GetAccessoryWarehousesByIdDocument = gql`
   })
   export class GetAccessoryWarehousesByIdGQL extends Apollo.Query<GetAccessoryWarehousesByIdQuery, GetAccessoryWarehousesByIdQueryVariables> {
     document = GetAccessoryWarehousesByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36029,7 +36046,7 @@ ${Product_Product_Accessory_ViewFragmentFragmentDoc}`;
   })
   export class GetAllAccessoriesStockGQL extends Apollo.Query<GetAllAccessoriesStockQuery, GetAllAccessoriesStockQueryVariables> {
     document = GetAllAccessoriesStockDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36061,7 +36078,7 @@ ${Product_Product_Consumable_ViewFragmentFragmentDoc}`;
   })
   export class GetAllConsumablesStockGQL extends Apollo.Query<GetAllConsumablesStockQuery, GetAllConsumablesStockQueryVariables> {
     document = GetAllConsumablesStockDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36097,7 +36114,7 @@ export const GetAllGlassesStockDocument = gql`
   })
   export class GetAllGlassesStockGQL extends Apollo.Query<GetAllGlassesStockQuery, GetAllGlassesStockQueryVariables> {
     document = GetAllGlassesStockDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36142,7 +36159,7 @@ export const GetAllOrdersDetailsDocument = gql`
   })
   export class GetAllOrdersDetailsGQL extends Apollo.Query<GetAllOrdersDetailsQuery, GetAllOrdersDetailsQueryVariables> {
     document = GetAllOrdersDetailsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36171,7 +36188,7 @@ export const GetAllTransfersOrdersDocument = gql`
   })
   export class GetAllTransfersOrdersGQL extends Apollo.Query<GetAllTransfersOrdersQuery, GetAllTransfersOrdersQueryVariables> {
     document = GetAllTransfersOrdersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36197,7 +36214,7 @@ ${Management_SalesPointFragmentFragmentDoc}`;
   })
   export class GetAllWarehousesGQL extends Apollo.Query<GetAllWarehousesQuery, GetAllWarehousesQueryVariables> {
     document = GetAllWarehousesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36240,7 +36257,7 @@ export const GetConsumableWarehousesByIdDocument = gql`
   })
   export class GetConsumableWarehousesByIdGQL extends Apollo.Query<GetConsumableWarehousesByIdQuery, GetConsumableWarehousesByIdQueryVariables> {
     document = GetConsumableWarehousesByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36283,7 +36300,7 @@ export const GetGlassWarehousesByIdDocument = gql`
   })
   export class GetGlassWarehousesByIdGQL extends Apollo.Query<GetGlassWarehousesByIdQuery, GetGlassWarehousesByIdQueryVariables> {
     document = GetGlassWarehousesByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36350,7 +36367,7 @@ ${Product_Product_Glass_ViewFragmentFragmentDoc}`;
   })
   export class GetTransferOrderByIdGQL extends Apollo.Query<GetTransferOrderByIdQuery, GetTransferOrderByIdQueryVariables> {
     document = GetTransferOrderByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36381,7 +36398,7 @@ export const GetWarehouseByIdDocument = gql`
   })
   export class GetWarehouseByIdGQL extends Apollo.Query<GetWarehouseByIdQuery, GetWarehouseByIdQueryVariables> {
     document = GetWarehouseByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36400,7 +36417,7 @@ export const DeleteCompanyDocument = gql`
   })
   export class DeleteCompanyGQL extends Apollo.Mutation<DeleteCompanyMutation, DeleteCompanyMutationVariables> {
     document = DeleteCompanyDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36419,7 +36436,7 @@ export const DeleteSalePointDocument = gql`
   })
   export class DeleteSalePointGQL extends Apollo.Mutation<DeleteSalePointMutation, DeleteSalePointMutationVariables> {
     document = DeleteSalePointDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36438,7 +36455,7 @@ export const DeleteUserDocument = gql`
   })
   export class DeleteUserGQL extends Apollo.Mutation<DeleteUserMutation, DeleteUserMutationVariables> {
     document = DeleteUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36466,7 +36483,7 @@ export const InsertCompanyDocument = gql`
   })
   export class InsertCompanyGQL extends Apollo.Mutation<InsertCompanyMutation, InsertCompanyMutationVariables> {
     document = InsertCompanyDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36491,7 +36508,7 @@ export const InsertSalePointDocument = gql`
   })
   export class InsertSalePointGQL extends Apollo.Mutation<InsertSalePointMutation, InsertSalePointMutationVariables> {
     document = InsertSalePointDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36527,7 +36544,7 @@ export const InsertUserDocument = gql`
   })
   export class InsertUserGQL extends Apollo.Mutation<InsertUserMutation, InsertUserMutationVariables> {
     document = InsertUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36556,7 +36573,7 @@ export const UpdateCompanyDocument = gql`
   })
   export class UpdateCompanyGQL extends Apollo.Mutation<UpdateCompanyMutation, UpdateCompanyMutationVariables> {
     document = UpdateCompanyDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36582,7 +36599,7 @@ export const UpdateSalePointDocument = gql`
   })
   export class UpdateSalePointGQL extends Apollo.Mutation<UpdateSalePointMutation, UpdateSalePointMutationVariables> {
     document = UpdateSalePointDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36612,7 +36629,7 @@ export const UpdateUserDocument = gql`
   })
   export class UpdateUserGQL extends Apollo.Mutation<UpdateUserMutation, UpdateUserMutationVariables> {
     document = UpdateUserDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36638,7 +36655,7 @@ export const GetAllCompaniesDocument = gql`
   })
   export class GetAllCompaniesGQL extends Apollo.Query<GetAllCompaniesQuery, GetAllCompaniesQueryVariables> {
     document = GetAllCompaniesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36661,7 +36678,7 @@ export const GetAllSalesPointsDocument = gql`
   })
   export class GetAllSalesPointsGQL extends Apollo.Query<GetAllSalesPointsQuery, GetAllSalesPointsQueryVariables> {
     document = GetAllSalesPointsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36688,7 +36705,7 @@ export const GetAllUsersDocument = gql`
   })
   export class GetAllUsersGQL extends Apollo.Query<GetAllUsersQuery, GetAllUsersQueryVariables> {
     document = GetAllUsersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36719,7 +36736,7 @@ export const GetCompanyByIdDocument = gql`
   })
   export class GetCompanyByIdGQL extends Apollo.Query<GetCompanyByIdQuery, GetCompanyByIdQueryVariables> {
     document = GetCompanyByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36758,7 +36775,7 @@ export const GetSalePointByIdDocument = gql`
   })
   export class GetSalePointByIdGQL extends Apollo.Query<GetSalePointByIdQuery, GetSalePointByIdQueryVariables> {
     document = GetSalePointByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36800,7 +36817,7 @@ export const GetUserByIdDocument = gql`
   })
   export class GetUserByIdGQL extends Apollo.Query<GetUserByIdQuery, GetUserByIdQueryVariables> {
     document = GetUserByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36835,7 +36852,7 @@ export const GenerateBarCodesDocument = gql`
   })
   export class GenerateBarCodesGQL extends Apollo.Mutation<GenerateBarCodesMutation, GenerateBarCodesMutationVariables> {
     document = GenerateBarCodesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36897,7 +36914,7 @@ export const InsertJobOrderDocument = gql`
   })
   export class InsertJobOrderGQL extends Apollo.Mutation<InsertJobOrderMutation, InsertJobOrderMutationVariables> {
     document = InsertJobOrderDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36952,7 +36969,7 @@ export const UpdateManufacturingProgressDocument = gql`
   })
   export class UpdateManufacturingProgressGQL extends Apollo.Mutation<UpdateManufacturingProgressMutation, UpdateManufacturingProgressMutationVariables> {
     document = UpdateManufacturingProgressDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -36975,7 +36992,7 @@ export const GetAllJobsOrdersDocument = gql`
   })
   export class GetAllJobsOrdersGQL extends Apollo.Query<GetAllJobsOrdersQuery, GetAllJobsOrdersQueryVariables> {
     document = GetAllJobsOrdersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37037,7 +37054,7 @@ export const GetJobOrderByIdDocument = gql`
   })
   export class GetJobOrderByIdGQL extends Apollo.Query<GetJobOrderByIdQuery, GetJobOrderByIdQueryVariables> {
     document = GetJobOrderByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37090,7 +37107,7 @@ export const GetManufacturingGlassByIdDocument = gql`
   })
   export class GetManufacturingGlassByIdGQL extends Apollo.Query<GetManufacturingGlassByIdQuery, GetManufacturingGlassByIdQueryVariables> {
     document = GetManufacturingGlassByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37108,7 +37125,7 @@ export const AddGlassColorDocument = gql`
   })
   export class AddGlassColorGQL extends Apollo.Mutation<AddGlassColorMutation, AddGlassColorMutationVariables> {
     document = AddGlassColorDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37126,7 +37143,7 @@ export const AddGlassTypeDocument = gql`
   })
   export class AddGlassTypeGQL extends Apollo.Mutation<AddGlassTypeMutation, AddGlassTypeMutationVariables> {
     document = AddGlassTypeDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37144,7 +37161,7 @@ export const DeleteManyCustomerProductsDocument = gql`
   })
   export class DeleteManyCustomerProductsGQL extends Apollo.Mutation<DeleteManyCustomerProductsMutation, DeleteManyCustomerProductsMutationVariables> {
     document = DeleteManyCustomerProductsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37162,7 +37179,7 @@ export const DeleteManyDocument = gql`
   })
   export class DeleteManyGQL extends Apollo.Mutation<DeleteManyMutation, DeleteManyMutationVariables> {
     document = DeleteManyDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37180,7 +37197,25 @@ export const DeleteOneDocument = gql`
   })
   export class DeleteOneGQL extends Apollo.Mutation<DeleteOneMutation, DeleteOneMutationVariables> {
     document = DeleteOneDocument;
-    
+
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteServiceDocument = gql`
+    mutation deleteService($id: uuid!) {
+  delete_product_service(where: {serviceConfigid: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteServiceGQL extends Apollo.Mutation<DeleteServiceMutation, DeleteServiceMutationVariables> {
+    document = DeleteServiceDocument;
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37214,7 +37249,7 @@ export const InsertAccessoryDocument = gql`
   })
   export class InsertAccessoryGQL extends Apollo.Mutation<InsertAccessoryMutation, InsertAccessoryMutationVariables> {
     document = InsertAccessoryDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37247,7 +37282,7 @@ export const InsertConsumableDocument = gql`
   })
   export class InsertConsumableGQL extends Apollo.Mutation<InsertConsumableMutation, InsertConsumableMutationVariables> {
     document = InsertConsumableDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37273,7 +37308,7 @@ export const InsertCustomerProductDocument = gql`
   })
   export class InsertCustomerProductGQL extends Apollo.Mutation<InsertCustomerProductMutation, InsertCustomerProductMutationVariables> {
     document = InsertCustomerProductDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37308,7 +37343,7 @@ export const InsertGlassDocument = gql`
   })
   export class InsertGlassGQL extends Apollo.Mutation<InsertGlassMutation, InsertGlassMutationVariables> {
     document = InsertGlassDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37339,7 +37374,7 @@ export const InsertServiceDocument = gql`
   })
   export class InsertServiceGQL extends Apollo.Mutation<InsertServiceMutation, InsertServiceMutationVariables> {
     document = InsertServiceDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37362,7 +37397,7 @@ export const InsertServiceConfigDocument = gql`
   })
   export class InsertServiceConfigGQL extends Apollo.Mutation<InsertServiceConfigMutation, InsertServiceConfigMutationVariables> {
     document = InsertServiceConfigDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37407,7 +37442,7 @@ export const UpdateAccessoryDocument = gql`
   })
   export class UpdateAccessoryGQL extends Apollo.Mutation<UpdateAccessoryMutation, UpdateAccessoryMutationVariables> {
     document = UpdateAccessoryDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37452,7 +37487,7 @@ export const UpdateConsumableDocument = gql`
   })
   export class UpdateConsumableGQL extends Apollo.Mutation<UpdateConsumableMutation, UpdateConsumableMutationVariables> {
     document = UpdateConsumableDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37495,7 +37530,31 @@ export const UpdateGlassDocument = gql`
   })
   export class UpdateGlassGQL extends Apollo.Mutation<UpdateGlassMutation, UpdateGlassMutationVariables> {
     document = UpdateGlassDocument;
-    
+
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateServiceDocument = gql`
+    mutation updateService($id: uuid!, $labelFactory: String!, $name: String!) {
+  update_product_serviceConfig_by_pk(
+    pk_columns: {id: $id}
+    _set: {labelFactory: $labelFactory, name: $name}
+  ) {
+    labelFactory
+    name
+    id
+    params
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateServiceGQL extends Apollo.Mutation<UpdateServiceMutation, UpdateServiceMutationVariables> {
+    document = UpdateServiceDocument;
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37531,7 +37590,7 @@ export const GetAccessoryByIdDocument = gql`
   })
   export class GetAccessoryByIdGQL extends Apollo.Query<GetAccessoryByIdQuery, GetAccessoryByIdQueryVariables> {
     document = GetAccessoryByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37564,7 +37623,7 @@ export const GetAllAccessoriesDocument = gql`
   })
   export class GetAllAccessoriesGQL extends Apollo.Query<GetAllAccessoriesQuery, GetAllAccessoriesQueryVariables> {
     document = GetAllAccessoriesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37597,7 +37656,7 @@ export const GetAllConsumablesDocument = gql`
   })
   export class GetAllConsumablesGQL extends Apollo.Query<GetAllConsumablesQuery, GetAllConsumablesQueryVariables> {
     document = GetAllConsumablesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37621,7 +37680,7 @@ export const GetAllCustomerProductsDocument = gql`
   })
   export class GetAllCustomerProductsGQL extends Apollo.Query<GetAllCustomerProductsQuery, GetAllCustomerProductsQueryVariables> {
     document = GetAllCustomerProductsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37653,7 +37712,7 @@ export const GetAllGlassesDocument = gql`
   })
   export class GetAllGlassesGQL extends Apollo.Query<GetAllGlassesQuery, GetAllGlassesQueryVariables> {
     document = GetAllGlassesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37689,7 +37748,7 @@ export const GetAllServicesDocument = gql`
   })
   export class GetAllServicesGQL extends Apollo.Query<GetAllServicesQuery, GetAllServicesQueryVariables> {
     document = GetAllServicesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37710,7 +37769,7 @@ export const GetAllServiceConfigDocument = gql`
   })
   export class GetAllServiceConfigGQL extends Apollo.Query<GetAllServiceConfigQuery, GetAllServiceConfigQueryVariables> {
     document = GetAllServiceConfigDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37745,7 +37804,7 @@ export const GetConsumableByIdDocument = gql`
   })
   export class GetConsumableByIdGQL extends Apollo.Query<GetConsumableByIdQuery, GetConsumableByIdQueryVariables> {
     document = GetConsumableByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37780,7 +37839,7 @@ export const GetGlassByIdDocument = gql`
   })
   export class GetGlassByIdGQL extends Apollo.Query<GetGlassByIdQuery, GetGlassByIdQueryVariables> {
     document = GetGlassByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37798,7 +37857,7 @@ export const GetGlassColorsDocument = gql`
   })
   export class GetGlassColorsGQL extends Apollo.Query<GetGlassColorsQuery, GetGlassColorsQueryVariables> {
     document = GetGlassColorsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37816,7 +37875,7 @@ export const GetGlassTypesDocument = gql`
   })
   export class GetGlassTypesGQL extends Apollo.Query<GetGlassTypesQuery, GetGlassTypesQueryVariables> {
     document = GetGlassTypesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37852,7 +37911,7 @@ export const GetServiceConfigByIdDocument = gql`
   })
   export class GetServiceConfigByIdGQL extends Apollo.Query<GetServiceConfigByIdQuery, GetServiceConfigByIdQueryVariables> {
     document = GetServiceConfigByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37890,7 +37949,7 @@ export const GetAllSubstancesDocument = gql`
   })
   export class GetAllSubstancesGQL extends Apollo.Query<GetAllSubstancesQuery, GetAllSubstancesQueryVariables> {
     document = GetAllSubstancesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37908,7 +37967,7 @@ export const DeletePurchaseDeliveryDocument = gql`
   })
   export class DeletePurchaseDeliveryGQL extends Apollo.Mutation<DeletePurchaseDeliveryMutation, DeletePurchaseDeliveryMutationVariables> {
     document = DeletePurchaseDeliveryDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37943,7 +38002,7 @@ export const InsertPurchaseDeliveryDocument = gql`
   })
   export class InsertPurchaseDeliveryGQL extends Apollo.Mutation<InsertPurchaseDeliveryMutation, InsertPurchaseDeliveryMutationVariables> {
     document = InsertPurchaseDeliveryDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37964,7 +38023,7 @@ export const GetAllPurchasesDeliveriesDocument = gql`
   })
   export class GetAllPurchasesDeliveriesGQL extends Apollo.Query<GetAllPurchasesDeliveriesQuery, GetAllPurchasesDeliveriesQueryVariables> {
     document = GetAllPurchasesDeliveriesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -37997,7 +38056,7 @@ export const GetPurchaseDeliveryByIdDocument = gql`
   })
   export class GetPurchaseDeliveryByIdGQL extends Apollo.Query<GetPurchaseDeliveryByIdQuery, GetPurchaseDeliveryByIdQueryVariables> {
     document = GetPurchaseDeliveryByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38015,7 +38074,7 @@ export const DeleteDeliveryDocument = gql`
   })
   export class DeleteDeliveryGQL extends Apollo.Mutation<DeleteDeliveryMutation, DeleteDeliveryMutationVariables> {
     document = DeleteDeliveryDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38056,7 +38115,7 @@ export const InsertDeliveryDocument = gql`
   })
   export class InsertDeliveryGQL extends Apollo.Mutation<InsertDeliveryMutation, InsertDeliveryMutationVariables> {
     document = InsertDeliveryDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38088,7 +38147,7 @@ export const UpdateDeliveryDocument = gql`
   })
   export class UpdateDeliveryGQL extends Apollo.Mutation<UpdateDeliveryMutation, UpdateDeliveryMutationVariables> {
     document = UpdateDeliveryDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38112,7 +38171,7 @@ export const UpdateDeliveryLineDocument = gql`
   })
   export class UpdateDeliveryLineGQL extends Apollo.Mutation<UpdateDeliveryLineMutation, UpdateDeliveryLineMutationVariables> {
     document = UpdateDeliveryLineDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38130,7 +38189,7 @@ export const DeleteDraftsDocument = gql`
   })
   export class DeleteDraftsGQL extends Apollo.Mutation<DeleteDraftsMutation, DeleteDraftsMutationVariables> {
     document = DeleteDraftsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38148,7 +38207,7 @@ export const InsertDraftDocument = gql`
   })
   export class InsertDraftGQL extends Apollo.Mutation<InsertDraftMutation, InsertDraftMutationVariables> {
     document = InsertDraftDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38175,7 +38234,7 @@ export const UpdateDraftDocument = gql`
   })
   export class UpdateDraftGQL extends Apollo.Mutation<UpdateDraftMutation, UpdateDraftMutationVariables> {
     document = UpdateDraftDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38193,7 +38252,7 @@ export const DeleteInvoicesDocument = gql`
   })
   export class DeleteInvoicesGQL extends Apollo.Mutation<DeleteInvoicesMutation, DeleteInvoicesMutationVariables> {
     document = DeleteInvoicesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38240,7 +38299,7 @@ export const InsertInvoiceDocument = gql`
   })
   export class InsertInvoiceGQL extends Apollo.Mutation<InsertInvoiceMutation, InsertInvoiceMutationVariables> {
     document = InsertInvoiceDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38286,7 +38345,7 @@ export const UpdateInvoiceDocument = gql`
   })
   export class UpdateInvoiceGQL extends Apollo.Mutation<UpdateInvoiceMutation, UpdateInvoiceMutationVariables> {
     document = UpdateInvoiceDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38304,7 +38363,7 @@ export const DeleteOrdersDocument = gql`
   })
   export class DeleteOrdersGQL extends Apollo.Mutation<DeleteOrdersMutation, DeleteOrdersMutationVariables> {
     document = DeleteOrdersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38354,7 +38413,7 @@ export const InsertOrderDocument = gql`
   })
   export class InsertOrderGQL extends Apollo.Mutation<InsertOrderMutation, InsertOrderMutationVariables> {
     document = InsertOrderDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38405,7 +38464,7 @@ export const UpdateOrderDocument = gql`
   })
   export class UpdateOrderGQL extends Apollo.Mutation<UpdateOrderMutation, UpdateOrderMutationVariables> {
     document = UpdateOrderDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38423,7 +38482,7 @@ export const DeletePaymentDocument = gql`
   })
   export class DeletePaymentGQL extends Apollo.Mutation<DeletePaymentMutation, DeletePaymentMutationVariables> {
     document = DeletePaymentDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38453,7 +38512,7 @@ export const InsertPaymentDocument = gql`
   })
   export class InsertPaymentGQL extends Apollo.Mutation<InsertPaymentMutation, InsertPaymentMutationVariables> {
     document = InsertPaymentDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38471,7 +38530,7 @@ export const DeleteProductsDocument = gql`
   })
   export class DeleteProductsGQL extends Apollo.Mutation<DeleteProductsMutation, DeleteProductsMutationVariables> {
     document = DeleteProductsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38489,7 +38548,7 @@ export const DeleteProductDraftDocument = gql`
   })
   export class DeleteProductDraftGQL extends Apollo.Mutation<DeleteProductDraftMutation, DeleteProductDraftMutationVariables> {
     document = DeleteProductDraftDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38526,7 +38585,7 @@ export const InsertAccessoryDraftDocument = gql`
   })
   export class InsertAccessoryDraftGQL extends Apollo.Mutation<InsertAccessoryDraftMutation, InsertAccessoryDraftMutationVariables> {
     document = InsertAccessoryDraftDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38567,7 +38626,7 @@ export const InsertConsumableDraftDocument = gql`
   })
   export class InsertConsumableDraftGQL extends Apollo.Mutation<InsertConsumableDraftMutation, InsertConsumableDraftMutationVariables> {
     document = InsertConsumableDraftDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38611,7 +38670,7 @@ export const InsertGlassDraftDocument = gql`
   })
   export class InsertGlassDraftGQL extends Apollo.Mutation<InsertGlassDraftMutation, InsertGlassDraftMutationVariables> {
     document = InsertGlassDraftDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38651,7 +38710,7 @@ export const InsertManyConsumablesDocument = gql`
   })
   export class InsertManyConsumablesGQL extends Apollo.Mutation<InsertManyConsumablesMutation, InsertManyConsumablesMutationVariables> {
     document = InsertManyConsumablesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38696,7 +38755,7 @@ export const InsertManyGlassesDocument = gql`
   })
   export class InsertManyGlassesGQL extends Apollo.Mutation<InsertManyGlassesMutation, InsertManyGlassesMutationVariables> {
     document = InsertManyGlassesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38733,7 +38792,7 @@ export const InsertManyProductsDocument = gql`
   })
   export class InsertManyProductsGQL extends Apollo.Mutation<InsertManyProductsMutation, InsertManyProductsMutationVariables> {
     document = InsertManyProductsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38773,7 +38832,7 @@ export const InsertManyServicesDocument = gql`
   })
   export class InsertManyServicesGQL extends Apollo.Mutation<InsertManyServicesMutation, InsertManyServicesMutationVariables> {
     document = InsertManyServicesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38813,7 +38872,7 @@ export const InsertServiceDraftDocument = gql`
   })
   export class InsertServiceDraftGQL extends Apollo.Mutation<InsertServiceDraftMutation, InsertServiceDraftMutationVariables> {
     document = InsertServiceDraftDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38833,7 +38892,7 @@ export const UpdateGlassesJobOrderIdDocument = gql`
   })
   export class UpdateGlassesJobOrderIdGQL extends Apollo.Mutation<UpdateGlassesJobOrderIdMutation, UpdateGlassesJobOrderIdMutationVariables> {
     document = UpdateGlassesJobOrderIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38851,7 +38910,7 @@ export const DeleteQuotationsDocument = gql`
   })
   export class DeleteQuotationsGQL extends Apollo.Mutation<DeleteQuotationsMutation, DeleteQuotationsMutationVariables> {
     document = DeleteQuotationsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38902,7 +38961,7 @@ export const InsertQuotationDocument = gql`
   })
   export class InsertQuotationGQL extends Apollo.Mutation<InsertQuotationMutation, InsertQuotationMutationVariables> {
     document = InsertQuotationDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -38999,7 +39058,7 @@ export const TransformQuotationToOrderDocument = gql`
   })
   export class TransformQuotationToOrderGQL extends Apollo.Mutation<TransformQuotationToOrderMutation, TransformQuotationToOrderMutationVariables> {
     document = TransformQuotationToOrderDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39017,7 +39076,7 @@ export const UpdateQuotationDocument = gql`
   })
   export class UpdateQuotationGQL extends Apollo.Mutation<UpdateQuotationMutation, UpdateQuotationMutationVariables> {
     document = UpdateQuotationDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39058,7 +39117,7 @@ export const GetDeliveriesByDocument = gql`
   })
   export class GetDeliveriesByGQL extends Apollo.Query<GetDeliveriesByQuery, GetDeliveriesByQueryVariables> {
     document = GetDeliveriesByDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39124,7 +39183,7 @@ export const GetDeliveryByIdDocument = gql`
   })
   export class GetDeliveryByIdGQL extends Apollo.Query<GetDeliveryByIdQuery, GetDeliveryByIdQueryVariables> {
     document = GetDeliveryByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39168,7 +39227,7 @@ export const GetOrderDeliveriesDocument = gql`
   })
   export class GetOrderDeliveriesGQL extends Apollo.Query<GetOrderDeliveriesQuery, GetOrderDeliveriesQueryVariables> {
     document = GetOrderDeliveriesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39191,7 +39250,7 @@ export const GetAllDraftsDocument = gql`
   })
   export class GetAllDraftsGQL extends Apollo.Query<GetAllDraftsQuery, GetAllDraftsQueryVariables> {
     document = GetAllDraftsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39226,7 +39285,7 @@ export const GetDraftByIdDocument = gql`
   })
   export class GetDraftByIdGQL extends Apollo.Query<GetDraftByIdQuery, GetDraftByIdQueryVariables> {
     document = GetDraftByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39269,7 +39328,7 @@ export const GetAllInvoicesDocument = gql`
   })
   export class GetAllInvoicesGQL extends Apollo.Query<GetAllInvoicesQuery, GetAllInvoicesQueryVariables> {
     document = GetAllInvoicesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39289,7 +39348,7 @@ export const GetDeliveriesAmountsDocument = gql`
   })
   export class GetDeliveriesAmountsGQL extends Apollo.Query<GetDeliveriesAmountsQuery, GetDeliveriesAmountsQueryVariables> {
     document = GetDeliveriesAmountsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39314,7 +39373,7 @@ export const GetDeliveryLinesDocument = gql`
   })
   export class GetDeliveryLinesGQL extends Apollo.Query<GetDeliveryLinesQuery, GetDeliveryLinesQueryVariables> {
     document = GetDeliveryLinesDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39373,7 +39432,7 @@ export const GetInvoiceByIdDocument = gql`
   })
   export class GetInvoiceByIdGQL extends Apollo.Query<GetInvoiceByIdQuery, GetInvoiceByIdQueryVariables> {
     document = GetInvoiceByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39414,7 +39473,7 @@ export const GetAllOrdersDocument = gql`
   })
   export class GetAllOrdersGQL extends Apollo.Query<GetAllOrdersQuery, GetAllOrdersQueryVariables> {
     document = GetAllOrdersDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39514,7 +39573,7 @@ export const GetOrderByIdDocument = gql`
   })
   export class GetOrderByIdGQL extends Apollo.Query<GetOrderByIdQuery, GetOrderByIdQueryVariables> {
     document = GetOrderByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39542,7 +39601,7 @@ export const GetPaymentDocument = gql`
   })
   export class GetPaymentGQL extends Apollo.Query<GetPaymentQuery, GetPaymentQueryVariables> {
     document = GetPaymentDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39577,7 +39636,7 @@ export const GetProductsByTypeDocument = gql`
   })
   export class GetProductsByTypeGQL extends Apollo.Query<GetProductsByTypeQuery, GetProductsByTypeQueryVariables> {
     document = GetProductsByTypeDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39609,7 +39668,7 @@ export const GetProductsGroupDocument = gql`
   })
   export class GetProductsGroupGQL extends Apollo.Query<GetProductsGroupQuery, GetProductsGroupQueryVariables> {
     document = GetProductsGroupDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39649,7 +39708,7 @@ export const GetAllQuotationsDocument = gql`
   })
   export class GetAllQuotationsGQL extends Apollo.Query<GetAllQuotationsQuery, GetAllQuotationsQueryVariables> {
     document = GetAllQuotationsDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -39720,7 +39779,7 @@ export const GetQuotationByIdDocument = gql`
   })
   export class GetQuotationByIdGQL extends Apollo.Query<GetQuotationByIdQuery, GetQuotationByIdQueryVariables> {
     document = GetQuotationByIdDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }

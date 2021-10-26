@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import {
-  AddExpenseGQL,
-  DeleteExpensesByIdGQL,
-  GetExpensesCategoriesGQL,
-} from '@tanglass-erp/infrastructure/graphql';
+import { AddExpenseGQL, DeleteExpensesByIdGQL, GetExpensesCategoriesGQL } from '@tanglass-erp/infrastructure/graphql';
 import { InsertedExpenses } from '../models/expenses';
+
 @Injectable({
   providedIn: 'root',
 })

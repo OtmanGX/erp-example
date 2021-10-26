@@ -1,4 +1,4 @@
-import { User, DetailedUser,InsertedUser } from '@tanglass-erp/core/management';
+import { DetailedUser, InsertedUser, User } from '@tanglass-erp/core/management';
 import { createAction, props } from '@ngrx/store';
 
 /****************************************************************** */

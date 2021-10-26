@@ -1,4 +1,4 @@
-import { Contact, DetailedContact } from "../models/contact.models";
+import { Contact, DetailedContact } from '../models/contact.models';
 
 //list of Contacts
 export interface ContactsVM {
@@ -8,7 +8,7 @@ export interface ContactsVM {
 }
 
 
-//Contact fiche 
+//Contact fiche
 export interface DetailedContactVM{
     contact:DetailedContact;
     loading:boolean;

@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
 import {
+  AddContactAddressGQL,
+  DeleteContactAddressGQL,
+  DeleteContactGQL,
+  DeleteManyContactsGQL,
   GetAllContactsGQL,
   GetContactByIdGQL,
-  DeleteContactGQL,
-  UpdateContactGQL,
   InsertContactGQL,
   InsertContactMutationVariables,
-  DeleteManyContactsGQL,
-  AddContactAddressGQL,
-  Contact_Contact_Address_Insert_Input,
-  DeleteContactAddressGQL,
+  UpdateContactGQL
 } from '@tanglass-erp/infrastructure/graphql';
 
 
-import {  DetailedContact, InsertedContact } from '../models/contact.models';
-import { InsertAddressContact,DeleteAddress } from '../models/shared.models';
-import {  dataAdapter } from '../utils/dataAdapter';
-
+import { DetailedContact, InsertedContact } from '../models/contact.models';
+import { DeleteAddress, InsertAddressContact } from '../models/shared.models';
+import { dataAdapter } from '../utils/dataAdapter';
 
 
 @Injectable({

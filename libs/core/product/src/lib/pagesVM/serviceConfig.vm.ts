@@ -1,5 +1,4 @@
-import { Glass,DetailedGlass} from "../models/glass.model";
-import { DetailedService, DetailedServiceConfig, Service, ServiceConfig } from "../models/service.model";
+import { DetailedServiceConfig, ServiceConfig } from '../models/service.model';
 
 //list of service collections
 export interface ServicesConfigVM {
@@ -9,7 +8,7 @@ export interface ServicesConfigVM {
 }
 
 
-//Service  fiche 
+//Service  fiche
 export interface DetailedServiceVM{
     service:DetailedServiceConfig;
     loading:boolean;

@@ -8,7 +8,7 @@ import * as ShortCompanieSelectors from '@TanglassStore/shared/lib/+state/short-
 import * as CustomerSelectors from '@TanglassStore/contact/lib/selectors/customer.selectors';
 import * as ContactSelectors from '@TanglassStore/contact/lib/selectors/contact.selectors';
 import { map } from 'rxjs/operators';
-import { DraftFacade } from "@tanglass-erp/store/sales";
+import { DraftFacade } from '@tanglass-erp/store/sales';
 import { Subscription } from 'rxjs';
 
 @Component({

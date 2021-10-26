@@ -1,4 +1,4 @@
-import { Dimension,Product_draft } from '@tanglass-erp/store/sales';
+import { Dimension, Product_draft } from '@tanglass-erp/store/sales';
 import { Observable } from 'rxjs';
 
 export class DraftInfos {

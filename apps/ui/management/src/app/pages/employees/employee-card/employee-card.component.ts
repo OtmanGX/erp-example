@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@tanglass-erp/store/app';
-import { Location } from '@angular/common';
 import * as UserActions from '@TanglassStore/management/lib/actions/user.actions';
 import * as UserSelectors from '@TanglassStore/management/lib/selectors/user.selectors';
-import { takeWhile } from 'rxjs/operators';
 import { ModelCardComponent } from '@tanglass-erp/material';
 import { ActivatedRoute } from '@angular/router';
 

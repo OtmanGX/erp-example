@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   ORDERS_SALEPOINT_FEATURE_KEY,
-  State,
-  OrdersSalepointPartialState,
   ordersSalepointAdapter,
+  OrdersSalepointPartialState,
+  State
 } from './orders-salepoint.reducer';
 
 // Lookup the 'OrdersSalepoint' feature state managed by NgRx

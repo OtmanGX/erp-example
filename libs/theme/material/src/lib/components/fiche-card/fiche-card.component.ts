@@ -1,6 +1,4 @@
-import { Component, Input,  Output,
-  EventEmitter } from '@angular/core';
-import { ɵInternalFormsSharedModule } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'ngx-fiche-card',

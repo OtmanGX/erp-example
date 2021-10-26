@@ -1,8 +1,8 @@
-import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as GlassesActions from '../actions/glass.actions';
-import { Glass, DetailedGlass } from '@tanglass-erp/core/product';
+import { DetailedGlass, Glass } from '@tanglass-erp/core/product';
 import * as ProductsActions from '../actions/product.actions';
 
 export const GLASS_FEATURE_KEY = 'glasses';

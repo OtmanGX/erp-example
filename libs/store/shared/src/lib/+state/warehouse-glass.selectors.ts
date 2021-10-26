@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
-  WAREHOUSE_GLASS_FEATURE_KEY,
   State,
-  WarehouseGlassPartialState,
+  WAREHOUSE_GLASS_FEATURE_KEY,
   warehouseGlassAdapter,
+  WarehouseGlassPartialState
 } from './warehouse-glass.reducer';
 
 // Lookup the 'WarehouseSubstance' feature state managed by NgRx

@@ -1,20 +1,13 @@
+import { AfterViewInit, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  HostListener,
-  ChangeDetectorRef,
-  OnDestroy
-} from '@angular/core';
-import {
-  Router,
   NavigationEnd,
-  RouteConfigLoadStart,
-  RouteConfigLoadEnd,
+  ResolveEnd,
   ResolveStart,
-  ResolveEnd
+  RouteConfigLoadEnd,
+  RouteConfigLoadStart,
+  Router
 } from '@angular/router';
-import { Subscription } from "rxjs";
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { ThemeService } from '../shared/services/theme.service';
 import { LayoutService } from '../shared/services/layout.service';

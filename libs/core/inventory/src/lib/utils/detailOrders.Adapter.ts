@@ -1,6 +1,6 @@
-import { flattenObj } from "@tanglass-erp/core/common";
-import { GetAccessoryWarehousesByIdQuery, GetTransferOrderByIdQuery } from "@tanglass-erp/infrastructure/graphql";
-import { SubstanceStocksDetails } from "../models/shared.models";
+import { flattenObj } from '@tanglass-erp/core/common';
+import { GetAccessoryWarehousesByIdQuery, GetTransferOrderByIdQuery } from '@tanglass-erp/infrastructure/graphql';
+import { SubstanceStocksDetails } from '../models/shared.models';
 
 
 export function AdaptOrderedItems(obj) {

@@ -1,4 +1,4 @@
-import { Glass, DetailedGlass, InsertedGlass } from '@tanglass-erp/core/product';
+import { DetailedGlass, Glass, InsertedGlass } from '@tanglass-erp/core/product';
 import { createAction, props } from '@ngrx/store';
 import { RequireExactlyOne } from '@tanglass-erp/core/common';
 

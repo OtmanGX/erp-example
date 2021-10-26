@@ -1,14 +1,14 @@
 import { AfterViewInit, Component, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormDialog, FieldConfig } from '@tanglass-erp/material';
+import { DynamicFormComponent, FieldConfig, FormDialog } from '@tanglass-erp/material';
 import { AppState } from '@tanglass-erp/store/app';
 import { Store } from '@ngrx/store';
 import { SharedFacade } from '@tanglass-erp/store/shared';
 import { map } from 'rxjs/operators';
-import { DynamicFormComponent } from '@tanglass-erp/material';
 import { regConfigDeliveryItem } from '@TanglassUi/purchase/utils/forms';
 import { SubstancesFacade } from '@TanglassStore/product/lib/+state/substances.facade';
 import { DeliveriesFacade } from '@tanglass-erp/store/purchase';
+
 @Component({
   selector: 'ngx-pop-delivery-transfer',
   templateUrl: './pop-delivery-item.component.html',

@@ -1,19 +1,15 @@
 import { Component } from '@angular/core';
 import {
-  OrdersFacade,
-  DetailedOrder,
   DeliveryFacade,
+  DetailedOrder,
+  OrdersFacade,
   ProductDraftFacade,
-  Sales_Draft_Status_Enum,
+  Sales_Draft_Status_Enum
 } from '@tanglass-erp/store/sales';
 import { takeUntil } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModelCardComponent } from '@tanglass-erp/material';
-import { SharedFacade } from '@tanglass-erp/store/shared';
-import { Router } from '@angular/router';
 import { JobOrdersFacade } from '@tanglass-erp/store/manufacturing';
-import * as productStore from '@TanglassStore/product/index';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-order-card',

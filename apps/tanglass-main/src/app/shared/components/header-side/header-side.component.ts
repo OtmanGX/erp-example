@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 import { LayoutService } from '../../services/layout.service';
 import { AuthService } from '@auth0/auth0-angular';
@@ -89,6 +89,6 @@ export class HeaderSideComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+    this.auth.logout({returnTo: window.location.origin});
   }
 }

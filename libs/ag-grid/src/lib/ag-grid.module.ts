@@ -8,10 +8,8 @@ import 'ag-grid-enterprise';
 import { ExportBottomSheetComponent } from './components/export-bottom-sheet/export-bottom-sheet.component';
 import { LinkComponent } from './components/cell-renderers/link.component';
 import { RouterModule } from '@angular/router';
-import { DefaultCellRendererComponent } from './components/cell-renderers/default-cell-renderer.component';
 import { DateFilterComponent } from './components/date-filter/date-filter.component';
 import { MatTabsModule } from '@angular/material/tabs';
-
 
 
 export const MODULES = [
