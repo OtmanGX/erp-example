@@ -1,6 +1,6 @@
 overwrite: true
 schema:
-  - http://65.21.182.51:8080/v1/graphql:
+  - http://162.55.39.61:8080/v1/graphql:
       headers:
         X-Hasura-Admin-Secret: FlwyZiGEYCCjwUXPOnK1nNvfEqKuFWvv
 documents: '**/*.graphql'

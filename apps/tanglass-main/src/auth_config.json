@@ -1,6 +1,6 @@
 {
-  "domain": "gxm.us.auth0.com",
-  "clientId": "k35khcRkef3IyRQWkIBRLd7vwFA2guV5",
-  "audience": "https://tanglass.com",
-  "apiUri": ["https://gxm.us.auth0.com", "https://hasuratg.cloudvision.dev:8000"]
+  "domain": "cloudvision.eu.auth0.com",
+  "clientId": "r1jddHHSN03ymcUlWe7KfEnfa8EA6WuQ",
+  "audience": "https://erp.cloudvision.dev",
+  "apiUri": ["https://cloudvision.eu.auth0.com", "https://erp.cloudvision.dev"]
 }
